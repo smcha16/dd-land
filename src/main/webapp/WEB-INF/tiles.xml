@@ -4,5 +4,7 @@
 
 <tiles-definitions>
 	<definition name="index" template="/WEB-INF/views/index.jsp">
+		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>
