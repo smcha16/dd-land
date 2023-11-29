@@ -5,24 +5,19 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<property name="driverClassName"
-			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="jdbcUrl"
-			value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe"></property>
-		<property name="username" value="hr"></property>
-		<property name="password" value="java1234"></property>
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@43.200.182.211:1521:xe"></property>
+		<property name="username" value="JspProject"></property>
+		<property name="password" value="pass"></property>
 	</bean>
 
-	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
-		destroy-method="close">
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg ref="hikariConfig"></constructor-arg>
 	</bean>
 
-	<bean id="sessionfactory"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sessionfactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="mapperLocations"
-			value="classpath*:mapper/**/*.xml"></property>
+		<property name="mapperLocations" value="classpath*:mapper/**/*.xml"></property>
 	</bean>
 
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
