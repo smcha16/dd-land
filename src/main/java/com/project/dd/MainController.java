@@ -13,5 +13,17 @@ public class MainController {
 		return "main";
 
 	}
+	
+	@GetMapping(value = "/admin.do")
+	public String admin(Model model) {
+
+		return "admin";
+	}
+	
+	@GetMapping(value = "/mypage.do")
+	public String mypage(Model model) {
+
+		return "mypage";
+	}
 
 }
