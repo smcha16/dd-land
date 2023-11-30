@@ -1169,7 +1169,6 @@
 	<div id="preloader"></div>
 
 
-
 	<!-- Vendor JS Files -->
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="resources/vendor/aos/aos.js"></script>
