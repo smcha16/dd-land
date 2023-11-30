@@ -14,8 +14,9 @@
 <meta content="" name="keywords">
 
 <!-- Favicons -->
-<link href="resources/img/favicon.png" rel="icon">
-<link href="resources/img/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="resources/main/img/favicon.png" rel="icon">
+<link href="resources/main/img/apple-touch-icon.png"
+	rel="apple-touch-icon">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,18 +26,18 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="resources/vendor/bootstrap/css/bootstrap.min.css"
+<link href="resources/main/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="resources/vendor/bootstrap-icons/bootstrap-icons.css"
+<link href="resources/main/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
-<link href="resources/vendor/aos/aos.css" rel="stylesheet">
-<link href="resources/vendor/glightbox/css/glightbox.min.css"
+<link href="resources/main/vendor/aos/aos.css" rel="stylesheet">
+<link href="resources/main/vendor/glightbox/css/glightbox.min.css"
 	rel="stylesheet">
-<link href="resources/vendor/swiper/swiper-bundle.min.css"
+<link href="resources/main/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
-<link href="resources/css/main.css" rel="stylesheet">
+<link href="resources/main/css/main.css" rel="stylesheet">
 
 <!-- =======================================================
   * Template Name: Yummy
@@ -50,12 +51,10 @@
 <body>
 	<tiles:insertAttribute name="header" />
 
-<tiles:insertAttribute name="content" />
+	<tiles:insertAttribute name="content" />
 
-		<tiles:insertAttribute name="footer" />
+	<tiles:insertAttribute name="footer" />
 
-	</main>
-	<!-- End #main -->
 
 	<a href="#"
 		class="scroll-top d-flex align-items-center justify-content-center"><i
@@ -66,15 +65,16 @@
 
 
 	<!-- Vendor JS Files -->
-	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/vendor/aos/aos.js"></script>
-	<script src="resources/vendor/glightbox/js/glightbox.min.js"></script>
-	<script src="resources/vendor/purecounter/purecounter_vanilla.js"></script>
-	<script src="resources/vendor/swiper/swiper-bundle.min.js"></script>
-	<script src="resources/vendor/php-email-form/validate.js"></script>
+	<script
+		src="resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="resources/main/vendor/aos/aos.js"></script>
+	<script src="resources/main/vendor/glightbox/js/glightbox.min.js"></script>
+	<script src="resources/main/vendor/purecounter/purecounter_vanilla.js"></script>
+	<script src="resources/main/vendor/swiper/swiper-bundle.min.js"></script>
+	<script src="resources/main/vendor/php-email-form/validate.js"></script>
 
 	<!-- Template Main JS File -->
-	<script src="resources/js/main.js"></script>
+	<script src="resources/main/js/main.js"></script>
 
 </body>
 
