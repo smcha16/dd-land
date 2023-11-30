@@ -283,20 +283,13 @@ section {
 .header .btn-book-a-table,
 .header .btn-book-a-table:focus {
   font-size: 14px;
-  color: #fff;
-  background: var(--color-primary);
   padding: 8px 20px;
   margin-left: 30px;
-  border-radius: 50px;
+  border-radius: 15px;
   transition: 0.3s;
+  font-weight: bold;
+  cursor: pointer;
 }
-
-.header .btn-book-a-table:hover,
-.header .btn-book-a-table:focus:hover {
-  color: #fff;
-  background: rgba(206, 18, 18, 0.8);
-}
-
 section {
   scroll-margin-top: 90px;
 }
