@@ -192,7 +192,7 @@ DROP SEQUENCE seqtblUserCart;
 DROP SEQUENCE seqtblBuy;
 DROP SEQUENCE seqtblUserBuy;
 
-/* CREATE문 */
+/* CREATE */
 /* 유저 */
 CREATE TABLE tblUser (
 	user_seq NUMBER PRIMARY KEY, /* 유저번호 */
