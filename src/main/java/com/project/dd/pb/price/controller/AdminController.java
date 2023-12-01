@@ -15,7 +15,7 @@ public class AdminController {
 		
 		List<PriceDTO> list = new ArrayList<PriceDTO>();
 		
-		list.add();
+		//list.add();
 		
 		return list;
 	}
