@@ -65,8 +65,11 @@
 	#reveal {
         position: absolute;
         top: 50%;
-        left: 50%;
-        transform: translate(-50%, -30%);
+        left: calc(50% + 200px);
+        transform: translate(-50%, -60%);
+        width: 500px;
+        height: 100px;
+        transition: left 0.3s ease;
     }
 	
 	#reveal:before {
@@ -96,7 +99,7 @@
 	#reveal p {
 		color: #fff;
 		margin-bottom: 50px;
-		font-size: 26px;
+		font-size: 50px;
 		text-align: center;
 		font-family: "Poppins", sans-serif;
 	}
@@ -145,10 +148,10 @@
 	<script src="resources/admin/vendor/tinymce/tinymce.min.js"></script>
 	<script src="resources/admin/vendor/php-email-form/validate.js"></script>
 	<script src="resources/admin/vendor/reveal/reveal.js"></script>
-
+	
 	<!-- Template Main JS File -->
 	<script src="resources/admin/js/main.js"></script>
-	
+
 	<script>
 		const typed = document.querySelector('.typed')
 		if (typed) {
@@ -162,6 +165,28 @@
 				backDelay : 2000
 			});
 		}
+		
+		document.addEventListener("DOMContentLoaded", function () {
+	        const reveal = document.getElementById('reveal');
+	        const body = document.body;
+	
+	        function moveRevealToLeft() {
+	            reveal.style.left = 'calc(50% - 30px)';
+	        }
+	
+	        function resetRevealPosition() {
+	            reveal.style.left = 'calc(50% + 200px)';
+	        }
+	
+	        body.addEventListener('click', function () {
+	            if (body.classList.contains('toggle-sidebar')) {
+	                moveRevealToLeft();
+	            } else {
+	                resetRevealPosition();
+	            }
+	        });
+	    });
 	</script>
+	
 </body>
 </html>
