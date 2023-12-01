@@ -11,7 +11,6 @@ public class MainController {
 	public String index(Model model) {
 
 		return "main";
-
 	}
 	
 	@GetMapping(value = "/admin.do")
