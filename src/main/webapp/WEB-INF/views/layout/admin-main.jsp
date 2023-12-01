@@ -63,8 +63,7 @@
 		
 		<tiles:insertAttribute name="admin_sidebar" />
 		
-		<!-- ======= Main ======= -->
-		<main id="main" class="main"></main>
+		<tiles:insertAttribute name="admin_content" />
 		
 		<!-- Vendor JS Files -->
 		<script src="resources/admin/vendor/apexcharts/apexcharts.min.js"></script>

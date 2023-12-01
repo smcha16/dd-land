@@ -44,7 +44,7 @@
 	
 		<i id="list" class="bi bi-list toggle-sidebar-btn"></i> 
 	
-		<a id="logo" href="admin-main.do" class="logo d-flex align-items-center me-auto me-lg-0">
+		<a id="logo" href="admin.do" class="logo d-flex align-items-center me-auto me-lg-0">
 			<span>.</span><h1>D_D<span>.</span></h1>
 	    </a>
 
