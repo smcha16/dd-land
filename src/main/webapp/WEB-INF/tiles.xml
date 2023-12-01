@@ -29,4 +29,8 @@
 		<put-attribute name="admin_content" value="/WEB-INF/views/admin/activity/attraction/view.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="price" template="/WEB-INF/views/user/pb/price/view.jsp">
+	
+	</definition>
+	
 </tiles-definitions>
