@@ -11,11 +11,11 @@ import com.project.dd.pb.price.domain.PriceDTO;
 public class AdminController {
 	
 	@GetMapping(value="/ex06.do")
-	public @ResponseBody List<PriceDTO> test() {
+	public List<PriceDTO> test() {
 		
 		List<PriceDTO> list = new ArrayList<PriceDTO>();
 		
-		list.add();
+		//list.add();
 		
 		return list;
 	}

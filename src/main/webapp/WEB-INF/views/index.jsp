@@ -2,6 +2,25 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<<<<<<< HEAD
+<style>
+	#total{
+		justify-content: center;
+	}
+	#reference{
+		text-align:center;
+		margin-bottom: 30px;
+		font-size: 30px;
+	}
+	#reservationBox{
+		background-color: cornflowerblue;
+	}
+</style>
+
+	<main id="main">
+	
+	<!-- ======= Events Section ======= -->
+=======
 	<!-- ======= Hero Section ======= -->
 	<section id="hero" class="hero d-flex align-items-center section-bg">
 		<div class="container">
@@ -707,10 +726,11 @@
 		<!-- End Testimonials Section -->
 
 		<!-- ======= Events Section ======= -->
+>>>>>>> main
 		<section id="events" class="events">
 			<div class="container-fluid" data-aos="fade-up">
 
-				<div class="section-header">
+				<div class="section-header" style="margin-top: 58px;">
 					<h2>Events</h2>
 					<p>
 						Share <span>Your Moments</span> In Our Restaurant
@@ -762,15 +782,90 @@
 			</div>
 		</section>
 		<!-- End Events Section -->
+		
+		<!-- ======= Stats Counter Section ======= -->
+		<section id="stats-counter" class="stats-counter" style="padding: 20px;">
+			<div class="container" data-aos="zoom-out">
+
+				<div class="row gy-4">
+
+					<div class="col-lg-3 col-md-6">
+						<div class="stats-item text-center w-100 h-100">
+							<span data-purecounter-start="0" data-purecounter-end="10"
+								data-purecounter-duration="1.8" class="purecounter"></span>
+							<span data-purecounter-start="0" data-purecounter-end="22"
+								data-purecounter-duration="1.5" class="purecounter"></span>
+						</div>
+					</div>
+					<!-- End Stats Item -->
+
+				</div>
+
+			</div>
+		</section>
+		<!-- End Stats Counter Section -->
+	
+
+		<!-- ======= Why Us Section ======= -->
+		<section id="why-us" class="why-us section-bg">
+		
+		<div id="reference">추천3!</div>
+			<div class="container" data-aos="fade-up">
+
+				<div class="row gy-4" id="total">
+					<div class="col-lg-8 d-flex align-items-center">
+						<div class="row gy-4">
+
+							<div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
+								<div
+									class="icon-box d-flex flex-column justify-content-center align-items-center">
+									<i class="bi bi-clipboard-data"></i>
+									<h4>Corporis voluptates officia eiusmod</h4>
+									<p>Consequuntur sunt aut quasi enim aliquam quae harum
+										pariatur laboris nisi ut aliquip</p>
+								</div>
+							</div>
+							<!-- End Icon Box -->
+
+							<div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
+								<div
+									class="icon-box d-flex flex-column justify-content-center align-items-center">
+									<i class="bi bi-gem"></i>
+									<h4>Ullamco laboris ladore pan</h4>
+									<p>Excepteur sint occaecat cupidatat non proident, sunt in
+										culpa qui officia deserunt</p>
+								</div>
+							</div>
+							<!-- End Icon Box -->
+
+							<div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
+								<div
+									class="icon-box d-flex flex-column justify-content-center align-items-center">
+									<i class="bi bi-inboxes"></i>
+									<h4>Labore consequatur incidid dolore</h4>
+									<p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus
+										ut maiores omnis facere</p>
+								</div>
+							</div>
+							<!-- End Icon Box -->
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+		<!-- End Why Us Section -->
 
 		<!-- ======= Chefs Section ======= -->
 		<section id="chefs" class="chefs section-bg">
 			<div class="container" data-aos="fade-up">
 
 				<div class="section-header">
-					<h2>Chefs</h2>
+					<h2>추천</h2>
 					<p>
-						Our <span>Proffesional</span> Chefs
+						오늘은 <span>어떻게</span> 놀아볼까?
 					</p>
 				</div>
 
@@ -853,6 +948,9 @@
 			</div>
 		</section>
 		<!-- End Chefs Section -->
+<<<<<<< HEAD
+		
+=======
 
 		<!-- ======= Book A Table Section ======= -->
 		<section id="book-a-table" class="book-a-table">
@@ -937,6 +1035,7 @@
 		</section>
 		<!-- End Book A Table Section -->
 
+>>>>>>> main
 		<!-- ======= Gallery Section ======= -->
 		<section id="gallery" class="gallery section-bg">
 			<div class="container" data-aos="fade-up">
@@ -1005,108 +1104,12 @@
 			</div>
 		</section>
 		<!-- End Gallery Section -->
-
-		<!-- ======= Contact Section ======= -->
-		<section id="contact" class="contact">
-			<div class="container" data-aos="fade-up">
-
-				<div class="section-header">
-					<h2>Contact</h2>
-					<p>
-						Need Help? <span>Contact Us</span>
-					</p>
-				</div>
-
-				<div class="mb-3">
-					<iframe style="border: 0; width: 100%; height: 350px;"
-						src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
-						frameborder="0" allowfullscreen></iframe>
-				</div>
-				<!-- End Google Maps -->
-
-				<div class="row gy-4">
-
-					<div class="col-md-6">
-						<div class="info-item  d-flex align-items-center">
-							<i class="icon bi bi-map flex-shrink-0"></i>
-							<div>
-								<h3>Our Address</h3>
-								<p>A108 Adam Street, New York, NY 535022</p>
-							</div>
-						</div>
-					</div>
-					<!-- End Info Item -->
-
-					<div class="col-md-6">
-						<div class="info-item d-flex align-items-center">
-							<i class="icon bi bi-envelope flex-shrink-0"></i>
-							<div>
-								<h3>Email Us</h3>
-								<p>contact@example.com</p>
-							</div>
-						</div>
-					</div>
-					<!-- End Info Item -->
-
-					<div class="col-md-6">
-						<div class="info-item  d-flex align-items-center">
-							<i class="icon bi bi-telephone flex-shrink-0"></i>
-							<div>
-								<h3>Call Us</h3>
-								<p>+1 5589 55488 55</p>
-							</div>
-						</div>
-					</div>
-					<!-- End Info Item -->
-
-					<div class="col-md-6">
-						<div class="info-item  d-flex align-items-center">
-							<i class="icon bi bi-share flex-shrink-0"></i>
-							<div>
-								<h3>Opening Hours</h3>
-								<div>
-									<strong>Mon-Sat:</strong> 11AM - 23PM; <strong>Sunday:</strong>
-									Closed
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- End Info Item -->
-
-				</div>
-
-				<form action="forms/contact.php" method="post" role="form"
-					class="php-email-form p-3 p-md-4">
-					<div class="row">
-						<div class="col-xl-6 form-group">
-							<input type="text" name="name" class="form-control" id="name"
-								placeholder="Your Name" required>
-						</div>
-						<div class="col-xl-6 form-group">
-							<input type="email" class="form-control" name="email" id="email"
-								placeholder="Your Email" required>
-						</div>
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" name="subject"
-							id="subject" placeholder="Subject" required>
-					</div>
-					<div class="form-group">
-						<textarea class="form-control" name="message" rows="5"
-							placeholder="Message" required></textarea>
-					</div>
-					<div class="my-3">
-						<div class="loading">Loading</div>
-						<div class="error-message"></div>
-						<div class="sent-message">Your message has been sent. Thank
-							you!</div>
-					</div>
-					<div class="text-center">
-						<button type="submit">Send Message</button>
-					</div>
-				</form>
-				<!--End Contact Form -->
-
-			</div>
-		</section>
-		<!-- End Contact Section -->
+		
+		<!-- start reservation  -->
+		 <div class="col-lg-12 col-md-6 text-center bg-dark" style="padding: 2rem;" id="reservationBox">
+       	 	<h1 class="text-uppercase text-light mb-4">더 빠른 탑승을 위한 최고의 선택!</h1>
+        	<a href="/ddstudio/activity/attraction.do" class="btn btn-primary py-3 px-5" style="background-color: #ec2727; color:#fff; border: 1px solid #ec2727">어트랙션 예약</a>
+    	</div>
+		
+		
+		<!-- end reservation -->

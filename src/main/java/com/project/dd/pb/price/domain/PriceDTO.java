@@ -10,4 +10,5 @@ public class PriceDTO {
 	private String person_type;
 	private String age;
 	private String price;
+	
 }
