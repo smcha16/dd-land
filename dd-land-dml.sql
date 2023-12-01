@@ -1,4 +1,5 @@
 -- dd-land-dml
+select * from tblUser;
 
 /* 유저 */
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
