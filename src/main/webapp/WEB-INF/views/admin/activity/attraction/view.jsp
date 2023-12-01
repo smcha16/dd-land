@@ -7,11 +7,6 @@
     <div class="pagetitle">
 		<h1>어트랙션 관리</h1>
     </div>
-	    <section id="reveal">
-	        <div class="reveal-container" data-aos="fade-in">
-	            <p>표시표시표시표시<span class="typed" data-typed-items="안녕하세요 관리자님, 안녕하세요 김수민님, 환영합니다"></span></p>
-	        </div>
-	    </section>
 
 	<section class="section">
 		<div class="row">
