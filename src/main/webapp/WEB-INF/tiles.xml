@@ -3,9 +3,30 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
+
 	<definition name="main" template="/WEB-INF/views/layout/main.jsp">
 		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/views/index.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin" template="/WEB-INF/views/layout/admin-main.jsp">
+		<put-attribute name="admin_header" value="/WEB-INF/inc/admin_header.jsp"></put-attribute>
+		<put-attribute name="admin_sidebar" value="/WEB-INF/inc/admin_sidebar.jsp"></put-attribute>
+		<put-attribute name="admin_content" value="/WEB-INF/views/admin/view.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="mypage" template="/WEB-INF/views/layout/mypage.jsp">
+		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
+		<put-attribute name="admin_sidebar" value="/WEB-INF/inc/admin_sidebar.jsp"></put-attribute>
+		<put-attribute name="admin_content" value="/WEB-INF/views/admin.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
+	</definition>
+
+	<definition name="attraction" template="/WEB-INF/views/layout/admin.jsp">
+		<put-attribute name="admin_header" value="/WEB-INF/inc/admin_header.jsp"></put-attribute>
+		<put-attribute name="admin_sidebar" value="/WEB-INF/inc/admin_sidebar.jsp"></put-attribute>
+		<put-attribute name="admin_content" value="/WEB-INF/views/admin/activity/attraction/view.jsp"></put-attribute>
+	</definition>
+	
 </tiles-definitions>
