@@ -23,4 +23,8 @@
 		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="price" template="/WEB-INF/views/user/pb/price/view.jsp">
+	
+	</definition>
+	
 </tiles-definitions>
