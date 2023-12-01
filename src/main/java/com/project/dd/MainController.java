@@ -24,5 +24,23 @@ public class MainController {
 
 		return "mypage";
 	}
+	
+	@GetMapping(value = "/template1.do")
+	public String listTemplate1(Model model) {
+		
+		return "template.list1";
+	}
+	
+	@GetMapping(value = "/template2.do")
+	public String listTemplate2(Model model) {
+		
+		return "template.list2";
+	}
+
+	@GetMapping(value = "/template3.do")
+	public String viewTemplate1(Model model) {
+		
+		return "template.view1";
+	}
 
 }

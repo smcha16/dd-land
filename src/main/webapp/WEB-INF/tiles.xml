@@ -33,4 +33,10 @@
 	
 	</definition>
 	
+	<definition name="template.*" template="/WEB-INF/views/layout/main.jsp">
+		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/template/{1}.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
+	</definition>
+	
 </tiles-definitions>
