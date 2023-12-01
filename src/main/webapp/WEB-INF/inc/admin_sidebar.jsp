@@ -21,7 +21,7 @@
       			</a>
       			<ul id="member-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         			<li>
-          				<a href="attraction.do">
+          				<a href="admin/activity/attraction/view.do">
             				<i class="bi bi-circle"></i><span>회원</span>
           				</a>
         			</li>

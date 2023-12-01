@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminController {
 	
-	@GetMapping(value = "/attraction.do")
+	@GetMapping(value = "/admin/activity/attraction/view.do")
 	public String attraction(Model model) {
 
-		return "attraction";
+		return "admin.activity.attraction.view";
 	}
 
 }
