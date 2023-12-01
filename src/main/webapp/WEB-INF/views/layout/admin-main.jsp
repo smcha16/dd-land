@@ -31,73 +31,30 @@
 		<link href="resources/admin/css/style.css" rel="stylesheet">
 	
 		<style>
-			#main h1 {
-     			margin-top: 45px !important;
-    		}
-    		h1 {
-      			font-size: 2rem !important;
-      			margin-left: 10px;
-    		}
-    		.d-md-block {
-      			margin-right: 15px;
-    		}
-    		.pagetitle {
-      			margin-top: 10px;
-    		}
-    		.col-12 {
-      			margin-top: 15px;
-    		}
-    		.col-lg-8 {
-      			width: 100%;
-    		}
-    		.card-body {
-      			min-height: 600px;
-    		}
-    		div.header {
-      			height: 60px;
-      			border-radius: 5px;
-    		}
-    		#search {
-      			margin-bottom: 15px;
-      			padding: 7px;
-    		}
-    		.search-form {
-      			width: 100%;
-      			margin: 0;
-    		}
-    		.header .search-form input {
-      			border: 0;
-     		 	height: 50px;
-    		}
-    		.header .search-form input:focus, .header .search-form input:hover {
-      			outline: none;
-      			border: none;
-      			box-shadow: none;
-      			transition: none;
-    		}
-    		.card-body .header {
-      			display: flex;
-      			align-items: center;
-      			justify-content: space-between;
-    		}
-    		.breadcrumb {
-      			margin-right: 15px;
-      			margin-top: 30px;
-     	 		margin-bottom: 10px;
-    		}
-    		.breadcrumb a {
-      			color: #012970;
-    		}
-    		.table {
-      			text-align: center;
-    		}
-    		th {
-      			background-color: #f2f2f2 !important;
-    		}
-    		.pagination {
-      			justify-content: center;
-      			margin-top: 40px;
-    		}
+			body {
+				display: flex;
+				flex-direction: column;
+				min-height: 100vh;
+				overflow-y: scroll;
+			}
+	    	main {
+			    flex: 1;
+			    background: url('/dd/resources/admin/img/놀이공원.jpg') center/cover no-repeat;
+			    padding: 0 !important;
+			    margin-top: 90px !important;
+			    position: relative;
+			    color: #FFF;
+	    	}
+		    main::before {
+			    content: "";
+			    position: absolute;
+			    top: 0;
+			    left: 0;
+			    width: 100%;
+			    height: 100%;
+			    background-color: #000;
+			    opacity: 0.6;
+	    	}
 		</style>
 	</head>
 
@@ -106,7 +63,8 @@
 		
 		<tiles:insertAttribute name="admin_sidebar" />
 		
-		<tiles:insertAttribute name="admin_content" />
+		<!-- ======= Main ======= -->
+		<main id="main" class="main"></main>
 		
 		<!-- Vendor JS Files -->
 		<script src="resources/admin/vendor/apexcharts/apexcharts.min.js"></script>
