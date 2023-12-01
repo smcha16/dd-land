@@ -14,12 +14,6 @@ public class MainController {
 
 	}
 	
-	@GetMapping(value = "/admin-main.do")
-	public String adminMain(Model model) {
-
-		return "admin-main";
-	}
-	
 	@GetMapping(value = "/admin.do")
 	public String admin(Model model) {
 
