@@ -124,6 +124,8 @@
 		
 		<tiles:insertAttribute name="mypage_content" />
 		
+		<tiles:insertAttribute name="footer" />
+		
 		<!-- Vendor JS Files -->
 		<script src="/dd/resources/admin/vendor/apexcharts/apexcharts.min.js"></script>
 		<script src="/dd/resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
