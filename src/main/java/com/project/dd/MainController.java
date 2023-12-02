@@ -38,6 +38,12 @@ public class MainController {
 	}
 
 	@GetMapping(value = "/template3.do")
+	public String listTemplate3(Model model) {
+		
+		return "template.list3_toggle";
+	}
+
+	@GetMapping(value = "/template4.do")
 	public String viewTemplate1(Model model) {
 		
 		return "template.view1";
