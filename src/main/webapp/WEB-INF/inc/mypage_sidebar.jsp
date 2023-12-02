@@ -1,31 +1,122 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-  <aside id="header">
-    <div class="d-flex flex-column">
+	<style>
+		.nav-heading {
+			margin: 45px 0 15px 0 !important;
+	    }
+	</style>
 
-      <div class="profile">
-        <img src="resources/mypage/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="index.html">Alex Smith</a></h1>
-        <div class="social-links mt-3 text-center">
-          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        </div>
-      </div>
+	<!-- ======= Sidebar ======= -->
+	<aside id="sidebar" class="sidebar">
 
-      <nav id="navbar" class="nav-menu navbar">
-        <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
-          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
-          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
-    </div>
-  </aside>
+  		<ul class="sidebar-nav" id="sidebar-nav">
+
+    		<li class="nav-heading">menu</li>
+    		
+    		<!-- 예매내역 -->
+    		<li class="nav-item">
+      			<a class="nav-link collapsed" data-bs-target="#ticket-nav" data-bs-toggle="collapse" href="#">
+        			<i class="bi bi-grid"></i><span>예매내역</span><i class="bi bi-chevron-down ms-auto"></i>
+      			</a>
+     			<ul id="ticket-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        			<li>
+          				<a href="admin.do">
+            				<i class="bi bi-circle"></i><span>예매내역</span>
+          				</a>
+        			</li>
+      			</ul>
+    		</li>
+
+    		<!-- 어트랙션 예약내역 -->
+    		<li class="nav-item">
+      			<a class="nav-link collapsed" data-bs-target="#attraction-nav" data-bs-toggle="collapse" href="#">
+        			<i class="bi bi-grid"></i><span>어트랙션 예약내역</span><i class="bi bi-chevron-down ms-auto"></i>
+      			</a>
+      			<ul id="attraction-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        			<li>
+          				<a href="/dd/member/mypage/attraction/view.do">
+            				<i class="bi bi-circle"></i><span>어트랙션 예약내역</span>
+          				</a>
+        			</li>
+      			</ul>
+    		</li>
+    		
+    		<!-- 리뷰 -->
+    		<li class="nav-item">
+      			<a class="nav-link collapsed" data-bs-target="#review-nav" data-bs-toggle="collapse" href="#">
+        			<i class="bi bi-grid"></i><span>리뷰</span><i class="bi bi-chevron-down ms-auto"></i>
+      			</a>
+      			<ul id="review-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        			<li>
+          				<a href="admin.do">
+            				<i class="bi bi-circle"></i><span>리뷰</span>
+          				</a>
+        			</li>
+      			</ul>
+    		</li>
+
+    		<!-- 구매내역 -->
+    		<li class="nav-item">
+      			<a class="nav-link collapsed" data-bs-target="#buy-nav" data-bs-toggle="collapse" href="#">
+        			<i class="bi bi-grid"></i><span>구매내역</span><i class="bi bi-chevron-down ms-auto"></i>
+      			</a>
+      			<ul id="buy-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        			<li>
+          				<a href="admin.do">
+            				<i class="bi bi-circle"></i><span>구매내역</span>
+          				</a>
+        			</li>
+      			</ul>
+    		</li>
+
+    		<!-- 문의내역 -->
+    		<li class="nav-item">
+      			<a class="nav-link collapsed" data-bs-target="#inquiry-nav" data-bs-toggle="collapse" href="#">
+        			<i class="bi bi-grid"></i><span>문의내역</span><i class="bi bi-chevron-down ms-auto"></i>
+      			</a>
+      			<ul id="inquiry-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        			<li>
+          				<a href="admin.do">
+            				<i class="bi bi-circle"></i><span>이용문의</span>
+          				</a>
+        			</li>
+        			<li>
+          				<a href="admin.do">
+            				<i class="bi bi-circle"></i><span>칭찬/불편/건의</span>
+          				</a>
+        			</li>
+      			</ul>
+    		</li>
+
+    		<!-- 회원정보수정 -->
+    		<li class="nav-item">
+      			<a class="nav-link collapsed" data-bs-target="#modify-nav" data-bs-toggle="collapse" href="#">
+        			<i class="bi bi-grid"></i><span>회원정보수정</span><i class="bi bi-chevron-down ms-auto"></i>
+      			</a>
+      			<ul id="modify-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        			<li>
+          				<a href="admin.do">
+            				<i class="bi bi-circle"></i><span>회원정보수정</span>
+          				</a>
+        			</li>
+      			</ul>
+    		</li>
+
+    		<!-- 회원탈퇴 -->
+    		<li class="nav-item">
+	      		<a class="nav-link collapsed" data-bs-target="#unregister-nav" data-bs-toggle="collapse" href="#">
+	        		<i class="bi bi-grid"></i><span>회원탈퇴</span><i class="bi bi-chevron-down ms-auto"></i>
+	      		</a>
+	      		<ul id="unregister-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        			<li>
+          				<a href="admin.do">
+            				<i class="bi bi-circle"></i><span>회원탈퇴</span>
+          				</a>
+        			</li>
+      			</ul>
+    		</li>
+
+		</ul>
+
+	</aside>
