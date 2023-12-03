@@ -3,7 +3,7 @@
 
 	<style>
 		.nav-heading {
-			margin-top: 45px !important;
+			margin: 45px 0 15px 0 !important;
 	    }
 	</style>
 
@@ -21,7 +21,7 @@
       			</a>
       			<ul id="member-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         			<li>
-          				<a href="attraction.do">
+          				<a href="/dd/admin/activity/attraction/view.do">
             				<i class="bi bi-circle"></i><span>회원</span>
           				</a>
         			</li>

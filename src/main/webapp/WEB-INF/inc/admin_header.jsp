@@ -5,9 +5,6 @@
 		#header {
 			height: 90px !important;
 	    }
-	    .nav-heading {
-			margin: 10px 0 15px 0 !important;
-	    }
 	    #list {
 			margin-left: -10px;
 	    }
@@ -44,7 +41,7 @@
 	
 		<i id="list" class="bi bi-list toggle-sidebar-btn"></i> 
 	
-		<a id="logo" href="admin.do" class="logo d-flex align-items-center me-auto me-lg-0">
+		<a id="logo" href="/dd/admin.do" class="logo d-flex align-items-center me-auto me-lg-0">
 			<span>.</span><h1>D_D<span>.</span></h1>
 	    </a>
 
