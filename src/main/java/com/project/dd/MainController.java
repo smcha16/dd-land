@@ -48,5 +48,5 @@ public class MainController {
 		
 		return "template.view1";
 	}
-
+	
 }

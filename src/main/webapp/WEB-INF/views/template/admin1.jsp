@@ -2,27 +2,15 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
-	#header {
-		height: 90px !important;
-		padding-left: 0;
-    }
-	.logo {
-		width: 68px;
-	}
-	section {
-		padding: 0;
-	}
 	#main h1 {
-  		margin-top: 45px !important;
- 	}
- 	h1 {
-   		font-size: 2rem !important;
+		font-size: 2rem !important;
+   		margin-top: 45px !important;
    		margin-left: 10px;
- 	}
- 	.d-md-block {
-   		margin-right: 15px;
- 	}
- 	.pagetitle {
+  	}
+  	.d-md-block {
+    	margin-right: 15px;
+  	}
+  	.pagetitle {
     	margin-top: 10px;
   	}
   	.col-12 {
@@ -69,6 +57,9 @@
   	.breadcrumb a {
     	color: #012970;
   	}
+  	.breadcrumb a:hover {
+      	color: #ce1212;
+    }
   	.table {
     	text-align: center;
   	}
@@ -76,8 +67,8 @@
     	background-color: #f2f2f2 !important;
   	}
   	.pagination {
-    	justify-content: center;
-    	margin-top: 40px;
+   		justify-content: center;
+   		margin-top: 40px;
   	}
 </style>
 
@@ -85,7 +76,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-		<h1>어트랙션 예약내역</h1>
+		<h1>어트랙션 관리</h1>
     </div>
 
 	<section class="section">
