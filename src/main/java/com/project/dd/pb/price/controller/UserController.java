@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.dd.pb.price.domain.PriceDTO;
-import com.project.dd.pb.price.persistence.PriceDAO;
+import com.project.dd.pb.price.mapper.PriceMapper;
 
 @RequestMapping("/user")
 @Controller
 public class UserController {
 	
 	@Autowired
-	private PriceDAO dao;
+	private PriceMapper dao;
 
 	@GetMapping(value = "/view.do")
 	public String name(Model model) {
