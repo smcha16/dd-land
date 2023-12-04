@@ -14,8 +14,8 @@
 <meta content="" name="keywords">
 
 <!-- Favicons -->
-<link href="resources/main/img/favicon.png" rel="icon">
-<link href="resources/main/img/apple-touch-icon.png"
+<link href="/dd/resources/main/img/favicon.png" rel="icon">
+<link href="/dd/resources/main/img/apple-touch-icon.png"
 	rel="apple-touch-icon">
 
 <!-- Google Fonts -->
@@ -26,14 +26,14 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="resources/main/vendor/bootstrap/css/bootstrap.min.css"
+<link href="/dd/resources/main/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="resources/main/vendor/bootstrap-icons/bootstrap-icons.css"
+<link href="/dd/resources/main/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
-<link href="resources/main/vendor/aos/aos.css" rel="stylesheet">
-<link href="resources/main/vendor/glightbox/css/glightbox.min.css"
+<link href="/dd/resources/main/vendor/aos/aos.css" rel="stylesheet">
+<link href="/dd/resources/main/vendor/glightbox/css/glightbox.min.css"
 	rel="stylesheet">
-<link href="resources/main/vendor/swiper/swiper-bundle.min.css"
+<link href="/dd/resources/main/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
@@ -65,16 +65,15 @@
 
 
 	<!-- Vendor JS Files -->
-	<script
-		src="resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/main/vendor/aos/aos.js"></script>
-	<script src="resources/main/vendor/glightbox/js/glightbox.min.js"></script>
-	<script src="resources/main/vendor/purecounter/purecounter_vanilla.js"></script>
-	<script src="resources/main/vendor/swiper/swiper-bundle.min.js"></script>
-	<script src="resources/main/vendor/php-email-form/validate.js"></script>
+	<script src="/dd/resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/dd/resources/main/vendor/aos/aos.js"></script>
+	<script src="/dd/resources/main/vendor/glightbox/js/glightbox.min.js"></script>
+	<script src="/dd/resources/main/vendor/purecounter/purecounter_vanilla.js"></script>
+	<script src="/dd/resources/main/vendor/swiper/swiper-bundle.min.js"></script>
+	<script src="/dd/resources/main/vendor/php-email-form/validate.js"></script>
 
 	<!-- Template Main JS File -->
-	<script src="resources/main/js/main.js"></script>
+	<script src="/dd/resources/main/js/main.js"></script>
 
 </body>
 
