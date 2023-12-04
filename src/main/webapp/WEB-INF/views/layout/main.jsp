@@ -65,8 +65,7 @@
 
 
 	<!-- Vendor JS Files -->
-	<script
-		src="/dd/resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/dd/resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="/dd/resources/main/vendor/aos/aos.js"></script>
 	<script src="/dd/resources/main/vendor/glightbox/js/glightbox.min.js"></script>
 	<script src="/dd/resources/main/vendor/purecounter/purecounter_vanilla.js"></script>

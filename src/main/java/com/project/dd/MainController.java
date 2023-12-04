@@ -25,6 +25,20 @@ public class MainController {
 		return "mypage";
 	}
 	
+	@GetMapping(value = "/accesserror.do")
+	public String accesserror(Model model) {
+
+		return "accesserror";
+
+	}
+	
+	@GetMapping(value = "/logout.do")
+	public String logout(Model model) {
+
+		return "logout";
+
+	}
+	
 	@GetMapping(value = "/template1.do")
 	public String listTemplate1(Model model) {
 		
@@ -38,9 +52,15 @@ public class MainController {
 	}
 
 	@GetMapping(value = "/template3.do")
+	public String listTemplate3(Model model) {
+		
+		return "template.list3_toggle";
+	}
+
+	@GetMapping(value = "/template4.do")
 	public String viewTemplate1(Model model) {
 		
 		return "template.view1";
 	}
-
+	
 }
