@@ -18,7 +18,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <a href="index.do" class="logo d-flex align-items-center me-auto me-lg-0">
+      <a href="/dd/index.do" class="logo d-flex align-items-center me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="resources/img/logo.png" alt=""> -->
         <h1><span>.</span>D_D<span>.</span></h1>

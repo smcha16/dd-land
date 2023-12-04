@@ -10,8 +10,12 @@
 	<security:http>
 		<security:intercept-url pattern="/index.do" access="permitAll" />
 		<security:intercept-url pattern="/user/**" access="permitAll" />
+		<security:intercept-url pattern="/member/**" access="permitAll" />
+		<security:intercept-url pattern="/admin/**" access="permitAll" />
+		<!--
 		<security:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')" />
 		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		-->
 		
 		<security:form-login login-page="/user/login/view.do" authentication-success-handler-ref="customLoginSuccessHandler" />
 
@@ -24,6 +28,8 @@
 		<security:authentication-provider>
 			<security:user-service>
 				<security:user name="sumin" password="1111" authorities="ROLE_MEMBER"/>
+				<security:user name="minjae" password="1111" authorities="ROLE_DESIGN_CAPTAIN"/>
+				<security:user name="admin" password="1111" authorities="ROLE_ADMIN, ROLE_MEMBER"/>
 			</security:user-service>
 		</security:authentication-provider>
 	</security:authentication-manager>
