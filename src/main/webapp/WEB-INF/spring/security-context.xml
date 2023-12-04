@@ -23,7 +23,7 @@
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:user-service>
-				<security:user name="" authorities=""/>
+				<security:user name="sumin" password="1111" authorities="ROLE_MEMBER"/>
 			</security:user-service>
 		</security:authentication-provider>
 	</security:authentication-manager>
