@@ -38,23 +38,22 @@ DELETE FROM tblFAQ;
 DELETE FROM tblInquiry;
 DELETE FROM tblVOC;
 DELETE FROM tblMBTI;
+DELETE FROM tblCWC;
 DELETE FROM tblCWCWin;
 DELETE FROM tblCWCFinalWin;
 DELETE FROM tblCourse;
 DELETE FROM tblBookUser;
+DELETE FROM tblAWC;
 DELETE FROM tblAWCWin;
 DELETE FROM tblAWCFinalWin;
-DELETE FROM tblAttractionHashtag;
 DELETE FROM tblAttractionImg;
 DELETE FROM tblAttractionBook;
 DELETE FROM tblAttractionClose;
 DELETE FROM tblAttraction;
-DELETE FROM tblFestivalHashtag;
 DELETE FROM tblFestivalImg;
 DELETE FROM tblFestival;
 DELETE FROM tblPhotoZoneImg;
 DELETE FROM tblPhotoZone;
-DELETE FROM tblMovieHashtag;
 DELETE FROM tblMoviePlay;
 DELETE FROM tblMovie;
 DELETE FROM tblTheaterClose;
@@ -67,7 +66,6 @@ DELETE FROM tblRestaurantClose;
 DELETE FROM tblRestaurantImg;
 DELETE FROM tblRestaurant;
 DELETE FROM tblCategory;
-DELETE FROM tblHashtag;
 DELETE FROM tblUser;
 
 /* DROP TABLE_50개 */
@@ -99,23 +97,22 @@ DROP TABLE tblFAQ;
 DROP TABLE tblInquiry;
 DROP TABLE tblVOC;
 DROP TABLE tblMBTI;
+DROP TABLE tblCWC;
 DROP TABLE tblCWCWin;
 DROP TABLE tblCWCFinalWin;
 DROP TABLE tblCourse;
 DROP TABLE tblBookUser;
+DROP TABLE tblAWC;
 DROP TABLE tblAWCWin;
 DROP TABLE tblAWCFinalWin;
-DROP TABLE tblAttractionHashtag;
 DROP TABLE tblAttractionImg;
 DROP TABLE tblAttractionBook;
 DROP TABLE tblAttractionClose;
 DROP TABLE tblAttraction;
-DROP TABLE tblFestivalHashtag;
 DROP TABLE tblFestivalImg;
 DROP TABLE tblFestival;
 DROP TABLE tblPhotoZoneImg;
 DROP TABLE tblPhotoZone;
-DROP TABLE tblMovieHashtag;
 DROP TABLE tblMoviePlay;
 DROP TABLE tblMovie;
 DROP TABLE tblTheaterClose;
@@ -128,12 +125,10 @@ DROP TABLE tblRestaurantClose;
 DROP TABLE tblRestaurantImg;
 DROP TABLE tblRestaurant;
 DROP TABLE tblCategory;
-DROP TABLE tblHashtag;
 DROP TABLE tblUser;
 
 /* DROP SEQUENCE_50개 */
 DROP SEQUENCE seqtblUser;
-DROP SEQUENCE seqtblHashtag;
 DROP SEQUENCE seqtblLocation;
 DROP SEQUENCE seqAttractionLocation;
 DROP SEQUENCE seqFestivalLocation;
@@ -154,23 +149,22 @@ DROP SEQUENCE seqtblTheater;
 DROP SEQUENCE seqtblTheaterClose;
 DROP SEQUENCE seqtblMovie;
 DROP SEQUENCE seqtblMoviePlay;
-DROP SEQUENCE seqtblMovieHashtag;
 DROP SEQUENCE seqtblPhotoZone;
 DROP SEQUENCE seqtblPhotoZoneImg;
 DROP SEQUENCE seqtblFestival;
 DROP SEQUENCE seqtblFestivalImg;
-DROP SEQUENCE seqtblFestivalHashtag;
 DROP SEQUENCE seqtblAttraction;
 DROP SEQUENCE seqtblAttractionClose;
 DROP SEQUENCE seqtblAttractionBook;
 DROP SEQUENCE seqtblAttractionImg;
-DROP SEQUENCE seqtblAttractionHashtag;
 DROP SEQUENCE seqtblAWCFinalWin;
 DROP SEQUENCE seqtblAWCWin;
+DROP SEQUENCE seqtblAWC;
 DROP SEQUENCE seqtblBookUser;
 DROP SEQUENCE seqtblCourse;
 DROP SEQUENCE seqtblCWCFinalWin;
 DROP SEQUENCE seqtblCWCWin;
+DROP SEQUENCE seqtblCWC;
 DROP SEQUENCE seqtblMBTI;
 DROP SEQUENCE seqtblVOC;
 DROP SEQUENCE seqtblInquiry;
@@ -204,12 +198,6 @@ CREATE TABLE tblUser (
 	birth DATE NOT NULL, /* 생년월일 */
 	lv CHAR(1) NOT NULL, /* 등급 */
 	ing CHAR(1) NOT NULL /* 탈퇴여부 */
-);
-
-/* 해시태그 */
-CREATE TABLE tblHashtag (
-   hashtag_seq NUMBER PRIMARY KEY, /* 해시태그번호 */
-   name VARCHAR2(500) NOT NULL UNIQUE /* 해시태그명 */
 );
 
 /* 카테고리 */
@@ -295,8 +283,7 @@ CREATE TABLE tblTheaterClose (
 CREATE TABLE tblMovie (
    movie_seq NUMBER PRIMARY KEY, /* 영화번호 */
    name VARCHAR2(500) NOT NULL, /* 영화명 */
-   start_date DATE NOT NULL, /* 영화 상영 시작일 */
-   end_date DATE NOT NULL, /* 영화 상영 종료일 */
+   story VARCHAR2(2000) NOT NULL, /* 줄거리 */
    runningtime NUMBER NOT NULL, /* 러닝타임 */
    img VARCHAR2(500) DEFAULT 'movie.png' NOT NULL, /* 포스터이미지 */
    preview VARCHAR2(500) /* 영화예고편영상 */
@@ -305,16 +292,11 @@ CREATE TABLE tblMovie (
 /* 영화상영 */
 CREATE TABLE tblMoviePlay (
    movie_play_seq NUMBER PRIMARY KEY, /* 영화상영번호 */
-   start_time VARCHAR2(500) NOT NULL, /* 영화상영시작시간 */
-   theater_seq NUMBER REFERENCES tblTheater(theater_seq) NOT NULL, /* 영화관번호 */
-   movie_seq NUMBER REFERENCES tblMovie(movie_seq) NOT NULL /* 영화번호 */
-);
-
-/* 영화/해시태그 */
-CREATE TABLE tblMovieHashtag (
-   movie_hashtag_seq NUMBER PRIMARY KEY, /* 영화해시태그번호 */
    movie_seq NUMBER REFERENCES tblMovie(movie_seq) NOT NULL, /* 영화번호 */
-   hashtag_seq NUMBER REFERENCES tblHashtag(hashtag_seq) NOT NULL /* 해시태그번호 */
+   start_time VARCHAR2(500) NOT NULL, /* 영화상영시간 */
+   start_date DATE NOT NULL, /* 영화상영시작일 */
+   end_date DATE NOT NULL, /* 영화상영종료일 */
+   theater_seq NUMBER REFERENCES tblTheater(theater_seq) NOT NULL /* 영화관번호 */
 );
 
 /* 포토존 */
@@ -349,21 +331,14 @@ CREATE TABLE tblFestivalImg (
    festival_seq NUMBER REFERENCES tblFestival(festival_seq) NOT NULL /* 페스티벌번호 */
 );
 
-/* 페스티벌/해시태그 */
-CREATE TABLE tblFestivalHashtag (
-   festival_hashtag_seq NUMBER PRIMARY KEY, /* 페스티벌해시태그번호 */
-   festival_seq NUMBER REFERENCES tblFestival(festival_seq) NOT NULL, /* 페스티벌번호 */
-   hashtag_seq NUMBER REFERENCES tblHashtag(hashtag_seq) NOT NULL /* 해시태그번호 */
-);
-
 /* 어트랙션 */
 CREATE TABLE tblAttraction (
 	attraction_seq NUMBER PRIMARY KEY, /* 어트랙션번호 */
 	name VARCHAR2(500) NOT NULL UNIQUE, /* 어트랙션명 */
+    info VARCHAR2(1000) NOT NULL, /* 어트랙션설명 */
 	capacity NUMBER NOT NULL, /* 수용인원 */
 	time VARCHAR2(500) NOT NULL, /* 운영시간 */
-	restriction VARCHAR2(2000), /* 키 크기 제약사항 등 이용정보 */
-    is_test CHAR(1) NOT NULL /* 테스트채택 */
+	restriction VARCHAR2(2000) /* 키 크기 제약사항 등 이용정보 */
 );
 
 /* 어트/운휴 */
@@ -388,11 +363,11 @@ CREATE TABLE tblAttractionImg (
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
 );
 
-/* 어트/해시태그 */
-CREATE TABLE tblAttractionHashtag (
-	attraction_hashtag_seq NUMBER PRIMARY KEY, /* 어트해시태그번호 */
-	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL, /* 어트랙션번호 */
-	hashtag_seq NUMBER REFERENCES tblHashtag(hashtag_seq) NOT NULL /* 해시태그번호 */
+/* 어트랙션월드컵 */
+CREATE TABLE tblAWC (
+	awc_seq NUMBER PRIMARY KEY, /* 어트랙션월드컵번호 */
+	is_test CHAR(1) NOT NULL, /* 테스트채택 */
+	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
 );
 
 /* 어트랙션월드컵승리 */
@@ -425,6 +400,13 @@ CREATE TABLE tblCourse (
 	course_seq NUMBER PRIMARY KEY, /* 코스번호 */
 	name VARCHAR2(500) NOT NULL UNIQUE, /* 코스명 */
 	img VARCHAR2(500) DEFAULT 'course.png' NOT NULL /* 코스이미지 */
+);
+
+/* 코스월드컵 */
+CREATE TABLE tblCWC (
+	cwc_seq NUMBER PRIMARY KEY, /* 코스월드컵번호 */
+	is_test CHAR(1) NOT NULL, /* 테스트채택 */
+	course_seq NUMBER REFERENCES tblCourse(course_seq) NOT NULL /* 코스번호 */
 );
 
 /* 코스월드컵승리 */
@@ -684,7 +666,6 @@ CREATE TABLE tblShopLocation (
 
 /* CREATE SEQUENCE */
 CREATE SEQUENCE seqtblUser;
-CREATE SEQUENCE seqtblHashtag;
 CREATE SEQUENCE seqtblLocation;
 CREATE SEQUENCE seqAttractionLocation;
 CREATE SEQUENCE seqFestivalLocation;
@@ -705,23 +686,22 @@ CREATE SEQUENCE seqtblTheater;
 CREATE SEQUENCE seqtblTheaterClose;
 CREATE SEQUENCE seqtblMovie;
 CREATE SEQUENCE seqtblMoviePlay;
-CREATE SEQUENCE seqtblMovieHashtag;
 CREATE SEQUENCE seqtblPhotoZone;
 CREATE SEQUENCE seqtblPhotoZoneImg;
 CREATE SEQUENCE seqtblFestival;
 CREATE SEQUENCE seqtblFestivalImg;
-CREATE SEQUENCE seqtblFestivalHashtag;
 CREATE SEQUENCE seqtblAttraction;
 CREATE SEQUENCE seqtblAttractionClose;
 CREATE SEQUENCE seqtblAttractionBook;
 CREATE SEQUENCE seqtblAttractionImg;
-CREATE SEQUENCE seqtblAttractionHashtag;
 CREATE SEQUENCE seqtblAWCFinalWin;
 CREATE SEQUENCE seqtblAWCWin;
+CREATE SEQUENCE seqtblAWC;
 CREATE SEQUENCE seqtblBookUser;
 CREATE SEQUENCE seqtblCourse;
 CREATE SEQUENCE seqtblCWCFinalWin;
 CREATE SEQUENCE seqtblCWCWin;
+CREATE SEQUENCE seqtblCWC;
 CREATE SEQUENCE seqtblMBTI;
 CREATE SEQUENCE seqtblVOC;
 CREATE SEQUENCE seqtblInquiry;
