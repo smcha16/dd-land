@@ -1,5 +1,5 @@
 package com.project.dd.test.mbti.controller;
 
-public class AdminController {
+public class UserMBTIController {
 
 }

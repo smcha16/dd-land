@@ -1,5 +1,5 @@
 package com.project.dd.test.worldcup.course.controller;
 
-public class AdminController {
+public class UserWorldCupAttractionController {
 
 }
