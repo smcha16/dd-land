@@ -2725,6 +2725,279 @@ VALUES (seqtblAWCFinalWin.NEXTVAL, 62, 29);
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
 VALUES (seqtblAWCFinalWin.NEXTVAL, 57, 30);
 
+/* 어트랙션월드컵 */
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 1);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 2);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 3);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 4);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 5);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 6);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 7);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 8);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 9);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 10);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 11);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 12);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 13);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 14);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 15);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 16);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 17);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 18);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 19);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 20);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 21);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 22);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 23);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 24);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 25);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 26);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 27);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 28);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 29);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 30);
+
+/* 어트랙션월드컵승리 */
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 682, 502, 1);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 670, 408, 2);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 703, 203, 3);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 710, 350, 4);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 700, 550, 5);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 690, 480, 6);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 720, 400, 7);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 690, 480, 8);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 710, 350, 9);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 700, 390, 10);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 705, 420, 11);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 695, 470, 12);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 725, 380, 13);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 715, 410, 14);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 730, 360, 15);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 700, 400, 16);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 710, 390, 17);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 690, 420, 18);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 705, 370, 19);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 715, 430, 20);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 725, 350, 21);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 695, 440, 22);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 730, 380, 23);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 720, 390, 24);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 710, 400, 25);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 700, 410, 26);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 690, 420, 27);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 710, 350, 28);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 690, 480, 29);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 710, 350, 30);
+
+/* 어트랙션월드컵최종승리 */
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 150, 1);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 123, 2);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 66, 3);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 110, 4);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 120, 5);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 112, 6);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 100, 7);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 95, 8);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 110, 9);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 70, 10);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 113, 11);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 115, 12);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 92, 13);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 105, 14);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 60, 15);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 49, 16);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 98, 17);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 110, 18);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 96, 19);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 100, 20);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 92, 21);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 73, 22);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 83, 23);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 105, 24);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 50, 25);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 65, 26);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 90, 27);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 82, 28);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 62, 29);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 57, 30);
+
 /* 예약/회원 */
 INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
 VALUES (seqtblBookUser.NEXTVAL, TO_DATE('2023-11-02', 'YYYY-MM-DD'), 3, 1, 1, 1);

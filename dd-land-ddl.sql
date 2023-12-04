@@ -370,6 +370,13 @@ CREATE TABLE tblAWC (
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
 );
 
+/* 어트랙션월드컵 */
+CREATE TABLE tblAWC (
+	awc_seq NUMBER PRIMARY KEY, /* 어트랙션월드컵번호 */
+	is_test CHAR(1) NOT NULL, /* 테스트채택 */
+	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
+);
+
 /* 어트랙션월드컵승리 */
 CREATE TABLE tblAWCWin (
 	awc_win_seq NUMBER PRIMARY KEY, /* 어트랙션월드컵승리번호 */
