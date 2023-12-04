@@ -1,6 +1,8 @@
 package com.project.dd.test.mbti.domain;
 
+import lombok.Data;
 
+@Data
 public class MBTIDTO {
 
 	private String mbti_seq;
