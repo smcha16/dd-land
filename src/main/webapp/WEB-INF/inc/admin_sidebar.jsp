@@ -88,12 +88,12 @@
 	     	</a>
 	     	<ul id="test-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/test/worldcup/view.do">
 	           			<i class="bi bi-circle"></i><span>DD 월드컵</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/test/mbti/view.do">
 	           			<i class="bi bi-circle"></i><span>MBTI 추천</span>
 	         		</a>
 	       		</li>
