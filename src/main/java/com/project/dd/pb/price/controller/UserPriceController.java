@@ -13,7 +13,7 @@ import com.project.dd.pb.price.persistence.PriceDAO;
 
 @RequestMapping("/user")
 @Controller
-public class UserController {
+public class UserPriceController {
 	
 	@Autowired
 	private PriceDAO dao;

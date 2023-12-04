@@ -1,1 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="benefit">
+
+<select id="list" resultType = "com.project.dd.pb.benefit.domain.BenefitDTO">
+		select * from tblBenefit
+</select>
+    
+</mapper>

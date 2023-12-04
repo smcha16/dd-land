@@ -1,5 +1,5 @@
 package com.project.dd.pb.benefit.controller;
 
-public class BenefitController {
-	
+public class MemberBenefitController {
+
 }

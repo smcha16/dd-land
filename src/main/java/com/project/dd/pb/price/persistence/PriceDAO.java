@@ -8,4 +8,6 @@ public interface PriceDAO {
 
 	List<PriceDTO> list();
 
+	List<PriceDTO> personTypeList();
+
 }

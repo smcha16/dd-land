@@ -22,4 +22,10 @@ public class PriceDAOImpl implements PriceDAO{
 		return template.selectList("price.list");
 	}
 
+	@Override
+	public List<PriceDTO> personTypeList() {
+		
+		
+		return template.selectList("price.personTypeList");
+	}
 }
