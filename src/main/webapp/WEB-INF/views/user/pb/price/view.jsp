@@ -37,10 +37,10 @@
     <!-- ======= Pricing Section ======= -->
     <section id="pricing" class="pricing">
       <div class="container" data-aos="fade-up">
-
+	
         <div class="section-title">
           <h2>Pricing</h2>
-          <h3>Check our <span>Pricing</span></h3>
+          <h3>티켓요금 <span>Pricing</span></h3>
           <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
         </div>
 

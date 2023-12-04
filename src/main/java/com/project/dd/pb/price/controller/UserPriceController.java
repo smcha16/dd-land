@@ -21,11 +21,13 @@ public class UserPriceController {
 	@GetMapping(value = "/view.do")
 	public String view(Model model) {
 		
-		List<PriceDTO> personTypeList = mapper.personTypeList();
+		List<PriceDTO> personTypeList = mapper.personTypeList(); // 개인 티켓 리스
 		
+	
 		
-		List<PriceDTO> groupTypeList = mapper.groupTypeList();
+		List<PriceDTO> groupTypeList = mapper.groupTypeList(); //단체 티켓 리스트
 		
+		 
 	
 
 		model.addAttribute("groupTyepList",groupTypeList);
