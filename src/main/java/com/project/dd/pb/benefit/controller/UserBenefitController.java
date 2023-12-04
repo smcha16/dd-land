@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.dd.pb.benefit.domain.BenefitDTO;
-import com.project.dd.pb.benefit.persistence.BenefitDAO;
 
 
 	
@@ -17,15 +16,11 @@ import com.project.dd.pb.benefit.persistence.BenefitDAO;
 	@RequestMapping("/user/pb")
 	public class UserBenefitController {
 		
-		@Autowired
-		private BenefitDAO dao;
 		
 		@GetMapping("/benefit/list.do")
 		public String list(Model model) {
 			
-			List<BenefitDTO> list = dao.list();
 			
-			model.addAttribute("list",list);
 			
 			return "user/benefit/list";
 			

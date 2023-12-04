@@ -9,22 +9,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.dd.pb.price.domain.PriceDTO;
-import com.project.dd.pb.price.persistence.PriceDAO;
+import com.project.dd.pb.price.mapper.PriceMapper;
 
-@RequestMapping("/user")
 @Controller
+@RequestMapping("/user/pb")
 public class UserPriceController {
 	
 	@Autowired
-	private PriceDAO dao;
-
+	private PriceMapper mapper;
+	
 	@GetMapping(value = "/view.do")
-	public String name(Model model) {
+	public String view(Model model) {
 		
-	List<PriceDTO> list = dao.list();
+		List<PriceDTO> personTypeList = mapper.personTypeList();
 		
-	model.addAttribute("list", list);
+		
+		List<PriceDTO> groupTypeList = mapper.groupTypeList();
+		
+	
 
-		return "price";
+		model.addAttribute("groupTyepList",groupTypeList);
+		model.addAttribute("personTypeList",personTypeList);
+		
+		return "user/pb/price/view";
 	}
 }
