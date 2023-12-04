@@ -172,15 +172,15 @@
 	     	</ul>
 	   	</li>
 	
-		<!-- 카테고리 -->
+		<!-- 편의시설 -->
 		<li class="nav-item">
-	     	<a class="nav-link collapsed" data-bs-target="#category-nav" data-bs-toggle="collapse" href="#">
-	       		<i class="bi bi-grid"></i><span>카테고리</span><i class="bi bi-chevron-down ms-auto"></i>
+	     	<a class="nav-link collapsed" data-bs-target="#convenient-nav" data-bs-toggle="collapse" href="#">
+	       		<i class="bi bi-grid"></i><span>편의시설</span><i class="bi bi-chevron-down ms-auto"></i>
 	     	</a>
-	     	<ul id="category-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+	     	<ul id="convenient-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	       		<li>
 	         		<a href="admin.do">
-	           			<i class="bi bi-circle"></i><span>카테고리</span>
+	           			<i class="bi bi-circle"></i><span>편의시설</span>
 	         		</a>
 	       		</li>
 	     	</ul>
