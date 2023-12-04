@@ -4,29 +4,104 @@
 
 <tiles-definitions>
 
+	<!-- User -->
+
 	<definition name="main" template="/WEB-INF/views/layout/main.jsp">
 		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/views/index.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="user/*/*" template="/WEB-INF/views/layout/main.jsp">
+		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/user/{1}/{2}.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="user/*/*/*" template="/WEB-INF/views/layout/main.jsp">
+		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/user/{1}/{2}/{3}.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="user/*/*/*/*" template="/WEB-INF/views/layout/main.jsp">
+		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/user/{1}/{2}/{3}/{4}.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
+	</definition>
+	
+	
+	<!-- Member -->  <!-- template 경로 변경하기 -->
+	
+	<definition name="member/*/*" template="/WEB-INF/views/layout/main.jsp">
+		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/member/{1}/{2}.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="member/*/*/*" template="/WEB-INF/views/layout/main.jsp">
+		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/member/{1}/{2}/{3}.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="member/*/*/*/*" template="/WEB-INF/views/layout/main.jsp">
+		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/member/{1}/{2}/{3}/{4}.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
+	</definition>
+	
+	
+	<!-- Mypage -->
+
+	<definition name="mypage" template="/WEB-INF/views/layout/mypage-main.jsp">
+		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
+		<put-attribute name="mypage_sidebar" value="/WEB-INF/inc/mypage_sidebar.jsp"></put-attribute>
+		<put-attribute name="mypage_content" value="/WEB-INF/views/member/mypage/view.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="mypage/*/*" template="/WEB-INF/views/layout/mypage.jsp">
+		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
+		<put-attribute name="mypage_sidebar" value="/WEB-INF/inc/mypage_sidebar.jsp"></put-attribute>
+		<put-attribute name="mypage_content" value="/WEB-INF/views/member/mypage/{1}/{2}.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
+	</definition>
+
+
+	<!-- Admin -->
+
 	<definition name="admin" template="/WEB-INF/views/layout/admin-main.jsp">
 		<put-attribute name="admin_header" value="/WEB-INF/inc/admin_header.jsp"></put-attribute>
 		<put-attribute name="admin_sidebar" value="/WEB-INF/inc/admin_sidebar.jsp"></put-attribute>
 		<put-attribute name="admin_content" value="/WEB-INF/views/admin/view.jsp"></put-attribute>
 	</definition>
-		
-	<definition name="mypage" template="/WEB-INF/views/layout/mypage.jsp">
-		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
-		<put-attribute name="admin_sidebar" value="/WEB-INF/inc/admin_sidebar.jsp"></put-attribute>
-		<put-attribute name="mypage_content" value="/WEB-INF/views/member/mypage/view.jsp"></put-attribute>
-		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
-	</definition>
 
-	<definition name="attraction" template="/WEB-INF/views/layout/admin.jsp">
+	<definition name="admin/*/*" template="/WEB-INF/views/layout/admin.jsp">
 		<put-attribute name="admin_header" value="/WEB-INF/inc/admin_header.jsp"></put-attribute>
 		<put-attribute name="admin_sidebar" value="/WEB-INF/inc/admin_sidebar.jsp"></put-attribute>
-		<put-attribute name="admin_content" value="/WEB-INF/views/admin/activity/attraction/view.jsp"></put-attribute>
+		<put-attribute name="admin_content" value="/WEB-INF/views/admin/{1}/{2}.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin/*/*/*" template="/WEB-INF/views/layout/admin.jsp">
+		<put-attribute name="admin_header" value="/WEB-INF/inc/admin_header.jsp"></put-attribute>
+		<put-attribute name="admin_sidebar" value="/WEB-INF/inc/admin_sidebar.jsp"></put-attribute>
+		<put-attribute name="admin_content" value="/WEB-INF/views/admin/{1}/{2}/{3}.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin/*/*/*/*" template="/WEB-INF/views/layout/admin.jsp">
+		<put-attribute name="admin_header" value="/WEB-INF/inc/admin_header.jsp"></put-attribute>
+		<put-attribute name="admin_sidebar" value="/WEB-INF/inc/admin_sidebar.jsp"></put-attribute>
+		<put-attribute name="admin_content" value="/WEB-INF/views/admin/{1}/{2}/{3}/{4}.jsp"></put-attribute>
+	</definition>
+	
+
+	<!-- etc -->
+	
+	<definition name="template.*" template="/WEB-INF/views/layout/main.jsp">
+		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/template/{1}.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
 	</definition>
 	
 </tiles-definitions>
