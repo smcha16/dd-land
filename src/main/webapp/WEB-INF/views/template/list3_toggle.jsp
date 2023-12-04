@@ -153,6 +153,7 @@
 		/* background: #D2AB21; */
 		background: rgba(215, 62, 62, .7);
 		transition: left 0.5s, right 0.4s 0.2s;
+		bottom: 8px;
 	}
 	
 	.btn.btn-1 input:checked {
