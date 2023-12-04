@@ -1,5 +1,5 @@
 package com.project.dd.mypage.controller;
 
-public class MemberController {
+public class MemberMypageController {
 
 }
