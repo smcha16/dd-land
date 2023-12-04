@@ -1,5 +1,8 @@
 package com.project.dd.close.attraction.controller;
 
-public class AdminController {
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class AdminCloseAttractionController {
 
 }
