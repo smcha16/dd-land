@@ -13,8 +13,8 @@
   <meta content="" name="keywords">
   
   <!-- Favicons -->
-<link href="resources/main/img/favicon.png" rel="icon">
-<link href="resources/main/img/apple-touch-icon.png"
+<link href="/dd/resources/main/img/favicon.png" rel="icon">
+<link href="/dd/resources/main/img/apple-touch-icon.png"
 	rel="apple-touch-icon">
 
 <!-- Google Fonts -->
@@ -25,34 +25,34 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="resources/main/vendor/bootstrap/css/bootstrap.min.css"
+<link href="/dd/resources/main/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="resources/main/vendor/bootstrap-icons/bootstrap-icons.css"
+<link href="/dd/resources/main/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
-<link href="resources/main/vendor/aos/aos.css" rel="stylesheet">
-<link href="resources/main/vendor/glightbox/css/glightbox.min.css"
+<link href="/dd/resources/main/vendor/aos/aos.css" rel="stylesheet">
+<link href="/dd/resources/main/vendor/glightbox/css/glightbox.min.css"
 	rel="stylesheet">
-<link href="resources/main/vendor/swiper/swiper-bundle.min.css"
+<link href="/dd/resources/main/vendor/swiper/swiper-bundle.min.css"
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
-<link href="resources/main/css/main.css" rel="stylesheet">
+<link href="/dd/resources/main/css/main.css" rel="stylesheet">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="resources/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="resources/admin/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="resources/admin/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="resources/admin/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="resources/admin/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="resources/admin/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="resources/admin/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link href="/dd/resources/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/dd/resources/admin/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/dd/resources/admin/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/dd/resources/admin/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/dd/resources/admin/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/dd/resources/admin/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/dd/resources/admin/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="resources/admin/css/style.css" rel="stylesheet">
+  <link href="/dd/resources/admin/css/style.css" rel="stylesheet">
 
   <style>
     #header {
@@ -160,29 +160,29 @@
 <tiles:insertAttribute name="admin_content" />
 
   <!-- Vendor JS Files -->
-  <script src="resources/admin/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="resources/admin/vendor/chart.js/chart.umd.js"></script>
-  <script src="resources/admin/vendor/echarts/echarts.min.js"></script>
-  <script src="resources/admin/vendor/quill/quill.min.js"></script>
-  <script src="resources/admin/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="resources/admin/vendor/tinymce/tinymce.min.js"></script>
-  <script src="resources/admin/vendor/php-email-form/validate.js"></script>
+  <script src="/dd/resources/admin/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/dd/resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/dd/resources/admin/vendor/chart.js/chart.umd.js"></script>
+  <script src="/dd/resources/admin/vendor/echarts/echarts.min.js"></script>
+  <script src="/dd/resources/admin/vendor/quill/quill.min.js"></script>
+  <script src="/dd/resources/admin/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/dd/resources/admin/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/dd/resources/admin/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="resources/admin/js/main.js"></script>
+  <script src="/dd/resources/admin/js/main.js"></script>
   
   <!-- Vendor JS Files -->
 	<script
-		src="resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/main/vendor/aos/aos.js"></script>
-	<script src="resources/main/vendor/glightbox/js/glightbox.min.js"></script>
-	<script src="resources/main/vendor/purecounter/purecounter_vanilla.js"></script>
-	<script src="resources/main/vendor/swiper/swiper-bundle.min.js"></script>
-	<script src="resources/main/vendor/php-email-form/validate.js"></script>
+		src="/dd/resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/dd/resources/main/vendor/aos/aos.js"></script>
+	<script src="/dd/resources/main/vendor/glightbox/js/glightbox.min.js"></script>
+	<script src="/dd/resources/main/vendor/purecounter/purecounter_vanilla.js"></script>
+	<script src="/dd/resources/main/vendor/swiper/swiper-bundle.min.js"></script>
+	<script src="/dd/resources/main/vendor/php-email-form/validate.js"></script>
 
 	<!-- Template Main JS File -->
-	<script src="resources/main/js/main.js"></script>
+	<script src="/dd/resources/main/js/main.js"></script>
 
 </body>
 
