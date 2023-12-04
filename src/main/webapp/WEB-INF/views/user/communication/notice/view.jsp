@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
   
 <style>
     #title+div {
@@ -91,8 +91,12 @@
               <div id="title" style="font-size: 48px;
               display: block;
               color: #fff;
-              font-weight: 700;">Attraction</div>
+              font-weight: 700;">공지사항</div>
               <div style="width: 400px; height: 40px;">
+              	<select>
+              		<option>제목</option>
+              		<option>내용</option>
+              	</select>
                 <input type="text" style="background-color: transparent; border: 0;">
                 <i class="fa-solid fa-magnifying-glass" style="float: right; transform: translate(5px, 6px);"></i>
               </div>
