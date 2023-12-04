@@ -1,5 +1,5 @@
 package com.project.dd.communication.faq.controller;
 
-public class UserController {
+public class FaqUserController {
 
 }
