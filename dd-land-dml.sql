@@ -2266,95 +2266,96 @@ VALUES (seqtblFestivalHashtag.NEXTVAL, 3, 3);
 /* 어트랙션 */
 SELECT * FROM tblAttraction;
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '지브리특급', 120, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가', 'Y');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '지브리특급', '지브리특급특급특급', 120, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '포뇨의 비행', 30, '10:00 - 22:00', '임산부 및 노약자 탑승 불가', 'Y');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '포뇨의 비행', '포뇨가 비행하고 싶어요 날아가고 싶어요 날아갈래요 날아라 날아', 30, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '천공의 성', 65, '10:00 - 22:00', '임산부 및 노약자 탑승 불가', 'Y');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '천공의 성', '천공의 성으로 가고 싶어요 천공의 성으로 보내주세요', 65, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '고양이 스핀', 80, '10:00 - 22:00', '제한 없음', 'Y');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '고양이 스핀', '소개 테스트', 80, '10:00 - 22:00', '제한 없음');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '센과 치히로의 동굴 탐험', 60, '10:00 - 22:00', '제한 없음', 'Y');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '센과 치히로의 동굴 탐험', '소개 테스트', 60, '10:00 - 22:00', '제한 없음');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '모노노케히메의 늑대 체험', 70, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '모노노케히메의 늑대 체험', '소개 테스트', 70, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '우리는 빙글빙글', 80, '10:00 - 22:00', '제한 없음', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '우리는 빙글빙글', '소개 테스트', 80, '10:00 - 22:00', '제한 없음');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '추억의 마니', 70, '10:00 - 22:00', '제한 없음', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '추억의 마니', '소개 테스트', 70, '10:00 - 22:00', '제한 없음');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '즐거움은 방울방울', 50, '10:00 - 22:00', '제한 없음', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '즐거움은 방울방울', '소개 테스트', 50, '10:00 - 22:00', '제한 없음');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '마녀 배달부 디디', 70, '10:00 - 22:00', '제한 없음', 'Y');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '마녀 배달부 디디', '소개 테스트', 70, '10:00 - 22:00', '제한 없음');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '빗자루 여행', 55, '10:00 - 22:00', '120cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '빗자루 여행', '소개 테스트', 55, '10:00 - 22:00', '120cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '너구리 대작전', 75, '10:00 - 22:00', '임산부 및 노약자 탑승 불가', 'Y');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '너구리 대작전', '소개 테스트', 75, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '지트란티스', 85, '10:00 - 22:00', '140cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '지트란티스', '소개 테스트', 85, '10:00 - 22:00', '140cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '토토로스윙', 80, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가', 'Y');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '토토로스윙', '소개 테스트', 80, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '토토로스핀', 80, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '토토로스핀', '소개 테스트', 80, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '거북이 그네', 55, '10:00 - 22:00', '임산부 및 노약자 탑승 불가', 'Y');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '거북이 그네', '소개 테스트', 55, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '지브리왕국의 해적선', 120, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '지브리왕국의 해적선', '소개 테스트', 120, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '후룸라이드', 65, '10:00 - 22:00', '임산부 및 노약자 탑승 불가', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '후룸라이드', '소개 테스트', 65, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '회전목마', 75, '10:00 - 22:00', '제한 없음', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '회전목마', '소개 테스트', 75, '10:00 - 22:00', '제한 없음');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '후렌치레볼루션', 80, '10:00 - 22:00', '140cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '후렌치레볼루션', '소개 테스트', 80, '10:00 - 22:00', '140cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '황야의 무법자', 80, '10:00 - 22:00', '제한 없음', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '황야의 무법자', '소개 테스트', 80, '10:00 - 22:00', '제한 없음');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '뛰뛰빵빵', 60, '10:00 - 22:00', '제한 없음', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '뛰뛰빵빵', '소개 테스트', 60, '10:00 - 22:00', '제한 없음');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '환타지드림', 55, '10:00 - 22:00', '제한 없음', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '환타지드림', '소개 테스트', 55, '10:00 - 22:00', '제한 없음');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '코쿠리코 언덕에서', 80, '10:00 - 22:00', '임산부 및 노약자 탑승 불가', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '코쿠리코 언덕에서', '소개 테스트', 80, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '마루 밑 아리에티를 찾아서', 30, '10:00 - 22:00', '임산부 및 노약자 탑승 불가', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '마루 밑 아리에티를 찾아서', '소개 테스트', 30, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '니모 이야기', 75, '10:00 - 22:00', '제한 없음', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '니모 이야기', '소개 테스트', 75, '10:00 - 22:00', '제한 없음');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '벼랑 기차', 75, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '벼랑 기차', '소개 테스트', 75, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '지브리의 보은', 90, '10:00 - 22:00', '임산부 및 노약자 탑승 불가', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '지브리의 보은', '소개 테스트', 90, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '이웃집 탐방기', 100, '10:00 - 22:00', '임산부 및 노약자 탑승 불가', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '이웃집 탐방기', '소개 테스트', 100, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
-INSERT INTO tblAttraction (attraction_seq, name, capacity, time, restriction, is_test)
-VALUES (seqtblAttraction.NEXTVAL, '귀를 기울이면', 120, '10:00 - 22:00', '제한 없음', 'N');
+INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+VALUES (seqtblAttraction.NEXTVAL, '귀를 기울이면', '소개 테스트', 120, '10:00 - 22:00', '제한 없음');
+
 
 /* 어트/운휴 */
 INSERT INTO tblAttractionClose (attraction_close_seq, start_date, end_date, attraction_seq)
