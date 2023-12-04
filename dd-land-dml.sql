@@ -2706,97 +2706,96 @@ VALUES (seqtblAWCWin.NEXTVAL, 690, 480, 29);
 INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
 VALUES (seqtblAWCWin.NEXTVAL, 710, 350, 30);
 
-
 /* 어트랙션월드컵최종승리 */
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 120, 1);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 150, 1);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 93, 2);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 123, 2);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 36, 3);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 66, 3);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 80, 4);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 110, 4);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 90, 5);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 120, 5);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 82, 6);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 112, 6);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 70, 7);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 100, 7);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 65, 8);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 95, 8);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 80, 9);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 110, 9);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 40, 10);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 70, 10);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 83, 11);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 113, 11);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 85, 12);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 115, 12);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 62, 13);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 92, 13);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 75, 14);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 105, 14);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 30, 15);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 60, 15);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 19, 16);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 49, 16);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 68, 17);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 98, 17);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 80, 18);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 110, 18);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 66, 19);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 96, 19);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 70, 20);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 100, 20);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 62, 21);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 92, 21);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 43, 22);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 73, 22);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 53, 23);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 83, 23);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 75, 24);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 105, 24);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 20, 25);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 50, 25);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 35, 26);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 65, 26);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 60, 27);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 90, 27);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 52, 28);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 82, 28);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 32, 29);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 62, 29);
 
 INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-VALUES (seqtblAWCFinalWin.NEXTVAL, 27, 30);
+VALUES (seqtblAWCFinalWin.NEXTVAL, 57, 30);
 
 /* 예약/회원 */
 INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
@@ -2858,25 +2857,55 @@ VALUES (seqtblCWC.NEXTVAL, 'Y', 7);
 INSERT INTO tblCWC (cwc_seq, is_test, course_seq)
 VALUES (seqtblCWC.NEXTVAL, 'Y', 8);
 
-/* 어트랙션월드컵승리 */
+-- 코스월드컵승리
 INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
-VALUES (seqtblCWCWin.NEXTVAL, , , 1);
-
-INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
-VALUES (seqtblCWCWin.NEXTVAL, , , 2);
+VALUES (seqtblCWCWin.NEXTVAL, 520, 350, 1);
 
 INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
-VALUES (seqtblCWCWin.NEXTVAL, , , 3);
+VALUES (seqtblCWCWin.NEXTVAL, 490, 280, 2);
 
-/* 어트랙션월드컵최종승리 */
+INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
+VALUES (seqtblCWCWin.NEXTVAL, 510, 200, 3);
+
+INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
+VALUES (seqtblCWCWin.NEXTVAL, 505, 220, 4);
+
+INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
+VALUES (seqtblCWCWin.NEXTVAL, 495, 270, 5);
+
+INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
+VALUES (seqtblCWCWin.NEXTVAL, 525, 180, 6);
+
+INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
+VALUES (seqtblCWCWin.NEXTVAL, 515, 210, 7);
+
+INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
+VALUES (seqtblCWCWin.NEXTVAL, 530, 160, 8);
+
+-- 코스월드컵최종승리
 INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
-VALUES (seqtblCWCFinalWin.NEXTVAL, , 1);
+VALUES (seqtblCWCFinalWin.NEXTVAL, 90, 1);
 
 INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
-VALUES (seqtblCWCFinalWin.NEXTVAL, , 2);
+VALUES (seqtblCWCFinalWin.NEXTVAL, 73, 2);
 
 INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
-VALUES (seqtblCWCFinalWin.NEXTVAL, , 3);
+VALUES (seqtblCWCFinalWin.NEXTVAL, 66, 3);
+
+INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
+VALUES (seqtblCWCFinalWin.NEXTVAL, 53, 4);
+
+INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
+VALUES (seqtblCWCFinalWin.NEXTVAL, 80, 5);
+
+INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
+VALUES (seqtblCWCFinalWin.NEXTVAL, 82, 6);
+
+INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
+VALUES (seqtblCWCFinalWin.NEXTVAL, 130, 7);
+
+INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
+VALUES (seqtblCWCFinalWin.NEXTVAL, 65, 8);
 
 /* MBTI */
 INSERT INTO tblMBTI (mbti_seq, result, mbti, course_seq, attraction_seq)
