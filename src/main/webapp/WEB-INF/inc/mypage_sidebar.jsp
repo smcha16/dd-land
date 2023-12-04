@@ -21,7 +21,7 @@
      		</a>
     		<ul id="ticket-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
        			<li>
-         			<a href="admin.do">
+         			<a href="/dd/member/mypage/ticket/view.do">
            				<i class="bi bi-circle"></i><span>예매내역</span>
          			</a>
        			</li>
@@ -49,7 +49,7 @@
      		</a>
      		<ul id="review-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
        			<li>
-         			<a href="admin.do">
+         			<a href="/dd/member/mypage/review/view.do">
            				<i class="bi bi-circle"></i><span>리뷰</span>
          			</a>
        			</li>
@@ -63,7 +63,7 @@
      		</a>
      		<ul id="buy-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
        			<li>
-         			<a href="admin.do">
+         			<a href="/dd/member/mypage/buy/view.do">
            				<i class="bi bi-circle"></i><span>구매내역</span>
          			</a>
        			</li>
@@ -77,12 +77,12 @@
      		</a>
      		<ul id="inquiry-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
        			<li>
-         			<a href="admin.do">
+         			<a href="/dd/member/mypage/inquiry/inquiry/view.do">
            				<i class="bi bi-circle"></i><span>이용문의</span>
          			</a>
        			</li>
        			<li>
-         			<a href="admin.do">
+         			<a href="/dd/member/mypage/inquiry/voc/view.do">
            				<i class="bi bi-circle"></i><span>칭찬/불편/건의</span>
          			</a>
        			</li>
@@ -96,7 +96,7 @@
      		</a>
      		<ul id="modify-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
        			<li>
-         			<a href="admin.do">
+         			<a href="/dd/member/mypage/modify/edit.do">
            				<i class="bi bi-circle"></i><span>회원정보수정</span>
          			</a>
        			</li>
@@ -110,7 +110,7 @@
       		</a>
       		<ul id="unregister-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
        			<li>
-         			<a href="admin.do">
+         			<a href="/dd/member/mypage/unregister/view.do">
            				<i class="bi bi-circle"></i><span>회원탈퇴</span>
          			</a>
        			</li>

@@ -6,7 +6,7 @@
 	
 		<section id="reveal">
 			<div class="reveal-container" data-aos="fade-in">
-				<p><span class="typed" data-typed-items="안녕하세요"></span></p>
+				<p><span class="typed" data-typed-items="안녕하세요! <br> OOO님 <br>마이페이지 입니다."></span></p>
 			</div>
 		</section>
 
