@@ -91,6 +91,7 @@
 	  <div>
       	<a class="btn-book-a-table" id="login" href="#">로그인</a>
       	<a class="btn-book-a-table" id="join" href="#">회원가입</a>
+      	<a class="btn-book-a-table" id="admin" href="/dd/admin.do">관리자페이지(임시)</a>
       </div>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
