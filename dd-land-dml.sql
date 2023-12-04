@@ -1,5 +1,4 @@
 -- dd-land-dml
-select * from tblUser;
 
 /* 유저 */
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
@@ -2606,6 +2605,36 @@ VALUES (seqtblAttractionHashtag.NEXTVAL, 29, 2);
 INSERT INTO tblAttractionHashtag (attraction_hashtag_seq, attraction_seq, hashtag_seq)
 VALUES (seqtblAttractionHashtag.NEXTVAL, 30, 3);
 
+/* 어트랙션월드컵 */
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 1);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 2);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 3);
+
+/* 어트랙션월드컵승리 */
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, , , 1);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, , , 2);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, , , 3);
+
+/* 어트랙션월드컵최종승리 */
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, , , 1);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, , , 2);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, , , 3);
+
 /* 예약/회원 */
 INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
 VALUES (seqtblBookUser.NEXTVAL, TO_DATE('2023-11-02', 'YYYY-MM-DD'), 3, 1, 1, 1);
@@ -2640,6 +2669,51 @@ VALUES (seqtblCourse.NEXTVAL, '포뇨 수영 코스', '포뇨 수영 코스.png'
 
 INSERT INTO tblCourse (course_seq, name, img)
 VALUES (seqtblCourse.NEXTVAL, '하울과 함께 움직이는 코스', '하울과 함께 움직이는 코스.png');
+
+/* 코스월드컵 */
+INSERT INTO tblCWC (cwc_seq, is_test, course_seq)
+VALUES (seqtblCWC.NEXTVAL, 'Y', 1);
+
+INSERT INTO tblCWC (cwc_seq, is_test, course_seq)
+VALUES (seqtblCWC.NEXTVAL, 'Y', 2);
+
+INSERT INTO tblCWC (cwc_seq, is_test, course_seq)
+VALUES (seqtblCWC.NEXTVAL, 'Y', 3);
+
+INSERT INTO tblCWC (cwc_seq, is_test, course_seq)
+VALUES (seqtblCWC.NEXTVAL, 'Y', 4);
+
+INSERT INTO tblCWC (cwc_seq, is_test, course_seq)
+VALUES (seqtblCWC.NEXTVAL, 'Y', 5);
+
+INSERT INTO tblCWC (cwc_seq, is_test, course_seq)
+VALUES (seqtblCWC.NEXTVAL, 'Y', 6);
+
+INSERT INTO tblCWC (cwc_seq, is_test, course_seq)
+VALUES (seqtblCWC.NEXTVAL, 'Y', 7);
+
+INSERT INTO tblCWC (cwc_seq, is_test, course_seq)
+VALUES (seqtblCWC.NEXTVAL, 'Y', 8);
+
+/* 어트랙션월드컵승리 */
+INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
+VALUES (seqtblCWCWin.NEXTVAL, , , 1);
+
+INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
+VALUES (seqtblCWCWin.NEXTVAL, , , 2);
+
+INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
+VALUES (seqtblCWCWin.NEXTVAL, , , 3);
+
+/* 어트랙션월드컵최종승리 */
+INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
+VALUES (seqtblCWCFinalWin.NEXTVAL, , , 1);
+
+INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
+VALUES (seqtblCWCFinalWin.NEXTVAL, , , 2);
+
+INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
+VALUES (seqtblCWCFinalWin.NEXTVAL, , , 3);
 
 /* MBTI */
 INSERT INTO tblMBTI (mbti_seq, result, mbti, course_seq, attraction_seq)

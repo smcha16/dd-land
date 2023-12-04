@@ -38,10 +38,12 @@ DELETE FROM tblFAQ;
 DELETE FROM tblInquiry;
 DELETE FROM tblVOC;
 DELETE FROM tblMBTI;
+DELETE FROM tblCWC;
 DELETE FROM tblCWCWin;
 DELETE FROM tblCWCFinalWin;
 DELETE FROM tblCourse;
 DELETE FROM tblBookUser;
+DELETE FROM tblAWC;
 DELETE FROM tblAWCWin;
 DELETE FROM tblAWCFinalWin;
 DELETE FROM tblAttractionHashtag;
@@ -99,10 +101,12 @@ DROP TABLE tblFAQ;
 DROP TABLE tblInquiry;
 DROP TABLE tblVOC;
 DROP TABLE tblMBTI;
+DROP TABLE tblCWC;
 DROP TABLE tblCWCWin;
 DROP TABLE tblCWCFinalWin;
 DROP TABLE tblCourse;
 DROP TABLE tblBookUser;
+DROP TABLE tblAWC;
 DROP TABLE tblAWCWin;
 DROP TABLE tblAWCFinalWin;
 DROP TABLE tblAttractionHashtag;
@@ -167,10 +171,12 @@ DROP SEQUENCE seqtblAttractionImg;
 DROP SEQUENCE seqtblAttractionHashtag;
 DROP SEQUENCE seqtblAWCFinalWin;
 DROP SEQUENCE seqtblAWCWin;
+DROP SEQUENCE seqtblAWC;
 DROP SEQUENCE seqtblBookUser;
 DROP SEQUENCE seqtblCourse;
 DROP SEQUENCE seqtblCWCFinalWin;
 DROP SEQUENCE seqtblCWCWin;
+DROP SEQUENCE seqtblCWC;
 DROP SEQUENCE seqtblMBTI;
 DROP SEQUENCE seqtblVOC;
 DROP SEQUENCE seqtblInquiry;
@@ -362,8 +368,7 @@ CREATE TABLE tblAttraction (
 	name VARCHAR2(500) NOT NULL UNIQUE, /* 어트랙션명 */
 	capacity NUMBER NOT NULL, /* 수용인원 */
 	time VARCHAR2(500) NOT NULL, /* 운영시간 */
-	restriction VARCHAR2(2000), /* 키 크기 제약사항 등 이용정보 */
-    is_test CHAR(1) NOT NULL /* 테스트채택 */
+	restriction VARCHAR2(2000) /* 키 크기 제약사항 등 이용정보 */
 );
 
 /* 어트/운휴 */
@@ -393,6 +398,13 @@ CREATE TABLE tblAttractionHashtag (
 	attraction_hashtag_seq NUMBER PRIMARY KEY, /* 어트해시태그번호 */
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL, /* 어트랙션번호 */
 	hashtag_seq NUMBER REFERENCES tblHashtag(hashtag_seq) NOT NULL /* 해시태그번호 */
+);
+
+/* 어트랙션월드컵 */
+CREATE TABLE tblAWC (
+	awc_seq NUMBER PRIMARY KEY, /* 어트랙션월드컵번호 */
+	is_test CHAR(1) NOT NULL, /* 테스트채택 */
+	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
 );
 
 /* 어트랙션월드컵승리 */
@@ -425,6 +437,13 @@ CREATE TABLE tblCourse (
 	course_seq NUMBER PRIMARY KEY, /* 코스번호 */
 	name VARCHAR2(500) NOT NULL UNIQUE, /* 코스명 */
 	img VARCHAR2(500) DEFAULT 'course.png' NOT NULL /* 코스이미지 */
+);
+
+/* 코스월드컵 */
+CREATE TABLE tblCWC (
+	cwc_seq NUMBER PRIMARY KEY, /* 코스월드컵번호 */
+	is_test CHAR(1) NOT NULL, /* 테스트채택 */
+	course_seq NUMBER REFERENCES tblCourse(course_seq) NOT NULL /* 코스번호 */
 );
 
 /* 코스월드컵승리 */
@@ -718,10 +737,12 @@ CREATE SEQUENCE seqtblAttractionImg;
 CREATE SEQUENCE seqtblAttractionHashtag;
 CREATE SEQUENCE seqtblAWCFinalWin;
 CREATE SEQUENCE seqtblAWCWin;
+CREATE SEQUENCE seqtblAWC;
 CREATE SEQUENCE seqtblBookUser;
 CREATE SEQUENCE seqtblCourse;
 CREATE SEQUENCE seqtblCWCFinalWin;
 CREATE SEQUENCE seqtblCWCWin;
+CREATE SEQUENCE seqtblCWC;
 CREATE SEQUENCE seqtblMBTI;
 CREATE SEQUENCE seqtblVOC;
 CREATE SEQUENCE seqtblInquiry;
