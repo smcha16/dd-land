@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="customLoginSucessHandler" class="com.project.dd.CustomLoginSuccessHandler"></bean>
+	<bean id="customLoginSuccessHandler" class="com.project.dd.CustomLoginSuccessHandler"></bean>
 
 	<security:http>
 		<security:intercept-url pattern="/index.do" access="permitAll" />
@@ -13,7 +13,7 @@
 		<security:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')" />
 		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
 		
-		<security:form-login login-page="/user/login/view.do" authentication-success-handler-ref="customLoginSucessHandler" />
+		<security:form-login login-page="/user/login/view.do" authentication-success-handler-ref="customLoginSuccessHandler" />
 
 		<security:logout logout-url="/logout.do" logout-success-url="/index.do" invalidate-session="true" />
 
