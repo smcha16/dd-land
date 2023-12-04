@@ -37,7 +37,7 @@
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
-<link href="resources/main/css/main.css" rel="stylesheet">
+<link href="/dd/resources/main/css/main.css" rel="stylesheet">
 
 <!-- =======================================================
   * Template Name: Yummy
