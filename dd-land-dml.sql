@@ -2615,6 +2615,87 @@ VALUES (seqtblAWC.NEXTVAL, 'Y', 2);
 INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
 VALUES (seqtblAWC.NEXTVAL, 'Y', 3);
 
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 4);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 5);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 6);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 7);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 8);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 9);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 10);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 11);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 12);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 13);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 14);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 15);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 16);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 17);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 18);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 19);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 20);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 21);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 22);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 23);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 24);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 25);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 26);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 27);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 28);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 29);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 30);
+
 /* 어트랙션월드컵승리 */
 INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
 VALUES (seqtblAWCWin.NEXTVAL, 682, 502, 1);
@@ -2846,7 +2927,7 @@ INSERT INTO tblCWC (cwc_seq, is_test, course_seq)
 VALUES (seqtblCWC.NEXTVAL, 'Y', 4);
 
 INSERT INTO tblCWC (cwc_seq, is_test, course_seq)
-VALUES (seqtblCWC.NEXTVAL, 'Y', 5);
+VALUES (seqtblCWC.NEXTVAL, 'N', 5);
 
 INSERT INTO tblCWC (cwc_seq, is_test, course_seq)
 VALUES (seqtblCWC.NEXTVAL, 'Y', 6);
@@ -2871,10 +2952,10 @@ INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
 VALUES (seqtblCWCWin.NEXTVAL, 505, 220, 4);
 
 INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
-VALUES (seqtblCWCWin.NEXTVAL, 495, 270, 5);
+VALUES (seqtblCWCWin.NEXTVAL, 495, 180, 5);
 
 INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
-VALUES (seqtblCWCWin.NEXTVAL, 525, 180, 6);
+VALUES (seqtblCWCWin.NEXTVAL, 525, 220, 6);
 
 INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
 VALUES (seqtblCWCWin.NEXTVAL, 515, 210, 7);
