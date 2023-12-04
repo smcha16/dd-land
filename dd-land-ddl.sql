@@ -293,7 +293,7 @@ CREATE TABLE tblMovie (
 CREATE TABLE tblMoviePlay (
    movie_play_seq NUMBER PRIMARY KEY, /* 영화상영번호 */
    movie_seq NUMBER REFERENCES tblMovie(movie_seq) NOT NULL, /* 영화번호 */
-   start_time VARCHAR2(500) NOT NULL, /* 영화상영시간 */
+   time VARCHAR2(500) NOT NULL, /* 영화상영시간 */
    start_date DATE NOT NULL, /* 영화상영시작일 */
    end_date DATE NOT NULL, /* 영화상영종료일 */
    theater_seq NUMBER REFERENCES tblTheater(theater_seq) NOT NULL /* 영화관번호 */
@@ -370,13 +370,6 @@ CREATE TABLE tblAWC (
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
 );
 
-/* 어트랙션월드컵 */
-CREATE TABLE tblAWC (
-	awc_seq NUMBER PRIMARY KEY, /* 어트랙션월드컵번호 */
-	is_test CHAR(1) NOT NULL, /* 테스트채택 */
-	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
-);
-
 /* 어트랙션월드컵승리 */
 CREATE TABLE tblAWCWin (
 	awc_win_seq NUMBER PRIMARY KEY, /* 어트랙션월드컵승리번호 */
@@ -426,8 +419,8 @@ CREATE TABLE tblCWCWin (
 
 /* 코스월드컵최종승리 */
 CREATE TABLE tblCWCFinalWin (
-	cwc_fnl_win_seq NUMBER PRIMARY KEY, /* 코스월드컵최종승리번호 */
-	cwc_fnl_win NUMBER NOT NULL, /* 코스월드컵최종승리횟수 */
+	cwc_final_win_seq NUMBER PRIMARY KEY, /* 코스월드컵최종승리번호 */
+	cwc_final_win_count NUMBER NOT NULL, /* 코스월드컵최종승리횟수 */
 	course_seq NUMBER REFERENCES tblCourse(course_seq) NOT NULL /* 코스번호 */
 );
 
