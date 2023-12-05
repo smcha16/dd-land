@@ -15,9 +15,7 @@
 	/* 폰트는 테스트용 임시 */
 	@font-face {
 		font-family: 'SUIT-Regular';
-		src:
-			url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
-			format('woff2');
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')format('woff2');
 		font-weight: normal;
 		font-style: normal;
 	}
@@ -143,6 +141,12 @@
 		margin: 20px 10px;
 	}
 	
+	.image-slider {
+      width: 700px;
+      height: 350px;
+      margin: 0 auto;
+    }
+    
 	.image-slider div {
 		width: 700px;
 		height: 350px;
@@ -167,12 +171,12 @@
 	
 	.slick-prev {
 		top: 50%;
-		left: 50px;
+		left: 20px;
 	}
 	
 	.slick-next {
 		top: 50%;
-		right: 50px;
+		right: 20px;
 	}
 </style>
 

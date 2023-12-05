@@ -6,5 +6,7 @@ import com.project.dd.activity.attraction.domain.AttractionDTO;
 
 public interface AttractionMapper {
 
-	List<AttractionDTO> list();
+	//(금일 기준) 운영 어트랙션 List
+	List<AttractionDTO> list(String close);
+	
 }
