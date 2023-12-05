@@ -40,15 +40,15 @@
               <li><a href="#">포토존</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>추천</span></a>
+          <li class="dropdown"><a href="/dd/user/test/view.do"><span>추천</span></a>
           	<ul>
-              <li class="dropdown"><a href="#"><span>DD 월드컵 </span><i class="bi bi-chevron-down dropdown-indicator"></i></a>
+              <li class="dropdown"><a href="/dd/user/test/worldcup/view.do"><span>DD 월드컵 </span><i class="bi bi-chevron-down dropdown-indicator"></i></a>
               	<ul>
-              		<li><a href="#">어트랙션 월드컵</a></li>
-                  	<li><a href="#">코스 월드컵</a></li>
+              		<li><a href="/dd/user/test/worldcup/attraction/view.do">어트랙션 월드컵</a></li>
+                  	<li><a href="/dd/user/test/worldcup/course/view.do">코스 월드컵</a></li>
               	</ul>
               </li>
-              <li><a href="#">MBTI 추천</a></li>
+              <li><a href="/dd/user/test/mbti/view.do">MBTI 추천</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#"><span>샵</span></a>
