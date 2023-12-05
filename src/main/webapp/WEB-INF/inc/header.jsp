@@ -70,13 +70,13 @@
               <li><a href="/dd/user/communication/notice/view.do">공지사항</a></li>
               <li class="dropdown"><a href="#"><span>고객소리함</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                 <ul>
-                  <li><a href="#">이용문의</a></li>
+                  <li><a href="/dd/user/communication/inquiry/view.do">이용문의</a></li>
                   <li><a href="#">칭찬/불편/건의</a></li>
-                  <li><a href="#">분실물 찾기</a></li>
+                  <li><a href="/dd/user/communication/lost-property/view.do">분실물 찾기</a></li>
                 </ul>
               </li>
-              <li><a href="/dd/user/communication/faq/view.do">FAQ</a></li>
-              <li><a href="#">리뷰</a></li>
+              <li><a href="/dd/user/communication/faq/view.do?type=이용정보">FAQ</a></li>
+              <li><a href="/dd/user/communication/review/view.do">리뷰</a></li>
             </ul>
           </li>
           <li><a href="#">검색</a></li>

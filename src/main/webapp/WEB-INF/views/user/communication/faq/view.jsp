@@ -15,7 +15,7 @@
 	    border-radius: 50px;
     }
     .stats-counter {
-    	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/main/img/faq.jpg") center center;
+    	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/communication/faq.jpg") center center;
     	background-size: cover;
     	background-attachment: fixed;
     }
@@ -35,49 +35,79 @@
     select:focus, input:focus {
     	outline: none;
     }
-    #notice {
-    	min-height: 748.8px;
+    #faq {
+    	min-height: 700px;
 		margin: 50px 0;
 	}
-	#notice-list {
-		width: 75%;
-		text-align: center;
-		margin: 0 auto;
+	#type {
+	    display: flex;
+	    justify-content: space-around;
+	    width: 65%;
+	    margin: 0 auto 40px;
 	}
-	#notice-list thead tr {
-		background-color: #EEE;
+	#type i {
+		margin-right: 5px;
 	}
-	#notice-list th, #notice-list td {
-		height: 60px;
-		color: #444;
-		padding: 10px;
-		border-bottom: 1px solid #E1E1E1;
-	}
-	#notice-list th {
-		font-size: 1.1rem;
+	#type a {
+		font-size: 1.4rem;
 		font-weight: bold;
+		color: #444;
+		text-decoration: none;
+		border: 0;
 	}
-	#notice-list th:nth-child(1) {
-		width: 17%;
+	#type a:hover, #type a.selected {
+	    color: #CE1212;
 	}
-	#notice-list th:nth-child(2) {
-		width: 60%;
+	.faq-list {
+	  	width: 75%;
+		border-top: 2px solid #777;
+		margin: 25px auto;
 	}
-	#notice-list th:nth-child(3) {
-		width: 23%;
+	.faq {
+		color: #444;
+		text-align: left;
+		padding: 25px;
+		border-bottom: 1px solid #E1E1E1;
+	  	overflow: hidden;
+	  	position: relative;
+	  	transition: 0.3s ease;
 	}
-	#notice-list td {
-		font-size: 1.05rem;
+	.question {
+		display: flex;
+		align-items: center;
+		height: 50px;
+		font-size: 1.13rem;
+		margin-right: 50px;
 	}
-	#notice-list td  a {
-		color: #333;
-	}
-	#notice-list td  a:hover {
+	.question i {
+		font-size: 1.5rem;
 		color: #CE1212;
+		margin-right: 20px;
 	}
-	#notice-list td i {
-		color: rgba(215, 62, 62, 0.7);
-		margin-top: 7px;
+	.answer {
+	  	display: none;
+	  	font-size: 1.02rem;
+	  	margin: 30px 0 0;
+	}
+	.faq.toggle .answer {
+	  	display: block;
+	}
+	.toggle-button {
+	  	background-color: transparent;
+	  	border: 0;
+	  	position: absolute;
+	  	top: 37px;
+	  	right: 30px;
+	  	cursor: pointer;
+	}
+	#up-button {
+		display: none;
+	}
+	.toggle #down-button {
+	  	display: none;
+	}
+	.toggle #up-button {
+		display: block;
 	}
 	#page-bar {
 		margin-top: 50px;
@@ -103,11 +133,7 @@
 					<div id="title" style="padding: 0 !important; font-size: 48px; font-weight: 700; color: #fff;">FAQ</div>
 						<div style="width: 400px; height: 40px; position: relative;">
 						<form method="GET" action="/dd/user/communication/notice/view.do" id="search-form">
-							<select name="category" id="category" class="select">
-								<option value="subject">제목</option>
-								<option value="content">내용</option>
-							</select>
-							<input type="text" name="word" id="search-field" autocomplete="off" style="width: 250px; background-color: transparent; border: 0; position: absolute; left: 93px;">
+							<input type="text" name="word" id="search-field" autocomplete="off" style="width: 325px; background-color: transparent; border: 0; position: absolute; left: 25px;">
 		                	<button type="submit" id="search-button" style="background: none; border: none; cursor: pointer; position: absolute; right: 10px; top: 6px;">
 						        <i class="fa-solid fa-magnifying-glass" ></i>
 						    </button>
@@ -120,36 +146,31 @@
 </section>
 
 <!-- ======= Main Section ======= -->
-    
-<main id="notice">
-	<table id="notice-list">
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>등록일</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${list}" var="dto" varStatus="numberStatus">
-				<tr>
-					<c:if test="${dto.fix == 'y'}">
-						<td><i class="bi bi-exclamation-circle-fill"></i></td>
-					</c:if>
-					
-					<c:if test="${dto.fix == 'n'}">
-						<td>${totalPosts - numberStatus.index - map.startIndex + 1}</td>
-					</c:if>
-					
-		            <td><a href="/dd/user/communication/notice/detail.do?seq=${dto.notice_seq}"><c:out value="${dto.subject}" /></a></td>
-		            <td>${dto.regdate}</td>
-		        </tr>
-			</c:forEach>
+	    
+<main id="faq">
+	<div id="type">
+	    <a href="/dd/user/communication/faq/view.do?type=이용정보" class="${param.type == '이용정보' ? 'selected' : ''}"><i class="bi bi-dot"></i>이용정보<i class="bi bi-dot"></i></a>
+	    <a href="/dd/user/communication/faq/view.do?type=액티비티" class="${param.type == '액티비티' ? 'selected' : ''}"><i class="bi bi-dot"></i>액티비티<i class="bi bi-dot"></i></a>
+	    <a href="/dd/user/communication/faq/view.do?type=혜택" class="${param.type == '혜택' ? 'selected' : ''}"><i class="bi bi-dot"></i>혜택<i class="bi bi-dot"></i></a>
+	    <a href="/dd/user/communication/faq/view.do?type=예매" class="${param.type == '예매' ? 'selected' : ''}"><i class="bi bi-dot"></i>예매<i class="bi bi-dot"></i></a>
+	    <a href="/dd/user/communication/faq/view.do?type=기타" class="${param.type == '기타' ? 'selected' : ''}"><i class="bi bi-dot"></i>기타<i class="bi bi-dot"></i></a>
+	</div>
 
-		</tbody>
-	</table>
-	
-	<nav id="page-bar" aria-label="Page navigation example">
+	<div class="faq-list">
+		<c:forEach items="${list}" var="dto">
+  			<div class="faq">
+    			<span class="question"><i class="bi bi-question-circle"></i><c:out value="${dto.question}" /></span>
+    			<span class="answer"><c:out value="${dto.answer}" /></span>
+
+    			<button class="toggle-button">
+    				<i id="down-button" class="fas fa-chevron-down"></i>
+    				<i id="up-button" class="fas fa-chevron-up"></i>
+    			</button>
+  			</div>
+		</c:forEach>
+	</div>
+    		
+    <nav id="page-bar" aria-label="Page navigation example">
 	    <ul class="pagination justify-content-center">
 	        <c:forEach begin="1" end="${totalPages}" varStatus="pageStatus">
 	            <c:choose>
@@ -157,10 +178,28 @@
 	                    <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
 	                </c:when>
 	                <c:otherwise>
-	                    <li class="page-item"><a class="page-link" href="/dd/user/communication/notice/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+	                    <li class="page-item"><a class="page-link" href="/dd/user/communication/faq/view.do?page=${pageStatus.index}&type=${param.type}">${pageStatus.index}</a></li>
 	                </c:otherwise>
 	            </c:choose>
 	        </c:forEach>
 	    </ul>
 	</nav>
 </main>
+		
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".faq").forEach((faq) => {
+            faq.addEventListener("click", () => {
+                faq.classList.toggle("toggle");
+                faq.querySelector(".answer").style.display = faq.classList.contains("toggle") ? "block" : "none";
+
+                document.querySelectorAll(".faq").forEach((otherFaq) => {
+                    if (otherFaq !== faq) {
+                        otherFaq.classList.remove("toggle");
+                        otherFaq.querySelector(".answer").style.display = "none";
+                    }
+                });
+            });
+        });
+    });
+</script>
