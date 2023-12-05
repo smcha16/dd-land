@@ -1,12 +1,11 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!--  list (2) Template -->
- <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
   
 <style>
-    #title+div {
+    #title + div {
     	display: inline-block;
 	    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
 	    font-size: 17px;
@@ -14,6 +13,11 @@
 	    background-color: rgba(255, 255, 255, 0.6);
 	    padding: 5px 20px;
 	    border-radius: 50px;
+    }
+    .stats-counter {
+    	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/main/img/notice.jpg") center center;
+    	background-size: cover;
+    	background-attachment: fixed;
     }
     #pagetitle {
 		margin-top: 70px;
@@ -31,59 +35,65 @@
     select:focus, input:focus {
     	outline: none;
     }
-    
-
-    
-    
-    
-    
-    
     #notice {
-				/* text-align: center; */
-				margin-top: 50px;
-			}
-			#notice-list {
-				width: 75%;
-				text-align: center;
-				border-top: 2px solid #000;
-				margin: 0 auto;
-			}
-			#notice-list th, #notice-list td {
-				height: 60px;
-				color: #444;
-				padding: 10px;
-				border-bottom: 1px solid #E1E1E1;
-			}
-			#notice-list th {
-				font-size: 1.02rem;
-				font-weight: bold;
-			}
-			#notice-list th:nth-child(1) {
-				width: 20%;
-			}
-			#notice-list th:nth-child(2) {
-				width: 60%;
-			}
-			#notice-list th:nth-child(3) {
-				width: 20%;
-			}
-			#notice-list td:nth-child(2) {
-				font-size: 1.1rem;
-			}
-			#notice-list td:nth-child(2) a {
-				font-weight: bold;
-				color: #333;
-			}
-			#fixed {
-				background-color: #D5F1EA;
-			}
-			#fix-icon {
-				color: #FF0076;
-				margin-top: 7px;
-			}
+    	min-height: 748.8px;
+		margin: 50px 0;
+	}
+	#notice-list {
+		width: 75%;
+		text-align: center;
+		margin: 0 auto;
+	}
+	#notice-list thead tr {
+		background-color: #EEE;
+	}
+	#notice-list th, #notice-list td {
+		height: 60px;
+		color: #444;
+		padding: 10px;
+		border-bottom: 1px solid #E1E1E1;
+	}
+	#notice-list th {
+		font-size: 1.1rem;
+		font-weight: bold;
+	}
+	#notice-list th:nth-child(1) {
+		width: 17%;
+	}
+	#notice-list th:nth-child(2) {
+		width: 60%;
+	}
+	#notice-list th:nth-child(3) {
+		width: 23%;
+	}
+	#notice-list td {
+		font-size: 1.05rem;
+	}
+	#notice-list td  a {
+		color: #333;
+	}
+	#notice-list td  a:hover {
+		color: #CE1212;
+	}
+	#notice-list td i {
+		color: rgba(215, 62, 62, 0.7);
+		margin-top: 7px;
+	}
+	#page-bar {
+		margin-top: 50px;
+	}
+	.page-link {
+		color: #CE1212;
+	}
+	.active > .page-link, .page-link.active {
+		z-index: 3;
+	    color: var(--bs-pagination-active-color);
+	    background-color: #CE1212;
+	    border-color: #CE1212;
+	}
 </style>
 
-<!-- ======= Stats Counter Section ======= -->
+<!-- ======= Title Section ======= -->
 
 <section id="stats-counter" class="stats-counter">
 	<div id="pagetitle" class="container" data-aos="zoom-out">
@@ -92,12 +102,16 @@
 				<div class="stats-item text-center w-100 h-100">
 					<div id="title" style="padding: 0 !important; font-size: 48px; font-weight: 700; color: #fff;">공지사항</div>
 						<div style="width: 400px; height: 40px; position: relative;">
-						<select class="select">
-							<option>제목</option>
-							<option>내용</option>
-						</select>
-						<input type="text" style="width: 250px; background-color: transparent; border: 0; position: absolute; left: 93px;">
-		                <i class="fa-solid fa-magnifying-glass" style="float: right; transform: translate(5px, 6px);"></i>
+						<form method="GET" action="/dd/user/communication/notice/view.do" id="search-form">
+							<select name="category" id="category" class="select">
+								<option value="subject">제목</option>
+								<option value="content">내용</option>
+							</select>
+							<input type="text" name="word" id="search-field" autocomplete="off" style="width: 250px; background-color: transparent; border: 0; position: absolute; left: 93px;">
+		                	<button type="submit" id="search-button" style="background: none; border: none; cursor: pointer; position: absolute; right: 10px; top: 6px;">
+						        <i class="fa-solid fa-magnifying-glass" ></i>
+						    </button>
+		                </form>
 					</div>
 				</div>
 			</div>
@@ -105,10 +119,9 @@
 	</div>
 </section>
 
-<!-- ======= Menu Section ======= -->
+<!-- ======= Main Section ======= -->
     
 <main id="notice">
-			
 	<table id="notice-list">
 		<thead>
 			<tr>
@@ -118,13 +131,36 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>1</td>
-				<td>제목</td>
-				<td>내용</td>
-			</tr>
+			<c:forEach items="${list}" var="dto" varStatus="numberStatus">
+				<tr>
+					<c:if test="${dto.fix == 'y'}">
+						<td><i class="bi bi-exclamation-circle-fill"></i></td>
+					</c:if>
+					
+					<c:if test="${dto.fix == 'n'}">
+						<td>${totalPosts - numberStatus.index - map.startIndex + 1}</td>
+					</c:if>
+					
+		            <td><a href="/dd/user/communication/notice/detail.do?seq=${dto.notice_seq}"><c:out value="${dto.subject}" /></a></td>
+		            <td>${dto.regdate}</td>
+		        </tr>
+			</c:forEach>
+
 		</tbody>
 	</table>
+	
+	<nav id="page-bar" aria-label="Page navigation example">
+	    <ul class="pagination justify-content-center">
+	        <c:forEach begin="1" end="${totalPages}" varStatus="pageStatus">
+	            <c:choose>
+	                <c:when test="${pageStatus.index == currentPage}">
+	                    <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+	                </c:when>
+	                <c:otherwise>
+	                    <li class="page-item"><a class="page-link" href="/dd/user/communication/notice/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+	                </c:otherwise>
+	            </c:choose>
+	        </c:forEach>
+	    </ul>
+	</nav>
 </main>
-		
-<div id="page-bar">${pageBar}</div>

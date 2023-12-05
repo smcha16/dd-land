@@ -67,7 +67,7 @@
           </li>
           <li class="dropdown"><a href="#"><span>소통</span> </a>
             <ul>
-              <li><a href="#">공지사항</a></li>
+              <li><a href="/dd/user/communication/notice/view.do">공지사항</a></li>
               <li class="dropdown"><a href="#"><span>고객소리함</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                 <ul>
                   <li><a href="#">이용문의</a></li>
@@ -75,7 +75,7 @@
                   <li><a href="#">분실물 찾기</a></li>
                 </ul>
               </li>
-              <li><a href="#">FAQ</a></li>
+              <li><a href="/dd/user/communication/faq/view.do">FAQ</a></li>
               <li><a href="#">리뷰</a></li>
             </ul>
           </li>
