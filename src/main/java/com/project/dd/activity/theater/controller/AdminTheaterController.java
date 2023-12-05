@@ -1,5 +1,5 @@
 package com.project.dd.activity.theater.controller;
 
-public class AdminController {
+public class AdminTheaterController {
 
 }
