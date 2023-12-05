@@ -28,7 +28,6 @@
 		<security:authentication-provider>
 			<security:user-service>
 				<security:user name="sumin" password="1111" authorities="ROLE_MEMBER"/>
-				<security:user name="minjae" password="1111" authorities="ROLE_DESIGN_CAPTAIN"/>
 				<security:user name="admin" password="1111" authorities="ROLE_ADMIN, ROLE_MEMBER"/>
 			</security:user-service>
 		</security:authentication-provider>
