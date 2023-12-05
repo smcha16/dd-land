@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <style>
 	#login {
@@ -89,8 +90,17 @@
         </ul>
       </nav><!-- .navbar -->
 	  <div>
-      	<a class="btn-book-a-table" id="login" href="#">로그인</a>
+	  	<sec:authorize access="isAnonymous()">
+      	<a class="btn-book-a-table" id="login" href="/dd/user/login/view.do">로그인</a>
       	<a class="btn-book-a-table" id="join" href="#">회원가입</a>
+      	</sec:authorize>
+      	<sec:authorize access="isAuthenticated()">
+      	<form method="post" action="/dd/logout.do">
+      		<button class="btn-book-a-table" type="submit">로그아웃</button>
+      		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+      	</form>
+      	</sec:authorize>
+      	
       	<a class="btn-book-a-table" id="admin" href="/dd/admin.do">관리자페이지(임시)</a>
       </div>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
