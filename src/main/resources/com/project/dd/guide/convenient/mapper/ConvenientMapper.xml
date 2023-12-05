@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace == 호출할 Interface 이름 적기 -->
+<mapper namespace="com.project.dd.guide.convenient.mapper.ConvenientMapper">
+	
+	<select id="list" resultType="com.project.dd.guide.convenient.domain.ConvenientDTO">
+		select c.convenient_seq, c.name, c.time, c.tel, c.img, l.lat, l.lng from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq=cl.convenient_seq
+    	inner join tbllocation l on cl.location_seq=l.location_seq
+	</select>
+	
+
+</mapper>
