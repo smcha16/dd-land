@@ -57,10 +57,17 @@ public class MainController {
 		return "template.list3_toggle";
 	}
 
+	//template4는 이미지가 움직이지 않습니다..해시태그도 삭제하지 않은 구버전이니 template5를 사용해주세요!
 	@GetMapping(value = "/template4.do")
 	public String viewTemplate1(Model model) {
 		
 		return "template.view1";
+	}
+
+	@GetMapping(value = "/template5.do")
+	public String viewTemplate2(Model model) {
+		
+		return "template.view2";
 	}
 	
 }
