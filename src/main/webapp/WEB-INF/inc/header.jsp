@@ -34,10 +34,10 @@
           </li>
           <li class="dropdown"><a href="#"><span>액티비티</span></a>
           	<ul>
-              <li><a href="#">어트랙션</a></li>
-              <li><a href="#">영화</a></li>
-              <li><a href="#">페스티벌</a></li>
-              <li><a href="#">포토존</a></li>
+              <li><a href="/dd/user/activity/attraction/view.do">어트랙션</a></li>
+              <li><a href="/dd/user/activity/movie/view.do">영화</a></li>
+              <li><a href="/dd/user/activity/festival/view.do">페스티벌</a></li>
+              <li><a href="/dd/user/activity/photozone/view.do">포토존</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#"><span>추천</span></a>

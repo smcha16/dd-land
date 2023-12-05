@@ -179,7 +179,7 @@
 	
 	/* list photo 변경 */
     .stats-counter {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/img/barcelona-3960566_1280.jpg") center center;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/activity/roller-coaster-7942853_1280.jpg") center center;
       background-size: cover;
       padding: 100px 0;
       background-attachment: fixed;
