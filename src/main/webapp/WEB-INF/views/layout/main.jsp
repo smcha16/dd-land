@@ -13,6 +13,8 @@
 <meta content="" name="description">
 <meta content="" name="keywords">
 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 <!-- Favicons -->
 <link href="/dd/resources/main/img/favicon.png" rel="icon">
 <link href="/dd/resources/main/img/apple-touch-icon.png"
@@ -37,7 +39,7 @@
 	rel="stylesheet">
 
 <!-- Template Main CSS File -->
-<link href="resources/main/css/main.css" rel="stylesheet">
+<link href="/dd/resources/main/css/main.css" rel="stylesheet">
 
 <!-- =======================================================
   * Template Name: Yummy

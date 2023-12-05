@@ -82,6 +82,16 @@
             z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
     }
     input:focus {outline: none;}
+    
+    .select {
+    	position: absolute;
+    	left: 15px;
+    	border: 0;
+    	background: transparent;
+    	top: 7px;
+    }
+    select:focus { outline: none; }
+    
 </style>
     <!-- ======= Stats Counter Section ======= -->
     <section id="stats-counter" class="stats-counter">
@@ -94,7 +104,11 @@
               display: block;
               color: #fff;
               font-weight: 700;">Attraction</div>
-              <div style="width: 400px; height: 40px;">
+              <div style="width: 400px; height: 40px; position: relative;">
+              	<select class="select">
+              		<option>제목</option>
+              		<option>내용</option>
+              	</select>
                 <input type="text" style="background-color: transparent; border: 0;">
                 <i class="fa-solid fa-magnifying-glass" style="float: right; transform: translate(5px, 6px);"></i>
               </div>
