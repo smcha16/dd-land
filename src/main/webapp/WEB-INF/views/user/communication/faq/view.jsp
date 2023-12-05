@@ -149,11 +149,11 @@
 	    
 <main id="faq">
 	<div id="type">
-	    <a href="/dd/user/communication/faq/view.do?type=이용정보" class="${param.type == '이용정보' ? 'selected' : ''}"><i class="bi bi-dot"></i>이용정보<i class="bi bi-dot"></i></a>
-	    <a href="/dd/user/communication/faq/view.do?type=액티비티" class="${param.type == '액티비티' ? 'selected' : ''}"><i class="bi bi-dot"></i>액티비티<i class="bi bi-dot"></i></a>
-	    <a href="/dd/user/communication/faq/view.do?type=혜택" class="${param.type == '혜택' ? 'selected' : ''}"><i class="bi bi-dot"></i>혜택<i class="bi bi-dot"></i></a>
-	    <a href="/dd/user/communication/faq/view.do?type=예매" class="${param.type == '예매' ? 'selected' : ''}"><i class="bi bi-dot"></i>예매<i class="bi bi-dot"></i></a>
-	    <a href="/dd/user/communication/faq/view.do?type=기타" class="${param.type == '기타' ? 'selected' : ''}"><i class="bi bi-dot"></i>기타<i class="bi bi-dot"></i></a>
+	    <a href="/dd/user/communication/faq/view.do?type=이용정보" class="${map.type == '이용정보' ? 'selected' : ''}"><i class="bi bi-dot"></i>이용정보<i class="bi bi-dot"></i></a>
+	    <a href="/dd/user/communication/faq/view.do?type=액티비티" class="${map.type == '액티비티' ? 'selected' : ''}"><i class="bi bi-dot"></i>액티비티<i class="bi bi-dot"></i></a>
+	    <a href="/dd/user/communication/faq/view.do?type=혜택" class="${map.type == '혜택' ? 'selected' : ''}"><i class="bi bi-dot"></i>혜택<i class="bi bi-dot"></i></a>
+	    <a href="/dd/user/communication/faq/view.do?type=예매" class="${map.type == '예매' ? 'selected' : ''}"><i class="bi bi-dot"></i>예매<i class="bi bi-dot"></i></a>
+	    <a href="/dd/user/communication/faq/view.do?type=기타" class="${map.type == '기타' ? 'selected' : ''}"><i class="bi bi-dot"></i>기타<i class="bi bi-dot"></i></a>
 	</div>
 
 	<div class="faq-list">

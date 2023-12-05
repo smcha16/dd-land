@@ -20,8 +20,8 @@ public class FaqUserController {
 	private FaqMapper mapper;
 	
 	@GetMapping(value = "/user/communication/faq/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, @RequestParam String type, Model model) {
-		
+	public String view(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "이용정보") String type, Model model) {
+
 		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("type", type);
