@@ -208,14 +208,14 @@
 				<div class="munti-content-container">
 					<c:forEach items="${list}" var="dto">
 						<c:if test="${dto.close == 'y'}">
-							<div class="item hidden">
+							<div class="item hidden" onclick="detail(${dto.restaurant_seq});">
 								<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
 								<div>${dto.name }</div>
 								<div class="hidden-div">${dto.menu }</div>
 							</div>
 						</c:if>
 						<c:if test="${dto.close == 'n'}">
-							<div class="item">
+							<div class="item" onclick="detail(${dto.restaurant_seq});">
 								<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
 								<div>${dto.name }</div>
 								<div class="hidden-div">${dto.menu }</div>
@@ -262,4 +262,8 @@
 	        }
 	    });
 	});
+	
+	function detail(seq) {
+		window.location.href = "/dd/user/shop/restaurant/detail.do?seq="+seq;
+	}
 </script>
