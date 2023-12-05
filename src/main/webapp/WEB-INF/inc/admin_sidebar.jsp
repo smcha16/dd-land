@@ -166,7 +166,22 @@
 	      	<ul id="close-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	       		<li>
 	         		<a href="admin.do">
-	           			<i class="bi bi-circle"></i><span>운휴</span>
+	           			<i class="bi bi-circle"></i><span>어트랙션 운휴</span>
+	         		</a>
+	       		</li>
+	       		<li>
+	         		<a href="admin.do">
+	           			<i class="bi bi-circle"></i><span>기프트샵 운휴</span>
+	         		</a>
+	       		</li>
+	       		<li>
+	         		<a href="admin.do">
+	           			<i class="bi bi-circle"></i><span>식당 운휴</span>
+	         		</a>
+	       		</li>
+	       		<li>
+	         		<a href="admin.do">
+	           			<i class="bi bi-circle"></i><span>영화관 운휴</span>
 	         		</a>
 	       		</li>
 	     	</ul>
@@ -185,20 +200,6 @@
 	       		</li>
 	     	</ul>
 	   	</li>
-	   
-		<!-- 해시태그 -->
-		<li class="nav-item">
-	     	<a class="nav-link collapsed" data-bs-target="#hashtag-nav" data-bs-toggle="collapse" href="#">
-	       		<i class="bi bi-grid"></i><span>해시태그</span><i class="bi bi-chevron-down ms-auto"></i>
-	     	</a>
-	     	<ul id="hashtag-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-	       		<li>
-	         		<a href="admin.do">
-	           			<i class="bi bi-circle"></i><span>해시태그</span>
-	         		</a>
-	       		</li>
-	     	</ul>
-		</li>
 	
 	</ul>
 

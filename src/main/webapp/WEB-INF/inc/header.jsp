@@ -59,10 +59,10 @@
           </li>
           <li class="dropdown"><a href="#"><span>이용가이드</span></a>
           	<ul>
-              <li><a href="#">파크 이용안내</a></li>
+              <li><a href="/dd/user/guide/use-guide/view.do">파크 이용안내</a></li>
               <li><a href="#">편의시설</a></li>
-              <li><a href="#">오시는 길</a></li>
-              <li><a href="#">가이드맵</a></li>
+              <li><a href="/dd/user/guide/location/view.do">오시는 길</a></li>
+              <li><a href="/dd/user/guide/guide-map/view.do">가이드맵</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#"><span>소통</span> </a>
@@ -91,6 +91,7 @@
 	  <div>
       	<a class="btn-book-a-table" id="login" href="#">로그인</a>
       	<a class="btn-book-a-table" id="join" href="#">회원가입</a>
+      	<a class="btn-book-a-table" id="admin" href="/dd/admin.do">관리자페이지(임시)</a>
       </div>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>

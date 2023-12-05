@@ -10,6 +10,8 @@
 		<meta content="" name="description">
 		<meta content="" name="keywords">
 		
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		
 		<!-- Favicons -->
 		<link href="/dd/resources/admin/img/favicon.png" rel="icon">
 		<link href="/dd/resources/admin/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -29,7 +31,7 @@
 		
 		<!-- Template Main CSS File -->
 		<link href="/dd/resources/admin/css/style.css" rel="stylesheet">
-	
+		
 		<style>
 			#main h1 {
      			margin-top: 45px !important;

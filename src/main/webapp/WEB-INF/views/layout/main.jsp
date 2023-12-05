@@ -13,6 +13,8 @@
 <meta content="" name="description">
 <meta content="" name="keywords">
 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 <!-- Favicons -->
 <link href="/dd/resources/main/img/favicon.png" rel="icon">
 <link href="/dd/resources/main/img/apple-touch-icon.png"
@@ -62,8 +64,7 @@
 	<div id="preloader"></div>
 
 	<!-- Vendor JS Files -->
-	<script
-		src="/dd/resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/dd/resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="/dd/resources/main/vendor/aos/aos.js"></script>
 	<script src="/dd/resources/main/vendor/glightbox/js/glightbox.min.js"></script>
 	<script src="/dd/resources/main/vendor/purecounter/purecounter_vanilla.js"></script>
