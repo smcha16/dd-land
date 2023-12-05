@@ -27,10 +27,11 @@ public class AttractionDTO {
 	
 	//tblAttractionLocation
 	//private AttractionLocationDTO location; //이건 되면 하고 안되면 말고
-	//얜 필요없어 locationDTO가 필요해
 	//? 그럼 location_seq 변수도 필요함?
 	
-	private LocationDTO location;
-	
+	//tblLocation
+	private String location_seq;
+	private String lat;
+	private String lng;
 	
 }

@@ -39,7 +39,7 @@ public class UserAttractionController {
 		//AttractionImgDTO
 		//AttractionCloseDTO
 		
-		//model.addAttribute("dto", mapper.get(seq));
+//		model.addAttribute("dto", mapper.get(seq));
 
 		
 		return "user/activity/attraction/detail";

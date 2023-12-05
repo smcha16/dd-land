@@ -176,6 +176,14 @@
 		background: rgba(215, 62, 62, .7);
 		transition: left 0.4s 0.2s, right 0.5s, background 0.35s -0.1s;
 	}
+	
+	/* list photo 변경 */
+    .stats-counter {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/img/barcelona-3960566_1280.jpg") center center;
+      background-size: cover;
+      padding: 100px 0;
+      background-attachment: fixed;
+    }
 </style>
 
 <!-- list3 Main Content -->
@@ -203,8 +211,8 @@
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div class="munti-content-container">
 					<c:forEach items="${list}" var="dto">
-						<div class="item">
-							<div style="background-image: url('/dd/resources/assets/img/${dto.img}');"></div>
+						<div class="item" onclick="location.href= '/dd/user/activity/attraction/detail.do?seq=' + ${dto.attraction_seq};">
+							<div style="background-image: url('/dd/resources/files/activity/attraction/${dto.img}');"></div>
 							<div>${dto.name}</div>
 							<div class="hidden-div">${dto.info}</div>
 						</div>
@@ -234,26 +242,7 @@
     
 	});
 	
-	/*
-	$(document).ready(function() {
-	    // 페이지 로딩 시에 URL 파라미터를 읽어옴
-	    const queryString = window.location.search;
-	    const urlParams = new URLSearchParams(queryString);
-	    const closeValue = urlParams.get('close');
-
-	    // data-type 값을 URL 파라미터에서 읽어온 값으로 설정
-	    $('#close').data('type', closeValue);
-
-	    // data-type 값에 따라 checked 속성 적용
-	    if (closeValue === 'y') {
-	        $('#close').prop('checked', true);
-	    } else {
-	        $('#close').prop('checked', false);
-	    }
-	});
-	*/
-	
-	/* 도전 */
+	/* 운영/운휴 */
 		
 	const close = '${close}';
 	
@@ -276,7 +265,6 @@
         	$('#close').data('type', 'n');
 			location.href='/dd/user/activity/attraction/view.do'
 	    }
-
 		
 	}
 	

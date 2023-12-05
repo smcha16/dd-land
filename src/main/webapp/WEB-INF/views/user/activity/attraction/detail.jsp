@@ -57,7 +57,7 @@
 	}
 	
 	section:nth-of-type(2) {
-		background-image: url('assets/img/detail_background_half_trans.png');
+		background-image: url('/dd/resources/files/activity/attraction/barcelona-3960566_1280.jpg');
 		background-color: transparent;
 		background-repeat: no-repeat;
 		background-size: cover;
