@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.dd.communication.lost.mapper.LostPropertyMapper">
+	<select id="getTotalCount" resultType="int">
+		select count(*) from tblLostProperty
+	</select>
+	
+	<select id="getLostPropertyList" parameterType="map" resultType="com.project.dd.communication.lost.domain.LostPropertyDTO">
+		select *
+		from (select l.*, rownum as rnum from (select * from tblLostProperty order by lost_property_seq desc) l)
+		where rnum between #{startIndex} and #{endIndex}
+	</select>
+</mapper>
