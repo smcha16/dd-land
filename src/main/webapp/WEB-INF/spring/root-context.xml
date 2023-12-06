@@ -8,7 +8,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
       <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-      <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@43.200.182.211:1521:xe"></property>
+      <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@192.168.10.37:1521:xe"></property>
       <property name="username" value="dd"></property>
       <property name="password" value="pass"></property>
 	</bean>	
