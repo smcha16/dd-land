@@ -1,5 +1,19 @@
 package com.project.dd.activity.festival.mapper;
 
+import java.util.List;
+
+import com.project.dd.activity.festival.domain.FestivalDTO;
+import com.project.dd.activity.festival.domain.FestivalImgDTO;
+
 public interface FestivalMapper {
+
+	//금일 공연 페스티벌 List
+	List<FestivalDTO> getFestivalList(String date);
+
+	//페스티벌 상세 정보
+	FestivalDTO getFestival(String seq);
+
+	//페스티벌 이미지 List
+	List<FestivalImgDTO> getFestivalImgList(String seq);
 
 }

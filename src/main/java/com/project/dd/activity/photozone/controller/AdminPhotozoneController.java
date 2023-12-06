@@ -1,5 +1,5 @@
 package com.project.dd.activity.photozone.controller;
 
-public class UserController {
+public class AdminPhotozoneController {
 
 }

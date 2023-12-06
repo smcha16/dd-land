@@ -1,5 +1,5 @@
 package com.project.dd.activity.movie.controller;
 
-public class UserController {
+public class AdminMovieController {
 
 }

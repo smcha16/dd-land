@@ -22,15 +22,12 @@ public class AttractionDTO {
 	//사용여부 확인하고 필요시 int imgCount 변수 생성하기
 	
 	//tblAttractionClose
-	//private List<AttractionCloseDTO> closeList;
 	private String close;
 	
 	//tblAttractionLocation
-	//private AttractionLocationDTO location; //이건 되면 하고 안되면 말고
-	//얜 필요없어 locationDTO가 필요해
-	//? 그럼 location_seq 변수도 필요함?
-	
-	private LocationDTO location;
+	private String attraction_location_seq;
+	private String lat;
+	private String lng;
 	
 	
 }
