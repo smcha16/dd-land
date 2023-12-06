@@ -6,7 +6,6 @@
 	
 	<select id="list" resultType="com.project.dd.guide.convenient.domain.ConvenientDTO">
 		select c.convenient_seq, c.name, c.time, c.tel, c.img, l.lat, l.lng from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq=cl.convenient_seq
-    	inner join tbllocation l on cl.location_seq=l.location_seq
 	</select>
 	
 

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value = "/user/guide")
-public class UseGuiderController {  //정적 페이지 담당
+public class UserGuideController {  //정적 페이지 담당
 	
 	@GetMapping(value = "/use-guide/view.do")
 	public String use_guide_view(Model model) {  

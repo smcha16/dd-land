@@ -13,7 +13,7 @@ import com.project.dd.guide.convenient.mapper.ConvenientMapper;
 
 @Controller
 @RequestMapping(value = "/user/guide/convenient")
-public class UserController {
+public class UserConvenientController {
 	
 	@Autowired
 	private ConvenientMapper mapper;
