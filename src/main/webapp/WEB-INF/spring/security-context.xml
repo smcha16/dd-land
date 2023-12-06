@@ -8,10 +8,10 @@
 	<bean id="customLoginSuccessHandler" class="com.project.dd.CustomLoginSuccessHandler"></bean>
 
 	<!-- 암호 인코딩 객체 -->
-	<!-- <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean> -->
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 
 	<!-- 임시 인코딩 삭제 -->
-	<bean id="noopPasswordEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/>
+	<!-- <bean id="noopPasswordEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/> -->
 
 	<!-- 사용자 로그인 객체 -->
 	<bean id="customUserDetailsService" class="com.project.dd.CustomUserDetailsService"></bean>
@@ -45,8 +45,8 @@
 	
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="customUserDetailsService">
-			<!-- <security:password-encoder ref="bcryptPasswordEncoder" /> -->
-			<security:password-encoder ref="noopPasswordEncoder"/>
+			<security:password-encoder ref="bcryptPasswordEncoder" />
+			<!-- <security:password-encoder ref="noopPasswordEncoder"/> -->
 		</security:authentication-provider>
 	</security:authentication-manager>
 
