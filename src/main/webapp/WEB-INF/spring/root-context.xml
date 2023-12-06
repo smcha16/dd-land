@@ -24,6 +24,6 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
-	<mybatis-spring:scan base-package="com.project.dd.*" />
+	<mybatis-spring:scan base-package="com.project.*" />
 
 </beans>
