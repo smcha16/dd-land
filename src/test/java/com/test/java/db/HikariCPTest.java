@@ -1,38 +1,44 @@
 package com.test.java.db;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.zaxxer.hikari.HikariDataSource;
+import com.project.dd.TestMapper;
+import com.project.dd.login.domain.LoginDTO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/dd/root-context.xml")
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 public class HikariCPTest {
 
 	@Autowired
-	private HikariDataSource dataSource;
+	private PasswordEncoder encoder;
 	
-	@Test
-	public void testConnectionPool() {
+	@Autowired
+	private TestMapper mapper;
+	
+	@Test 
+	public void testUpdatePw() {
+		assertNotNull(mapper);
 		
-		assertNotNull(dataSource);
+		List<LoginDTO> list = mapper.select();
 		
-		try {
+		for (LoginDTO dto : list) {
+			String pw = encoder.encode(dto.getPw());
+			String seq = dto.getUser_seq();
 			
-			Connection conn = dataSource.getConnection();
-			assertEquals(false, conn.isClosed());
+			int result = mapper.update(seq, pw);
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+			if (result == 1) {
+				System.out.println("변경");
+			}
 		}
 		
 	}

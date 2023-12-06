@@ -41,9 +41,9 @@
               <li><a href="/dd/user/activity/photo-zone/view.do">포토존</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="/dd/user/test/view.do"><span>추천</span></a>
+          <li class="dropdown"><a href="#"><span>추천</span></a>
           	<ul>
-              <li class="dropdown"><a href="/dd/user/test/worldcup/view.do"><span>DD 월드컵 </span><i class="bi bi-chevron-down dropdown-indicator"></i></a>
+              <li class="dropdown"><a href="#"><span>DD 월드컵</span><i class="bi bi-chevron-down dropdown-indicator"></i></a>
               	<ul>
               		<li><a href="/dd/user/test/worldcup/attraction/view.do">어트랙션 월드컵</a></li>
                   	<li><a href="/dd/user/test/worldcup/course/view.do">코스 월드컵</a></li>
@@ -108,6 +108,21 @@
 
     </div>
   </header><!-- End Header -->
+  
+	<!--
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+	    var dropdownLinks = document.querySelectorAll('.navbar li.dropdown');
+	
+	    dropdownLinks.forEach(function(link) {
+	        link.addEventListener('click', function(event) {
+	            // 클릭 이벤트에서 부모 li 요소까지 올라가며 링크로 이동하지 않도록 막기
+	            event.stopPropagation();
+	        });
+	    });
+	});
+	</script>
+	-->
   
   <script>
   document.addEventListener('DOMContentLoaded', function() {
