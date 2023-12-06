@@ -1,219 +1,166 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
   
 <style>
-    #title+div {
-    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
-    padding: 5px 20px;
-    color: #222222;
-    font-size: 17px;
-    background-color: rgba(255, 255, 255, 0.6);
-    display: inline-block;
-    border-radius: 50px;
+    #title + div {
+    	display: inline-block;
+	    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
+	    font-size: 17px;
+	    color: #222222;
+	    background-color: rgba(255, 255, 255, 0.6);
+	    padding: 5px 20px;
+	    border-radius: 50px;
     }
-
+    .stats-counter {
+    	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/main/img/notice.jpg") center center;
+    	background-size: cover;
+    	background-attachment: fixed;
+    }
     #pagetitle {
-      margin-top: 70px;
+		margin-top: 70px;
     }
     #title {
-      margin-bottom: 20px;
+		margin-bottom: 20px;
     }
-
-    .munti-content-container {
-      display: flex;
-      flex-wrap: wrap;
-      margin: 30px 50px 0 50px;
-      padding: 0 !important;
+	.select {
+		background: transparent;
+		border: 0;
+		position: absolute;
+		top: 7px;
+    	left: 15px;
     }
-
-    .item {
-      position: relative;
-      width: 25.5%;
-      aspect-ratio: 0.75;
-      padding: 0;
-      box-sizing: border-box;
-      min-width: 270px;
-      border: 1px solid #E1E1E1;
-      margin: 10px 45px 50px 45px;
-      border-radius: 10px;
-      transition: all 0.3s;
+    select:focus, input:focus {
+    	outline: none;
     }
-
-    .item:hover {
-      cursor: pointer;
-      box-shadow: 12px 12px 17px rgba(0, 0, 0, 0.20);
-    }
-
-    .item>div:nth-child(1) {
-      height: 70%;
-      background-color: transparent;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      border-radius: 10px 10px 0 0;
-    }
-
-    .item>div:nth-child(2) {
-      height: 30%;
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      font-size: 1.3rem;
-      font-weight: bold;
-      background: transparent;
-      border-radius: 0 0 10px 10px;
-    }
-    .hidden-div {
-          display: none;
-          color: white;
-          position: absolute;
-          top: 0;
-          left: 0;
-            width: 100%;
-            height: 70%;
-            padding: 20px;
-            background-color: black;
-            opacity: 0.65; /* 투명도 조절 */
-            border-radius: 10px 10px 0 0;
-            z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
-    }
-    input:focus {outline: none;}
+    #notice {
+    	min-height: 748.8px;
+		margin: 50px 0;
+	}
+	#notice-list {
+		width: 75%;
+		text-align: center;
+		margin: 0 auto;
+	}
+	#notice-list thead tr {
+		background-color: #EEE;
+	}
+	#notice-list th, #notice-list td {
+		height: 60px;
+		color: #444;
+		padding: 10px;
+		border-bottom: 1px solid #E1E1E1;
+	}
+	#notice-list th {
+		font-size: 1.1rem;
+		font-weight: bold;
+	}
+	#notice-list th:nth-child(1) {
+		width: 17%;
+	}
+	#notice-list th:nth-child(2) {
+		width: 60%;
+	}
+	#notice-list th:nth-child(3) {
+		width: 23%;
+	}
+	#notice-list td {
+		font-size: 1.05rem;
+	}
+	#notice-list td  a {
+		color: #333;
+	}
+	#notice-list td  a:hover {
+		color: #CE1212;
+	}
+	#notice-list td i {
+		color: rgba(215, 62, 62, 0.7);
+		margin-top: 7px;
+	}
+	#page-bar {
+		margin-top: 50px;
+	}
+	.page-link {
+		color: #CE1212;
+	}
+	.active > .page-link, .page-link.active {
+		z-index: 3;
+	    color: var(--bs-pagination-active-color);
+	    background-color: #CE1212;
+	    border-color: #CE1212;
+	}
 </style>
-    <!-- ======= Stats Counter Section ======= -->
-    <section id="stats-counter" class="stats-counter">
-      <div id="pagetitle" class="container" data-aos="zoom-out">
-        <div class="gy-4" style="justify-content: center; width: 100%;">
 
-          <div class="col-lg-3 col-md-6" style="width: 100%;">
-            <div class="stats-item text-center w-100 h-100">
-              <div id="title" style="font-size: 48px;
-              display: block;
-              color: #fff;
-              font-weight: 700;">공지사항</div>
-              <div style="width: 400px; height: 40px;">
-              	<select>
-              		<option>제목</option>
-              		<option>내용</option>
-              	</select>
-                <input type="text" style="background-color: transparent; border: 0;">
-                <i class="fa-solid fa-magnifying-glass" style="float: right; transform: translate(5px, 6px);"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End Stats Counter Section -->
+<!-- ======= Title Section ======= -->
 
-    <!-- ======= Menu Section ======= -->
-    <section id="menu" class="menu">
-      <div class="container" data-aos="fade-up">
+<section id="stats-counter" class="stats-counter">
+	<div id="pagetitle" class="container" data-aos="zoom-out">
+		<div class="gy-4" style="justify-content: center; width: 100%;">
+			<div class="col-lg-3 col-md-6" style="width: 100%;">
+				<div class="stats-item text-center w-100 h-100">
+					<div id="title" style="padding: 0 !important; font-size: 48px; font-weight: 700; color: #fff;">공지사항</div>
+						<div style="width: 400px; height: 40px; position: relative;">
+						<form method="GET" action="/dd/user/communication/notice/view.do" id="search-form">
+							<select name="category" id="category" class="select">
+								<option value="subject">제목</option>
+								<option value="content">내용</option>
+							</select>
+							<input type="text" name="word" id="search-field" autocomplete="off" style="width: 250px; background-color: transparent; border: 0; position: absolute; left: 93px;">
+		                	<button type="submit" id="search-button" style="background: none; border: none; cursor: pointer; position: absolute; right: 10px; top: 6px;">
+						        <i class="fa-solid fa-magnifying-glass" ></i>
+						    </button>
+		                </form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
-
-          <div class="tab-pane fade active show" id="menu-starters">
-
-            <div class="munti-content-container">
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-              <div class="item">
-                <div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-                <div>어트랙션명</div>
-                <div class="hidden-div">설명</div>
-              </div>
-            </div>
-            
-
-        </div><!-- End Starter Menu Content -->
-      </div>
-     </div>
-    </section><!-- End Menu Section -->                                     
+<!-- ======= Main Section ======= -->
     
-    
-    <script>
-    var itemElements = document.querySelectorAll('.item');
-    itemElements.forEach(function(item) {
-        item.addEventListener('mouseover', function() {
-          // 마우스 오버 시 hidden-div를 보이게 변경
-          item.querySelector('.hidden-div').style.display = 'block';
-        });
+<main id="notice">
+	<table id="notice-list">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>등록일</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${list}" var="dto" varStatus="numberStatus">
+				<tr>
+					<c:if test="${dto.fix == 'y'}">
+						<td><i class="bi bi-exclamation-circle-fill"></i></td>
+					</c:if>
+					
+					<c:if test="${dto.fix == 'n'}">
+						<td>${totalPosts - numberStatus.index - map.startIndex + 1}</td>
+					</c:if>
+					
+		            <td><a href="/dd/user/communication/notice/detail.do?seq=${dto.notice_seq}"><c:out value="${dto.subject}" /></a></td>
+		            <td>${dto.regdate}</td>
+		        </tr>
+			</c:forEach>
 
-        item.addEventListener('mouseout', function() {
-          // 마우스 아웃 시 hidden-div를 다시 숨김
-            item.querySelector('.hidden-div').style.display = 'none';
-        });
-    });
-
-  </script>
-
-<!-- 끝 -->
+		</tbody>
+	</table>
+	
+	<nav id="page-bar" aria-label="Page navigation example">
+	    <ul class="pagination justify-content-center">
+	        <c:forEach begin="1" end="${totalPages}" varStatus="pageStatus">
+	            <c:choose>
+	                <c:when test="${pageStatus.index == currentPage}">
+	                    <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+	                </c:when>
+	                <c:otherwise>
+	                    <li class="page-item"><a class="page-link" href="/dd/user/communication/notice/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+	                </c:otherwise>
+	            </c:choose>
+	        </c:forEach>
+	    </ul>
+	</nav>
+</main>
