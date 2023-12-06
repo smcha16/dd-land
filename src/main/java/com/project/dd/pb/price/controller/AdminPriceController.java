@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.dd.pb.price.domain.PriceDTO;
 
 @Controller
-@RequestMapping("/admin/pb")
+@RequestMapping("/admin/pb/price")
 public class AdminPriceController {
 	
 	
-	@GetMapping("/price/view.do")
+	@GetMapping("/view.do")
 	public String view(Model model) {
 	
 		
