@@ -3,10 +3,19 @@
 
 <!-- namespace == 호출할 Interface 이름 적기 -->
 <mapper namespace="com.project.dd.activity.attraction.mapper.AttractionMapper">
-
-	<select id="list" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		select * from vwAttractionList where close = #{close}
+	
+	<!-- id == 인터페이스의 추상메서드의 이름 -->
+	<select id="getAttractionList" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		select * from vwAttractionList 
+		where name not like '%(운영종료)%' and close = #{close}
 	</select>
 	
-
+	<select id="getAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		select * from vwAttractionOne where attraction_seq = #{attraction_seq}
+	</select>
+	
+	<select id="getAttractionImgList" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionImgDTO">
+		select * from tblAttractionImg where attraction_seq = #{attraction_seq}
+	</select>
+	
 </mapper>

@@ -18,7 +18,7 @@ public class JDBCTest {
 			// 오라클 드라이버 로딩
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
-			Connection conn = DriverManager.getConnection("jdbc:oracle:thin@localhost:1521:xe", "dd", "pass");
+			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "dd", "java1234");
 			
 			assertNotNull(conn); // DB 연결 성공 시 True
 			

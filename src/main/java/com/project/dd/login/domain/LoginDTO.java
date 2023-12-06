@@ -12,7 +12,7 @@ public class LoginDTO {
 	private String tel;
 	private String address;
 	private String birth;
-	private String lv;
+	private String auth;
 	private String ing;
 	
 }

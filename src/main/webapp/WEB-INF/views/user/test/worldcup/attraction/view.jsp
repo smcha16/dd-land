@@ -91,7 +91,8 @@
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
 					<div id="title"
-						style="font-size: 48px; display: block; color: #fff; font-weight: 700;">어트랙션 월드컵</div>
+						style="font-size: 48px; display: block; color: #fff; font-weight: 700;">어트랙션
+						월드컵</div>
 					<p>설명(나에게 딱 맞는 어트랙션을 찾아보세요!)</p>
 				</div>
 			</div>
@@ -107,86 +108,44 @@
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 
 			<div class="tab-pane fade active show" id="menu-starters">
-
-				<div class="munti-content-container">
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
+				<table>
+					<div id="attraction-container" class="munti-content-container">
+						<c:forEach items="${listAttraction}" var="dto">
+							<div class="item" data-attraction-id="${dto.id}">
+								<div
+									style="background-image: url('/dd/resources/assets/img/${dto.img}');"></div>
+								<div>${dto.name}</div>
+								<div class="hidden-div">${dto.info}</div>
+							</div>
+						</c:forEach>
 					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-				</div>
 
 
+					<!--
+			        <c:forEach items="${listAWC}" var="dto">
+			            <tr>
+			                <td>${dto.awc_seq}</td>
+			                <td>${dto.is_test}</td>
+			                <td>${dto.attraction_seq}</td>
+			            </tr>
+			        </c:forEach>
+			        <c:forEach items="${listAWCWin}" var="dto">
+			            <tr>
+			                <td>${dto.awc_win_seq}</td>
+			                <td>${dto.awc_match_count}</td>
+			                <td>${dto.awc_win_count}</td>
+			                <td>${dto.attraction_seq}</td>
+			            </tr>
+			        </c:forEach>
+			        <c:forEach items="${listAWCFinalWin}" var="dto">
+			            <tr>
+			                <td>${dto.awc_final_win_seq}</td>
+			                <td>${dto.awc_final_win_count}</td>
+			                <td>${dto.attraction_seq}</td>
+			            </tr>
+			        </c:forEach>
+			        -->
+				</table>
 			</div>
 			<!-- End Starter Menu Content -->
 		</div>
