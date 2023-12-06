@@ -39,7 +39,7 @@
 		min-height: 700px;
 		margin: 50px 0;
 	}
-	#search-form {
+	#search-date-form {
 		display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -137,7 +137,7 @@
 								<option value="name">습득물</option>
 								<option value="location">습득장소</option>
 							</select>
-							<input type="text" name="word" id="search-field" autocomplete="off" style="width: 230px; background-color: transparent; border: 0; position: absolute; left: 116px;">
+							<input type="text" name="word" id="search-field" autocomplete="off" style="width: 230px; background-color: transparent; border: 0; position: absolute; left: 120px;">
 		                	<button type="submit" id="search-button" style="background: none; border: none; cursor: pointer; position: absolute; right: 10px; top: 6px;">
 						        <i class="fa-solid fa-magnifying-glass" ></i>
 						    </button>
@@ -153,7 +153,7 @@
     
 <main id="lost-property">
 
-	<form method="GET" action="/dd/user/communication/lost-property/view.do" id="search-form">
+	<form method="GET" action="/dd/user/communication/lost-property/view.do" id="search-date-form">
 		<input type="date" class="form-control">
 			~
 		<input type="date" class="form-control">
