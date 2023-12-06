@@ -15,9 +15,7 @@
 	/* 폰트는 테스트용 임시 */
 	@font-face {
 		font-family: 'SUIT-Regular';
-		src:
-			url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
-			format('woff2');
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')format('woff2');
 		font-weight: normal;
 		font-style: normal;
 	}
@@ -57,9 +55,9 @@
 	}
 	
 	section:nth-of-type(2) {
-		background-image: url('assets/img/detail_background_half_trans.png');
-		background-color: transparent;
-		background-repeat: no-repeat;
+		background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/activity/attraction/barcelona-3960566_1280.jpg") center center;
+		/* background-color: transparent;
+		background-repeat: no-repeat; */
 		background-size: cover;
 		padding: 0;
 	}
@@ -117,7 +115,7 @@
 	}
 	
 	.value {
-		margin: 20px 10px;
+		margin: 10px 10px;
 		font-size: 1.2rem;
 	}
 	
@@ -143,6 +141,12 @@
 		margin: 20px 10px;
 	}
 	
+	.image-slider {
+      width: 700px;
+      height: 350px;
+      margin: 0 auto;
+    }
+    
 	.image-slider div {
 		width: 700px;
 		height: 350px;
@@ -167,12 +171,33 @@
 	
 	.slick-prev {
 		top: 50%;
-		left: 50px;
+		left: 20px;
 	}
 	
 	.slick-next {
 		top: 50%;
-		right: 50px;
+		right: 20px;
+	}
+	/* 버튼 */
+	#button {
+		position: relative;
+		width: 950px;
+		margin: 0 auto;
+	}
+	#back-button {
+		position: absolute;
+		background-color: #CE1212;
+		border-color: #CE1212;
+		left: 0;
+	}
+	#back-button i {
+		margin-right: 7px;
+	}
+	div#reservation-btn {
+		display: flex;
+		justify-content: center;
+	}	
+	div#reservation-btn > button {
 	}
 </style>
 
@@ -180,24 +205,19 @@
 <section>
 	<div class="container" data-aos="zoom-out">
 		<div class="section-header">
-			<h2>회전목마</h2>
+			<h2>${dto.name}</h2>
 		</div>
 		<!-- Slick Slider -->
 		<div class="image-slider">
-			<div>
-				<img src="assets/img/포뇨의 비행1.jpeg" alt="">
-			</div>
-			<div>
-				<img src="assets/img/포뇨의 비행2.jpeg" alt="">
-			</div>
-			<div>
-				<img src="assets/img/하울의 움직이는 성.png" alt="">
-			</div>
+			<c:forEach items="${dto.imgList}" var="dto">
+				<div>
+					<img src="/dd/resources/files/activity/attraction/${dto.img}" alt="Image">
+				</div>
+			</c:forEach>
 		</div>
 		<!-- End Slick Slider -->
 		<p class="section-info">
-			빙글빙글 돌며 환상의 시간을 보내보세요! <br> 빙글빙글 돌다보면 언젠가 내가 찾던 것들이 눈에 보이기
-			시작할거에요! <br> 바로 그 순간을 위해 회전목마는 오늘도 돌아간답니다.
+			${dto.info}
 		</p>
 	</div>
 </section>
@@ -210,26 +230,32 @@
 		<div class="close-item">
 			<div class="label">운휴일정</div>
 			<div class="value">
-				<img src="assets/img/calendar_icon.png" alt="Image" class="icon" />
-				정상 운영
+				<c:if test="${dto.close == 'n'}">
+					<img src="/dd/resources/files/activity/calendar_icon.png" alt="Image" class="icon" />
+					정상 운영
+				</c:if>
+				<c:if test="${dto.close == 'y'}">
+					<img src="/dd/resources/files/activity/close_icon.png" alt="Image" class="icon" />
+					금일 운휴
+				</c:if>
 			</div>
 		</div>
 	</div>
 	<div class="result-container">
 		<div class="result-item">
-			<img src="assets/img/time_icon.png" alt="Image" class="icon" />
+			<img src="/dd/resources/files/activity/time_icon.png" alt="Image" class="icon" />
 			<div class="label">운영시간</div>
-			<div class="value">10:00 ~ 22:00</div>
+			<div class="value">${dto.time}</div>
 		</div>
 		<div class="result-item">
-			<img src="assets/img/people_icon.png" alt="Image" class="icon" />
+			<img src="/dd/resources/files/activity/people_icon.png" alt="Image" class="icon" />
 			<div class="label">탑승인원</div>
-			<div class="value">30명</div>
+			<div class="value">${dto.capacity}</div>
 		</div>
 		<div class="result-item">
-			<img src="assets/img/info_icon.png" alt="Image" class="icon" />
-			<div class="label">이용정보</div>
-			<div class="value">130cm 미만 탑승 불가</div>
+			<img src="/dd/resources/files/activity/info_icon.png" alt="Image" class="icon" />
+			<div class="label">제한 사항</div>
+			<div class="value">${dto.restriction}</div>
 		</div>
 	</div>
 </section>
@@ -242,7 +268,13 @@
 			<div id="map" style="width: 950px; height: 400px;"></div>
 		</div>
 	</div>
+	<div id="button">
+		<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/activity/attraction/view.do';"><i class="bi bi-list"></i>목록</button>
+	</div>
 </section>
+<div id="reservation-btn">
+	<button type="button" onclick="location.href='/reservation.do?seq=${dto.attraction_seq}'">어트랙션 예약하기</button>
+</div>
 
 <!-- view2 Template 전용 JavaScript -->
 <!-- Kakao Map Open API -->
@@ -274,7 +306,7 @@
 	const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
 
 	const m1 = new kakao.maps.Marker({
-		position: new kakao.maps.LatLng(33.361488, 126.529212), /* < 좌측 값은 테스트용 임시 ${location_dto.lat}, ${location_dto.lng} */
+		position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng}), /* < 좌측 값은 테스트용 임시 ${location_dto.lat}, ${location_dto.lng} */
 		image: markerImg
 	});
 
