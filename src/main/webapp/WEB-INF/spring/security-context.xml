@@ -7,16 +7,26 @@
 
 	<bean id="customLoginSuccessHandler" class="com.project.dd.CustomLoginSuccessHandler"></bean>
 
+	<!-- 암호 인코딩 객체 -->
+	<!-- <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean> -->
+
+	<!-- 임시 인코딩 삭제 -->
+	<bean id="noopPasswordEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/>
+
+	<!-- 사용자 로그인 객체 -->
+	<bean id="customUserDetailsService" class="com.project.dd.CustomUserDetailsService"></bean>
+
 	<security:http>
 		<security:intercept-url pattern="/index.do" access="permitAll" />
 		<security:intercept-url pattern="/user/**" access="permitAll" />
+		<!--
 		<security:intercept-url pattern="/member/**" access="permitAll" />
 		<security:intercept-url pattern="/admin/**" access="permitAll" />
-		<!--
+		-->
 		<security:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')" />
 		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-		-->
 		
+		<!-- <security:form-login authentication-success-handler-ref="customLoginSuccessHandler" /> -->
 		<security:form-login login-page="/user/login/view.do" authentication-success-handler-ref="customLoginSuccessHandler" />
 
 		<security:logout logout-url="/logout.do" logout-success-url="/index.do" invalidate-session="true" />
@@ -24,13 +34,19 @@
 		<security:access-denied-handler error-page="/auth/accesserror.do" />
 	</security:http>
 
-	<security:authentication-manager>
+	<!-- <security:authentication-manager>
 		<security:authentication-provider>
 			<security:user-service>
-				<security:user name="sumin" password="1111" authorities="ROLE_MEMBER"/>
-				<security:user name="minjae" password="1111" authorities="ROLE_DESIGN_CAPTAIN"/>
-				<security:user name="admin" password="1111" authorities="ROLE_ADMIN, ROLE_MEMBER"/>
+				<security:user name="sumin" password="{noop}1111" authorities="ROLE_MEMBER"/>
+				<security:user name="admin" password="{noop}1111" authorities="ROLE_ADMIN, ROLE_MEMBER"/>
 			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager> -->
+	
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="customUserDetailsService">
+			<!-- <security:password-encoder ref="bcryptPasswordEncoder" /> -->
+			<security:password-encoder ref="noopPasswordEncoder"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
 

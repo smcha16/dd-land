@@ -9,16 +9,14 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Yummy Bootstrap Template - Index</title>
+<title>DD-Land</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <!-- Favicons -->
-<link href="/dd/resources/main/img/favicon.png" rel="icon">
-<link href="/dd/resources/main/img/apple-touch-icon.png"
-	rel="apple-touch-icon">
+<link rel="shortcut icon" href="/dd/resources/files/favicon.ico">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,14 +55,11 @@
 
 	<tiles:insertAttribute name="footer" />
 
-
 	<a href="#"
 		class="scroll-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>
 
 	<div id="preloader"></div>
-
-
 
 	<!-- Vendor JS Files -->
 	<script src="/dd/resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
