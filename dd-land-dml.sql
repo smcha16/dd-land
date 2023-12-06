@@ -3611,3 +3611,6 @@ INSERT INTO tblShopLocation (shop_location_seq, shop_seq, location_seq) VALUES (
 INSERT INTO tblShopLocation (shop_location_seq, shop_seq, location_seq) VALUES (seqShopLocation.nextVal, 2, 90);
 INSERT INTO tblShopLocation (shop_location_seq, shop_seq, location_seq) VALUES (seqShopLocation.nextVal, 3, 91);
 INSERT INTO tblShopLocation (shop_location_seq, shop_seq, location_seq) VALUES (seqShopLocation.nextVal, 4, 92);
+
+
+commit;

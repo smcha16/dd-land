@@ -101,7 +101,7 @@
       	</form>
       	</sec:authorize>
       	
-      	<a class="btn-book-a-table" id="admin" href="/dd/admin.do">관리자페이지(임시)</a>
+      	<a class="btn-book-a-table" id="admin" href="/dd/admin/index.do">관리자페이지(임시)</a>
       </div>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>

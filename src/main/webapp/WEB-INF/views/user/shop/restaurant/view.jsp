@@ -180,6 +180,15 @@
 	background: rgba(215, 62, 62, .7);
 	transition: left 0.4s 0.2s, right 0.5s, background 0.35s -0.1s;
 }
+
+/* list photo 변경 */
+.stats-counter {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url("/dd/resources/files/restaurant/main-restaurant.jpg") center center;
+	background-size: cover;
+	padding: 100px 0;
+	background-attachment: fixed;
+}
 </style>
 
 <!-- list3 Main Content -->
@@ -208,15 +217,15 @@
 				<div class="munti-content-container">
 					<c:forEach items="${list}" var="dto">
 						<c:if test="${dto.close == 'y'}">
-							<div class="item hidden">
-								<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
+							<div class="item hidden" onclick="detail(${dto.restaurant_seq});">
+								<div style="background-image: url('/dd/resources/files/restaurant/${dto.img}');"></div>
 								<div>${dto.name }</div>
 								<div class="hidden-div">${dto.menu }</div>
 							</div>
 						</c:if>
 						<c:if test="${dto.close == 'n'}">
-							<div class="item">
-								<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
+							<div class="item" onclick="detail(${dto.restaurant_seq});">
+								<div style="background-image: url('/dd/resources/files/restaurant/${dto.img}');"></div>
 								<div>${dto.name }</div>
 								<div class="hidden-div">${dto.menu }</div>
 							</div>
@@ -262,4 +271,8 @@
 	        }
 	    });
 	});
+	
+	function detail(seq) {
+		window.location.href = "/dd/user/shop/restaurant/detail.do?seq="+seq;
+	}
 </script>

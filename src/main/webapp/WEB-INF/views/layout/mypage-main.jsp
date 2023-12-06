@@ -5,15 +5,14 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Title</title>
+		<title>DD-Land</title>
 		<meta content="" name="description">
 		<meta content="" name="keywords">
 		
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   
 		<!-- Favicons -->
-		<link href="/dd/resources/main/img/favicon.png" rel="icon">
-		<link href="/dd/resources/main/img/apple-touch-icon.png" rel="apple-touch-icon">
+		<link rel="shortcut icon" href="/dd/resources/files/favicon.ico">
 
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
