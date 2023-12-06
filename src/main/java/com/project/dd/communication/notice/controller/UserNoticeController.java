@@ -1,6 +1,5 @@
 package com.project.dd.communication.notice.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,48 +11,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.communication.notice.domain.NoticeDTO;
-import com.project.dd.communication.notice.mapper.NoticeMapper;
+import com.project.dd.communication.notice.service.NoticeService;
 
 @Controller
 @RequestMapping("/user/communication/notice")
 public class UserNoticeController {
 	
 	@Autowired
-	private NoticeMapper mapper;
+	private NoticeService service;
 	
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 
-		int pageSize = 10;
-		
-		int startIndex = (page - 1) * pageSize + 1;
-		int endIndex = startIndex + pageSize - 1;
-		
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = service.paging(page);
 
-		map.put("startIndex", String.format("%d", startIndex));
-		map.put("endIndex", String.format("%d", endIndex));
-		
-		int totalPosts = mapper.getTotalCount(map);
-		int totalPages = (int)Math.ceil((double)totalPosts / pageSize);
-		
-		List<NoticeDTO> list = mapper.getNoticeList(map);
-		
-		for (NoticeDTO dto : list) {
-			
-			String regdate = dto.getRegdate();
-			
-			regdate = regdate.substring(0, 10);
-			
-			dto.setRegdate(regdate);
-			
-		}
+		List<NoticeDTO> list = service.getNoticeList(map);
 
-		model.addAttribute("list", list);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
-		model.addAttribute("totalPosts", totalPosts);
-		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("list", list);
 
 		return "user/communication/notice/view";
 
@@ -62,13 +38,7 @@ public class UserNoticeController {
 	@GetMapping(value = "/detail.do")
 	public String detail(String seq, Model model) {
 		
-		NoticeDTO dto = mapper.getNotice(seq);
-		
-		String regdate = dto.getRegdate();
-		
-		regdate = regdate.substring(0, 10);
-		
-		dto.setRegdate(regdate);
+		NoticeDTO dto = service.getNotice(seq);
 		
 		model.addAttribute("dto", dto);
 
