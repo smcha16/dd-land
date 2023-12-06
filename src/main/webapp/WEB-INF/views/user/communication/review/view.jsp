@@ -5,23 +5,27 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 
 <style>
+	.stats-counter {
+    	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/communication/lost.jpg") center center;
+    	background-size: cover;
+    	background-attachment: fixed;
+    }
 	#pagetitle {
 		margin-top: 70px;
 	}
 	#title {
-		font-size: 48px;
 		display: block;
-		color: #fff;
+		font-size: 48px;
 		font-weight: 700;
+		color: #fff;
 		margin-bottom: 20px;
 	}
 	.munti-content-container {
 		display: flex;
 		flex-wrap: wrap;
-		margin: 30px 50px 0 50px;
 		padding: 0 !important;
+		margin: 30px 50px 0 50px;
 	}
-	
 	.item {
 		position: relative;
 		width: 25.5%;
@@ -34,12 +38,10 @@
 		border-radius: 10px;
 		transition: all 0.3s;
 	}
-	
 	.item:hover {
 		cursor: pointer;
 		box-shadow: 12px 12px 17px rgba(0, 0, 0, 0.20);
 	}
-	
 	.item>div:nth-child(1) {
 		height: 70%;
 		background-color: transparent;
@@ -48,8 +50,7 @@
 		background-repeat: no-repeat;
 		border-radius: 10px 10px 0 0;
 	}
-	
-	.item>div:nth-child(2) {
+	.item > div:nth-child(2) {
 		height: 30%;
 		display: flex;
 		flex-direction: column;
@@ -59,7 +60,6 @@
 		background: transparent;
 		border-radius: 0 0 10px 10px;
 	}
-	
 	.hidden-div {
 		display: none;
 		color: white;
@@ -74,7 +74,6 @@
 		border-radius: 10px 10px 0 0;
 		z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
 	}
-	
 	/* 운영/운휴 셀렉박스 */
 	.btn {
 		position: relative;
@@ -85,7 +84,6 @@
 		width: 224px;
 		margin: 0 auto;
 	}
-	
 	.btn input {
 		position: relative;
 		width: 200px;
@@ -97,7 +95,6 @@
 		font-weight: bold;
 		box-shadow: 1px 6px 11px #000;
 	}
-	
 	.btn input::before, .btn input::after {
 		z-index: 2;
 		position: absolute;
@@ -105,17 +102,14 @@
 		transform: translateY(-50%);
 		color: #111;
 	}
-	
 	.btn input::before {
 		content: "운영";
 		left: 40px;
 	}
-	
 	.btn input::after {
 		content: "운휴";
 		right: 40px;
 	}
-	
 	.btn label {
 		z-index: 1;
 		position: absolute;
@@ -124,7 +118,6 @@
 		border-radius: 20px;
 		width: 86px;
 	}
-	
 	.btn.btn-1 input {
 		transition: 0.2s -0.1s;
 	}
@@ -188,7 +181,7 @@
 		<div class="gy-4" style="justify-content: center; width: 100%;">
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
-					<div id="title">Attraction</div>
+					<div id="title">리뷰</div>
 					<span class="btn btn-1">
 						<input type="checkbox" id="close" name="close" onclick="search()" data-type="n">
 						<label for="close"></label>
