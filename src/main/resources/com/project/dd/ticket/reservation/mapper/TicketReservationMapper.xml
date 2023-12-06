@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.project.dd.ticket.reservation.mapper.TicketReservationMapper">
+
+	<insert id="groupReservation" parameterType="com.project.dd.ticket.reservation.domain.TicketGroupReservationDTO">
+		insert into tblGroupBook values (seqgroupbook.nextVal, sysdate, #{group_division}, #{region}, #{group_name}, #{address}, #{visit_date}, #{visit_time})
+	</insert>
+	
+	<select id="getGroup" resultType="String">
+		select max(group_book_seq) as group_book_seq from tblGroupBook
+	</select>
+	
+	<insert id="usergroup" parameterType="map">
+		insert into tblusergroupbook values (sequsergroupbook.nextVal, #{user_seq}, #{seq})
+	</insert>
+
+</mapper>
