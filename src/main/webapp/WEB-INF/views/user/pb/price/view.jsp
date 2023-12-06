@@ -32,7 +32,7 @@
 	rel="stylesheet">
 
 <link href="/dd/resources/price/css/style.css" rel="stylesheet">
--->
+
 <!-- =======================================================
   * Template Name: BizLand
   * Updated: Sep 18 2023 with Bootstrap v5.3.2
@@ -43,6 +43,24 @@
 </head>
 
 <body>
+<!--   처음 사진부분 -->
+<section id="stats-counter" class="stats-counter">
+      <div id="pagetitle" class="container" data-aos="zoom-out">
+        <div class="gy-4" style="justify-content: center; width: 100%;">
+
+          <div class="col-lg-3 col-md-6" style="width: 100%;">
+            <div class="stats-item text-center w-100 h-100">
+              <div id="title" style="font-size: 48px;
+              display: block;
+              color: #fff;
+              font-weight: 700;">티 켓 요 금</div>
+              <p>다양한 옵션으로 즐거운 시간을 즐기세요!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
 
 
 	<!-- ======= Pricing Section 개인요금 ======= -->
@@ -50,10 +68,10 @@
 		<div class="container" data-aos="fade-up">
 
 			<div class="section-title">
-				<h3>티켓요금</h3>
 				<h3>개인</h3>
-				<p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis
-					est adipisci expedita at voluptas atque vitae autem.</p>
+				<p> 어드벤처&매직아일랜드 입장 및 놀이시설 이용 (게임시설 등 유료시설 제외),
+					민속박물관 관람 (입장마감 18시),
+					어드벤처&매직아일랜드와 민속박물관은 미이용에 따른 분리 환불 불가능</p>
 			</div>
 
 			<div class="row">
@@ -73,10 +91,10 @@
 						</c:forEach>
 
 						<ul>
-							<li>Aida dere</li>
-							<li>Nec feugiat nisl</li>
-							<li>Nulla at volutpat dola</li>
-							<li class="na">Pharetra massa</li>
+							<li>만 13세 이상 ~</li>
+							<li> 만 18세</li>
+							<li>청소년 요금 적용</li>
+							<li>(학교 및 학년 무관)</li>
 							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
@@ -98,10 +116,10 @@
 							</c:if>
 						</c:forEach>
 						<ul>
-							<li>Aida dere</li>
-							<li>Nec feugiat nisl</li>
-							<li>Nulla at volutpat dola</li>
-							<li>Pharetra massa</li>
+							<li>만 19세 이상 ~</li>
+							<li> 만 64세</li>
+							<li>성인 요금 적용</li>
+							<li>(출생 및 인종 무관)</li>
 							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
@@ -123,11 +141,11 @@
 							</c:if>
 						</c:forEach>
 						<ul>
-							<li>Aida dere</li>
-							<li>Nec feugiat nisl</li>
-							<li>Nulla at volutpat dola</li>
-							<li>Pharetra massa</li>
-							<li>Massa ultricies mi</li>
+							<li>만 13세 이상 ~</li>
+							<li> 만 18세</li>
+							<li>청소년 요금 적용</li>
+							<li>(학교 및 학년 무관)</li>
+							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
 							<a href="#" class="btn-buy">Buy Now</a>
@@ -148,11 +166,11 @@
 						</c:if>
 						</c:forEach>
 						<ul>
-							<li>Aida dere</li>
-							<li>Nec feugiat nisl</li>
-							<li>Nulla at volutpat dola</li>
-							<li>Pharetra massa</li>
-							<li>Massa ultricies mi</li>
+							<li>만 19세 이상 ~</li>
+							<li> 만 64세</li>
+							<li>성인 요금 적용</li>
+							<li>(출생 및 인종 무관)</li>
+							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
 							<a href="#" class="btn-buy">Buy Now</a>
@@ -177,8 +195,8 @@
 
 			<div class="section-title">
 				<h3>단체</h3>
-				<p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis
-					est adipisci expedita at voluptas atque vitae autem.</p>
+				<p>어드벤처&매직아일랜드 입장 및 놀이시설 이용 (게임시설 등 유료시설 제외),
+	 상기 이용권은 일반 할인 혜택 적용이 불가하며 특수한 경우에 한하여 할인 혜택 적용이 가능합니다. (장애인 우대, 대관행사 등)</p>
 			</div>
 
 			<div class="row">
@@ -198,10 +216,10 @@
 						</c:forEach>
 
 						<ul>
-							<li>Aida dere</li>
-							<li>Nec feugiat nisl</li>
-							<li>Nulla at volutpat dola</li>
-							<li class="na">Pharetra massa</li>
+							<li>만 13세 이상 ~</li>
+							<li> 만 18세</li>
+							<li>청소년 요금 적용</li>
+							<li>(학교 및 학년 무관)</li>
 							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
@@ -223,10 +241,10 @@
 							</c:if>
 						</c:forEach>
 						<ul>
-							<li>Aida dere</li>
-							<li>Nec feugiat nisl</li>
-							<li>Nulla at volutpat dola</li>
-							<li>Pharetra massa</li>
+							<li>만 19세 이상 ~</li>
+							<li> 만 64세</li>
+							<li>성인 요금 적용</li>
+							<li>(출생 및 인종 무관)</li>
 							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
@@ -248,11 +266,11 @@
 							</c:if>
 						</c:forEach>
 						<ul>
-							<li>Aida dere</li>
-							<li>Nec feugiat nisl</li>
-							<li>Nulla at volutpat dola</li>
-							<li>Pharetra massa</li>
-							<li>Massa ultricies mi</li>
+							<li>만 13세 이상 ~</li>
+							<li> 만 18세</li>
+							<li>청소년 요금 적용</li>
+							<li>(학교 및 학년 무관)</li>
+							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
 							<a href="#" class="btn-buy">Buy Now</a>
@@ -273,11 +291,11 @@
 						</c:if>
 						</c:forEach>
 						<ul>
-							<li>Aida dere</li>
-							<li>Nec feugiat nisl</li>
-							<li>Nulla at volutpat dola</li>
-							<li>Pharetra massa</li>
-							<li>Massa ultricies mi</li>
+							<li>만 19세 이상 ~</li>
+							<li> 만 64세</li>
+							<li>성인 요금 적용</li>
+							<li>(출생 및 인종 무관)</li>
+							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
 							<a href="#" class="btn-buy">Buy Now</a>
