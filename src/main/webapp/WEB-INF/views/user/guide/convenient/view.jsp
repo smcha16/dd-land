@@ -107,12 +107,8 @@
     <!-- ======= Menu Section ======= -->
     <section id="menu" class="menu">
       <div class="container" data-aos="fade-up">
-
         <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
-
           <div class="tab-pane fade active show" id="menu-starters">
-		
-	
 			<div class="munti-content-container">
 			<c:forEach items="${list}" var="dto">
 				<div class="item">
