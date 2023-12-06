@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
-import com.project.dd.activity.attraction.domain.LocationDTO;
 
 public interface AttractionMapper {
 
