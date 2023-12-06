@@ -17,7 +17,6 @@ DELETE FROM tblConvenientLocation;
 DELETE FROM tblPhotoZoneLocation;
 DELETE FROM tblRestaurantLocation;
 DELETE FROM tblShopLocation;
-DELETE FROM tblLocation;
 DELETE FROM tblUserBuy;
 DELETE FROM tblBuy;
 DELETE FROM tblUserCart;
@@ -65,10 +64,9 @@ DELETE FROM tblConvenient;
 DELETE FROM tblRestaurantClose;
 DELETE FROM tblRestaurantImg;
 DELETE FROM tblRestaurant;
-DELETE FROM tblCategory;
 DELETE FROM tblUser;
 
-/* DROP TABLE_50개 */
+/* DROP TABLE_49개 */
 DROP TABLE tblAttractionLocation;
 DROP TABLE tblFestivalLocation;
 DROP TABLE tblTheaterLocation;
@@ -76,7 +74,6 @@ DROP TABLE tblConvenientLocation;
 DROP TABLE tblPhotoZoneLocation;
 DROP TABLE tblRestaurantLocation;
 DROP TABLE tblShopLocation;
-DROP TABLE tblLocation;
 DROP TABLE tblUserBuy;
 DROP TABLE tblBuy;
 DROP TABLE tblUserCart;
@@ -124,12 +121,10 @@ DROP TABLE tblConvenient;
 DROP TABLE tblRestaurantClose;
 DROP TABLE tblRestaurantImg;
 DROP TABLE tblRestaurant;
-DROP TABLE tblCategory;
 DROP TABLE tblUser;
 
-/* DROP SEQUENCE_50개 */
+/* DROP SEQUENCE_49개 */
 DROP SEQUENCE seqtblUser;
-DROP SEQUENCE seqtblLocation;
 DROP SEQUENCE seqAttractionLocation;
 DROP SEQUENCE seqFestivalLocation;
 DROP SEQUENCE seqTheaterLocation;
@@ -137,7 +132,6 @@ DROP SEQUENCE seqConvenientLocation;
 DROP SEQUENCE seqPhotoZoneLocation;
 DROP SEQUENCE seqRestaurantLocation;
 DROP SEQUENCE seqShopLocation;
-DROP SEQUENCE seqtblCategory;
 DROP SEQUENCE seqtblRestaurant;
 DROP SEQUENCE seqtblRestaurantImg;
 DROP SEQUENCE seqtblRestaurantClose;
@@ -200,12 +194,6 @@ CREATE TABLE tblUser (
 	ing CHAR(1) NOT NULL /* 탈퇴여부 */
 );
 
-/* 카테고리 */
-CREATE TABLE tblCategory (
-   category_seq NUMBER PRIMARY KEY, /* 카테고리번호 */
-   name VARCHAR2(500) NOT NULL /* 카테고리명 */
-);
-
 /* 식당 */
 CREATE TABLE tblRestaurant (
    restaurant_seq NUMBER PRIMARY KEY, /* 식당번호 */
@@ -213,8 +201,7 @@ CREATE TABLE tblRestaurant (
    menu VARCHAR2(500) NOT NULL, /* 대표메뉴 */
    time VARCHAR2(500) NOT NULL, /* 운영시간 */
    capacity NUMBER NOT NULL, /* 수용인원 */
-   tel VARCHAR2(500) NOT NULL, /* 식당전화번호 */
-   category_seq NUMBER REFERENCES tblCategory(category_seq) NOT NULL /* 카테고리번호 */
+   tel VARCHAR2(500) NOT NULL /* 식당전화번호 */
 );
 
 /* 식당이미지 */
@@ -608,65 +595,64 @@ CREATE TABLE tblUserBuy (
    buy_seq NUMBER REFERENCES tblBuy(buy_seq) NOT NULL /* 구매내역번호 */
 );
 
-/* 위치정보 */
-CREATE TABLE tblLocation (
-   location_seq NUMBER PRIMARY KEY, /* 위치정보번호 */
-   lat NUMBER NOT NULL, /* 위도(latitude) */
-   lng NUMBER NOT NULL /* 경도(longitude) */
-);
-
 /* 어트랙션위치 */
 CREATE TABLE tblAttractionLocation (
 	attraction_location_seq NUMBER PRIMARY KEY, /* 어트랙션위치번호 */
-	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL, /* 어트랙션번호 */
-	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* 위치정보번호 */
+    lat NUMBER NOT NULL, /* 위도(latitude) */
+    lng NUMBER NOT NULL, /* 경도(longitude) */
+	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
 );
 
 /* 페스티벌위치 */
 CREATE TABLE tblFestivalLocation (
 	festival_location_seq NUMBER PRIMARY KEY, /* 페스티벌위치번호 */
-   festival_seq NUMBER REFERENCES tblFestival(festival_seq) NOT NULL, /* 페스티벌번호 */
-	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* 위치정보번호 */
+    lat NUMBER NOT NULL, /* 위도(latitude) */
+    lng NUMBER NOT NULL, /* 경도(longitude) */
+    festival_seq NUMBER REFERENCES tblFestival(festival_seq) NOT NULL /* 페스티벌번호 */
 );
 
 /* 영화관위치 */
 CREATE TABLE tblTheaterLocation (
 	theater_location_seq NUMBER PRIMARY KEY, /* 영화관위치번호 */
-	theater_seq NUMBER REFERENCES tblTheater(theater_seq) NOT NULL, /* 영화관번호 */
-	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* 위치정보번호 */
+    lat NUMBER NOT NULL, /* 위도(latitude) */
+    lng NUMBER NOT NULL, /* 경도(longitude) */
+	theater_seq NUMBER REFERENCES tblTheater(theater_seq) NOT NULL /* 영화관번호 */
 );
 
 /* 편의시설위치 */
 CREATE TABLE tblConvenientLocation (
 	convenient_location_seq NUMBER PRIMARY KEY, /* 편의시설위치번호 */
-	convenient_seq NUMBER REFERENCES tblConvenient(convenient_seq) NOT NULL, /* 편의시설번호 */
-	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* 위치정보번호 */
+    lat NUMBER NOT NULL, /* 위도(latitude) */
+    lng NUMBER NOT NULL, /* 경도(longitude) */
+	convenient_seq NUMBER REFERENCES tblConvenient(convenient_seq) NOT NULL /* 편의시설번호 */
 );
 
 /* 포토존위치 */
 CREATE TABLE tblPhotoZoneLocation (
 	photozone_location_seq NUMBER PRIMARY KEY, /* 포토존위치번호 */
-	photozone_seq NUMBER REFERENCES tblPhotoZone(photozone_seq) NOT NULL, /* 포토존번호 */
-	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* 위치정보번호 */
+    lat NUMBER NOT NULL, /* 위도(latitude) */
+    lng NUMBER NOT NULL, /* 경도(longitude) */
+	photozone_seq NUMBER REFERENCES tblPhotoZone(photozone_seq) NOT NULL /* 포토존번호 */
 );
 
 /* 식당위치 */
 CREATE TABLE tblRestaurantLocation (
 	restaurant_location_seq NUMBER PRIMARY KEY, /* 식당위치번호 */
-	restaurant_seq NUMBER REFERENCES tblRestaurant(restaurant_seq) NOT NULL, /* 식당번호 */
-	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* 위치정보번호 */
+    lat NUMBER NOT NULL, /* 위도(latitude) */
+    lng NUMBER NOT NULL, /* 경도(longitude) */
+	restaurant_seq NUMBER REFERENCES tblRestaurant(restaurant_seq) NOT NULL /* 식당번호 */
 );
 
 /* 기프트샵위치 */
 CREATE TABLE tblShopLocation (
 	shop_location_seq NUMBER PRIMARY KEY, /* 기프트샵위치번호 */
-	shop_seq NUMBER REFERENCES tblShop(shop_seq) NOT NULL, /* 기프트샵번호 */
-	location_seq NUMBER REFERENCES tblLocation(location_seq) NOT NULL /* 위치정보번호 */
+    lat NUMBER NOT NULL, /* 위도(latitude) */
+    lng NUMBER NOT NULL, /* 경도(longitude) */
+	shop_seq NUMBER REFERENCES tblShop(shop_seq) NOT NULL /* 기프트샵번호 */
 );
 
 /* CREATE SEQUENCE */
 CREATE SEQUENCE seqtblUser;
-CREATE SEQUENCE seqtblLocation;
 CREATE SEQUENCE seqAttractionLocation;
 CREATE SEQUENCE seqFestivalLocation;
 CREATE SEQUENCE seqTheaterLocation;
@@ -674,7 +660,6 @@ CREATE SEQUENCE seqConvenientLocation;
 CREATE SEQUENCE seqPhotoZoneLocation;
 CREATE SEQUENCE seqRestaurantLocation;
 CREATE SEQUENCE seqShopLocation;
-CREATE SEQUENCE seqtblCategory;
 CREATE SEQUENCE seqtblRestaurant;
 CREATE SEQUENCE seqtblRestaurantImg;
 CREATE SEQUENCE seqtblRestaurantClose;

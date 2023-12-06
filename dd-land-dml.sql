@@ -1943,25 +1943,15 @@ INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '정민지도도리', 'soejf@gmail.com', '6e+j-o0sMfO3w', '010-7148-0267', '34177 강원 95동 67층 327호', TO_DATE('20030514', 'yyyy-mm-dd'), '1', 'Y');
 
 
-/* 카테고리 */
-INSERT INTO tblCategory (category_seq, name)
-VALUES (seqtblCategory.nextVal, '한식');
-
-INSERT INTO tblCategory (category_seq, name)
-VALUES (seqtblCategory.nextVal, '중식');
-
-INSERT INTO tblCategory (category_seq, name)
-VALUES (seqtblCategory.nextVal, '일식');
-
 /* 식당 */
-insert into tblrestaurant values (seqtblrestaurant.nextVal, '크리스탈팰리스', '잭다니엘 스테이크, 케이준 후라이드치킨 샐러드', '10:30 - 21:00', '40', '070-4238-1121', '1');
-insert into tblrestaurant values (seqtblrestaurant.nextVal, '팝콘팩토리', '팝콘', '10:30 - 21:10', '10', '070-4238-1122', '1');
-insert into tblrestaurant values (seqtblrestaurant.nextVal, '더 쓰리위시스', '한식, 중식, 분식, 디저트', '10:30 - 22:00', '10', '070-4238-1123', '1');
-insert into tblrestaurant values (seqtblrestaurant.nextVal, '델키스 케밥', '치킨케밥, 콤보케밥, 피타롤, 델키쿨', '10:30 - 21:00', '10', '070-4238-1124', '1');
-insert into tblrestaurant values (seqtblrestaurant.nextVal, '석촌 보돌미역', '가자미 미역국, 활전복 가자미 미역국', '11:30 - 20:30', '10', '070-4238-1125', '1');
-insert into tblrestaurant values (seqtblrestaurant.nextVal, '뉴욕핫도그', '뉴욕칠리핫도그, 소불고기핫도그, 에이드', '11:00 - 21:00', '10', '070-4238-1126', '1');
-insert into tblrestaurant values (seqtblrestaurant.nextVal, '엠테이블', '자장면, 돈카츠, 로코모코', '10:30 - 21:00', '10', '070-4238-1127', '1');
-insert into tblrestaurant values (seqtblrestaurant.nextVal, '상하이 꽁시면관', '자장면, 짬뽕, 해물볶음밥, 탕수육', '10:30 - 21:30', '10', '070-4238-1128', '1');
+insert into tblrestaurant values (seqtblrestaurant.nextVal, '크리스탈팰리스', '잭다니엘 스테이크, 케이준 후라이드치킨 샐러드', '10:30 - 21:00', '40', '070-4238-1121');
+insert into tblrestaurant values (seqtblrestaurant.nextVal, '팝콘팩토리', '팝콘', '10:30 - 21:10', '10', '070-4238-1122');
+insert into tblrestaurant values (seqtblrestaurant.nextVal, '더 쓰리위시스', '한식, 중식, 분식, 디저트', '10:30 - 22:00', '10', '070-4238-1123');
+insert into tblrestaurant values (seqtblrestaurant.nextVal, '델키스 케밥', '치킨케밥, 콤보케밥, 피타롤, 델키쿨', '10:30 - 21:00', '10', '070-4238-1124');
+insert into tblrestaurant values (seqtblrestaurant.nextVal, '석촌 보돌미역', '가자미 미역국, 활전복 가자미 미역국', '11:30 - 20:30', '10', '070-4238-1125');
+insert into tblrestaurant values (seqtblrestaurant.nextVal, '뉴욕핫도그', '뉴욕칠리핫도그, 소불고기핫도그, 에이드', '11:00 - 21:00', '10', '070-4238-1126');
+insert into tblrestaurant values (seqtblrestaurant.nextVal, '엠테이블', '자장면, 돈카츠, 로코모코', '10:30 - 21:00', '10', '070-4238-1127');
+insert into tblrestaurant values (seqtblrestaurant.nextVal, '상하이 꽁시면관', '자장면, 짬뽕, 해물볶음밥, 탕수육', '10:30 - 21:30', '10', '070-4238-1128');
 
 /* 식당이미지 */
 insert into tblrestaurantimg values (seqtblrestaurantimg.nextVal, 'restaurant1.jpg', '1');
@@ -3489,398 +3479,103 @@ VALUES (seqtblUserBuy.NEXTVAL, 2, 2);
 INSERT INTO tblUserBuy (user_buy_seq, user_seq, buy_seq)
 VALUES (seqtblUserBuy.NEXTVAL, 3, 3);
 
-/* 위치정보 */
---어트랙션(30개)
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.361488, 126.529212);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.369455, 126.563192);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.243217, 126.542354);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.238185, 126.566413);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.235918, 126.562827);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.240354, 126.608888);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.252144, 126.622615);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.271351, 126.697224);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.282079, 126.748282);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.303494, 126.792045);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.307921, 126.831023);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.325267, 126.848278);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.360716, 126.867031);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.305118, 126.166359);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.379284, 126.413401);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.281948, 126.570471);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.485583, 126.888875);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.459435, 126.939154);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.552424, 126.725118);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.447752, 126.523610);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.382156, 126.301300);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.323912, 126.618446);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.460676, 126.736155);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.353147, 126.708275);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.362082, 126.372486);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.294317, 126.281165);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.304963, 126.315241);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.304535, 126.317409);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.249302, 126.202492);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.286853, 126.174816);
-
---영화관(5개)
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.484492, 126.487048);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.355099, 126.339975);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.318536, 126.489367);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.383865, 126.804857);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.528155, 126.827441);
-
---포토존(10개)
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.3992, 126.5777);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.3608, 126.2744);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.4852, 126.4351);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.5181, 126.7832);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.3873, 126.6581);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.3997, 126.848);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.3229, 126.6814);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.2719, 126.5045);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.2269, 126.2796);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.4149, 126.8771);
-
---페스티벌(3개)
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.5145, 126.9714);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.4006, 126.2514);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.2895, 126.7027);
-
---편의시설(25개)
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.5021, 126.9565);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.5612, 126.7692);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.5227, 126.8448);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.4799, 126.8241);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.4616, 126.8735);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.4264, 126.8369);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.3461, 126.8323);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.4103, 126.7489);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.3736, 126.6948);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.3369, 126.7526);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.5143, 126.6004);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.4471, 126.6572);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.4287, 126.7031);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.3323, 126.6994);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.2894, 126.6912);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.444, 126.5033);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.4471, 126.4226);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.3889, 126.4226);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.3185, 126.4373);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.2825, 126.3997);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.4012, 126.3108);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.2649, 126.2356);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.3583, 126.198);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.2322, 126.3289);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.2642, 126.2497);
-
---식당(15개)
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.361956, 126.295689);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.253796, 126.229688);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.386880, 126.230640);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.412909, 126.281854);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.418824, 126.330628);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.422877, 126.491733);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.506151, 126.517572);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.492558, 126.676321);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.435090, 126.687872);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.288085, 126.584674);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.365595, 126.766224);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.472911, 126.778637);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.494391, 126.900416);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.546470, 126.748680);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.505390, 126.955714);
-
---기프트샵(8개)
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.513232, 126.958583);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.505710, 126.732057);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.389263, 126.529013);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.454406, 126.484988);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.304354, 126.337687);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.323585, 126.198274);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.491535, 126.511102);
-
-INSERT INTO tblLocation (location_seq, lat, lng)
-VALUES (seqtblLocation.nextVal, 33.548522, 126.726314);
-
 /* 위치 */
 --어트랙션 위치
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 1, 3);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 2, 5);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 3, 8);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 4, 1);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 5, 6);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 6, 7);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 7, 2);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 8, 4);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 9, 9);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 10, 10);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 11, 11);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 12, 12);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 13, 13);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 14, 14);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 15, 15);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 16, 16);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 17, 17);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 18, 18);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 19, 19);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 20, 20);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 21, 21);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 22, 22);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 23, 23);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 24, 24);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 25, 25);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 26, 26);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 27, 27);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 28, 28);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 29, 29);
-INSERT INTO tblAttractionLocation (attraction_location_seq, attraction_seq, location_seq) VALUES (seqAttractionLocation.nextVal, 30, 30);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.361488, 126.529212, 1);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.369455, 126.563192, 2);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.243217, 126.542354, 3);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.238185, 126.566413, 4);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.235918, 126.562827, 5);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.240354, 126.608888, 6);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.252144, 126.622615, 7);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.271351, 126.697224, 8);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.282079, 126.748282, 9);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.303494, 126.792045, 10);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.307921, 126.831023, 11);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.325267, 126.848278, 12);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.360716, 126.867031, 13);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.305118, 126.166359, 14);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.379284, 126.413401, 15);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.281948, 126.570471, 16);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.485583, 126.888875, 17);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.459435, 126.939154, 18);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.552424, 126.725118, 19);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.447752, 126.523610, 20);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.382156, 126.301300, 21);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.323912, 126.618446, 22);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.460676, 126.736155, 23);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.353147, 126.708275, 24);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.362082, 126.372486, 25);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.294317, 126.281165, 26);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.304963, 126.315241, 27);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.304535, 126.317409, 28);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.249302, 126.202492, 29);
+INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, 33.286853, 126.174816, 30);
 
 --영화관 위치
-INSERT INTO tblTheaterLocation (theater_location_seq, theater_seq, location_seq) VALUES (seqTheaterLocation.nextVal, 1, 31);
-INSERT INTO tblTheaterLocation (theater_location_seq, theater_seq, location_seq) VALUES (seqTheaterLocation.nextVal, 2, 32);
-INSERT INTO tblTheaterLocation (theater_location_seq, theater_seq, location_seq) VALUES (seqTheaterLocation.nextVal, 3, 33);
-INSERT INTO tblTheaterLocation (theater_location_seq, theater_seq, location_seq) VALUES (seqTheaterLocation.nextVal, 4, 34);
-INSERT INTO tblTheaterLocation (theater_location_seq, theater_seq, location_seq) VALUES (seqTheaterLocation.nextVal, 5, 35);
+INSERT INTO tblTheaterLocation (theater_location_seq, lat, lng, theater_seq ) VALUES (seqTheaterLocation.nextVal, 33.484492, 126.487048, 1);
+INSERT INTO tblTheaterLocation (theater_location_seq, lat, lng, theater_seq ) VALUES (seqTheaterLocation.nextVal, 33.355099, 126.339975, 2);
+INSERT INTO tblTheaterLocation (theater_location_seq, lat, lng, theater_seq ) VALUES (seqTheaterLocation.nextVal, 33.318536, 126.489367, 3);
+INSERT INTO tblTheaterLocation (theater_location_seq, lat, lng, theater_seq ) VALUES (seqTheaterLocation.nextVal, 33.383865, 126.804857, 4);
+INSERT INTO tblTheaterLocation (theater_location_seq, lat, lng, theater_seq ) VALUES (seqTheaterLocation.nextVal, 33.528155, 126.827441, 5);
 
 --포토존 위치
-INSERT INTO tblPhotoZoneLocation (photozone_location_seq, photozone_seq, location_seq) VALUES (seqPhotoZoneLocation.nextVal, 1, 36);
-INSERT INTO tblPhotoZoneLocation (photozone_location_seq, photozone_seq, location_seq) VALUES (seqPhotoZoneLocation.nextVal, 2, 37);
-INSERT INTO tblPhotoZoneLocation (photozone_location_seq, photozone_seq, location_seq) VALUES (seqPhotoZoneLocation.nextVal, 3, 38);
-INSERT INTO tblPhotoZoneLocation (photozone_location_seq, photozone_seq, location_seq) VALUES (seqPhotoZoneLocation.nextVal, 4, 39);
-INSERT INTO tblPhotoZoneLocation (photozone_location_seq, photozone_seq, location_seq) VALUES (seqPhotoZoneLocation.nextVal, 5, 40);
-INSERT INTO tblPhotoZoneLocation (photozone_location_seq, photozone_seq, location_seq) VALUES (seqPhotoZoneLocation.nextVal, 6, 41);
-INSERT INTO tblPhotoZoneLocation (photozone_location_seq, photozone_seq, location_seq) VALUES (seqPhotoZoneLocation.nextVal, 7, 42);
-INSERT INTO tblPhotoZoneLocation (photozone_location_seq, photozone_seq, location_seq) VALUES (seqPhotoZoneLocation.nextVal, 8, 43);
-INSERT INTO tblPhotoZoneLocation (photozone_location_seq, photozone_seq, location_seq) VALUES (seqPhotoZoneLocation.nextVal, 9, 44);
-INSERT INTO tblPhotoZoneLocation (photozone_location_seq, photozone_seq, location_seq) VALUES (seqPhotoZoneLocation.nextVal, 10, 45);
+INSERT INTO tblPhotoZoneLocation (photozone_location_seq, lat, lng, photozone_seq) VALUES (seqPhotoZoneLocation.nextVal, 33.3992, 126.5777, 1);
+INSERT INTO tblPhotoZoneLocation (photozone_location_seq, lat, lng, photozone_seq) VALUES (seqPhotoZoneLocation.nextVal, 33.3608, 126.2744, 2);
+INSERT INTO tblPhotoZoneLocation (photozone_location_seq, lat, lng, photozone_seq) VALUES (seqPhotoZoneLocation.nextVal, 33.4852, 126.4351, 3);
+INSERT INTO tblPhotoZoneLocation (photozone_location_seq, lat, lng, photozone_seq) VALUES (seqPhotoZoneLocation.nextVal, 33.5181, 126.7832, 4);
+INSERT INTO tblPhotoZoneLocation (photozone_location_seq, lat, lng, photozone_seq) VALUES (seqPhotoZoneLocation.nextVal, 33.3873, 126.6581, 5);
+INSERT INTO tblPhotoZoneLocation (photozone_location_seq, lat, lng, photozone_seq) VALUES (seqPhotoZoneLocation.nextVal, 33.3997, 126.848, 6);
+INSERT INTO tblPhotoZoneLocation (photozone_location_seq, lat, lng, photozone_seq) VALUES (seqPhotoZoneLocation.nextVal, 33.3229, 126.6814, 7);
+INSERT INTO tblPhotoZoneLocation (photozone_location_seq, lat, lng, photozone_seq) VALUES (seqPhotoZoneLocation.nextVal, 33.2719, 126.5045, 8);
+INSERT INTO tblPhotoZoneLocation (photozone_location_seq, lat, lng, photozone_seq) VALUES (seqPhotoZoneLocation.nextVal, 33.2269, 126.2796, 9);
+INSERT INTO tblPhotoZoneLocation (photozone_location_seq, lat, lng, photozone_seq) VALUES (seqPhotoZoneLocation.nextVal, 33.4149, 126.8771, 10);
 
 --페스티벌 위치
-INSERT INTO tblFestivalLocation (festival_location_seq, festival_seq, location_seq) VALUES (seqFestivalLocation.nextVal, 1, 46);
-INSERT INTO tblFestivalLocation (festival_location_seq, festival_seq, location_seq) VALUES (seqFestivalLocation.nextVal, 2, 47);
-INSERT INTO tblFestivalLocation (festival_location_seq, festival_seq, location_seq) VALUES (seqFestivalLocation.nextVal, 3, 48);
+INSERT INTO tblFestivalLocation (festival_location_seq, lat, lng, festival_seq) VALUES (seqFestivalLocation.nextVal,33.5145, 126.9714, 1);
+INSERT INTO tblFestivalLocation (festival_location_seq, lat, lng, festival_seq) VALUES (seqFestivalLocation.nextVal,33.4006, 126.2514, 2);
+INSERT INTO tblFestivalLocation (festival_location_seq, lat, lng, festival_seq) VALUES (seqFestivalLocation.nextVal,33.2895, 126.7027, 3);
 
 --편의시설 위치
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 1, 49);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 2, 50);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 3, 51);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 4, 52);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 5, 53);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 6, 54);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 7, 55);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 8, 56);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 9, 57);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 10, 58);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 11, 59);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 12, 60);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 13, 61);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 14, 62);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 15, 63);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 16, 64);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 17, 65);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 18, 66);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 19, 67);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 20, 68);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 21, 69);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 22, 70);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 23, 71);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 24, 72);
-INSERT INTO tblConvenientLocation (convenient_location_seq, convenient_seq, location_seq) VALUES (seqConvenientLocation.nextVal, 25, 73);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.5021, 126.9565, 1);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.5612, 126.7692, 2);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.5227, 126.8448, 3);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.4799, 126.8241, 4);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.4616, 126.8735, 5);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.4264, 126.8369, 6);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.3461, 126.8323, 7);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.4103, 126.7489, 8);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.3736, 126.6948, 9);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.3369, 126.7526, 10);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.5143, 126.6004, 11);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.4471, 126.6572, 12);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.4287, 126.7031, 13);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.3323, 126.6994, 14);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.2894, 126.6912, 15);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.444, 126.5033, 16);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.4471, 126.4226, 17);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.3889, 126.4226, 18);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.3185, 126.4373, 19);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.2825, 126.3997, 20);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.4012, 126.3108, 21);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.2649, 126.2356, 22);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.3583, 126.198, 23);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.2322, 126.3289, 24);
+INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal,33.2642, 126.2497, 25);
 
 --식당 위치
-INSERT INTO tblRestaurantLocation (restaurant_location_seq, restaurant_seq, location_seq) VALUES (seqRestaurantLocation.nextVal, 1, 74);
-INSERT INTO tblRestaurantLocation (restaurant_location_seq, restaurant_seq, location_seq) VALUES (seqRestaurantLocation.nextVal, 2, 75);
-INSERT INTO tblRestaurantLocation (restaurant_location_seq, restaurant_seq, location_seq) VALUES (seqRestaurantLocation.nextVal, 3, 76);
-INSERT INTO tblRestaurantLocation (restaurant_location_seq, restaurant_seq, location_seq) VALUES (seqRestaurantLocation.nextVal, 4, 77);
-INSERT INTO tblRestaurantLocation (restaurant_location_seq, restaurant_seq, location_seq) VALUES (seqRestaurantLocation.nextVal, 5, 78);
-INSERT INTO tblRestaurantLocation (restaurant_location_seq, restaurant_seq, location_seq) VALUES (seqRestaurantLocation.nextVal, 6, 79);
-INSERT INTO tblRestaurantLocation (restaurant_location_seq, restaurant_seq, location_seq) VALUES (seqRestaurantLocation.nextVal, 7, 80);
-INSERT INTO tblRestaurantLocation (restaurant_location_seq, restaurant_seq, location_seq) VALUES (seqRestaurantLocation.nextVal, 8, 81);
+INSERT INTO tblRestaurantLocation (restaurant_location_seq, lat, lng, restaurant_seq ) VALUES (seqRestaurantLocation.nextVal,33.513232, 126.958583, 1);
+INSERT INTO tblRestaurantLocation (restaurant_location_seq, lat, lng, restaurant_seq ) VALUES (seqRestaurantLocation.nextVal,33.505710, 126.732057, 2);
+INSERT INTO tblRestaurantLocation (restaurant_location_seq, lat, lng, restaurant_seq ) VALUES (seqRestaurantLocation.nextVal,33.389263, 126.529013, 3);
+INSERT INTO tblRestaurantLocation (restaurant_location_seq, lat, lng, restaurant_seq ) VALUES (seqRestaurantLocation.nextVal,33.454406, 126.484988, 4);
+INSERT INTO tblRestaurantLocation (restaurant_location_seq, lat, lng, restaurant_seq ) VALUES (seqRestaurantLocation.nextVal,33.304354, 126.337687, 5);
+INSERT INTO tblRestaurantLocation (restaurant_location_seq, lat, lng, restaurant_seq ) VALUES (seqRestaurantLocation.nextVal,33.323585, 126.198274, 6);
+INSERT INTO tblRestaurantLocation (restaurant_location_seq, lat, lng, restaurant_seq ) VALUES (seqRestaurantLocation.nextVal,33.491535, 126.511102, 7);
+INSERT INTO tblRestaurantLocation (restaurant_location_seq, lat, lng, restaurant_seq ) VALUES (seqRestaurantLocation.nextVal,33.548522, 126.726314, 8);
 
 --기프트샵 위치
-INSERT INTO tblShopLocation (shop_location_seq, shop_seq, location_seq) VALUES (seqShopLocation.nextVal, 1, 89);
-INSERT INTO tblShopLocation (shop_location_seq, shop_seq, location_seq) VALUES (seqShopLocation.nextVal, 2, 90);
-INSERT INTO tblShopLocation (shop_location_seq, shop_seq, location_seq) VALUES (seqShopLocation.nextVal, 3, 91);
-INSERT INTO tblShopLocation (shop_location_seq, shop_seq, location_seq) VALUES (seqShopLocation.nextVal, 4, 92);
+INSERT INTO tblShopLocation (shop_location_seq, lat, lng, shop_seq ) VALUES (seqShopLocation.nextVal, 33.513232, 126.958583, 1);
+INSERT INTO tblShopLocation (shop_location_seq, lat, lng, shop_seq ) VALUES (seqShopLocation.nextVal, 33.505710, 126.732057, 2);
+INSERT INTO tblShopLocation (shop_location_seq, lat, lng, shop_seq ) VALUES (seqShopLocation.nextVal, 33.389263, 126.529013, 3);
+INSERT INTO tblShopLocation (shop_location_seq, lat, lng, shop_seq ) VALUES (seqShopLocation.nextVal, 33.454406, 126.484988, 4);
+
