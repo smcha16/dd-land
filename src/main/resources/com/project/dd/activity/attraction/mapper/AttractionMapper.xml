@@ -7,6 +7,5 @@
 	<select id="list" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		select * from vwAttractionList where close = #{close}
 	</select>
-	
 
 </mapper>

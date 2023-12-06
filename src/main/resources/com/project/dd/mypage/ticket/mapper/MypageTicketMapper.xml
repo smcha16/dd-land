@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace == 호출할 Interface 이름 적기 -->
+<mapper namespace="com.project.dd.mypage.ticket.mapper.MypageTicketMapper">
+
+	<select id="list" parameterType="String" resultType="com.project.dd.mypage.ticket.domain.TicketDTO">
+		select * from vwUserBook
+	</select>
+
+</mapper>
