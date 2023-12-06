@@ -176,6 +176,16 @@
 		background: rgba(215, 62, 62, .7);
 		transition: left 0.4s 0.2s, right 0.5s, background 0.35s -0.1s;
 	}
+	
+	/* list photo 변경 */
+    .stats-counter {
+
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/img/barcelona-3960566_1280.jpg") center center;
+      background-size: cover;
+      padding: 100px 0;
+      background-attachment: fixed;
+    }
+    
 </style>
 
 <!-- list3 Main Content -->
@@ -301,4 +311,12 @@
         });
     
 	});
+	
+	/* 체크박스 클릭 시 form태그로 전송 역할 */
+	$('#close').click(function() {
+		//$('form').submit();
+		alert();
+	});
+	
+	
 </script>

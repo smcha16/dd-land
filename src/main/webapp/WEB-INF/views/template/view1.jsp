@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<!-- //template4는 이미지가 움직이지 않습니다..해시태그도 삭제하지 않은 구버전이니 template5를 사용해주세요! -->
 <!--  === view ver.1 (상세화면) Template -->
 
 <!-- Font Awesome -->

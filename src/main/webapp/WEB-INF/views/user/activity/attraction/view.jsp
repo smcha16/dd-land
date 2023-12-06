@@ -183,12 +183,12 @@
 <section id="stats-counter" class="stats-counter">
 	<div id="pagetitle" class="container" data-aos="zoom-out">
 		<div class="gy-4" style="justify-content: center; width: 100%;">
-
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
 					<div id="title">Attraction</div>
-					<span class="btn btn-1"> <input type="checkbox" id="close"
-						value="close"> <label for="close"></label>
+					<span class="btn btn-1">
+						<input type="checkbox" id="close" name="close" onclick="search()" data-type="n">
+						<label for="close"></label>
 					</span>
 				</div>
 			</div>
@@ -202,81 +202,13 @@
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div class="munti-content-container">
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
+					<c:forEach items="${list}" var="dto">
+						<div class="item">
+							<div style="background-image: url('/dd/resources/assets/img/${dto.img}');"></div>
+							<div>${dto.name}</div>
+							<div class="hidden-div">${dto.info}</div>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -301,4 +233,52 @@
         });
     
 	});
+	
+	/*
+	$(document).ready(function() {
+	    // 페이지 로딩 시에 URL 파라미터를 읽어옴
+	    const queryString = window.location.search;
+	    const urlParams = new URLSearchParams(queryString);
+	    const closeValue = urlParams.get('close');
+
+	    // data-type 값을 URL 파라미터에서 읽어온 값으로 설정
+	    $('#close').data('type', closeValue);
+
+	    // data-type 값에 따라 checked 속성 적용
+	    if (closeValue === 'y') {
+	        $('#close').prop('checked', true);
+	    } else {
+	        $('#close').prop('checked', false);
+	    }
+	});
+	*/
+	
+	/* 도전 */
+		
+	const close = '${close}';
+	
+	//CSS 만을 위한 코드
+	if (close == 'y') {
+		$('#close').prop('checked', true);
+    } else {
+        $('#close').prop('checked', false);
+    }
+
+	//조건에 따른 DB를 가져오기 위한 코드
+	function search() {
+		
+		//처음에 n 이면 클릭 시 y로 변경
+		if ($('#close').prop('checked')) {
+	        $('#close').data('type', 'y');
+			location.href='/dd/user/activity/attraction/view.do?close=' + $('#close').data('type');
+	    } else {
+			//처음에 y면 클릭 시 n으로 변경
+        	$('#close').data('type', 'n');
+			location.href='/dd/user/activity/attraction/view.do'
+	    }
+
+		
+	}
+	
+
 </script>
