@@ -7,7 +7,7 @@ import com.project.dd.login.domain.LoginDTO;
 
 public interface LoginMapper {
 
-	@Select("select * from tbluser where email = #{username}")
+	@Select("select user_seq, name, email, pw, tel, address, birth, lv as auth, ing from tbluser where email = #{username}")
 	LoginDTO read(@Param("username") String username);
 
 }
