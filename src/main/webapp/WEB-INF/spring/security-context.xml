@@ -10,9 +10,6 @@
 	<!-- 암호 인코딩 객체 -->
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 
-	<!-- 임시 인코딩 삭제 -->
-	<!-- <bean id="noopPasswordEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/> -->
-
 	<!-- 사용자 로그인 객체 -->
 	<bean id="customUserDetailsService" class="com.project.dd.CustomUserDetailsService"></bean>
 
@@ -23,10 +20,9 @@
 		<security:intercept-url pattern="/member/**" access="permitAll" />
 		<security:intercept-url pattern="/admin/**" access="permitAll" />
 		-->
-		<security:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')" />
-		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/member/**" access="hasRole('1')" />
+		<security:intercept-url pattern="/admin/**" access="hasRole('2')" /> 
 		
-		<!-- <security:form-login authentication-success-handler-ref="customLoginSuccessHandler" /> -->
 		<security:form-login login-page="/user/login/view.do" authentication-success-handler-ref="customLoginSuccessHandler" />
 
 		<security:logout logout-url="/logout.do" logout-success-url="/index.do" invalidate-session="true" />
@@ -46,7 +42,6 @@
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="customUserDetailsService">
 			<security:password-encoder ref="bcryptPasswordEncoder" />
-			<!-- <security:password-encoder ref="noopPasswordEncoder"/> -->
 		</security:authentication-provider>
 	</security:authentication-manager>
 
