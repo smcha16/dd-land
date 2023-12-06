@@ -24,12 +24,10 @@ public class AttractionDTO {
 	//tblAttractionClose
 	private String close;
 	
-	//tblLocation
-	private String location_seq;
+	//tblAttractionLocation
+	private String attraction_location_seq;
 	private String lat;
 	private String lng;
 	
-	//tblAttractionLocation
-	private String attraction_location_seq;
 	
 }

@@ -36,13 +36,6 @@ public class UserAttractionController {
 	@GetMapping(value = "/detail.do")
 	public String detail(Model model, String seq) {
 		
-		//1. 어트 2. 어트 이미지 3. 어트 운휴 4. 어트 위치
-		//tblAttraction, tblAttractionImg, tblAttractionClose, tblAttractionLocation
-		
-		//AttractionDTO
-		//AttractionImgDTO
-		//AttractionCloseDTO
-
 		AttractionDTO dto = mapper.getAttraction(seq); //List<AttractionImgDTO> 빼고 dto에 다 담긴 상태
 		
 		List<AttractionImgDTO> ilist = mapper.getAttractionImgList(seq); //List<AttractionImgDTO> 가져와서
