@@ -15,7 +15,7 @@
 	    border-radius: 50px;
     }
     .stats-counter {
-    	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/main/img/notice.jpg") center center;
+    	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/communication/notice.jpg") center center;
     	background-size: cover;
     	background-attachment: fixed;
     }
@@ -36,7 +36,7 @@
     	outline: none;
     }
     #notice {
-    	min-height: 748.8px;
+    	min-height: 700px;
 		margin: 50px 0;
 	}
 	#notice-list {
@@ -54,7 +54,7 @@
 		border-bottom: 1px solid #E1E1E1;
 	}
 	#notice-list th {
-		font-size: 1.1rem;
+		font-size: 1.12rem;
 		font-weight: bold;
 	}
 	#notice-list th:nth-child(1) {
@@ -69,14 +69,15 @@
 	#notice-list td {
 		font-size: 1.05rem;
 	}
-	#notice-list td  a {
-		color: #333;
+	#notice-list td a {
+		color: #444;
 	}
-	#notice-list td  a:hover {
+	#notice-list td a:hover {
+		font-weight: bold;
 		color: #CE1212;
 	}
 	#notice-list td i {
-		color: rgba(215, 62, 62, 0.7);
+		color: #CE1212;
 		margin-top: 7px;
 	}
 	#page-bar {
@@ -134,7 +135,7 @@
 			<c:forEach items="${list}" var="dto" varStatus="numberStatus">
 				<tr>
 					<c:if test="${dto.fix == 'y'}">
-						<td><i class="bi bi-exclamation-circle-fill"></i></td>
+						<td><i class="bi bi-bookmark-star-fill"></i></td>
 					</c:if>
 					
 					<c:if test="${dto.fix == 'n'}">
@@ -145,7 +146,6 @@
 		            <td>${dto.regdate}</td>
 		        </tr>
 			</c:forEach>
-
 		</tbody>
 	</table>
 	

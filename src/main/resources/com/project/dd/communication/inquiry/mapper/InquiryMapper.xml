@@ -2,12 +2,12 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.dd.communication.faq.mapper.FaqMapper">
+<mapper namespace="com.project.dd.communication.inquiry.mapper.InquiryMapper">
 	<select id="getTotalCount" parameterType="String" resultType="int">
 		select count(*) from tblFaq where type = #{type}
 	</select>
 	
-	<select id="getFaqList" parameterType="map" resultType="com.project.dd.communication.faq.domain.FaqDTO">
+	<select id="getInquiryList" parameterType="map" resultType="com.project.dd.communication.inquiry.domain.InquiryDTO">
 		select *
 		from (select f.*, rownum as rnum from (select * from tblFAQ where type = #{type} order by faq_seq desc) f)
 		where rnum between #{startIndex} and #{endIndex}
