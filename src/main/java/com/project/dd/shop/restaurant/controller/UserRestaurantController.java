@@ -27,6 +27,7 @@ public class UserRestaurantController {
 	public String detail(Model model, String seq) {
 
 		model.addAttribute("dto", mapper.detail(seq));
+		model.addAttribute("list", mapper.image(seq));
 		
 		return "user/shop/restaurant/detail";
 	}

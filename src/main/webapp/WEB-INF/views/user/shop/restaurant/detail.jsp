@@ -2,64 +2,93 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!--  === view ver.1 (상세화면) Template -->
+<!--  === view ver.2 (상세화면) Template -->
 
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 
-<!-- view 전용 style tag -->
-<style>
+<!-- Slick -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 
+<!-- view 2 전용 style tag -->
+<style>
 /* 폰트는 테스트용 임시 */
+@font-face {
+	font-family: 'SUIT-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
 * {
 	font-family: 'SUIT-Regular';
 }
 /* 폰트 테스트 끝 */
-section {
-	padding: 140px 0;
+body {
+	background: #EEE;
 }
 
 .section-header h2 {
 	font-size: 48px;
-	font-family: 'SUIT-Regular';
 	color: #000;
 }
 
-.section-header p {
-	font-size: 15px;
-	font-family: 'SUIT-Regular';
-	margin: 5px;
+.section-info {
+	text-align: center;
+	margin: 2rem 0;
 }
 
-#hashtag {
+.section-image {
 	display: flex;
-	flex-direction: row;
 	justify-content: center;
-	align-items: center;
-	margin: 20px auto;
+	padding-bottom: 30px;
 }
 
-#hashtag>i {
-	font-size: 2rem;
-	margin-right: 10px;
-	color: darkred;
+.section-image>img {
+	border-radius: 15px;
 }
 
-#hashtag>div {
-	margin: 3px 5px;
-	font-size: 1rem;
-	border: 0.8px solid #999;
-	border-radius: 20px;
-	padding: 5px 8px;
+section:first-of-type {
+	padding-top: 140px;
+	padding-bottom: 20px;
 }
 
 #background {
-	background-image: url('assets/img/detail_background_half_trans.png');
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url("/dd/resources/files/restaurant/back-restaurant.jpg") center
+		center;
 	background-color: transparent;
 	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 100%
+	background-size: cover;
+	padding: 0;
+}
+
+section:last-of-type {
+	padding-top: 30px;
+}
+
+.close-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.close-item {
+	width: 950px;
+	border-radius: 5px;
+	background-color: #FFFFFF;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 30px 30px 0 30px;
+}
+
+.close-time>.value {
+	margin: 0 auto;
 }
 
 .result-container {
@@ -95,9 +124,6 @@ section {
 	font-size: 1.2rem;
 }
 
-/* .result-container > .result-item:nth-child(1) > .value {
-		font-size: 1.3rem;
-	} */
 .value.location {
 	display: flex;
 	flex-direction: column;
@@ -114,86 +140,72 @@ section {
 	margin-bottom: 0;
 }
 
-.close-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding-top: 50px;
-}
-
-.close-item {
-	width: 950px;
-	/* border: 1px solid #999; */
-	border-radius: 5px;
-	background-color: #FFFFFF;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.close-time>.value {
-	margin: 0 auto;
-}
-
 .icon {
 	width: 60px;
 	height: 60px;
 	margin: 20px 10px;
 }
 
-@font-face {
-	font-family: 'SUIT-Regular';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
-		format('woff2');
-	font-weight: normal;
-	font-style: normal;
+.image-slider {
+	width: 700px;
+	height: 350px;
+	margin: 0 auto;
+}
+
+.image-slider div {
+	width: 700px;
+	height: 350px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.image-slider img {
+	width: 100%;
+	max-height: 100%;
+	border-radius: 15px;
+	object-fit: cover;
+}
+
+/* Slick Button Style */
+.slick-prev, .slick-next {
+	border: 0;
+	background: transparent;
+	z-index: 100;
+	position: absolute;
+}
+
+.slick-prev {
+	top: 50%;
+	left: 20px;
+}
+
+.slick-next {
+	top: 50%;
+	right: 20px;
 }
 </style>
-<!-- ======= Gallery Section ======= -->
-<section id="gallery" class="gallery section-bg">
-	<div class="container" data-aos="fade-up">
 
-		<!-- 상세 목록 > 제목, 설명, 태그 -->
+<!-- ======= Title & Image Section ======= -->
+<section>
+	<div class="container" data-aos="zoom-out">
 		<div class="section-header">
 			<h2>${dto.name}</h2>
-			<p>${dto.menu}</p>
-			<!-- <div id="hashtag">
-            <i class="fa-solid fa-tag fa-rotate-90"></i>
-            <div>어트랙션</div>
-            <div>신나는</div>
-          </div> -->
 		</div>
-		<!-- End of 상세 목록 > 제목, 설명, 태그 -->
-
-		<div id="carouselExampleControls" class="carousel slide"
-			data-bs-ride="carousel">
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img src="assets/img/지브리특급2.jpeg" class="d-block w-100" alt="...">
+		<!-- Slick Slider -->
+		<div class="image-slider">
+			<c:forEach items="${list }" var="dto">
+				<div>
+					<img src="/dd/resources/files/restaurant/${dto.img }" alt="">
 				</div>
-				<div class="carousel-item">
-					<img src="assets/img/지브리특급2.jpeg" class="d-block w-100" alt="...">
-				</div>
-				<div class="carousel-item">
-					<img src="assets/img/지브리특급2.jpeg" class="d-block w-100" alt="...">
-				</div>
-			</div>
-			<button class="carousel-control-prev" type="button"
-				data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button"
-				data-bs-target="#carouselExampleControls" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
+			</c:forEach>
+			<!-- End Slick Slider -->
 		</div>
-
-	</div>
+		<p class="section-info">
+			<span style="font-size: 1.5rem; font-weight: 500;">대표메뉴</span> <br>
+			${dto.menu }
+		</p>
 </section>
-<!-- End Gallery Section -->
+<!-- End Title & Image Section -->
 
 <!-- 상세 정보 -->
 <!-- 운휴일정, 운영시간, 탑승인원, 이용정보 -->
@@ -204,7 +216,7 @@ section {
 			<div class="value">
 				<img src="assets/img/calendar_icon.png" alt="Image" class="icon" />
 				<c:if test="${dto.close == 'y'}">
-								금일 은휴
+								금일 운휴
 							</c:if>
 				<c:if test="${dto.close == 'n'}">
 								정상 운영
@@ -214,17 +226,20 @@ section {
 	</div>
 	<div class="result-container">
 		<div class="result-item">
-			<img src="assets/img/time_icon.png" alt="Image" class="icon" />
+			<img src="/dd/resources/files/icon/dininginfo_icon2.png" alt="Image"
+				class="icon" />
 			<div class="label">운영시간</div>
 			<div class="value">${dto.time}</div>
 		</div>
 		<div class="result-item">
-			<img src="assets/img/people_icon.png" alt="Image" class="icon" />
+			<img src="/dd/resources/files/icon/dininginfo_icon6.png" alt="Image"
+				class="icon" />
 			<div class="label">수용인원</div>
 			<div class="value">${dto.capacity}명</div>
 		</div>
 		<div class="result-item">
-			<img src="assets/img/info_icon.png" alt="Image" class="icon" />
+			<img src="/dd/resources/files/icon/dininginfo_icon3.png" alt="Image"
+				class="icon" />
 			<div class="label">전화번호</div>
 			<div class="value">${dto.tel}</div>
 		</div>
@@ -232,54 +247,72 @@ section {
 </div>
 
 <!-- 위치 정보 -->
-<div class="location">
-	<div class="label">위치 정보</div>
-	<div class="value location">
-		<div id="map" style="width: 1125px; height: 400px;"></div>
+<section>
+	<div class="location">
+		<div class="label">위치 정보</div>
+		<div class="value location">
+			<div id="map" style="width: 950px; height: 400px;"></div>
+		</div>
 	</div>
-</div>
+</section>
 
-<div class="container" style="margin-top: 50px;">
-	<button type="button" class="btn"
-		onclick="location.href='/ddstudio/shop/restaurant.do'">목록</button>
-</div>
- 
-<!-- 끝 -->
+<section>
+	<div class="container">
+		<button>목록보기</button>
+	</div>
+</section>
 
+<!-- view2 Template 전용 JavaScript -->
+<!-- Kakao Map Open API -->
 <script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ae4c975e0553221a835879cdf6246a66"></script>
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c089ee6f3d885cfbe52b2f15d8f3f531"></script>
+
+<!-- Slick Slider -->
+<script type="text/javascript"
+	src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 <script>
-	const container = document.getElementById('map');
-	const options = {
-		center : new kakao.maps.LatLng(33.3808, 126.5450),
-		level : 10,
+	/* 카카오 맵 */
+	const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+
+	const options = { //지도를 생성할 때 필요한 기본 옵션
+		center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
+		level : 10, //지도의 레벨(확대, 축소 정도)
 		draggable : false, // 이동 금지
 		disableDoubleClick : true, // 더블클릭 확대 금지
-		scrollwheel : false
-	// 휠 확대/축소 금지
+		scrollwheel : false // 휠 확대/축소 금지
 	};
 
-	const map = new kakao.maps.Map(container, options);
+	const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
-	const lat = $
-	{
-		dto.lat
-	};
-	const lng = $
-	{
-		dto.lng
-	};
-
-	const m = new kakao.maps.Marker({
-		position : new kakao.maps.LatLng(lat, lng)
-	});
-
-	const imageSrc = '/ddstudio/asset/image/marker/restaurant.png';
-	const imageSize = new kakao.maps.Size(40, 40);
+	//마커 출력
+	let imageSrc = '/dd/resources/files/marker/restaurant_marker2.png'; // 마커이미지의 주소
+	const imageSize = new kakao.maps.Size(40,40);
 	const option = {};
 
+	//마커 설정
 	const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
 
-	m.setImage(markerImg);
-	m.setMap(map);
+	const m1 = new kakao.maps.Marker({
+		position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng}), /* < 좌측 값은 테스트용 임시 ${location_dto.lat}, ${location_dto.lng} */
+		image: markerImg
+	});
+
+	//마커 지도에 출력
+	m1.setMap(map);
+
+
+	/* Slick Slider */
+	$('.image-slider').slick({
+		variableWidth : true,
+		infinite : true,
+		autoplay : true,
+		autoplaySpeed : 5000,
+		pauseOnHover : true,
+		arrows : true,
+		prevArrow : "<button type='button' class='slick-prev'>&#10094;</button>",
+		nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
+		draggable : true
+	});
 </script>
+<!-- 끝 -->
