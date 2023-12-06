@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- list (1) Template -->
-<!-- user > test > view.jsp -->
+<!-- user > test > worldcup > view.jsp -->
 <style>
 #title+p {
 	text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
@@ -91,7 +91,7 @@
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
 					<div id="title"
-						style="font-size: 48px; display: block; color: #fff; font-weight: 700;">코스 월드컵</div>
+						style="font-size: 48px; display: block; color: #fff; font-weight: 700;">월드컵</div>
 					<p>설명(나에게 딱 맞는 어트랙션을 찾아보세요!)</p>
 				</div>
 			</div>
