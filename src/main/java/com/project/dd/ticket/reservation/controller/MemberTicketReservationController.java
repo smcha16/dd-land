@@ -11,14 +11,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.project.dd.login.domain.CustomUser;
-import com.project.dd.ticket.reservation.domain.TicketGroupReservationDTO;
-import com.project.dd.ticket.reservation.mapper.TicketReservationMapper;
+import com.project.dd.ticket.reservation.domain.TicketReservationDTO;
+import com.project.dd.ticket.reservation.service.GroupReservationService;
+import com.project.dd.ticket.reservation.service.SingleReservationService;
 
 @Controller
 public class MemberTicketReservationController {
-
+	
 	@Autowired
-	private TicketReservationMapper mapper;
+	private SingleReservationService singleService;
+	
+	@Autowired
+	private GroupReservationService groupService;
+	
+	@GetMapping(value = "/member/ticket/single-reservation/view.do")
+	public String singleReservation(Model model) {
+
+		return "member/ticket/single-reservation/view";
+	}
 	
 	@GetMapping(value = "/member/ticket/group-reservation/view.do")
 	public String groupReservation(Model model) {
@@ -27,32 +37,25 @@ public class MemberTicketReservationController {
 	}
 	
 	@PostMapping(value = "/member/ticket/group-reservation/view.do")
-	public String groupReservationOk(Model model, TicketGroupReservationDTO dto, String postCode, String addressBasis, String addressDetail, String user_seq, Authentication auth) {
+	public String groupReservationOk(Model model, TicketReservationDTO dto, String postCode, String addressBasis, String addressDetail, String user_seq, Authentication auth) {
 		
 		System.out.println(((CustomUser)auth.getPrincipal()).getDto());
 		
-		String address = "";
-		
-		postCode = postCode.trim();
-        addressBasis = addressBasis.trim();
-        addressDetail = addressDetail.trim();
-        address = postCode + " " + addressBasis + " " + addressDetail;
+		String address = groupService.getAddress(postCode, addressBasis, addressDetail);
         
         dto.setAddress(address);
-        
-        System.out.println(dto);
 		
-        int result = mapper.groupReservation(dto);
+        int result = groupService.groupReservation(dto);
         
         if (result == 1) {
-        	String seq = mapper.getGroup();
+        	String seq = groupService.getGroup();
         	
         	Map<String, String> map = new HashMap<>();
         	
         	map.put("seq", seq);
         	map.put("user_seq", user_seq);
         	
-        	result = mapper.usergroup(map);
+        	result = groupService.addUserGroup(map);
         }
 
 		return "redirect:/index.do";

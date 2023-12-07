@@ -24,7 +24,7 @@
 }
 
 .munti-content-container {
-	display: flex;
+	/* display: flex; */
 	flex-wrap: wrap;
 	margin: 30px 50px 0 50px;
 	padding: 0 !important;
@@ -83,6 +83,7 @@
 	z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
 }
 </style>
+
 <!-- ======= Stats Counter Section ======= -->
 <section id="stats-counter" class="stats-counter">
 	<div id="pagetitle" class="container" data-aos="zoom-out">
@@ -100,58 +101,59 @@
 	</div>
 </section>
 <!-- End Stats Counter Section -->
-
-<!-- ======= Menu Section ======= -->
 <section id="menu" class="menu">
 	<div class="container" data-aos="fade-up">
-
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
-
 			<div class="tab-pane fade active show" id="menu-starters">
-				<table>
-					<div id="attraction-container" class="munti-content-container">
+				<div id="attraction-container" class="munti-content-container">
+					<table>
 						<c:forEach items="${listAttraction}" var="dto">
-							<div class="item" data-attraction-id="${dto.id}">
-								<div
-									style="background-image: url('/dd/resources/assets/img/${dto.img}');"></div>
-								<div>${dto.name}</div>
-								<div class="hidden-div">${dto.info}</div>
-							</div>
+							<tr>
+								<td>
+									<div class="item" data-attraction-id="${dto.attraction_seq}">
+										<div
+											style="background-image: url('/dd/resources/assets/img/${dto.imgList[0].img}');"></div>
+										<div>${dto.name}</div>
+										<div class="hidden-div">${dto.info}</div>
+									</div>
+								</td>
+							</tr>
 						</c:forEach>
-					</div>
+					</table>
 
-
-					<!--
-			        <c:forEach items="${listAWC}" var="dto">
-			            <tr>
-			                <td>${dto.awc_seq}</td>
-			                <td>${dto.is_test}</td>
-			                <td>${dto.attraction_seq}</td>
-			            </tr>
-			        </c:forEach>
-			        <c:forEach items="${listAWCWin}" var="dto">
-			            <tr>
-			                <td>${dto.awc_win_seq}</td>
-			                <td>${dto.awc_match_count}</td>
-			                <td>${dto.awc_win_count}</td>
-			                <td>${dto.attraction_seq}</td>
-			            </tr>
-			        </c:forEach>
-			        <c:forEach items="${listAWCFinalWin}" var="dto">
-			            <tr>
-			                <td>${dto.awc_final_win_seq}</td>
-			                <td>${dto.awc_final_win_count}</td>
-			                <td>${dto.attraction_seq}</td>
-			            </tr>
-			        </c:forEach>
-			        -->
-				</table>
+					<table>
+						<c:forEach items="${listAWC}" var="dto">
+							<tr>
+								<td>${dto.awc_seq}</td>
+								<td>${dto.is_test}</td>
+								<td>${dto.attraction_seq}</td>
+							</tr>
+						</c:forEach>
+					</table>
+					<table>
+						<c:forEach items="${listAWCWin}" var="dto">
+							<tr>
+								<td>${dto.awc_win_seq}</td>
+								<td>${dto.awc_match_count}</td>
+								<td>${dto.awc_win_count}</td>
+								<td>${dto.attraction_seq}</td>
+							</tr>
+						</c:forEach>
+					</table>
+					<table>
+						<c:forEach items="${listAWCFinalWin}" var="dto">
+							<tr>
+								<td>${dto.awc_final_win_seq}</td>
+								<td>${dto.awc_final_win_count}</td>
+								<td>${dto.attraction_seq}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
 			</div>
-			<!-- End Starter Menu Content -->
 		</div>
 	</div>
 </section>
-<!-- End Menu Section -->
 
 <script>
 	var itemElements = document.querySelectorAll('.item');
