@@ -19,4 +19,7 @@ public class MoviePlayDTO {
 	private String theater_location_seq;
 	private String lat;
 	private String lng;
+	
+	//운휴 여부(y: 운휴, n: 운영)
+	private String close;
 }

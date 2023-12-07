@@ -224,8 +224,13 @@
 <!-- ======= 상영 일정 Section ======= -->
 <!-- 운휴일정, 운영시간, 탑승인원, 이용정보 --> <!-- 날짜별 운휴에맞춰서 추가 필요ㅠ~~~~~~~~~~ -->
 <section>
-	<c:forEach items="${dto.moviePlayList}" var="dto">
+	<c:forEach items="${moviePlayList}" var="dto">
 		<div class="result-container">
+			<div class="result-item">
+				<!-- <img src="/dd/resources/files/activity/time_icon.png" alt="Image" class="icon" /> -->
+				<div class="label">(test)운휴정보</div>
+				<div class="value">${dto.close}</div>
+			</div>
 			<div class="result-item">
 				<!-- <img src="/dd/resources/files/activity/time_icon.png" alt="Image" class="icon" /> -->
 				<div class="label">상영 시간</div>

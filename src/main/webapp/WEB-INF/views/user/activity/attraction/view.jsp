@@ -230,10 +230,12 @@
 							</div>
 						</c:if>
 					</c:forEach>
-					<c:if test="${closeCount == 0}">
-						<div>금일 운휴 어트랙션 없음</div>
-					</c:if>
 				</div>
+				<c:if test="${closeCount == 0}">
+					<div style="display: flex; justify-content: center;">
+						<img src="/dd/resources/files/activity/어트랙션운휴.png" style="width: 500px; border-radius: 7px;">
+					</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
