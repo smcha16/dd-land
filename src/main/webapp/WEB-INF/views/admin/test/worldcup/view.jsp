@@ -73,22 +73,38 @@ th {
 								<tr>
 									<th>No</th>
 									<th>이름</th>
-									<th>버튼</th>
+									<th>테스트 채택</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1</td>
-									<td></td>
-									<td>
-										<div class="d-flex justify-content-center">
-											<div class="form-check form-switch">
-												<input class="form-check-input" type="checkbox"
-													id="flexSwitchCheckDefault">
+								<c:forEach items="${listAttraction}" var="dto">
+									<tr>
+										<td>${dto.attraction_seq}</td>
+										<td>${dto.name}</td>
+										<td>
+											<div class="d-flex justify-content-center">
+												<div class="form-check form-switch">
+													<input class="form-check-input" type="checkbox"
+														id="flexSwitchCheckDefault">
+												</div>
 											</div>
+										</td>
+									</tr>
+								</c:forEach>
+								
+								<%-- 
+								<tr>
+									<td>
+										<div class="item" data-attraction-id="${dto.attraction_seq}">
+											<div
+												style="background-image: url('/dd/resources/assets/img/${dto.imgList[0].img}');"></div>
+											<div>${dto.name}</div>
+											<div class="hidden-div">${dto.info}</div>
 										</div>
 									</td>
 								</tr>
+								--%>
+								
 							</tbody>
 						</table>
 

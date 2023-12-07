@@ -40,6 +40,13 @@ th {
 	background-color: #f2f2f2 !important;
 }
 
+th:nth-child(1) { width: 10%; }
+th:nth-child(2) { width: 10%; }
+th:nth-child(3) { width: 40%; }
+th:nth-child(4) { width: 15%; }
+th:nth-child(5) { width: 15%; }
+th:nth-child(6) { width: 10%; }
+
 .pagination {
 	justify-content: center;
 	margin-top: 40px;
@@ -70,20 +77,24 @@ th {
 
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">어트랙션</h5>
+						<h5 class="card-title">MBTI</h5>
 
 						<table class="table">
 							<thead>
 								<tr>
 									<th>No</th>
 									<th>이름</th>
-									<th>내용</th>
+									<th>결과</th>
+									<th>어트랙션명</th>
+									<th>코스명</th>
 									<th>버튼</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td>1</td>
+									<td></td>
+									<td></td>
 									<td></td>
 									<td></td>
 									<td>
