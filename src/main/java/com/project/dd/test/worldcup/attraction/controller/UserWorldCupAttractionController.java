@@ -18,7 +18,7 @@ public class UserWorldCupAttractionController {
 
     @Autowired
     private WorldCupAttractionService attractionService;
-
+    
     @GetMapping(value = "/user/test/worldcup/attraction/view.do")
     public String view(Model model, String close, String isTest) {
         isTest = "Y";

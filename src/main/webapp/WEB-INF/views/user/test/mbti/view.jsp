@@ -83,6 +83,7 @@
 	z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
 }
 </style>
+
 <!-- ======= Stats Counter Section ======= -->
 <section id="stats-counter" class="stats-counter">
 	<div id="pagetitle" class="container" data-aos="zoom-out">
@@ -103,13 +104,10 @@
 <!-- ======= Menu Section ======= -->
 <section id="menu" class="menu">
 	<div class="container" data-aos="fade-up">
-
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
-
 			<div class="tab-pane fade active show" id="menu-starters">
-
 				<div class="munti-content-container">
-
+				
 					<table>
 						<c:forEach items="${listMBTI}" var="dto">
 							<div class="item">
@@ -118,12 +116,12 @@
 								<div class="hidden-div">${dto.result}</div>
 							</div>
 						</c:forEach>
+						<div>출처: #어반브러시 #타미</div>
 					</table>
 
+						
 				</div>
-
-			</div>
-			<!-- End Starter Menu Content -->
+			</div><!-- End Starter Menu Content -->
 		</div>
 	</div>
 </section>
