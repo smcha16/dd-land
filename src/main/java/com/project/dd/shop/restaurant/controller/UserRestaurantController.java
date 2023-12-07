@@ -6,19 +6,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.project.dd.shop.restaurant.mapper.RestaurantMapper;
+import com.project.dd.shop.restaurant.service.RestaurantService;
 
 @Controller
 @RequestMapping("/user/shop/restaurant")
 public class UserRestaurantController {
 
 	@Autowired
-	private RestaurantMapper mapper;
+	private RestaurantService restaurantService;
 	
 	@GetMapping(value = "/view.do")
 	public String list(Model model) {
 		
-		model.addAttribute("list", mapper.list());
+		model.addAttribute("list", restaurantService.getList());
 
 		return "user/shop/restaurant/view";
 	}
@@ -26,8 +26,8 @@ public class UserRestaurantController {
 	@GetMapping(value = "/detail.do")
 	public String detail(Model model, String seq) {
 
-		model.addAttribute("dto", mapper.detail(seq));
-		model.addAttribute("list", mapper.image(seq));
+		model.addAttribute("dto", restaurantService.detail(seq));
+		model.addAttribute("list", restaurantService.getImg(seq));
 		
 		return "user/shop/restaurant/detail";
 	}

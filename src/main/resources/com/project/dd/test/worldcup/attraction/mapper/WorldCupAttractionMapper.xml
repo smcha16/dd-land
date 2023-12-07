@@ -5,12 +5,11 @@
 <mapper namespace="com.project.dd.test.worldcup.attraction.mapper.WorldCupAttractionMapper">
 
 	<!--
-	<select id="listAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		select * from vwAttractionList where close = #{close}
-	</select>
-	-->
-	
-	<!-- 월드컵에 등록된 운영중인 어트랙션 리스트 조회 -->
+        어트랙션 리스트를 조회하는 쿼리입니다.
+        - close 파라미터로 오픈 여부를 전달받습니다.
+        - vwAttractionList와 tblAWC를 조인하여 테스트 여부가 'Y'인 어트랙션 정보만 가져옵니다.
+        - 결과 타입은 AttractionDTO입니다.
+    -->
 	<select id="listAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
     	SELECT
 	        al.*
@@ -19,18 +18,28 @@
 	    WHERE al.close = #{close} AND aws.is_test = 'Y'
 	</select>
 	
-	<!-- 어트랙션 월드컵에 등록된 어트랙션 리스트 조회 -->
-	<select id="listAWC" parameterType="String" resultType="com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO">
+	<!--
+        모든 어트랙션 월드컵 정보를 조회하는 쿼리입니다.
+        - isTest 파라미터로 테스트 여부를 전달받습니다.
+        - 결과 타입은 WorldCupAttractionDTO 리스트입니다.
+    -->
+	<select id="getAllAWC" parameterType="String" resultType="com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO">
 		select * from tblAWC where is_test = #{isTest}
 	</select>
 	
-	<!-- 어트랙션 월드컵 승리 리스트 조회 -->
-	<select id="listAWCWin" resultType="com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionWinDTO">
+	<!--
+        모든 어트랙션 월드컵 승리 정보를 조회하는 쿼리입니다.
+        - 결과 타입은 WorldCupAttractionDTO 리스트입니다.
+    -->
+	<select id="getAllAWCWin" resultType="com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionWinDTO">
 		select * from tblAWCWin
 	</select>
 	
-	<!-- 어트랙션 월드컵 최종 승리 리스트 조회 -->
-	<select id="listAWCFinalWin" resultType="com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionFinalWinDTO">
+	<!--
+        모든 어트랙션 월드컵 최종 승리 정보를 조회하는 쿼리입니다.
+        - 결과 타입은 WorldCupAttractionDTO 리스트입니다.
+    -->
+	<select id="getAllAWCFinalWin" resultType="com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionFinalWinDTO">
 		select * from tblAWCFinalWin
 	</select>
 
