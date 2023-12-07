@@ -1,4 +1,4 @@
--- 티켓예매내역
+-- 마이페이지 티켓 예매내역
 CREATE OR REPLACE VIEW vwUserBook as
 SELECT
     UB.user_book_seq,
@@ -15,7 +15,7 @@ JOIN tblUser U ON UB.user_seq = U.user_seq
 join tblBenefit B on TB.benefit_seq = B.benefit_seq
 join tblTicket T on TB.ticket_seq = T.ticket_seq;
 
--- 어트랙션 예약 내역
+-- 마이페이지 어트랙션 예약내역
 CREATE OR REPLACE VIEW vwBookUser as
 SELECT
     A.name,
@@ -28,6 +28,31 @@ JOIN tblAttractionBook AB ON AB.attraction_book_seq = BU.attraction_book_seq
 JOIN tblAttraction A on a.attraction_seq = BU.attraction_seq
 join tblUser U on u.user_seq = BU.user_seq;
 
-select * from tbluserbook;
+-- 마이페이지 리뷰 내역
+CREATE OR REPLACE VIEW vwreview as
+SELECT
+    R.review_seq,
+    R.subject,
+    R.content,
+    R.regdate,
+    R.readcount,
+    UB.user_book_seq
+FROM tblUserBook UB
+JOIN tblUser U ON UB.user_seq = U.user_seq
+join tblReview R on UB.user_book_seq = R.user_book_seq;
 
-select
+-- 마이페이지 구매 내역
+CREATE OR REPLACE VIEW vwUserBuy as
+SELECT
+    S.name as shopName,
+    I.name as itemName,
+    B.ea,
+    I.price,
+    B.buy_seq,
+    To_char(B.buy_date, 'yyyy-mm-dd') as buy_date,
+    UB.user_buy_seq
+from tblUserBuy UB
+join tblUser U on U.user_seq = UB.user_seq
+join tblBuy B on B.buy_seq = UB.buy_seq
+join tblItem I on B.item_seq = I.item_seq
+join tblShop S on I.shop_seq = S.shop_seq;

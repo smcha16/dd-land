@@ -8,8 +8,7 @@
 		select * from vwUserBook
 	</select>
 	
-	<delete id="delete" parameterType="Long">
-    DELETE FROM tbluserbook where user_book_seq = #{ticketId}
+	<delete id="delete" parameterType="String" >
+		delete from tblUserBook where user_book_seq = #{selectedTickets}
 	</delete>
-
 </mapper>

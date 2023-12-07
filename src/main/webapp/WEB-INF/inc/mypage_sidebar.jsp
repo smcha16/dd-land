@@ -96,7 +96,7 @@
      		</a>
      		<ul id="modify-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
        			<li>
-         			<a href="/dd/member/mypage/modify/edit.do">
+         			<a href="/dd/member/mypage/modify/view.do">
            				<i class="bi bi-circle"></i><span>회원정보수정</span>
          			</a>
        			</li>

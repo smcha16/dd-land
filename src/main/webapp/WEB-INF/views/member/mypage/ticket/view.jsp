@@ -132,7 +132,7 @@ th {
 								</nav>
 
 
-								<form action="/member/mypage/ticket/delete.do" method="post">
+								<form action="/dd/member/mypage/ticket/delete.do" method="POST">
 								<table class="table">
 									<thead>
 										<tr>
@@ -154,7 +154,7 @@ th {
 
 												<td>${dto.user_book_seq}</td>
 												<td>${dto.ticket_type}</td>
-												<td>${dto.person_type}</td>
+												<td>${dto.person_type}</td>	
 												<td>${dto.age}</td>
 												<td>${dto.book_date}</td>
 												<td>${dto.visit_date}</td>
@@ -166,6 +166,7 @@ th {
 									</tbody>
 								</table>
 								<button type="submit">예매취소</button>
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 								</form>
 
 								<ul class="pagination pagination-sm">
