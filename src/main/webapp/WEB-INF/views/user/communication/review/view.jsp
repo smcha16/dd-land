@@ -13,7 +13,6 @@
 	#pagetitle {
 		margin-top: 70px;
 	}
-	
 	#title {
 		font-size: 48px;
 		display: block;
@@ -21,14 +20,12 @@
 		font-weight: 700;
 		margin-bottom: 20px;
 	}
-	
 	.munti-content-container {
 		display: flex;
 		flex-wrap: wrap;
 		margin: 30px 50px 0 50px;
 		padding: 0 !important;
 	}
-	
 	.item {
 		position: relative;
 		width: 25.5%;
@@ -41,13 +38,11 @@
 		border-radius: 10px;
 		transition: all 0.3s;
 	}
-	
 	.item:hover {
 		cursor: pointer;
 		box-shadow: 12px 12px 17px rgba(0, 0, 0, 0.20);
 	}
-	
-	.item>div:nth-child(1) {
+	.item > div:nth-child(1) {
 		height: 70%;
 		background-color: transparent;
 		background-size: cover;
@@ -55,8 +50,7 @@
 		background-repeat: no-repeat;
 		border-radius: 10px 10px 0 0;
 	}
-	
-	.item>div:nth-child(2) {
+	.item > div:nth-child(2) {
 		height: 30%;
 		display: flex;
 		flex-direction: column;
@@ -66,7 +60,6 @@
 		background: transparent;
 		border-radius: 0 0 10px 10px;
 	}
-	
 	.hidden-div {
 		display: none;
 		color: white;
@@ -77,12 +70,10 @@
 		height: 70%;
 		padding: 20px;
 		background-color: black;
-		opacity: 0.65; /* 투명도 조절 */
+		opacity: 0.65;
 		border-radius: 10px 10px 0 0;
-		z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
+		z-index: 1;
 	}
-	
-	/* 운영/운휴 셀렉박스 */
 	.btn {
 		position: relative;
 		height: 56px;
@@ -92,7 +83,6 @@
 		width: 224px;
 		margin: 0 auto;
 	}
-	
 	.btn input {
 		position: relative;
 		width: 200px;
@@ -104,7 +94,6 @@
 		font-weight: bold;
 		box-shadow: 1px 6px 11px #000;
 	}
-	
 	.btn input::before, .btn input::after {
 		z-index: 2;
 		position: absolute;
@@ -112,19 +101,16 @@
 		transform: translateY(-50%);
 		color: #111;
 	}
-	
 	.btn input::before {
 		content: "등록순";
 		top: 27px;
 		left: 33px;
 	}
-	
 	.btn input::after {
 		content: "추천순";
 		top: 27px;
 		right: 33px;
 	}
-	
 	.btn label {
 		z-index: 1;
 		position: absolute;
@@ -133,52 +119,53 @@
 		border-radius: 20px;
 		width: 86px;
 	}
-	
 	.btn.btn-1 input {
 		transition: 0.2s -0.1s;
 	}
-	
 	.btn.btn-1 input:not(:checked) {
 		background: rgba(255, 255, 255, 0.6);
 	}
-	
 	.btn.btn-1 input:not(:checked):before {
 		color: #111;
 		transition: color 0.5s 0.2s;
 	}
-	
 	.btn.btn-1 input:not(:checked):after {
 		color: #111;
 		transition: color 0.5s;
 	}
-	
 	.btn.btn-1 input:not(:checked)+label {
 		left: 24px;
-		/* background: #D2AB21; */
 		background: rgba(215, 62, 62, .7);
 		transition: left 0.5s, right 0.4s 0.2s;
 		bottom: 8px;
 	}
-	
 	.btn.btn-1 input:checked {
-		/* background: rgba(215, 62, 62, .7); */
 		background: rgba(255, 255, 255, 0.6)
 	}
-	
 	.btn.btn-1 input:checked::before {
 		color: #111;
 		transition: color 0.5s;
 	}
-	
 	.btn.btn-1 input:checked::after {
 		color: #1E1E1E;
 		transition: color 0.5s 0.2s;
 	}
-	
 	.btn.btn-1 input:checked+label {
 		left: 114px;
 		background: rgba(215, 62, 62, .7);
 		transition: left 0.4s 0.2s, right 0.5s, background 0.35s -0.1s;
+	}
+	#page-bar {
+		margin-top: 50px;
+	}
+	.page-link {
+		color: #CE1212;
+	}
+	.active > .page-link, .page-link.active {
+		z-index: 3;
+	    color: var(--bs-pagination-active-color);
+	    background-color: #CE1212;
+	    border-color: #CE1212;
 	}
 </style>
 
@@ -211,13 +198,28 @@
 						<div class="item" onclick="location.href= '/dd/user/communication/review/detail.do?seq=${dto.review_seq}';">
 							<div style="background-image: url('/dd/resources/files/communication/review/${dto.img}');"></div>
 							<div>${dto.subject}</div>
-							<div class="hidden-div"><%-- <c:out value="${dto.content}" /> --%>설명</div>
+							<div class="hidden-div"><c:out value="${dto.content}" /></div>
 						</div>
 					</c:forEach>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<nav id="page-bar" aria-label="Page navigation example">
+	    <ul class="pagination justify-content-center">
+	        <c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
+	            <c:choose>
+	                <c:when test="${pageStatus.index == currentPage}">
+	                    <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+	                </c:when>
+	                <c:otherwise>
+	                    <li class="page-item"><a class="page-link" href="/dd/user/communication/notice/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+	                </c:otherwise>
+	            </c:choose>
+	        </c:forEach>
+	    </ul>
+	</nav>
 </section>
 
 <script>

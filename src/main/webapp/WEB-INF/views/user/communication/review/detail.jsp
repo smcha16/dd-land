@@ -1,6 +1,12 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+
+<!-- Slick -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
 <style>
 	* {
 		font-family: 'SUIT-Regular';
@@ -61,15 +67,9 @@
 		z-index: 100;
 		position: absolute;
 	}
-	
-	.slick-prev {
+	.slick-prev, .slick-next {
 		top: 50%;
 		left: 20px;
-	}
-	
-	.slick-next {
-		top: 50%;
-		right: 20px;
 	}
 	#review-detail {
 		min-height: 400px;

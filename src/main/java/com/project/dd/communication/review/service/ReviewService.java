@@ -46,6 +46,26 @@ public class ReviewService {
 
 		for (ReviewDTO dto : list) {
 			
+			String subject = dto.getSubject();
+
+            if (subject.length() > 13) {
+
+                subject = subject.substring(0, 13) + " ...";
+                
+                dto.setSubject(subject);
+
+            }
+            
+            String content = dto.getContent();
+
+            if (content.length() > 170) {
+
+            	content = content.substring(0, 170) + " ...";
+            	
+            	dto.setContent(content);
+
+            }
+			
 			String regdate = dto.getRegdate();
 			
 			regdate = regdate.substring(0, 10);

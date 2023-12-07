@@ -19,19 +19,7 @@
 		) r)
 		where rnum between #{startIndex} and #{endIndex}
 	</select>
-	
-	<!-- <select id="getReview" parameterType="String" resultType="com.project.dd.communication.review.domain.ReviewDTO">
-		select *
-		from (select r.*, rownum as rnum from (select r.*, visit_date from tblReview r inner join tblUserBook ub on r.user_book_seq = ub.user_book_seq inner join tblTicketBook tb on ub.ticket_book_seq = tb.ticket_book_seq) r)
-		where review_seq = #{seq}
-	</select>
-	
-	<select id="getReviewImg" parameterType="String" resultType="com.project.dd.communication.review.domain.ReviewImgDTO">
-		select * from tblReviewImg where review_seq = #{seq}
-	</select> -->
-	
-	
-	
+
 	<resultMap type="com.project.dd.communication.review.domain.ReviewDTO" id="reviewMap">
 		<id property="review_seq" column="review_seq" />
 		<result property="subject" column="subject" />
