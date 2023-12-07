@@ -173,7 +173,7 @@
 		<tbody>
 			<c:forEach items="${list}" var="dto" varStatus="status">
 				<tr>
-		            <td>${totalPosts - status.index - map.startIndex + 1}</td>
+		            <td>${map.totalPosts - status.index - map.startIndex + 1}</td>
 		            <td>${dto.type}</td>
 		            <c:if test="${not empty dto.img}">
 		            	<td><a onclick="showModal('/dd/resources/files/communication/lost/${dto.img}')">${dto.name}</a></td>
@@ -196,7 +196,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img id="modal-image" src="" alt="습득물 이미지">
+                    <img id="modal-image" src="" alt="Image">
                 </div>
             </div>
         </div>
@@ -204,7 +204,7 @@
 
 	<nav id="page-bar" aria-label="Page navigation example">
 	    <ul class="pagination justify-content-center">
-	        <c:forEach begin="1" end="${totalPages}" varStatus="pageStatus">
+	        <c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
 	            <c:choose>
 	                <c:when test="${pageStatus.index == currentPage}">
 	                    <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>

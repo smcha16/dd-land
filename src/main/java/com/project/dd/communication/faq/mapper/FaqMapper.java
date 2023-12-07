@@ -7,7 +7,7 @@ import com.project.dd.communication.faq.domain.FaqDTO;
 
 public interface FaqMapper {
 
-	int getTotalCount(Map<String, String> map);
+	int getTotalCount(String type);
 
 	List<FaqDTO> getFaqList(Map<String, String> map);
 
