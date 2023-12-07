@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.dd.communication.notice.domain.NoticeDTO;
 import com.project.dd.communication.review.domain.ReviewDTO;
+import com.project.dd.communication.review.domain.ReviewImgDTO;
 import com.project.dd.communication.review.service.ReviewService;
 
 @Controller
@@ -41,6 +41,10 @@ public class UserReviewController {
 		
 		ReviewDTO dto = service.getReview(seq);
 		
+		for (ReviewImgDTO img : dto.getImgList()) {
+			System.out.println(img.getImg());
+		}
+
 		model.addAttribute("dto", dto);
 
 		return "user/communication/review/detail";

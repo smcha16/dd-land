@@ -56,14 +56,20 @@
 		object-fit: cover;
 	}
 	.slick-prev, .slick-next {
-		background: transparent;
 		border: 0;
-		position: absolute;
+		background: transparent;
 		z-index: 100;
+		position: absolute;
 	}
-	.slick-prev, .slick-next {
+	
+	.slick-prev {
 		top: 50%;
 		left: 20px;
+	}
+	
+	.slick-next {
+		top: 50%;
+		right: 20px;
 	}
 	#review-detail {
 		min-height: 400px;
@@ -98,7 +104,6 @@
 	            <i class="bi bi-calendar-check"></i><span>등록일</span><span id="regdate">${dto.regdate}</span>
 	        </div>
 		</div>
-		<!-- Slick Slider -->
 		<div class="image-slider">
 			<c:forEach items="${dto.imgList}" var="dto">
 				<div>

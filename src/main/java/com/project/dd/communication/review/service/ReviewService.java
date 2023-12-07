@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.dd.communication.notice.domain.NoticeDTO;
 import com.project.dd.communication.review.domain.ReviewDTO;
 import com.project.dd.communication.review.repository.ReviewDAO;
 
