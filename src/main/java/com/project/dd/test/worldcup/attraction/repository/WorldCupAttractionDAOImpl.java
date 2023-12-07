@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
@@ -12,6 +13,7 @@ import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO;
 import com.project.dd.test.worldcup.attraction.mapper.WorldCupAttractionMapper;
 
 @Repository
+@Primary
 public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 
 	@Autowired

@@ -5,10 +5,10 @@ import lombok.Data;
 @Data
 public class MBTIDTO {
 
-	private String mbti_seq;
-	private String result;
-	private String mbti;
-	private String course_seq;
-	private String attraction_seq;
+	private String mbti_seq; // MBTI 번호
+	private String result; // 결과명
+	private String mbti; // MBTI명
+	private String course_seq; // 코스번호
+	private String attraction_seq; // 어트랙션 번호
 	
 }
