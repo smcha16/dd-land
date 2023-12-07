@@ -2,14 +2,14 @@ package com.project.dd.ticket.reservation.mapper;
 
 import java.util.Map;
 
-import com.project.dd.ticket.reservation.domain.TicketGroupReservationDTO;
+import com.project.dd.ticket.reservation.domain.TicketReservationDTO;
 
 public interface TicketReservationMapper {
 
-	int groupReservation(TicketGroupReservationDTO dto);
+	int groupReservation(TicketReservationDTO dto);
 
-	String getGroup();
+	String getGroupSeq();
 
-	int usergroup(Map<String, String> map);
+	int addUserGroup(Map<String, String> map);
 
 }
