@@ -13,7 +13,7 @@ public class MainController {
 		return "main";
 	}
 	
-	@GetMapping(value = "/admin.do")
+	@GetMapping(value = "/admin/index.do")
 	public String admin(Model model) {
 
 		return "admin";
