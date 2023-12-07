@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface WorldCupAttractionService {
 
-    List<AttractionDTO> getAllAttractions(String close);
+    List<AttractionDTO> getAllAttraction();
+    
+    List<AttractionDTO> getRunAttraction(String close);
 
     List<WorldCupAttractionDTO> getAllAWC(String isTest);
 

@@ -17,7 +17,7 @@ public class AdminWorldCupAttractionController {
 	@GetMapping(value = "/admin/test/worldcup/view.do")
 	public String view(Model model, @RequestParam(defaultValue = "n") String close, @RequestParam(defaultValue = "Y") String isTest) {
 
-		model.addAttribute("listAttraction", attractionService.getAllAttractions(close));
+		model.addAttribute("listAttraction", attractionService.getAllAttraction());
 
 		return "admin/test/worldcup/view";
 	}

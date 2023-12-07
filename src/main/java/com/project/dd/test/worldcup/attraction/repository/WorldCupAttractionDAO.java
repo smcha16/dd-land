@@ -7,8 +7,11 @@ import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO;
 
 public interface WorldCupAttractionDAO {
 
-    // 모든 어트랙션 정보 가져오기
-    List<AttractionDTO> getAllAttractions(String close);
+    // 모든 어트랙션 가져오기
+    List<AttractionDTO> getAllAttraction();
+    
+    // 운영중인 어트랙션 가져오기
+    List<AttractionDTO> getRunAttraction(String close);
 
     // 어트랙션 월드컵에 등록된 모든 어트랙션 가져오기
     List<WorldCupAttractionDTO> getAllAWC(String isTest);

@@ -18,8 +18,13 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
     private WorldCupAttractionDAO attractionDAO;
 
     @Override
-    public List<AttractionDTO> getAllAttractions(String close) {
-        return attractionDAO.getAllAttractions(close);
+    public List<AttractionDTO> getAllAttraction() {
+        return attractionDAO.getAllAttraction();
+    }
+    
+    @Override
+    public List<AttractionDTO> getRunAttraction(String close) {
+        return attractionDAO.getRunAttraction(close);
     }
 
     @Override
