@@ -7,7 +7,7 @@ import com.project.dd.activity.attraction.domain.AttractionImgDTO;
 
 public interface AttractionDAO {
 
-	List<AttractionDTO> getAttractionList(String close);
+	List<AttractionDTO> getAttractionList();
 
 	AttractionDTO getAttraction(String seq);
 

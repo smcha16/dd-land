@@ -18,8 +18,8 @@ public class AttractionDAOImpl implements AttractionDAO {
 	AttractionMapper mapper;
 
 	@Override
-	public List<AttractionDTO> getAttractionList(String close) {
-		return mapper.getAttractionList(close);
+	public List<AttractionDTO> getAttractionList() {
+		return mapper.getAttractionList();
 	}
 
 	@Override
@@ -31,6 +31,5 @@ public class AttractionDAOImpl implements AttractionDAO {
 	public List<AttractionImgDTO> getAttractionImgList(String seq) {
 		return mapper.getAttractionImgList(seq);
 	}
-	
-	
+
 }

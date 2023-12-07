@@ -22,13 +22,16 @@ public class UserAttractionController {
 	private AttractionService service;
 	
 	@GetMapping(value = "/view.do")
-	public String view(Model model, @RequestParam(defaultValue = "n") String close) {
+	public String view(Model model) {
 		
 		//Attraction 목록(금일 기준 운영 & 운영종료 제외)
-		List<AttractionDTO> list = service.getAttractionList(close);
+		List<AttractionDTO> list = service.getAttractionList();
+		
+		//운휴인 Attraction 
+		int closeCount = service.getAttractionCloseCount(list);
 		
 		model.addAttribute("list", list);
-//		model.addAttribute("close", close);
+		model.addAttribute("closeCount", closeCount);
 
 		return "user/activity/attraction/view";
 	}
