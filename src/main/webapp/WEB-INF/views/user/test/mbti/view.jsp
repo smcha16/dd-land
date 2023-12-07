@@ -113,7 +113,7 @@
 					<table>
 						<c:forEach items="${listMBTI}" var="dto">
 							<div class="item">
-								<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
+								<div style="background-image: url('/dd/resources/files/test/MBTI/${dto.mbti_img}');"></div>
 								<div>${dto.mbti}</div>
 								<div class="hidden-div">${dto.result}</div>
 							</div>
