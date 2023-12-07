@@ -349,7 +349,6 @@ CREATE TABLE tblAttractionImg (
 	img VARCHAR2(500) DEFAULT 'attraction.png' NOT NULL, /* 이미지 */
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
 );
-SELECT * FROM tblAWC WHERE is_test = 'Y';
 
 /* 어트랙션월드컵 */
 CREATE TABLE tblAWC (
@@ -417,6 +416,7 @@ CREATE TABLE tblMBTI (
 	mbti_seq NUMBER PRIMARY KEY, /* MBTI번호 */
 	result VARCHAR2(500) NOT NULL, /* 결과명 */
 	mbti VARCHAR2(500) NOT NULL, /* MBTI명 */
+	mbti_img VARCHAR2(500), /* MBTI이미지 */
 	course_seq NUMBER REFERENCES tblCourse(course_seq) NOT NULL, /* 코스번호 */
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
 );
