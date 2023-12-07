@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!--  === list ver.3 (운영/운휴 토글버튼) Template -->
 <!-- Font Awesome -->
@@ -237,7 +239,7 @@
 	</div>
 </section>
 <!-- End Menu Section -->
-
+<sec:authentication property="principal.dto" />
 <!-- list3 전용 JavaScript -->
 <script>
 	var itemElements = document.querySelectorAll('.item');

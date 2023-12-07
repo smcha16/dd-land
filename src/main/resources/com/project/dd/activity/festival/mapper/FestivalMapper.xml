@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace == 호출할 Interface 이름 적기 -->
+<mapper namespace="com.project.dd.activity.festival.mapper.FestivalMapper">
+	
+	<!-- id == 인터페이스의 추상메서드의 이름 -->
+	<select id="getFestivalList" parameterType="String" resultType="com.project.dd.activity.festival.domain.FestivalDTO">
+		select * from vwFestivalList
+		<if test="date == 'sysdate'">
+		where to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')
+		</if>
+		<if test="date != 'sysdate'">
+		where #{date} between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')
+		</if>
+	</select>
+	
+	<select id="getFestival" parameterType="String" resultType="com.project.dd.activity.festival.domain.FestivalDTO">
+		select * from vwFestivalOne where festival_seq = #{festival_seq}
+	</select>
+	
+	<select id="getFestivalImgList" parameterType="String" resultType="com.project.dd.activity.festival.domain.FestivalImgDTO">
+		select * from tblFestivalImg where festival_seq = #{festival_seq}
+	</select>
+</mapper>

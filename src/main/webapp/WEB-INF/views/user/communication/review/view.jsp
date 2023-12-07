@@ -5,21 +5,26 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 
 <style>
+	.stats-counter {
+    	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/communication/lost.jpg") center center;
+    	background-size: cover;
+    	background-attachment: fixed;
+    }
 	#pagetitle {
 		margin-top: 70px;
 	}
 	#title {
-		font-size: 48px;
 		display: block;
-		color: #fff;
+		font-size: 48px;
 		font-weight: 700;
+		color: #fff;
 		margin-bottom: 20px;
 	}
 	.munti-content-container {
 		display: flex;
 		flex-wrap: wrap;
-		margin: 30px 50px 0 50px;
 		padding: 0 !important;
+		margin: 30px 50px 0 50px;
 	}
 	.item {
 		position: relative;
@@ -45,7 +50,7 @@
 		background-repeat: no-repeat;
 		border-radius: 10px 10px 0 0;
 	}
-	.item>div:nth-child(2) {
+	.item > div:nth-child(2) {
 		height: 30%;
 		display: flex;
 		flex-direction: column;
@@ -116,17 +121,21 @@
 	.btn.btn-1 input {
 		transition: 0.2s -0.1s;
 	}
+	
 	.btn.btn-1 input:not(:checked) {
 		background: rgba(255, 255, 255, 0.6);
 	}
+	
 	.btn.btn-1 input:not(:checked):before {
 		color: #111;
 		transition: color 0.5s 0.2s;
 	}
+	
 	.btn.btn-1 input:not(:checked):after {
 		color: #111;
 		transition: color 0.5s;
 	}
+	
 	.btn.btn-1 input:not(:checked)+label {
 		left: 24px;
 		/* background: #D2AB21; */
@@ -134,150 +143,118 @@
 		transition: left 0.5s, right 0.4s 0.2s;
 		bottom: 8px;
 	}
+	
 	.btn.btn-1 input:checked {
 		/* background: rgba(215, 62, 62, .7); */
 		background: rgba(255, 255, 255, 0.6)
 	}
+	
 	.btn.btn-1 input:checked::before {
 		color: #111;
 		transition: color 0.5s;
 	}
+	
 	.btn.btn-1 input:checked::after {
 		color: #1E1E1E;
 		transition: color 0.5s 0.2s;
 	}
+	
 	.btn.btn-1 input:checked+label {
 		left: 114px;
 		background: rgba(215, 62, 62, .7);
 		transition: left 0.4s 0.2s, right 0.5s, background 0.35s -0.1s;
 	}
+	
 	/* list photo 변경 */
     .stats-counter {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/img/barcelona-3960566_1280.jpg") center center;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/activity/roller-coaster-7942853_1280.jpg") center center;
       background-size: cover;
       padding: 100px 0;
       background-attachment: fixed;
-    }  
+    }
 </style>
 
+<!-- list3 Main Content -->
 <!-- ======= Stats Counter Section ======= -->
-
 <section id="stats-counter" class="stats-counter">
 	<div id="pagetitle" class="container" data-aos="zoom-out">
 		<div class="gy-4" style="justify-content: center; width: 100%;">
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
 					<div id="title">리뷰</div>
-					<span class="btn btn-1"><input type="checkbox" id="close" value="close"><label for="close"></label></span>
+					<span class="btn btn-1">
+						<input type="checkbox" id="close" name="close" onclick="search()" data-type="n">
+						<label for="close"></label>
+					</span>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
+<!-- End Stats Counter Section -->
 <!-- ======= Menu Section ======= -->
-
 <section id="menu" class="menu">
 	<div class="container" data-aos="fade-up">
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div class="munti-content-container">
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
-					<div class="item">
-						<div style="background-image: url('assets/img/뛰뛰빵빵.jpeg');"></div>
-						<div>어트랙션명</div>
-						<div class="hidden-div">설명</div>
-					</div>
+					<c:forEach items="${list}" var="dto">
+						<div class="item" onclick="location.href= '/dd/user/activity/attraction/detail.do?seq=' + ${dto.attraction_seq};">
+							<div style="background-image: url('/dd/resources/files/activity/attraction/${dto.img}');"></div>
+							<div>${dto.name}</div>
+							<div class="hidden-div">${dto.info}</div>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+<!-- End Menu Section -->
 
+<!-- list3 전용 JavaScript -->
 <script>
 	var itemElements = document.querySelectorAll('.item');
 
 	itemElements.forEach(function(item) {
+		
 		item.addEventListener('mouseover', function() {
+			// 마우스 오버 시 hidden-div를 보이게 변경
 			item.querySelector('.hidden-div').style.display = 'block';
 		});
 
 		item.addEventListener('mouseout', function() {
+			// 마우스 아웃 시 hidden-div를 다시 숨김
 			item.querySelector('.hidden-div').style.display = 'none';
         });
+    
 	});
+	
+	/* 운영/운휴 */
+		
+	const close = '${close}';
+	
+	//CSS 만을 위한 코드
+	if (close == 'y') {
+		$('#close').prop('checked', true);
+    } else {
+        $('#close').prop('checked', false);
+    }
 
-	$('#close').click(function() {
-		//$('form').submit();
-		alert();
-	});
+	//조건에 따른 DB를 가져오기 위한 코드
+	function search() {
+		
+		//처음에 n 이면 클릭 시 y로 변경
+		if ($('#close').prop('checked')) {
+	        $('#close').data('type', 'y');
+			location.href='/dd/user/activity/attraction/view.do?close=' + $('#close').data('type');
+	    } else {
+			//처음에 y면 클릭 시 n으로 변경
+        	$('#close').data('type', 'n');
+			location.href='/dd/user/activity/attraction/view.do'
+	    }
+		
+	}
+	
+
 </script>

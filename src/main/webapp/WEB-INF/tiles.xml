@@ -111,4 +111,6 @@
 		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
 	</definition>
 	
+	
+	
 </tiles-definitions>
