@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import com.project.dd.activity.movie.domain.MovieDTO;
+import com.project.dd.activity.movie.domain.MoviePlayDTO;
 import com.project.dd.activity.movie.mapper.MovieMapper;
 
 @Primary
@@ -24,6 +25,11 @@ public class MovieDAOImpl implements MovieDAO {
 	@Override
 	public MovieDTO getMovie(String seq) {
 		return mapper.getMovie(seq);
+	}
+
+	@Override
+	public List<MoviePlayDTO> getMoviePlayList(String seq) {
+		return mapper.getMoviePlayList(seq);
 	}
 	
 	

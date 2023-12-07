@@ -11,4 +11,12 @@ public class MoviePlayDTO {
 	private String start_date;
 	private String end_date;
 	private String theater_seq;
+	
+	//tblTheater
+	private String name;
+	
+	//tblTheaterLocation
+	private String theater_location_seq;
+	private String lat;
+	private String lng;
 }

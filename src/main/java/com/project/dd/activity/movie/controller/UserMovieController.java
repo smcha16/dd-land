@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.activity.movie.domain.MovieDTO;
+import com.project.dd.activity.movie.domain.MoviePlayDTO;
 import com.project.dd.activity.movie.service.MovieService;
 
 @Controller
@@ -34,6 +35,11 @@ public class UserMovieController {
 	public String detail(Model model, String seq) {
 
 		MovieDTO dto = service.getMovie(seq);
+		
+		List<MoviePlayDTO> plist = service.getMoviePlayList(seq);
+		
+		//dto에 plist 담기
+		dto.setMoviePlayList(plist);
 		
 		model.addAttribute("dto", dto);
 		
