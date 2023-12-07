@@ -4,11 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
-import com.project.dd.shop.giftshop.domain.GiftshopDTO;
+import com.project.dd.shop.giftshop.domain.ShopDTO;
 
-public interface GiftshopMapper {
-
+public interface ShopMapper {
 	@Select("select * from vwGiftshop where lat != 0")
-	public List<GiftshopDTO> getList();
-
+	public List<ShopDTO> getList();
 }
