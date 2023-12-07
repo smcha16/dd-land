@@ -239,6 +239,7 @@
 	</div>
 </section>
 <!-- End Menu Section -->
+
 <!-- list3 전용 JavaScript -->
 <script>
 	var itemElements = document.querySelectorAll('.item');

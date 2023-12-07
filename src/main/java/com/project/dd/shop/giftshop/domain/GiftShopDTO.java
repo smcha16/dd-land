@@ -1,5 +1,16 @@
 package com.project.dd.shop.giftshop.domain;
 
-public class GiftShopDTO {
+import lombok.Data;
 
+@Data
+public class GiftshopDTO {
+	private String shop_seq;
+	private String name;
+	private String time;
+	private String info;
+	private String tel;
+	private String close;
+	private String lat;
+	private String lng;
+	private String img;
 }
