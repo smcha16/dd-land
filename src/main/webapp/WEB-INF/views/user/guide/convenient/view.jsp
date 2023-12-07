@@ -58,11 +58,12 @@
 	  height: 30%;
 	  display: flex;
 	  flex-direction: column;
-	  padding: 20px;
+	  padding: 46px;
 	  font-size: 1.3rem;
 	  font-weight: bold;
 	  background: transparent;
 	  border-radius: 0 0 10px 10px;
+	  text-align : center;
 	}
 	.hidden-div {
 	      display: none;
@@ -70,17 +71,19 @@
 	      position: absolute;
 	      top: 0;
 	      left: 0;
-	        width: 100%;
-	        height: 70%;
-	        padding: 20px;
-	        background-color: black;
-	        opacity: 0.65; /* 투명도 조절 */
-	        border-radius: 10px 10px 0 0;
-	        z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
+	      width: 100%;
+	      height: 70%;
+	      padding: 20px;
+	      background-color: black;
+	      opacity: 0.75; /* 투명도 조절 */
+	      border-radius: 10px 10px 0 0;
+	      z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
+	      font-size: 20px;
+	      text-align:center;
+	      font-weight:bolder;
 	}
-	
 	.stats-counter {
-       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/lost/lost-main.jpg") center center;
+       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/guide/convenient.jpg") center center;
        background-size: cover;
        background-attachment: fixed;
     }
@@ -107,15 +110,17 @@
     <!-- ======= Menu Section ======= -->
     <section id="menu" class="menu">
       <div class="container" data-aos="fade-up">
+
         <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+
           <div class="tab-pane fade active show" id="menu-starters">
-			<div class="munti-content-container">
+
+            <div class="munti-content-container">
 			<c:forEach items="${list}" var="dto">
 				<div class="item">
-					<div style="background-image: url('/ddstudio/asset/image/convenient/${dto.img}');"></div>
+					<div style="background-image: url('/dd/resources/files/guide/convenient/${dto.img}');"></div>
 					<div style="color:black;">${dto.name}</div>
-					<div style="color:black;">운영시간 : ${dto.time}</div>
-					<div style="color:black;">전화번호 : ${dto.tel}</div>
+					<div class="hidden-div">운영시간 : ${dto.time} <br> 전화번호 : ${dto.tel}</div>
 				</div>
 				</c:forEach>
 			</div>
