@@ -19,7 +19,7 @@ public class CustomUser extends User {
 	}
 	
 	public CustomUser(LoginDTO dto) {
-		super(dto.getEmail(), dto.getPw(), Collections.singletonList(new SimpleGrantedAuthority(dto.getLv())));
+		super(dto.getEmail(), dto.getPw(), Collections.singletonList(new SimpleGrantedAuthority(dto.getAuth())));
 	
 		
 		this.dto = dto;
