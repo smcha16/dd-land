@@ -31,23 +31,12 @@ public class UserConvenientController {
 	}
 
 	
-	/*
-	 * 
-	 * 
-	 * @GetMapping(value = "/view.do") public String view(Model model) {
-	 * List<ConvenientDTO> list = mapper.list();
-	 * 
-	 * model.addAttribute("list", list);
-	 * 
-	 * return "user/guide/convenient/view"; }
-	 * 
-	 * @GetMapping(value = "/detail.do") public String detail(Model model) {
-	 * //seq가져오기
-	 * 
-	 * return "user/guide/convenient/detail"; }
-	 */
+	@GetMapping(value = "/detail.do")
+	public String detail(Model model, String seq) {  //detail 보여줄 seq같이 가져오기
+		
+		
 
+		return "user/guide/convenient/detail";
+	}
 
-	
-	
 }
