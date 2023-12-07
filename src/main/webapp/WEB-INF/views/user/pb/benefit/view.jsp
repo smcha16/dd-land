@@ -220,7 +220,7 @@
 					</ul>
 
 					<c:forEach items="${list}" var="dto">
-						<div class="item" id="tab00">
+						<div class="item" id="tab00" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
 							<div>${dto.name}</div>
@@ -230,7 +230,7 @@
 					</c:forEach>
 			
 					<c:forEach items="${normalList}" var="dto">
-						<div class="item" id="tab01">
+						<div class="item" id="tab01" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
 							<div>${dto.name}</div>
@@ -241,7 +241,7 @@
 			
 			
 					<c:forEach items="${cardList}" var="dto">
-						<div class="item" id="tab02">
+						<div class="item" id="tab02" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
 							<div>${dto.name}</div>
