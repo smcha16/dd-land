@@ -211,7 +211,7 @@
 		<div class="image-slider">
 			<c:forEach items="${dto.imgList}" var="dto">
 				<div>
-					<img src="/dd/resources/files/activity/attraction/${dto.img}" alt="Image">
+					<img src="/dd/resources/files/activity/festival/${dto.img}" alt="Image">
 				</div>
 			</c:forEach>
 		</div>
