@@ -14,6 +14,10 @@
   		background: #fff; /* 배경색을 흰색으로 설정 */
   		border: 1px solid var(--color-primary); /* 테두리 색상을 프라이머리 컬러로 설정 */
 	}
+	
+	span {
+		cursor: pointer;
+	}
 </style>
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -27,13 +31,13 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li class="dropdown"><a href="#"><span>요금/혜택</span></a>
+          <li class="dropdown"><a><span>요금/혜택</span></a>
           	<ul>
               <li><a href="/dd/user/pb/price/view.do">요금</a></li>
               <li><a href="/dd/user/pb/benefit/view.do">혜택</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>액티비티</span></a>
+          <li class="dropdown"><a><span>액티비티</span></a>
           	<ul>
               <li><a href="/dd/user/activity/attraction/view.do">어트랙션</a></li>
               <li><a href="/dd/user/activity/movie/view.do">영화</a></li>
@@ -41,7 +45,7 @@
               <li><a href="/dd/user/activity/photozone/view.do">포토존</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>추천</span></a>
+          <li class="dropdown"><a><span>추천</span></a>
           	<ul>
               <li class="dropdown"><a href="#"><span>DD 월드컵</span><i class="bi bi-chevron-down dropdown-indicator"></i></a>
               	<ul>
@@ -52,13 +56,13 @@
               <li><a href="/dd/user/test/mbti/view.do">MBTI 추천</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>샵</span></a>
+          <li class="dropdown"><a><span>샵</span></a>
           	<ul>
               <li><a href="/dd/user/shop/restaurant/view.do">식당</a></li>
               <li><a href="/dd/user/shop/gift-shop/view.do">기프트샵</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>이용가이드</span></a>
+          <li class="dropdown"><a><span>이용가이드</span></a>
           	<ul>
               <li><a href="/dd/user/guide/use-guide/view.do">파크 이용안내</a></li>
               <li><a href="/dd/user/guide/convenient/view.do">편의시설</a></li>
@@ -66,7 +70,7 @@
               <li><a href="/dd/user/guide/guide-map/view.do">가이드맵</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>소통</span> </a>
+          <li class="dropdown"><a><span>소통</span> </a>
             <ul>
               <li><a href="/dd/user/communication/notice/view.do">공지사항</a></li>
               <li class="dropdown"><a href="#"><span>고객소리함</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -81,7 +85,7 @@
             </ul>
           </li>
           <li><a href="/dd/user/search/view.do"><span>검색</span></a></li>
-          <li class="dropdown"><a href="#"><span>예매</span></a>
+          <li class="dropdown"><a><span>예매</span></a>
           	<ul>
               <li><a href="/dd/member/ticket/personal-reservation/view.do">개인 예매</a></li>
               <li><a href="/dd/member/ticket/group-reservation/view.do">단체 예매</a></li>
@@ -124,14 +128,4 @@
 	</script>
 	-->
   
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-      var dropdownLinks = document.querySelectorAll('span');
-
-      dropdownLinks.forEach(function(link) {
-        link.addEventListener('click', function(event) {
-          event.preventDefault(); // 기본 동작 막기
-        });
-      });
-    });
-  </script>
+  
