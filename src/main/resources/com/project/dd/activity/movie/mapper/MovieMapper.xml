@@ -5,5 +5,25 @@
 <mapper namespace="com.project.dd.activity.movie.mapper.MovieMapper">
 	
 	<!-- id == 인터페이스의 추상메서드의 이름 -->
+	<select id="getMovieList" parameterType="String" resultType="com.project.dd.activity.movie.domain.MovieDTO">
+		<if test="date == 'sysdate'">
+		select * from vwMovieList
+		</if>
+		<if test="date != 'sysdate'">
+		select a.* from tblMovie a
+		where exists (select 'O' from tblMoviePlay b 
+						where #{date}
+							between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')
+						and b.movie_seq = a.movie_seq 
+						and not exists(select 'O' from tblTheaterClose 
+										where #{date}
+											between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')
+										and theater_seq = b.theater_seq))
+		</if>
+	</select>
+	
+	<select id="getMovie" parameterType="String" resultType="com.project.dd.activity.movie.domain.MovieDTO">
+		select * from vwMovieOne where movie_seq = #{movie_seq}
+	</select>
 	
 </mapper>
