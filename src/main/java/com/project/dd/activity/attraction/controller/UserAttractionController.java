@@ -28,7 +28,7 @@ public class UserAttractionController {
 		List<AttractionDTO> list = service.getAttractionList(close);
 		
 		model.addAttribute("list", list);
-		model.addAttribute("close", close);
+//		model.addAttribute("close", close);
 
 		return "user/activity/attraction/view";
 	}
