@@ -3,7 +3,7 @@ package com.project.dd.shop.giftshop.domain;
 import lombok.Data;
 
 @Data
-public class GiftshopDTO {
+public class ShopDTO {
 	private String shop_seq;
 	private String name;
 	private String time;
