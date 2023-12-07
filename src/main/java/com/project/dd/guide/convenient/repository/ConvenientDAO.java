@@ -8,4 +8,6 @@ public interface ConvenientDAO {
 
 	List<ConvenientDTO> list();
 
+	ConvenientDTO one(String seq);
+
 }

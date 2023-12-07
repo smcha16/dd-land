@@ -8,4 +8,6 @@ public interface ConvenientMapper {
 
 	List<ConvenientDTO> list();
 
+	ConvenientDTO one(String seq);
+
 }

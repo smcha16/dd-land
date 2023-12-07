@@ -20,6 +20,13 @@ public class ConvenientDAOImpl implements ConvenientDAO{
 	public List<ConvenientDTO> list() {
 		return mapper.list();
 	}
+
+	@Override
+	public ConvenientDTO one(String seq) {
+		return mapper.one(seq);
+	}
+
+	
 	
 	
 	

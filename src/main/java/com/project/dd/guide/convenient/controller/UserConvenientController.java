@@ -34,8 +34,9 @@ public class UserConvenientController {
 	@GetMapping(value = "/detail.do")
 	public String detail(Model model, String seq) {  //detail 보여줄 seq같이 가져오기
 		
-		model.addAttribute("list", convenientService.list(seq));  //선택한 seq를 가지고 있는 리스트 불러오기를 Service에게 위임.
-
+		ConvenientDTO dto = convenientService.one(seq);   //선택한 편의시설 데이터 1개
+		
+		
 		return "user/guide/convenient/detail";
 	}
 

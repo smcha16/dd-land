@@ -17,6 +17,10 @@ public class ConvenientService {
 	public List<ConvenientDTO> list() {
 		return convenientDao.list();
 	}
+
+	public ConvenientDTO one(String seq) {
+		return convenientDao.one(seq);
+	}
 	
 	 
 	

@@ -8,5 +8,9 @@
 		select c.convenient_seq, c.name, c.time, c.tel, c.img, cl.lat, cl.lng from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq=cl.convenient_seq
 	</select>
 	
+	<select id="one" resultType="com.project.dd.guide.convenient.domain.ConvenientDTO">
+		select c.convenient_seq, c.name, c.time, c.tel, c.img, cl.lat, cl.lng from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq=cl.convenient_seq where seq=#{seq}
+	</select>
+	
 
 </mapper>
