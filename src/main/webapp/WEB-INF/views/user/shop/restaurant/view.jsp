@@ -239,7 +239,6 @@
 	</div>
 </section>
 <!-- End Menu Section -->
-<sec:authentication property="principal.dto" />
 <!-- list3 전용 JavaScript -->
 <script>
 	var itemElements = document.querySelectorAll('.item');
