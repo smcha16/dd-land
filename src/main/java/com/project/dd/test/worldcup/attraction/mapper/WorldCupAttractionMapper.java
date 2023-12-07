@@ -7,16 +7,16 @@ import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO;
 
 public interface WorldCupAttractionMapper {
 
-	//월드컵에 등록된 운영중인 어트랙션 리스트 조회
-	List<AttractionDTO> listAttraction(String close);
-	
-	//어트랙션 월드컵에 등록된 어트랙션 리스트 조회
-	List<WorldCupAttractionDTO> listAWC(String isTest);
-	
-	//어트랙션 월드컵 승리 리스트 조회
-	List<WorldCupAttractionDTO> listAWCWin();
-	
-	//어트랙션 월드컵 최종 승리 리스트 조회
-	List<WorldCupAttractionDTO> listAWCFinalWin();
-	
+    // 어트랙션 리스트 조회
+    List<AttractionDTO> listAttraction(String close);
+
+    // 모든 어트랙션 월드컵 정보 조회
+    List<WorldCupAttractionDTO> getAllAWC(String isTest);
+
+    // 모든 어트랙션 월드컵 승리 정보 조회
+    List<WorldCupAttractionDTO> getAllAWCWin();
+
+    // 모든 어트랙션 월드컵 최종 승리 정보 조회
+    List<WorldCupAttractionDTO> getAllAWCFinalWin();
+
 }
