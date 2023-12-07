@@ -77,7 +77,7 @@
 		
 		<c:if test="${dto.attach != null}">
 			<tr>
-				<td id="attach"><img src="/dd/resources/files/communication/notice/${dto.attach}"></td>
+				<td id="attach"><img src="/dd/resources/files/communication/notice/${dto.attach}" alt="Image"></td>
 			</tr>
 		</c:if>
 	</table>
