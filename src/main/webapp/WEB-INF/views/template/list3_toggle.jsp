@@ -311,12 +311,4 @@
         });
     
 	});
-	
-	/* 체크박스 클릭 시 form태그로 전송 역할 */
-	$('#close').click(function() {
-		//$('form').submit();
-		alert();
-	});
-	
-	
 </script>

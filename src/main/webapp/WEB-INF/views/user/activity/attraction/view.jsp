@@ -65,6 +65,10 @@
 		border-radius: 0 0 10px 10px;
 	}
 	
+	.hidden {
+		display: none;
+	}
+	
 	.hidden-div {
 		display: none;
 		color: white;
@@ -195,7 +199,7 @@
 				<div class="stats-item text-center w-100 h-100">
 					<div id="title">Attraction</div>
 					<span class="btn btn-1">
-						<input type="checkbox" id="close" name="close" onclick="search()" data-type="n">
+						<input type="checkbox" id="close" name="close">
 						<label for="close"></label>
 					</span>
 				</div>
@@ -211,11 +215,20 @@
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div class="munti-content-container">
 					<c:forEach items="${list}" var="dto">
-						<div class="item" onclick="location.href= '/dd/user/activity/attraction/detail.do?seq=' + ${dto.attraction_seq};">
-							<div style="background-image: url('/dd/resources/files/activity/attraction/${dto.img}');"></div>
-							<div>${dto.name}</div>
-							<div class="hidden-div">${dto.info}</div>
-						</div>
+						<c:if test="${dto.close == 'y'}">
+							<div class="item hidden" onclick="location.href= '/dd/user/activity/attraction/detail.do?seq=' + ${dto.attraction_seq};">
+								<div style="background-image: url('/dd/resources/files/activity/attraction/${dto.img}');"></div>
+								<div>${dto.name}</div>
+								<div class="hidden-div">${dto.info}</div>
+							</div>
+						</c:if>
+						<c:if test="${dto.close == 'n'}">
+							<div class="item" onclick="location.href= '/dd/user/activity/attraction/detail.do?seq=' + ${dto.attraction_seq};">
+								<div style="background-image: url('/dd/resources/files/activity/attraction/${dto.img}');"></div>
+								<div>${dto.name}</div>
+								<div class="hidden-div">${dto.info}</div>
+							</div>
+						</c:if>
 					</c:forEach>
 				</div>
 			</div>
@@ -243,8 +256,24 @@
 	});
 	
 	/* 운영/운휴 */
+	$('#close').change(function() {
+	    console.log("Change event triggered");
+	    
+	    itemElements.forEach(function(item) {
+	        console.log("Item display:", item.style.display);
+	        
+	        if (item.classList.contains('hidden')) {
+	            console.log("Removing hidden class");
+	            item.classList.remove('hidden');
+	        } else {
+	            console.log("Adding hidden class");
+	            item.classList.add('hidden');
+	        }
+	    });
+	});
+	
 		
-	const close = '${close}';
+/* 	const close = '${close}';
 	
 	//CSS 만을 위한 코드
 	if (close == 'y') {
@@ -266,7 +295,7 @@
 			location.href='/dd/user/activity/attraction/view.do'
 	    }
 		
-	}
+	} */
 	
 
 </script>

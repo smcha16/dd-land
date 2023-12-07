@@ -1,0 +1,25 @@
+package com.project.dd.ticket.reservation.domain;
+
+import lombok.Data;
+
+@Data
+public class TicketReservationDTO {
+	// Group
+	private String user_group_book_seq;
+	private String user_seq;
+	private String group_book_seq;
+	private String book_date;
+	private String group_division;
+	private String region;
+	private String group_name;
+	private String address;
+	private String visit_date;
+	private String visit_time;
+	
+	// Single
+	private String ticket_book_seq;
+	private String ea;
+	private String price;
+	private String ticket_seq;
+	private String benefit_seq;
+}
