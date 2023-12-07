@@ -8,4 +8,6 @@ public interface MypageTicketMapper {
 
 	List<TicketDTO> list();
 
+	void delete(String ticketId);
+
 }

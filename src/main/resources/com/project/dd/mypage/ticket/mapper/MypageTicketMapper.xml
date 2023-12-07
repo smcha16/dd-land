@@ -7,5 +7,9 @@
 	<select id="list" parameterType="String" resultType="com.project.dd.mypage.ticket.domain.TicketDTO">
 		select * from vwUserBook
 	</select>
+	
+	<delete id="delete" parameterType="Long">
+    DELETE FROM tbluserbook where user_book_seq = #{ticketId}
+	</delete>
 
 </mapper>
