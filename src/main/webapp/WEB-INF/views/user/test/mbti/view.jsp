@@ -52,7 +52,7 @@
 	height: 70%;
 	background-color: transparent;
 	background-size: cover;
-	background-position: center;
+	/* background-position: center; */
 	background-repeat: no-repeat;
 	border-radius: 10px 10px 0 0;
 }
