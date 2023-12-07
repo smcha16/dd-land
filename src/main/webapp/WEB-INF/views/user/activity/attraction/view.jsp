@@ -280,8 +280,7 @@
 			</c:forEach>
 		</ul>
 	</nav>
-
-
+	
 </section>
 <!-- End Menu Section -->
 
@@ -307,12 +306,13 @@
 	$('#close').change(function() {
 		console.log("Change event triggered");
 
-		console.log($('#close-img').css('display'));
 		/* 운휴 이미지 토글 */
 		if ($('#close-img').css('display') == 'none') {
 			$('#close-img').css('display', 'flex');
+			$('#page-bar').css('display', 'none');
 		} else {
 			$('#close-img').css('display', 'none')
+			$('#page-bar').css('display', 'block');
 		}
 		
 		itemElements.forEach(function(item) {
@@ -329,27 +329,29 @@
 		});
 	});
 
-	/* 	const close = '${close}';
+	/* 	
+	const close = '${close}';
 	
 	 //CSS 만을 위한 코드
 	 if (close == 'y') {
-	 $('#close').prop('checked', true);
+	 	$('#close').prop('checked', true);
 	 } else {
-	 $('#close').prop('checked', false);
+		 $('#close').prop('checked', false);
 	 }
 
 	 //조건에 따른 DB를 가져오기 위한 코드
 	 function search() {
 	
-	 //처음에 n 이면 클릭 시 y로 변경
-	 if ($('#close').prop('checked')) {
-	 $('#close').data('type', 'y');
-	 location.href='/dd/user/activity/attraction/view.do?close=' + $('#close').data('type');
-	 } else {
-	 //처음에 y면 클릭 시 n으로 변경
-	 $('#close').data('type', 'n');
-	 location.href='/dd/user/activity/attraction/view.do'
-	 }
+		 //처음에 n 이면 클릭 시 y로 변경
+		 if ($('#close').prop('checked')) {
+		 $('#close').data('type', 'y');
+		 location.href='/dd/user/activity/attraction/view.do?close=' + $('#close').data('type');
+		 } else {
+		 //처음에 y면 클릭 시 n으로 변경
+		 $('#close').data('type', 'n');
+		 location.href='/dd/user/activity/attraction/view.do'
+		 }
 	
-	 } */
+	 }
+	 */
 </script>

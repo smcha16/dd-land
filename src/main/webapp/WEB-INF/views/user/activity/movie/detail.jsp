@@ -64,6 +64,7 @@
 	
 	section:last-of-type {
 		padding-top: 30px;
+		padding-bottom: 30px;
 	}
 	
 	.close-container {
@@ -180,24 +181,16 @@
 	}
 	/* 버튼 */
 	#button {
-		position: relative;
-		width: 950px;
-		margin: 0 auto;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 50px;
 	}
 	#back-button {
-		position: absolute;
 		background-color: #CE1212;
 		border-color: #CE1212;
-		left: 0;
 	}
 	#back-button i {
 		margin-right: 7px;
-	}
-	div#reservation-btn {
-		display: flex;
-		justify-content: center;
-	}	
-	div#reservation-btn > button {
 	}
 </style>
 
@@ -259,10 +252,12 @@
 			<div id="map" style="width: 950px; height: 400px;"></div>
 		</div>
 	</div>
-	<div id="button">
-		<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/activity/photozone/view.do';"><i class="bi bi-list"></i>목록</button>
-	</div>
 </section>
+
+<!-- 목록보기 버튼 -->
+<div id="button">
+	<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/activity/photozone/view.do';"><i class="bi bi-list"></i>목록</button>
+</div>
 
 <!-- view2 Template 전용 JavaScript -->
 <!-- Kakao Map Open API -->

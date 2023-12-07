@@ -24,7 +24,8 @@ public class UserAttractionController {
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 
-		Map<String, String> map = service.paging(page);  //페이징
+		//페이징
+		Map<String, String> map = service.paging(page);
 		
 		//Attraction 목록(금일 기준 운영 & 운영종료 제외)
 		List<AttractionDTO> list = service.getAttractionList(map);
@@ -32,11 +33,11 @@ public class UserAttractionController {
 		//운휴인 Attraction 
 		int closeCount = service.getAttractionCloseCount(list);
 		
-		System.out.println(closeCount);
+		//페이징
+		model.addAttribute("currentPage", page);
+		model.addAttribute("map", map);
 		
-		model.addAttribute("currentPage", page);  //페이징
-		model.addAttribute("map", map);  //페이징
-		
+		//어트 목록, 운휴 어트 개수 전달
 		model.addAttribute("list", list);
 		model.addAttribute("closeCount", closeCount);
 

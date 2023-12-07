@@ -64,6 +64,7 @@
 	
 	section:last-of-type {
 		padding-top: 30px;
+		padding-bottom: 30px;
 	}
 	
 	.close-container {
@@ -180,15 +181,13 @@
 	}
 	/* 버튼 */
 	#button {
-		position: relative;
-		width: 950px;
-		margin: 0 auto;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 50px;
 	}
 	#back-button {
-		position: absolute;
 		background-color: #CE1212;
 		border-color: #CE1212;
-		left: 0;
 	}
 	#back-button i {
 		margin-right: 7px;
@@ -196,8 +195,16 @@
 	div#reservation-btn {
 		display: flex;
 		justify-content: center;
+		padding: 20px;
 	}	
 	div#reservation-btn > button {
+		padding: 13px 15px;
+		background: #b71c1c;
+		border: #b71c1c;
+		border-radius: 7px;
+		color: #FFF;
+		font-weight: bold;
+		font-size: 17px;
 	}
 </style>
 
@@ -222,6 +229,11 @@
 	</div>
 </section>
 <!-- End Title & Image Section -->
+
+<!-- 어트랙션 예약 버튼 -->
+<div id="reservation-btn">
+	<button type="button" onclick="location.href='/reservation.do?seq=${dto.attraction_seq}'">어트랙션 예약하기 <i class="bi bi-hand-index-thumb-fill"></i></button>
+</div>
 
 <!-- ======= 상세정보 Section ======= -->
 <!-- 운휴일정, 운영시간, 탑승인원, 이용정보 -->
@@ -268,12 +280,11 @@
 			<div id="map" style="width: 950px; height: 400px;"></div>
 		</div>
 	</div>
-	<div id="button">
-		<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/activity/attraction/view.do';"><i class="bi bi-list"></i>목록</button>
-	</div>
 </section>
-<div id="reservation-btn">
-	<button type="button" onclick="location.href='/reservation.do?seq=${dto.attraction_seq}'">어트랙션 예약하기</button>
+
+<!-- 목록보기 버튼 -->
+<div id="button">
+	<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/activity/attraction/view.do';"><i class="bi bi-list"></i>목록</button>
 </div>
 
 <!-- view2 Template 전용 JavaScript -->
@@ -298,7 +309,7 @@
 	const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
 	//마커 출력
-	let imageSrc = '/ddstudio/asset/image/marker/attraction_marker2.png'; // 마커이미지의 주소
+	let imageSrc = '/dd/resources/files/marker/attraction_marker2.png'; // 마커이미지의 주소
 	const imageSize = new kakao.maps.Size(40,40);
 	const option = {};
 
@@ -306,7 +317,7 @@
 	const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
 
 	const m1 = new kakao.maps.Marker({
-		position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng}), /* < 좌측 값은 테스트용 임시 ${location_dto.lat}, ${location_dto.lng} */
+		position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng}),
 		image: markerImg
 	});
 
