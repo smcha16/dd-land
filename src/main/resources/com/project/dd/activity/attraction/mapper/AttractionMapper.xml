@@ -5,8 +5,11 @@
 <mapper namespace="com.project.dd.activity.attraction.mapper.AttractionMapper">
 	
 	<!-- id == 인터페이스의 추상메서드의 이름 -->
-	<select id="getAttractionList" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		select * from vwAttractionList 
+	<select id="getAttractionList" parameterType="map" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		select *
+		from (select n.*, rownum as rnum from
+				(select * from vwAttractionList) n)
+		where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
 	<select id="getAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
@@ -16,5 +19,10 @@
 	<select id="getAttractionImgList" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionImgDTO">
 		select * from tblAttractionImg where attraction_seq = #{attraction_seq}
 	</select>
+	
+	<!-- 페이징 -->
+	<select id="getTotalCount" resultType="int">
+      select count(*) from vwAttractionList
+   </select>
 	
 </mapper>

@@ -1,6 +1,7 @@
 package com.project.dd.activity.attraction.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -18,8 +19,8 @@ public class AttractionDAOImpl implements AttractionDAO {
 	AttractionMapper mapper;
 
 	@Override
-	public List<AttractionDTO> getAttractionList() {
-		return mapper.getAttractionList();
+	public List<AttractionDTO> getAttractionList(Map<String, String> map) {
+		return mapper.getAttractionList(map);
 	}
 
 	@Override
@@ -30,6 +31,11 @@ public class AttractionDAOImpl implements AttractionDAO {
 	@Override
 	public List<AttractionImgDTO> getAttractionImgList(String seq) {
 		return mapper.getAttractionImgList(seq);
+	}
+
+	@Override
+	public int getTotalCount() {
+		return mapper.getTotalCount();
 	}
 
 }

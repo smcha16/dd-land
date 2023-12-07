@@ -5,8 +5,14 @@
 <mapper namespace="com.project.dd.activity.photozone.mapper.PhotoZoneMapper">
 	
 	<!-- id == 인터페이스의 추상메서드의 이름 -->
-	<select id="getPhotozoneList" resultType="com.project.dd.activity.photozone.domain.PhotoZoneDTO">
+	<select id="getPhotozoneList" parameterType="map" resultType="com.project.dd.activity.photozone.domain.PhotoZoneDTO">
+		select *
+      from (select n.*, rownum as rnum from (
+		
 		select * from vwPhotozoneList
+		
+		) n)
+      where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
 	<select id="getPhotozone" parameterType="String" resultType="com.project.dd.activity.photozone.domain.PhotoZoneDTO">
@@ -16,5 +22,10 @@
 	<select id="getPhotozoneImgList" parameterType="String" resultType="com.project.dd.activity.photozone.domain.PhotoZoneImgDTO">
 		select * from tblPhotozoneImg where photozone_seq = #{photozone_seq}
 	</select>
+	
+	<!-- 페이징 -->
+	<select id="getTotalCount" resultType="int">
+      select count(*) from vwPhotozoneList
+   </select>
 	
 </mapper>
