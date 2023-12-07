@@ -1,12 +1,11 @@
-package com.project.dd.communication.lost.mapper;
+package com.project.dd.communication.lost.repository;
 
 import java.util.List;
 import java.util.Map;
 
 import com.project.dd.communication.lost.domain.LostPropertyDTO;
-import com.project.dd.communication.notice.domain.NoticeDTO;
 
-public interface LostPropertyMapper {
+public interface LostPropertyDAO {
 
 	int getTotalCount();
 

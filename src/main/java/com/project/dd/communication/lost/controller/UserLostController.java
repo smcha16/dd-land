@@ -1,6 +1,5 @@
 package com.project.dd.communication.lost.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,50 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.communication.lost.domain.LostPropertyDTO;
-import com.project.dd.communication.lost.mapper.LostPropertyMapper;
+import com.project.dd.communication.lost.service.LostPropertyService;
 
 @Controller
+@RequestMapping("/user/communication/lost-property")
 public class UserLostController {
 	
 	@Autowired
-	private LostPropertyMapper mapper;
+	private LostPropertyService service;
 	
-	@GetMapping(value = "/user/communication/lost-property/view.do")
+	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 		
-		int pageSize = 10;
+		Map<String, String> map = service.paging(page);
 		
-		int startIndex = (page - 1) * pageSize + 1;
-		int endIndex = startIndex + pageSize - 1;
+		List<LostPropertyDTO> list = service.getLostPropertyList(map);
 		
-		Map<String, String> map = new HashMap<String, String>();
-
-		map.put("startIndex", String.format("%d", startIndex));
-		map.put("endIndex", String.format("%d", endIndex));
-		
-		int totalPosts = mapper.getTotalCount(map);
-		int totalPages = (int)Math.ceil((double)totalPosts / pageSize);
-		
-		List<LostPropertyDTO> list = mapper.getLostPropertyList(map);
-		
-		for (LostPropertyDTO dto : list) {
-			
-			String lostDate = dto.getLost_property_date();
-			
-			lostDate = lostDate.substring(0, 10);
-			
-			dto.setLost_property_date(lostDate);
-			
-		}
-
-		model.addAttribute("list", list);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
-		model.addAttribute("totalPosts", totalPosts);
-		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("list", list);
 
 		return "user/communication/lost-property/view";
 

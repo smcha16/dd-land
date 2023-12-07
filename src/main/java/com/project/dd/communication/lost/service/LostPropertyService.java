@@ -1,4 +1,4 @@
-package com.project.dd.communication.notice.service;
+package com.project.dd.communication.lost.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,17 +7,17 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.dd.communication.notice.domain.NoticeDTO;
-import com.project.dd.communication.notice.repository.NoticeDAO;
+import com.project.dd.communication.lost.domain.LostPropertyDTO;
+import com.project.dd.communication.lost.repository.LostPropertyDAO;
 
 @Service
-public class NoticeService {
+public class LostPropertyService {
 	
 	@Autowired
-	private NoticeDAO dao;
+	private LostPropertyDAO dao;
 
 	public Map<String, String> paging(int page) {
-		
+
 		int pageSize = 10;
 		
 		int startIndex = (page - 1) * pageSize + 1;
@@ -38,35 +38,21 @@ public class NoticeService {
 		
 	}
 
-	public List<NoticeDTO> getNoticeList(Map<String, String> map) {
+	public List<LostPropertyDTO> getLostPropertyList(Map<String, String> map) {
 		
-		List<NoticeDTO> list = dao.getNoticeList(map);
+		List<LostPropertyDTO> list = dao.getLostPropertyList(map);
 
-		for (NoticeDTO dto : list) {
+		for (LostPropertyDTO dto : list) {
 			
-			String regdate = dto.getRegdate();
+			String lostDate = dto.getLost_property_date();
 			
-			regdate = regdate.substring(0, 10);
+			lostDate = lostDate.substring(0, 10);
 			
-			dto.setRegdate(regdate);
+			dto.setLost_property_date(lostDate);
 			
 		}
 		
 		return list;
-		
-	}
-
-	public NoticeDTO getNotice(String seq) {
-		
-		NoticeDTO dto = dao.getNotice(seq);
-
-		String regdate = dto.getRegdate();
-		
-		regdate = regdate.substring(0, 10);
-		
-		dto.setRegdate(regdate);
-		
-		return dto;
 		
 	}
 

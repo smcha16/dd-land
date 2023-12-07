@@ -1,11 +1,11 @@
-package com.project.dd.communication.review.mapper;
+package com.project.dd.communication.review.repository;
 
 import java.util.List;
 import java.util.Map;
 
 import com.project.dd.communication.review.domain.ReviewDTO;
 
-public interface ReviewMapper {
+public interface ReviewDAO {
 
 	int getTotalCount();
 

@@ -1,11 +1,11 @@
-package com.project.dd.communication.faq.mapper;
+package com.project.dd.communication.faq.repository;
 
 import java.util.List;
 import java.util.Map;
 
 import com.project.dd.communication.faq.domain.FaqDTO;
 
-public interface FaqMapper {
+public interface FaqDAO {
 
 	int getTotalCount(String type);
 

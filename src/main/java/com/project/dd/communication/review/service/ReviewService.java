@@ -1,4 +1,4 @@
-package com.project.dd.communication.notice.service;
+package com.project.dd.communication.review.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,22 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.dd.communication.notice.domain.NoticeDTO;
-import com.project.dd.communication.notice.repository.NoticeDAO;
+import com.project.dd.communication.review.domain.ReviewDTO;
+import com.project.dd.communication.review.repository.ReviewDAO;
 
 @Service
-public class NoticeService {
+public class ReviewService {
 	
 	@Autowired
-	private NoticeDAO dao;
+	private ReviewDAO dao;
 
-	public Map<String, String> paging(int page) {
+	public Map<String, String> paging(String order, int page) {
 		
-		int pageSize = 10;
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("order", order);
+
+		int pageSize = 9;
 		
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
-		
-		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
@@ -38,11 +41,11 @@ public class NoticeService {
 		
 	}
 
-	public List<NoticeDTO> getNoticeList(Map<String, String> map) {
+	public List<ReviewDTO> getReviewList(Map<String, String> map) {
 		
-		List<NoticeDTO> list = dao.getNoticeList(map);
+		List<ReviewDTO> list = dao.getReviewList(map);
 
-		for (NoticeDTO dto : list) {
+		for (ReviewDTO dto : list) {
 			
 			String regdate = dto.getRegdate();
 			
@@ -56,15 +59,17 @@ public class NoticeService {
 		
 	}
 
-	public NoticeDTO getNotice(String seq) {
+	public ReviewDTO getReview(String seq) {
 		
-		NoticeDTO dto = dao.getNotice(seq);
+		ReviewDTO dto = dao.getReview(seq);
 
-		String regdate = dto.getRegdate();
-		
-		regdate = regdate.substring(0, 10);
+		String regdate = dto.getRegdate().substring(0, 10);
 		
 		dto.setRegdate(regdate);
+		
+		String visit_date = dto.getVisit_date().substring(0, 10);
+		
+		dto.setVisit_date(visit_date);
 		
 		return dto;
 		

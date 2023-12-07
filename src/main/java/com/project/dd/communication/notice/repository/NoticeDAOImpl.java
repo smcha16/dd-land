@@ -18,9 +18,9 @@ public class NoticeDAOImpl implements NoticeDAO {
 	private NoticeMapper mapper;
 
 	@Override
-	public int getTotalCount(Map<String, String> map) {
+	public int getTotalCount() {
 		
-		return mapper.getTotalCount(map);
+		return mapper.getTotalCount();
 		
 	}
 
@@ -32,7 +32,7 @@ public class NoticeDAOImpl implements NoticeDAO {
 	}
 
 	@Override
-	public NoticeDTO getNoticeList(String seq) {
+	public NoticeDTO getNotice(String seq) {
 
 		return mapper.getNotice(seq);
 		
