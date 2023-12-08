@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class TicketDTO {
 	
-	private String email;
 	private String ticket_type;
 	private String person_type;
 	private String age;

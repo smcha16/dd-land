@@ -14,9 +14,9 @@ public class MypageTicketService {
 	@Autowired
 	private MypageTicketDAO dao;
 	
-	public List<TicketDTO> list() {
+	public List<TicketDTO> list(String email) {
 		
-		return dao.list();
+		return dao.list(email);
 	}
 
 	public String delete(String selectedTickets) {

@@ -17,9 +17,9 @@ public class MypageTicketDAOImpl implements MypageTicketDAO{
 	private MypageTicketMapper mapper;
 	
 	@Override
-	public List<TicketDTO> list() {
+	public List<TicketDTO> list(String email) {
 		
-		return mapper.list();
+		return mapper.list(email);
 	}
 	
 	@Override

@@ -5,7 +5,7 @@
 <mapper namespace="com.project.dd.mypage.ticket.mapper.MypageTicketMapper">
 
 	<select id="list" parameterType="String" resultType="com.project.dd.mypage.ticket.domain.TicketDTO">
-		select * from vwUserBook
+		select * from vwUserBook where email = #{email}
 	</select>
 	
 	<delete id="delete" parameterType="String" >

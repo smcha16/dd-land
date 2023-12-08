@@ -132,17 +132,23 @@ th {
 										<tr>
 											<th></th>
 											<th>No</th>
-											<th>품명</th>
-											<th>개수</th>
-											<th>가격</th>
-											<th>구매일</th>
+											<th>구분</th>
+											<th>서비스유형</th>
+											<th>건의제목</th>
+											<th>등록일</th>
+											<th>방문일</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${list}" var="dto">
 											<tr>
 												<td><input type="checkbox" name="attraction_checkbox"></td>
+												<td>${dto.voc_seq}</td>
+												<td>${dto.type}</td>
+												<td>${dto.service_type}</td>
 												<td>${dto.subject}</td>
+												<td>${dto.regdate}</td>
+												<td>${dto.visit_date}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
