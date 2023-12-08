@@ -55,7 +55,7 @@
 	}
 	
 	section:nth-of-type(2) {
-		background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/activity/attraction/barcelona-3960566_1280.jpg") center center;
+		background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/activity/ferris-wheel-3656782_1280.jpg") center center;
 		/* background-color: transparent;
 		background-repeat: no-repeat; */
 		background-size: cover;
@@ -106,6 +106,10 @@
 		/* background-color: #FFFBD0; */
 		background-color: #FFF;
 		border-radius: 5px;
+	}
+	
+	.result-container > .result-item:last-child > .value {
+		font-size: 1.1rem;
 	}
 	
 	.label {
@@ -301,9 +305,9 @@
 	const options = { //지도를 생성할 때 필요한 기본 옵션
 		center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
 		level : 10, //지도의 레벨(확대, 축소 정도)
-		draggable : false, // 이동 금지
+		/* draggable : false, // 이동 금지
 		disableDoubleClick : true, // 더블클릭 확대 금지
-		scrollwheel : false // 휠 확대/축소 금지
+		scrollwheel : false // 휠 확대/축소 금지 */
 	};
 
 	const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴

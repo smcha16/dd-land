@@ -222,8 +222,13 @@
 	<div class="result-container">
 		<div class="result-item">
 			<img src="/dd/resources/files/activity/time_icon.png" alt="Image" class="icon" />
-			<div class="label">운영시간</div>
+			<div class="label">공연시간</div>
 			<div class="value">${dto.time}</div>
+		</div>
+		<div class="result-item">
+			<img src="/dd/resources/files/activity/calendar_icon.png" alt="Image" class="icon" />
+			<div class="label">기간</div>
+			<div class="value">${dto.start_date}<br>~<br>${dto.end_date}</div>
 		</div>
 	</div>
 </section>
@@ -257,15 +262,12 @@
 	const options = { //지도를 생성할 때 필요한 기본 옵션
 		center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
 		level : 10, //지도의 레벨(확대, 축소 정도)
-		draggable : false, // 이동 금지
-		disableDoubleClick : true, // 더블클릭 확대 금지
-		scrollwheel : false // 휠 확대/축소 금지
 	};
 
 	const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
 	//마커 출력
-	let imageSrc = '/ddstudio/asset/image/marker/attraction_marker2.png'; // 마커이미지의 주소
+	let imageSrc = '/dd/resources/files/marker/festival_marker3.png'; // 마커이미지의 주소
 	const imageSize = new kakao.maps.Size(40,40);
 	const option = {};
 
