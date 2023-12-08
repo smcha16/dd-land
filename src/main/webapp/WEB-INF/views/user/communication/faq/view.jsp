@@ -172,13 +172,13 @@
     		
     <nav id="page-bar" aria-label="Page navigation example">
 	    <ul class="pagination justify-content-center">
-	        <c:forEach begin="1" end="${totalPages}" varStatus="pageStatus">
+	        <c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
 	            <c:choose>
 	                <c:when test="${pageStatus.index == currentPage}">
 	                    <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
 	                </c:when>
 	                <c:otherwise>
-	                    <li class="page-item"><a class="page-link" href="/dd/user/communication/faq/view.do?page=${pageStatus.index}&type=${param.type}">${pageStatus.index}</a></li>
+	                    <li class="page-item"><a class="page-link" href="/dd/user/communication/faq/view.do?page=${pageStatus.index}&type=${map.type}">${pageStatus.index}</a></li>
 	                </c:otherwise>
 	            </c:choose>
 	        </c:forEach>
