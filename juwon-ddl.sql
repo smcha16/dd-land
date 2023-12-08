@@ -1,6 +1,7 @@
 -- 마이페이지 티켓 예매내역
 CREATE OR REPLACE VIEW vwUserBook as
 SELECT
+    U.email,
     UB.user_book_seq,
     T.ticket_type,
     T.person_type,
@@ -18,6 +19,7 @@ join tblTicket T on TB.ticket_seq = T.ticket_seq;
 -- 마이페이지 어트랙션 예약내역
 CREATE OR REPLACE VIEW vwBookUser as
 SELECT
+    U.email,
     A.name,
     ab.book_time,
     To_char(bu.regdate, 'YYYY-MM-DD') as regdate,
@@ -31,6 +33,7 @@ join tblUser U on u.user_seq = BU.user_seq;
 -- 마이페이지 리뷰 내역
 CREATE OR REPLACE VIEW vwreview as
 SELECT
+    U.email,
     R.review_seq,
     R.subject,
     R.content,
@@ -44,6 +47,7 @@ join tblReview R on UB.user_book_seq = R.user_book_seq;
 -- 마이페이지 구매 내역
 CREATE OR REPLACE VIEW vwUserBuy as
 SELECT
+    U.email,
     S.name as shopName,
     I.name as itemName,
     B.ea,
@@ -56,3 +60,17 @@ join tblUser U on U.user_seq = UB.user_seq
 join tblBuy B on B.buy_seq = UB.buy_seq
 join tblItem I on B.item_seq = I.item_seq
 join tblShop S on I.shop_seq = S.shop_seq;
+
+-- 마이페이지 이용문의 내역
+CREATE OR REPLACE VIEW vwInquiry as
+SELECT
+    U.email,
+    i.inquiry_seq,
+    i.type, 
+    i.subject,
+    i.answer,
+    i.content,
+    i.attach,
+    To_char(i.regdate, 'yyyy-mm-dd') as regdate
+from tblUser U
+join tblInquiry I on U.user_seq = I.user_seq;

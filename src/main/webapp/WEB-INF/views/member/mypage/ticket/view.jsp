@@ -101,6 +101,18 @@ th {
 	justify-content: center;
 	margin-top: 40px;
 }
+ #page-bar {
+      margin-top: 50px;
+   }
+   .page-link {
+      color: #CE1212;
+   }
+   .active > .page-link, .page-link.active {
+      z-index: 3;
+       color: var(--bs-pagination-active-color);
+       background-color: #CE1212;
+       border-color: #CE1212;
+   }
 </style>
 
 <!-- ======= Main ======= -->
@@ -132,51 +144,43 @@ th {
 								</nav>
 
 
-								<form action="/dd/member/mypage/ticket/delete.do" method="POST">
-								<table class="table">
-									<thead>
-										<tr>
-											<th></th>
-											<th>No</th>
-											<th>티켓종류</th>
-											<th>개인/단체</th>
-											<th>연령</th>
-											<th>예매일자</th>
-											<th>방문일자</th>
-											<th>구매수량</th>
-											<th>결제금액</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${list}" var="dto">
+								<form action="/dd/member/mypage/ticket/delete.do" method="post">
+									<table class="table">
+										<thead>
 											<tr>
-												<td><input type="checkbox" name="selectedTickets" value="${dto.user_book_seq}"></td>
-
-												<td>${dto.user_book_seq}</td>
-												<td>${dto.ticket_type}</td>
-												<td>${dto.person_type}</td>	
-												<td>${dto.age}</td>
-												<td>${dto.book_date}</td>
-												<td>${dto.visit_date}</td>
-												<td>${dto.ea}</td>
-												<td>${dto.total_price}</td>
-
+												<th></th>
+												<th>예매일</th>
+												<th>티켓종류</th>
+												<th>개인/단체</th>
+												<th>연령</th>
+												<th>방문예정일</th>
+												<th>구매수량</th>
+												<th>결제금액</th>
 											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-								<button type="submit">예매취소</button>
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+										</thead>
+										<tbody>
+											<c:forEach items="${list}" var="dto">
+												<tr>
+													<td><input type="checkbox" name="selectedTickets"
+														value="${dto.user_book_seq}"></td>
+
+													<td>${dto.book_date}</td>
+													<td>${dto.ticket_type}</td>
+													<td>${dto.person_type}</td>
+													<td>${dto.age}</td>
+													<td>${dto.visit_date}</td>
+													<td>${dto.ea}</td>
+													<td>${dto.total_price}</td>
+
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<button type="submit">예매취소</button>
+									<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}">
 								</form>
 
-								<ul class="pagination pagination-sm">
-									<li class="page-item active" aria-current="page"><span
-										class="page-link">1</span></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">4</a></li>
-									<li class="page-item"><a class="page-link" href="#">5</a></li>
-								</ul>
 							</div>
 
 						</div>
@@ -186,6 +190,21 @@ th {
 			</div>
 
 		</div>
+		<nav id="page-bar" aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
+					<c:choose>
+						<c:when test="${pageStatus.index == currentPage}">
+							<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link"
+								href="/dd/member/mypage/ticket/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</ul>
+		</nav>
 	</section>
 
 </main>

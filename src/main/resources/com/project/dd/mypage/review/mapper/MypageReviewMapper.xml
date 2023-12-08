@@ -4,8 +4,22 @@
 <!-- namespace == 호출할 Interface 이름 적기 -->
 <mapper namespace="com.project.dd.mypage.review.mapper.MypageReviewMapper">
 
-	<select id="list" parameterType="String" resultType="com.project.dd.mypage.review.domain.ReviewDTO">
-		select * from vwReview
+	<select id="list" parameterType="map" resultType="com.project.dd.mypage.review.domain.ReviewDTO">
+		select *
+      from (select n.*, rownum as rnum from (select * from vwReview where email = #{email} ) n)
+      where rnum between #{startIndex} and #{endIndex}
 	</select>
+	
+	<select id="getTotalCount" resultType="int">
+      select count(*) from vwReview
+    </select>
+    
+    <delete id="delete">
+		delete from tblReview where review_seq = #{selectedReview}
+	</delete>
+	
+	<delete id="imgDelete">
+		delete from tblReviewImg where review_seq = #{selectedReview}
+	</delete>
 	
 </mapper>

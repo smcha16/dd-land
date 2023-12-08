@@ -1,6 +1,7 @@
 package com.project.dd.mypage.ticket.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,33 +19,45 @@ import com.project.dd.mypage.ticket.service.MypageTicketService;
 @Controller
 @RequestMapping("/member/mypage/ticket")
 public class MemberMypageTicketController {
-	
+
 	@Autowired
 	private MypageTicketService service;
-	
+
 	@GetMapping(value = "/view.do")
-	public String view(Model model, Authentication auth) {
+	public String view(Model model, Authentication auth, @RequestParam(defaultValue = "1") int page) {
+
+		Map<String, String> map = service.paging(page);  //페이징
 		
-		String email = ((CustomUser)auth.getPrincipal()).getDto().getEmail();
+		String email = ((CustomUser) auth.getPrincipal()).getDto().getEmail();
 		
-		List<TicketDTO> list = service.list(email);
-		
+		map.put("email", email);
+
+		List<TicketDTO> list = service.list(map);
+
 		model.addAttribute("list", list);
 		model.addAttribute("email", email);
-		
+		model.addAttribute("currentPage", page);  //페이징
+	    model.addAttribute("map", map);  //페이징
+
 		return "mypage/ticket/view";
 	}
-	
+
 	@PostMapping(value = "/delete.do")
-	public String name(Model model, String selectedTickets, Authentication auth) {
-		
-		//System.out.println(selectedTickets);
-		
-		service.delete(selectedTickets);
-		
-		return "redirect:/dd/member/mypage/ticket/view.do";
+	public String name(Model model, String selectedTickets) {
+
+		int result = service.delete(selectedTickets);
+
+		if (result == 1) {
+
+			return "redirect:/member/mypage/ticket/view.do";
+
+		} else {
+			
+			System.out.println("ticket delete error");
+			
+		}
+
+		return "redirect:/member/mypage/ticket/view.do";
 	}
-	
-	
 
 }

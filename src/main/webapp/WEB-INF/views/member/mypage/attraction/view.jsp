@@ -101,6 +101,18 @@ th {
 	justify-content: center;
 	margin-top: 40px;
 }
+#page-bar {
+      margin-top: 50px;
+   }
+   .page-link {
+      color: #CE1212;
+   }
+   .active > .page-link, .page-link.active {
+      z-index: 3;
+       color: var(--bs-pagination-active-color);
+       background-color: #CE1212;
+       border-color: #CE1212;
+   }
 </style>
 
 <!-- ======= Main ======= -->
@@ -116,13 +128,6 @@ th {
 				<div class="row">
 					<div class="col-12">
 
-						<!-- <div id="search" class="header">
-                  			<form class="search-form d-flex align-items-center" method="POST" action="#">
-                    			<input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                    			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                  			</form>
-              			</div> -->
-
 						<div class="card">
 							<div class="card-body">
 
@@ -134,42 +139,34 @@ th {
 									</ol>
 								</nav>
 
-								<form action="/member/mypage/attraction/delete.do" method="post">
-								<table class="table">
-									<thead>
-										<tr>
-											<th></th>
-											<th>No</th>
-											<th>어트랙션</th>
-											<th>예약날짜</th>
-											<th>예약시간</th>
-											<th>예약인원</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${list}" var="dto">
+								<form action="/dd/member/mypage/attraction/delete.do" method="post">
+									<table class="table">
+										<thead>
 											<tr>
-												<td><input type="checkbox" name="attraction_checkbox"></td>
-												<td>${dto.book_user_seq}</td>
-												<td>${dto.name}</td>
-												<td>${dto.regdate}</td>
-												<td>${dto.book_time}</td>
-												<td>${dto.capacity}</td>
+												<th></th>
+												<th>어트랙션</th>
+												<th>예약날짜</th>
+												<th>예약시간</th>
+												<th>예약인원</th>
 											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-								<button type="submit">예매취소</button>
+										</thead>
+										<tbody>
+											<c:forEach items="${list}" var="dto">
+												<tr>
+													<td><input type="checkbox" name="selectedAttraction" value="${dto.book_user_seq}"></td>
+													<td>${dto.name}</td>
+													<td>${dto.regdate}</td>
+													<td>${dto.book_time}</td>
+													<td>${dto.capacity}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<button type="submit">예약취소</button>
+									<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}">
 								</form>
 
-								<ul class="pagination pagination-sm">
-									<li class="page-item active" aria-current="page"><span
-										class="page-link">1</span></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">4</a></li>
-									<li class="page-item"><a class="page-link" href="#">5</a></li>
-								</ul>
 							</div>
 
 						</div>
@@ -179,6 +176,21 @@ th {
 			</div>
 
 		</div>
+		<nav id="page-bar" aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
+					<c:choose>
+						<c:when test="${pageStatus.index == currentPage}">
+							<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link"
+								href="/dd/member/mypage/attraction/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</ul>
+		</nav>
 	</section>
 
 </main>

@@ -1,6 +1,7 @@
 package com.project.dd.mypage.ticket.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -17,16 +18,21 @@ public class MypageTicketDAOImpl implements MypageTicketDAO{
 	private MypageTicketMapper mapper;
 	
 	@Override
-	public List<TicketDTO> list(String email) {
+	public List<TicketDTO> list(Map<String, String> map) {
 		
-		return mapper.list(email);
+		return mapper.list(map);
 	}
 	
 	@Override
-	public String delete(String selectedTickets) {
+	public int delete(String selectedTickets) {
 		
 		return mapper.delete(selectedTickets);
 	}
 	
-
+	@Override
+	public int getTotalCount() {
+		
+		return mapper.getTotalCount();
+	}
+	
 }
