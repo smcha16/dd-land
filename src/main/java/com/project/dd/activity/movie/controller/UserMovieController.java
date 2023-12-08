@@ -41,7 +41,11 @@ public class UserMovieController {
 		//dto에 plist 담기
 		dto.setMoviePlayList(plist);
 		
+		//해당 영화의 상영 일정 가져오기
+		List<MoviePlayDTO> moviePlayList = service.getMoviePlay(seq);
+		
 		model.addAttribute("dto", dto);
+		model.addAttribute("moviePlayList", moviePlayList);
 		
 		return "user/activity/movie/detail";
 	}

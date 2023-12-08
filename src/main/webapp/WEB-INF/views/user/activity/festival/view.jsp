@@ -215,7 +215,7 @@
     	border: 0;
     	background: transparent;
     	position: absolute;
-    	left: 33%;
+    	left: 37%;
     	top: 7px;
     }
     

@@ -13,4 +13,6 @@ public interface MovieDAO {
 
 	List<MoviePlayDTO> getMoviePlayList(String seq);
 
+	List<MoviePlayDTO> getMoviePlay(String seq);
+
 }
