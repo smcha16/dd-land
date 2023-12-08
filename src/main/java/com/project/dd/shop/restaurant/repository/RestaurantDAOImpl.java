@@ -1,6 +1,7 @@
 package com.project.dd.shop.restaurant.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -18,8 +19,8 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	private RestaurantMapper mapper;
 	
 	@Override
-	public List<RestaurantDTO> restaurantList() {
-		return mapper.list();
+	public List<RestaurantDTO> restaurantList(Map<String, String> map) {
+		return mapper.list(map);
 	}
 	
 	@Override
@@ -30,6 +31,11 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	@Override
 	public List<RestaurantImageDTO> restaurantImg(String seq) {
 		return mapper.image(seq);
+	}
+	
+	@Override
+	public int getTotalCount() {
+		return mapper.getTotalCount();
 	}
 
 }

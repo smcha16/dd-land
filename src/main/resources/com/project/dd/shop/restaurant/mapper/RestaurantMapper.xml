@@ -3,6 +3,10 @@
 <mapper
 	namespace="com.project.dd.shop.restaurant.mapper.RestaurantMapper">
 
-	
+	<select id="list" parameterType="map" resultType="com.project.dd.shop.restaurant.domain.RestaurantDTO">
+		select *
+      from (select n.*, rownum as rnum from (select * from vwRestaurant where lat != 0) n)
+      where rnum between #{startIndex} and #{endIndex}
+	</select>
 
 </mapper>

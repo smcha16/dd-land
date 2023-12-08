@@ -1,5 +1,5 @@
 package com.project.dd.close.theater.controller;
 
-public class AdminController {
+public class AdminCloseTheaterController {
 
 }

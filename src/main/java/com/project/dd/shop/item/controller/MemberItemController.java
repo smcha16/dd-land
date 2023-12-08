@@ -1,5 +1,5 @@
 package com.project.dd.shop.item.controller;
 
-public class MemberController {
+public class MemberItemController {
 
 }
