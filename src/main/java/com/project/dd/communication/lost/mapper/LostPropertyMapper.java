@@ -8,7 +8,7 @@ import com.project.dd.communication.notice.domain.NoticeDTO;
 
 public interface LostPropertyMapper {
 
-	int getTotalCount(Map<String, String> map);
+	int getTotalCount();
 
 	List<LostPropertyDTO> getLostPropertyList(Map<String, String> map);
 

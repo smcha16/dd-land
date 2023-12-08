@@ -64,6 +64,7 @@
 	
 	section:last-of-type {
 		padding-top: 30px;
+		padding-bottom: 30px;
 	}
 	
 	.close-container {
@@ -180,24 +181,16 @@
 	}
 	/* 버튼 */
 	#button {
-		position: relative;
-		width: 950px;
-		margin: 0 auto;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 50px;
 	}
 	#back-button {
-		position: absolute;
 		background-color: #CE1212;
 		border-color: #CE1212;
-		left: 0;
 	}
 	#back-button i {
 		margin-right: 7px;
-	}
-	div#reservation-btn {
-		display: flex;
-		justify-content: center;
-	}	
-	div#reservation-btn > button {
 	}
 </style>
 
@@ -211,7 +204,7 @@
 		<div class="image-slider">
 			<c:forEach items="${dto.imgList}" var="dto">
 				<div>
-					<img src="/dd/resources/files/activity/attraction/${dto.img}" alt="Image">
+					<img src="/dd/resources/files/activity/photozone/${dto.img}" alt="Image">
 				</div>
 			</c:forEach>
 		</div>
@@ -226,36 +219,11 @@
 <!-- ======= 상세정보 Section ======= -->
 <!-- 운휴일정, 운영시간, 탑승인원, 이용정보 -->
 <section>
-	<div class="close-container">
-		<div class="close-item">
-			<div class="label">운휴일정</div>
-			<div class="value">
-				<c:if test="${dto.close == 'n'}">
-					<img src="/dd/resources/files/activity/calendar_icon.png" alt="Image" class="icon" />
-					정상 운영
-				</c:if>
-				<c:if test="${dto.close == 'y'}">
-					<img src="/dd/resources/files/activity/close_icon.png" alt="Image" class="icon" />
-					금일 운휴
-				</c:if>
-			</div>
-		</div>
-	</div>
 	<div class="result-container">
 		<div class="result-item">
 			<img src="/dd/resources/files/activity/time_icon.png" alt="Image" class="icon" />
 			<div class="label">운영시간</div>
 			<div class="value">${dto.time}</div>
-		</div>
-		<div class="result-item">
-			<img src="/dd/resources/files/activity/people_icon.png" alt="Image" class="icon" />
-			<div class="label">탑승인원</div>
-			<div class="value">${dto.capacity}</div>
-		</div>
-		<div class="result-item">
-			<img src="/dd/resources/files/activity/info_icon.png" alt="Image" class="icon" />
-			<div class="label">제한 사항</div>
-			<div class="value">${dto.restriction}</div>
 		</div>
 	</div>
 </section>
@@ -268,12 +236,11 @@
 			<div id="map" style="width: 950px; height: 400px;"></div>
 		</div>
 	</div>
-	<div id="button">
-		<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/activity/attraction/view.do';"><i class="bi bi-list"></i>목록</button>
-	</div>
 </section>
-<div id="reservation-btn">
-	<button type="button" onclick="location.href='/reservation.do?seq=${dto.attraction_seq}'">어트랙션 예약하기</button>
+
+<!-- 목록보기 버튼 -->
+<div id="button">
+	<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/activity/photozone/view.do';"><i class="bi bi-list"></i>목록</button>
 </div>
 
 <!-- view2 Template 전용 JavaScript -->
@@ -290,15 +257,12 @@
 	const options = { //지도를 생성할 때 필요한 기본 옵션
 		center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
 		level : 10, //지도의 레벨(확대, 축소 정도)
-		draggable : false, // 이동 금지
-		disableDoubleClick : true, // 더블클릭 확대 금지
-		scrollwheel : false // 휠 확대/축소 금지
 	};
 
 	const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
 	//마커 출력
-	let imageSrc = '/ddstudio/asset/image/marker/attraction_marker2.png'; // 마커이미지의 주소
+	let imageSrc = '/dd/resources/files/marker/photo_marker3.png'; // 마커이미지의 주소
 	const imageSize = new kakao.maps.Size(40,40);
 	const option = {};
 
@@ -306,7 +270,7 @@
 	const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
 
 	const m1 = new kakao.maps.Marker({
-		position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng}), /* < 좌측 값은 테스트용 임시 ${location_dto.lat}, ${location_dto.lng} */
+		position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng}),
 		image: markerImg
 	});
 

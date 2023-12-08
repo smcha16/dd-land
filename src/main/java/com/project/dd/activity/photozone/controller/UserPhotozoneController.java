@@ -1,28 +1,37 @@
 package com.project.dd.activity.photozone.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.activity.photozone.domain.PhotoZoneDTO;
 import com.project.dd.activity.photozone.domain.PhotoZoneImgDTO;
-import com.project.dd.activity.photozone.mapper.PhotoZoneMapper;
+import com.project.dd.activity.photozone.service.PhotoZoneService;
 
 @Controller
 @RequestMapping(value = "/user/activity/photozone")
 public class UserPhotozoneController {
 
 	@Autowired
-	private PhotoZoneMapper mapper;
+	private PhotoZoneService service;
 	
 	@GetMapping(value = "/view.do")
-	public String view(Model model) {
+	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 
-		model.addAttribute("list", mapper.getPhotozoneList());
+		Map<String, String> map = service.paging(page);  //페이징
+		
+		List<PhotoZoneDTO> list = service.getPhotozoneList(map);
+		
+		model.addAttribute("currentPage", page);  //페이징
+	      model.addAttribute("map", map);  //페이징
+		
+		model.addAttribute("list", list);
 		
 		return "user/activity/photozone/view";
 	}
@@ -30,11 +39,11 @@ public class UserPhotozoneController {
 	@GetMapping(value = "/detail.do")
 	public String detail(Model model, String seq) {
 		
-		PhotoZoneDTO dto = mapper.getPhotozone(seq); //List<PhotozoneImgDTO> 빼고 dto에 다 담긴 상태
+		PhotoZoneDTO dto = service.getPhotozone(seq);
 		
-		List<PhotoZoneImgDTO> ilist = mapper.getPhotozoneImgList(seq); //List<PhotozoneImgDTO> 가져와서
+		List<PhotoZoneImgDTO> ilist = service.getPhotozoneImgList(seq);
 		
-		dto.setImgList(ilist); //List<PhotozoneImgDTO>까지 dto에 넣어주기
+		dto.setImgList(ilist);
 		
 		model.addAttribute("dto", dto);
 		
