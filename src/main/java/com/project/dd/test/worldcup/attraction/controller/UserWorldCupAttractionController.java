@@ -18,17 +18,12 @@ public class UserWorldCupAttractionController {
 
     @Autowired
     private WorldCupAttractionService attractionService;
-
+    
     @GetMapping(value = "/user/test/worldcup/attraction/view.do")
-    public String view(Model model, String close, String isTest) {
-        isTest = "Y";
+    public String view(Model model, @RequestParam(defaultValue = "n") String close, @RequestParam(defaultValue = "Y") String isTest) {
 
-        if (close == null || close.equals("")) {
-            close = "n";
-        }
-
-        // 월드컵에 등록된 운영중인 어트랙션 리스트
-        model.addAttribute("listAttraction", attractionService.getAllAttractions(close));
+        // 운영중이면서 어트랙션 월드컵에 등록된 어트랙션 리스트
+        model.addAttribute("listAttraction", attractionService.getRunAttraction(close));
 
         // 어트랙션 월드컵에 등록된 어트랙션 리스트
         model.addAttribute("listAWC", attractionService.getAllAWC(isTest));

@@ -1,10 +1,13 @@
 package com.project.dd.shop.restaurant.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.shop.restaurant.service.RestaurantService;
 
@@ -16,9 +19,13 @@ public class UserRestaurantController {
 	private RestaurantService restaurantService;
 	
 	@GetMapping(value = "/view.do")
-	public String list(Model model) {
+	public String list(@RequestParam(defaultValue = "1") int page, Model model) {
 		
-		model.addAttribute("list", restaurantService.getList());
+		Map<String, String> map = restaurantService.paging(page);  //페이징
+		
+		model.addAttribute("list", restaurantService.getList(map));
+		model.addAttribute("currentPage", page);  //페이징
+	    model.addAttribute("map", map);  //페이징
 
 		return "user/shop/restaurant/view";
 	}

@@ -21,7 +21,7 @@
 		<security:intercept-url pattern="/admin/**" access="permitAll" />
 		-->
 		<security:intercept-url pattern="/member/**" access="hasRole('ROLE_1')" />
-		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_2')" /> 
+		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_2')" />
 		
 		
 		<security:form-login login-page="/user/login/view.do" authentication-success-handler-ref="customLoginSuccessHandler" />

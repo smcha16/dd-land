@@ -10,7 +10,6 @@ public class ConvenientDTO {
 	private String time;
 	private String tel;
 	private String img;
-	private String location_seq;
 	
 	private String lat;
 	private String lng;

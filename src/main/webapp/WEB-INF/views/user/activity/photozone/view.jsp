@@ -223,6 +223,20 @@
     	cursor: pointer;
     }
     
+    /* 페이징 */
+    #page-bar {
+      margin-top: 50px;
+   }
+   .page-link {
+      color: #CE1212;
+   }
+   .active > .page-link, .page-link.active {
+      z-index: 3;
+       color: var(--bs-pagination-active-color);
+       background-color: #CE1212;
+       border-color: #CE1212;
+   }
+    
 </style>
 
 <!-- list3 Main Content -->
@@ -256,6 +270,25 @@
 			</div>
 		</div>
 	</div>
+
+	<nav id="page-bar" aria-label="Page navigation example">
+		<ul class="pagination justify-content-center">
+			<c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
+				<c:choose>
+					<c:when test="${pageStatus.index == currentPage}">
+						<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item"><a class="page-link"
+							href="/dd/user/activity/photozone/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		</ul>
+	</nav>
+
+
+
 </section>
 <!-- End Menu Section -->
 
@@ -264,7 +297,7 @@
 	var itemElements = document.querySelectorAll('.item');
 
 	itemElements.forEach(function(item) {
-		
+
 		item.addEventListener('mouseover', function() {
 			// 마우스 오버 시 hidden-div를 보이게 변경
 			item.querySelector('.hidden-div').style.display = 'block';
@@ -273,9 +306,7 @@
 		item.addEventListener('mouseout', function() {
 			// 마우스 아웃 시 hidden-div를 다시 숨김
 			item.querySelector('.hidden-div').style.display = 'none';
-        });
-    
-	});
-	
+		});
 
+	});
 </script>
