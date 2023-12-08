@@ -2,6 +2,7 @@ package com.project.dd.test.worldcup.attraction.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,16 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 	@Autowired
 	private WorldCupAttractionMapper mapper;
 
+	@Override
+	public int getTotalCount() {
+		return mapper.getTotalCount();
+	}
+	
 	// 모든 어트랙션 리스트 가져오기
 	@Override
-	public List<AttractionDTO> getAllAttraction() {
-		return mapper.getAllAttraction();
+	public List<AttractionDTO> getAllAttraction(Map<String, String> map) {
+		
+		return mapper.getAllAttraction(map);
 	}
 	
 	// 운영중인 어트랙션 리스트 가져오기

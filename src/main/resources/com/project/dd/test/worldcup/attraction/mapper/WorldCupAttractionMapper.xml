@@ -10,11 +10,25 @@
         - vwAttractionList와 tblAWC를 조인하여 테스트 여부가 'Y'인 어트랙션 정보만 가져옵니다.
         - 결과 타입은 AttractionDTO입니다.
     -->
-	<select id="getAllAttraction" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
-    	SELECT
-	        al.*
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*)
 	    FROM tblAWC aws
 	    JOIN vwAttractionList al ON aws.attraction_seq = al.attraction_seq
+	</select>
+   
+	<select id="getAllAttraction" parameterType="map" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+    	<!-- SELECT
+	        al.*
+	    FROM tblAWC aws
+	    JOIN vwAttractionList al ON aws.attraction_seq = al.attraction_seq -->
+	    select * from (
+		    select n.*, rownum as rnum
+		    from (
+		        SELECT al.*
+		        FROM tblAWC aws
+		        JOIN vwAttractionList al ON aws.attraction_seq = al.attraction_seq
+		    ) n
+		) where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
 	<select id="getRunAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">

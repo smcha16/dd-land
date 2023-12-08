@@ -1,13 +1,14 @@
 package com.project.dd.test.worldcup.attraction.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO;
 
-import java.util.List;
-
 public interface WorldCupAttractionService {
 
-    List<AttractionDTO> getAllAttraction();
+    List<AttractionDTO> getAllAttraction(Map<String, String> map);
     
     List<AttractionDTO> getRunAttraction(String close);
 
@@ -20,5 +21,7 @@ public interface WorldCupAttractionService {
     List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions);
 
     List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> attractions);
+
+	Map<String, String> paging(int page);
 
 }
