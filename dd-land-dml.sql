@@ -8,7 +8,7 @@ INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '박나래', 'park@naver.com', 'park1111!', '010-3951-2909', '10690 제주 51동 46층 576호', TO_DATE('19970624', 'yyyy-mm-dd'), '1', 'Y');
 
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
-VALUES (seqtblUser.nextVal, '황주원', 'hwnag@kakao.com', 'hwang1111!', '010-5341-3358', '50435 전북 99동 71층 571호', TO_DATE('19961221', 'yyyy-mm-dd'), '1', 'Y');
+VALUES (seqtblUser.nextVal, '황주원', 'hwang@kakao.com', 'hwang1111!', '010-5341-3358', '50435 전북 99동 71층 571호', TO_DATE('19961221', 'yyyy-mm-dd'), '1', 'Y');
 
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '차민재', 'cha@daum.net', 'cha1111!', '010-3926-3102', '23822 부산 91동 88층 216호', TO_DATE('19980824', 'yyyy-mm-dd'), '1', 'Y');
@@ -3330,14 +3330,14 @@ INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_prope
 VALUES (seqtblLostProperty.nextVal, '안경', '선글라스', '후룸라이드', TO_CHAR(DATE '2023-11-14', 'YYYY-MM-DD'), 'lost25.jpg', '보관중');
 
 /* 티켓 */
-INSERT INTO tblTicket (ticket_seq, ticket_type, person_type, age, price)
-VALUES (seqtblTicket.NEXTVAL, '1Day', '개인', '성인', 10000);
-
-INSERT INTO tblTicket (ticket_seq, ticket_type, person_type, age, price)
-VALUES (seqtblTicket.NEXTVAL, 'After4', '단체', '청소년', 8000);
-
-INSERT INTO tblTicket (ticket_seq, ticket_type, person_type, age, price)
-VALUES (seqtblTicket.NEXTVAL, '뿅뿅', '개인', '어린이', 5000);
+INSERT INTO TBLTICKET (TICKET_SEQ, TICKET_TYPE, PERSON_TYPE, AGE, PRICE) VALUES (SEQTBLTICKET.nextval, '1Day', '개인', '성인', 10000);
+INSERT INTO TBLTICKET (TICKET_SEQ, TICKET_TYPE, PERSON_TYPE, AGE, PRICE) VALUES (SEQTBLTICKET.nextval, 'After4', '단체', '청소년', 5000);
+INSERT INTO TBLTICKET (TICKET_SEQ, TICKET_TYPE, PERSON_TYPE, AGE, PRICE) VALUES (SEQTBLTICKET.nextval, 'After4', '개인', '성인', 7000);
+INSERT INTO TBLTICKET (TICKET_SEQ, TICKET_TYPE, PERSON_TYPE, AGE, PRICE) VALUES (SEQTBLTICKET.nextval, 'After4', '개인', '청소년', 6000);
+INSERT INTO TBLTICKET (TICKET_SEQ, TICKET_TYPE, PERSON_TYPE, AGE, PRICE) VALUES (SEQTBLTICKET.nextval, '1Day', '개인', '청소년', 9000);
+INSERT INTO TBLTICKET (TICKET_SEQ, TICKET_TYPE, PERSON_TYPE, AGE, PRICE) VALUES (SEQTBLTICKET.nextval, '1Day', '단체', '성인', 8500);
+INSERT INTO TBLTICKET (TICKET_SEQ, TICKET_TYPE, PERSON_TYPE, AGE, PRICE) VALUES (SEQTBLTICKET.nextval, '1Day', '단체', '청소년', 7000);
+INSERT INTO TBLTICKET (TICKET_SEQ, TICKET_TYPE, PERSON_TYPE, AGE, PRICE) VALUES (SEQTBLTICKET.nextval, 'After4', '단체', '성인', 8000);
 
 /* 혜택 */
 INSERT INTO TBLBENEFIT (BENEFIT_SEQ, NAME, TYPE, START_DATE, END_DATE, DISCOUNT_RATE, IMG) VALUES (SEQTBLBENEFIT.nextval, 'KT 혜택을 더담다', '카드/통신사', DATE '2023-11-15', DATE '2023-11-17', 15, 'benefitimg1.jpeg');
@@ -3365,13 +3365,22 @@ INSERT INTO TBLBENEFIT (BENEFIT_SEQ, NAME, TYPE, START_DATE, END_DATE, DISCOUNT_
 
 /* 예매내역 */
 INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
-VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-11-01', 'YYYY-MM-DD'), TO_DATE('2023-11-15', 'YYYY-MM-DD'), 2, 10000, 1, 1);
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-11-10', 'YYYY-MM-DD'), TO_DATE('2023-11-20', 'YYYY-MM-DD'), 1, 10000, 1, 1);
 
 INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
-VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-11-11', 'YYYY-MM-DD'), TO_DATE('2023-11-16', 'YYYY-MM-DD'), 2, 10000, 1, 1);
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-11-11', 'YYYY-MM-DD'), TO_DATE('2023-11-21', 'YYYY-MM-DD'), 2, 10000, 2, 2);
 
 INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
-VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-11-15', 'YYYY-MM-DD'), TO_DATE('2023-12-20', 'YYYY-MM-DD'), 2, 10000, 1, 1);
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-03', 'YYYY-MM-DD'), TO_DATE('2023-12-06', 'YYYY-MM-DD'), 3, 21000, 3, 3);
+
+INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-04', 'YYYY-MM-DD'), TO_DATE('2023-12-07', 'YYYY-MM-DD'), 4, 24000, 4, 4);
+
+INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-05', 'YYYY-MM-DD'), TO_DATE('2023-12-08', 'YYYY-MM-DD'), 5, 45000, 5, 5);
+
+INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-06', 'YYYY-MM-DD'), TO_DATE('2023-12-30', 'YYYY-MM-DD'), 6, 51000, 6, 6);
 
 /* 회원/예매 */
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
@@ -3381,7 +3390,22 @@ INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
 VALUES (seqtblUserBook.NEXTVAL, 2, 2);
 
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
+VALUES (seqtblUserBook.NEXTVAL, 3, 1);
+
+INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
+VALUES (seqtblUserBook.NEXTVAL, 3, 2);
+
+INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
 VALUES (seqtblUserBook.NEXTVAL, 3, 3);
+
+INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
+VALUES (seqtblUserBook.NEXTVAL, 3, 4);
+
+INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
+VALUES (seqtblUserBook.NEXTVAL, 3, 5);
+
+INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
+VALUES (seqtblUserBook.NEXTVAL, 3, 6);
 
 /* 리뷰 */
 INSERT INTO tblReview (review_seq, subject, content, readcount, user_book_seq)

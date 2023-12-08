@@ -83,6 +83,49 @@
 	z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
 }
 </style>
+
+<!-- 자동 로그인 버튼 -->
+<style>
+	.form-buttons {
+	    display: flex !important;
+	    justify-content: space-around;
+	    align-items: center;
+	    margin-top: 20px;
+	}
+	
+	.login.button {
+	    display: inline-block;
+	    padding: 10px 20px;
+	    font-size: 16px;
+	    font-weight: bold;
+	    text-align: center;
+	    text-decoration: none;
+	    cursor: pointer;
+	    border: none;
+	    border-radius: 5px;
+	    transition: background-color 0.3s, color 0.3s;
+	}
+	
+	.login.button:hover {
+	    background-color: #222;
+	    color: #fff;
+	}
+	
+	.login.button + .login.button {
+	    margin-left: 10px;
+	}
+	
+	.login.button.admin {
+	    background-color: #ff6347;
+	    color: #fff;
+	}
+	
+	.login.button.user {
+	    background-color: #4caf50;
+	    color: #fff;
+	}
+</style>
+
 <!-- ======= Stats Counter Section ======= -->
 <section id="stats-counter" class="stats-counter">
 	<div id="pagetitle" class="container" data-aos="zoom-out">
@@ -101,17 +144,75 @@
 <!-- End Stats Counter Section -->
 
 <form method="POST" action="/dd/login">
-		<div>
-			<input type="text" name="username" placeholder="ID" required>
-		</div>
-		<div>
-			<input type="password" name="password" placeholder="Password" required>
-		</div>
-		<div>
-			<button class="in">로그인</button>
-		</div>
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-	</form>
+	<div>
+		<input type="text" name="username" placeholder="ID" required>
+	</div>
+	<div>
+		<input type="password" name="password" placeholder="Password" required>
+	</div>
+	<div>
+		<button class="in">로그인</button>
+	</div>
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+</form>
+
+<div class="form-buttons">
+    <form method="POST" action="/dd/login">
+        <input type="hidden" name="username" value="admin@naver.com">
+        <input type="hidden" name="password" value="admin1111!">
+        <button type="submit" class="login button admin">관리자</button>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+    </form>
+
+    <form method="POST" action="/dd/login">
+        <input type="hidden" name="username" value="park@naver.com">
+        <input type="hidden" name="password" value="park1111!">
+        <button type="submit" class="login button user">박나래</button>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+    </form>
+    
+    <form method="POST" action="/dd/login">
+        <input type="hidden" name="username" value="hwang@kakao.com">
+        <input type="hidden" name="password" value="hwang1111!">
+        <button type="submit" class="login button user">황주원</button>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+    </form>
+    
+    <form method="POST" action="/dd/login">
+        <input type="hidden" name="username" value="cha@daum.net">
+        <input type="hidden" name="password" value="cha1111!">
+        <button type="submit" class="login button user">차민재</button>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+    </form>
+    
+    <form method="POST" action="/dd/login">
+        <input type="hidden" name="username" value="lee@kakao.com">
+        <input type="hidden" name="password" value="lee1111!">
+        <button type="submit" class="login button user">이정은</button>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+    </form>
+    
+    <form method="POST" action="/dd/login">
+        <input type="hidden" name="username" value="cha@msn.com">
+        <input type="hidden" name="password" value="cha1111!">
+        <button type="submit" class="login button user">차수민</button>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+    </form>
+    
+    <form method="POST" action="/dd/login">
+        <input type="hidden" name="username" value="lee@naver.com">
+        <input type="hidden" name="password" value="lee1111!">
+        <button type="submit" class="login button user">이승원</button>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+    </form>
+    
+    <form method="POST" action="/dd/login">
+        <input type="hidden" name="username" value="kim@kakao.com">
+        <input type="hidden" name="password" value="kim1111!">
+        <button type="submit" class="login button user">김형우도도리</button>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+    </form>
+</div>
 
 <script>
 	var itemElements = document.querySelectorAll('.item');

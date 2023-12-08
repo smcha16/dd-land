@@ -1,6 +1,7 @@
 package com.project.dd.activity.photozone.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -18,8 +19,8 @@ public class PhotoZoneDAOImpl implements PhotoZoneDAO {
 	PhotoZoneMapper mapper;
 
 	@Override
-	public List<PhotoZoneDTO> getPhotozoneList() {
-		return mapper.getPhotozoneList();
+	public List<PhotoZoneDTO> getPhotozoneList(Map<String, String> map) {
+		return mapper.getPhotozoneList(map);
 	}
 
 	@Override
@@ -30,5 +31,10 @@ public class PhotoZoneDAOImpl implements PhotoZoneDAO {
 	@Override
 	public List<PhotoZoneImgDTO> getPhotozoneImgList(String seq) {
 		return mapper.getPhotozoneImgList(seq);
+	}
+
+	@Override
+	public int getTotalCount() {
+		return mapper.getTotalCount();
 	}
 }

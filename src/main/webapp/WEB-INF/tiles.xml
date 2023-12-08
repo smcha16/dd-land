@@ -67,6 +67,13 @@
 		<put-attribute name="mypage_content" value="/WEB-INF/views/member/mypage/{1}/{2}.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="mypage/*/*/*" template="/WEB-INF/views/layout/mypage.jsp">
+		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
+		<put-attribute name="mypage_sidebar" value="/WEB-INF/inc/mypage_sidebar.jsp"></put-attribute>
+		<put-attribute name="mypage_content" value="/WEB-INF/views/member/mypage/{1}/{2}/{3}.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
+	</definition>
 
 
 	<!-- Admin -->
