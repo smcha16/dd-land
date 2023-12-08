@@ -172,7 +172,7 @@
     </form>
     
     <form method="POST" action="/dd/login">
-        <input type="hidden" name="username" value="hwnag@kakao.com">
+        <input type="hidden" name="username" value="hwang@kakao.com">
         <input type="hidden" name="password" value="hwang1111!">
         <button type="submit" class="login button user">황주원</button>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">

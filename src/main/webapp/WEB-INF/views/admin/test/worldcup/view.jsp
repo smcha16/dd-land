@@ -44,6 +44,19 @@ th {
 	justify-content: center;
 	margin-top: 40px;
 }
+
+#page-bar {
+     margin-top: 50px;
+  }
+  .page-link {
+     color: #CE1212;
+  }
+  .active > .page-link, .page-link.active {
+     z-index: 3;
+      color: var(--bs-pagination-active-color);
+      background-color: #CE1212;
+      border-color: #CE1212;
+  }
 </style>
 
 <main id="main" class="main">
@@ -108,14 +121,20 @@ th {
 							</tbody>
 						</table>
 
-						<ul class="pagination pagination-sm">
-							<li class="page-item active" aria-current="page"><span
-								class="page-link">1</span></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-						</ul>
+						<nav id="page-bar" aria-label="Page navigation example">
+					       <ul class="pagination justify-content-center">
+					           <c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
+					               <c:choose>
+					                   <c:when test="${pageStatus.index == currentPage}">
+					                       <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+					                   </c:when>
+					                   <c:otherwise>
+					                       <li class="page-item"><a class="page-link" href="/dd/admin/test/worldcup/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+					                   </c:otherwise>
+					               </c:choose>
+					           </c:forEach>
+					       </ul>
+					   </nav>
 
 					</div>
 				</div>
@@ -151,7 +170,7 @@ th {
 								</tr>
 							</tbody>
 						</table>
-
+						
 						<ul class="pagination pagination-sm">
 							<li class="page-item active" aria-current="page"><span
 								class="page-link">1</span></li>

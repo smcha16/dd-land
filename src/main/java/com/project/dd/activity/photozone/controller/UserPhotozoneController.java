@@ -1,16 +1,17 @@
 package com.project.dd.activity.photozone.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.activity.photozone.domain.PhotoZoneDTO;
 import com.project.dd.activity.photozone.domain.PhotoZoneImgDTO;
-import com.project.dd.activity.photozone.mapper.PhotoZoneMapper;
 import com.project.dd.activity.photozone.service.PhotoZoneService;
 
 @Controller
@@ -21,9 +22,14 @@ public class UserPhotozoneController {
 	private PhotoZoneService service;
 	
 	@GetMapping(value = "/view.do")
-	public String view(Model model) {
+	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 
-		List<PhotoZoneDTO> list = service.getPhotozoneList();
+		Map<String, String> map = service.paging(page);  //페이징
+		
+		List<PhotoZoneDTO> list = service.getPhotozoneList(map);
+		
+		model.addAttribute("currentPage", page);  //페이징
+	      model.addAttribute("map", map);  //페이징
 		
 		model.addAttribute("list", list);
 		
