@@ -18,14 +18,9 @@ public class UserWorldCupAttractionController {
 
     @Autowired
     private WorldCupAttractionService attractionService;
-
+    
     @GetMapping(value = "/user/test/worldcup/attraction/view.do")
-    public String view(Model model, String close, String isTest) {
-        isTest = "Y";
-
-        if (close == null || close.equals("")) {
-            close = "n";
-        }
+    public String view(Model model, @RequestParam(defaultValue = "n") String close, @RequestParam(defaultValue = "Y") String isTest) {
 
         // 월드컵에 등록된 운영중인 어트랙션 리스트
         model.addAttribute("listAttraction", attractionService.getAllAttractions(close));

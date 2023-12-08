@@ -139,7 +139,7 @@
 					</c:if>
 					
 					<c:if test="${dto.fix == 'n'}">
-						<td>${totalPosts - numberStatus.index - map.startIndex + 1}</td>
+						<td>${map.totalPosts - numberStatus.index - map.startIndex + 1}</td>
 					</c:if>
 					
 		            <td><a href="/dd/user/communication/notice/detail.do?seq=${dto.notice_seq}"><c:out value="${dto.subject}" /></a></td>
@@ -151,7 +151,7 @@
 	
 	<nav id="page-bar" aria-label="Page navigation example">
 	    <ul class="pagination justify-content-center">
-	        <c:forEach begin="1" end="${totalPages}" varStatus="pageStatus">
+	        <c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
 	            <c:choose>
 	                <c:when test="${pageStatus.index == currentPage}">
 	                    <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>

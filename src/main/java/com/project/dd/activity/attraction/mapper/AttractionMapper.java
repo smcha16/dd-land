@@ -8,7 +8,7 @@ import com.project.dd.activity.attraction.domain.AttractionImgDTO;
 public interface AttractionMapper {
 
 	//(운영종료 제외) 운영/운휴 어트랙션 List
-	List<AttractionDTO> getAttractionList(String close);
+	List<AttractionDTO> getAttractionList();
 
 	//어트랙션 상세 정보
 	AttractionDTO getAttraction(String seq);

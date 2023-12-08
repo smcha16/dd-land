@@ -7,26 +7,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.activity.festival.domain.FestivalDTO;
 import com.project.dd.activity.festival.domain.FestivalImgDTO;
 import com.project.dd.activity.festival.mapper.FestivalMapper;
+import com.project.dd.activity.festival.service.FestivalService;
 
 @Controller
 @RequestMapping(value = "/user/activity/festival")
 public class UserFestivalController {
 	@Autowired
-	private FestivalMapper mapper;
+	private FestivalService service;
 	
 	@GetMapping(value = "/view.do")
-	public String view(Model model, String date) {
+	public String view(Model model, @RequestParam(defaultValue = "sysdate") String date) {
 
-		//date: 선택한 일자에 페스티벌 진행 유무 확인 가능한 변수
-		if (date == null || date.equals("")) {
-			date = "sysdate";
-		}
+		//Festival 목록(금일 기준 공연 & 공연종료 제외)
+		List<FestivalDTO> list = service.getFestivalList(date);
 		
-		model.addAttribute("list", mapper.getFestivalList(date));
+		model.addAttribute("list", list);
 		model.addAttribute("date", date);
 		
 		return "user/activity/festival/view";
@@ -35,11 +35,14 @@ public class UserFestivalController {
 	@GetMapping(value = "/detail.do")
 	public String detail(Model model, String seq) {
 		
-		FestivalDTO dto = mapper.getFestival(seq); //List<FestivalImgDTO> 빼고 dto에 다 담긴 상태
+		//Festival 1개(List<FestivalImgDTO> 제외)
+		FestivalDTO dto = service.getFestival(seq);
 		
-		List<FestivalImgDTO> ilist = mapper.getFestivalImgList(seq); //List<FestivalImgDTO> 가져와서
+		//List<FestivalImgDTO> 가져오기
+		List<FestivalImgDTO> ilist = service.getFestivalImgList(seq);
 		
-		dto.setImgList(ilist); //List<FestivalImgDTO>까지 dto에 넣어주기
+		//ilist > FestivalDTO에 담기
+		dto.setImgList(ilist);
 		
 		model.addAttribute("dto", dto);
 		
