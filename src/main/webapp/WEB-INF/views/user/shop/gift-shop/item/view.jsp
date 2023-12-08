@@ -68,10 +68,6 @@
 	border-radius: 0 0 10px 10px;
 }
 
-.hidden {
-	display: none;
-}
-
 .hidden-div {
 	display: none;
 	color: white;
@@ -232,20 +228,11 @@
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div class="munti-content-container">
 					<c:forEach items="${list}" var="dto">
-						<c:if test="${dto.close == 'y'}">
-							<div class="item hidden" onclick="detail(${dto.shop_seq});">
-								<div style="background-image: url('/dd/resources/files/giftshop/${dto.img}');"></div>
-								<div>${dto.name }</div>
-								<div class="hidden-div">${dto.info }</div>
-							</div>
-						</c:if>
-						<c:if test="${dto.close == 'n'}">
 							<div class="item" onclick="detail(${dto.shop_seq});">
 								<div style="background-image: url('/dd/resources/files/giftshop/${dto.img}');"></div>
 								<div>${dto.name }</div>
 								<div class="hidden-div">${dto.info }</div>
 							</div>
-						</c:if>
 					</c:forEach>
 				</div>
 			</div>
@@ -285,22 +272,6 @@
 			item.querySelector('.hidden-div').style.display = 'none';
 		});
 
-	});
-	
-	$('#close').change(function() {
-	    console.log("Change event triggered");
-	    
-	    itemElements.forEach(function(item) {
-	        console.log("Item display:", item.style.display);
-	        
-	        if (item.classList.contains('hidden')) {
-	            console.log("Removing hidden class");
-	            item.classList.remove('hidden');
-	        } else {
-	            console.log("Adding hidden class");
-	            item.classList.add('hidden');
-	        }
-	    });
 	});
 	
 	function detail(seq) {

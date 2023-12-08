@@ -1,6 +1,7 @@
 package com.project.dd.shop.giftshop.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -18,8 +19,8 @@ public class GiftshopDAOImpl implements GiftshopDAO {
 	private ShopMapper mapper;
 	
 	@Override
-	public List<ShopDTO> getList() {
-		return mapper.getList();
+	public List<ShopDTO> getList(Map<String, String> map) {
+		return mapper.getList(map);
 	}
 	
 	@Override
@@ -30,6 +31,11 @@ public class GiftshopDAOImpl implements GiftshopDAO {
 	@Override
 	public List<GiftshopImageDTO> shopImg(String seq) {
 		return mapper.image(seq);
+	}
+	
+	@Override
+	public int getTotalCount() {
+		return mapper.getTotalCount();
 	}
 	
 }
