@@ -1,5 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
@@ -115,20 +114,6 @@ th {
 										</td>
 									</tr>
 								</c:forEach>
-
-								<%-- 
-								<tr>
-									<td>
-										<div class="item" data-attraction-id="${dto.attraction_seq}">
-											<div
-												style="background-image: url('/dd/resources/assets/img/${dto.imgList[0].img}');"></div>
-											<div>${dto.name}</div>
-											<div class="hidden-div">${dto.info}</div>
-										</div>
-									</td>
-								</tr>
-								--%>
-
 							</tbody>
 						</table>
 
@@ -137,15 +122,12 @@ th {
 								<c:forEach begin="1" end="${map.totalPages}"
 									varStatus="pageStatus">
 									<c:choose>
-										<c:when test="${dto.is_test == 'Y'}">
-											<!-- Checked -->
-											<input class="form-check-input" type="checkbox"
-												id="flexSwitchCheckDefault" checked>
+										<c:when test="${pageStatus.index == currentPage}">
+											<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
 										</c:when>
 										<c:otherwise>
-											<!-- Not Checked -->
-											<input class="form-check-input" type="checkbox"
-												id="flexSwitchCheckDefault">
+											<li class="page-item"><a class="page-link"
+												href="/dd/admin/test/worldcup/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
@@ -207,43 +189,49 @@ th {
 
 <script>
 	// 문서가 완전히 로드 된 뒤에 실행
-	$(document).ready(function() {
-		// 체크박스 클릭 이벤트
-		$(document).on('change', '.form-check-input', function() {
-			// 테스트 채택
-			var isChecked = $(this).is(':checked') ? 'Y' : 'N';
-			//console.log(isChecked);
+	$(document).ready(
+			function() {
+				// 체크박스 클릭 이벤트
+				$(document).on(
+						'change',
+						'.form-check-input',
+						function() {
+							// 테스트 채택
+							var isChecked = $(this).is(':checked') ? 'Y' : 'N';
+							//console.log(isChecked);
 
-			// 선택한 어트랙션 일련번호
-			var attractionSeq = $(this).closest('tr').find('td:first-child').text();
-			//console.log(attractionSeq);
+							// 선택한 어트랙션 일련번호
+							var attractionSeq = $(this).closest('tr').find(
+									'td:first-child').text();
+							//console.log(attractionSeq);
 
-	        // CSRF token
-			var csrfHeaderName = "${_csrf.headerName}";
-			var csrfTokenValue = "${_csrf.token}";
-			//console.log(csrfHeaderName);
-			//console.log(csrfTokenValue);
-					
-			// 데이터베이스 업데이트
-			$.ajax({
-				type: 'POST',
-				url: '/dd/admin/test/worldcup/view.do',
-				data: {
-				    attractionSeq: attractionSeq,
-				    isChecked: isChecked
-				},
-		        beforeSend: function(xhr) {
-		            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-		        },
-		        /*
-				success: function(response) {
-					// console.log(response); // 응답 처리
-				},
-				*/
-				error: function(a, b, c) {
-					console.error(a, b, c);
-				}
+							// CSRF token
+							var csrfHeaderName = "${_csrf.headerName}";
+							var csrfTokenValue = "${_csrf.token}";
+							//console.log(csrfHeaderName);
+							//console.log(csrfTokenValue);
+
+							// 데이터베이스 업데이트
+							$.ajax({
+								type : 'POST',
+								url : '/dd/admin/test/worldcup/view.do',
+								data : {
+									attractionSeq : attractionSeq,
+									isChecked : isChecked
+								},
+								beforeSend : function(xhr) {
+									xhr.setRequestHeader(csrfHeaderName,
+											csrfTokenValue);
+								},
+								/*
+								success: function(response) {
+									// console.log(response); // 응답 처리
+								},
+								 */
+								error : function(a, b, c) {
+									console.error(a, b, c);
+								}
+							});
+						});
 			});
-		});
-	});
 </script>
