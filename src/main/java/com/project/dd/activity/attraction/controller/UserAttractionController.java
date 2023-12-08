@@ -1,6 +1,7 @@
 package com.project.dd.activity.attraction.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
-import com.project.dd.activity.attraction.mapper.AttractionMapper;
 import com.project.dd.activity.attraction.service.AttractionService;
 
 @Controller
@@ -22,14 +22,22 @@ public class UserAttractionController {
 	private AttractionService service;
 	
 	@GetMapping(value = "/view.do")
-	public String view(Model model) {
+	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+
+		//페이징
+		Map<String, String> map = service.paging(page);
 		
 		//Attraction 목록(금일 기준 운영 & 운영종료 제외)
-		List<AttractionDTO> list = service.getAttractionList();
+		List<AttractionDTO> list = service.getAttractionList(map);
 		
 		//운휴인 Attraction 
 		int closeCount = service.getAttractionCloseCount(list);
 		
+		//페이징
+		model.addAttribute("currentPage", page);
+		model.addAttribute("map", map);
+		
+		//어트 목록, 운휴 어트 개수 전달
 		model.addAttribute("list", list);
 		model.addAttribute("closeCount", closeCount);
 

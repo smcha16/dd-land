@@ -55,7 +55,7 @@
 	}
 	
 	section:nth-of-type(2) {
-		background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/activity/attraction/barcelona-3960566_1280.jpg") center center;
+		background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/activity/ferris-wheel-3656782_1280.jpg") center center;
 		/* background-color: transparent;
 		background-repeat: no-repeat; */
 		background-size: cover;
@@ -64,6 +64,7 @@
 	
 	section:last-of-type {
 		padding-top: 30px;
+		padding-bottom: 30px;
 	}
 	
 	.close-container {
@@ -105,6 +106,10 @@
 		/* background-color: #FFFBD0; */
 		background-color: #FFF;
 		border-radius: 5px;
+	}
+	
+	.result-container > .result-item:last-child > .value {
+		font-size: 1.1rem;
 	}
 	
 	.label {
@@ -180,15 +185,13 @@
 	}
 	/* 버튼 */
 	#button {
-		position: relative;
-		width: 950px;
-		margin: 0 auto;
+		display: flex;
+		justify-content: center;
+		margin-bottom: 50px;
 	}
 	#back-button {
-		position: absolute;
 		background-color: #CE1212;
 		border-color: #CE1212;
-		left: 0;
 	}
 	#back-button i {
 		margin-right: 7px;
@@ -196,8 +199,16 @@
 	div#reservation-btn {
 		display: flex;
 		justify-content: center;
+		padding: 20px;
 	}	
 	div#reservation-btn > button {
+		padding: 13px 15px;
+		background: #b71c1c;
+		border: #b71c1c;
+		border-radius: 7px;
+		color: #FFF;
+		font-weight: bold;
+		font-size: 17px;
 	}
 </style>
 
@@ -222,6 +233,11 @@
 	</div>
 </section>
 <!-- End Title & Image Section -->
+
+<!-- 어트랙션 예약 버튼 -->
+<div id="reservation-btn">
+	<button type="button" onclick="location.href='/reservation.do?seq=${dto.attraction_seq}'">어트랙션 예약하기 <i class="bi bi-hand-index-thumb-fill"></i></button>
+</div>
 
 <!-- ======= 상세정보 Section ======= -->
 <!-- 운휴일정, 운영시간, 탑승인원, 이용정보 -->
@@ -268,12 +284,11 @@
 			<div id="map" style="width: 950px; height: 400px;"></div>
 		</div>
 	</div>
-	<div id="button">
-		<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/activity/attraction/view.do';"><i class="bi bi-list"></i>목록</button>
-	</div>
 </section>
-<div id="reservation-btn">
-	<button type="button" onclick="location.href='/reservation.do?seq=${dto.attraction_seq}'">어트랙션 예약하기</button>
+
+<!-- 목록보기 버튼 -->
+<div id="button">
+	<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/activity/attraction/view.do';"><i class="bi bi-list"></i>목록</button>
 </div>
 
 <!-- view2 Template 전용 JavaScript -->
@@ -290,15 +305,15 @@
 	const options = { //지도를 생성할 때 필요한 기본 옵션
 		center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
 		level : 10, //지도의 레벨(확대, 축소 정도)
-		draggable : false, // 이동 금지
+		/* draggable : false, // 이동 금지
 		disableDoubleClick : true, // 더블클릭 확대 금지
-		scrollwheel : false // 휠 확대/축소 금지
+		scrollwheel : false // 휠 확대/축소 금지 */
 	};
 
 	const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
 	//마커 출력
-	let imageSrc = '/ddstudio/asset/image/marker/attraction_marker2.png'; // 마커이미지의 주소
+	let imageSrc = '/dd/resources/files/marker/attraction_marker2.png'; // 마커이미지의 주소
 	const imageSize = new kakao.maps.Size(40,40);
 	const option = {};
 
@@ -306,7 +321,7 @@
 	const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
 
 	const m1 = new kakao.maps.Marker({
-		position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng}), /* < 좌측 값은 테스트용 임시 ${location_dto.lat}, ${location_dto.lng} */
+		position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng}),
 		image: markerImg
 	});
 
