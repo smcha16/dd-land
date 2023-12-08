@@ -259,6 +259,22 @@
 
 	});
 	
+	$('#close').change(function() {
+	    console.log("Change event triggered");
+	    
+	    itemElements.forEach(function(item) {
+	        console.log("Item display:", item.style.display);
+	        
+	        if (item.classList.contains('hidden')) {
+	            console.log("Removing hidden class");
+	            item.classList.remove('hidden');
+	        } else {
+	            console.log("Adding hidden class");
+	            item.classList.add('hidden');
+	        }
+	    });
+	});
+	
 	function detail(seq) {
 		window.location.href = "/dd/user/shop/gift-shop/detail.do?seq="+seq;
 	}

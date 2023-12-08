@@ -64,7 +64,7 @@ section:first-of-type {
 	background-color: transparent;
 	background-repeat: no-repeat;
 	background-size: cover;
-	padding: 0;
+	padding: 30px 0;
 }
 
 section:last-of-type {
@@ -214,11 +214,13 @@ section:last-of-type {
 		<div class="close-item">
 			<div class="label">운휴일정</div>
 			<div class="value">
-				<img src="assets/img/calendar_icon.png" alt="Image" class="icon" />
+				
 				<c:if test="${dto.close == 'y'}">
+				<img src="/dd/resources/files/activity/close_icon.png" alt="Image" class="icon" />
 								금일 운휴
 							</c:if>
 				<c:if test="${dto.close == 'n'}">
+				<img src="/dd/resources/files/activity/calendar_icon.png" alt="Image" class="icon" />
 								정상 운영
 							</c:if>
 			</div>

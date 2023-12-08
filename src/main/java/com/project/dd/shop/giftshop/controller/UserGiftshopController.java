@@ -21,4 +21,13 @@ public class UserGiftshopController {
 		return "user/shop/gift-shop/view";
 	}
 	
+	@GetMapping(value = "/user/shop/gift-shop/detail.do")
+	public String detail(Model model, String seq) {
+		
+		model.addAttribute("dto", service.detail(seq));
+		model.addAttribute("list", service.getImg(seq));
+
+		return "user/shop/gift-shop/detail";
+	}
+	
 }

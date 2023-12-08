@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
+import com.project.dd.shop.giftshop.domain.GiftshopImageDTO;
 import com.project.dd.shop.giftshop.domain.ShopDTO;
 import com.project.dd.shop.giftshop.mapper.ShopMapper;
 
@@ -19,6 +20,16 @@ public class GiftshopDAOImpl implements GiftshopDAO {
 	@Override
 	public List<ShopDTO> getList() {
 		return mapper.getList();
+	}
+	
+	@Override
+	public ShopDTO shopDetail(String seq) {
+		return mapper.detail(seq);
+	}
+	
+	@Override
+	public List<GiftshopImageDTO> shopImg(String seq) {
+		return mapper.image(seq);
 	}
 	
 }
