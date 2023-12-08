@@ -2,12 +2,14 @@ package com.project.dd.guide.convenient.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.guide.convenient.domain.ConvenientDTO;
 import com.project.dd.guide.convenient.service.ConvenientService;
@@ -21,10 +23,14 @@ public class UserConvenientController {
 	private ConvenientService convenientService;   //ConvenientService 객체 생성
 	
 	@GetMapping(value = "/view.do")
-	public String view(Model model) {
+	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 		
-		List<ConvenientDTO> list = convenientService.list();   //편의시설 list불러오는 것을 service에게 위임
+		Map<String, String> map = convenientService.paging(page);  //페이징
 		
+		List<ConvenientDTO> list = convenientService.list(map);   //편의시설 list불러오는 것을 service에게 위임
+		
+		model.addAttribute("currentPage", page);  //페이징
+		model.addAttribute("map", map);  //페이징
 		model.addAttribute("list", list);
 		
 		return "user/guide/convenient/view";

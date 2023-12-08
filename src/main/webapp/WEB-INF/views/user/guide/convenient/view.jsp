@@ -130,7 +130,7 @@
 
             <div class="munti-content-container">
 			<c:forEach items="${list}" var="dto">
-				<div class="item">
+				<div class="item" onclick="location.href='/dd/user/guide/convenient/detail.do?seq='+${dto.convenient_seq};">
 					<div style="background-image: url('/dd/resources/files/guide/convenient/${dto.img}');"></div>
 					<div style="color:black;">${dto.name}</div>
 					<div class="hidden-div">운영시간 : ${dto.time} <br> 전화번호 : ${dto.tel}</div>
@@ -143,13 +143,13 @@
      
      <nav id="page-bar" aria-label="Page navigation example">
 	    <ul class="pagination justify-content-center">
-	        <c:forEach begin="1" end="${totalPages}" varStatus="pageStatus">
+	        <c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
 	            <c:choose>
 	                <c:when test="${pageStatus.index == currentPage}">
 	                    <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
 	                </c:when>
 	                <c:otherwise>
-	                    <li class="page-item"><a class="page-link" href="/dd/user/communication/notice/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+	                    <li class="page-item"><a class="page-link" href="/dd/user/guide/convenient/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
 	                </c:otherwise>
 	            </c:choose>
 	        </c:forEach>
