@@ -32,4 +32,6 @@ public interface WorldCupAttractionDAO {
     // 페이징
 	int getTotalCount();
     
+	void updateAttractionStatus(String attractionSeq, String isChecked);
+	
 }

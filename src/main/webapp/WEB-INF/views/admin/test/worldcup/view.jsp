@@ -1,4 +1,5 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
@@ -46,17 +47,19 @@ th {
 }
 
 #page-bar {
-     margin-top: 50px;
-  }
-  .page-link {
-     color: #CE1212;
-  }
-  .active > .page-link, .page-link.active {
-     z-index: 3;
-      color: var(--bs-pagination-active-color);
-      background-color: #CE1212;
-      border-color: #CE1212;
-  }
+	margin-top: 50px;
+}
+
+.page-link {
+	color: #CE1212;
+}
+
+.active>.page-link, .page-link.active {
+	z-index: 3;
+	color: var(- -bs-pagination-active-color);
+	background-color: #CE1212;
+	border-color: #CE1212;
+}
 </style>
 
 <main id="main" class="main">
@@ -97,14 +100,22 @@ th {
 										<td>
 											<div class="d-flex justify-content-center">
 												<div class="form-check form-switch">
-													<input class="form-check-input" type="checkbox"
-														id="flexSwitchCheckDefault">
+													<c:choose>
+														<c:when test="${dto.is_test eq 'Y'}">
+															<input class="form-check-input" type="checkbox"
+																id="flexSwitchCheckDefault" checked>
+														</c:when>
+														<c:otherwise>
+															<input class="form-check-input" type="checkbox"
+																id="flexSwitchCheckDefault">
+														</c:otherwise>
+													</c:choose>
 												</div>
 											</div>
 										</td>
 									</tr>
 								</c:forEach>
-								
+
 								<%-- 
 								<tr>
 									<td>
@@ -117,24 +128,26 @@ th {
 									</td>
 								</tr>
 								--%>
-								
+
 							</tbody>
 						</table>
 
 						<nav id="page-bar" aria-label="Page navigation example">
-					       <ul class="pagination justify-content-center">
-					           <c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
-					               <c:choose>
-					                   <c:when test="${pageStatus.index == currentPage}">
-					                       <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
-					                   </c:when>
-					                   <c:otherwise>
-					                       <li class="page-item"><a class="page-link" href="/dd/admin/test/worldcup/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
-					                   </c:otherwise>
-					               </c:choose>
-					           </c:forEach>
-					       </ul>
-					   </nav>
+							<ul class="pagination justify-content-center">
+								<c:forEach begin="1" end="${map.totalPages}"
+									varStatus="pageStatus">
+									<c:choose>
+										<c:when test="${pageStatus.index == currentPage}">
+											<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item"><a class="page-link"
+												href="/dd/admin/test/worldcup/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</ul>
+						</nav>
 
 					</div>
 				</div>
@@ -170,7 +183,7 @@ th {
 								</tr>
 							</tbody>
 						</table>
-						
+
 						<ul class="pagination pagination-sm">
 							<li class="page-item active" aria-current="page"><span
 								class="page-link">1</span></li>
@@ -188,3 +201,35 @@ th {
 	</section>
 
 </main>
+
+<script>
+	$(document).ready(function () {
+		// 체크박스에 클릭 이벤트 리스너 추가
+		$('.form-check-input').on('change', function () {
+			// 체크박스의 값 (Y 또는 N) 가져오기
+			var isChecked = $(this).is(':checked') ? 'Y' : 'N';
+
+			// 해당 어트랙션 일련번호 가져오기
+			var attractionSeq = $(this).closest('tr').find('td:first-child').text();
+
+			// 데이터베이스 업데이트를 위한 Ajax 요청
+			$.ajax({
+				type: 'POST',
+				url: '/admin/test/worldcup/updateStatus.do',
+				data: {
+					attractionSeq: attractionSeq,
+					isChecked: isChecked,
+					${_csrf.parameterName}: '${_csrf.token}' // Include CSRF token
+				},
+				success: function (response) {
+					// 필요한 경우 응답 처리
+					console.log(response);
+				},
+				error: function (error) {
+					// 오류 처리
+					console.error(error);
+				}
+			});
+		});
+	});
+</script>
