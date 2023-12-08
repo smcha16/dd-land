@@ -75,7 +75,8 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 	}
 	
 	@Override
-	public void updateAttractionStatus(String attractionSeq, String isChecked) {
-		attractionDAO.updateAttractionStatus(attractionSeq, isChecked);
+	public void updateAttractionStatus(Map<String, String> paramMap) {
+		attractionDAO.updateAttractionStatus(paramMap);
 	}
+
 }

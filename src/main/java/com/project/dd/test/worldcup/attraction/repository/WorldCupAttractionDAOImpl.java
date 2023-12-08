@@ -100,8 +100,9 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 	}
 	
 	@Override
-    public void updateAttractionStatus(String attractionSeq, String isChecked) {
-
-		mapper.updateAttractionStatus(attractionSeq, isChecked);
-    }
+	public void updateAttractionStatus(Map<String, String> paramMap) {
+		
+		mapper.updateAttractionStatus(paramMap);
+	}
+	
 }

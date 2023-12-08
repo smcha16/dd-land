@@ -24,6 +24,6 @@ public interface WorldCupAttractionService {
 
 	Map<String, String> paging(int page);
 
-	void updateAttractionStatus(String attractionSeq, String isChecked);
+	void updateAttractionStatus(Map<String, String> paramMap);
 
 }

@@ -137,12 +137,15 @@ th {
 								<c:forEach begin="1" end="${map.totalPages}"
 									varStatus="pageStatus">
 									<c:choose>
-										<c:when test="${pageStatus.index == currentPage}">
-											<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+										<c:when test="${dto.is_test == 'Y'}">
+											<!-- Checked -->
+											<input class="form-check-input" type="checkbox"
+												id="flexSwitchCheckDefault" checked>
 										</c:when>
 										<c:otherwise>
-											<li class="page-item"><a class="page-link"
-												href="/dd/admin/test/worldcup/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+											<!-- Not Checked -->
+											<input class="form-check-input" type="checkbox"
+												id="flexSwitchCheckDefault">
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
@@ -203,31 +206,42 @@ th {
 </main>
 
 <script>
-	$(document).ready(function () {
-		// 체크박스에 클릭 이벤트 리스너 추가
-		$('.form-check-input').on('change', function () {
-			// 체크박스의 값 (Y 또는 N) 가져오기
+	// 문서가 완전히 로드 된 뒤에 실행
+	$(document).ready(function() {
+		// 체크박스 클릭 이벤트
+		$(document).on('change', '.form-check-input', function() {
+			// 테스트 채택
 			var isChecked = $(this).is(':checked') ? 'Y' : 'N';
+			//console.log(isChecked);
 
-			// 해당 어트랙션 일련번호 가져오기
+			// 선택한 어트랙션 일련번호
 			var attractionSeq = $(this).closest('tr').find('td:first-child').text();
+			//console.log(attractionSeq);
 
-			// 데이터베이스 업데이트를 위한 Ajax 요청
+	        // CSRF token
+			var csrfHeaderName = "${_csrf.headerName}";
+			var csrfTokenValue = "${_csrf.token}";
+			//console.log(csrfHeaderName);
+			//console.log(csrfTokenValue);
+					
+			// 데이터베이스 업데이트
 			$.ajax({
 				type: 'POST',
-				url: '/admin/test/worldcup/updateStatus.do',
+				url: '/dd/admin/test/worldcup/view.do',
 				data: {
-					attractionSeq: attractionSeq,
-					isChecked: isChecked,
-					${_csrf.parameterName}: '${_csrf.token}' // Include CSRF token
+				    attractionSeq: attractionSeq,
+				    isChecked: isChecked
 				},
-				success: function (response) {
-					// 필요한 경우 응답 처리
-					console.log(response);
+		        beforeSend: function(xhr) {
+		            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		        },
+		        /*
+				success: function(response) {
+					// console.log(response); // 응답 처리
 				},
-				error: function (error) {
-					// 오류 처리
-					console.error(error);
+				*/
+				error: function(a, b, c) {
+					console.error(a, b, c);
 				}
 			});
 		});

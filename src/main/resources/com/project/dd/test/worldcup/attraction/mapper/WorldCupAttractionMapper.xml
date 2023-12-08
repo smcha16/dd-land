@@ -61,11 +61,18 @@
 	<select id="getAllAWCFinalWin" resultType="com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionFinalWinDTO">
 		select * from tblAWCFinalWin
 	</select>
-	
-	<update id="updateAttractionStatus">
+		
+	<update id="updateAttractionStatus" parameterType="map">
 	    update tblAWC
 	    set is_test = #{isChecked}
 	    where attraction_seq = #{attractionSeq}
 	</update>
-
+	
+	<!-- 
+	<update id="updateAttractionStatus" parameterType="String">
+	    UPDATE tblAWC
+	    SET isChecked = #{isChecked}
+	    WHERE attractionSeq = #{attractionSeq}
+	</update>
+	-->
 </mapper>
