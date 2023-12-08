@@ -26,4 +26,8 @@ public class MovieService {
 	public List<MoviePlayDTO> getMoviePlayList(String seq) {
 		return dao.getMoviePlayList(seq);
 	}
+
+	public List<MoviePlayDTO> getMoviePlay(String seq) {
+		return dao.getMoviePlay(seq);
+	}
 }

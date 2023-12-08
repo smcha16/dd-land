@@ -31,6 +31,11 @@ public class MovieDAOImpl implements MovieDAO {
 	public List<MoviePlayDTO> getMoviePlayList(String seq) {
 		return mapper.getMoviePlayList(seq);
 	}
+
+	@Override
+	public List<MoviePlayDTO> getMoviePlay(String seq) {
+		return mapper.getMoviePlay(seq);
+	}
 	
 	
 }
