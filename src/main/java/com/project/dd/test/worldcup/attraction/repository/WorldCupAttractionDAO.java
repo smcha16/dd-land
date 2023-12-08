@@ -1,14 +1,18 @@
 package com.project.dd.test.worldcup.attraction.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO;
 
 public interface WorldCupAttractionDAO {
 
-    // 모든 어트랙션 정보 가져오기
-    List<AttractionDTO> getAllAttractions(String close);
+    // 모든 어트랙션 가져오기
+    List<AttractionDTO> getAllAttraction(Map<String, String> map);
+    
+    // 운영중인 어트랙션 가져오기
+    List<AttractionDTO> getRunAttraction(String close);
 
     // 어트랙션 월드컵에 등록된 모든 어트랙션 가져오기
     List<WorldCupAttractionDTO> getAllAWC(String isTest);
@@ -24,5 +28,8 @@ public interface WorldCupAttractionDAO {
 
     // 리스트에서 두 개의 랜덤 어트랙션 가져오기
     List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> attractions);
+
+    // 페이징
+	int getTotalCount();
     
 }
