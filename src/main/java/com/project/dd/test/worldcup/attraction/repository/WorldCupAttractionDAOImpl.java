@@ -13,6 +13,12 @@ import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO;
 import com.project.dd.test.worldcup.attraction.mapper.WorldCupAttractionMapper;
 
+/**
+ * 어트랙션과 관련된 데이터베이스 조작을 위한 DAO 구현 클래스입니다.
+ * 데이터베이스와 연동하여 데이터를 조회하거나 업데이트하는 기능을 수행합니다.
+ * 
+ * @author 이승원
+ */
 @Repository
 @Primary
 public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
@@ -20,43 +26,49 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 	@Autowired
 	private WorldCupAttractionMapper mapper;
 
-	@Override
-	public int getTotalCount() {
-		return mapper.getTotalCount();
-	}
-	
-	// 모든 어트랙션 리스트 가져오기
+	/**
+	 * 모든 어트랙션 리스트를 가져옵니다.
+	 */
 	@Override
 	public List<AttractionDTO> getAllAttraction(Map<String, String> map) {
-		
 		return mapper.getAllAttraction(map);
 	}
-	
-	// 운영중인 어트랙션 리스트 가져오기
+
+	/**
+	 * 운영 중인 어트랙션 리스트를 가져옵니다.
+	 */
 	@Override
 	public List<AttractionDTO> getRunAttraction(String close) {
 		return mapper.getRunAttraction(close);
 	}
 
-	// 어트랙션 월드컵 리스트 가져오기
+	/**
+	 * 어트랙션 월드컵 리스트를 가져옵니다.
+	 */
 	@Override
 	public List<WorldCupAttractionDTO> getAllAWC(String isTest) {
 		return mapper.getAllAWC(isTest);
 	}
 
-	// 어트랙션 월드컵 승리 리스트 가져오기
+	/**
+	 * 어트랙션 월드컵 승리 리스트를 가져옵니다.
+	 */
 	@Override
 	public List<WorldCupAttractionDTO> getAllAWCWin() {
 		return mapper.getAllAWCWin();
 	}
 
-	// 어트랙션 월드컵 최종 승리 리스트 가져오기
+	/**
+	 * 어트랙션 월드컵 최종 승리 리스트를 가져옵니다.
+	 */
 	@Override
 	public List<WorldCupAttractionDTO> getAllAWCFinalWin() {
 		return mapper.getAllAWCFinalWin();
 	}
 
-	// 선택되지 않은 어트랙션 가져오기
+	/**
+	 * 선택되지 않은 어트랙션 리스트를 가져옵니다.
+	 */
 	@Override
 	public List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions) {
 		List<AttractionDTO> allAttractions = getRunAttraction("Y");
@@ -72,7 +84,9 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 		return remainingAttractions;
 	}
 
-	// 두 개의 랜덤 어트랙션 가져오기
+	/**
+	 * 두 개의 랜덤 어트랙션을 가져옵니다.
+	 */
 	@Override
 	public List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> attractions) {
 		List<AttractionDTO> selectedTwoAttractions = new ArrayList<>();
@@ -98,11 +112,21 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 
 		return selectedTwoAttractions;
 	}
-	
+
+	/**
+	 * 페이징을 위한 전체 어트랙션 개수를 조회합니다.
+	 */
 	@Override
-	public void updateAttractionStatus(Map<String, String> paramMap) {
-		
-		mapper.updateAttractionStatus(paramMap);
+	public int getTotalCount() {
+		return mapper.getTotalCount();
 	}
-	
+
+	/**
+	 * 어트랙션의 상태를 업데이트합니다.
+	 */
+	@Override
+	public void updateAttractionStatus(Map<String, String> map) {
+		mapper.updateAttractionStatus(map);
+	}
+
 }
