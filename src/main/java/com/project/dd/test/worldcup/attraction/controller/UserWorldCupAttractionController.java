@@ -13,26 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService;
 
-/**
- * 유저 월드컵 어트랙션 컨트롤러 클래스입니다.
- * 사용자가 어트랙션을 선택하고 조회하는 기능을 처리합니다.
- * 
- * @author 이승원
- */
 @Controller
 public class UserWorldCupAttractionController {
 
     @Autowired
     private WorldCupAttractionService attractionService;
     
-    /**
-     * 어트랙션 조회 화면을 표시합니다.
-     * 
-     * @param model 모델 객체
-     * @param close 닫힌 어트랙션 여부
-     * @param isTest 테스트 채택 여부
-     * @return 어트랙션 조회 화면
-     */
     @GetMapping(value = "/user/test/worldcup/attraction/view.do")
     public String view(Model model, @RequestParam(defaultValue = "n") String close, @RequestParam(defaultValue = "Y") String isTest) {
 
@@ -51,13 +37,6 @@ public class UserWorldCupAttractionController {
         return "user/test/worldcup/attraction/view";
     }
 
-    /**
-     * 어트랙션 선택 처리를 수행합니다.
-     * 
-     * @param attractionSeq 선택된 어트랙션 일련번호
-     * @param model 모델 객체
-     * @return 어트랙션 조회 화면으로 리다이렉트
-     */
     @PostMapping("/user/test/worldcup/attraction/view.do")
     public String handleAttractionSelection(@RequestParam String attractionSeq, Model model) {
         // 어트랙션 선택 처리 로직 구현
@@ -70,5 +49,4 @@ public class UserWorldCupAttractionController {
 
         return "redirect:/user/test/worldcup/attraction/view.do";
     }
-    
 }

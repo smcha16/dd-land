@@ -189,48 +189,49 @@ th {
 
 <script>
 	// 문서가 완전히 로드 된 뒤에 실행
-	$(document).ready(function() {
-		// 체크박스 클릭 이벤트
-		$(document).on(
-				'change',
-				'.form-check-input',
-				function() {
-					// 테스트 채택
-					var isTest = $(this).is(':checked') ? 'Y' : 'N';
-					//console.log(isTest);
+	$(document).ready(
+			function() {
+				// 체크박스 클릭 이벤트
+				$(document).on(
+						'change',
+						'.form-check-input',
+						function() {
+							// 테스트 채택
+							var isChecked = $(this).is(':checked') ? 'Y' : 'N';
+							//console.log(isChecked);
 
-					// 선택한 어트랙션 일련번호
-					var attractionSeq = $(this).closest('tr').find(
-							'td:first-child').text();
-					//console.log(attractionSeq);
+							// 선택한 어트랙션 일련번호
+							var attractionSeq = $(this).closest('tr').find(
+									'td:first-child').text();
+							//console.log(attractionSeq);
 
-					// CSRF token
-					var csrfHeaderName = "${_csrf.headerName}";
-					var csrfTokenValue = "${_csrf.token}";
-					//console.log(csrfHeaderName);
-					//console.log(csrfTokenValue);
+							// CSRF token
+							var csrfHeaderName = "${_csrf.headerName}";
+							var csrfTokenValue = "${_csrf.token}";
+							//console.log(csrfHeaderName);
+							//console.log(csrfTokenValue);
 
-					// 데이터베이스 업데이트
-					$.ajax({
-						type : 'POST',
-						url : '/dd/admin/test/worldcup/view.do',
-						data : {
-							attractionSeq : attractionSeq,
-							isTest : isTest
-						},
-						beforeSend : function(xhr) {
-							xhr.setRequestHeader(csrfHeaderName,
-									csrfTokenValue);
-						},
-						/*
-						success: function(response) {
-							// console.log(response); // 응답 처리
-						},
-						 */
-						error : function(a, b, c) {
-							console.error(a, b, c);
-						}
-					});
-				});
-		});
+							// 데이터베이스 업데이트
+							$.ajax({
+								type : 'POST',
+								url : '/dd/admin/test/worldcup/view.do',
+								data : {
+									attractionSeq : attractionSeq,
+									isChecked : isChecked
+								},
+								beforeSend : function(xhr) {
+									xhr.setRequestHeader(csrfHeaderName,
+											csrfTokenValue);
+								},
+								/*
+								success: function(response) {
+									// console.log(response); // 응답 처리
+								},
+								 */
+								error : function(a, b, c) {
+									console.error(a, b, c);
+								}
+							});
+						});
+			});
 </script>
