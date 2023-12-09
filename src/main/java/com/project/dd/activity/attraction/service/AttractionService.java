@@ -1,11 +1,17 @@
 package com.project.dd.activity.attraction.service;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
@@ -44,9 +50,17 @@ public class AttractionService {
 		return closeCount;
 	}
 
-	public Map<String, String> paging(int page) {
+	public Map<String, String> paging(int page, String solting) {
 		
-		int pageSize = 9;  //나타났으면 하는 개수
+		int pageSize = 0;
+		
+		//user or admin 노출 목록 개수 설정
+		if (solting.equalsIgnoreCase("user")) {
+			pageSize = 9;  //나타났으면 하는 개수(user)
+			
+		} else if (solting.equalsIgnoreCase("admin")) {
+			pageSize = 10;  //나타났으면 하는 개수(admin)
+		}
 	      
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
@@ -65,4 +79,43 @@ public class AttractionService {
 		return map;
 
 	}
+
+	public int checkLocationDuplication(AttractionDTO dto) {
+		return dao.checkLocationDuplication(dto);
+	}
+
+	public int addAttraction(AttractionDTO dto, MultipartFile[] imgs, HttpServletRequest req) {
+		
+		dto.setImgList(new ArrayList<AttractionImgDTO>()); //첨부 파일 배열
+		
+		for (MultipartFile file : imgs) {
+			
+			try {
+			
+				UUID uuid = UUID.randomUUID();
+			
+				String filename = uuid + "_" + file.getOriginalFilename();
+			
+				file.transferTo(new File(req.getRealPath("/resources/files/activity/attraction") + "\\" + filename));
+				
+				//첨부파일 1개 > PicDTO 1개
+				AttractionImgDTO idto = new AttractionImgDTO();
+				idto.setImg(filename);
+				
+				dto.getImgList().add(idto);
+			
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		//테스트용 실제 경로 출력
+		System.out.println(req.getRealPath("/resources/files/activity/attraction"));
+		
+		return dao.addAttraction(dto);
+	}
+	
+	
+	
 }

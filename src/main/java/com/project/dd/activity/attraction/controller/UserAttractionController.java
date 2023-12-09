@@ -23,9 +23,10 @@ public class UserAttractionController {
 	
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
-
+		
 		//페이징
-		Map<String, String> map = service.paging(page);
+		String solting = "user";
+		Map<String, String> map = service.paging(page, solting);
 		
 		//Attraction 목록(금일 기준 운영 & 운영종료 제외)
 		List<AttractionDTO> list = service.getAttractionList(map);
@@ -55,8 +56,6 @@ public class UserAttractionController {
 		
 		//ilist > AttractionDTO에 담기
 		dto.setImgList(ilist);
-		
-		//질문!!!!!!!! AttractionDTO에 ilist 담는 과정도 컨트롤러가 아닌 서비스에서 진행해야 하는가?
 		
 		model.addAttribute("dto", dto);
 		

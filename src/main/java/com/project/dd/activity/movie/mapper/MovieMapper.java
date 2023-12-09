@@ -1,6 +1,7 @@
 package com.project.dd.activity.movie.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.activity.movie.domain.MoviePlayDTO;
@@ -14,5 +15,13 @@ public interface MovieMapper {
 	List<MoviePlayDTO> getMoviePlayList(String seq);
 
 	List<MoviePlayDTO> getMoviePlay(String seq);
+
+	int delMovie(String seq);
+
+	int getTotalCount(String solting);
+
+	List<MovieDTO> getMovieListAll(Map<String, String> map);
+
+	int addMovie(MovieDTO dto);
 
 }

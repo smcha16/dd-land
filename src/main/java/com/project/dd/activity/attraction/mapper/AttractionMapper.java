@@ -19,4 +19,14 @@ public interface AttractionMapper {
 
 	int getTotalCount();
 
+	int checkLocationDuplication(AttractionDTO dto);
+
+	int addAttraction(AttractionDTO dto);
+
+	int getAttractionSeq();
+
+	int addAttractionLocation(AttractionDTO dto);
+
+	int addAttractionImg(AttractionImgDTO idto);
+
 }

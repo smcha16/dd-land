@@ -16,4 +16,8 @@ public interface AttractionDAO {
 
 	int getTotalCount();
 
+	int checkLocationDuplication(AttractionDTO dto);
+
+	int addAttraction(AttractionDTO dto);
+
 }
