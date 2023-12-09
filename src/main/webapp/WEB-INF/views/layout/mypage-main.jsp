@@ -140,6 +140,7 @@
 		<script src="/dd/resources/admin/js/main.js"></script>
 	
 		<tiles:insertAttribute name="mypage_content" />
+		
 
 	</body>
 
