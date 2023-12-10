@@ -28,7 +28,7 @@
 		margin-right: 15px;
 	}
 	#notice-detail {
-		min-height: 918.8px;
+		min-height: 500px;
 		text-align: center;
 	}
 	#detail {
@@ -47,7 +47,7 @@
 	#button button {
 		background-color: #CE1212;
 		border-color: #CE1212;
-		margin: 50px 0;
+		margin: 50px 0 70px;
 	}
 	#button i {
 		margin-right: 7px;
