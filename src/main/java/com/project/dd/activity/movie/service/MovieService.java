@@ -90,20 +90,64 @@ public class MovieService {
 
 	public int addMovie(MovieDTO dto, MultipartFile imgs, HttpServletRequest req) {
 		
-		try {
+		
+		if (imgs.isEmpty()) {
 			
-			UUID uuid = UUID.randomUUID();
+			dto.setImg("movie.png");
 			
-			String filename = uuid + "_" + imgs.getOriginalFilename();
+		} else {
 			
-			imgs.transferTo(new File(req.getRealPath("/resources/files/activity/attraction") + "\\" + filename));
+			try {
+				
+				UUID uuid = UUID.randomUUID();
+				
+				String filename = uuid + "_" + imgs.getOriginalFilename();
+				
+				imgs.transferTo(new File(req.getRealPath("/resources/files/activity/movie") + "\\" + filename));
+				
+				dto.setImg(filename);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
-			dto.setImg(filename);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		
 		return dao.addMovie(dto);
+	}
+
+	public int editMovie(MovieDTO dto, MultipartFile imgs, HttpServletRequest req) {
+		
+		//imgs == null > input:disabled > 기존 첨부파일 그대로인 상태 > img 수정 없음
+		if (imgs == null) {
+			
+			//기존 img 파일명 가져오기
+			String imgFileName = dao.getMovieImgFileName(dto.getMovie_seq());
+			
+			dto.setImg(imgFileName);
+			
+		} else if (imgs.isEmpty()) { //기존 img 삭제 > default(movie.png) 사용
+			
+			dto.setImg("movie.png");
+			
+		} else { //이미지 변경하여 첨부
+			
+			try {
+				
+				UUID uuid = UUID.randomUUID();
+				
+				String filename = uuid + "_" + imgs.getOriginalFilename();
+				
+				imgs.transferTo(new File(req.getRealPath("/resources/files/activity/movie") + "\\" + filename));
+				
+				dto.setImg(filename);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return dao.editMovie(dto);
 	}
 }

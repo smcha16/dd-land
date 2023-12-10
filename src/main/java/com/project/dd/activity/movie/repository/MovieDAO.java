@@ -24,4 +24,8 @@ public interface MovieDAO {
 
 	int addMovie(MovieDTO dto);
 
+	String getMovieImgFileName(String seq);
+
+	int editMovie(MovieDTO dto);
+
 }

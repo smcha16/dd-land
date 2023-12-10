@@ -24,4 +24,8 @@ public interface MovieMapper {
 
 	int addMovie(MovieDTO dto);
 
+	String getMovieImgFileName(String seq);
+
+	int editMovie(MovieDTO dto);
+
 }

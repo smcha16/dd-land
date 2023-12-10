@@ -57,6 +57,16 @@ public class MovieDAOImpl implements MovieDAO {
 	public int addMovie(MovieDTO dto) {
 		return mapper.addMovie(dto);
 	}
+
+	@Override
+	public String getMovieImgFileName(String seq) {
+		return mapper.getMovieImgFileName(seq);
+	}
+
+	@Override
+	public int editMovie(MovieDTO dto) {
+		return mapper.editMovie(dto);
+	}
 	
 	
 }

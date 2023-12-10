@@ -41,6 +41,13 @@
 		VALUES (seqtblMovie.NEXTVAL, #{name}, #{story}, #{runningtime}, #{img}, #{preview})	
 	</insert>
 	
+	<select id="getMovieImgFileName" parameterType="String" resultType="String">
+		select img from tblMovie where movie_seq = #{movie_seq}
+	</select>
+	
+	<update id="editMovie" parameterType="com.project.dd.activity.movie.domain.MovieDTO">
+		update tblMovie set name = #{name},  story = #{story}, runningtime = #{runningtime}, img = #{img}, preview = #{preview} where movie_seq = #{movie_seq}
+	</update>
 	
 	<update id="delMovie" parameterType="String">
 		update tblMovie set name = name || '(상영종료)' where movie_seq = #{movie_seq}
