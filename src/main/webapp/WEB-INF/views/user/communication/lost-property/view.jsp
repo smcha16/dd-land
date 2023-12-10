@@ -154,9 +154,9 @@
 <main id="lost-property">
 
 	<form method="GET" action="/dd/user/communication/lost-property/view.do" id="search-date-form">
-		<input type="date" class="form-control">
+		<input type="date" id="start" class="form-control">
 			~
-		<input type="date" class="form-control">
+		<input type="date" id="end" class="form-control">
 	</form>
 
 	<table id="lost-property-list">
@@ -219,6 +219,23 @@
 </main>
 
 <script>
+	document.addEventListener('DOMContentLoaded', function () {	
+	    const startDate = document.getElementById('start');
+	    const endDate = document.getElementById('end');
+	
+	    startDate.addEventListener('change', function () {
+	        const selectedStartDate = new Date(startDate.value);
+	        const minEndDate = new Date(selectedStartDate.getTime());
+	        const formattedMinEndDate = minEndDate.toISOString().split('T')[0];
+	
+	        endDate.setAttribute('min', formattedMinEndDate);
+	
+	        if (endDate.value && new Date(endDate.value) < selectedStartDate) {
+	            endDate.value = formattedMinEndDate;
+	        }
+	    });
+	});
+
     function showModal(imageUrl) {
         const modalImage = document.getElementById('modal-image');
         

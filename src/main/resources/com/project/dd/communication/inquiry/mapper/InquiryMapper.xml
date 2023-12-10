@@ -5,6 +5,6 @@
 <mapper namespace="com.project.dd.communication.inquiry.mapper.InquiryMapper">
 	<insert id="addInquiry" parameterType="com.project.dd.communication.inquiry.domain.InquiryDTO">
 		insert into tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-		values (seqtblInquiry.nextVal, #{type}, #{subject}, #{content}, #{regdate}, #{attach}, default, #{user_seq})
+		values (seqtblInquiry.nextVal, #{type}, #{subject}, #{content}, default, #{attach, jdbcType=VARCHAR}, null, #{user_seq})
 	</insert>
 </mapper>

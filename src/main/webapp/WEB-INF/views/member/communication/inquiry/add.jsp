@@ -94,8 +94,8 @@
 			<tr>
 				<th class="required">문의유형</th>
 				<td>
-					<select name="type" id="type" class="form-select">
-					    <option value="요금/혜택" selected>요금/혜택</option>
+					<select name="type" class="form-select">
+					    <option value="요금/혜택">요금/혜택</option>
 					    <option value="어트랙션">어트랙션</option>
 					    <option value="페스티벌">페스티벌</option>
 					    <option value="영화">영화</option>
@@ -130,7 +130,7 @@
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td><input type="file" name="attach" class="form-control"></td>
+				<td><input type="file" name="doc" class="form-control"></td>
 			</tr>
 			<tr>
 				<th class="required">개인정보수집동의</th>

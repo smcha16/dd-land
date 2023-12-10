@@ -25,22 +25,26 @@ public class MemberInquiryController {
 	@GetMapping(value = "/add.do")
 	public String add(Authentication auth, Model model) {
 
-		String email = ((CustomUser)auth.getPrincipal()).getDto().getEmail();
 		String name = ((CustomUser)auth.getPrincipal()).getDto().getName();
-
-		model.addAttribute("email", email);
+		String email = ((CustomUser)auth.getPrincipal()).getDto().getEmail();
+		
 		model.addAttribute("name", name);
+		model.addAttribute("email", email);
 
 		return "member/communication/inquiry/add";
 
 	}
 	
 	@PostMapping(value = "/addok.do")
-	public String addok(Authentication auth, InquiryDTO dto, HttpServletRequest req, MultipartFile attach) {
+	public String addOk(Authentication auth, InquiryDTO dto, HttpServletRequest req, MultipartFile doc) {
 		
-		if (attach != null && !attach.isEmpty()) {
+		if (doc != null && !doc.isEmpty()) {
 			
-			service.saveFile(req, attach);
+			dto.setAttach(service.saveFile(req, doc));
+			
+		} else {
+			
+			dto.setAttach(null);
 			
 		}
 
