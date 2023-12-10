@@ -16,7 +16,7 @@ public interface MovieDAO {
 
 	List<MoviePlayDTO> getMoviePlay(String seq);
 
-	int delMovie(String[] movie_seq);
+	int delMovie(String seq);
 
 	int getTotalCount(String solting);
 

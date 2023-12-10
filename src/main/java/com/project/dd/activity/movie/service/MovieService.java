@@ -38,8 +38,21 @@ public class MovieService {
 		return dao.getMoviePlay(seq);
 	}
 
+	//영화 삭제
+	// - 1. 배열 돌면서 seq 뽑아내기
+	// - 2. 해당하는 seq의 레코드 UPDATE (상영종료)
 	public int delMovie(String[] movie_seq) {
-		return dao.delMovie(movie_seq);
+		
+		int result = 0;
+		
+		//1. 배열 돌면서 seq 뽑아내기
+		for (String seq : movie_seq) {
+			
+			//2. 해당하는 seq의 레코드 UPDATE (상영종료)
+			result += dao.delMovie(seq);
+		}
+		
+		return result;
 	}
 
 	public Map<String, String> paging(int page, String solting) {
