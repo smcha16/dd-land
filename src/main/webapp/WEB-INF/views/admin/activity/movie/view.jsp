@@ -70,6 +70,17 @@
    		justify-content: center;
    		margin-top: 40px;
   	}
+  	
+  	/* 목록 커서 CSS */
+  	table td:nth-child(3) a {
+		cursor: pointer;
+	}
+  	table td:nth-child(5) i {
+		cursor: pointer;
+	}
+  	table td:nth-child(6) i {
+		cursor: pointer;
+	}
 </style>
 
 <!-- ======= Main ======= -->
@@ -113,8 +124,8 @@
 	                        					<th></th>
 	                        					<th>No</th>
 	                        					<th>이름</th>
-	                        					<th>줄거리</th>
-	                        					<th>러닝타임</th>
+	                        					<th>러닝타임(분)</th>
+	                        					<th>포스터</th>
 	                        					<th>예고편</th>
 	                      					</tr>
 	                    				</thead>
@@ -123,10 +134,20 @@
 		                      					<tr>
 		                        					<td><input type="checkbox" name="movie_seq" value="${dto.movie_seq}"></td>
 		                        					<td>${status.count}</td>
-		                        					<td>${dto.name}</td>
-		                        					<td>${dto.story}</td>
+		                        					<td><a><c:out value="${dto.name}" /></a></td>
 		                        					<td>${dto.runningtime}</td>
-		                        					<td>${dto.preview}</td>
+		                        					<c:if test="${dto.img == 'movie.png'}">
+		                        						<td></td>
+		                        					</c:if>
+		                        					<c:if test="${dto.img != 'movie.png'}">
+		                        						<td><i class="bi bi-image"></i></td>
+		                        					</c:if>
+		                        					<c:if test="${dto.preview == null || dto.preview == ''}">
+		                        						<td></td>
+	                        						</c:if>
+		                        					<c:if test="${dto.preview != null && dto.preview != ''}">
+		                        						<td><i class="bi bi-file-earmark-play"></i></td>
+	                        						</c:if>
 		                      					</tr>
 	                      					</c:forEach>
 	                   					</tbody>

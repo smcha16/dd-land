@@ -67,6 +67,11 @@ public class MovieDAOImpl implements MovieDAO {
 	public int editMovie(MovieDTO dto) {
 		return mapper.editMovie(dto);
 	}
+
+	@Override
+	public int checkMovieNameDuplication(MovieDTO dto) {
+		return mapper.checkMovieNameDuplication(dto);
+	}
 	
 	
 }

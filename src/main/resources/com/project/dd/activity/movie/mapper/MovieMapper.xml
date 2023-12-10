@@ -67,4 +67,8 @@
 				(select * from tblMovie where name not like '%(상영종료)%') n)
 		where rnum between #{startIndex} and #{endIndex}
 	</select>
+	
+	<select id="checkMovieNameDuplication" parameterType="com.project.dd.activity.movie.domain.MovieDTO" resultType="int">
+		select count(*) from tblMovie where name = #{name}
+	</select>
 </mapper>

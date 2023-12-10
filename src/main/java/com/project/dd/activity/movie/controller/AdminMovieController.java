@@ -22,7 +22,7 @@ import com.project.dd.activity.movie.service.MovieService;
 public class AdminMovieController {
 
 	@Autowired
-	MovieService service;
+	private MovieService service;
 	
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {

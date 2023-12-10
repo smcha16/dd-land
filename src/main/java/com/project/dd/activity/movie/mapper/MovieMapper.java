@@ -28,4 +28,6 @@ public interface MovieMapper {
 
 	int editMovie(MovieDTO dto);
 
+	int checkMovieNameDuplication(MovieDTO dto);
+
 }

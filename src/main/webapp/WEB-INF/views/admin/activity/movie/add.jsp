@@ -102,7 +102,7 @@
               				
             				<!-- 영화 예고편 영상 -->
               				<div class="row mb-3">
-                				<label for="name" class="col-sm-2 col-form-label required">영화 예고편</label>
+                				<label for="name" class="col-sm-2 col-form-label">영화 예고편</label>
                 				<div class="col-sm-10">
                   					<input type="text" id="preview" name="preview" class="form-control" placeholder="영화 예고편 영상의 링크를 입력해주세요." required>
                 				</div>
@@ -133,5 +133,40 @@
 	<c:if test="${not empty alertMessage}">
 		alert("${alertMessage}");
 	</c:if>
+	
+	/* 영화명 중복 체크 */
+	$('input[name="name"]').blur(function() {
+		
+		let obj = {
+				name: $('input[name="name"]').val()
+		};
+		
+		// CSRF token
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+		
+		$.ajax({
+			type: 'POST',
+			url: '/admin/activity/movie',
+			headers: {'content-Type': 'application/json'},
+			data: JSON.stringify(obj),
+			dataType: 'json',
+			success: result => {
+				alert(result);
+			},
+			beforeSend: function(xhr) {
+            	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+            },
+			error: (a,b,c) => {
+				console.log(a,b,c);
+			}
+			
+		});
+		
+		
+	});
+	
+	
 	
 </script>

@@ -28,4 +28,6 @@ public interface MovieDAO {
 
 	int editMovie(MovieDTO dto);
 
+	int checkMovieNameDuplication(MovieDTO dto);
+
 }

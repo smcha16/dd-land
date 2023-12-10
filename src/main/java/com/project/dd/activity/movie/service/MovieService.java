@@ -150,4 +150,8 @@ public class MovieService {
 		
 		return dao.editMovie(dto);
 	}
+
+	public int checkMovieNameDuplication(MovieDTO dto) {
+		return dao.checkMovieNameDuplication(dto);
+	}
 }
