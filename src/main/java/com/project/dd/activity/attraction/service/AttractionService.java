@@ -111,7 +111,7 @@ public class AttractionService {
 		}
 		
 		//테스트용 실제 경로 출력
-		System.out.println(req.getRealPath("/resources/files/activity/attraction"));
+//		System.out.println(req.getRealPath("/resources/files/activity/attraction"));
 		
 		return dao.addAttraction(dto);
 	}

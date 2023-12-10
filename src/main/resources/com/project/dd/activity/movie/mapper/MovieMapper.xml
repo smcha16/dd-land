@@ -36,7 +36,7 @@
 	
 	<!-- Admin -->
 	
-	<insert id="addMovie" parameterType="com.projcet.dd.activity.movie.domain.MovieDTO">
+	<insert id="addMovie" parameterType="com.project.dd.activity.movie.domain.MovieDTO">
 		INSERT INTO tblMovie (movie_seq, name, story, runningtime, img, preview)
 		VALUES (seqtblMovie.NEXTVAL, #{name}, #{story}, #{runningtime}, #{img}, #{preview})	
 	</insert>
@@ -54,7 +54,10 @@
 		
 	</select>
 	
-	<select id="getMovieListAll">
-		select * from tblMovie where name not like '%(상영종료)%'
+	<select id="getMovieListAll" parameterType="map" resultType="com.project.dd.activity.movie.domain.MovieDTO">
+		select *
+		from (select n.*, rownum as rnum from
+				(select * from tblMovie where name not like '%(상영종료)%') n)
+		where rnum between #{startIndex} and #{endIndex}
 	</select>
 </mapper>

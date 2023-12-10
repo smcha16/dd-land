@@ -129,4 +129,9 @@
 		$('form').submit();
 	}
 	
+	/* tblMovie 추가 실패 시, pop-up창 */
+	<c:if test="${not empty alertMessage}">
+		alert("${alertMessage}");
+	</c:if>
+	
 </script>

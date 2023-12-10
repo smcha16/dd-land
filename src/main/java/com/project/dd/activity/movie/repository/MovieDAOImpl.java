@@ -38,9 +38,22 @@ public class MovieDAOImpl implements MovieDAO {
 		return mapper.getMoviePlay(seq);
 	}
 
+	//영화 삭제
+	// - 1. 배열 돌면서 seq 뽑아내기
+	// - 2. 해당하는 seq의 레코드 UPDATE (상영종료)
 	@Override
-	public int delMovie(String seq) {
-		return mapper.delMovie(seq);
+	public int delMovie(String[] movie_seq) {
+		
+		int result = 0;
+		
+		//1. 배열 돌면서 seq 뽑아내기
+		for (String seq : movie_seq) {
+			
+			//2. 해당하는 seq의 레코드 UPDATE (상영종료)
+			result += mapper.delMovie(seq);
+		}
+		
+		return result;
 	}
 
 	@Override

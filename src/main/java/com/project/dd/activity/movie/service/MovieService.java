@@ -1,8 +1,10 @@
 package com.project.dd.activity.movie.service;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,8 +38,8 @@ public class MovieService {
 		return dao.getMoviePlay(seq);
 	}
 
-	public int delMovie(String seq) {
-		return dao.delMovie(seq);
+	public int delMovie(String[] movie_seq) {
+		return dao.delMovie(movie_seq);
 	}
 
 	public Map<String, String> paging(int page, String solting) {
@@ -74,6 +76,21 @@ public class MovieService {
 	}
 
 	public int addMovie(MovieDTO dto, MultipartFile imgs, HttpServletRequest req) {
+		
+		try {
+			
+			UUID uuid = UUID.randomUUID();
+			
+			String filename = uuid + "_" + imgs.getOriginalFilename();
+			
+			imgs.transferTo(new File(req.getRealPath("/resources/files/activity/attraction") + "\\" + filename));
+			
+			dto.setImg(filename);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return dao.addMovie(dto);
 	}
 }

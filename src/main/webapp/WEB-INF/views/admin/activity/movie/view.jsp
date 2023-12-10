@@ -89,6 +89,9 @@
                   			<form class="search-form d-flex align-items-center" method="POST" action="#">
                     			<input type="text" name="query" placeholder="Search" title="Enter search keyword">
                     			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                    			
+                    			<!-- 토큰 -->
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                   			</form>
               			</div>
 
@@ -98,36 +101,41 @@
                   				<nav class="d-flex justify-content-end">
                     				<ol class="breadcrumb">
                       					<li class="breadcrumb-item"><a href="/dd/admin/activity/movie/add.do">추가</a></li>
-                      					<li class="breadcrumb-item"><a href="/dd/admin/activity/movie/edit.do">수정</a></li>
-                      					<li class="breadcrumb-item active"><a href="/dd/admin/activity/movie/del.do">삭제</a></li>
+                      					<li class="breadcrumb-item"><a href="javascript:void(0);" onclick="edit()">수정</a></li>
+                      					<li class="breadcrumb-item active"><a href="javascript:void(0);" onclick="del()">삭제</a></li>
                     				</ol>
 								</nav>
                   
-                  				<table class="table">
-                    				<thead>
-                      					<tr>
-                        					<th></th>
-                        					<th>No</th>
-                        					<th>이름</th>
-                        					<th>줄거리</th>
-                        					<th>러닝타임</th>
-                        					<th>예고편</th>
-                      					</tr>
-                    				</thead>
-                    				<tbody>
-                    					<c:forEach items="${list}" var="dto" varStatus="status">
+                  				<form id="del-form" method="POST" action="/dd/admin/activity/movie/del.do">
+	                  				<table class="table">
+	                    				<thead>
 	                      					<tr>
-	                        					<td><input type="checkbox" name="attraction_seq" value="${dto.attraction_seq}"></td>
-	                        					<td>${status.count}</td>
-	                        					<td>${dto.name}</td>
-	                        					<td>${dto.story}</td>
-	                        					<td>${dto.runningtime}</td>
-	                        					<td>${dto.preview}</td>
+	                        					<th></th>
+	                        					<th>No</th>
+	                        					<th>이름</th>
+	                        					<th>줄거리</th>
+	                        					<th>러닝타임</th>
+	                        					<th>예고편</th>
 	                      					</tr>
-                      					</c:forEach>
-                   					</tbody>
-                  					</table>
-
+	                    				</thead>
+	                    				<tbody>
+	                    					<c:forEach items="${list}" var="dto" varStatus="status">
+		                      					<tr>
+		                        					<td><input type="checkbox" name="movie_seq" value="${dto.movie_seq}"></td>
+		                        					<td>${status.count}</td>
+		                        					<td>${dto.name}</td>
+		                        					<td>${dto.story}</td>
+		                        					<td>${dto.runningtime}</td>
+		                        					<td>${dto.preview}</td>
+		                      					</tr>
+	                      					</c:forEach>
+	                   					</tbody>
+	                  					</table>
+	                  					
+	                  					<!-- 토큰 -->
+										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+									</form>
+									
 <!-- 페이징 -->
 	<nav id="page-bar" aria-label="Page navigation example">
 		<ul class="pagination justify-content-center">
@@ -167,3 +175,57 @@
 	</section>
 
 </main>
+
+
+<!-- movie > view JavaScript -->
+<script>
+
+	/* tblMovie 삭제 실패 시, pop-up창 */
+	<c:if test="${not empty alertMessage}">
+		alert("${alertMessage}");
+	</c:if>
+
+	/* 수정 시, 체크 박스 1개만 선택 하여 seq 전달 하기 */
+	function edit() {
+		
+		/* 선택된 체크박수 개수 확인 */
+		let checkedCount = $('input[type="checkbox"]:checked').length;
+		
+		/* 1개 이상? out! */
+		if (checkedCount > 1 || checkedCount < 1) {
+			alert('1개의 영화를 선택 후, 수정 버튼을 눌러주세요.');
+		} else {
+
+			const seq = $('input[type="checkbox"]:checked').val();
+			
+			location.href='/dd/admin/activity/movie/edit.do?seq=' + seq;
+						
+		}
+		
+	}//function
+	
+	/* 삭제 시, 체크 박스 1개 이상 선택 하여 seq 전달하기 */
+	/* 1. 체크박스 1개 2. 체크박스 1개 이상 */
+	function del() {
+		
+		/* 선택된 체크박수 개수 확인 */
+		let checkedCount = $('input[type="checkbox"]:checked').length;
+		
+		if (checkedCount == 0) {
+			alert('1개 이상의 영화를 선택 후, 삭제 버튼을 눌러주세요.');
+		} else {
+			
+			if (confirm('선택한 영화를 삭제하시겠습니까?')) {
+				
+				$('#del-form').submit();
+
+			}
+			
+			
+			
+		} 
+		
+	}//function
+	
+
+</script>

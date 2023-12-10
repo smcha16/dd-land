@@ -15,7 +15,7 @@ public class RestAttractionController {
 	private AttractionService service;
 	
 	@GetMapping(value = "/dd/admin/activity/attraction/add")
-	public int checkLocation(@RequestBody String lat, @RequestBody String lng) {
+	public int checkLocation(String lat, String lng) {
 		
 		System.out.println(lat);
 		System.out.println(lng);

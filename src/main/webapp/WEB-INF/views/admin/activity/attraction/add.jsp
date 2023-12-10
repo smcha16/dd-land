@@ -181,16 +181,17 @@
 
 		latInput.value = lat;
 		lngInput.value = lng;
-
 		
-		$.ajax({
-			
+		let location = {
+				lat: evt.latLng.getLat(),
+				lng: evt.latLng.getLng()
+		}
+		
+		/* $.ajax({
 			type: 'GET',
 			url: '/dd/admin/activity/attraction/add',
-			data: {
-				lat: lat,
-				lng: lng
-			},
+			data: JSON.stringify(location),
+			contentType: "application/json; charset=UTF-8;",
 			dataType: 'json',
 			success: function(result) {
 				alert('성공');
@@ -199,7 +200,7 @@
 				console.log(a,b,c);
 			}
 			
-		});
+		}); */
 		
 		
 		

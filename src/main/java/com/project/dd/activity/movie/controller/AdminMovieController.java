@@ -47,7 +47,6 @@ public class AdminMovieController {
 	
 	@GetMapping(value = "/add.do")
 	public String add(Model model) {
-
 		return "admin/activity/movie/add";
 	}
 	
@@ -57,7 +56,6 @@ public class AdminMovieController {
 		// - tblMovie 테이블 추가
 		
 		int result = service.addMovie(dto, imgs, req);
-		
 		
 		if (result > 0) {
 			return "redirect:/admin/activity/movie/view.do";
@@ -69,8 +67,10 @@ public class AdminMovieController {
 	}
 	
 	@GetMapping(value = "/edit.do")
-	public String edit(Model model) {
+	public String edit(Model model, String seq) {
 
+		System.out.println(seq);
+		
 		return "admin/activity/movie/edit";
 	}
 	
@@ -86,12 +86,12 @@ public class AdminMovieController {
 	}
 	
 	@PostMapping(value = "/del.do")
-	public String del(Model model, String seq) {
+	public String del(Model model, String[] movie_seq) {
 
 		//영화 삭제 > "(상영종료)" 문구 UPDATE로 구현
-		//1. tblMovie > UPDATE 
+		//1. tblMovie > UPDATE
 		
-		int result = service.delMovie(seq);
+		int result = service.delMovie(movie_seq);
 		
 		if (result > 0) {
 			return "redirect:/admin/activity/movie/view.do";
@@ -99,7 +99,6 @@ public class AdminMovieController {
 			model.addAttribute("alertMessage", "영화 삭제에 실패했습니다.");
 			return "redirect:/admin/activity/movie/view.do";
 		}
-		
 		
 	}
 	
