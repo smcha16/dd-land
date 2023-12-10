@@ -41,6 +41,11 @@
     	
     }
     
+    /* 유효성검사 CSS */
+    .check-duplication {
+    	padding: 10px 10px;
+    }
+    
     
 </style>
 
@@ -73,6 +78,9 @@
                 				<label for="name" class="col-sm-2 col-form-label required">영화명</label>
                 				<div class="col-sm-10">
                   					<input type="text" id="name" name="name" class="form-control" placeholder="영화명을 입력해주세요." required>
+                  					<div style="height: 30px;">
+                  						<div class="check-duplication"></div>
+                  					</div>
                 				</div>
               				</div>
 
@@ -148,12 +156,21 @@
 		
 		$.ajax({
 			type: 'POST',
-			url: '/admin/activity/movie',
+			url: '/dd/admin/activity/movie',
 			headers: {'content-Type': 'application/json'},
 			data: JSON.stringify(obj),
 			dataType: 'json',
-			success: result => {
-				alert(result);
+			success: function(result) {
+				//alert(result);
+				if (result == 0) {
+					$('.check-duplication').text('사용 가능한 영화명입니다.');
+					$('.check-duplication').data('type', 'y');
+					
+				} else {
+					$('.check-duplication').text('중복된 영화명입니다. 다른 영화명을 입력해주세요.');
+					$('.check-duplication').css('color', '#dc3545');
+					$('.check-duplication').data('type', 'n');
+				}
 			},
 			beforeSend: function(xhr) {
             	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
