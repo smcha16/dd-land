@@ -197,12 +197,11 @@ th {
 						'.form-check-input',
 						function() {
 							// 테스트 채택
-							var isChecked = $(this).is(':checked') ? 'Y' : 'N';
-							//console.log(isChecked);
+							var isTest = $(this).is(':checked') ? 'Y' : 'N';
+							//console.log(isTest);
 
 							// 선택한 어트랙션 일련번호
-							var attractionSeq = $(this).closest('tr').find(
-									'td:first-child').text();
+							var attractionSeq = $(this).closest('tr').find('td:first-child').text();
 							//console.log(attractionSeq);
 
 							// CSRF token
@@ -217,11 +216,10 @@ th {
 								url : '/dd/admin/test/worldcup/view.do',
 								data : {
 									attractionSeq : attractionSeq,
-									isChecked : isChecked
+									isTest : isTest
 								},
 								beforeSend : function(xhr) {
-									xhr.setRequestHeader(csrfHeaderName,
-											csrfTokenValue);
+									xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 								},
 								/*
 								success: function(response) {

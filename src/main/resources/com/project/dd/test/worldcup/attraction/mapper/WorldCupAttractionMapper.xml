@@ -64,14 +64,14 @@
 		
 	<update id="updateAttractionStatus" parameterType="map">
 	    update tblAWC
-	    set is_test = #{isChecked}
+	    set is_test = #{isTest}
 	    where attraction_seq = #{attractionSeq}
 	</update>
 	
 	<!-- 
 	<update id="updateAttractionStatus" parameterType="String">
 	    UPDATE tblAWC
-	    SET isChecked = #{isChecked}
+	    SET isTest = #{isTest}
 	    WHERE attractionSeq = #{attractionSeq}
 	</update>
 	-->
