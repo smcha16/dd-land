@@ -111,7 +111,7 @@
             <div class="munti-content-container">
               <div class="item">
                 <div style="background-image: url('/dd/resources/files/guide/use-guide.jpg');"></div>
-                <div>어트랙션명</div>
+                <div>주의사항</div>
                <!--  <div class="hidden-div" style="color:black;">설명쓰기</div> -->
               </div>
             </div>
