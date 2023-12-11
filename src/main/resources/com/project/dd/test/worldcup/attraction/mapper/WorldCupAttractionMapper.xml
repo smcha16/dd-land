@@ -4,12 +4,6 @@
 
 <mapper namespace="com.project.dd.test.worldcup.attraction.mapper.WorldCupAttractionMapper">
 
-	<!--
-        어트랙션 리스트를 조회하는 쿼리입니다.
-        - close 파라미터로 오픈 여부를 전달받습니다.
-        - vwAttractionList와 tblAWC를 조인하여 테스트 여부가 'Y'인 어트랙션 정보만 가져옵니다.
-        - 결과 타입은 AttractionDTO입니다.
-    -->
 	<select id="getTotalCount" resultType="int">
 		select count(*)
 	    from tblAWC awc
@@ -17,6 +11,12 @@
 	    	ON awc.attraction_seq = al.attraction_seq
 	</select>
    
+	<!--
+        어트랙션 리스트를 조회하는 쿼리입니다.
+        - close 파라미터로 오픈 여부를 전달받습니다.
+        - vwAttractionList와 tblAWC를 조인하여 테스트 여부가 'Y'인 어트랙션 정보만 가져옵니다.
+        - 결과 타입은 AttractionDTO입니다.
+    -->
 	<select id="getAllAttraction" parameterType="map" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
 	    select * from (
 		    select n.*, rownum as rnum
@@ -64,14 +64,14 @@
 		
 	<update id="updateAttractionStatus" parameterType="map">
 	    update tblAWC
-	    set is_test = #{isChecked}
+	    set is_test = #{isTest}
 	    where attraction_seq = #{attractionSeq}
 	</update>
 	
 	<!-- 
 	<update id="updateAttractionStatus" parameterType="String">
 	    UPDATE tblAWC
-	    SET isChecked = #{isChecked}
+	    SET isTest = #{isTest}
 	    WHERE attractionSeq = #{attractionSeq}
 	</update>
 	-->

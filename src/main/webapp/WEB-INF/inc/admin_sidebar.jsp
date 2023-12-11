@@ -78,6 +78,11 @@
 	           			<i class="bi bi-circle"></i><span>영화관</span>
 	         		</a>
 	       		</li>
+	       		<li>
+	         		<a href="/dd/admin/activity/movieplay/view.do">
+	           			<i class="bi bi-circle"></i><span>영화상영</span>
+	         		</a>
+	       		</li>
 	     	</ul>
 	   	</li>
 	
