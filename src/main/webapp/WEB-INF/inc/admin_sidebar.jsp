@@ -54,28 +54,33 @@
 	     	</a>
 	     	<ul id="activity-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/activity/attraction/view.do">
 	           			<i class="bi bi-circle"></i><span>어트랙션</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/activity/festival/view.do">
 	           			<i class="bi bi-circle"></i><span>페스티벌</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/activity/photozone/view.do">
 	           			<i class="bi bi-circle"></i><span>포토존</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/activity/movie/view.do">
 	           			<i class="bi bi-circle"></i><span>영화</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/activity/theater/view.do">
 	           			<i class="bi bi-circle"></i><span>영화관</span>
+	         		</a>
+	       		</li>
+	       		<li>
+	         		<a href="/dd/admin/activity/movieplay/view.do">
+	           			<i class="bi bi-circle"></i><span>영화상영</span>
 	         		</a>
 	       		</li>
 	     	</ul>

@@ -1,6 +1,7 @@
 package com.project.dd.activity.movie.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -35,6 +36,41 @@ public class MovieDAOImpl implements MovieDAO {
 	@Override
 	public List<MoviePlayDTO> getMoviePlay(String seq) {
 		return mapper.getMoviePlay(seq);
+	}
+
+	@Override
+	public int delMovie(String seq) {
+		return mapper.delMovie(seq);
+	}
+
+	@Override
+	public int getTotalCount(String solting) {
+		return mapper.getTotalCount(solting);
+	}
+
+	@Override
+	public List<MovieDTO> getMovieListAll(Map<String, String> map) {
+		return mapper.getMovieListAll(map);
+	}
+
+	@Override
+	public int addMovie(MovieDTO dto) {
+		return mapper.addMovie(dto);
+	}
+
+	@Override
+	public String getMovieImgFileName(String seq) {
+		return mapper.getMovieImgFileName(seq);
+	}
+
+	@Override
+	public int editMovie(MovieDTO dto) {
+		return mapper.editMovie(dto);
+	}
+
+	@Override
+	public int checkMovieNameDuplication(MovieDTO dto) {
+		return mapper.checkMovieNameDuplication(dto);
 	}
 	
 	
