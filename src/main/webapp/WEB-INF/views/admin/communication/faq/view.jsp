@@ -220,8 +220,6 @@
 	    $('#modal-question').text(question);
 	    $('#modal-answer').text(answer);
 
-	    const modal = new bootstrap.Modal($('#modal'));
-
-	    modal.show();
+	    $('#modal').modal('show');
 	}
 </script>

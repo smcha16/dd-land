@@ -202,7 +202,5 @@
 	    if (subject.val().trim() && (content.value.trim() || doc.files.length)) {
 	    	$('form').submit();
 	    }
-	    
-	    return false;
 	}
 </script>

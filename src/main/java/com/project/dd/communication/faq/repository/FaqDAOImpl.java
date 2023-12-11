@@ -17,12 +17,16 @@ public class FaqDAOImpl implements FaqDAO {
 	@Autowired
 	private FaqMapper mapper;
 	
+	// 총 개수
+	
 	@Override
 	public int getTotalCount(String type) {
 
 		return mapper.getTotalCount(type);
 
 	}
+	
+	// 목록
 
 	@Override
 	public List<FaqDTO> getFaqList(Map<String, String> map) {
@@ -30,13 +34,8 @@ public class FaqDAOImpl implements FaqDAO {
 		return mapper.getFaqList(map);
 		
 	}
-
-	@Override
-	public int getTotalCount() {
-		
-		return mapper.getTotalCount();
-		
-	}
+	
+	// 추가
 
 	@Override
 	public int addFaq(FaqDTO dto) {
@@ -44,6 +43,8 @@ public class FaqDAOImpl implements FaqDAO {
 		return mapper.addFaq(dto);
 		
 	}
+	
+	// 기존 파일명
 
 	@Override
 	public FaqDTO getFaq(String seq) {
@@ -51,6 +52,8 @@ public class FaqDAOImpl implements FaqDAO {
 		return mapper.getFaq(seq);
 		
 	}
+	
+	// 수정
 
 	@Override
 	public int editFaq(FaqDTO dto) {
@@ -58,6 +61,8 @@ public class FaqDAOImpl implements FaqDAO {
 		return mapper.editFaq(dto);
 		
 	}
+	
+	// 삭제
 
 	@Override
 	public void deleteFaq(String seq) {

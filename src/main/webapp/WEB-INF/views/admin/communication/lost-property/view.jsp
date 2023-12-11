@@ -247,8 +247,6 @@
 	    $('#modal-name').text(name);
         $('#modal-image').attr('src', '/dd/resources/files/communication/lost/' + image);
 
-	    const modal = new bootstrap.Modal($('#modal'));
-
-	    modal.show();
+        $('#modal').modal('show');
 	}
 </script>

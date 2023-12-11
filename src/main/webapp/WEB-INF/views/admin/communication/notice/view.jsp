@@ -235,8 +235,6 @@
 	    	$('#modal-image').hide();
 	    }
 
-	    const modal = new bootstrap.Modal($('#modal'));
-
-	    modal.show();
+	    $('#modal').modal('show');
 	}
 </script>

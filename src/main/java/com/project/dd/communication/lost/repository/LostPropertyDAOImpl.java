@@ -16,6 +16,8 @@ public class LostPropertyDAOImpl implements LostPropertyDAO {
 	
 	@Autowired
 	private LostPropertyMapper mapper;
+	
+	// 총 개수
 
 	@Override
 	public int getTotalCount() {
@@ -23,11 +25,22 @@ public class LostPropertyDAOImpl implements LostPropertyDAO {
 		return mapper.getTotalCount();
 		
 	}
+	
+	// 목록
 
 	@Override
 	public List<LostPropertyDTO> getLostPropertyList(Map<String, String> map) {
 
 		return mapper.getLostPropertyList(map);
+		
+	}
+	
+	// 추가
+
+	@Override
+	public int addLostProperty(LostPropertyDTO dto) {
+
+		return mapper.addLostProperty(dto);
 		
 	}
 

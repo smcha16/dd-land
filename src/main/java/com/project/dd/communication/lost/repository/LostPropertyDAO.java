@@ -11,4 +11,6 @@ public interface LostPropertyDAO {
 
 	List<LostPropertyDTO> getLostPropertyList(Map<String, String> map);
 
+	int addLostProperty(LostPropertyDTO dto);
+
 }

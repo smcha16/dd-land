@@ -12,4 +12,9 @@
 		from (select l.*, rownum as rnum from (select * from tblLostProperty order by lost_property_seq desc) l)
 		where rnum between #{startIndex} and #{endIndex}
 	</select>
+	
+	<insert id="addLostProperty" parameterType="com.project.dd.communication.lost.domain.LostPropertyDTO">
+		insert into tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
+		values (seqtblLostProperty.nextVal, #{type}, #{name}, #{location}, #{lost_property_date}, #{img, jdbcType=VARCHAR}, '보관중')
+	</insert>
 </mapper>

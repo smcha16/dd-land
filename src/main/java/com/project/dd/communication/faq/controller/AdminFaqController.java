@@ -40,7 +40,7 @@ public class AdminFaqController {
 
 	}
 	
-	// 등록
+	// 추가
 	
 	@GetMapping(value = "/add.do")
 	public String add() {

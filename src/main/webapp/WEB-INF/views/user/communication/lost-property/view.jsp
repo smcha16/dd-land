@@ -243,8 +243,6 @@
 	function showModal(imageUrl) {	
 	    $('#modal-image').attr('src', imageUrl);
 	
-	    const modal = new bootstrap.Modal($('#modal'));
-	
-	    modal.show();
+	    $('#modal').modal('show');
 	}
 </script>
