@@ -85,12 +85,10 @@ th {
 	background-color: #f2f2f2 !important;
 }
 
-/*
 .table th:nth-child(1) { width: 6%; }
 .table th:nth-child(2) { width: 9%; }
 .table th:nth-child(3) { width: 63%; }
 .table th:nth-child(4) { width: 22%; }
-*/
 
 .table td i {
 	color: #0d6efd;
@@ -108,6 +106,10 @@ th {
 .pagination {
 	justify-content: center;
 	margin-top: 40px;
+}
+
+.form-check {
+	min-height: 0 !important;
 }
 </style>
 
