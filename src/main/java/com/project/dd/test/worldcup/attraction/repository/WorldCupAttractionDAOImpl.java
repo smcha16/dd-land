@@ -98,4 +98,11 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 
 		return selectedTwoAttractions;
 	}
+	
+	@Override
+	public void updateAttractionStatus(Map<String, String> paramMap) {
+		
+		mapper.updateAttractionStatus(paramMap);
+	}
+	
 }

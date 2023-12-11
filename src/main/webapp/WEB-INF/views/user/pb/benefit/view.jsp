@@ -113,13 +113,14 @@
 }
 
 .btn input::before {
-	content: "운영";
-	left: 40px;
+	content: "일반혜택";
+	left: 25px;
+	
 }
 
 .btn input::after {
-	content: "운휴";
-	right: 40px;
+	content: "카드/통신사";
+	right: 15px;
 }
 
 .btn label {
@@ -218,9 +219,9 @@
 						<li id="sel01" class="two on"><a href="#tab01" id="selTab01">일반혜택</a></li>
 						<li id="sel02" class="two"><a href="#tab02" id="selTab02">카드/통신사혜택</a></li>
 					</ul>
-
+		
 					<c:forEach items="${list}" var="dto">
-						<div class="item" id="tab00">
+						<div class="item" id="tab00" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
 							<div>${dto.name}</div>
@@ -228,9 +229,9 @@
 							<div class="hidden-div">설명</div>
 						</div>
 					</c:forEach>
-			
+					
 					<c:forEach items="${normalList}" var="dto">
-						<div class="item" id="tab01">
+						<div class="item" id="tab01" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
 							<div>${dto.name}</div>
@@ -239,9 +240,9 @@
 						</div>
 					</c:forEach>
 			
-			
+		
 					<c:forEach items="${cardList}" var="dto">
-						<div class="item" id="tab02">
+						<div class="item" id="tab02" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
 							<div>${dto.name}</div>
@@ -259,28 +260,68 @@
 <!-- End Menu Section -->
 
 <!-- list3 전용 JavaScript -->
+
+
+
 <script>
+document.getElementById("close").addEventListener("click", function() {
+    toggleLists();
+});
+
+function toggleLists() {
+    var normalListElements = document.querySelectorAll('.item[data-category="normal"]');
+    var cardListElements = document.querySelectorAll('.item[data-category="card"]');
+
+    normalListElements.forEach(function(normalItem) {
+        if (normalItem.style.display === 'none') {
+            normalItem.style.display = 'block';
+        } else {
+            normalItem.style.display = 'none';
+        }
+    });
+
+    cardListElements.forEach(function(cardItem) {
+        if (cardItem.style.display === 'none') {
+            cardItem.style.display = 'block';
+        } else {
+            cardItem.style.display = 'none';
+        }
+    });
+}
+
+
+
+
+
+
+/* 
+
 	var itemElements = document.querySelectorAll('.item');
 
 	itemElements.forEach(function(item) {
 		
 		item.addEventListener('mouseover', function() {
+			
+			
+			
 			// 마우스 오버 시 hidden-div를 보이게 변경
 			item.querySelector('.hidden-div').style.display = 'block';
 		});
 
 		item.addEventListener('mouseout', function() {
+			
+			
 			// 마우스 아웃 시 hidden-div를 다시 숨김
 			item.querySelector('.hidden-div').style.display = 'none';
+			
+			
         });
     
 	});
 	
-	/* 체크박스 클릭 시 form태그로 전송 역할 */
-	$('#close').click(function() {
-		//$('form').submit();
-		alert();
-	});
+	 */
+	
+	
 	
 	
 	
@@ -322,6 +363,6 @@
 
         // 선택한 탭 보이기
         document.getElementById(tabId).style.display = "block";
-    }
+    } 
 	
 </script>

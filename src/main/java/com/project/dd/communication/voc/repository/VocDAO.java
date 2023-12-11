@@ -1,11 +1,11 @@
-package com.project.dd.communication.voc.mapper;
+package com.project.dd.communication.voc.repository;
 
 import java.util.List;
 
 import com.project.dd.communication.voc.domain.VocDTO;
 
-public interface VocMapper {
-	
+public interface VocDAO {
+
 	List<String> getVisitDateList(String email);
 	
 	int addVoc(VocDTO dto);

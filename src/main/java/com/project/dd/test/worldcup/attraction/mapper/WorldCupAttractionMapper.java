@@ -26,4 +26,6 @@ public interface WorldCupAttractionMapper {
     // 페이징
 	int getTotalCount();
 
+	void updateAttractionStatus(Map<String, String> paramMap);
+	
 }
