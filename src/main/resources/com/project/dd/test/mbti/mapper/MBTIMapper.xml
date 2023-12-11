@@ -4,8 +4,25 @@
 
 <mapper namespace="com.project.dd.test.mbti.mapper.MBTIMapper">
 
-	<select id="getAllMBTI" parameterType="String" resultType="com.project.dd.test.mbti.domain.MBTIDTO">
-		select * from tblMBTI
+	<!-- 페이징 -->
+	<select id="getTotalCount" resultType="int">
+		select count(*) from tblMBTI
+	</select>
+
+	<select id="getAllMBTI" parameterType="map" resultType="com.project.dd.test.mbti.domain.MBTIDTO">
+		select *
+		from (select n.*, rownum as rnum from
+				(select * from tblMBTI) n)
+		where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<select id="getMBTI" parameterType="String" resultType="com.project.dd.test.mbti.domain.MBTIDTO">
+		select
+			m.*
+		from tblMbti m
+		join tblAttraction a
+			on m.attraction_seq = a.attraction_seq
+		where m.mbti_seq = #{mbti_seq}
 	</select>
 
 </mapper>
