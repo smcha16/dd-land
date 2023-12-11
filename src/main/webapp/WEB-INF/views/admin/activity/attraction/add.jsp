@@ -104,7 +104,7 @@
 
 							<!-- 제한사항 -->
               				<div class="row mb-3">
-                				<label for="restriction" class="col-sm-2 col-form-label required">제한사항</label>
+                				<label for="restriction" class="col-sm-2 col-form-label">제한사항</label>
                 				<div class="col-sm-10">
                   					<textarea id="restriction" name="restriction" class="form-control" style="height: 100px" placeholder="해당 어트랙션의 제한사항(키, 임산부, 노약자 등)을 입력해주세요." required></textarea>
                 				</div>
@@ -152,9 +152,33 @@
 <!-- Attraction add용 JavaScript -->
 <script>
 
+	//console.log("check-location-duplication: " + $('.check-location-duplication').data('type'));
+	//console.log("check-name-duplication: " + $('.check-name-duplication').data('type'));
+
+
 	/* 필수 항목이 반드시 입력되어야만 submit 클릭 시 넘어가도록 */
 	function submit() {
-		$('form').submit();
+		
+		//console.log($('textarea[name="info"]').val());
+		//console.log($('textarea[name="info"]').val().trim());
+		
+		
+		if (!$('input[name="name"]').val().trim() || !$('textarea[name="info"]').val().trim()
+				|| !$('input[name="capacity"]').val().trim()
+				|| $('.check-name-duplication').data('type') != 'y' || $('.check-location-duplication').data('type') != 'y' ) {
+			
+			if ($('.check-name-duplication').data('type') == 'n' || $('.check-location-duplication').data('type') == 'n') {
+				
+				alert('중복된 항목을 수정해주세요.');
+			} else {
+				
+				alert('필수 항목을 입력해주세요.');
+			}
+			
+		} else {
+			$('form').submit();
+		}
+		//console.log($('input[name="name"]').val().trim());
 	}
 	
 	/* 선택한 위치 추가 */
@@ -219,12 +243,14 @@
 					$('.check-name-duplication').css('color', '#212529');
 					$('.check-location-duplication').data('type', 'y');
 					console.log('지정 가능');
+					console.log("check-location-duplication: " + $('.check-location-duplication').data('type'));
 					
 				} else {
 					$('.check-location-duplication').text('중복된 위치입니다. 다른 위치를 선택해주세요.');
 					$('.check-location-duplication').css('color', '#dc3545');
 					$('.check-location-duplication').data('type', 'n');
 					console.log('중복된 위치');
+					console.log("check-location-duplication: " + $('.check-location-duplication').data('type'));
 				}
 			},
 			beforeSend: function(xhr) {
@@ -241,8 +267,8 @@
 		
 	});
 	
-	/* Attraction 이름 중복 검사 */
-	$('input[name="name"]').blur(function() {
+	/* Attraction 이름 중복 검사 (blur > keyup 변경) */
+	$('input[name="name"]').keyup(function() {
 		
 		let obj = {
 				name: $('input[name="name"]').val()
@@ -252,34 +278,42 @@
         var csrfHeaderName = "${_csrf.headerName}";
         var csrfTokenValue = "${_csrf.token}";
 
-		
-		$.ajax({
-			type: 'POST',
-			url: '/dd/admin/activity/attraction/name',
-			headers: {'content-Type': 'application/json'},
-			data: JSON.stringify(obj),
-			dataType: 'json',
-			success: function(result) {
-				//alert(result);
-				if (result == 0) {
-					$('.check-name-duplication').text('사용 가능한 어트랙션명입니다.');
-					$('.check-name-duplication').css('color', '#212529');
-					$('.check-name-duplication').data('type', 'y');
-					
-				} else {
-					$('.check-name-duplication').text('중복된 어트랙션명입니다. 다른 어트랙션명을 입력해주세요.');
-					$('.check-name-duplication').css('color', '#dc3545');
-					$('.check-name-duplication').data('type', 'n');
+        if ($('input[name="name"]').val().trim()) {
+        	
+			$.ajax({
+				type: 'POST',
+				url: '/dd/admin/activity/attraction/name',
+				headers: {'content-Type': 'application/json'},
+				data: JSON.stringify(obj),
+				dataType: 'json',
+				success: function(result) {
+					//alert(result);
+					if (result == 0) {
+						$('.check-name-duplication').text('사용 가능한 어트랙션명입니다.');
+						$('.check-name-duplication').css('color', '#212529');
+						$('.check-name-duplication').data('type', 'y');
+						console.log("check-name-duplication: " + $('.check-name-duplication').data('type'));
+						
+					} else {
+						$('.check-name-duplication').text('중복된 어트랙션명입니다. 다른 어트랙션명을 입력해주세요.');
+						$('.check-name-duplication').css('color', '#dc3545');
+						$('.check-name-duplication').data('type', 'n');
+						console.log("check-name-duplication: " + $('.check-name-duplication').data('type'));
+					}
+				},
+				beforeSend: function(xhr) {
+	            	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	            },
+				error: (a,b,c) => {
+					console.log(a,b,c);
 				}
-			},
-			beforeSend: function(xhr) {
-            	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-            },
-			error: (a,b,c) => {
-				console.log(a,b,c);
-			}
-			
-		});
+				
+			});
+        } else {
+        	$('.check-name-duplication').text('');
+        	$('.check-name-duplication').removeAttr("data-type");
+        	console.log("check-name-duplication: " + $('.check-name-duplication').data('type'));
+        }
 		
 		
 	});

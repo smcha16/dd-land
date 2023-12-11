@@ -17,18 +17,11 @@ public class RestAttractionController {
 	@PostMapping(value = "/admin/activity/attraction/location")
 	public int checkLocation(@RequestBody AttractionDTO dto) {
 		
-		System.out.println("드루와");
-		System.out.println(dto.getLat());
-		System.out.println(dto.getLng());
-		
 		return service.checkLocationDuplication(dto);
 	}
 
 	@PostMapping(value = "/admin/activity/attraction/name")
 	public int checkName(@RequestBody AttractionDTO dto) {
-		
-		System.out.println("드루와");
-		System.out.println(dto.getName());
 		
 		return service.checkNameDuplication(dto);
 	}
