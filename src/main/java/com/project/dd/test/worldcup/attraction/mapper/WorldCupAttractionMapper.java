@@ -8,6 +8,9 @@ import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO;
 
 public interface WorldCupAttractionMapper {
 
+    // 페이징
+	int getTotalCount();
+
 	// 모든 어트랙션 리스트 조회
 	List<AttractionDTO> getAllAttraction(Map<String, String> map);
 	
@@ -23,9 +26,6 @@ public interface WorldCupAttractionMapper {
     // 모든 어트랙션 월드컵 최종 승리 정보 조회
     List<WorldCupAttractionDTO> getAllAWCFinalWin();
 
-    // 페이징
-	int getTotalCount();
-
-	void updateAttractionStatus(Map<String, String> paramMap);
+	void updateAttractionStatus(Map<String, String> map);
 	
 }

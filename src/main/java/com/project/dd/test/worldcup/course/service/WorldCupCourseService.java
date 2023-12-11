@@ -1,8 +1,16 @@
 package com.project.dd.test.worldcup.course.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Map;
 
-@Service
+import com.project.dd.test.worldcup.course.domain.CourseDTO;
+
 public interface WorldCupCourseService {
+
+	Map<String, String> paging(int page);
+
+	List <CourseDTO> getAllCourse(Map<String, String> map);
+
+	void updateCourseStatus(Map<String, String> map);
 
 }

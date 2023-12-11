@@ -28,8 +28,13 @@
 	color: #ce1212;
 }
 
+.card {
+	margin-top: 30px;
+}
+
 .card-body {
 	min-height: 600px;
+	margin-top: 50px;
 }
 
 .table {
@@ -64,16 +69,8 @@ th {
 <main id="main" class="main">
 
 	<div class="pagetitle">
-		<h1>DD 월드컵</h1>
+		<h1>어트랙션 월드컵</h1>
 	</div>
-
-	<nav class="d-flex justify-content-end">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="index.html">추가</a></li>
-			<li class="breadcrumb-item"><a href="#">수정</a></li>
-			<li class="breadcrumb-item active"><a href="#">삭제</a></li>
-		</ol>
-	</nav>
 
 	<section class="section">
 		<div class="row">
@@ -81,7 +78,7 @@ th {
 
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">어트랙션</h5>
+						<!-- <h5 class="card-title">어트랙션</h5> -->
 
 						<table class="table">
 							<thead>
@@ -127,56 +124,12 @@ th {
 										</c:when>
 										<c:otherwise>
 											<li class="page-item"><a class="page-link"
-												href="/dd/admin/test/worldcup/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+												href="/dd/admin/test/worldcup/attraction/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
 							</ul>
 						</nav>
-
-					</div>
-				</div>
-
-			</div>
-
-			<div class="col-lg-6">
-
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">코스</h5>
-
-						<table class="table">
-							<thead>
-								<tr>
-									<th>No</th>
-									<th>이름</th>
-									<th>버튼</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td></td>
-									<td>
-										<div class="d-flex justify-content-center">
-											<div class="form-check form-switch">
-												<input class="form-check-input" type="checkbox"
-													id="flexSwitchCheckDefault">
-											</div>
-										</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-
-						<ul class="pagination pagination-sm">
-							<li class="page-item active" aria-current="page"><span
-								class="page-link">1</span></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-						</ul>
 
 					</div>
 				</div>
@@ -197,12 +150,11 @@ th {
 						'.form-check-input',
 						function() {
 							// 테스트 채택
-							var isChecked = $(this).is(':checked') ? 'Y' : 'N';
-							//console.log(isChecked);
+							var isTest = $(this).is(':checked') ? 'Y' : 'N';
+							//console.log(isTest);
 
 							// 선택한 어트랙션 일련번호
-							var attractionSeq = $(this).closest('tr').find(
-									'td:first-child').text();
+							var attractionSeq = $(this).closest('tr').find('td:first-child').text();
 							//console.log(attractionSeq);
 
 							// CSRF token
@@ -214,14 +166,13 @@ th {
 							// 데이터베이스 업데이트
 							$.ajax({
 								type : 'POST',
-								url : '/dd/admin/test/worldcup/view.do',
+								url : '/dd/admin/test/worldcup/attraction/view.do',
 								data : {
 									attractionSeq : attractionSeq,
-									isChecked : isChecked
+									isTest : isTest
 								},
 								beforeSend : function(xhr) {
-									xhr.setRequestHeader(csrfHeaderName,
-											csrfTokenValue);
+									xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 								},
 								/*
 								success: function(response) {
