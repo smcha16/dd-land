@@ -163,7 +163,7 @@ a {text-decoration: none; cursor: pointer;color: #666}
     <section id="menu" class="menu">
       <div class="container" data-aos="fade-up">
         <div class="tab-content" data-aos-delay="900">
-          <div class="tab-pane fade active show" id="menu-starters">
+          <div class="tab-pane fade active show" id="menu-starters" style="padding-bottom: 110px;">
             <div class="form-group">
             <div id="contents">
 			<ul class="tab tab_red" id="webtong_tab_type04" style="width: 1300px; padding:0; margin-top:50px;">
