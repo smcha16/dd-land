@@ -11,4 +11,14 @@ public interface FaqDAO {
 
 	List<FaqDTO> getFaqList(Map<String, String> map);
 
+	int getTotalCount();
+
+	int addFaq(FaqDTO dto);
+
+	FaqDTO getFaq(String seq);
+
+	int editFaq(FaqDTO dto);
+
+	void deleteFaq(String seq);
+
 }

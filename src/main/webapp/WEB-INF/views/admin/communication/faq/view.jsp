@@ -50,9 +50,7 @@
     	justify-content: space-between;
   	}
   	.breadcrumb {
-    	margin-right: 15px;
-    	margin-top: 30px;
-   	 	margin-bottom: 10px;
+    	margin: 30px 15px 10px 0;
   	}
   	.breadcrumb a {
     	color: #012970;
@@ -63,6 +61,18 @@
   	.table {
     	text-align: center;
   	}
+  	th:nth-child(1) {
+  		width: 7%;
+  	}
+	th:nth-child(2) {
+		width: 10%;
+	}
+	th:nth-child(3) {
+		width: 15%;
+	}
+	th:nth-child(4) {
+		width: 68%;
+	}
   	th {
     	background-color: #f2f2f2 !important;
   	}
@@ -74,7 +84,8 @@
 		color: #000;
 	}
 	.table td a:hover {
-      	color: #0d6efd;
+		font-weight: bold !important;
+      	color: #0d6efd !important;
     }
   	.pagination {
    		justify-content: center;
@@ -95,9 +106,9 @@
 					<div class="col-12">
 
               			<div id="search" class="header">
-                  			<form class="search-form d-flex align-items-center" method="POST" action="#">
-                    			<input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                    			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                  			<form method="GET" action="#" class="search-form d-flex align-items-center">
+                    			<input type="text" name="query" placeholder="Search">
+                    			<button type="submit"><i class="bi bi-search"></i></button>
                   			</form>
               			</div>
 
@@ -112,7 +123,7 @@
                     				</ol>
 								</nav>
 								
-								<form method="POST" action="/dd/admin/communication/faq/del.do">
+								<form method="POST" action="/dd/admin/communication/faq/del.do" id="del-form">
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								
 									<table class="table">
@@ -129,7 +140,7 @@
 												<tr>
 													<td><input type="checkbox" name="seqList" value="${dto.faq_seq}"></td>
 													<td>${map.totalPosts - numberStatus.index - map.startIndex + 1}</td>
-													<td>${dto.category}</td>
+													<td>${dto.type}</td>
 										            <td><a onclick="showModal(`${dto.question}`, `${dto.answer}`)"><c:out value="${dto.question}" /></a></td>
 										        </tr>
 											</c:forEach>
@@ -180,8 +191,10 @@
 	<!-- 수정 -->
 	
 	function edit() {
-	    if ($('input[type="checkbox"]:checked').length === 1) {
-	        location.href = '/dd/admin/communication/faq/edit.do?seq=' + $('input[type="checkbox"]:checked').val();
+		var checked = $('input[type="checkbox"]:checked');
+		
+	    if (checked.length === 1) {
+	        location.href = '/dd/admin/communication/faq/edit.do?seq=' + checked.val();
 	    } else {
 	        alert('하나의 항목을 선택하세요.');
 	    }
@@ -190,11 +203,11 @@
 	<!-- 삭제 -->
 	
 	function del() {
-        var selectedCheckboxes = $('input[type="checkbox"]:checked');
-
-        if (selectedCheckboxes.length > 0) {
+		var checked = $('input[type="checkbox"]:checked');
+		
+        if (checked.length > 0) {
             if (confirm('선택한 항목을 삭제하시겠습니까?')) {
-				$('form').submit();
+				$('#del-form').submit();
             }
         } else {
             alert('삭제할 항목을 선택하세요.');

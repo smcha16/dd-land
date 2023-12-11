@@ -31,4 +31,39 @@ public class FaqDAOImpl implements FaqDAO {
 		
 	}
 
+	@Override
+	public int getTotalCount() {
+		
+		return mapper.getTotalCount();
+		
+	}
+
+	@Override
+	public int addFaq(FaqDTO dto) {
+		
+		return mapper.addFaq(dto);
+		
+	}
+
+	@Override
+	public FaqDTO getFaq(String seq) {
+		
+		return mapper.getFaq(seq);
+		
+	}
+
+	@Override
+	public int editFaq(FaqDTO dto) {
+		
+		return mapper.editFaq(dto);
+		
+	}
+
+	@Override
+	public void deleteFaq(String seq) {
+
+		mapper.deleteFaq(seq);
+		
+	}
+
 }
