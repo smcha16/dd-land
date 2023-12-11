@@ -1,3 +1,4 @@
+
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -83,6 +84,13 @@ div.header {
 th {
 	background-color: #f2f2f2 !important;
 }
+
+/*
+.table th:nth-child(1) { width: 6%; }
+.table th:nth-child(2) { width: 9%; }
+.table th:nth-child(3) { width: 63%; }
+.table th:nth-child(4) { width: 22%; }
+*/
 
 .table td i {
 	color: #0d6efd;
@@ -198,3 +206,52 @@ th {
 		</div>
 	</section>
 </main>
+
+<script>
+	// 문서가 완전히 로드 된 뒤에 실행
+	$(document).ready(
+			function() {
+				// 체크박스 클릭 이벤트
+				$(document).on(
+						'change',
+						'.form-check-input',
+						function() {
+							// 테스트 채택
+							var isTest = $(this).is(':checked') ? 'Y' : 'N';
+							//console.log(isTest);
+
+							// 선택한 어트랙션 일련번호
+							var courseSeq = $(this).closest('tr').find(
+									'td:nth-child(2)').text();
+							//console.log(courseSeq);
+
+							// CSRF token
+							var csrfHeaderName = "${_csrf.headerName}";
+							var csrfTokenValue = "${_csrf.token}";
+							//console.log(csrfHeaderName);
+							//console.log(csrfTokenValue);
+
+							// 데이터베이스 업데이트
+							$.ajax({
+								type : 'POST',
+								url : '/dd/admin/test/worldcup/course/view.do',
+								data : {
+									courseSeq : courseSeq,
+									isTest : isTest
+								},
+								beforeSend : function(xhr) {
+									xhr.setRequestHeader(csrfHeaderName,
+											csrfTokenValue);
+								},
+								/*
+								success: function(response) {
+									// console.log(response); // 응답 처리
+								},
+								 */
+								error : function(a, b, c) {
+									console.error(a, b, c);
+								}
+							});
+						});
+			});
+</script>
