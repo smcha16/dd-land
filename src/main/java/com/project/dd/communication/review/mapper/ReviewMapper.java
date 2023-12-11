@@ -13,4 +13,6 @@ public interface ReviewMapper {
 
 	ReviewDTO getReview(String seq);
 
+	void updateReadCount(String seq);
+
 }

@@ -192,6 +192,19 @@
 	padding: 100px 0;
 	background-attachment: fixed;
 }
+
+ #page-bar {
+      margin-top: 50px;
+   }
+   .page-link {
+      color: #CE1212;
+   }
+   .active > .page-link, .page-link.active {
+      z-index: 3;
+       color: var(--bs-pagination-active-color);
+       background-color: #CE1212;
+       border-color: #CE1212;
+   }
 </style>
 
 <!-- list3 Main Content -->
@@ -238,6 +251,21 @@
 			</div>
 		</div>
 	</div>
+	
+	<nav id="page-bar" aria-label="Page navigation example">
+       <ul class="pagination justify-content-center">
+           <c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
+               <c:choose>
+                   <c:when test="${pageStatus.index == currentPage}">
+                       <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+                   </c:when>
+                   <c:otherwise>
+                       <li class="page-item"><a class="page-link" href="/dd/user/shop/gift-shop/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+                   </c:otherwise>
+               </c:choose>
+           </c:forEach>
+       </ul>
+   </nav>
 </section>
 <!-- End Menu Section -->
 
@@ -257,6 +285,22 @@
 			item.querySelector('.hidden-div').style.display = 'none';
 		});
 
+	});
+	
+	$('#close').change(function() {
+	    console.log("Change event triggered");
+	    
+	    itemElements.forEach(function(item) {
+	        console.log("Item display:", item.style.display);
+	        
+	        if (item.classList.contains('hidden')) {
+	            console.log("Removing hidden class");
+	            item.classList.remove('hidden');
+	        } else {
+	            console.log("Adding hidden class");
+	            item.classList.add('hidden');
+	        }
+	    });
 	});
 	
 	function detail(seq) {

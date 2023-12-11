@@ -29,5 +29,7 @@ public class AttractionDTO {
 	private String lat;
 	private String lng;
 	
+	//tblAWC
+	private String is_test;
 	
 }

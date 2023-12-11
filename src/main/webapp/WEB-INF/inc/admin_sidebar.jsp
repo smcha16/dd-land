@@ -126,32 +126,32 @@
 	     	</a>
 	    	<ul id="communication-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/communication/notice/view.do">
 	           			<i class="bi bi-circle"></i><span>공지사항</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/communication/faq/view.do">
 	           			<i class="bi bi-circle"></i><span>FAQ</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/communication/lost-property/view.do">
 	           			<i class="bi bi-circle"></i><span>분실물</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/communication/review/view.do">
 	           			<i class="bi bi-circle"></i><span>리뷰</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/communication/inquiry/view.do">
 	           			<i class="bi bi-circle"></i><span>이용문의</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/communication/voc/view.do">
 	           			<i class="bi bi-circle"></i><span>칭찬/불편/건의</span>
 	         		</a>
 	       		</li>
