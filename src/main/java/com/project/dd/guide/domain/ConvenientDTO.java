@@ -1,4 +1,4 @@
-package com.project.dd.guide.convenient.domain;
+package com.project.dd.guide.domain;
 
 import lombok.Data;
 

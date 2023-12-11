@@ -63,6 +63,11 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 	public List<WorldCupAttractionDTO> getAllAWCFinalWin() {
 		return attractionDAO.getAllAWCFinalWin();
 	}
+	
+	@Override
+	public void updateAttractionStatus(Map<String, String> map) {
+		attractionDAO.updateAttractionStatus(map);
+	}
 
 	@Override
 	public List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions) {
@@ -72,11 +77,6 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 	@Override
 	public List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> attractions) {
 		return attractionDAO.getRandomTwoAttractions(attractions);
-	}
-	
-	@Override
-	public void updateAttractionStatus(Map<String, String> paramMap) {
-		attractionDAO.updateAttractionStatus(paramMap);
 	}
 
 }

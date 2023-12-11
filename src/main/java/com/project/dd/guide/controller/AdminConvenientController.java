@@ -1,4 +1,4 @@
-package com.project.dd.guide.convenient.controller;
+package com.project.dd.guide.controller;
 
 import org.springframework.stereotype.Controller;
 
