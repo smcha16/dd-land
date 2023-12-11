@@ -3,5 +3,8 @@
 
 <mapper namespace="com.project.dd.pb.price.mapper.PriceMapper">
 
+   <select id="getPriceInfo" resultType="com.project.dd.pb.price.domain.PriceDTO" parameterType="String">
+   		select * from TBLTICKET where ticket_seq = #{ticket_seq}
+   </select>
    
 </mapper>

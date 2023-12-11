@@ -14,13 +14,16 @@
     	margin-top: 10px;
   	}
     .breadcrumb {
-    	margin-right: 20px 15px 0 0;
+    	margin: 20px 15px 0 0;
   	}
     .breadcrumb a {
     	color: #012970;
   	}
   	.breadcrumb a:hover {
       	color: #ce1212;
+    }
+    .card {
+    	margin-bottom: 15px;
     }
     .card-body {
       min-height: 600px;

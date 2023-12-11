@@ -38,4 +38,11 @@ public class ReviewDAOImpl implements ReviewDAO {
 		
 	}
 
+	@Override
+	public void updateReadCount(String seq) {
+
+		mapper.updateReadCount(seq);
+		
+	}
+
 }

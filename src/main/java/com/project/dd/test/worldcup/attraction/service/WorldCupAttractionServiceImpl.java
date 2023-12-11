@@ -38,7 +38,7 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 
 		return map;
 	}
-
+	
 	@Override
 	public List<AttractionDTO> getAllAttraction(Map<String, String> map) {
 		return attractionDAO.getAllAttraction(map);
@@ -73,4 +73,10 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 	public List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> attractions) {
 		return attractionDAO.getRandomTwoAttractions(attractions);
 	}
+	
+	@Override
+	public void updateAttractionStatus(Map<String, String> paramMap) {
+		attractionDAO.updateAttractionStatus(paramMap);
+	}
+
 }

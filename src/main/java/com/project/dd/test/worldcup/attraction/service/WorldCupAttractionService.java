@@ -7,7 +7,7 @@ import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO;
 
 public interface WorldCupAttractionService {
-
+	
     List<AttractionDTO> getAllAttraction(Map<String, String> map);
     
     List<AttractionDTO> getRunAttraction(String close);
@@ -23,5 +23,7 @@ public interface WorldCupAttractionService {
     List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> attractions);
 
 	Map<String, String> paging(int page);
+
+	void updateAttractionStatus(Map<String, String> paramMap);
 
 }

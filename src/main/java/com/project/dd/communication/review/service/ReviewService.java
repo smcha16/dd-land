@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,6 +93,18 @@ public class ReviewService {
 		dto.setVisit_date(visit_date);
 		
 		return dto;
+		
+	}
+
+	public void updateReadCount(HttpSession session, String seq) {
+		
+		if (session.getAttribute("read") != null && session.getAttribute("read").toString().equals("n")) {
+
+			dao.updateReadCount(seq);
+			
+			session.setAttribute("read", "y");
+			
+		}
 		
 	}
 

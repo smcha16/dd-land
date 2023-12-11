@@ -46,17 +46,19 @@ th {
 }
 
 #page-bar {
-     margin-top: 50px;
-  }
-  .page-link {
-     color: #CE1212;
-  }
-  .active > .page-link, .page-link.active {
-     z-index: 3;
-      color: var(--bs-pagination-active-color);
-      background-color: #CE1212;
-      border-color: #CE1212;
-  }
+	margin-top: 50px;
+}
+
+.page-link {
+	color: #CE1212;
+}
+
+.active>.page-link, .page-link.active {
+	z-index: 3;
+	color: var(- -bs-pagination-active-color);
+	background-color: #CE1212;
+	border-color: #CE1212;
+}
 </style>
 
 <main id="main" class="main">
@@ -97,44 +99,40 @@ th {
 										<td>
 											<div class="d-flex justify-content-center">
 												<div class="form-check form-switch">
-													<input class="form-check-input" type="checkbox"
-														id="flexSwitchCheckDefault">
+													<c:choose>
+														<c:when test="${dto.is_test eq 'Y'}">
+															<input class="form-check-input" type="checkbox"
+																id="flexSwitchCheckDefault" checked>
+														</c:when>
+														<c:otherwise>
+															<input class="form-check-input" type="checkbox"
+																id="flexSwitchCheckDefault">
+														</c:otherwise>
+													</c:choose>
 												</div>
 											</div>
 										</td>
 									</tr>
 								</c:forEach>
-								
-								<%-- 
-								<tr>
-									<td>
-										<div class="item" data-attraction-id="${dto.attraction_seq}">
-											<div
-												style="background-image: url('/dd/resources/assets/img/${dto.imgList[0].img}');"></div>
-											<div>${dto.name}</div>
-											<div class="hidden-div">${dto.info}</div>
-										</div>
-									</td>
-								</tr>
-								--%>
-								
 							</tbody>
 						</table>
 
 						<nav id="page-bar" aria-label="Page navigation example">
-					       <ul class="pagination justify-content-center">
-					           <c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
-					               <c:choose>
-					                   <c:when test="${pageStatus.index == currentPage}">
-					                       <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
-					                   </c:when>
-					                   <c:otherwise>
-					                       <li class="page-item"><a class="page-link" href="/dd/admin/test/worldcup/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
-					                   </c:otherwise>
-					               </c:choose>
-					           </c:forEach>
-					       </ul>
-					   </nav>
+							<ul class="pagination justify-content-center">
+								<c:forEach begin="1" end="${map.totalPages}"
+									varStatus="pageStatus">
+									<c:choose>
+										<c:when test="${pageStatus.index == currentPage}">
+											<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+										</c:when>
+										<c:otherwise>
+											<li class="page-item"><a class="page-link"
+												href="/dd/admin/test/worldcup/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</ul>
+						</nav>
 
 					</div>
 				</div>
@@ -170,7 +168,7 @@ th {
 								</tr>
 							</tbody>
 						</table>
-						
+
 						<ul class="pagination pagination-sm">
 							<li class="page-item active" aria-current="page"><span
 								class="page-link">1</span></li>
@@ -188,3 +186,52 @@ th {
 	</section>
 
 </main>
+
+<script>
+	// 문서가 완전히 로드 된 뒤에 실행
+	$(document).ready(
+			function() {
+				// 체크박스 클릭 이벤트
+				$(document).on(
+						'change',
+						'.form-check-input',
+						function() {
+							// 테스트 채택
+							var isChecked = $(this).is(':checked') ? 'Y' : 'N';
+							//console.log(isChecked);
+
+							// 선택한 어트랙션 일련번호
+							var attractionSeq = $(this).closest('tr').find(
+									'td:first-child').text();
+							//console.log(attractionSeq);
+
+							// CSRF token
+							var csrfHeaderName = "${_csrf.headerName}";
+							var csrfTokenValue = "${_csrf.token}";
+							//console.log(csrfHeaderName);
+							//console.log(csrfTokenValue);
+
+							// 데이터베이스 업데이트
+							$.ajax({
+								type : 'POST',
+								url : '/dd/admin/test/worldcup/view.do',
+								data : {
+									attractionSeq : attractionSeq,
+									isChecked : isChecked
+								},
+								beforeSend : function(xhr) {
+									xhr.setRequestHeader(csrfHeaderName,
+											csrfTokenValue);
+								},
+								/*
+								success: function(response) {
+									// console.log(response); // 응답 처리
+								},
+								 */
+								error : function(a, b, c) {
+									console.error(a, b, c);
+								}
+							});
+						});
+			});
+</script>
