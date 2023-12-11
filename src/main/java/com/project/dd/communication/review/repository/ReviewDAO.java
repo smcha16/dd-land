@@ -13,4 +13,6 @@ public interface ReviewDAO {
 
 	ReviewDTO getReview(String seq);
 
+	void updateReadCount(String seq);
+
 }

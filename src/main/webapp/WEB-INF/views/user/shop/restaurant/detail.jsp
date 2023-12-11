@@ -64,7 +64,7 @@ section:first-of-type {
 	background-color: transparent;
 	background-repeat: no-repeat;
 	background-size: cover;
-	padding: 0;
+	padding: 30px 0;
 }
 
 section:last-of-type {
@@ -183,6 +183,34 @@ section:last-of-type {
 	top: 50%;
 	right: 20px;
 }
+
+/* 버튼 */
+	#button {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 50px;
+	}
+	#back-button {
+		background-color: #CE1212;
+		border-color: #CE1212;
+	}
+	#back-button i {
+		margin-right: 7px;
+	}
+	div#reservation-btn {
+		display: flex;
+		justify-content: center;
+		padding: 20px;
+	}	
+	div#reservation-btn > button {
+		padding: 13px 15px;
+		background: #b71c1c;
+		border: #b71c1c;
+		border-radius: 7px;
+		color: #FFF;
+		font-weight: bold;
+		font-size: 17px;
+	}
 </style>
 
 <!-- ======= Title & Image Section ======= -->
@@ -214,11 +242,13 @@ section:last-of-type {
 		<div class="close-item">
 			<div class="label">운휴일정</div>
 			<div class="value">
-				<img src="assets/img/calendar_icon.png" alt="Image" class="icon" />
+				
 				<c:if test="${dto.close == 'y'}">
+				<img src="/dd/resources/files/activity/close_icon.png" alt="Image" class="icon" />
 								금일 운휴
 							</c:if>
 				<c:if test="${dto.close == 'n'}">
+				<img src="/dd/resources/files/activity/calendar_icon.png" alt="Image" class="icon" />
 								정상 운영
 							</c:if>
 			</div>
@@ -256,11 +286,10 @@ section:last-of-type {
 	</div>
 </section>
 
-<section>
-	<div class="container">
-		<button>목록보기</button>
-	</div>
-</section>
+<!-- 목록보기 버튼 -->
+<div id="button">
+	<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/shop/restaurant/view.do';"><i class="bi bi-list"></i>목록</button>
+</div>
 
 <!-- view2 Template 전용 JavaScript -->
 <!-- Kakao Map Open API -->
@@ -277,10 +306,10 @@ section:last-of-type {
 
 	const options = { //지도를 생성할 때 필요한 기본 옵션
 		center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
-		level : 10, //지도의 레벨(확대, 축소 정도)
-		draggable : false, // 이동 금지
+		level : 10 //지도의 레벨(확대, 축소 정도)
+		/* draggable : false, // 이동 금지
 		disableDoubleClick : true, // 더블클릭 확대 금지
-		scrollwheel : false // 휠 확대/축소 금지
+		scrollwheel : false // 휠 확대/축소 금지 */
 	};
 
 	const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴

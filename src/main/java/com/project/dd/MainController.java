@@ -29,14 +29,12 @@ public class MainController {
 	public String accesserror(Model model) {
 
 		return "accesserror";
-
 	}
 	
 	@GetMapping(value = "/logout.do")
 	public String logout(Model model) {
 
 		return "logout";
-
 	}
 	
 	@GetMapping(value = "/template1.do")
