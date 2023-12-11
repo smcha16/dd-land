@@ -1,9 +1,10 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec"
+<%@taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-	
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <style>
 #main>#title {
 	background-color: white;
@@ -40,16 +41,15 @@
 }
 
 .containers {
-	width: 50%;
-    margin: 20px auto 50px auto;
+	width: 55%;
+	margin: 20px auto 50px auto;
 	padding: 20px;
 	background-color: #fff;
-	border: 1px solid #ccc;
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-form > #condition {
+form>#condition {
 	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
 	border-radius: 15px;
 	text-align: center;
@@ -112,13 +112,13 @@ form > #condition {
 
 .btn {
 	color: #fff;
-    background: var(--color-primary);
+	background: #ce1212;
 	border: none;
 	font-size: 14px;
-    padding: 8px 20px;
-    margin-left: 30px;
-    border-radius: 15px;
-    font-weight: bold;
+	padding: 8px 20px;
+	margin-left: 30px;
+	border-radius: 15px;
+	font-weight: bold;
 }
 
 .btn.cancel {
@@ -128,7 +128,8 @@ form > #condition {
 /* list photo 변경 */
 .stats-counter {
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url("/dd/resources/files/reservation/main-reservation.jpg") center center;
+		url("/dd/resources/files/reservation/main-reservation.jpg") center
+		center;
 	background-size: cover;
 	padding: 100px 0;
 	background-attachment: fixed;
@@ -153,19 +154,23 @@ form > #condition {
 
 
 		<div class="containers">
-			<form id="form" action="/dd/member/ticket/group-reservation/view.do"
+			<form id="form2" action="/dd/member/ticket/group-reservation/view.do"
 				method="post" accept-charset="UTF-8">
 				<div id="condition">
 					<h3>예약자 정보</h3>
 				</div>
 				<div class="form-group">
 					<label for="name">이름</label> <input type="text" id="name"
-						name="name" required value="<sec:authentication property='principal.dto.name'/>" readonly>
-						
+						name="name" required
+						value="<sec:authentication property='principal.dto.name'/>"
+						readonly>
+
 				</div>
 				<div class="form-group">
 					<label for="email">이메일</label> <input type="text" id="email"
-						name="email" value="<sec:authentication property='principal.dto.email'/>" readonly>
+						name="email"
+						value="<sec:authentication property='principal.dto.email'/>"
+						readonly>
 				</div>
 				<div id="condition">
 					<h3>단체 방문 정보</h3>
@@ -212,8 +217,10 @@ form > #condition {
 					<button type="submit" class="btn"
 						onclick="location.href='/ddstudio/ticket/group-reservation.do'">예약</button>
 				</div>
-				<input type="hidden" name="user_seq" value="<sec:authentication property='principal.dto.user_seq'/>">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+				<input type="hidden" name="user_seq"
+					value="<sec:authentication property='principal.dto.user_seq'/>">
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}">
 			</form>
 		</div>
 
@@ -261,19 +268,22 @@ form > #condition {
 		}).open();
 	}
 
-	document.getElementById('form').addEventListener('submit', function(event) {
+	document.getElementById('form2').addEventListener('submit', function(event) {
 		event.preventDefault(); // 기본 폼 제출을 막습니다.
 
 		// 필수 입력란을 확인합니다.
-		let name = document.getElementById('name').value;
-		let email = document.getElementById('email').value;
 		let division = document.getElementById('division').value;
 		let region = document.getElementById('region').value;
 		let groupName = document.getElementById('group-name').value;
+		let post_code = document.getElementById('post-code').value;
+		let address_basis = document.getElementById('address-basis').value;
+		let address_detail = document.getElementById('address-detail').value;
+		let date = document.getElementById('date').value;
+		let time = document.getElementById('time').value;
 		// 다른 필드에 대한 유효성 검사를 추가할 수 있습니다.
 
 		// 필수 입력란이 비어 있는지 확인합니다.
-		if (!name || !email || !division || !region || !groupName) {
+		if (!division || !region || !groupName || !post_code || !address_basis || !address_detail || !date || !time) {
 			alert('필수 입력란을 모두 작성해주세요.');
 		} else {
 			this.submit(); // 모든 필수 입력란이 채워졌다면 폼을 제출합니다.

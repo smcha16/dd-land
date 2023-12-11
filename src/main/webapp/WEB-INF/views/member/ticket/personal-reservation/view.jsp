@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <style>
 #pagetitle {
@@ -20,19 +22,21 @@
 }
 
 .containers {
-	width: 60%;
+	width: 55%;
 	margin: 0 auto 50px auto;
 	padding: 20px;
 	background-color: #fff;
-	border: 1px solid #ccc;
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 form>#condition {
 	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+	border-radius: 15px;
 	text-align: center;
-	background-color: rgba(206, 18, 18, 0.4);
+	color: #fff;
+	background-color: #ce1212;
+	opacity: 0.85;
 	height: 70px;
 	display: flex;
 	flex-direction: column;
@@ -89,12 +93,14 @@ form>#condition {
 }
 
 .btn {
-	padding: 10px 20px;
-	background-color: #0074cc;
 	color: #fff;
+	background: #ce1212;
 	border: none;
-	border-radius: 5px;
-	cursor: pointer;
+	font-size: 14px;
+	padding: 8px 20px;
+	margin-left: 30px;
+	border-radius: 15px;
+	font-weight: bold;
 }
 
 .btn.cancel {
@@ -410,9 +416,9 @@ input[type=radio]:checked + label {
 				style="margin-bottom: 40px; box-shadow: 0 1px 1px rgba(0, 0, 0, .2);">
 				<label for="ticket-type">티켓 종류</label>
 				<div id="ticket-type">
-					<input type="radio" id="1Day" class="radio" name="ticket-type" value="1Day"
+					<input type="radio" id="1Day" class="radio" name="ticket_type" value="1Day"
 						checked><label for="1Day">1Day</label> <input type="radio" class="radio"
-						id="After4" name="ticket-type" value="After4"
+						id="After4" name="ticket_type" value="After4"
 						style="margin-left: 100px;"><label for="After4">After4</label>
 				</div>
 			</div>
@@ -543,7 +549,7 @@ input[type=radio]:checked + label {
 				<button type="submit" class="btn">예매</button>
 			</div>
 			<input type="hidden" name="benefit_seq" id="benefit_seq" value="0">
-			<input type="hidden" name="benefit_name" id="benefit_name"> <input
+			<input type="hidden" name="name" id="benefit_name"> <input
 				type="hidden" name="discount_rate" id="discount_rate" value="0">
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}"> <input type="hidden" name="user_seq"

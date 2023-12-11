@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import com.project.dd.pb.benefit.domain.BenefitDTO;
+import com.project.dd.pb.price.domain.PriceDTO;
 import com.project.dd.ticket.reservation.domain.TicketReservationDTO;
 import com.project.dd.ticket.reservation.mapper.TicketReservationMapper;
 
@@ -35,6 +36,11 @@ public class GroupReservationDAOImpl implements ReservationDAO {
 	
 	@Override
 	public List<BenefitDTO> getBenefit(String string) {
+		return null;
+	}
+	
+	@Override
+	public PriceDTO getPrice(String type, String age) {
 		return null;
 	}
 	
