@@ -216,7 +216,7 @@ th {
 							//console.log(isTest);
 
 							// 선택한 어트랙션 일련번호
-							var attractionSeq = $(this).closest('tr').find('td:nth-child(2)').text();
+							var attractionSeq = $(this).closest('tr').find('td:nth-child(1)').text();
 							//console.log(attractionSeq);
 
 							// CSRF token
