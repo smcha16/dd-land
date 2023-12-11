@@ -13,7 +13,7 @@ import com.project.dd.activity.attraction.service.AttractionService;
 public class MemberAttractionController {
 
 	@Autowired
-	private AttractionService servcie;
+	private AttractionService service;
 	
 	@GetMapping(value = "/add.do")
 	public String add(Model model) {
