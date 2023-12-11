@@ -1,4 +1,4 @@
-package com.project.dd.guide.convenient.service;
+package com.project.dd.guide.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.dd.guide.convenient.domain.ConvenientDTO;
-import com.project.dd.guide.convenient.repository.ConvenientDAO;
+import com.project.dd.guide.domain.ConvenientDTO;
+import com.project.dd.guide.repository.ConvenientDAO;
 
 @Service
 public class ConvenientService {

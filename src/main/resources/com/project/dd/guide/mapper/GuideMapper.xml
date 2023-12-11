@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace == 호출할 Interface 이름 적기 -->
+<mapper namespace="com.project.dd.guide.mapper.GuideMapper">
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from tblConvenient
+	</select>
+	
+	<select id="list" parameterType="map" resultType="com.project.dd.guide.domain.ConvenientDTO">
+		select *
+		from (select n.*, rownum as rnum from (select c.convenient_seq, c.name, c.time, c.tel, c.img, cl.lat, cl.lng 
+		from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq=cl.convenient_seq) n)
+		where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<select id="one" resultType="com.project.dd.guide.domain.ConvenientDTO">
+		select c.convenient_seq, c.name, c.time, c.tel, c.img, cl.lat, cl.lng from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq=cl.convenient_seq where c.convenient_seq=#{seq}
+	</select>
+	
+	<!-- 여기부터는 guide-map -->
+	<select id="getAttrList" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		select a.name, al.lat, al.lng
+		from tblattraction a inner join tblattractionlocation al on a.attraction_seq=al.attraction_seq
+	</select>
+	
+	<select id="getFoodList" resultType="com.project.dd.shop.restaurant.domain.RestaurantDTO">
+		select r.name, rl.lat, rl.lng
+		from tblrestaurant r inner join tblrestaurantlocation rl on r.restaurant_seq=rl.restaurant_seq
+	</select>
+	
+	<select id="getConvList" resultType="com.project.dd.guide.domain.ConvenientDTO">
+		select c.name, cl.lat, cl.lng
+		from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq=cl.convenient_seq
+	</select>
+	
+	<select id="getGiftList" resultType="com.project.dd.shop.giftshop.domain.ShopDTO">
+		select s.name, sl.lat, sl.lng
+		from tblshop s inner join tblshoplocation sl on s.shop_seq=sl.shop_seq
+	</select>
+	
+	<select id="getMovieList" resultType="com.project.dd.activity.theater.domain.TheaterDTO">
+		select t.name, tl.lat, tl.lng
+		from tbltheater t inner join tbltheaterlocation tl on t.theater_seq=tl.theater_seq
+	</select>
+	
+	<select id="getPhotoList" resultType="com.project.dd.activity.photozone.domain.PhotoZoneDTO">
+		select p.name, pl.lat, pl.lng
+		from tblphotozone p inner join tblphotozonelocation pl on p.photozone_seq=pl.photozone_seq
+	</select>
+	
+	<select id="getFestList" resultType="com.project.dd.activity.festival.domain.FestivalDTO">
+		select f.name, fl.lat, fl.lng
+		from tblfestival f inner join tblfestivallocation fl on f.festival_seq=fl.festival_seq
+	</select>
+
+</mapper>

@@ -1,9 +1,9 @@
-package com.project.dd.guide.convenient.repository;
+package com.project.dd.guide.repository;
 
 import java.util.List;
 import java.util.Map;
 
-import com.project.dd.guide.convenient.domain.ConvenientDTO;
+import com.project.dd.guide.domain.ConvenientDTO;
 
 public interface ConvenientDAO {
 
