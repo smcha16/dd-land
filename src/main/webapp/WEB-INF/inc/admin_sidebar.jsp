@@ -175,22 +175,22 @@
 	      	</a>
 	      	<ul id="close-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	       		<li>
-	         		<a href="/dd/admin/close">
+	         		<a href="/dd/admin/close/attraction/view.do">
 	           			<i class="bi bi-circle"></i><span>어트랙션 운휴</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/close/gift-shop/view.do">
 	           			<i class="bi bi-circle"></i><span>기프트샵 운휴</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/close/restaurant/view.do">
 	           			<i class="bi bi-circle"></i><span>식당 운휴</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/close/theater/view.do">
 	           			<i class="bi bi-circle"></i><span>영화관 운휴</span>
 	         		</a>
 	       		</li>
@@ -204,7 +204,7 @@
 	     	</a>
 	     	<ul id="convenient-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/convenient/view.do">
 	           			<i class="bi bi-circle"></i><span>편의시설</span>
 	         		</a>
 	       		</li>
