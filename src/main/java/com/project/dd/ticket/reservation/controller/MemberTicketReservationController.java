@@ -1,6 +1,7 @@
 package com.project.dd.ticket.reservation.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.project.dd.login.domain.CustomUser;
+import com.project.dd.pb.benefit.domain.BenefitDTO;
 import com.project.dd.ticket.reservation.domain.TicketReservationDTO;
 import com.project.dd.ticket.reservation.service.GroupReservationService;
 import com.project.dd.ticket.reservation.service.SingleReservationService;
@@ -24,10 +26,22 @@ public class MemberTicketReservationController {
 	@Autowired
 	private GroupReservationService groupService;
 	
-	@GetMapping(value = "/member/ticket/single-reservation/view.do")
+	@GetMapping(value = "/member/ticket/personal-reservation/view.do")
 	public String singleReservation(Model model) {
 
-		return "member/ticket/single-reservation/view";
+		List<BenefitDTO> list = singleService.getBenefit("일반");
+		List<BenefitDTO> plist = singleService.getBenefit("카드/통신사");
+		
+		model.addAttribute("list", list);
+		model.addAttribute("plist", plist);
+		
+		return "member/ticket/personal-reservation/view";
+	}
+	
+	@PostMapping(value = "/member/ticket/personal-reservation/check.do")
+	public String check(Model model, TicketReservationDTO dto) {
+
+		return "member/ticket/personal-reservation/check";
 	}
 	
 	@GetMapping(value = "/member/ticket/group-reservation/view.do")

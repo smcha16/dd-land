@@ -40,7 +40,7 @@
 }
 
 .containers {
-	width: 60%;
+	width: 50%;
     margin: 20px auto 50px auto;
 	padding: 20px;
 	background-color: #fff;
@@ -51,8 +51,11 @@
 
 form > #condition {
 	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+	border-radius: 15px;
 	text-align: center;
-	background-color: rgba(43, 114, 201, 0.3);
+	color: #fff;
+	background-color: #ce1212;
+	opacity: 0.85;
 	height: 70px;
 	display: flex;
 	flex-direction: column;
@@ -108,16 +111,27 @@ form > #condition {
 }
 
 .btn {
-	padding: 10px 20px;
-	background-color: #0074cc;
 	color: #fff;
+    background: var(--color-primary);
 	border: none;
-	border-radius: 5px;
-	cursor: pointer;
+	font-size: 14px;
+    padding: 8px 20px;
+    margin-left: 30px;
+    border-radius: 15px;
+    font-weight: bold;
 }
 
 .btn.cancel {
 	background-color: #ccc;
+}
+
+/* list photo 변경 */
+.stats-counter {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url("/dd/resources/files/reservation/main-reservation.jpg") center center;
+	background-size: cover;
+	padding: 100px 0;
+	background-attachment: fixed;
 }
 </style>
 

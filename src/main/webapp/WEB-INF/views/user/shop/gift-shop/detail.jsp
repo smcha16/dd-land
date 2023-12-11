@@ -201,7 +201,7 @@ section:last-of-type {
 	div#reservation-btn {
 		display: flex;
 		justify-content: center;
-		padding: 20px;
+		padding: 0 0 50px 0;
 	}	
 	div#reservation-btn > button {
 		padding: 13px 15px;

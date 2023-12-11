@@ -1,5 +1,7 @@
 package com.project.dd.shop.item.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +17,17 @@ public class UserItemController {
 	private ItemService service;
 	
 	@GetMapping(value = "/user/shop/gift-shop/item/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(@RequestParam(defaultValue = "1") int page, String seq, Model model) {
 
+		Map<String, String> map = service.paging(page, seq);
+		
+		map.put("seq", seq);
+		
+		model.addAttribute("list", service.getList(map));
+		model.addAttribute("currentPage", page);  //페이징
+	    model.addAttribute("map", map);  //페이징
+	    model.addAttribute("seq", seq);
+		
 		return "user/shop/gift-shop/item/view";
 	}
 

@@ -183,7 +183,7 @@
 /* list photo 변경 */
 .stats-counter {
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url("/dd/resources/files/giftshop/main-giftshop.jpg") center center;
+		url("/dd/resources/files/item/main-item.jpg") center center;
 	background-size: cover;
 	padding: 100px 0;
 	background-attachment: fixed;
@@ -201,6 +201,34 @@
        background-color: #CE1212;
        border-color: #CE1212;
    }
+   
+   /* 버튼 */
+	#button {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 50px;
+	}
+	#back-button {
+		background-color: #CE1212;
+		border-color: #CE1212;
+	}
+	#back-button i {
+		margin-right: 7px;
+	}
+	div#reservation-btn {
+		display: flex;
+		justify-content: center;
+		padding: 0 0 50px 0;
+	}	
+	div#reservation-btn > button {
+		padding: 13px 15px;
+		background: #b71c1c;
+		border: #b71c1c;
+		border-radius: 7px;
+		color: #FFF;
+		font-weight: bold;
+		font-size: 17px;
+	}
 </style>
 
 <!-- list3 Main Content -->
@@ -211,15 +239,13 @@
 
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
-					<div id="title">Gift Shop</div>
-					<span class="btn btn-1"> <input type="checkbox" id="close"
-						value="close" data-type="n"> <label for="close"></label>
-					</span>
+					<div id="title">상품 목록</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
 <!-- End Stats Counter Section -->
 <!-- ======= Menu Section ======= -->
 <section id="menu" class="menu">
@@ -228,8 +254,8 @@
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div class="munti-content-container">
 					<c:forEach items="${list}" var="dto">
-							<div class="item" onclick="detail(${dto.shop_seq});">
-								<div style="background-image: url('/dd/resources/files/giftshop/${dto.img}');"></div>
+							<div class="item" onclick="detail(${dto.item_seq});">
+								<div style="background-image: url('/dd/resources/files/item/${dto.img}');"></div>
 								<div>${dto.name }</div>
 								<div class="hidden-div">${dto.info }</div>
 							</div>
@@ -247,13 +273,18 @@
                        <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
                    </c:when>
                    <c:otherwise>
-                       <li class="page-item"><a class="page-link" href="/dd/user/shop/gift-shop/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+                       <li class="page-item"><a class="page-link" href="/dd/user/shop/gift-shop/item/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
                    </c:otherwise>
                </c:choose>
            </c:forEach>
        </ul>
    </nav>
 </section>
+
+<!-- 돌아 가기 버튼 -->
+<div id="reservation-btn">
+	<button type="button" onclick="location.href='/dd/user/shop/gift-shop/detail.do?seq=${seq}'">돌아가기 <i class="bi bi-hand-index-thumb-fill"></i></button>
+</div>
 <!-- End Menu Section -->
 
 <!-- list3 전용 JavaScript -->
