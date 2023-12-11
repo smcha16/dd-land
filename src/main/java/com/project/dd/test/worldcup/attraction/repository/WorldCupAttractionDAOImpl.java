@@ -28,7 +28,6 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 	// 모든 어트랙션 리스트 가져오기
 	@Override
 	public List<AttractionDTO> getAllAttraction(Map<String, String> map) {
-		
 		return mapper.getAllAttraction(map);
 	}
 	
@@ -56,6 +55,11 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 		return mapper.getAllAWCFinalWin();
 	}
 
+	@Override
+	public void updateAttractionStatus(Map<String, String> map) {
+		mapper.updateAttractionStatus(map);
+	}
+	
 	// 선택되지 않은 어트랙션 가져오기
 	@Override
 	public List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions) {
@@ -97,12 +101,6 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 		}
 
 		return selectedTwoAttractions;
-	}
-	
-	@Override
-	public void updateAttractionStatus(Map<String, String> paramMap) {
-		
-		mapper.updateAttractionStatus(paramMap);
 	}
 	
 }

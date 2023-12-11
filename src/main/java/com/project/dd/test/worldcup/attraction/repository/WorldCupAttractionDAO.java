@@ -26,12 +26,12 @@ public interface WorldCupAttractionDAO {
     // 어트랙션 월드컵에서 최종 승리한 어트랙션 가져오기
     List<WorldCupAttractionDTO> getAllAWCFinalWin();
 
+	void updateAttractionStatus(Map<String, String> map);
+	
     // 선택되지 않은 어트랙션 가져오기
     List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions);
 
     // 리스트에서 두 개의 랜덤 어트랙션 가져오기
     List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> attractions);
-	
-	void updateAttractionStatus(Map<String, String> paramMap);
 	
 }

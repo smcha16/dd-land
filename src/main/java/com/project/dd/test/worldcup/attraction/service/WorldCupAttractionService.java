@@ -20,10 +20,10 @@ public interface WorldCupAttractionService {
 
     List<WorldCupAttractionDTO> getAllAWCFinalWin();
 
+	void updateAttractionStatus(Map<String, String> map);
+	
     List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions);
 
     List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> attractions);
-
-	void updateAttractionStatus(Map<String, String> paramMap);
 
 }

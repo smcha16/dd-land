@@ -18,7 +18,7 @@ public class AdminWorldCupAttractionController {
 	@Autowired
 	private WorldCupAttractionService attractionService;
 
-	@GetMapping(value = "/admin/test/worldcup/view.do")
+	@GetMapping(value = "/admin/test/worldcup/attraction/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model,
 			@RequestParam(defaultValue = "n") String close, @RequestParam(defaultValue = "Y") String isTest) {
 
@@ -30,10 +30,10 @@ public class AdminWorldCupAttractionController {
 
 		// System.out.println(attractionService.getAllAttraction(map));
 
-		return "admin/test/worldcup/view";
+		return "admin/test/worldcup/attraction/view";
 	}
 
-	@PostMapping(value = "/admin/test/worldcup/view.do")
+	@PostMapping(value = "/admin/test/worldcup/attraction/view.do")
 	public String updateAttractionStatus(@RequestParam String attractionSeq, @RequestParam String isTest, Model model) {
 	    //System.out.println("seq:" + attractionSeq + " check:" + isTest);
 	    
@@ -43,7 +43,7 @@ public class AdminWorldCupAttractionController {
 
 	    attractionService.updateAttractionStatus(paramMap);
 	    
-	    return "redirect:/admin/test/worldcup/view.do"; 
+	    return "redirect:/admin/test/worldcup/attraction/view.do"; 
 	}
 
 }
