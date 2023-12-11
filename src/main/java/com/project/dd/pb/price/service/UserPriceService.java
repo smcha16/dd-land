@@ -20,7 +20,7 @@ public class UserPriceService {
     
    
 
-    public void formatPrices(List<PriceDTO> priceList) {
+    public void formatPrices(List<PriceDTO> priceList) {  // 금액에 , 찍기
         for (int i = 0; i < priceList.size(); i++) {
             int money = Integer.valueOf(priceList.get(i).getPrice());
 
@@ -41,4 +41,29 @@ public class UserPriceService {
     public List<PriceDTO> getGroupTypeList() {
         return dao.groupTypeList();
     }
+
+	public List<PriceDTO> list() {
+		return dao.list();
+	}
+
+	public List<PriceDTO> ticketTypeList() {
+		return dao.tikcetTypeList();
+	}
+
+	public List<PriceDTO> ageList() {
+		return dao.ageList();
+	}
+
+	public PriceDTO getPriceInfo(String ticket_seq) {
+		
+		return dao.getPriceInfo(ticket_seq);
+	}
+
+	
+
+	public int edit(PriceDTO priceDTO) {
+		return dao.edit(priceDTO);
+	}
+
+	
 }
