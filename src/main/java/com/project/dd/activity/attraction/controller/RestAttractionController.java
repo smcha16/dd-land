@@ -1,7 +1,7 @@
 package com.project.dd.activity.attraction.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,20 +14,23 @@ public class RestAttractionController {
 	@Autowired
 	private AttractionService service;
 	
-	@GetMapping(value = "/dd/admin/activity/attraction/add")
-	public int checkLocation(String lat, String lng) {
+	@PostMapping(value = "/admin/activity/attraction/location")
+	public int checkLocation(@RequestBody AttractionDTO dto) {
 		
-		System.out.println(lat);
-		System.out.println(lng);
-		
-		AttractionDTO dto = new AttractionDTO();
-		
-		//일단 임시로 만들고 나중에는 String lat, lng으로 보내기
-		dto.setLat(lat);
-		dto.setLng(lng);
-		
-		
+		System.out.println("드루와");
+		System.out.println(dto.getLat());
+		System.out.println(dto.getLng());
 		
 		return service.checkLocationDuplication(dto);
 	}
+
+	@PostMapping(value = "/admin/activity/attraction/name")
+	public int checkName(@RequestBody AttractionDTO dto) {
+		
+		System.out.println("드루와");
+		System.out.println(dto.getName());
+		
+		return service.checkNameDuplication(dto);
+	}
+
 }

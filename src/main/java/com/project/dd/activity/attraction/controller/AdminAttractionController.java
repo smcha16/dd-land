@@ -53,20 +53,13 @@ public class AdminAttractionController {
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, AttractionDTO dto, MultipartFile[] imgs, HttpServletRequest req) {
 		
-		//0. 어트랙션 위치 중복 검사
+		//0. 어트랙션 위치 중복 검사 > ajax
 		//1. 어트랙션 추가
 		//2. 어트랙션 위치 추가
 		//3. 어트랙션 이미지 추가
 		
-		//0. 어트랙션 위치 중복 검사 > ajax에서 진행? 추진해보고...
-//		String lat = dto.getLat();
-//		String lng = dto.getLng();
+		System.out.println(dto.toString());
 		
-//		int result = service.checkLocationDuplication(dto);
-//		
-//		if (result > 0) {
-//			return "redirect:/dd/admin/activity/add.do";
-//		}
 		
 		int result = service.addAttraction(dto, imgs, req);
 		
@@ -77,6 +70,24 @@ public class AdminAttractionController {
 			return "redirect:/admin/activity/attraction/add.do";
 		}
 		
+	}
+	
+	@PostMapping(value = "/del.do")
+	public String del(Model model, String[] attraction_seq) {
+
+		//어트랙션 삭제 > "(운영종료)" 문구 UPDATE로 구현
+		// - tblAttractionImg > DELETE
+		// - tblAttractionLocation > DELETE
+		// - tblAttraction > UPDATE
+		
+		int result = service.delAttraction(attraction_seq);
+		
+		if (result > 0) {
+			return "redirect:/admin/activity/attraction/view.do";
+		} else {
+			model.addAttribute("alertMessage", "어트랙션 삭제에 실패했습니다.");
+			return "redirect:/admin/activity/attraction/view.do";
+		}
 	}
 	
 	

@@ -72,4 +72,34 @@ public class AttractionDAOImpl implements AttractionDAO {
 		return result;
 	}
 
+	@Override
+	public int delAttraction(String seq) {
+		return mapper.delAttraction(seq);
+	}
+
+	@Override
+	public int countAttractionImg(String seq) {
+		return mapper.countAttractionImg(seq);
+	}
+
+	@Override
+	public int delAttractionImg(String seq) {
+		return mapper.delAttractionImg(seq);
+	}
+
+	@Override
+	public int delAttractionLocation(String seq) {
+		return mapper.delAttractionLocation(seq);
+	}
+
+	@Override
+	public int countAttractionLocation(String seq) {
+		return mapper.countAttractionLocation(seq);
+	}
+
+	@Override
+	public int checkNameDuplication(AttractionDTO dto) {
+		return mapper.checkNameDuplication(dto);
+	}
+
 }

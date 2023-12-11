@@ -12,7 +12,7 @@ import com.project.dd.activity.movie.service.MovieService;
 public class RestMovieController {
 
 	@Autowired
-	MovieService service;
+	private MovieService service;
 	
 	//영화명 중복 확인(SELECT > GET)
 	//1. 주소: http://localhost:8090/dd/admin/activity/movie
@@ -22,9 +22,7 @@ public class RestMovieController {
 	@PostMapping(value = "/admin/activity/movie")
 	public int checkMovieNameDuplication(@RequestBody MovieDTO dto) {
 
-		System.out.println("들어왔니..?");
 		System.out.println(dto.toString());
-		System.out.println(dto.equals(""));
 		System.out.println(dto.getName() != null);
 		
 		return service.checkMovieNameDuplication(dto);

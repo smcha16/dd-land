@@ -28,7 +28,7 @@
    <!-- admin 기능  -->
    
 	<select id="checkLocationDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
-		select * from vwLocation where lat = #{lat} and lng = #{lng}
+		select count(*) from vwLocation where lat = #{lat} and lng = #{lng}
 	</select>
    
 	<insert id="addAttraction" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
@@ -48,5 +48,29 @@
 		INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
 		VALUES (seqtblAttractionImg.NEXTVAL, #{img}, #{attraction_seq})
 	</insert>
+	
+	<update id="delAttraction" parameterType="String">
+		update tblAttraction set name = name || '(운영종료)' where attraction_seq = #{attraction_seq}
+	</update>
+	
+	<select id="countAttractionImg" parameterType="String" resultType="int">
+		select count(*) from tblAttractionImg where attraction_seq = #{attraction_seq}
+	</select>
+	
+	<delete id="delAttractionImg" parameterType="String">
+		delete from tblAttractionImg where attraction_seq = #{attraction_seq}
+	</delete>
+	
+	<select id="countAttractionLocation" parameterType="String" resultType="int">
+		select count(*) from tblAttractionLocation where attraction_seq = #{attraction_seq}
+	</select>
+	
+	<delete id="delAttractionLocation" parameterType="String">
+		delete from tblAttractionLocation where attraction_seq = #{attraction_seq}
+	</delete>
+	
+	<select id="checkNameDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
+		select count(*) from tblAttraction where name = #{name}
+	</select>
 	
 </mapper>

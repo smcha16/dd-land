@@ -41,12 +41,6 @@
     	
     }
     
-    /* 유효성검사 CSS */
-    .check-duplication {
-    	padding: 10px 10px;
-    }
-    
-    
 </style>
 
 <main id="main" class="main">

@@ -115,6 +115,51 @@ public class AttractionService {
 		
 		return dao.addAttraction(dto);
 	}
+
+	
+	
+	//어트랙션 삭제
+	// - 1. 배열 돌면서 seq 뽑아내기
+	// - 2. 해당하는 seq의 레코드 UPDATE
+	public int delAttraction(String[] attraction_seq) {
+		
+		int result = 0;
+		
+		//1. 배열 돌면서 seq 뽑아내기
+		for (String seq : attraction_seq) {
+			
+			//2. 해당하는 seq의 레코드 UPDATE > tblAttractionImg DELETE
+			// - AttractionImg가 있으면 > 삭제
+			// - AttractionImg가 없으면 > tblAttractionLocation DELETE
+			int imgCount = dao.countAttractionImg(seq);
+			
+			if (imgCount > 0) { //Img 삭제
+				
+				dao.delAttractionImg(seq);
+				
+			}
+			
+			//3. 해당하는 seq의 레코드 UPDATE > tblAttractionLocation DELETE
+			// - AttractionLocation이 있으면 > 삭제
+			// - AttractionLocaion이 없으면 > tblAttraction UPDATE
+			int locationCount = dao.countAttractionLocation(seq);
+			
+			if (locationCount > 0) { //Location 삭제
+				
+				dao.delAttractionLocation(seq);
+				
+			}
+			
+			//4. 해당하는 seq의 레코드 UPDATE > tblAttraction UPDATE
+			result += dao.delAttraction(seq);
+		}
+		
+		return result;
+	}
+
+	public int checkNameDuplication(AttractionDTO dto) {
+		return dao.checkNameDuplication(dto);
+	}
 	
 	
 	

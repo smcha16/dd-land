@@ -41,6 +41,13 @@
     	
     }
     
+    /* 유효성검사 CSS */
+    .check-location-duplication {
+    	padding: 10px 10px;
+    }
+    .check-name-duplication {
+    	padding: 10px 10px;
+    }
     
 </style>
 
@@ -73,6 +80,9 @@
                 				<label for="name" class="col-sm-2 col-form-label required">어트랙션명</label>
                 				<div class="col-sm-10">
                   					<input type="text" id="name" name="name" class="form-control" placeholder="어트랙션명을 입력해주세요." required>
+                  					<div style="height: 30px;">
+                  						<div class="check-name-duplication"></div>
+                  					</div>
                 				</div>
               				</div>
 
@@ -105,6 +115,9 @@
               					<label for="map" class="col-sm-2 col-form-label required">위치</label>
 								<div class="col-sm-10">
 									<div id="map" class="middle-flat" style="height: 380px; border-radius: var(--bs-border-radius);"></div>
+									<div style="height: 30px;">
+                  						<div class="check-location-duplication"></div>
+                  					</div>
 								</div>
 							</div>
               				
@@ -139,6 +152,7 @@
 <!-- Attraction add용 JavaScript -->
 <script>
 
+	/* 필수 항목이 반드시 입력되어야만 submit 클릭 시 넘어가도록 */
 	function submit() {
 		$('form').submit();
 	}
@@ -182,32 +196,97 @@
 		latInput.value = lat;
 		lngInput.value = lng;
 		
-		let location = {
+		/* Attraction 위치 중복 검사 */
+		let obj = {
 				lat: evt.latLng.getLat(),
 				lng: evt.latLng.getLng()
-		}
+		};
 		
-		/* $.ajax({
-			type: 'GET',
-			url: '/dd/admin/activity/attraction/add',
-			data: JSON.stringify(location),
-			contentType: "application/json; charset=UTF-8;",
+		// CSRF token
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+		
+		$.ajax({
+			type: 'POST',
+			url: '/dd/admin/activity/attraction/location',
+			headers: {'content-Type': 'application/json'},
+			data: JSON.stringify(obj),
 			dataType: 'json',
 			success: function(result) {
-				alert('성공');
+				//alert('성공');
+				if (result == 0) {
+					$('.check-location-duplication').text('지정 가능한 위치입니다.');
+					$('.check-name-duplication').css('color', '#212529');
+					$('.check-location-duplication').data('type', 'y');
+					console.log('지정 가능');
+					
+				} else {
+					$('.check-location-duplication').text('중복된 위치입니다. 다른 위치를 선택해주세요.');
+					$('.check-location-duplication').css('color', '#dc3545');
+					$('.check-location-duplication').data('type', 'n');
+					console.log('중복된 위치');
+				}
 			},
+			beforeSend: function(xhr) {
+            	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+            },
 			error: function(a,b,c) {
 				console.log(a,b,c);
 			}
 			
-		}); */
+		});
 		
 		
 		
 		
 	});
 	
-	/* Attraction 위치 중복 검사 */
+	/* Attraction 이름 중복 검사 */
+	$('input[name="name"]').blur(function() {
+		
+		let obj = {
+				name: $('input[name="name"]').val()
+		};
+		
+		// CSRF token
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+		
+		$.ajax({
+			type: 'POST',
+			url: '/dd/admin/activity/attraction/name',
+			headers: {'content-Type': 'application/json'},
+			data: JSON.stringify(obj),
+			dataType: 'json',
+			success: function(result) {
+				//alert(result);
+				if (result == 0) {
+					$('.check-name-duplication').text('사용 가능한 어트랙션명입니다.');
+					$('.check-name-duplication').css('color', '#212529');
+					$('.check-name-duplication').data('type', 'y');
+					
+				} else {
+					$('.check-name-duplication').text('중복된 어트랙션명입니다. 다른 어트랙션명을 입력해주세요.');
+					$('.check-name-duplication').css('color', '#dc3545');
+					$('.check-name-duplication').data('type', 'n');
+				}
+			},
+			beforeSend: function(xhr) {
+            	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+            },
+			error: (a,b,c) => {
+				console.log(a,b,c);
+			}
+			
+		});
+		
+		
+	});
+	
+	
+	
+	
 	
 	
 	
