@@ -20,6 +20,8 @@ public class UserFaqController {
 	@Autowired
 	private FaqService service;
 	
+	// 목록
+	
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "이용정보") String type, @RequestParam(defaultValue = "1") int page, Model model) {
 

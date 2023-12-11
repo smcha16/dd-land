@@ -15,6 +15,6 @@
 
 	<insert id="addVoc" parameterType="com.project.dd.communication.voc.domain.VocDTO">
 		insert into tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
-		values (seqtblVOC.nextVal, #{type}, #{service_type}, #{subject}, #{content}, default, #{attach, jdbcType=VARCHAR}, #{visit_date}, null, #{user_seq});
+		values (seqtblVOC.nextVal, #{type}, #{service_type}, #{subject}, #{content}, default, #{attach, jdbcType=VARCHAR}, #{visit_date}, null, #{user_seq})
 	</insert>
 </mapper>

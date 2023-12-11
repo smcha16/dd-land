@@ -16,4 +16,20 @@
 	<select id="getNotice" parameterType="String" resultType="com.project.dd.communication.notice.domain.NoticeDTO">
 		select * from tblNotice where notice_seq = #{seq}
 	</select>
+	
+	<insert id="addNotice" parameterType="com.project.dd.communication.notice.domain.NoticeDTO">
+		insert into tblNotice (notice_seq, subject, content, regdate, attach, fix) values (seqtblNotice.nextVal, #{subject}, #{content}, default, #{attach, jdbcType=VARCHAR}, #{fix})
+	</insert>
+	
+	<select id="getFileName" parameterType="String" resultType="String">
+		select attach from tblNotice where notice_seq = #{seq}
+	</select>
+	
+	<update id="editNotice" parameterType="com.project.dd.communication.notice.domain.NoticeDTO">
+		update tblNotice set subject = #{subject}, content = #{content}, attach = #{attach, jdbcType=VARCHAR}, fix = #{fix} where notice_seq = #{notice_seq}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="String">
+		delete from tblNotice where notice_seq = #{seq}
+	</delete>
 </mapper>

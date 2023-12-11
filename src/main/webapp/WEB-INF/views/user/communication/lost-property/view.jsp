@@ -189,7 +189,7 @@
 		</tbody>
 	</table>
 
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div id="modal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -219,30 +219,25 @@
 </main>
 
 <script>
-	document.addEventListener('DOMContentLoaded', function () {	
-	    const startDate = document.getElementById('start');
-	    const endDate = document.getElementById('end');
-	
-	    startDate.addEventListener('change', function () {
-	        const selectedStartDate = new Date(startDate.value);
+	$(document).ready(function () {	
+	    $('#start').on('change', function () {
+	        const selectedStartDate = new Date($('#start').val());
 	        const minEndDate = new Date(selectedStartDate.getTime());
 	        const formattedMinEndDate = minEndDate.toISOString().split('T')[0];
 	
-	        endDate.setAttribute('min', formattedMinEndDate);
+	        $('#end').attr('min', formattedMinEndDate);
 	
-	        if (endDate.value && new Date(endDate.value) < selectedStartDate) {
-	            endDate.value = formattedMinEndDate;
+	        if ($('#end').val() && new Date($('#end').val()) < selectedStartDate) {
+	        	$('#end').val(formattedMinEndDate);
 	        }
 	    });
 	});
-
-    function showModal(imageUrl) {
-        const modalImage = document.getElementById('modal-image');
-        
-        modalImage.src = imageUrl;
-        
-        const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-        
-        modal.show();
-    }
+	
+	function showModal(imageUrl) {	
+	    $('#modal-image').attr('src', imageUrl);
+	
+	    const modal = new bootstrap.Modal($('#modal'));
+	
+	    modal.show();
+	}
 </script>

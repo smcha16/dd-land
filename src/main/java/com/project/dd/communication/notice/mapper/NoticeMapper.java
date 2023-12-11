@@ -13,4 +13,12 @@ public interface NoticeMapper {
 
 	NoticeDTO getNotice(String seq);
 
+	int addNotice(NoticeDTO dto);
+	
+	String getFileName(String seq);
+
+	int editNotice(NoticeDTO dto);
+
+	void deleteNotice(String seq);
+
 }
