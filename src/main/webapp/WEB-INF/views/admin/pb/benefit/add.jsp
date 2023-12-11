@@ -49,7 +49,7 @@
             			<h5 class="card-title">General Form Elements</h5> 
 
             			<form:form method="post" action="/dd/admin/pb/benefit/add.do"
-							modelAttribute="benefitDTO">
+							modelAttribute="benefitDTO" enctype="multipart/form-data">
             			
               				<div class="row mb-3">
                 				<label for="inputText" class="col-sm-2 col-form-label">혜택명</label>
