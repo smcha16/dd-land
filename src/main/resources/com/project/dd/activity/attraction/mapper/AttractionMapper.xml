@@ -73,4 +73,20 @@
 		select count(*) from tblAttraction where name = #{name}
 	</select>
 	
+	<select id="getAttractionDefaultImgName" parameterType="String" resultType="String">
+		select img from tblAttractionImg where attraction_seq = #{attraction_seq}
+	</select>
+	
+	<update id="editAttractionLocation" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		update tblAttractionLocation set lat = #{lat}, lng = #{lng} where attraction_seq = #{attraction_seq}
+	</update>
+	
+	<update id="editAttraction" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		update tblAttraction set name = #{name}, info = #{info}, capacity = #{capacity}, restriction = #{restriction} where attraction_seq = #{attraction_seq}
+	</update>
+	
+	<delete id="delAttractionImgByImgSeq" parameterType="String">
+		delete from tblAttractionImg where attraction_img_seq = #{attraction_img_seq}
+	</delete>
+	
 </mapper>

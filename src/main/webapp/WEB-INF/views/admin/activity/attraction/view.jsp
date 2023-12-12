@@ -133,13 +133,13 @@
 	                    					<c:forEach items="${list}" var="dto" varStatus="status">
 		                      					<tr>
 		                        					<td><input type="checkbox" name="attraction_seq" value="${dto.attraction_seq}"></td>
-		                        					<td>${status.count}</td>
+		                        					<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
 		                        					<td><a><c:out value="${dto.name}" /></a></td>
 		                        					<td>${dto.capacity}</td>
-		                        					<c:if test="${dto.imgList == 'attraction.png'}">
+		                        					<c:if test="${dto.img == 'attraction.png'}">
 		                        						<td></td>
 		                        					</c:if>
-		                        					<c:if test="${dto.imgList != 'attraction.png'}">
+		                        					<c:if test="${dto.img != 'attraction.png'}">
 		                        						<td><i class="bi bi-image"></i></td>
 		                        					</c:if>
 		                        					<td><i class="bi bi-geo-alt"></i></td>
@@ -195,11 +195,6 @@
 <!-- attraction > view JavaScript -->
 <script>
 
-	/* tblAttraction 삭제 실패 시, pop-up창 */
-	<c:if test="${not empty alertMessage}">
-		alert("${alertMessage}");
-	</c:if>
-	
 	/* 수정 시, 체크 박스 1개만 선택 하여 seq 전달 하기 */
 	function edit() {
 		
