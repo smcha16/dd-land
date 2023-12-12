@@ -63,6 +63,18 @@
   	.table {
     	text-align: center;
   	}
+  	th:nth-child(1) {
+  		width: 6%;
+  	}
+	th:nth-child(2) {
+		width: 9%;
+	}
+	th:nth-child(3) {
+		width: 63%;
+	}
+	th:nth-child(4) {
+		width: 22%;
+	}
   	th {
     	background-color: #f2f2f2 !important;
   	}
@@ -74,7 +86,8 @@
 		color: #000;
 	}
 	.table td a:hover {
-      	color: #0d6efd;
+		font-weight: bold !important;
+      	color: #0d6efd !important;
     }
   	.pagination {
    		justify-content: center;
@@ -82,7 +95,6 @@
   	}
 </style>
 
-<!-- ======= Main ======= -->
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -96,9 +108,9 @@
 					<div class="col-12">
 
               			<div id="search" class="header">
-                  			<form class="search-form d-flex align-items-center" method="POST" action="#">
-                    			<input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                    			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                  			<form method="GET" action="#" class="search-form d-flex align-items-center">
+                    			<input type="text" name="query" placeholder="Search">
+                    			<button type="submit"><i class="bi bi-search"></i></button>
                   			</form>
               			</div>
 
@@ -108,39 +120,57 @@
                   				<nav class="d-flex justify-content-end">
                     				<ol class="breadcrumb">
                       					<li class="breadcrumb-item"><a href="/dd/admin/communication/notice/add.do">추가</a></li>
-                      					<li class="breadcrumb-item"><a href="#">수정</a></li>
-                      					<li class="breadcrumb-item active"><a href="#">삭제</a></li>
+                      					<li class="breadcrumb-item"><a href="javascript:void(0);" onclick="edit();">수정</a></li>
+                      					<li class="breadcrumb-item"><a href="javascript:void(0);" onclick="del();">삭제</a></li>
                     				</ol>
 								</nav>
 								
-								<table class="table">
-									<thead>
-										<tr>
-											<th></th>
-											<th>No</th>
-											<th>제목</th>
-											<th>등록일</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${list}" var="dto" varStatus="numberStatus">
+								<form method="POST" action="/dd/admin/communication/notice/del.do" id="del-form">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+								
+									<table class="table">
+										<thead>
 											<tr>
-												<td><input type="checkbox"></td>
-												<c:if test="${dto.fix == 'y'}">
-													<td><i class="bi bi-bookmark-star-fill"></i></td>
-												</c:if>
-												
-												<c:if test="${dto.fix == 'n'}">
+												<th></th>
+												<th>No</th>
+												<th>제목</th>
+												<th>등록일</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${list}" var="dto" varStatus="numberStatus">
+												<tr>
+													<td><input type="checkbox" name="seqList" value="${dto.notice_seq}"></td>
 													<td>${map.totalPosts - numberStatus.index - map.startIndex + 1}</td>
-												</c:if>
-												
-									            <td><a href="/dd/user/communication/notice/detail.do?seq=${dto.notice_seq}"><c:out value="${dto.subject}" /></a></td>
-									            <td>${dto.regdate}</td>
-									        </tr>
-										</c:forEach>
-									</tbody>
-								</table>
-                  
+										            <td><a onclick="showModal(`${dto.subject}`, `${dto.content}`, '${dto.attach}')"><c:out value="${dto.subject}" /></a></td>
+										            <td>${dto.regdate}</td>
+										        </tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</form>
+								
+								<!-- 모달 -->
+								
+								<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+								    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+								        <div class="modal-content">
+								            <div class="modal-header">
+								                <h5 id="modal-subject" class="modal-title"></h5>
+								                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								            </div>
+								            <div class="modal-body">
+								            	<div class="mt-3" id="modal-content" style="margin-bottom: 30px;"></div>
+								                <div class="d-flex align-items-center justify-content-center">
+								                    <img id="modal-image" src="" alt="Image" style="max-width: 100%;">
+								                </div>
+								            </div>
+								        </div>
+								    </div>
+								</div>
+								
+								<!-- 페이징 -->
+								
                  				<ul class="pagination justify-content-center">
 									<c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
 										<c:choose>
@@ -161,3 +191,50 @@
 		</div>
 	</section>
 </main>
+
+<script>
+	<!-- 수정 -->
+	
+	function edit() {
+		var checked = $('input[type="checkbox"]:checked');
+		
+	    if (checked.length === 1) {
+	        location.href = '/dd/admin/communication/notice/edit.do?seq=' + checked.val();
+	    } else {
+	        alert('하나의 항목을 선택하세요.');
+	    }
+	}
+	
+	<!-- 삭제 -->
+	
+	function del() {
+		var checked = $('input[type="checkbox"]:checked');
+		
+        if (checked.length > 0) {
+            if (confirm('선택한 항목을 삭제하시겠습니까?')) {
+				$('#del-form').submit();
+            }
+        } else {
+            alert('삭제할 항목을 선택하세요.');
+        }
+    }
+	
+	<!-- 모달 -->
+	
+	function showModal(subject, content, image) {
+	    $('#modal-subject').text(subject);
+	    
+	    if (image && content) {
+	    	$('#modal-content').text(content);
+	        $('#modal-image').attr('src', '/dd/resources/files/communication/notice/' + image);
+	    } else if (image && !content) {
+	    	$('#modal-content').hide();
+	    	$('#modal-image').attr('src', '/dd/resources/files/communication/notice/' + image);
+	    } else {
+	    	$('#modal-content').text(content);
+	    	$('#modal-image').hide();
+	    }
+
+	    $('#modal').modal('show');
+	}
+</script>

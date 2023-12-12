@@ -101,18 +101,22 @@
 		<div class="gy-4" style="justify-content: center; width: 100%;">
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
+				
 					<div id="title" style="padding: 0 !important; font-size: 48px; font-weight: 700; color: #fff;">공지사항</div>
-						<div style="width: 400px; height: 40px; position: relative;">
-						<form method="GET" action="/dd/user/communication/notice/view.do" id="search-form">
+					
+					<div style="width: 400px; height: 40px; position: relative;">
+					
+						<form method="GET" action="#" id="search-form">
 							<select name="category" id="category" class="select">
 								<option value="subject">제목</option>
 								<option value="content">내용</option>
 							</select>
 							<input type="text" name="word" id="search-field" autocomplete="off" style="width: 250px; background-color: transparent; border: 0; position: absolute; left: 93px;">
 		                	<button type="submit" id="search-button" style="background: none; border: none; cursor: pointer; position: absolute; right: 10px; top: 6px;">
-						        <i class="fa-solid fa-magnifying-glass" ></i>
+						        <i class="fa-solid fa-magnifying-glass"></i>
 						    </button>
 		                </form>
+		                
 					</div>
 				</div>
 			</div>

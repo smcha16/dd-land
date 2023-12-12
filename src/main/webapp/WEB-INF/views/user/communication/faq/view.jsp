@@ -130,14 +130,18 @@
 		<div class="gy-4" style="justify-content: center; width: 100%;">
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
+				
 					<div id="title" style="padding: 0 !important; font-size: 48px; font-weight: 700; color: #fff;">FAQ</div>
-						<div style="width: 400px; height: 40px; position: relative;">
-						<form method="GET" action="/dd/user/communication/notice/view.do" id="search-form">
+					
+					<div style="width: 400px; height: 40px; position: relative;">
+					
+						<form method="GET" action="#" id="search-form">
 							<input type="text" name="word" id="search-field" autocomplete="off" style="width: 325px; background-color: transparent; border: 0; position: absolute; left: 25px;">
 		                	<button type="submit" id="search-button" style="background: none; border: none; cursor: pointer; position: absolute; right: 10px; top: 6px;">
-						        <i class="fa-solid fa-magnifying-glass" ></i>
+						        <i class="fa-solid fa-magnifying-glass"></i>
 						    </button>
 		                </form>
+		                
 					</div>
 				</div>
 			</div>
@@ -161,7 +165,6 @@
   			<div class="faq">
     			<span class="question"><i class="bi bi-question-circle"></i><c:out value="${dto.question}" /></span>
     			<span class="answer"><c:out value="${dto.answer}" /></span>
-
     			<button class="toggle-button">
     				<i id="down-button" class="fas fa-chevron-down"></i>
     				<i id="up-button" class="fas fa-chevron-up"></i>

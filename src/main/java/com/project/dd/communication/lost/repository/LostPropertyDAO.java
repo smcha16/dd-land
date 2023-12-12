@@ -11,4 +11,14 @@ public interface LostPropertyDAO {
 
 	List<LostPropertyDTO> getLostPropertyList(Map<String, String> map);
 
+	int addLostProperty(LostPropertyDTO dto);
+
+	LostPropertyDTO getLostProperty(String seq);
+
+	String getFileName(String seq);
+
+	int editLostProperty(LostPropertyDTO dto);
+
+	void deleteLostProperty(String seq);
+
 }
