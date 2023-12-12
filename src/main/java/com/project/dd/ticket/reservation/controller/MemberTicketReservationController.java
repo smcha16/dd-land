@@ -117,7 +117,7 @@ public class MemberTicketReservationController {
 				result = singleService.addUserBook(map);
 			}
 		}
-
+		
 		return "redirect:/index.do";
 	}
 	

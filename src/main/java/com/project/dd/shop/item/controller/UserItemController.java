@@ -30,5 +30,13 @@ public class UserItemController {
 		
 		return "user/shop/gift-shop/item/view";
 	}
+	
+	@GetMapping(value = "/user/shop/gift-shop/item/detail.do")
+	public String detail(Model model, String seq) {
+		
+		model.addAttribute("dto", service.getItem(seq));
+
+		return "user/shop/gift-shop/item/detail";
+	}
 
 }

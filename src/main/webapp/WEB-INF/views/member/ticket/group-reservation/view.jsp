@@ -5,6 +5,11 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<link href="/dd/resources/air-datepicker/dist/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Air datepicker css -->
+    <script src="/dd/resources/air-datepicker/dist/js/datepicker.js"></script> <!-- Air datepicker js -->
+    <script src="/dd/resources/air-datepicker/dist/js/i18n/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
+
 <style>
 #main>#title {
 	background-color: white;
@@ -125,6 +130,64 @@ form>#condition {
 	background-color: #ccc;
 }
 
+/* 달력 */
+
+.date {
+  position: relative;
+  width: 300px;
+  margin-left: 50px;
+  margin-top: 100px;
+}
+
+#datepicker {
+ font-size: 15px;
+  color: #222222;
+  width: 300px;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  padding-bottom: 10px;
+  text-align: center;
+  position: relative;
+  background: none;
+  z-index: 5;
+}
+
+#datepicker::placeholder { color: #aaaaaa; }
+#datepicker:focus { outline: none; }
+
+.date span {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;  /* right로만 바꿔주면 오 - 왼 */
+  background-color: #666;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: 0.5s;
+}
+
+.date label {
+position: absolute;
+  color: #aaa;
+  left: 10px;
+  font-size: 20px;
+  bottom: 8px;
+  transition: all .2s;
+}
+
+input:focus ~ label, input:valid ~ label {
+font-size: 16px;
+bottom: 40px;
+color: #666;
+font-weight: bold;
+}
+
+input:focus ~ span, input:valid ~ span {
+width: 100%;
+}
+
 /* list photo 변경 */
 .stats-counter {
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -204,9 +267,10 @@ form>#condition {
 							class="middle-flat" placeholder="상세주소" required>
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="date">방문일</label> <input type="date" id="date"
-						name="visit_date" required class="middle-flat">
+				<div class="form-group date">
+					<input type="text" id="datepicker" data-language='ko' required>
+					<label>Date</label>
+					<span></span>
 				</div>
 				<div class="form-group">
 					<label for="time">방문시간</label> <input type="text" id="time"
@@ -227,6 +291,12 @@ form>#condition {
 	</div>
 
 </main>
+
+<script>
+    $("#datepicker").datepicker({
+    	language: 'ko'
+    }); 
+</script>
 
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

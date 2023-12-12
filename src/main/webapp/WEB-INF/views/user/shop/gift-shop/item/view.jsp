@@ -306,6 +306,6 @@
 	});
 	
 	function detail(seq) {
-		window.location.href = "/dd/user/shop/gift-shop/detail.do?seq="+seq;
+		window.location.href = "/dd/user/shop/gift-shop/item/detail.do?seq="+seq;
 	}
 </script>

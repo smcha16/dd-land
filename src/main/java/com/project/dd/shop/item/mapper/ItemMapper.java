@@ -15,4 +15,7 @@ public interface ItemMapper {
 
 	List<ItemDTO> getList(Map<String, String> map);
 
+	@Select("select * from tblItem where item_seq = #{seq}")
+	ItemDTO getItem(@Param("seq") String seq);
+
 }

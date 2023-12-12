@@ -40,4 +40,8 @@ public class ItemService {
 		return dao.getList(map);
 	}
 
+	public ItemDTO getItem(String seq) {
+		return dao.getItem(seq);
+	}
+
 }

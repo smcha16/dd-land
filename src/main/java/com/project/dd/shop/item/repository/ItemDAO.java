@@ -11,4 +11,6 @@ public interface ItemDAO {
 
 	List<ItemDTO> getList(Map<String, String> map);
 
+	ItemDTO getItem(String seq);
+
 }

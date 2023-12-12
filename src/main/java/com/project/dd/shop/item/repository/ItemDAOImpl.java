@@ -27,4 +27,9 @@ public class ItemDAOImpl implements ItemDAO {
 		return mapper.getList(map);
 	}
 	
+	@Override
+	public ItemDTO getItem(String seq) {
+		return mapper.getItem(seq);
+	}
+	
 }
