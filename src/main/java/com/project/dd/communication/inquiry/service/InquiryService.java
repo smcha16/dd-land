@@ -20,6 +20,8 @@ public class InquiryService {
 	
 	@Autowired
 	private InquiryDAO dao;
+	
+	// 파일 저장
 
 	public String saveFile(HttpServletRequest req, MultipartFile doc) {
 			
@@ -55,10 +57,30 @@ public class InquiryService {
 		
 	}
 	
+	// 파일 추가
+	
+	public InquiryDTO addFile(InquiryDTO dto, HttpServletRequest req, MultipartFile doc) {
+		
+		if (doc == null || doc.isEmpty()) {
+			
+			dto.setAttach(null);
+			
+		} else {
+			
+			dto.setAttach(saveFile(req, doc));
+			
+		}
+
+		return dto;
+		
+	}
+	
+	// 추가
+	
 	public int addInquiry(InquiryDTO dto) {
 		
 		return dao.addInquiry(dto);
 		
 	}
-
+	
 }

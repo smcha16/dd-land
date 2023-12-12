@@ -22,6 +22,8 @@ public class MemberInquiryController {
 	@Autowired
 	private InquiryService service;
 	
+	// 추가
+	
 	@GetMapping(value = "/add.do")
 	public String add(Authentication auth, Model model) {
 
@@ -38,23 +40,15 @@ public class MemberInquiryController {
 	@PostMapping(value = "/addok.do")
 	public String addOk(Authentication auth, InquiryDTO dto, HttpServletRequest req, MultipartFile doc) {
 		
-		if (doc != null && !doc.isEmpty()) {
-			
-			dto.setAttach(service.saveFile(req, doc));
-			
-		} else {
-			
-			dto.setAttach(null);
-			
-		}
-
+		InquiryDTO inquiry = service.addFile(dto, req, doc);
+		
 		String user_seq = ((CustomUser)auth.getPrincipal()).getDto().getUser_seq();
 		
 		dto.setUser_seq(user_seq);
-	
-		int result = service.addInquiry(dto);
-	
-	 	if (result == 1) {
+
+		int result = service.addInquiry(inquiry);
+		
+		if (result == 1) {
 
 	 		return "redirect:/index.do";
 	 

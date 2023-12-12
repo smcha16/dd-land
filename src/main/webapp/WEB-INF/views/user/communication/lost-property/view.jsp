@@ -130,18 +130,22 @@
 		<div class="gy-4" style="justify-content: center; width: 100%;">
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
+				
 					<div id="title" style="padding: 0 !important; font-size: 48px; font-weight: 700; color: #fff;">분실물 센터</div>
-						<div style="width: 400px; height: 40px; position: relative;">
-						<form method="GET" action="/dd/user/communication/lost-property/view.do" id="search-form">
+					
+					<div style="width: 400px; height: 40px; position: relative;">
+					
+						<form method="GET" action="#" id="search-form">
 							<select name="category" id="category" class="select">
 								<option value="name">습득물</option>
 								<option value="location">습득장소</option>
 							</select>
 							<input type="text" name="word" id="search-field" autocomplete="off" style="width: 230px; background-color: transparent; border: 0; position: absolute; left: 120px;">
 		                	<button type="submit" id="search-button" style="background: none; border: none; cursor: pointer; position: absolute; right: 10px; top: 6px;">
-						        <i class="fa-solid fa-magnifying-glass" ></i>
+						        <i class="fa-solid fa-magnifying-glass"></i>
 						    </button>
 		                </form>
+		                
 					</div>
 				</div>
 			</div>
@@ -153,7 +157,7 @@
     
 <main id="lost-property">
 
-	<form method="GET" action="/dd/user/communication/lost-property/view.do" id="search-date-form">
+	<form method="GET" action="#" id="search-date-form">
 		<input type="date" id="start" class="form-control">
 			~
 		<input type="date" id="end" class="form-control">
@@ -171,17 +175,20 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${list}" var="dto" varStatus="status">
+			<c:forEach items="${list}" var="dto" varStatus="numberStatus">
 				<tr>
-		            <td>${map.totalPosts - status.index - map.startIndex + 1}</td>
+		            <td>${map.totalPosts - numberStatus.index - map.startIndex + 1}</td>
 		            <td>${dto.type}</td>
+		            
 		            <c:if test="${not empty dto.img}">
-		            	<td><a onclick="showModal('/dd/resources/files/communication/lost/${dto.img}')">${dto.name}</a></td>
+		            	<td><a onclick="showModal('/dd/resources/files/communication/lost/${dto.img}')"><c:out value="${dto.name}" /></a></td>
 		            </c:if>
+		            
 		            <c:if test="${empty dto.img}">
-		            	<td>${dto.name}</td>
+		            	<td><c:out value="${dto.name}" /></td>
 		            </c:if>
-		            <td>${dto.location}</td>
+		            
+		            <td><c:out value="${dto.location}" /></td>
 		            <td>${dto.lost_property_date}</td>
 		            <td>${dto.result}</td>
 		        </tr>
@@ -236,8 +243,6 @@
 	function showModal(imageUrl) {	
 	    $('#modal-image').attr('src', imageUrl);
 	
-	    const modal = new bootstrap.Modal($('#modal'));
-	
-	    modal.show();
+	    $('#modal').modal('show');
 	}
 </script>

@@ -95,11 +95,11 @@
 		box-shadow: 1px 6px 11px #000;
 	}
 	.btn input::before, .btn input::after {
-		z-index: 2;
+		color: #111;
 		position: absolute;
 		top: 50%;
 		transform: translateY(-50%);
-		color: #111;
+		z-index: 2;
 	}
 	.btn input::before {
 		content: "등록순";
@@ -112,12 +112,12 @@
 		right: 33px;
 	}
 	.btn label {
-		z-index: 1;
+		width: 86px;
+		border-radius: 20px;
 		position: absolute;
 		top: 15px;
 		bottom: 10px;
-		border-radius: 20px;
-		width: 86px;
+		z-index: 1;
 	}
 	.btn.btn-1 input {
 		transition: 0.2s -0.1s;
@@ -134,10 +134,10 @@
 		transition: color 0.5s;
 	}
 	.btn.btn-1 input:not(:checked)+label {
-		left: 24px;
 		background: rgba(215, 62, 62, .7);
-		transition: left 0.5s, right 0.4s 0.2s;
+		left: 24px;
 		bottom: 8px;
+		transition: left 0.5s, right 0.4s 0.2s;
 	}
 	.btn.btn-1 input:checked {
 		background: rgba(255, 255, 255, 0.6)
@@ -151,8 +151,8 @@
 		transition: color 0.5s 0.2s;
 	}
 	.btn.btn-1 input:checked+label {
-		left: 114px;
 		background: rgba(215, 62, 62, .7);
+		left: 114px;
 		transition: left 0.4s 0.2s, right 0.5s, background 0.35s -0.1s;
 	}
 	#page-bar {
@@ -162,10 +162,10 @@
 		color: #CE1212;
 	}
 	.active > .page-link, .page-link.active {
-		z-index: 3;
 	    color: var(--bs-pagination-active-color);
 	    background-color: #CE1212;
 	    border-color: #CE1212;
+	    z-index: 3;
 	}
 </style>
 
@@ -176,11 +176,14 @@
 		<div class="gy-4" style="justify-content: center; width: 100%;">
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
+				
 					<div id="title">리뷰</div>
+					
 					<span class="btn btn-1">
 						<input type="checkbox" id="order" name="order" onclick="check()" data-type="n">
 						<label for="order"></label>
 					</span>
+					
 				</div>
 			</div>
 		</div>
@@ -192,16 +195,18 @@
 <section id="menu" class="menu">
 	<div class="container" data-aos="fade-up">
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
-			<div class="tab-pane fade active show" id="menu-starters">
+			<div id="menu-starters" class="tab-pane fade active show">
+			
 				<div class="munti-content-container">
 					<c:forEach items="${list}" var="dto">
-						<div class="item" onclick="location.href= '/dd/user/communication/review/detail.do?seq=${dto.review_seq}';">
+						<div class="item" onclick="location.href='/dd/user/communication/review/detail.do?seq=${dto.review_seq}';">
 							<div style="background-image: url('/dd/resources/files/communication/review/${dto.img}');"></div>
-							<div>${dto.subject}</div>
+							<div><c:out value="${dto.subject}" /></div>
 							<div class="hidden-div"><c:out value="${dto.content}" /></div>
 						</div>
 					</c:forEach>
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -250,7 +255,7 @@
 			location.href='/dd/user/communication/review/view.do?order=y';
 	    } else {
         	$('#order').data('type', 'n');
-			location.href='/dd/user/communication/review/view.do?order=n'
+			location.href='/dd/user/communication/review/view.do?order=n';
 	    }
 	}
 </script>

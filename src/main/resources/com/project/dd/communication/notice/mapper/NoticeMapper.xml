@@ -18,7 +18,8 @@
 	</select>
 	
 	<insert id="addNotice" parameterType="com.project.dd.communication.notice.domain.NoticeDTO">
-		insert into tblNotice (notice_seq, subject, content, regdate, attach, fix) values (seqtblNotice.nextVal, #{subject}, #{content}, default, #{attach, jdbcType=VARCHAR}, #{fix})
+		insert into tblNotice (notice_seq, subject, content, regdate, attach, fix)
+		values (seqtblNotice.nextVal, #{subject}, #{content}, default, #{attach, jdbcType=VARCHAR}, #{fix})
 	</insert>
 	
 	<select id="getFileName" parameterType="String" resultType="String">

@@ -23,7 +23,7 @@
     	color: #012970;
   	}
   	.breadcrumb a:hover {
-      	color: #ce1212;
+      	color: #0d6efd;
     }
     .card {
     	margin-bottom: 15px;
@@ -60,8 +60,8 @@
 		
 		<nav class="d-flex justify-content-end">
       		<ol class="breadcrumb">
-          		<li id="add-button" class="breadcrumb-item"><a href="javascript:void(0);" onclick="submit();">추가</a></li>
-          		<li class="breadcrumb-item active"><a href="/dd/admin/communication/notice/view.do">취소</a></li>
+          		<li class="breadcrumb-item"><a href="javascript:void(0);" onclick="submit();">등록</a></li>
+          		<li class="breadcrumb-item"><a href="/dd/admin/communication/notice/view.do">취소</a></li>
       		</ol>
 		</nav>
   	</div>
@@ -78,7 +78,7 @@
             				<!-- 제목 -->
             			
               				<div class="row mb-3">
-                				<label for="subject" class="col-sm-2 col-form-label required">제목</label>
+                				<label class="col-sm-2 col-form-label required">제목</label>
                 				<div class="col-sm-10">
                   					<input type="text" name="subject" class="form-control" required oninvalid="this.setCustomValidity(' ')">
                   					<span id="subject-message" class="message" style="display: none;"></span>
@@ -88,7 +88,7 @@
               				<!-- 내용 -->
               				
               				<div class="row mb-3">
-                				<label for="content" class="col-sm-2 col-form-label option">내용</label>
+                				<label class="col-sm-2 col-form-label option">내용</label>
                 				<div class="col-sm-10">
                   					<textarea name="content" class="form-control" rows="16" required oninvalid="this.setCustomValidity(' ')"></textarea>
                 				</div>
@@ -97,7 +97,7 @@
               				<!-- 첨부파일 -->
               				
               				<div class="row mb-3">
-                				<label for="inputNumber" class="col-sm-2 col-form-label option">첨부파일</label>
+                				<label class="col-sm-2 col-form-label option">첨부파일</label>
                 				<div class="col-sm-10">
                   					<input type="file" name="doc" class="form-control">
                   					<span id="content-message" class="message" style="display: none;"></span>
@@ -129,16 +129,18 @@
 </main>
 
 <script>
+	var subject = $('input[name="subject"]');
+	
 	<!-- 필수값(제목) -->
 
-	$('input[name="subject"]').blur(function () {
-	    if (!$('input[name="subject"]').val().trim()) {
+	subject.blur(function () {
+	    if (!subject.val().trim()) {
 	    	$('#subject-message').css('display', 'block');
 	    	$('#subject-message').text('제목을 입력하세요.');
 	    }
 	});
 	
-	$('input[name="subject"]').keydown(function () {
+	subject.keydown(function () {
 	    $('#subject-message').hide();
 	});
 	
@@ -148,10 +150,10 @@
 	    $('#content-message').hide();
 	});
 	
-	<!-- 제출 -->
+	<!-- 전송 -->
 
 	function submit() {
-	    if (!$('input[name="subject"]').val().trim()) {
+	    if (!subject.val().trim()) {
 	        $('#subject-message').css('display', 'block');
 	        $('#subject-message').text('제목을 입력하세요.');
 	    }
@@ -164,7 +166,7 @@
 	        $('#content-message').text('내용을 입력하거나 첨부파일을 선택하세요.');
 	    }
 
-	    if ($('input[name="subject"]').val().trim() && (content.value.trim() || doc.files.length)) {
+	    if (subject.val().trim() && (content.value.trim() || doc.files.length)) {
 	    	$('form').submit();
 	    }
 	}

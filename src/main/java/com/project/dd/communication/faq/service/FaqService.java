@@ -15,6 +15,8 @@ public class FaqService {
 	
 	@Autowired
 	private FaqDAO dao;
+	
+	// 페이징
 
 	public Map<String, String> paging(String type, int page) {
 		
@@ -39,12 +41,50 @@ public class FaqService {
 		return map;
 		
 	}
+	
+	// 목록
 
 	public List<FaqDTO> getFaqList(Map<String, String> map) {
 
 		List<FaqDTO> list = dao.getFaqList(map);
 		
 		return list;
+		
+	}
+	
+	// 추가
+
+	public int addFaq(FaqDTO dto) {
+		
+		return dao.addFaq(dto);
+		
+	}
+	
+	// 상세
+
+	public FaqDTO getFaq(String seq) {
+		
+		return dao.getFaq(seq);
+		
+	}
+	
+	// 수정
+
+	public int editFaq(FaqDTO dto) {
+		
+		return dao.editFaq(dto);
+		
+	}
+	
+	// 삭제
+
+	public void deleteFaq(String[] seqList) {
+
+		for (String seq : seqList) {
+			
+			dao.deleteFaq(seq);
+			
+		}
 		
 	}
 
