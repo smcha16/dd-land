@@ -119,7 +119,7 @@
                   						<input type="file" name="doc" class="form-control" disabled>
 	                  					<div style="height: 30px;">
 	                  						<div class="attached">
-	                  							<i class="bi bi-image"></i><c:out value="${dto.attach}" /><span onclick="delAttached()">&times;</span>
+	                  							<i class="bi bi-image"></i> <c:out value="${dto.attach}" /> <span onclick="delAttached()">&times;</span>
 	                  						</div>
 	                  					</div>
                   					</c:if>

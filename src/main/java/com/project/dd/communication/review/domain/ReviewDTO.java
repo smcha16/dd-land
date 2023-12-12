@@ -14,6 +14,8 @@ public class ReviewDTO {
 	private String readcount;
 	private String user_book_seq;
 	
+	private String name;
+	private String email;
 	private String visit_date;
 	
 	private String img;

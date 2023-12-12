@@ -17,4 +17,20 @@
 		insert into tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
 		values (seqtblLostProperty.nextVal, #{type}, #{name}, #{location}, #{lost_property_date}, #{img, jdbcType=VARCHAR}, '보관중')
 	</insert>
+	
+	<select id="getLostProperty" parameterType="String" resultType="com.project.dd.communication.lost.domain.LostPropertyDTO">
+		select * from tblLostProperty where lost_property_seq = #{seq}
+	</select>
+	
+	<select id="getFileName" parameterType="String" resultType="String">
+		select img from tblLostProperty where lost_property_seq = #{seq}
+	</select>
+	
+	<update id="editLostProperty" parameterType="com.project.dd.communication.lost.domain.LostPropertyDTO">
+		update tblLostProperty set type = #{type}, name = #{name}, location = #{location}, lost_property_date = #{lost_property_date}, img = #{img, jdbcType=VARCHAR}, result = #{result} where lost_property_seq = #{lost_property_seq}
+	</update>
+	
+	<delete id="deleteLostProperty" parameterType="String">
+		delete from tblLostProperty where lost_property_seq = #{seq}
+	</delete>
 </mapper>

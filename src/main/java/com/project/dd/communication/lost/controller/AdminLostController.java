@@ -68,5 +68,49 @@ public class AdminLostController {
 	 	}
 
 	}
+	
+	// 수정
+	
+	@GetMapping(value = "/edit.do")
+	public String edit(String seq, Model model) {
+		
+		LostPropertyDTO dto = service.getLostProperty(seq);
+		
+		model.addAttribute("dto", dto);
+
+		return "admin/communication/lost-property/edit";
+
+	}
+	
+	@PostMapping(value = "/editok.do")
+	public String editOk(LostPropertyDTO dto, HttpServletRequest req, MultipartFile doc) {
+		
+		LostPropertyDTO lost = service.editFile(dto, req, doc);
+
+		int result = service.editLostProperty(lost);
+		
+		if (result == 1) {
+
+	 		return "redirect:/admin/communication/lost-property/view.do";
+	 
+	 	} else {
+	 
+	 		return "redirect:/admin/communication/lost-property/edit.do";
+	 
+	 	}
+
+	}
+	
+	// 삭제	
+	
+	@PostMapping(value = "/del.do")
+	public String del(String[] seqList) {
+
+	    service.deleteLostProperty(seqList);
+
+	    return "redirect:/admin/communication/lost-property/view.do";
+
+	    
+	}
 
 }

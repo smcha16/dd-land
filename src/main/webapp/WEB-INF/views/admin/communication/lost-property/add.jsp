@@ -98,12 +98,12 @@
               				</div>
               				
               				<!-- 습득장소 -->
-            			
+              				
               				<div class="row mb-3">
                 				<label class="col-sm-2 col-form-label required">습득장소</label>
                 				<div class="col-sm-10">
-                  					<input type="text" name="location" class="form-control" required oninvalid="this.setCustomValidity(' ')">
-                  					<span id="location-message" class="message" style="display: none;"></span>
+                  					<textarea name="location" class="form-control" rows="10" required oninvalid="this.setCustomValidity(' ')"></textarea>
+                					<span id="location-message" class="message" style="display: none;"></span>
                 				</div>
               				</div>
               				
@@ -142,19 +142,19 @@
 	    $('input[name="lost_property_date"]').val(moment().format('YYYY-MM-DD'));
 	});
 
-	var name = $('input[name="name"]');
-	var loc = $('input[name="location"]');
+	var property = $('input[name="name"]');
+	var loc = $('textarea[name="location"]');
 	
 	<!-- 필수값(습득물) -->
 	
-	name.blur(function () {
-	    if (!name.val().trim()) {
+	property.blur(function () {
+	    if (!property.val().trim()) {
 	    	$('#name-message').css('display', 'block');
 	    	$('#name-message').text('습득물을 입력하세요.');
 	    }
 	});
 	
-	name.keydown(function () {
+	property.keydown(function () {
 	    $('#name-message').hide();
 	});
 
@@ -174,7 +174,7 @@
 	<!-- 전송 -->
 
 	function submit() {
-		if (!name.val().trim()) {
+		if (!property.val().trim()) {
 	        $('#name-message').css('display', 'block');
 	        $('#name-message').text('습득물을 입력하세요.');
 	    }
@@ -184,7 +184,7 @@
 	        $('#location-message').text('습득장소를 입력하세요.');
 	    }
 
-	    if (name.val().trim() && loc.val().trim()) {
+	    if (property.val().trim() && loc.val().trim()) {
 	    	$('form').submit();
 	    }
 	}

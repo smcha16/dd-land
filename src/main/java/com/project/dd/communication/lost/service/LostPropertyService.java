@@ -129,5 +129,63 @@ public class LostPropertyService {
 		return dao.addLostProperty(dto);
 		
 	}
+	
+	// 상세
+
+	public LostPropertyDTO getLostProperty(String seq) {
+		
+		LostPropertyDTO dto = dao.getLostProperty(seq);
+
+		String lostDate = dto.getLost_property_date();
+		
+		lostDate = lostDate.substring(0, 10);
+		
+		dto.setLost_property_date(lostDate);
+		
+		return dto;
+
+	}
+	
+	// 파일 수정
+	
+	public LostPropertyDTO editFile(LostPropertyDTO dto, HttpServletRequest req, MultipartFile doc) {
+
+		if (doc == null) {
+			
+			dto.setImg(dao.getFileName(dto.getLost_property_seq()));
+			
+		} else if (doc.isEmpty()) {
+			
+			dto.setImg(null);
+			
+		} else {
+			
+			dto.setImg(saveFile(req, doc));
+			
+		}
+
+		return dto;
+		
+	}
+	
+	// 수정
+
+	public int editLostProperty(LostPropertyDTO dto) {
+
+		return dao.editLostProperty(dto);
+		
+	}
+	
+	// 삭제
+
+	public void deleteLostProperty(String[] seqList) {
+
+		for (String seq : seqList) {
+			
+			dao.deleteLostProperty(seq);
+			
+		}
+		
+	}
 
 }

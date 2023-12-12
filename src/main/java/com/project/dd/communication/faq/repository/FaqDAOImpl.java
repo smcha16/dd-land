@@ -44,7 +44,7 @@ public class FaqDAOImpl implements FaqDAO {
 		
 	}
 	
-	// 기존 파일명
+	// 상세
 
 	@Override
 	public FaqDTO getFaq(String seq) {

@@ -20,6 +20,8 @@ public class UserLostController {
 	@Autowired
 	private LostPropertyService service;
 	
+	// 목록
+	
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 		

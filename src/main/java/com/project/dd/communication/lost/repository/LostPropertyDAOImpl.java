@@ -43,5 +43,41 @@ public class LostPropertyDAOImpl implements LostPropertyDAO {
 		return mapper.addLostProperty(dto);
 		
 	}
+	
+	// 상세
+
+	@Override
+	public LostPropertyDTO getLostProperty(String seq) {
+		
+		return mapper.getLostProperty(seq);
+		
+	}
+	
+	// 기존 파일명
+
+	@Override
+	public String getFileName(String seq) {
+
+		return mapper.getFileName(seq);
+		
+	}
+	
+	// 수정
+
+	@Override
+	public int editLostProperty(LostPropertyDTO dto) {
+
+		return mapper.editLostProperty(dto);
+		
+	}
+	
+	// 삭제
+
+	@Override
+	public void deleteLostProperty(String seq) {
+
+		mapper.deleteLostProperty(seq);
+		
+	}
 
 }
