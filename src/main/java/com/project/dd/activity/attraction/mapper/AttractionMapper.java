@@ -41,4 +41,12 @@ public interface AttractionMapper {
 
 	int checkNameDuplication(AttractionDTO dto);
 
+	String getAttractionDefaultImgName(String seq);
+
+	int editAttractionLocation(AttractionDTO dto);
+
+	int editAttraction(AttractionDTO dto);
+
+	int delAttractionImgByImgSeq(String imgseq);
+
 }

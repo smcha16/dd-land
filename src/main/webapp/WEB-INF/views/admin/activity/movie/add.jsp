@@ -106,7 +106,7 @@
               				<div class="row mb-3">
                 				<label for="name" class="col-sm-2 col-form-label">영화 예고편</label>
                 				<div class="col-sm-10">
-                  					<input type="text" id="preview" name="preview" class="form-control" placeholder="영화 예고편 영상의 링크를 입력해주세요." required>
+                					<textarea id="preview" name="preview" class="form-control" style="height: 100px" placeholder="영화 예고편 영상의 태그를 입력해주세요."></textarea>
                 				</div>
               				</div>
               				
@@ -127,57 +127,22 @@
 <!-- movie add용 JavaScript -->
 <script>
 
+	/* 필수 항목이 반드시 입력되어야만 submit 클릭 시 넘어가도록 */
 	function submit() {
+	
+	//console.log($('textarea[name="info"]').val());
+	//console.log($('textarea[name="info"]').val().trim());
+	
+	
+	if (!$('input[name="name"]').val().trim() || !$('textarea[name="story"]').val().trim()
+			|| !$('input[name="runningtime"]').val().trim()) {
+			
+		alert('필수 항목을 입력해주세요.');
+		
+	} else {
 		$('form').submit();
 	}
-	
-	/* tblMovie 추가 실패 시, pop-up창 */
-	<c:if test="${not empty alertMessage}">
-		alert("${alertMessage}");
-	</c:if>
-	
-	/* 영화명 중복 체크 */
-	$('input[name="name"]').blur(function() {
-		
-		let obj = {
-				name: $('input[name="name"]').val()
-		};
-		
-		// CSRF token
-        var csrfHeaderName = "${_csrf.headerName}";
-        var csrfTokenValue = "${_csrf.token}";
-
-		
-		$.ajax({
-			type: 'POST',
-			url: '/dd/admin/activity/movie',
-			headers: {'content-Type': 'application/json'},
-			data: JSON.stringify(obj),
-			dataType: 'json',
-			success: function(result) {
-				//alert(result);
-				if (result == 0) {
-					$('.check-duplication').text('사용 가능한 영화명입니다.');
-					$('.check-duplication').data('type', 'y');
-					
-				} else {
-					$('.check-duplication').text('중복된 영화명입니다. 다른 영화명을 입력해주세요.');
-					$('.check-duplication').css('color', '#dc3545');
-					$('.check-duplication').data('type', 'n');
-				}
-			},
-			beforeSend: function(xhr) {
-            	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-            },
-			error: (a,b,c) => {
-				console.log(a,b,c);
-			}
-			
-		});
-		
-		
-	});
-	
-	
+	//console.log($('input[name="name"]').val().trim());
+	}
 	
 </script>
