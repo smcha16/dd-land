@@ -97,7 +97,6 @@ public class AdminMovieController {
 		if (result > 0) {
 			return "redirect:/admin/activity/movie/view.do";
 		} else {
-			model.addAttribute("alertMessage", "영화 수정에 실패했습니다.");
 			return "redirect:/admin/activity/movie/edit.do";
 		}
 	}

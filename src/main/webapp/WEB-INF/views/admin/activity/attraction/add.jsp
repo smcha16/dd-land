@@ -129,12 +129,13 @@
                 				</div>
               				</div>
               				
-              				<!-- 토큰 -->
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-							
 							<!-- 선택한 위치(위도,경도) -->
 							<input type="hidden" name="lng" id="lng">
 							<input type="hidden" name="lat" id="lat">
+
+              				<!-- 토큰 -->
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+							
 						</form>
 			
 					</div>

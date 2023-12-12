@@ -32,4 +32,18 @@ public interface AttractionDAO {
 
 	int checkNameDuplication(AttractionDTO dto);
 
+	int getAttractionSeq();
+
+	int addAttractionLocation(AttractionDTO dto);
+
+	int addAttractionImg(AttractionImgDTO idto);
+
+	String getAttractionDefaultImgName(String seq);
+
+	int editAttractionLocation(AttractionDTO dto);
+
+	int editAttraction(AttractionDTO dto);
+
+	int delAttractionImgByImgSeq(String imgseq);
+
 }
