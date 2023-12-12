@@ -111,6 +111,9 @@
 		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
 	</definition>
 	
-	
+	<!-- register -->
+	<definition name="user/register/view" template="/WEB-INF/views/user/register/view.jsp">
+		
+	</definition>
 	
 </tiles-definitions>

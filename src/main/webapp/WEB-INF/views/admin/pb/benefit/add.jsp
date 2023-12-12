@@ -107,6 +107,7 @@
                 				<label for="inputNumber" class="col-sm-2 col-form-label">이미지 업로드</label>
                 				<div class="col-sm-10">
                   					<input class="form-control" type="file" id="formFile">
+                  					<form:errors path="img" cssClass="text-danger" />
                 				</div>
               				</div>
 							
