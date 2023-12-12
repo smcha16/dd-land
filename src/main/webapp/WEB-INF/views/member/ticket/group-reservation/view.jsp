@@ -1,9 +1,15 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec"
+<%@taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-	
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<link href="/dd/resources/air-datepicker/dist/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Air datepicker css -->
+    <script src="/dd/resources/air-datepicker/dist/js/datepicker.js"></script> <!-- Air datepicker js -->
+    <script src="/dd/resources/air-datepicker/dist/js/i18n/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
+
 <style>
 #main>#title {
 	background-color: white;
@@ -40,19 +46,21 @@
 }
 
 .containers {
-	width: 60%;
-    margin: 20px auto 50px auto;
+	width: 55%;
+	margin: 20px auto 50px auto;
 	padding: 20px;
 	background-color: #fff;
-	border: 1px solid #ccc;
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-form > #condition {
+form>#condition {
 	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+	border-radius: 15px;
 	text-align: center;
-	background-color: rgba(43, 114, 201, 0.3);
+	color: #fff;
+	background-color: #ce1212;
+	opacity: 0.85;
 	height: 70px;
 	display: flex;
 	flex-direction: column;
@@ -108,16 +116,86 @@ form > #condition {
 }
 
 .btn {
-	padding: 10px 20px;
-	background-color: #0074cc;
 	color: #fff;
+	background: #ce1212;
 	border: none;
-	border-radius: 5px;
-	cursor: pointer;
+	font-size: 14px;
+	padding: 8px 20px;
+	margin-left: 30px;
+	border-radius: 15px;
+	font-weight: bold;
 }
 
 .btn.cancel {
 	background-color: #ccc;
+}
+
+/* 달력 */
+
+.date {
+  position: relative;
+  width: 300px;
+  margin-left: 50px;
+  margin-top: 100px;
+}
+
+#datepicker {
+ font-size: 15px;
+  color: #222222;
+  width: 300px;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  padding-bottom: 10px;
+  text-align: center;
+  position: relative;
+  background: none;
+  z-index: 5;
+}
+
+#datepicker::placeholder { color: #aaaaaa; }
+#datepicker:focus { outline: none; }
+
+.date span {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;  /* right로만 바꿔주면 오 - 왼 */
+  background-color: #666;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: 0.5s;
+}
+
+.date label {
+position: absolute;
+  color: #aaa;
+  left: 10px;
+  font-size: 20px;
+  bottom: 8px;
+  transition: all .2s;
+}
+
+input:focus ~ label, input:valid ~ label {
+font-size: 16px;
+bottom: 40px;
+color: #666;
+font-weight: bold;
+}
+
+input:focus ~ span, input:valid ~ span {
+width: 100%;
+}
+
+/* list photo 변경 */
+.stats-counter {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url("/dd/resources/files/reservation/main-reservation.jpg") center
+		center;
+	background-size: cover;
+	padding: 100px 0;
+	background-attachment: fixed;
 }
 </style>
 
@@ -139,19 +217,23 @@ form > #condition {
 
 
 		<div class="containers">
-			<form id="form" action="/dd/member/ticket/group-reservation/view.do"
+			<form id="form2" action="/dd/member/ticket/group-reservation/view.do"
 				method="post" accept-charset="UTF-8">
 				<div id="condition">
 					<h3>예약자 정보</h3>
 				</div>
 				<div class="form-group">
 					<label for="name">이름</label> <input type="text" id="name"
-						name="name" required value="<sec:authentication property='principal.dto.name'/>" readonly>
-						
+						name="name" required
+						value="<sec:authentication property='principal.dto.name'/>"
+						readonly>
+
 				</div>
 				<div class="form-group">
 					<label for="email">이메일</label> <input type="text" id="email"
-						name="email" value="<sec:authentication property='principal.dto.email'/>" readonly>
+						name="email"
+						value="<sec:authentication property='principal.dto.email'/>"
+						readonly>
 				</div>
 				<div id="condition">
 					<h3>단체 방문 정보</h3>
@@ -185,9 +267,10 @@ form > #condition {
 							class="middle-flat" placeholder="상세주소" required>
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="date">방문일</label> <input type="date" id="date"
-						name="visit_date" required class="middle-flat">
+				<div class="form-group date">
+					<input type="text" id="datepicker" data-language='ko' required>
+					<label>Date</label>
+					<span></span>
 				</div>
 				<div class="form-group">
 					<label for="time">방문시간</label> <input type="text" id="time"
@@ -198,14 +281,22 @@ form > #condition {
 					<button type="submit" class="btn"
 						onclick="location.href='/ddstudio/ticket/group-reservation.do'">예약</button>
 				</div>
-				<input type="hidden" name="user_seq" value="<sec:authentication property='principal.dto.user_seq'/>">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+				<input type="hidden" name="user_seq"
+					value="<sec:authentication property='principal.dto.user_seq'/>">
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}">
 			</form>
 		</div>
 
 	</div>
 
 </main>
+
+<script>
+    $("#datepicker").datepicker({
+    	language: 'ko'
+    }); 
+</script>
 
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -247,19 +338,22 @@ form > #condition {
 		}).open();
 	}
 
-	document.getElementById('form').addEventListener('submit', function(event) {
+	document.getElementById('form2').addEventListener('submit', function(event) {
 		event.preventDefault(); // 기본 폼 제출을 막습니다.
 
 		// 필수 입력란을 확인합니다.
-		let name = document.getElementById('name').value;
-		let email = document.getElementById('email').value;
 		let division = document.getElementById('division').value;
 		let region = document.getElementById('region').value;
 		let groupName = document.getElementById('group-name').value;
+		let post_code = document.getElementById('post-code').value;
+		let address_basis = document.getElementById('address-basis').value;
+		let address_detail = document.getElementById('address-detail').value;
+		let date = document.getElementById('date').value;
+		let time = document.getElementById('time').value;
 		// 다른 필드에 대한 유효성 검사를 추가할 수 있습니다.
 
 		// 필수 입력란이 비어 있는지 확인합니다.
-		if (!name || !email || !division || !region || !groupName) {
+		if (!division || !region || !groupName || !post_code || !address_basis || !address_detail || !date || !time) {
 			alert('필수 입력란을 모두 작성해주세요.');
 		} else {
 			this.submit(); // 모든 필수 입력란이 채워졌다면 폼을 제출합니다.

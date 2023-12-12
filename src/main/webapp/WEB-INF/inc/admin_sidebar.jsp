@@ -21,7 +21,7 @@
 	    	</a>
 	    	<ul id="member-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
 	      		<li>
-	        		<a href="/dd/admin/activity/attraction/view.do">
+	        		<a href="/dd/admin/member/view.do">
 	          			<i class="bi bi-circle"></i><span>회원</span>
 	        		</a>
 	      		</li>
@@ -35,12 +35,12 @@
 	     	</a>
 	     	<ul id="pb-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/pb/price/view.do">
 	           			<i class="bi bi-circle"></i><span>요금</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/pb/benefit/view.do">
 	           			<i class="bi bi-circle"></i><span>혜택</span>
 	         		</a>
 	       		</li>
@@ -64,7 +64,7 @@
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="/dd/admin/activity/photozone/view.do">
+	         		<a href="/dd/admin/activity/photo-zone/view.do">
 	           			<i class="bi bi-circle"></i><span>포토존</span>
 	         		</a>
 	       		</li>
@@ -93,8 +93,13 @@
 	     	</a>
 	     	<ul id="test-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	       		<li>
-	         		<a href="/dd/admin/test/worldcup/view.do">
-	           			<i class="bi bi-circle"></i><span>DD 월드컵</span>
+	         		<a href="/dd/admin/test/worldcup/attraction/view.do">
+	           			<i class="bi bi-circle"></i><span>어트랙션 월드컵</span>
+	         		</a>
+	       		</li>
+	       		<li>
+	         		<a href="/dd/admin/test/worldcup/course/view.do">
+	           			<i class="bi bi-circle"></i><span>코스 월드컵</span>
 	         		</a>
 	       		</li>
 	       		<li>
@@ -112,13 +117,18 @@
 	     	</a>
 	     	<ul id="shop-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/shop/restaurant/view.do">
 	           			<i class="bi bi-circle"></i><span>식당</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/shop/gift-shop/view.do">
 	           			<i class="bi bi-circle"></i><span>기프트샵</span>
+	         		</a>
+	       		</li>
+	       		<li>
+	         		<a href="/dd/admin/shop/item/view.do">
+	           			<i class="bi bi-circle"></i><span>아이템</span>
 	         		</a>
 	       		</li>
 	     	</ul>
@@ -170,22 +180,22 @@
 	      	</a>
 	      	<ul id="close-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/close/attraction/view.do">
 	           			<i class="bi bi-circle"></i><span>어트랙션 운휴</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/close/gift-shop/view.do">
 	           			<i class="bi bi-circle"></i><span>기프트샵 운휴</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/close/restaurant/view.do">
 	           			<i class="bi bi-circle"></i><span>식당 운휴</span>
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/close/theater/view.do">
 	           			<i class="bi bi-circle"></i><span>영화관 운휴</span>
 	         		</a>
 	       		</li>
@@ -199,7 +209,7 @@
 	     	</a>
 	     	<ul id="convenient-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	       		<li>
-	         		<a href="admin.do">
+	         		<a href="/dd/admin/convenient/view.do">
 	           			<i class="bi bi-circle"></i><span>편의시설</span>
 	         		</a>
 	       		</li>
