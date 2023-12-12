@@ -1,6 +1,7 @@
 package com.project.dd.mypage.voc.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -17,8 +18,20 @@ public class MypageVOCDAOImpl implements MypageVOCDAO{
 	private MypageVOCMapper mapper;
 	
 	@Override
-	public List<VOCDTO> list() {
+	public List<VOCDTO> list(Map<String, String> map) {
 		
-		return mapper.list();
+		return mapper.list(map);
+	}
+	
+	@Override
+	public int getTotalCount() {
+		
+		return mapper.getTotalCount();
+	}
+	
+	@Override
+	public int delete(String selectedVOC) {
+		
+		return mapper.delete(selectedVOC);
 	}
 }

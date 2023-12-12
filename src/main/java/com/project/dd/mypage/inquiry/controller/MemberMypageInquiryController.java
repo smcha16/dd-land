@@ -49,7 +49,7 @@ public class MemberMypageInquiryController {
 
 		if (result == 1) {
 
-			return "redirect:/member/mypage/inquiry/view.do";
+			return "redirect:/member/mypage/inquiry/inquiry/view.do";
 
 		} else {
 			
@@ -57,7 +57,7 @@ public class MemberMypageInquiryController {
 			
 		}
 
-		return "redirect:/member/mypage/inquiry/view.do";
+		return "redirect:/member/mypage/inquiry/inquiry/view.do";
 	}
 
 }

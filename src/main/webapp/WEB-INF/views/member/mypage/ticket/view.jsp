@@ -101,26 +101,27 @@ th {
 	justify-content: center;
 	margin-top: 40px;
 }
- #page-bar {
-      margin-top: 50px;
-   }
-   .page-link {
-      color: #CE1212;
-   }
-   .active > .page-link, .page-link.active {
-      z-index: 3;
-       color: var(--bs-pagination-active-color);
-       background-color: #CE1212;
-       border-color: #CE1212;
-   }
+
+#page-bar {
+	margin-top: 50px;
+}
+
+.page-link {
+	color: #CE1212;
+}
+
+.active>.page-link, .page-link.active {
+	z-index: 3;
+	color: var(- -bs-pagination-active-color);
+	background-color: #CE1212;
+	border-color: #CE1212;
+}
 </style>
 
 <!-- ======= Main ======= -->
 <main id="main" class="main">
 
-	<div class="pagetitle">
-		<h1>티켓 예매내역</h1>
-	</div>
+
 
 	<section class="section">
 		<div class="row">
@@ -137,6 +138,9 @@ th {
 
 						<div class="card">
 							<div class="card-body">
+								<div class="pagetitle">
+									<h1>티켓 예매내역</h1>
+								</div>
 
 								<nav class="d-flex justify-content-end">
 									<ol class="breadcrumb">
@@ -161,7 +165,7 @@ th {
 										<tbody>
 											<c:forEach items="${list}" var="dto">
 												<tr>
-													<td><input type="checkbox" name="selectedTickets"
+													<td><input type="radio" name="selectedTickets"
 														value="${dto.user_book_seq}"></td>
 
 													<td>${dto.book_date}</td>
@@ -181,7 +185,45 @@ th {
 										value="${_csrf.token}">
 								</form>
 
-							</div>
+								<div class="pagetitle">
+									<h1>이전 티켓 예매내역</h1>
+								</div>
+								<form action="/dd/member/mypage/review/add.do" method="post">
+									<table class="table">
+										<thead>
+											<tr>
+												<th></th>
+												<th>예매일</th>
+												<th>티켓종류</th>
+												<th>개인/단체</th>
+												<th>연령</th>
+												<th>방문예정일</th>
+												<th>구매수량</th>
+												<th>결제금액</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${plist}" var="dto">
+												<tr>
+													<td><input type="radio" name="selectedReview"
+														value="${dto.user_book_seq}"></td>
+
+													<td>${dto.book_date}</td>
+													<td>${dto.ticket_type}</td>
+													<td>${dto.person_type}</td>
+													<td>${dto.age}</td>
+													<td>${dto.visit_date}</td>
+													<td>${dto.ea}</td>
+													<td>${dto.total_price}</td>
+
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<button type="submit">리뷰작성</button>
+									<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}">
+								</form>
 
 						</div>
 					</div>

@@ -35,4 +35,10 @@ public class MypageTicketDAOImpl implements MypageTicketDAO{
 		return mapper.getTotalCount();
 	}
 	
+	@Override
+	public List<TicketDTO> plist(Map<String, String> map) {
+		
+		return mapper.plist(map);
+	}
+	
 }

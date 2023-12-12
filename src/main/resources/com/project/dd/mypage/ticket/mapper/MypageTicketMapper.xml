@@ -6,7 +6,13 @@
 
 	<select id="list" parameterType="map" resultType="com.project.dd.mypage.ticket.domain.TicketDTO">
 		select *
-      from (select n.*, rownum as rnum from (select * from vwUserBook where email = #{email} order by book_date asc) n)
+      from (select n.*, rownum as rnum from (select * from vwUserBook where email = #{email} and visit_date &gt; sysdate order by book_date asc) n)
+      where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<select id="plist" parameterType="map" resultType="com.project.dd.mypage.ticket.domain.TicketDTO">
+		select *
+      from (select n.*, rownum as rnum from (select * from vwUserBook where email = #{email} and visit_date &lt; sysdate order by book_date asc) n)
       where rnum between #{startIndex} and #{endIndex}
 	</select>
 	

@@ -22,4 +22,9 @@
 		delete from tblReviewImg where review_seq = #{selectedReview}
 	</delete>
 	
+	<insert id="add" parameterType="com.project.dd.mypage.review.domain.ReviewDTO">
+		INSERT INTO tblReview (review_seq, subject, content, regdate , readcount, user_book_seq)
+		VALUES (seqtblReview.NEXTVAL, #{subject}, #{content}, default , 0 , #{user_book_seq})
+	</insert>
+	
 </mapper>

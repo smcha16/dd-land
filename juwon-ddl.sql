@@ -74,3 +74,19 @@ SELECT
     To_char(i.regdate, 'yyyy-mm-dd') as regdate
 from tblUser U
 join tblInquiry I on U.user_seq = I.user_seq;
+
+-- 마이페이지 칭찬/불편/건의 내역
+CREATE OR REPLACE VIEW vwVOC as
+SELECT
+    U.email,
+    v.voc_seq,
+    v.type, 
+    v.service_type,
+    v.subject,
+    v.content,
+    To_char(v.regdate, 'yyyy-mm-dd') as regdate,
+    v.attach,
+    v.visit_date,
+    v.answer
+from tblUser U
+join tblVOC v on U.user_seq = v.user_seq;

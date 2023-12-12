@@ -15,4 +15,6 @@ public interface MypageReviewMapper {
 
 	int imgDelete(String selectedReview);
 
+	int add(ReviewDTO dto);
+
 }

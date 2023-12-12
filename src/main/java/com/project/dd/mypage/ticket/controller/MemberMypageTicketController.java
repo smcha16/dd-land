@@ -33,17 +33,20 @@ public class MemberMypageTicketController {
 		map.put("email", email);
 
 		List<TicketDTO> list = service.list(map);
+		List<TicketDTO> plist = service.plist(map);
 
 		model.addAttribute("list", list);
+		model.addAttribute("plist", plist);
 		model.addAttribute("email", email);
 		model.addAttribute("currentPage", page);  //페이징
 	    model.addAttribute("map", map);  //페이징
 
 		return "mypage/ticket/view";
 	}
+	
 
 	@PostMapping(value = "/delete.do")
-	public String name(Model model, String selectedTickets) {
+	public String delete(Model model, String selectedTickets) {
 
 		int result = service.delete(selectedTickets);
 
@@ -59,5 +62,5 @@ public class MemberMypageTicketController {
 
 		return "redirect:/member/mypage/ticket/view.do";
 	}
-
+	
 }

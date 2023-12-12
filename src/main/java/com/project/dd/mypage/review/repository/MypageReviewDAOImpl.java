@@ -40,5 +40,11 @@ public class MypageReviewDAOImpl implements MypageReviewDAO{
 		
 		return mapper.imgDelete(selectedReview);
 	}
+	
+	@Override
+	public int add(ReviewDTO dto) {
+		
+		return mapper.add(dto);
+	}
 
 }

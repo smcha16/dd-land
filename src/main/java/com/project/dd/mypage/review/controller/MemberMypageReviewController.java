@@ -48,7 +48,7 @@ public class MemberMypageReviewController {
 		int imgResult = service.imgDelete(selectedReview);
 		int result = service.delete(selectedReview);
 
-		if (result == 1 && imgResult == 1) {
+		if (result == 1 || imgResult == 1) {
 
 			return "redirect:/member/mypage/review/view.do";
 
@@ -60,6 +60,34 @@ public class MemberMypageReviewController {
 
 		return "redirect:/member/mypage/review/view.do";
 
+	}
+	
+	@PostMapping(value = "/add.do")
+	public String add(Model model, String selectedReview) {
+		
+		model.addAttribute("user_book_seq", selectedReview);
+		
+		return "mypage/review/add";
+	}
+	
+	@PostMapping(value = "/addok.do")
+	public String addok(Model model, ReviewDTO dto) {
+		
+		System.out.println(dto);
+		
+		int result = service.add(dto);
+		
+		if (result == 1) {
+
+			return "redirect:/member/mypage/review/view.do";
+
+		} else {
+			
+			System.out.println("review add error");
+			
+		}
+		
+		return "redirect:/member/mypage/review/view.do";
 	}
 
 }

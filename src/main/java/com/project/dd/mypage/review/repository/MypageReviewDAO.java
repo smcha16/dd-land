@@ -15,4 +15,8 @@ public interface MypageReviewDAO {
 
 	int imgDelete(String selectedReview);
 
+	int add(ReviewDTO dto);
+
+
+
 }

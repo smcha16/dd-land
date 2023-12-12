@@ -19,3 +19,9 @@ select * from vwInquiry where email='hwang@kakao.com';
 delete from tblInquiry where inquiry_seq = 3;
 
 commit;
+
+select * from tblUser where email = 'hwang@kakao.com';
+
+UPDATE tblUser
+    SET address = '역삼 수원'
+    WHERE email = 'hwang@kakao.com';

@@ -13,5 +13,6 @@ public interface MypageTicketMapper {
 
 	int getTotalCount();
 
+	List<TicketDTO> plist(Map<String, String> map);
 
 }

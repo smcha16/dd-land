@@ -13,4 +13,6 @@ public interface MypageTicketDAO {
 
 	int getTotalCount();
 
+	List<TicketDTO> plist(Map<String, String> map);
+
 }

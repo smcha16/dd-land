@@ -52,4 +52,15 @@ public class MypageReviewService {
 		return dao.imgDelete(selectedReview);
 	}
 
+	public int add(ReviewDTO dto) {
+		
+		return dao.add(dto);
+	}
+
+	
+
+	
+
+	
+
 }

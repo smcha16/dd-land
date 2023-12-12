@@ -28,7 +28,7 @@ public class MypageTicketService {
 
 	public Map<String, String> paging(int page) {  //페이징 메서드
 		
-	      int pageSize = 9;  //나타났으면 하는 개수
+	      int pageSize = 15;  //나타났으면 하는 개수
 	      
 	      int startIndex = (page - 1) * pageSize + 1;
 	      int endIndex = startIndex + pageSize - 1;
@@ -46,5 +46,10 @@ public class MypageTicketService {
 	      
 	      return map;
 	   }
+
+	public List<TicketDTO> plist(Map<String, String> map) {
+		
+		return dao.plist(map);
+	}
 	
 }

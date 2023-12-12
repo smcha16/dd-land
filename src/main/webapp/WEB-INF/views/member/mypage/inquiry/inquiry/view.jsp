@@ -140,7 +140,7 @@ th {
 									</ol>
 								</nav>
 
-								<form action="/dd/member/mypage/inquiry/delete.do" method="post">
+								<form action="/dd/member/mypage/inquiry/inquiry/delete.do" method="post">
 								<table class="table">
 									<thead>
 										<tr>
@@ -166,14 +166,14 @@ th {
 										value="${_csrf.token}">
 								</form>
 
-								<ul class="pagination pagination-sm">
+								<!-- <ul class="pagination pagination-sm">
 									<li class="page-item active" aria-current="page"><span
 										class="page-link">1</span></li>
 									<li class="page-item"><a class="page-link" href="#">2</a></li>
 									<li class="page-item"><a class="page-link" href="#">3</a></li>
 									<li class="page-item"><a class="page-link" href="#">4</a></li>
 									<li class="page-item"><a class="page-link" href="#">5</a></li>
-								</ul>
+								</ul> -->
 							</div>
 
 						</div>
