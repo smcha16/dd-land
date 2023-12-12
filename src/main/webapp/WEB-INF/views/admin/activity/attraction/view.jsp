@@ -136,10 +136,10 @@
 		                        					<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
 		                        					<td><a><c:out value="${dto.name}" /></a></td>
 		                        					<td>${dto.capacity}</td>
-		                        					<c:if test="${dto.imgList == 'attraction.png'}">
+		                        					<c:if test="${dto.img == 'attraction.png'}">
 		                        						<td></td>
 		                        					</c:if>
-		                        					<c:if test="${dto.imgList != 'attraction.png'}">
+		                        					<c:if test="${dto.img != 'attraction.png'}">
 		                        						<td><i class="bi bi-image"></i></td>
 		                        					</c:if>
 		                        					<td><i class="bi bi-geo-alt"></i></td>
