@@ -17,7 +17,7 @@ public class LostPropertyDAOImpl implements LostPropertyDAO {
 	@Autowired
 	private LostPropertyMapper mapper;
 	
-	// 총 개수
+	/* 총 개수 */
 
 	@Override
 	public int getTotalCount() {
@@ -26,7 +26,7 @@ public class LostPropertyDAOImpl implements LostPropertyDAO {
 		
 	}
 	
-	// 목록
+	/* 목록 */
 
 	@Override
 	public List<LostPropertyDTO> getLostPropertyList(Map<String, String> map) {
@@ -35,7 +35,7 @@ public class LostPropertyDAOImpl implements LostPropertyDAO {
 		
 	}
 	
-	// 추가
+	/* 추가 */
 
 	@Override
 	public int addLostProperty(LostPropertyDTO dto) {
@@ -44,7 +44,7 @@ public class LostPropertyDAOImpl implements LostPropertyDAO {
 		
 	}
 	
-	// 상세
+	/* 상세 */
 
 	@Override
 	public LostPropertyDTO getLostProperty(String seq) {
@@ -53,7 +53,7 @@ public class LostPropertyDAOImpl implements LostPropertyDAO {
 		
 	}
 	
-	// 기존 파일명
+	/* 기존 파일명 */
 
 	@Override
 	public String getFileName(String seq) {
@@ -62,7 +62,7 @@ public class LostPropertyDAOImpl implements LostPropertyDAO {
 		
 	}
 	
-	// 수정
+	/* 수정 */
 
 	@Override
 	public int editLostProperty(LostPropertyDTO dto) {
@@ -71,7 +71,7 @@ public class LostPropertyDAOImpl implements LostPropertyDAO {
 		
 	}
 	
-	// 삭제
+	/* 삭제 */
 
 	@Override
 	public void deleteLostProperty(String seq) {

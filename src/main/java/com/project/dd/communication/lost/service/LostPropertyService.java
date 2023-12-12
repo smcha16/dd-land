@@ -24,7 +24,7 @@ public class LostPropertyService {
 	@Autowired
 	private LostPropertyDAO dao;
 	
-	// 페이징
+	/* 페이징 */
 
 	public Map<String, String> paging(int page) {
 
@@ -48,13 +48,15 @@ public class LostPropertyService {
 		
 	}
 	
-	// 목록
+	/* 목록 */
 
 	public List<LostPropertyDTO> getLostPropertyList(Map<String, String> map) {
 		
 		List<LostPropertyDTO> list = dao.getLostPropertyList(map);
 
 		for (LostPropertyDTO dto : list) {
+			
+			// 습득일
 			
 			String lostDate = dto.getLost_property_date();
 			
@@ -68,7 +70,7 @@ public class LostPropertyService {
 		
 	}
 	
-	// 파일 저장
+	/* 파일 저장 */
 	
 	public String saveFile(HttpServletRequest req, MultipartFile doc) {
 		
@@ -104,7 +106,7 @@ public class LostPropertyService {
 		
 	}
 	
-	// 파일 추가
+	/* 파일 추가 */
 	
 	public LostPropertyDTO addFile(LostPropertyDTO dto, HttpServletRequest req, MultipartFile doc) {
 		
@@ -122,7 +124,7 @@ public class LostPropertyService {
 		
 	}
 	
-	// 추가
+	/* 추가 */
 
 	public int addLostProperty(LostPropertyDTO dto) {
 		
@@ -130,11 +132,13 @@ public class LostPropertyService {
 		
 	}
 	
-	// 상세
+	/* 상세 */
 
 	public LostPropertyDTO getLostProperty(String seq) {
 		
 		LostPropertyDTO dto = dao.getLostProperty(seq);
+		
+		// 습득일
 
 		String lostDate = dto.getLost_property_date();
 		
@@ -146,7 +150,7 @@ public class LostPropertyService {
 
 	}
 	
-	// 파일 수정
+	/* 파일 수정 */
 	
 	public LostPropertyDTO editFile(LostPropertyDTO dto, HttpServletRequest req, MultipartFile doc) {
 
@@ -168,7 +172,7 @@ public class LostPropertyService {
 		
 	}
 	
-	// 수정
+	/* 수정 */
 
 	public int editLostProperty(LostPropertyDTO dto) {
 
@@ -176,7 +180,7 @@ public class LostPropertyService {
 		
 	}
 	
-	// 삭제
+	/* 삭제 */
 
 	public void deleteLostProperty(String[] seqList) {
 

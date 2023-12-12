@@ -24,6 +24,8 @@ public class MemberVocController {
 	@Autowired
 	private VocService service;
 	
+	/* 추가 */
+	
 	@GetMapping(value = "/add.do")
 	public String add(Authentication auth, Model model) {
 

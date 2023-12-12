@@ -81,7 +81,6 @@
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
 					<div id="title" style="padding: 0 !important; font-size: 48px; font-weight: 700; color: #fff; margin: 0">칭찬/불편/건의</div>
-					</div>
 				</div>
 			</div>
 		</div>

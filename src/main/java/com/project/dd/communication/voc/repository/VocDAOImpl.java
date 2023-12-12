@@ -16,12 +16,16 @@ public class VocDAOImpl implements VocDAO {
 	@Autowired
 	private VocMapper mapper;
 	
+	/* 방문일 */
+	
 	@Override
 	public List<String> getVisitDateList(String email) {
 		
 		return mapper.getVisitDateList(email);
 		
 	}
+	
+	/* 추가 */
 
 	@Override
 	public int addVoc(VocDTO dto) {

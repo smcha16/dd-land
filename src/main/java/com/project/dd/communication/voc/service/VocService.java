@@ -23,7 +23,7 @@ public class VocService {
 	@Autowired
 	private VocDAO dao;
 	
-	// 방문일 목록
+	/* 방문일 */
 	
 	public List<String> getVisitDateList(String email) {
 		
@@ -42,7 +42,7 @@ public class VocService {
 		
 	}
 	
-	// 파일 저장
+	/* 파일 저장 */
 
 	public String saveFile(HttpServletRequest req, MultipartFile doc) {
 
@@ -78,7 +78,7 @@ public class VocService {
 		
 	}
 	
-	// 파일 추가
+	/* 파일 추가 */
 	
 	public VocDTO addFile(VocDTO dto, HttpServletRequest req, MultipartFile doc) {
 		
@@ -96,7 +96,7 @@ public class VocService {
 		
 	}
 
-	// 추가
+	/* 추가 */
 	
 	public int addVoc(VocDTO dto) {
 

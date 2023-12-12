@@ -16,7 +16,7 @@ public class FaqService {
 	@Autowired
 	private FaqDAO dao;
 	
-	// 페이징
+	/* 페이징 */
 
 	public Map<String, String> paging(String type, int page) {
 		
@@ -42,7 +42,7 @@ public class FaqService {
 		
 	}
 	
-	// 목록
+	/* 목록 */
 
 	public List<FaqDTO> getFaqList(Map<String, String> map) {
 
@@ -52,7 +52,7 @@ public class FaqService {
 		
 	}
 	
-	// 추가
+	/* 추가 */
 
 	public int addFaq(FaqDTO dto) {
 		
@@ -60,7 +60,7 @@ public class FaqService {
 		
 	}
 	
-	// 상세
+	/* 상세 */
 
 	public FaqDTO getFaq(String seq) {
 		
@@ -68,7 +68,7 @@ public class FaqService {
 		
 	}
 	
-	// 수정
+	/* 수정 */
 
 	public int editFaq(FaqDTO dto) {
 		
@@ -76,7 +76,7 @@ public class FaqService {
 		
 	}
 	
-	// 삭제
+	/* 삭제 */
 
 	public void deleteFaq(String[] seqList) {
 

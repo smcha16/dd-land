@@ -24,7 +24,7 @@ public class NoticeService {
 	@Autowired
 	private NoticeDAO dao;
 	
-	// 페이징
+	/* 페이징 */
 
 	public Map<String, String> paging(int page) {
 		
@@ -48,13 +48,15 @@ public class NoticeService {
 		
 	}
 	
-	// 목록
+	/* 목록 */
 
 	public List<NoticeDTO> getNoticeList(Map<String, String> map) {
 		
 		List<NoticeDTO> list = dao.getNoticeList(map);
 
 		for (NoticeDTO dto : list) {
+			
+			// 등록일
 			
 			String regdate = dto.getRegdate();
 			
@@ -68,11 +70,13 @@ public class NoticeService {
 		
 	}
 	
-	// 상세
+	/* 상세 */
 
 	public NoticeDTO getNotice(String seq) {
 		
 		NoticeDTO dto = dao.getNotice(seq);
+		
+		// 등록일
 
 		String regdate = dto.getRegdate();
 		
@@ -84,7 +88,7 @@ public class NoticeService {
 		
 	}
 	
-	// 파일 저장
+	/* 파일 저장 */
 	
 	public String saveFile(HttpServletRequest req, MultipartFile doc) {
 		
@@ -120,7 +124,7 @@ public class NoticeService {
 		
 	}
 	
-	// 파일 추가
+	/* 파일 추가 */
 	
 	public NoticeDTO addFile(NoticeDTO dto, HttpServletRequest req, MultipartFile doc) {
 		
@@ -138,7 +142,7 @@ public class NoticeService {
 		
 	}
 	
-	// 추가
+	/* 추가 */
 
 	public int addNotice(NoticeDTO dto) {
 		
@@ -146,7 +150,7 @@ public class NoticeService {
 		
 	}
 	
-	// 파일 수정
+	/* 파일 수정 */
 	
 	public NoticeDTO editFile(NoticeDTO dto, HttpServletRequest req, MultipartFile doc) {
 
@@ -168,7 +172,7 @@ public class NoticeService {
 		
 	}
 	
-	// 수정
+	/* 수정 */
 
 	public int editNotice(NoticeDTO dto) {
 		
@@ -176,7 +180,7 @@ public class NoticeService {
 		
 	}
 	
-	// 삭제
+	/* 삭제 */
 
 	public void deleteNotice(String[] seqList) {
 

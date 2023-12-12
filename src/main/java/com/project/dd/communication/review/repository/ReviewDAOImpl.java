@@ -16,6 +16,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 	
 	@Autowired
 	private ReviewMapper mapper;
+	
+	/* 총 개수 */
 
 	@Override
 	public int getTotalCount() {
@@ -23,6 +25,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return mapper.getTotalCount();
 		
 	}
+	
+	/* 목록 */
 
 	@Override
 	public List<ReviewDTO> getReviewList(Map<String, String> map) {
@@ -30,6 +34,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return mapper.getReviewList(map);
 		
 	}
+	
+	/* 상세 */
 
 	@Override
 	public ReviewDTO getReview(String seq) {
@@ -37,6 +43,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return mapper.getReview(seq);
 		
 	}
+	
+	/* 조회수 */
 
 	@Override
 	public void updateReadCount(String seq) {
