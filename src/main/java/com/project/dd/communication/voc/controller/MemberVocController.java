@@ -45,23 +45,13 @@ public class MemberVocController {
 	@PostMapping(value = "/addok.do")
 	public String addOk(Authentication auth, VocDTO dto, HttpServletRequest req, MultipartFile doc) {
 		
-		if (doc != null && !doc.isEmpty()) {
-			
-			dto.setAttach(service.saveFile(req, doc));
-			
-		} else {
-			
-			dto.setAttach(null);
-			
-		}
+		VocDTO voc = service.addFile(dto, req, doc);
 
 		String user_seq = ((CustomUser)auth.getPrincipal()).getDto().getUser_seq();
 		
 		dto.setUser_seq(user_seq);
-		
-		System.out.println(dto.toString());
 	
-		int result = service.addVoc(dto);
+		int result = service.addVoc(voc);
 	
 	 	if (result == 1) {
 

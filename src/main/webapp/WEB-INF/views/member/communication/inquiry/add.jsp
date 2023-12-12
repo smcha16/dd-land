@@ -194,7 +194,6 @@
 	    	$('#content-message').css('display', 'block');
 	    	$('#content-message').text('내용을 입력하세요.');
 	    }
-			
 		
 		if ($('input[name="subject"]').val().trim() && $('textarea[name="content"]').val().trim()) {
 			if (!$('#agree').prop('checked')) {
@@ -207,8 +206,6 @@
 	});
 	
 	$('#back-button').click(function () {
-	    if (confirm('작성 중인 내용이 저장되지 않을 수 있습니다.\n취소하시겠습니까?')) {
-	        location.href='/dd/index.do';
-	    }
+		location.href='/dd/index.do';
 	});
 </script>
