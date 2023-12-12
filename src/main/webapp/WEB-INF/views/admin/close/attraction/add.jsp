@@ -57,8 +57,16 @@
   z-index: 5;
 }
 
-#datepicker::placeholder { color: #aaaaaa; }
-#datepicker:focus { outline: none; }
+.datepicker::placeholder { color: #aaaaaa; }
+.datepicker:focus { outline: none; }
+ input#datepicker1::placeholder, input#datepicker2::placeholder {
+	color: #aaaaaa;
+}
+
+input#datepicker1:focus, input#datepicker2:focus {
+	outline: none;
+}
+
 
 .date span {
   display: block;
@@ -92,6 +100,10 @@ font-weight: bold;
 input:focus ~ span, input:valid ~ span {
 width: 100%;
 }
+#total-date{
+	display: flex;
+}
+
 </style>
 
 <main id="main" class="main">
@@ -126,12 +138,23 @@ width: 100%;
 				                  	</select>
 			                	</div>
 			              	</div>
-
+						
+						<div>
+					<label class="col-sm-2 col-form-label">날짜</label>
+						<div id="total-date">
 							<div class="form-group date">
-								<input type="text" class="datepicker" data-language='ko' required id="datepicker1"> - 
-								<input class="datepicker" type="text" data-language='ko' required id="datepicker2">
-								<label>Date</label> <span></span>
+								<input type="text" data-language='ko' required id="datepicker1">
+								<label>운휴 시작일 ~</label> 
+								<span></span>
 							</div>
+					
+							<div class="form-group date">
+								<input type="text" data-language='ko' required id="datepicker2">
+								<label>운휴 종료일</label> 
+								<span></span>
+							</div>
+						</div>
+						</div>
 
 							<!-- 토큰 -->
               				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">

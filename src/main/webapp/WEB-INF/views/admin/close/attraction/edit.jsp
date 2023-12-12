@@ -115,7 +115,7 @@ width: 100%;
           			<div class="card-body">
             			<h5 class="card-title">운휴 일정 입력</h5>
 
-            			<form>
+            			<form method="POST" action="/dd/admin/close/attraction/editok.do">
             				<div class="row mb-3">
 				                <label class="col-sm-2 col-form-label">어트랙션명</label>
 				                <div class="col-sm-10">
