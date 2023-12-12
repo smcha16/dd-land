@@ -31,10 +31,10 @@
 		font-weight: bold;
 		color: #444;
 		margin-left: 7px;
-		margin-right: 15px;
+		margin-right: 12px;
 	}
-	#visit-date {
-		margin-right: 70px !important;
+	#visit-date, #regdate {
+		margin-right: 50px !important;
 	}
 	.section-image {
 		display: flex;
@@ -86,7 +86,7 @@
 	#button button {
 		background-color: #CE1212;
 		border-color: #CE1212;
-		margin: 50px 0;
+		margin: 80px 0 50px;
 	}
 	#button i {
 		margin-right: 7px;
@@ -97,13 +97,16 @@
 
 <section id="gallery" class="gallery section-bg">
 	<div class="container" data-aos="zoom-out">
+	
 		<div class="section-header">
 			<h1><c:out value="${dto.subject}" /></h1>
 			<div id="date">
 	            <i class="bi bi-calendar-check"></i><span>방문일</span><span id="visit-date">${dto.visit_date}</span>
 	            <i class="bi bi-calendar-check"></i><span>등록일</span><span id="regdate">${dto.regdate}</span>
+	            <i class="bi bi-eye-fill"></i><span>조회수</span><span id="readcount">${dto.readcount}</span>
 	        </div>
 		</div>
+		
 		<div class="image-slider">
 			<c:forEach items="${dto.imgList}" var="dto">
 				<div>
@@ -111,13 +114,14 @@
 				</div>
 			</c:forEach>
 		</div>
+		
 	</div>
 </section>
 	
 <!-- ======= Main Section ======= -->
 
 <main id="review-detail">
-	<div id="content">${dto.content}</div>
+	<div id="content"><c:out value="${dto.content}" /></div>
 	
 	<div id="button">
 		<button type="button" id="back-button" class="btn btn-primary"><i class="bi bi-list"></i>목록</button>

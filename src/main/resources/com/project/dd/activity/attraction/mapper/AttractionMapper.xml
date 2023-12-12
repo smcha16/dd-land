@@ -23,6 +23,70 @@
 	<!-- 페이징 -->
 	<select id="getTotalCount" resultType="int">
       select count(*) from vwAttractionList
-   </select>
+	</select>
+   
+   <!-- admin 기능  -->
+   
+	<select id="checkLocationDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
+		select count(*) from vwLocation where lat = #{lat} and lng = #{lng}
+	</select>
+   
+	<insert id="addAttraction" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
+		VALUES (seqtblAttraction.NEXTVAL, #{name}, #{info}, #{capacity}, '10:00 - 22:00', #{restriction})
+	</insert>
+	
+	<select id="getAttractionSeq" resultType="int">
+		select max(attraction_seq) as attraction_seq from tblAttraction
+	</select>
+	
+	<insert id="addAttractionLocation" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		INSERT INTO tblAttractionLocation (attraction_location_seq, lat, lng, attraction_seq) VALUES (seqAttractionLocation.nextVal, #{lat}, #{lng}, #{attraction_seq})
+	</insert>
+	
+	<insert id="addAttractionImg" parameterType="com.project.dd.activity.attraction.domain.AttractionImgDTO">
+		INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
+		VALUES (seqtblAttractionImg.NEXTVAL, #{img}, #{attraction_seq})
+	</insert>
+	
+	<update id="delAttraction" parameterType="String">
+		update tblAttraction set name = name || '(운영종료)' where attraction_seq = #{attraction_seq}
+	</update>
+	
+	<select id="countAttractionImg" parameterType="String" resultType="int">
+		select count(*) from tblAttractionImg where attraction_seq = #{attraction_seq}
+	</select>
+	
+	<delete id="delAttractionImg" parameterType="String">
+		delete from tblAttractionImg where attraction_seq = #{attraction_seq}
+	</delete>
+	
+	<select id="countAttractionLocation" parameterType="String" resultType="int">
+		select count(*) from tblAttractionLocation where attraction_seq = #{attraction_seq}
+	</select>
+	
+	<delete id="delAttractionLocation" parameterType="String">
+		delete from tblAttractionLocation where attraction_seq = #{attraction_seq}
+	</delete>
+	
+	<select id="checkNameDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
+		select count(*) from tblAttraction where name = #{name}
+	</select>
+	
+	<select id="getAttractionDefaultImgName" parameterType="String" resultType="String">
+		select img from tblAttractionImg where attraction_seq = #{attraction_seq}
+	</select>
+	
+	<update id="editAttractionLocation" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		update tblAttractionLocation set lat = #{lat}, lng = #{lng} where attraction_seq = #{attraction_seq}
+	</update>
+	
+	<update id="editAttraction" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		update tblAttraction set name = #{name}, info = #{info}, capacity = #{capacity}, restriction = #{restriction} where attraction_seq = #{attraction_seq}
+	</update>
+	
+	<delete id="delAttractionImgByImgSeq" parameterType="String">
+		delete from tblAttractionImg where attraction_img_seq = #{attraction_img_seq}
+	</delete>
 	
 </mapper>

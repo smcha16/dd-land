@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.dd.communication.voc.mapper.VocMapper">
+	<select id="getVisitDateList" parameterType="String" resultType="String">
+		select visit_date
+		from tblUser u
+			inner join tblUserBook ub
+				on u.user_seq = ub.user_seq
+			inner join tblTicketBook tb
+				on ub.ticket_book_seq = tb.ticket_book_seq
+		where (email = #{email}) and (visit_date between sysdate - interval '1' month and sysdate)
+	</select>
+
+	<insert id="addVoc" parameterType="com.project.dd.communication.voc.domain.VocDTO">
+		insert into tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
+		values (seqtblVOC.nextVal, #{type}, #{service_type}, #{subject}, #{content}, default, #{attach, jdbcType=VARCHAR}, #{visit_date}, null, #{user_seq})
+	</insert>
+</mapper>

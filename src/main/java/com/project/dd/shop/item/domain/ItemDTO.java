@@ -1,5 +1,13 @@
 package com.project.dd.shop.item.domain;
 
-public class ItemDTO {
+import lombok.Data;
 
+@Data
+public class ItemDTO {
+	private String item_seq;
+	private String name;
+	private String info;
+	private String price;
+	private String shop_seq;
+	private String img;
 }

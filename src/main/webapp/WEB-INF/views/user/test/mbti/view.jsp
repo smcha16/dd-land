@@ -43,6 +43,12 @@
 	transition: all 0.3s;
 }
 
+.item img {
+	width: 100%;
+	height: auto;
+	vertical-align: baseline;
+}
+
 .item:hover {
 	cursor: pointer;
 	box-shadow: 12px 12px 17px rgba(0, 0, 0, 0.20);
@@ -78,9 +84,9 @@
 	height: 70%;
 	padding: 20px;
 	background-color: black;
-	opacity: 0.65; /* 투명도 조절 */
+	opacity: 0.65;
 	border-radius: 10px 10px 0 0;
-	z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
+	z-index: 1;
 }
 </style>
 
@@ -107,24 +113,38 @@
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div class="munti-content-container">
-				
-					<table>
-						<c:forEach items="${listMBTI}" var="dto">
-							<div class="item">
-								<div style="background-image: url('/dd/resources/files/test/MBTI/${dto.mbti_img}');"></div>
-								<div>${dto.mbti}</div>
-								<div class="hidden-div">${dto.result}</div>
-							</div>
-						</c:forEach>
-						<div>출처: #어반브러시 #타미</div>
-					</table>
-
-						
+					<c:forEach items="${listMBTI}" var="dto">
+						<div class="item" onclick="location.href= '/dd/user/test/mbti/detail.do?mbti_seq=' + ${dto.mbti_seq};">
+							<img src="/dd/resources/files/test/MBTI/${dto.mbti_img}" alt="출처: #어반브러시 #타미">
+							<div>${dto.mbti}</div>
+							<div class="hidden-div">${dto.result}</div>
+						</div>
+					</c:forEach>
 				</div>
-			</div><!-- End Starter Menu Content -->
+			</div>
+			<!-- End Starter Menu Content -->
 		</div>
 	</div>
+	
+	<!-- 페이징 -->
+	<nav id="page-bar" aria-label="Page navigation example">
+		<ul class="pagination justify-content-center">
+			<c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
+				<c:choose>
+					<c:when test="${pageStatus.index == currentPage}">
+						<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item"><a class="page-link"
+							href="/dd/user/test/mbti/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		</ul>
+	</nav>
+	
 </section>
+
 <!-- End Menu Section -->
 
 <script>

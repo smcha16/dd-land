@@ -2,6 +2,7 @@ package com.project.dd.test.worldcup.attraction.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,21 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 	@Autowired
 	private WorldCupAttractionMapper mapper;
 
-	// 어트랙션 리스트 가져오기
 	@Override
-	public List<AttractionDTO> getAllAttractions(String close) {
-		return mapper.listAttraction(close);
+	public int getTotalCount() {
+		return mapper.getTotalCount();
+	}
+	
+	// 모든 어트랙션 리스트 가져오기
+	@Override
+	public List<AttractionDTO> getAllAttraction(Map<String, String> map) {
+		return mapper.getAllAttraction(map);
+	}
+	
+	// 운영중인 어트랙션 리스트 가져오기
+	@Override
+	public List<AttractionDTO> getRunAttraction(String close) {
+		return mapper.getRunAttraction(close);
 	}
 
 	// 어트랙션 월드컵 리스트 가져오기
@@ -43,10 +55,15 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 		return mapper.getAllAWCFinalWin();
 	}
 
+	@Override
+	public void updateAttractionStatus(Map<String, String> map) {
+		mapper.updateAttractionStatus(map);
+	}
+	
 	// 선택되지 않은 어트랙션 가져오기
 	@Override
 	public List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions) {
-		List<AttractionDTO> allAttractions = getAllAttractions("Y");
+		List<AttractionDTO> allAttractions = getRunAttraction("Y");
 		List<AttractionDTO> remainingAttractions = new ArrayList<>();
 
 		// 선택되지 않은 어트랙션 찾기
@@ -85,4 +102,5 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 
 		return selectedTwoAttractions;
 	}
+	
 }

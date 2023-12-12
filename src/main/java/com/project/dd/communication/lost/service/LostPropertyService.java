@@ -1,11 +1,19 @@
 package com.project.dd.communication.lost.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.communication.lost.domain.LostPropertyDTO;
 import com.project.dd.communication.lost.repository.LostPropertyDAO;
@@ -15,6 +23,8 @@ public class LostPropertyService {
 	
 	@Autowired
 	private LostPropertyDAO dao;
+	
+	// 페이징
 
 	public Map<String, String> paging(int page) {
 
@@ -37,6 +47,8 @@ public class LostPropertyService {
 		return map;
 		
 	}
+	
+	// 목록
 
 	public List<LostPropertyDTO> getLostPropertyList(Map<String, String> map) {
 		
@@ -53,6 +65,126 @@ public class LostPropertyService {
 		}
 		
 		return list;
+		
+	}
+	
+	// 파일 저장
+	
+	public String saveFile(HttpServletRequest req, MultipartFile doc) {
+		
+		try {
+        	
+        	String path = req.getRealPath("/resources/files/communication/lost");
+        	
+        	File directory = new File(path);
+        	
+            if (!directory.exists()) {
+            	
+                directory.mkdirs();
+                
+            }
+
+            UUID uuid = UUID.randomUUID();
+            
+            String fileName = uuid + "_" + doc.getOriginalFilename();
+
+            Path filePath = Paths.get(path, fileName);
+
+            doc.transferTo(filePath.toFile());
+            
+            return fileName;
+
+        } catch (IOException e) {
+        	
+            e.printStackTrace();
+            
+        }
+		
+		return null;
+		
+	}
+	
+	// 파일 추가
+	
+	public LostPropertyDTO addFile(LostPropertyDTO dto, HttpServletRequest req, MultipartFile doc) {
+		
+		if (doc == null || doc.isEmpty()) {
+			
+			dto.setImg(null);
+			
+		} else {
+			
+			dto.setImg(saveFile(req, doc));
+			
+		}
+
+		return dto;
+		
+	}
+	
+	// 추가
+
+	public int addLostProperty(LostPropertyDTO dto) {
+		
+		return dao.addLostProperty(dto);
+		
+	}
+	
+	// 상세
+
+	public LostPropertyDTO getLostProperty(String seq) {
+		
+		LostPropertyDTO dto = dao.getLostProperty(seq);
+
+		String lostDate = dto.getLost_property_date();
+		
+		lostDate = lostDate.substring(0, 10);
+		
+		dto.setLost_property_date(lostDate);
+		
+		return dto;
+
+	}
+	
+	// 파일 수정
+	
+	public LostPropertyDTO editFile(LostPropertyDTO dto, HttpServletRequest req, MultipartFile doc) {
+
+		if (doc == null) {
+			
+			dto.setImg(dao.getFileName(dto.getLost_property_seq()));
+			
+		} else if (doc.isEmpty()) {
+			
+			dto.setImg(null);
+			
+		} else {
+			
+			dto.setImg(saveFile(req, doc));
+			
+		}
+
+		return dto;
+		
+	}
+	
+	// 수정
+
+	public int editLostProperty(LostPropertyDTO dto) {
+
+		return dao.editLostProperty(dto);
+		
+	}
+	
+	// 삭제
+
+	public void deleteLostProperty(String[] seqList) {
+
+		for (String seq : seqList) {
+			
+			dao.deleteLostProperty(seq);
+			
+		}
 		
 	}
 

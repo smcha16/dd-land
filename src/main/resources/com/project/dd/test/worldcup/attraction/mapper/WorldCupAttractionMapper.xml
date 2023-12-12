@@ -4,18 +4,37 @@
 
 <mapper namespace="com.project.dd.test.worldcup.attraction.mapper.WorldCupAttractionMapper">
 
+	<select id="getTotalCount" resultType="int">
+		select count(*)
+	    from tblAWC awc
+	    join vwAttractionList al
+	    	ON awc.attraction_seq = al.attraction_seq
+	</select>
+   
 	<!--
         어트랙션 리스트를 조회하는 쿼리입니다.
         - close 파라미터로 오픈 여부를 전달받습니다.
         - vwAttractionList와 tblAWC를 조인하여 테스트 여부가 'Y'인 어트랙션 정보만 가져옵니다.
         - 결과 타입은 AttractionDTO입니다.
     -->
-	<select id="listAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
-    	SELECT
+	<select id="getAllAttraction" parameterType="map" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+	    select * from (
+		    select n.*, rownum as rnum
+		    from (
+		        SELECT al.*, awc.is_test
+		        FROM tblAWC awc
+		        JOIN vwAttractionList al ON awc.attraction_seq = al.attraction_seq
+		    ) n
+		) where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<select id="getRunAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+    	select
 	        al.*
-	    FROM tblAWC aws
-	    JOIN vwAttractionList al ON aws.attraction_seq = al.attraction_seq
-	    WHERE al.close = #{close} AND aws.is_test = 'Y'
+	    from tblAWC awc
+	    join vwAttractionList al
+	    	on awc.attraction_seq = al.attraction_seq
+	    where al.close = #{close} and awc.is_test = 'Y'
 	</select>
 	
 	<!--
@@ -42,5 +61,18 @@
 	<select id="getAllAWCFinalWin" resultType="com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionFinalWinDTO">
 		select * from tblAWCFinalWin
 	</select>
-
+		
+	<update id="updateAttractionStatus" parameterType="map">
+	    update tblAWC
+	    set is_test = #{isTest}
+	    where attraction_seq = #{attractionSeq}
+	</update>
+	
+	<!-- 
+	<update id="updateAttractionStatus" parameterType="String">
+	    UPDATE tblAWC
+	    SET isTest = #{isTest}
+	    WHERE attractionSeq = #{attractionSeq}
+	</update>
+	-->
 </mapper>

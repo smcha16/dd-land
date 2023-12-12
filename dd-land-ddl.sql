@@ -273,7 +273,7 @@ CREATE TABLE tblMovie (
    story VARCHAR2(2000) NOT NULL, /* 줄거리 */
    runningtime NUMBER NOT NULL, /* 러닝타임 */
    img VARCHAR2(500) DEFAULT 'movie.png' NOT NULL, /* 포스터이미지 */
-   preview VARCHAR2(500) /* 영화예고편영상 */
+   preview VARCHAR2(2000) /* 영화예고편영상 */
 );
 
 /* 영화상영 */
@@ -414,7 +414,7 @@ CREATE TABLE tblCWCFinalWin (
 /* MBTI */
 CREATE TABLE tblMBTI (
 	mbti_seq NUMBER PRIMARY KEY, /* MBTI번호 */
-	result VARCHAR2(500) NOT NULL, /* 결과명 */
+	result VARCHAR2(500) NOT NULL, /* 결과 */
 	mbti VARCHAR2(500) NOT NULL, /* MBTI명 */
 	mbti_img VARCHAR2(500), /* MBTI이미지 */
 	course_seq NUMBER REFERENCES tblCourse(course_seq) NOT NULL, /* 코스번호 */
@@ -708,6 +708,70 @@ CREATE SEQUENCE seqtblCart;
 CREATE SEQUENCE seqtblUserCart;
 CREATE SEQUENCE seqtblBuy;
 CREATE SEQUENCE seqtblUserBuy;
+
+/* 나래 누나 View */
+--1. Photozone
+create or replace view vwPhotozoneList
+as
+select a.*, (select img from tblPhotozoneImg where photozone_seq = a.photozone_seq and rownum = 1) as img 
+from tblPhotozone a
+order by photozone_seq;
+
+create or replace view vwPhotozoneOne
+as
+select a.photozone_seq, a.name, a.time, a.info, b.photozone_location_seq, b.lat, b.lng
+from vwPhotozoneList a
+inner join tblPhotozoneLocation b
+on a.photozone_seq = b.photozone_seq;
+
+--2. Festival
+
+create or replace view vwFestivalList
+as
+select a.*, 
+(select img from tblFestivalImg where festival_seq = a.festival_seq and rownum = 1)as img
+from tblFestival a
+order by a.festival_seq;
+
+create or replace view vwFestivalOne
+as
+select a.festival_seq, a.name, a.time, a.info, a.start_date, a.end_date, b.festival_location_seq, b.lat, b.lng
+from vwFestivalList a
+inner join tblFestivalLocation b
+on a.festival_seq = b.festival_seq;
+
+--3. Attraction
+
+create or replace view vwAttractionList
+as
+select a.*, 
+(select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1)as img,
+nvl((select 'y' from tblAttractionclose where attraction_seq = a.attraction_seq and to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')), 'n')as close
+from tblAttraction a
+where name not like '%(운영종료)%'
+order by a.attraction_seq;
+
+create or replace view vwAttractionOne
+as
+select a.attraction_seq, a.name, a.info, a.capacity, a.time, a.restriction, a.close, b.attraction_location_seq, b.lat, b.lng
+from vwAttractionlist a
+inner join tblAttractionLocation b
+on a.attraction_seq = b.attraction_seq;
+
+--4. Movie
+
+create or replace view vwMovieList
+as
+select a.* 
+from tblMovie a 
+where exists (select 'O' from tblMoviePlay b 
+            where to_char(sysdate, 'yyyy-mm-dd') 
+            between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd') 
+                and b.movie_seq = a.movie_seq 
+            and not exists(select 'O' from tblTheaterClose 
+                        where to_char(sysdate, 'yyyy-mm-dd') 
+                        between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd') 
+                        and theater_seq = b.theater_seq));
 
 
 /* View ~삭제예정~ */
