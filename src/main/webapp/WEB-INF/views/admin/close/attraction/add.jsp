@@ -159,17 +159,24 @@ width: 100%;
 
 <script>
 $(document).ready(function () {	
+	// #start 요소의 값이 변경될 때 이벤트 핸들러
     $('#start').on('change', function () {
+        // 선택된 시작 날짜
         const selectedStartDate = new Date($('#start').val());
-        const minEndDate = new Date(selectedStartDate.getTime());
-        const formattedMinEndDate = minEndDate.toISOString().split('T')[0];
 
-        $('#end').attr('min', formattedMinEndDate);
+        // 최소 종료 날짜를 선택된 시작 날짜로 설정
+        $('#end').attr('min', selectedStartDate.toISOString().split('T')[0]);
 
+        // 만약 종료 날짜가 선택된 시작 날짜보다 이전이라면 종료 날짜를 최소 종료 날짜로 설정
         if ($('#end').val() && new Date($('#end').val()) < selectedStartDate) {
-        	$('#end').val(formattedMinEndDate);
+            $('#end').val(selectedStartDate.toISOString().split('T')[0]);
         }
     });
+
+    // 오늘 날짜를 최소 시작 날짜로 설정
+    const today = new Date();
+    const formattedToday = today.toISOString().split('T')[0];
+    $('#start').attr('min', formattedToday);
 });
 
 function submit(){
