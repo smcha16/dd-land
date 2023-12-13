@@ -1,12 +1,9 @@
 package com.project.dd.test.worldcup.course.service;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -54,15 +51,15 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 	}
 	
 	@Override
-    public int addCourse(CourseDTO dto, MultipartFile img, HttpServletRequest req) {
+    public int addCourse(CourseDTO dto, MultipartFile img) {
         // 이미지가 넘어왔을 경우에만 처리
         if (img != null && !img.isEmpty()) {
             try {
                 UUID uuid = UUID.randomUUID();
                 String filename = uuid + "_" + img.getOriginalFilename();
 
-                String filePath = req.getRealPath("/resources/files/test/worldcup/course") + File.separator + filename;
-                img.transferTo(new File(filePath));
+                //String filePath = req.getRealPath("/resources/files/test/worldcup/course") + File.separator + filename;
+                //img.transferTo(new File(filePath));
 
                 // 이미지 파일 경로를 DTO에 추가
                 dto.setImg("/resources/files/test/worldcup/course/" + filename);

@@ -85,8 +85,10 @@ th {
 }
 
 .table th:nth-child(1) { width: 10%; }
-.table th:nth-child(2) { width: 65%; }
+.table th:nth-child(2) { width: 25%; }
 .table th:nth-child(3) { width: 25%; }
+.table th:nth-child(4) { width: 25%; }
+.table th:nth-child(5) { width: 15%; }
 
 .table td i {
 	color: #0d6efd;
@@ -151,6 +153,8 @@ th {
 											<!-- <th></th> -->
 											<th>No</th>
 											<th>이름</th>
+											<th>우승비율 (최종우승횟수/전체게임횟수)</th>
+											<th>승률 (승리횟수/전체1:1대결수)</th>
 											<th>테스트 채택</th>
 										</tr>
 									</thead>
@@ -160,6 +164,28 @@ th {
 												<!-- <td><input type="checkbox"></td> -->
 												<td>${dto.attraction_seq}</td>
 												<td>${dto.name}</td>
+												
+										        <!-- Check if listAWCFinalWin has data for the current attraction -->
+										        <c:choose>
+										            <c:when test="${not empty listAWCFinalWin and not empty listAWCFinalWin[dto.attraction_seq]}">
+										                <c:set var="awcFinalWinData" value="${listAWCFinalWin[dto.attraction_seq]}" />
+										                <td>${awcFinalWinData.awc_final_win_count}</td>
+										            </c:when>
+										            <c:otherwise>
+										                <td>N/A</td>
+										            </c:otherwise>
+										        </c:choose>
+										        
+												<c:choose>
+										            <c:when test="${not empty listAWCWin and not empty listAWCWin[dto.attraction_seq]}">
+										                <c:set var="awcWinData" value="${listAWCWin[dto.attraction_seq]}" />
+										                <td>${awcWinData.awc_win_count}/${awcWinData.awc_match_count}</td>
+										            </c:when>
+										            <c:otherwise>
+										                <td>N/A</td>
+										            </c:otherwise>
+										        </c:choose>
+										        
 												<td>
 													<div class="d-flex justify-content-center">
 														<div class="form-check form-switch">

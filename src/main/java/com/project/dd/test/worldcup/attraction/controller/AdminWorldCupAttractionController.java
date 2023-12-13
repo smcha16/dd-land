@@ -27,6 +27,8 @@ public class AdminWorldCupAttractionController {
 		model.addAttribute("currentPage", page); // 페이징
 		model.addAttribute("map", map); // 페이징
 		model.addAttribute("listAttraction", attractionService.getAllAttraction(map));
+        model.addAttribute("listAWCWin", attractionService.getAllAWCWin());
+        model.addAttribute("listAWCFinalWin", attractionService.getAllAWCFinalWin());
 
 		// System.out.println(attractionService.getAllAttraction(map));
 

@@ -44,11 +44,11 @@ import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
 		}
 	
 		@PostMapping(value = "/admin/test/worldcup/course/addok.do")
-		public String addok(Model model, @ModelAttribute CourseDTO dto, @RequestParam("img") MultipartFile img, HttpServletRequest req) {
+		public String addok(Model model, CourseDTO dto, @RequestParam("img") MultipartFile img) {
 		    System.out.println("DTO: " + dto.toString());
 		    System.out.println("Image File Name: " + img.getOriginalFilename());
 
-		    int result = courseService.addCourse(dto, img, req);
+		    int result = courseService.addCourse(dto, img);
 
 		    if (result > 0) {
 		        return "redirect:/admin/test/worldcup/course/view.do";
