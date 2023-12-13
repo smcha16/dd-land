@@ -159,7 +159,7 @@
 	function edit() {  //수정
 		let checkedCount = $('input[type="checkbox"]:checked').length;  //체크된 체크박스 개수
 		
-		if (checkedCount > 1 || checkedCount < 1) {
+		if (checkedCount !== 1) {
 			alert('1개의 어트랙션을 선택 후, 수정 버튼을 눌러주세요.');
 		} else {
 			const seq = $('input[type="checkbox"]:checked').val();

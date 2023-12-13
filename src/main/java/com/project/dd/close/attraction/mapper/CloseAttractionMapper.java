@@ -16,4 +16,8 @@ public interface CloseAttractionMapper {
 
 	List<AttractionDTO> attlist();
 
+	int addCloseAtt(CloseAttractionDTO dto);
+
+	CloseAttractionDTO getOne(String seq);
+
 }

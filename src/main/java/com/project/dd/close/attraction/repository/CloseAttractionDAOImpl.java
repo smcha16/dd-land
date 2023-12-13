@@ -38,4 +38,14 @@ public class CloseAttractionDAOImpl implements CloseAttractionDAO{
 		return mapper.attlist();
 	}
 
+	@Override
+	public int addCloseAtt(CloseAttractionDTO dto) {
+		return mapper.addCloseAtt(dto);
+	}
+
+	@Override
+	public CloseAttractionDTO getOne(String seq) {
+		return mapper.getOne(seq);
+	}
+
 }

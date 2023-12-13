@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +54,16 @@ public class CloseAttractionService {
 	public List<AttractionDTO> attlist() {
 		
 		return closeAttrDao.attlist();
+	}
+
+	public int addCloseAtt(CloseAttractionDTO dto) {
+		
+		return closeAttrDao.addCloseAtt(dto);
+	}
+
+	public CloseAttractionDTO getOne(String seq) {
+		
+		return closeAttrDao.getOne(seq);
 	}
 
 }

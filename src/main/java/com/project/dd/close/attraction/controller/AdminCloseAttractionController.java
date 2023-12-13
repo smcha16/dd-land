@@ -3,6 +3,8 @@ package com.project.dd.close.attraction.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,8 +47,32 @@ public class AdminCloseAttractionController {
 		return "admin/close/attraction/add";
 	}
 	
-	
-	
+	@PostMapping(value = "/addok.do")
+	public String addok(CloseAttractionDTO dto) {
+
+		//System.out.println(dto);
+		
+		int result = closeAttrService.addCloseAtt(dto);
+		
+		if (result > 0) {
+			return "redirect:/admin/close/attraction/view.do";
+		} else {  //실패
+			return "redirect:/admin/close/attraction/add.do";
+		}
+		
+	}
+
+	//수정하기
+	@GetMapping(value = "/edit.do")
+	public String edit(Model model, String seq) {
+		
+		CloseAttractionDTO dto = closeAttrService.getOne(seq); 
+		
+		model.addAttribute("dto", dto);
+		
+		return "admin/close/attraction/edit";
+	}
+
 	
 	
 	//삭제하기

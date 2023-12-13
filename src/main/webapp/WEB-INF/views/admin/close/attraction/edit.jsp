@@ -34,64 +34,6 @@
     .card-body {
       min-height: 600px;
     }
-    
-    /* 달력 */
-
-.date {
-  position: relative;
-  width: 300px;
-  margin-left: 50px;
-  margin-top: 100px;
-}
-
-#datepicker {
- font-size: 15px;
-  color: #222222;
-  width: 300px;
-  border: none;
-  border-bottom: solid #aaaaaa 1px;
-  padding-bottom: 10px;
-  text-align: center;
-  position: relative;
-  background: none;
-  z-index: 5;
-}
-
-#datepicker::placeholder { color: #aaaaaa; }
-#datepicker:focus { outline: none; }
-
-.date span {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 50%;  /* right로만 바꿔주면 오 - 왼 */
-  background-color: #666;
-  width: 0;
-  height: 2px;
-  border-radius: 2px;
-  transform: translateX(-50%);
-  transition: 0.5s;
-}
-
-.date label {
-position: absolute;
-  color: #aaa;
-  left: 10px;
-  font-size: 20px;
-  bottom: 8px;
-  transition: all .2s;
-}
-
-input:focus ~ label, input:valid ~ label {
-font-size: 16px;
-bottom: 40px;
-color: #666;
-font-weight: bold;
-}
-
-input:focus ~ span, input:valid ~ span {
-width: 100%;
-}
 </style>
 
 <main id="main" class="main">
@@ -110,28 +52,29 @@ width: 100%;
   	<section class="section">
     	<div class="row">
      		 <div class="col-lg-12">
-
         		<div class="card">
           			<div class="card-body">
-            			<h5 class="card-title">운휴 일정 입력</h5>
+            			<h5 class="card-title">운휴 일정 수정</h5>
 
             			<form method="POST" action="/dd/admin/close/attraction/editok.do">
-            				<div class="row mb-3">
-				                <label class="col-sm-2 col-form-label">어트랙션명</label>
-				                <div class="col-sm-10">
-				                  	<select class="form-select" aria-label="Default select example">
-				                    	<c:forEach items="${attlist}" var="dto">
+							<div class="row mb-3">
+								<label class="col-sm-2 col-form-label">어트랙션명</label>
+								<div class="col-sm-10">
+									<select name="attraction_seq" class="form-control">
+										
 											<option value="${dto.attraction_seq}">${dto.name}</option>
-										</c:forEach>
-				                  	</select>
-			                	</div>
-			              	</div>
-
-							<div class="form-group date">
-								<input type="text" class="datepicker" data-language='ko' required id="datepicker1"> - 
-								<input class="datepicker" type="text" data-language='ko' required id="datepicker2">
-								<label>Date</label> <span></span>
+									
+									</select>
+								</div>
 							</div>
+
+							<div class="row mb-3">
+                				<label for="inputDate" class="col-sm-2 col-form-label">날짜</label>
+                				<div class="col-sm-10">
+                  					운휴 시작일 <input type="date" name="start_date" id="start_date" required>
+                  					운휴 종료일 <input type="date" name="end_date" id="end_date" required>
+               					</div>
+              				</div>
 
 							<!-- 토큰 -->
               				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
@@ -141,86 +84,89 @@ width: 100%;
       		</div>
     	</div>
 	</section>
-
 </main>
 
 <script>
-//두개짜리 제어 연결된거 만들어주는 함수
-datePickerSet($("#datepicker1"), $("#datepicker2"), true); //다중은 시작하는 달력 먼저, 끝달력 2번째
+$(document).ready(function () {	
+    $('#start_date').on('change', function () {
+        const selectedStartDate = new Date($('#start_date').val());
+        const minEndDate = new Date(selectedStartDate.getTime());
+        const formattedMinEndDate = minEndDate.toISOString().split('T')[0];
 
-/*
-    * 달력 생성기
-    * @param sDate 파라미터만 넣으면 1개짜리 달력 생성
-    * @example   datePickerSet($("#datepicker"));
-    * 
-    * 
-    * @param sDate, 
-    * @param eDate 2개 넣으면 연결달력 생성되어 서로의 날짜를 넘어가지 않음
-    * @example   datePickerSet($("#datepicker1"), $("#datepicker2"));
-    */
-function datePickerSet(sDate, eDate, flag) {
+        $('#end_date').attr('min', formattedMinEndDate);
 
-    //시작 ~ 종료 2개 짜리 달력 datepicker	
-    if (!isValidStr(sDate) && !isValidStr(eDate) && sDate.length > 0 && eDate.length > 0) {
-        var sDay = sDate.val();
-        var eDay = eDate.val();
-
-        if (flag && !isValidStr(sDay) && !isValidStr(eDay)) { //처음 입력 날짜 설정, update...			
-            var sdp = sDate.datepicker().data("datepicker");
-            sdp.selectDate(new Date(sDay.replace(/-/g, "/")));  //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
-
-            var edp = eDate.datepicker().data("datepicker");
-            edp.selectDate(new Date(eDay.replace(/-/g, "/")));  //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
+        if ($('#end_date').val() && new Date($('#end_date').val()) < selectedStartDate) {
+        	$('#end_date').val(formattedMinEndDate);
         }
+    });
+});
 
-        //시작일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
-        if (!isValidStr(eDay)) {
-            sDate.datepicker({
-                maxDate: new Date(eDay.replace(/-/g, "/"))
-            });
-        }
-        sDate.datepicker({
-            language: 'ko',
-            autoClose: true,
-            onSelect: function () {
-                datePickerSet(sDate, eDate);
-            }
-        });
-
-        //종료일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
-        if (!isValidStr(sDay)) {
-            eDate.datepicker({
-                minDate: new Date(sDay.replace(/-/g, "/"))
-            });
-        }
-        eDate.datepicker({
-            language: 'ko',
-            autoClose: true,
-            onSelect: function () {
-                datePickerSet(sDate, eDate);
-            }
-        });
-
-        //한개짜리 달력 datepicker
-    } else if (!isValidStr(sDate)) {
-        var sDay = sDate.val();
-        if (flag && !isValidStr(sDay)) { //처음 입력 날짜 설정, update...			
-            var sdp = sDate.datepicker().data("datepicker");
-            sdp.selectDate(new Date(sDay.replace(/-/g, "/"))); //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
-        }
-
-        sDate.datepicker({
-            language: 'ko',
-            autoClose: true
-        });
-    }
-
-
-    function isValidStr(str) {
-        if (str == null || str == undefined || str == "")
-            return true;
-        else
-            return false;
-    }
+function submit(){
+	if(!$('input[name="start_date"]').val().trim() || !$('input[name="end_date"]').val().trim()){
+		alert('운휴시작일 또는 운휴종료일을 모두 선택해주세요.');
+	}else {
+		$('form').submit();
+	}
 }
+
+
+const date = document.getElementById('start_date');
+
+$('select[name=attraction]').change(function() {
+		for (let i=0; i<close_list.length; i++) {
+			if (close_list[i].seq == $(this).val()) {
+				//alert(close_list[i].start_date);
+				//alert(close_list[i].end_date);
+				
+				selDate(i);
+				
+			}
+		}
+});
+
+function selDate(i) {
+	
+	const now = new Date();  //현재날짜
+	const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' +  now.getDate();
+	
+	//alert(now.getFullYear() + '-' + (now.getMonth() + 1) + '-' +  now.getDate());
+	//alert(close_list[i].start_date);
+	
+	
+	if (nowStr > close_list[i].start_date) {
+		$('#start_date').val(close_list[i].start_date.substr(0,  10));
+		$('#start_date').prop('readOnly', true);  //운휴가 현재날짜보다 이전이면 -> 운휴 이미 시작이므로 readonly.
+	} else {
+		$('#start_date').attr('min', nowStr);
+		$('#start_date').val(close_list[i].start_date.substr(0,  10));
+		$('#start_date').prop('readOnly', false);
+	}
+
+	changeDate(i);
+	
+}
+
+function changeDate(i) {
+	$('#end_date').attr('min', date.value);  //end_date는 재선택한 운휴시작일 넣어주기
+	$('#end_date').val(close_list[i].end_date.substr(0,  10));
+	$('#start_date').change(function() {
+		$('#end_date').attr('min', date.value);
+	});
+	
+	
+}
+
+const close_list = [];
+<c:forEach items="${list}" var="dto">
+	close_list.push({
+		seq: ${dto.attraction_close_seq},
+		start_date:'${dto.start_date}',
+		end_date:'${dto.end_date}'
+	});
+	
+</c:forEach>
+
+selDate(0);
+
+
 </script>
