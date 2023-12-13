@@ -17,8 +17,8 @@ public interface WorldCupCourseService {
 
 	void updateCourseStatus(Map<String, String> map);
 
-	int addCourse(CourseDTO dto, MultipartFile img);
+	int addCourse(CourseDTO dto, MultipartFile img, HttpServletRequest req);
 
 	int checkNameDuplication(CourseDTO dto);
-
+	
 }

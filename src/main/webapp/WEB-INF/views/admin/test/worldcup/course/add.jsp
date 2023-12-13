@@ -83,9 +83,7 @@ label {
 						<h5 class="card-title">코스 정보 입력</h5>
 
 						<!-- 코스명, 이미지 -->
-						<form method="POST"
-							action="/dd/admin/test/worldcup/course/addok.do"
-							enctype="multipart/form-data">
+						<form method="POST" action="/dd/admin/test/worldcup/course/addok.do" enctype="multipart/form-data">
 
 							<!-- 코스명 -->
 							<div class="row mb-3">
@@ -110,6 +108,7 @@ label {
 
 							<!-- 토큰 -->
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+							
 						</form>
 						
 					</div>
@@ -135,6 +134,7 @@ label {
 			
 		} else {
             // 전송 데이터 확인
+            /*
             console.log("전송 데이터:");
             console.log("Name: " + $('input[name="name"]').val());
             console.log("Image Files: " + $('#formFile')[0].files);
@@ -142,6 +142,7 @@ label {
             for (var i = 0; i < files.length; i++) {
                 console.log("Image File Name: " + files[i].name);
             }
+            */
             
             // 데이터 전송
             $('form').submit();
