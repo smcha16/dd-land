@@ -46,5 +46,17 @@ public class MypageReviewDAOImpl implements MypageReviewDAO{
 		
 		return mapper.add(dto);
 	}
+	
+	@Override
+	public ReviewDTO get(String seq) {
+		
+		return mapper.get(seq);
+	}
+	
+	@Override
+	public int edit(ReviewDTO dto) {
+		
+		return mapper.edit(dto);
+	}
 
 }

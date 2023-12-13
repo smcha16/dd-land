@@ -148,7 +148,7 @@ th {
 								</nav>
 
 
-								<form action="/dd/member/mypage/ticket/delete.do" method="post">
+								<form id="cancelForm" action="/dd/member/mypage/ticket/delete.do" method="post">
 									<table class="table">
 										<thead>
 											<tr>
@@ -180,7 +180,7 @@ th {
 											</c:forEach>
 										</tbody>
 									</table>
-									<button type="submit">예매취소</button>
+									<button type="submit" id="delete-button">예매취소</button>
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}">
 								</form>
@@ -250,3 +250,12 @@ th {
 	</section>
 
 </main>
+
+<script>
+$('#delete-button').click(function(e) {
+	var result = confirm("정말 예매를 취소하시겠습니까?");
+	if (!result) {
+        e.preventDefault(); // 확인을 누르지 않으면 기본 동작(폼 제출)을 막음
+    }
+});
+</script>

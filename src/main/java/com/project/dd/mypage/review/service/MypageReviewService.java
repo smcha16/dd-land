@@ -57,6 +57,16 @@ public class MypageReviewService {
 		return dao.add(dto);
 	}
 
+	public ReviewDTO get(String seq) {
+		
+		return dao.get(seq);
+	}
+
+	public int edit(ReviewDTO dto) {
+		
+		return dao.edit(dto);
+	}
+
 	
 
 	

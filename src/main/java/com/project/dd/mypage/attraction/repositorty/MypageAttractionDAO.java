@@ -13,4 +13,6 @@ public interface MypageAttractionDAO {
 	
 	int getTotalCount();
 
+	List<AttractionDTO> plist(Map<String, String> map);
+
 }

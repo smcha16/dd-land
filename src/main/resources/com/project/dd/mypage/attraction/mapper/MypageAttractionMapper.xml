@@ -6,7 +6,13 @@
 
 	<select id="list" parameterType="map" resultType="com.project.dd.mypage.attraction.domain.AttractionDTO">
 		select *
-      from (select n.*, rownum as rnum from (select * from vwBookUser where email = #{email} order by regdate desc) n)
+      from (select n.*, rownum as rnum from (select * from vwBookUser where email = #{email} and regdate &gt;= to_char(sysdate, 'yyyy-mm-dd') order by regdate desc) n)
+      where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<select id="plist" parameterType="map" resultType="com.project.dd.mypage.attraction.domain.AttractionDTO">
+		select *
+      from (select n.*, rownum as rnum from (select * from vwBookUser where email = #{email} and regdate &lt; to_char(sysdate, 'yyyy-mm-dd') order by regdate desc) n)
       where rnum between #{startIndex} and #{endIndex}
 	</select>
 	

@@ -47,5 +47,10 @@ public class MypageAttractionService {
 	      return map;
 	}
 
+	public List<AttractionDTO> plist(Map<String, String> map) {
+		
+		return dao.plist(map);
+	}
+
 
 }

@@ -27,4 +27,15 @@
 		VALUES (seqtblReview.NEXTVAL, #{subject}, #{content}, default , 0 , #{user_book_seq})
 	</insert>
 	
+	<select id="get" parameterType="String" resultType="com.project.dd.mypage.review.domain.ReviewDTO">
+		select * from tblReview where review_seq = #{seq}
+	</select>
+	
+	<update id="edit" parameterType="com.project.dd.mypage.review.domain.ReviewDTO">
+    UPDATE tblReview
+    SET subject = #{subject},
+        content = #{content}
+    WHERE review_seq = #{review_seq}
+	</update>
+	
 </mapper>

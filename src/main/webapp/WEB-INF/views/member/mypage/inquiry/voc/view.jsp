@@ -142,7 +142,7 @@ th {
 									<tbody>
 										<c:forEach items="${list}" var="dto">
 											<tr>
-												<td><input type="checkbox" name="selectedVOC" value="${dto.voc_seq}"></td>
+												<td><input type="radio" name="selectedVOC" value="${dto.voc_seq}"></td>
 												<td>${dto.type}</td>
 												<td>${dto.service_type}</td>
 												<td>${dto.subject}</td>

@@ -101,18 +101,21 @@ th {
 	justify-content: center;
 	margin-top: 40px;
 }
+
 #page-bar {
-      margin-top: 50px;
-   }
-   .page-link {
-      color: #CE1212;
-   }
-   .active > .page-link, .page-link.active {
-      z-index: 3;
-       color: var(--bs-pagination-active-color);
-       background-color: #CE1212;
-       border-color: #CE1212;
-   }
+	margin-top: 50px;
+}
+
+.page-link {
+	color: #CE1212;
+}
+
+.active>.page-link, .page-link.active {
+	z-index: 3;
+	color: var(- -bs-pagination-active-color);
+	background-color: #CE1212;
+	border-color: #CE1212;
+}
 </style>
 
 <!-- ======= Main ======= -->
@@ -130,8 +133,8 @@ th {
 
 						<div class="card">
 							<div class="card-body">
-							
-							<nav class="d-flex justify-content-end">
+
+								<nav class="d-flex justify-content-end">
 									<ol class="breadcrumb">
 										<!-- <li class="breadcrumb-item"><a href="index.html">추가</a></li>
 										<li class="breadcrumb-item"><a href="#">수정</a></li>
@@ -139,33 +142,40 @@ th {
 									</ol>
 								</nav>
 
-								<form action="/dd/member/mypage/review/delete.do" method="post">
-								<table class="table">
-									<thead>
-										<tr>
-											<th></th>
-											<th>제목</th>
-											<th>등록일</th>
-											<th>조회수</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${list}" var="dto">
+								<!-- <form action="/dd/member/mypage/review/delete.do" method="post"> -->
+								<form id="reviewForm" method="post">
+									<table class="table">
+										<thead>
 											<tr>
-												<td><input type="checkbox" name="selectedReview" value="${dto.review_seq}"></td>
-												<td>${dto.subject}</td>
-												<td>${dto.regdate}</td>
-												<td>${dto.readcount}</td>
+												<th></th>
+												<th>제목</th>
+												<th>등록일</th>
+												<th>조회수</th>
 											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-								<button type="submit">리뷰 삭제</button>
-								<input type="hidden" name="${_csrf.parameterName}"
+										</thead>
+										<tbody>
+											<c:forEach items="${list}" var="dto">
+												<tr>
+													<td><input type="radio" name="selectedReview"
+														value="${dto.review_seq}"></td>
+													<td>${dto.subject}</td>
+													<td>${dto.regdate}</td>
+													<td>${dto.readcount}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<!-- <button type="submit" id="delete-button">리뷰 삭제</button> -->
+								<!-- <button type="submit" id="modify-button">리뷰 수정</button> -->
+									 <button type="button" onclick="deleteReviews()">리뷰 삭제</button>
+									 <button type="button" onclick="modifyReviews()">리뷰 수정</button>
+									<!-- <button type="button" onclick="location.href='/dd/member/mypage/review/delete.do?seq=${dto.review_seq}'">리뷰 삭제</button> -->
+									<%-- <button type="button" onclick="location.href='/dd/member/mypage/review/edit.do?seq=${dto.review_seq}';">리뷰 수정</button> --%>
+									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}">
 								</form>
 
-								
+
 							</div>
 
 						</div>
@@ -193,3 +203,46 @@ th {
 	</section>
 
 </main>
+<script>
+
+	/* $('#delete-button').click(function(e) {
+	 var result = confirm("정말 예매를 취소하시겠습니까?");
+	 if (!result) {
+	 e.preventDefault(); // 확인을 누르지 않으면 기본 동작(폼 제출)을 막음
+	 }
+	 }); */
+
+	/*
+	 $('#modify-button').click(function() {
+	 window.location.href = '/dd/member/mypage/review/edit.do';
+
+	 }); */
+
+	function deleteReviews() {
+		// 선택된 체크박스가 있다면
+		if ($("input[name='selectedReview']:checked").length > 0) {
+
+			var result = confirm("정말 예매를 취소하시겠습니까?");
+			if (result) {
+
+				// 삭제 form 설정 및 제출
+				$('#reviewForm').attr('action',
+						'/dd/member/mypage/review/delete.do');
+				$('#reviewForm').submit();
+			}
+		}
+	}
+	 
+	function modifyReviews() {
+		// 선택된 체크박스가 있다면
+		if ($("input[name='selectedReview']:checked").length > 0) {
+			// 수정 form 설정 및 제출
+			/* $('#reviewForm').attr('action', '/dd/member/mypage/review/edit.do');
+			$('#reviewForm').submit(); */
+			
+			const seq = $('input[type="radio"]:checked').val();
+			
+			location.href='/dd/member/mypage/review/edit.do?seq=' + seq;
+		}
+	} 
+</script>

@@ -35,6 +35,10 @@ public class MypageAttractionDAOImpl implements MypageAttractionDAO{
 		return mapper.getTotalCount();
 	}
 	
-	
+	@Override
+	public List<AttractionDTO> plist(Map<String, String> map) {
+		
+		return mapper.plist(map);
+	}
 
 }

@@ -3016,6 +3016,9 @@ VALUES (seqtblBookUser.NEXTVAL, TO_DATE('2023-12-10', 'YYYY-MM-DD'), 4, 8, 3, 8)
 INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
 VALUES (seqtblBookUser.NEXTVAL, TO_DATE('2023-12-10', 'YYYY-MM-DD'), 5, 9, 3, 9);
 
+INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
+VALUES (seqtblBookUser.NEXTVAL, TO_DATE('2023-12-13', 'YYYY-MM-DD'), 5, 9, 3, 9);
+
 /* 코스 */
 INSERT INTO tblCourse (course_seq, name, img)
 VALUES (seqtblCourse.NEXTVAL, '고양이의 보은 코스', '고양이의 보은 코스.png');

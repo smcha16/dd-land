@@ -33,8 +33,10 @@ public class MemberMypageAttractionController {
 		map.put("email", email);
 		
 		List<AttractionDTO> list = service.list(map);
+		List<AttractionDTO> plist = service.plist(map);
 
 		model.addAttribute("list", list);
+		model.addAttribute("plist", plist);
 		model.addAttribute("email", email);
 		model.addAttribute("currentPage", page);  //페이징
 	    model.addAttribute("map", map);  //페이징

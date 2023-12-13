@@ -17,6 +17,10 @@ public interface MypageReviewDAO {
 
 	int add(ReviewDTO dto);
 
+	ReviewDTO get(String seq);
+
+	int edit(ReviewDTO dto);
+
 
 
 }

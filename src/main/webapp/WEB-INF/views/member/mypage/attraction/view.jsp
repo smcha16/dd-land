@@ -101,26 +101,27 @@ th {
 	justify-content: center;
 	margin-top: 40px;
 }
+
 #page-bar {
-      margin-top: 50px;
-   }
-   .page-link {
-      color: #CE1212;
-   }
-   .active > .page-link, .page-link.active {
-      z-index: 3;
-       color: var(--bs-pagination-active-color);
-       background-color: #CE1212;
-       border-color: #CE1212;
-   }
+	margin-top: 50px;
+}
+
+.page-link {
+	color: #CE1212;
+}
+
+.active>.page-link, .page-link.active {
+	z-index: 3;
+	color: var(- -bs-pagination-active-color);
+	background-color: #CE1212;
+	border-color: #CE1212;
+}
 </style>
 
 <!-- ======= Main ======= -->
 <main id="main" class="main">
 
-	<div class="pagetitle">
-		<h1>어트랙션 예약 내역</h1>
-	</div>
+
 
 	<section class="section">
 		<div class="row">
@@ -131,6 +132,10 @@ th {
 						<div class="card">
 							<div class="card-body">
 
+								<div class="pagetitle">
+									<h1>어트랙션 예약 내역</h1>
+								</div>
+
 								<nav class="d-flex justify-content-end">
 									<ol class="breadcrumb">
 										<!-- <li class="breadcrumb-item"><a href="index.html">추가</a></li>
@@ -139,7 +144,8 @@ th {
 									</ol>
 								</nav>
 
-								<form action="/dd/member/mypage/attraction/delete.do" method="post">
+								<form action="/dd/member/mypage/attraction/delete.do"
+									method="post">
 									<table class="table">
 										<thead>
 											<tr>
@@ -153,7 +159,8 @@ th {
 										<tbody>
 											<c:forEach items="${list}" var="dto">
 												<tr>
-													<td><input type="radio" name="selectedAttraction" value="${dto.book_user_seq}"></td>
+													<td><input type="radio" name="selectedAttraction"
+														value="${dto.book_user_seq}"></td>
 													<td>${dto.name}</td>
 													<td>${dto.regdate}</td>
 													<td>${dto.book_time}</td>
@@ -162,10 +169,36 @@ th {
 											</c:forEach>
 										</tbody>
 									</table>
-									<button type="submit">예약취소</button>
+									<button type="submit" id="delete-button">예약취소</button>
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}">
 								</form>
+								
+								<div class="pagetitle">
+									<h1>이전 어트랙션 예약 내역</h1>
+								</div>
+								
+								
+									<table class="table">
+										<thead>
+											<tr>
+												<th>어트랙션</th>
+												<th>예약날짜</th>
+												<th>예약시간</th>
+												<th>예약인원</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${plist}" var="dto">
+												<tr>
+													<td>${dto.name}</td>
+													<td>${dto.regdate}</td>
+													<td>${dto.book_time}</td>
+													<td>${dto.capacity}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
 
 							</div>
 
@@ -194,3 +227,12 @@ th {
 	</section>
 
 </main>
+
+<script>
+$('#delete-button').click(function(e) {
+	var result = confirm("정말 예매를 취소하시겠습니까?");
+	if (!result) {
+        e.preventDefault(); // 확인을 누르지 않으면 기본 동작(폼 제출)을 막음
+    }
+});
+</script>

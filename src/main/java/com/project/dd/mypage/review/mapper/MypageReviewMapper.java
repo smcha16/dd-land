@@ -17,4 +17,8 @@ public interface MypageReviewMapper {
 
 	int add(ReviewDTO dto);
 
+	ReviewDTO get(String seq);
+
+	int edit(ReviewDTO dto);
+
 }
