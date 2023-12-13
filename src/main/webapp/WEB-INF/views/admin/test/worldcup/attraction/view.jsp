@@ -167,8 +167,8 @@ th {
 												<td>
 												    <div class="progress" style="height: 20px;">
 												        <div class="progress-bar" role="progressbar"
-												            style="width: ${String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 10)) * 100)}%;"
-												            aria-valuenow="${String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 10)) * 100)}"
+												            style="width: ${String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 5)) * 100)}%;"
+												            aria-valuenow="${String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 5)) * 100)}"
 												            aria-valuemin="0" aria-valuemax="100"
 												            data-bs-toggle="tooltip" data-bs-placement="top"
 												            title="${dto.awc_final_win_count}/${awcFinalWinTotalCount}">
@@ -183,15 +183,13 @@ th {
 													        style="width: ${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}%;"
 													        aria-valuenow="${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}"
 													        aria-valuemin="0" aria-valuemax="100"
-													        data-bs-toggle="tooltip" data-bs-placement="top" =
+													        data-bs-toggle="tooltip" data-bs-placement="top"
 													        title="${dto.awc_win_count}/${dto.awc_match_count}">
 													        ${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}%
 													    </div>
 													</div>
 												</td>
 
-								                <%-- <td>${dto.awc_win_count}/${dto.awc_match_count}</td> --%>
-									        
 												<td>
 													<div class="d-flex justify-content-center">
 														<div class="form-check form-switch">

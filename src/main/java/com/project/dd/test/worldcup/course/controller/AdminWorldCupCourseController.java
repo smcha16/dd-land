@@ -31,6 +31,7 @@ public class AdminWorldCupCourseController {
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
 		model.addAttribute("listCourse", courseService.getAllCourse(map));
+		model.addAttribute("cwcFinalWinTotalCount", courseService.getCWCFinalWinTotalCount());
 
 		return "admin/test/worldcup/course/view";
 

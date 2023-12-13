@@ -62,5 +62,10 @@ public class WorldCupCourseDAOImpl implements WorldCupCourseDAO {
 	public int checkNameDuplication(CourseDTO dto) {
 		return mapper.checkNameDuplication(dto);
 	}
+	
+	@Override
+	public int getCWCFinalWinTotalCount() {
+		return mapper.getCWCFinalWinTotalCount();
+	}
 
 }

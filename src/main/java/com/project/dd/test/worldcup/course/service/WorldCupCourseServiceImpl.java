@@ -116,5 +116,11 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 		
 		return courseDAO.checkNameDuplication(dto);
 	}
+	
+	@Override
+	public int getCWCFinalWinTotalCount() {
+		
+		return courseDAO.getCWCFinalWinTotalCount();
+	}
 
 }

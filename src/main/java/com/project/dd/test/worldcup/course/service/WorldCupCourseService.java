@@ -29,5 +29,7 @@ public interface WorldCupCourseService {
 	int addCWCWin(CourseDTO dto, String courseSeq);
 	
 	int addCWCFinalWin(CourseDTO dto, String courseSeq);
+
+	int getCWCFinalWinTotalCount();
 	
 }
