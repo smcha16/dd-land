@@ -14,9 +14,16 @@ public class MypageModifyService {
 	@Autowired
 	private MypageModifyDAO dao;
 
-	public List<ModifyDTO> list() {
+	public List<ModifyDTO> list(String email) {
 		
-		return dao.list();
+		return dao.list(email);
 	}
+
+	public int edit(ModifyDTO dto) {
+		
+		return dao.edit(dto);
+	}
+
+	
 
 }
