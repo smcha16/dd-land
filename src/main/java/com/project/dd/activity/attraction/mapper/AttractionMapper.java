@@ -51,10 +51,10 @@ public interface AttractionMapper {
 
 	List<AttractionImgDTO> getAllAttractionImgList();
 
-	int addCWC(AttractionDTO dto);
+	int addAWC(AttractionDTO dto);
 
-	int addCWCWin(AttractionDTO dto);
+	int addAWCWin(AttractionDTO dto);
 
-	int addCWCFinalWin(AttractionDTO dto);
+	int addAWCFinalWin(AttractionDTO dto);
 	
 }

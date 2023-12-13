@@ -121,17 +121,17 @@ public class AttractionDAOImpl implements AttractionDAO {
 
 	@Override
 	public int addAWC(AttractionDTO dto) {
-		return mapper.addCWC(dto);
+		return mapper.addAWC(dto);
 	}
 	
 	@Override
 	public int addAWCWin(AttractionDTO dto) {
-		return mapper.addCWCWin(dto);
+		return mapper.addAWCWin(dto);
 	}
 	
 	@Override
 	public int addAWCFinalWin(AttractionDTO dto) {
-		return mapper.addCWCFinalWin(dto);
+		return mapper.addAWCFinalWin(dto);
 	}
 
 }
