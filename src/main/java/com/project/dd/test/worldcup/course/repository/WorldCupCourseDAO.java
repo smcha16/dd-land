@@ -22,5 +22,9 @@ public interface WorldCupCourseDAO {
     String getCourseSeq();
     
 	int addCWC(CourseDTO dto);
+
+	int addCWCWin(CourseDTO dto);
 	
+	int addCWCFinalWin(CourseDTO dto);
+
 }

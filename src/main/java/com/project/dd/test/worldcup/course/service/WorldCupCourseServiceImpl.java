@@ -96,6 +96,22 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 	}
 	
 	@Override
+	public int addCWCWin(CourseDTO dto, String courseSeq) {
+
+        dto.setCourse_seq(courseSeq);
+        
+		return courseDAO.addCWCWin(dto);
+	}
+	
+	@Override
+	public int addCWCFinalWin(CourseDTO dto, String courseSeq) {
+
+        dto.setCourse_seq(courseSeq);
+        
+		return courseDAO.addCWCFinalWin(dto);
+	}
+	
+	@Override
 	public int checkNameDuplication(CourseDTO dto) {
 		
 		return courseDAO.checkNameDuplication(dto);

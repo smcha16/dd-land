@@ -22,5 +22,9 @@ public interface WorldCupCourseMapper {
 	int checkNameDuplication(CourseDTO dto);
 
 	int addCWC(CourseDTO dto);
+
+	int addCWCWin(CourseDTO dto);
+	
+	int addCWCFinalWin(CourseDTO dto);
 	
 }

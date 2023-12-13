@@ -22,8 +22,12 @@ public interface WorldCupCourseService {
 
 	int checkNameDuplication(CourseDTO dto);
 	
+	String getCourseSeq();
+
 	int addCWC(CourseDTO dto, String courseSeq);
 
-	String getCourseSeq();
+	int addCWCWin(CourseDTO dto, String courseSeq);
+	
+	int addCWCFinalWin(CourseDTO dto, String courseSeq);
 	
 }

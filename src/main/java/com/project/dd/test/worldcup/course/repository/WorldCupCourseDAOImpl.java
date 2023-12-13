@@ -34,23 +34,33 @@ public class WorldCupCourseDAOImpl implements WorldCupCourseDAO {
 	}
 
 	@Override
-	public int addCourse(CourseDTO dto) {
-		return mapper.addCourse(dto);
-	}
-
-	@Override
-	public int checkNameDuplication(CourseDTO dto) {
-		return mapper.checkNameDuplication(dto);
-	}
-
-	@Override
 	public String getCourseSeq() {
 		return mapper.getCourseSeq();
 	}
-
+	
+	@Override
+	public int addCourse(CourseDTO dto) {
+		return mapper.addCourse(dto);
+	}
+	
 	@Override
 	public int addCWC(CourseDTO dto) {
 		return mapper.addCWC(dto);
+	}
+
+	@Override
+	public int addCWCWin(CourseDTO dto) {
+		return mapper.addCWCWin(dto);
+	}
+	
+	@Override
+	public int addCWCFinalWin(CourseDTO dto) {
+		return mapper.addCWCFinalWin(dto);
+	}
+	
+	@Override
+	public int checkNameDuplication(CourseDTO dto) {
+		return mapper.checkNameDuplication(dto);
 	}
 
 }
