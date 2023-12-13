@@ -3,6 +3,7 @@ package com.project.dd.register.repository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
+import com.project.dd.register.domain.MemberDTO;
 import com.project.dd.register.mapper.RegisterMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,12 @@ public class RegisterDAOImpl implements RegisterDAO{
 	@Override
 	public int check(String email) {
 		return mapper.check(email);
+	}
+
+
+	@Override
+	public int register(MemberDTO memberDTO) {
+		return mapper.register(memberDTO);
 	}
 
 }

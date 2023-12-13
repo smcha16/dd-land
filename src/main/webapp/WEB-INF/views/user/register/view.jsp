@@ -4,7 +4,7 @@
 <html lnag="ko">
 <head>
 <meta charset="UTF-8">
-<title>네이버 : 회원가입</title>
+<title>DD : 회원가입</title>
 <link rel="stylesheet" href="new_main.css">
 <style>
 /* 레이아웃 틀 */
@@ -183,12 +183,15 @@ select {
 	font-weight: 400;
 	font-family: Dotum, '돋움', Helvetica, sans-serif;
 }
+button#checkDuplicateBtn {
+    margin-left: 10px; /* 버튼을 아이디(이메일) 옆으로 이동 */
+}
 </style>
 </head>
 <body>
 	<!-- header -->
 	<div id="header">
-		<a href="/dd/index.do" target="_self" title="네이버 회원가입 페이지 보러가기"><img
+		<a href="/dd/index.do" target="_self" title="DD Studio"><img
 			src="/dd/resources/files/dd/DD.png" id="logo"></a>
 	</div>
 
@@ -200,14 +203,16 @@ select {
 			<div id="content">
 
 				<!-- ID -->
-				<div>
-					<h3 class="join_title">
-						<label for="id">아이디(이메일)</label>
-					</h3>
-					<span class="box int_id"> <input type="text" name="email"
-						id="id" class="int" maxlength="20"> <!-- <span class="step_url">@naver.com</span> -->
-					</span> <span class="error_next_box"></span>
-				</div>
+<div>
+    <h3 class="join_title">
+        <label for="id">아이디(이메일)</label>
+    </h3>
+    <span class="box int_id">
+        <input type="text" name="email" id="id" class="int" maxlength="20">
+    </span>
+    <span class="error_next_box" id="emailErrorBox" style="color: red;"></span>
+</div>
+
 
 				<!-- PW1 -->
 				<div>
@@ -259,7 +264,7 @@ select {
 
 						<!-- BIRTH_MM -->
 						<div id="bir_mm">
-							<span class="box"> <select id="mm" class="sel">
+							<span class="box"> <select id="mm" class="sel" name="mm">
 									<option>월</option>
 									<option value="01">1</option>
 									<option value="02">2</option>
@@ -280,7 +285,7 @@ select {
 						<!-- BIRTH_DD -->
 						<div id="bir_dd">
 							<span class="box"> <input type="text" id="dd" class="int"
-								maxlength="2" placeholder="일">
+								name="dd" maxlength="2" placeholder="일">
 							</span>
 						</div>
 
@@ -327,14 +332,14 @@ select {
 						<label for="phoneNo">휴대전화</label>
 					</h3>
 					<span class="box int_mobile"> <input type="tel" id="mobile"
-						class="int" maxlength="16" placeholder="전화번호 입력">
+						name="tel" class="int" maxlength="16" placeholder="전화번호 입력">
 					</span> <span class="error_next_box"></span>
 				</div>
 
 
 				<!-- JOIN BTN-->
 				<div class="btn_area">
-					<button type="button" id="btnJoin">
+					<button type="button" id="btnJoin" onclick="submit();">
 						<span>가입하기</span>
 					</button>
 				</div>
@@ -352,6 +357,11 @@ select {
 
 </body>
 <script>
+
+function submit() {
+	$('form').submit();
+}
+
 	/*변수 선언*/
 
 	var id = document.querySelector('#id');
@@ -380,7 +390,7 @@ select {
 
 	/*이벤트 핸들러 연결*/
 
-	id.addEventListener("focusout", checkId);
+	 id.addEventListener("focusout", checkId); 
 	pw1.addEventListener("focusout", checkPw);
 	pw2.addEventListener("focusout", comparePw);
 	userName.addEventListener("focusout", checkName);
@@ -532,19 +542,21 @@ select {
 	}
 
 	function checkPhoneNum() {
-		var isPhoneNum = /([01]{2})([01679]{1})([0-9]{3,4})([0-9]{4})/;
+	    var isPhoneNum = /([01]{2})([01679]{1})([0-9]{3,4})([0-9]{4})/;
 
-		if (mobile.value === "") {
-			error[7].innerHTML = "필수 정보입니다.";
-			error[7].style.display = "block";
-		} else if (!isPhoneNum.test(mobile.value)) {
-			error[7].innerHTML = "형식에 맞지 않는 번호입니다.";
-			error[7].style.display = "block";
-		} else {
-			error[7].style.display = "none";
-		}
+	    if(mobile.value === "") {
+	        error[7].innerHTML = "필수 정보입니다.";
+	        error[7].style.display = "block";
+	    } else if(!isPhoneNum.test(mobile.value)) {
+	        error[7].innerHTML = "형식에 맞지 않는 번호입니다.";
+	        error[7].style.display = "block";
+	    } else {
+	        error[7].style.display = "none";
+	    }
 
+	    
 	}
+
 </script>
 
 <script
@@ -586,6 +598,62 @@ select {
 			}
 		}).open();
 	}
+</script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+$(document).ready(function () {
+    var idInput = $("#id");
+    var errorBox = $(".error_next_box");
+
+    // 아이디 입력란에서 포커스가 떠날 때마다 유효성 검사
+    idInput.on("focusout", function () {
+        var id = idInput.val();
+        var idPattern = /[a-zA-Z0-9_-]{5,20}/;
+
+        if (id === "") {
+            errorBox.text("필수 정보입니다.");
+        } else if (!idPattern.test(id)) {
+            errorBox.text("5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.");
+        } else {
+            errorBox.text("멋진 아이디네요!");
+            errorBox.css("color", "#08A600");
+        }
+
+        // 이메일 형식 유효성 검사
+        var email = idInput.val();
+        if (!isValidEmail(email)) {
+            errorBox.text("올바른 이메일 형식이 아닙니다.");
+            return;
+        }
+
+        // 중복 검사 수행
+        $.ajax({
+            type: "GET",
+            url: "/dd/user/register/checkEmailDuplicate",
+            data: { email: email },
+            success: function (response) {
+                if (response === "DUPLICATED") {
+                    errorBox.text("이미 사용 중인 이메일입니다.");
+                } else {
+                    errorBox.text("사용 가능한 이메일입니다.");
+                }
+            },
+            error: function () {
+                console.error("Error during email duplicate check.");
+            }
+        });
+    });
+
+    // 이메일 형식 유효성 검사 함수 (필요 시 추가)
+    function isValidEmail(email) {
+        // 간단한 이메일 형식 체크 예시
+        var emailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/;
+        return emailPattern.test(email);
+    }
+});
+
+
 </script>
 
 </html>
