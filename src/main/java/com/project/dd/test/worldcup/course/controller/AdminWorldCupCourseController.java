@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
+import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
 
 @Controller
@@ -44,13 +44,20 @@ public class AdminWorldCupCourseController {
 	}
 
 	@PostMapping(value = "/admin/test/worldcup/course/addok.do")
-	public String addok(Model model, CourseDTO dto, MultipartFile img, HttpServletRequest req) {
-		//System.out.println("DTO: " + dto.toString());
-		//System.out.println("Image File Name: " + img.getOriginalFilename());
+	public String addok(Model model, CourseDTO dto, MultipartFile image, HttpServletRequest req) {
+		System.out.println("DTO: " + dto.toString());
+		System.out.println("Image File Name: " + image.getOriginalFilename());
 		
-		int result = courseService.addCourse(dto, img, req);
+		int result = courseService.addCourse(dto, image, req);
+		
+		CourseDTO cwcdto = new CourseDTO();
 		
 		if (result > 0) {
+			String courseSeq = courseService.getCourseSeq();
+			System.out.println(courseSeq);
+			
+			courseService.addCWC(cwcdto, courseSeq);
+			
 			return "redirect:/admin/test/worldcup/course/view.do";
 		} else {
 			model.addAttribute("alertMessage", "코스 추가에 실패했습니다.");

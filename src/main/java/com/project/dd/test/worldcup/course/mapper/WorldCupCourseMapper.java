@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
+import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 
 public interface WorldCupCourseMapper {
 
@@ -16,8 +17,10 @@ public interface WorldCupCourseMapper {
 
 	int addCourse(CourseDTO dto);
 
-	int getCourseSeq();
+	String getCourseSeq();
 
 	int checkNameDuplication(CourseDTO dto);
+
+	int addCWC(CourseDTO dto);
 	
 }

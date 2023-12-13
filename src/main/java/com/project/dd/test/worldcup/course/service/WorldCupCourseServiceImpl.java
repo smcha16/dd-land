@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
+import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 import com.project.dd.test.worldcup.course.repository.WorldCupCourseDAO;
 
 @Service
@@ -54,9 +55,9 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 	}
 	
 	@Override
-	public int addCourse(CourseDTO dto, MultipartFile img, HttpServletRequest req) {
+	public int addCourse(CourseDTO dto, MultipartFile image, HttpServletRequest req) {
 		
-		if (img.isEmpty()) {
+		if (image.isEmpty()) {
 			
 			dto.setImg("course.png");
 			
@@ -66,9 +67,9 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 				
 				UUID uuid = UUID.randomUUID();
 				
-				String filename = uuid + "_" + img.getOriginalFilename();
+				String filename = uuid + "_" + image.getOriginalFilename();
 				
-				img.transferTo(new File(req.getRealPath("/resources/test/worldcup/course") + "\\" + filename));
+				image.transferTo(new File(req.getRealPath("/resources/files/test/worldcup/course") + "\\" + filename));
 				
 				dto.setImg(filename);
 				
@@ -79,6 +80,19 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 		}
 		
 		return courseDAO.addCourse(dto);
+	}
+	
+	@Override
+	public String getCourseSeq() {
+		return courseDAO.getCourseSeq();
+	}
+	
+	@Override
+	public int addCWC(CourseDTO dto, String courseSeq) {
+
+        dto.setCourse_seq(courseSeq);
+        
+		return courseDAO.addCWC(dto);
 	}
 	
 	@Override

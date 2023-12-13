@@ -33,7 +33,12 @@
 		values (seqtblCourse.nextVal, #{name}, #{img})
 	</insert>
 	
-	<select id="getCourseSeq" resultType="int">
+	<insert id="addCWC" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		insert into tblCWC (cwc_seq, is_test, course_seq)
+		values (seqtblCWC.NEXTVAL, 'Y', #{course_seq})
+	</insert>
+	
+	<select id="getCourseSeq" resultType="String">
 		select max(course_seq) as course_seq from tblCourse
 	</select>
 	
