@@ -276,8 +276,6 @@ CREATE TABLE tblMovie (
    preview VARCHAR2(2000) /* 영화예고편영상 */
 );
 
-select * from tblCWC;
-
 /* 영화상영 */
 CREATE TABLE tblMoviePlay (
    movie_play_seq NUMBER PRIMARY KEY, /* 영화상영번호 */
