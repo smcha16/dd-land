@@ -5,5 +5,25 @@
 <mapper namespace="com.project.dd.activity.theater.mapper.TheaterMapper">
 	
 	<!-- id == 인터페이스의 추상메서드의 이름 -->
+	<!-- 페이징 -->
+	<select id="getTotalCount" resultType="int">
+      select count(*) from tblTheater
+	</select>
+	
+	<select id="getTheaterList" parameterType="map" resultType="com.project.dd.activity.theater.domain.TheaterDTO">
+		select *
+		from (select n.*, rownum as rnum from
+				(select * from tblTheater) n)
+		where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<insert id="addTheater" parameterType="com.project.dd.activity.theater.domain.TheaterDTO">
+		INSERT INTO tblTheater (theater_seq, name)
+		VALUES (seqtblTheater.NEXTVAL, #{dto.name})
+	</insert>
+	
+	<select id="getTheater" parameterType="String" resultType="com.project.dd.activity.theater.domain.TheaterDTO">
+		select * from tblTheater where theater_seq = #{theater_seq}
+	</select>
 	
 </mapper>

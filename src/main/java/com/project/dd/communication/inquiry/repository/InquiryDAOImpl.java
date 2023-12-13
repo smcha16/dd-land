@@ -13,6 +13,8 @@ public class InquiryDAOImpl implements InquiryDAO {
 	
 	@Autowired
 	private InquiryMapper mapper;
+	
+	/* 추가 */
 
 	@Override
 	public int addInquiry(InquiryDTO dto) {

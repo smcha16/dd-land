@@ -40,6 +40,7 @@ body {
 .section-info {
 	text-align: center;
 	margin: 2rem 0;
+	font-size: 22px;
 }
 
 .section-image {
@@ -64,7 +65,7 @@ section:first-of-type {
 	background-color: transparent;
 	background-repeat: no-repeat;
 	background-size: cover;
-	padding: 0;
+	padding: 70px 0;
 }
 
 section:last-of-type {
@@ -183,29 +184,60 @@ section:last-of-type {
 	top: 50%;
 	right: 20px;
 }
+
+/* 버튼 */
+#button {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 50px;
+}
+
+#back-button {
+	background-color: #CE1212;
+	border-color: #CE1212;
+}
+
+#back-button i {
+	margin-right: 7px;
+}
+
+div#reservation-btn {
+	display: flex;
+	justify-content: center;
+	padding: 20px;
+}
+
+div#reservation-btn>button {
+	padding: 13px 15px;
+	background: #b71c1c;
+	border: #b71c1c;
+	border-radius: 7px;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+p {
+	margin-top: 10px;
+	margin-bottom: 1rem;
+	color: darkgray;
+}
 </style>
 
 <!-- ======= Title & Image Section ======= -->
 <section>
-	<div class="container" data-aos="zoom-out">
+	<div class="container" data-aos="zoom-out" style="margin-bottom: 70px;">
 		<div class="section-header">
 			<h2>${dto.name}</h2>
 		</div>
-		<!-- Slick Slider -->
-		<div class="image-slider">
-			<c:forEach items="${list}" var="dto">
-				<div>
-					<img src="/dd/resources/files/restaurant/${dto.img}" alt="">
-				</div>
-			</c:forEach>
-			<!-- End Slick Slider -->
+		<div style="text-align: center;">
+			<img src="/dd/resources/files/guide/convenient/${dto.img }"
+				alt="Image">
 		</div>
-		<p class="section-info">
-			<span style="font-size: 1.5rem; font-weight: 500;">대표메뉴</span> <br>
-			${dto.menu }
-		</p>
+	</div>
 </section>
 <!-- End Title & Image Section -->
+
 
 <!-- 상세 정보 -->
 <!-- 운휴일정, 운영시간, 탑승인원, 이용정보 -->
@@ -217,12 +249,14 @@ section:last-of-type {
 			<div class="label">운영시간</div>
 			<div class="value">${dto.time}</div>
 		</div>
-		<%-- <div class="result-item">
-			<img src="/dd/resources/files/icon/dininginfo_icon6.png" alt="Image"
+
+
+		<div class="result-item">
+			<img src="/dd/resources/files/activity/calendar_icon.png" alt="Image"
 				class="icon" />
-			<div class="label">수용인원</div>
-			<div class="value">${dto.capacity}명</div>
-		</div> --%>
+			<div class="label">정상 운영</div>
+		</div>
+
 		<div class="result-item">
 			<img src="/dd/resources/files/icon/dininginfo_icon3.png" alt="Image"
 				class="icon" />
@@ -236,69 +270,118 @@ section:last-of-type {
 <section>
 	<div class="location">
 		<div class="label">위치 정보</div>
+		<p>* 스크롤과 드래그로 지도를 움직일 수 있습니다. *</p>
 		<div class="value location">
-			<div id="map" style="width: 950px; height: 400px;"></div>
+			<div id="map" style="width: 950px; height: 435px;"></div>
+		</div>
+		<div>
+			<button onclick="setBounds()" id="comeback">원래대로 돌아가기</button>
 		</div>
 	</div>
 </section>
 
-<section>
-	<div class="container">
-		<button>목록보기</button>
-	</div>
-</section>
+<!-- 목록보기 버튼 -->
+<div id="button">
+	<button type="button" id="back-button" class="btn btn-primary"
+		onclick="location.href='/dd/user/guide/convenient/view.do';">
+		<i class="bi bi-list"></i>목록
+	</button>
+</div>
 
 <!-- view2 Template 전용 JavaScript -->
+<!-- Kakao Map Open API -->
 <!-- Kakao Map Open API -->
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c089ee6f3d885cfbe52b2f15d8f3f531"></script>
 
-<!-- Slick Slider -->
-<script type="text/javascript"
-	src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
 <script>
-	/* 카카오 맵 */
-	const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+/* 카카오 맵 */
+const container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
 
-	const options = { //지도를 생성할 때 필요한 기본 옵션
-		center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
-		level : 10, //지도의 레벨(확대, 축소 정도)
-		//draggable : false, // 이동 금지
-		//disableDoubleClick : true, // 더블클릭 확대 금지
-		//scrollwheel : false // 휠 확대/축소 금지
-	};
+let options = {
+  center: new kakao.maps.LatLng(33.361488, 126.529212), // 지도의 중심좌표.
+  level: 10, // 지도의 레벨(확대, 축소 정도)
+  draggable: true, // 이동 금지
+  disableDoubleClick: false, // 더블클릭 확대 금지
+  scrollwheel: true // 휠 확대/축소 금지
+};
 
-	const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+const map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
 
-	//마커 출력
-	let imageSrc = '/dd/resources/files/marker/restaurant_marker2.png'; // 마커이미지의 주소
-	const imageSize = new kakao.maps.Size(40,40);
-	const option = {};
+// 마커 출력
+let imageSrc = '/dd/resources/files/marker/info.png'; // 마커이미지의 주소
+const imageSize = new kakao.maps.Size(40, 40);
+const option = {};
 
-	//마커 설정
-	const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
+// 마커 설정
+const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
 
-	const m1 = new kakao.maps.Marker({
-		position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng}), /* < 좌측 값은 테스트용 임시 ${location_dto.lat}, ${location_dto.lng} */
-		image: markerImg
-	});
+const m1 = new kakao.maps.Marker({
+  position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng}),
+  image: markerImg
+});
 
-	//마커 지도에 출력
-	m1.setMap(map);
+// 마커 지도에 출력
+m1.setMap(map);
 
+// LatLngBounds 객체 초기화
+const defaultBounds = new kakao.maps.LatLngBounds();
 
-	/* Slick Slider */
-	$('.image-slider').slick({
-		variableWidth : true,
-		infinite : true,
-		autoplay : true,
-		autoplaySpeed : 5000,
-		pauseOnHover : true,
-		arrows : true,
-		prevArrow : "<button type='button' class='slick-prev'>&#10094;</button>",
-		nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
-		draggable : true
-	});
+// 고정된 지도의 중심좌표와 레벨
+const fixedCenter = new kakao.maps.LatLng(33.361488, 126.529212);
+const fixedLevel = 10;
+
+// 이전의 지도 영역을 기억하기 위한 변수
+let previousBounds;
+
+// 버튼 클릭 시 실행할 함수
+function setBounds() {
+  console.log('setBounds clicked');
+
+  // 이전 지도 영역을 고정된 좌표로 설정
+  previousBounds = new kakao.maps.LatLngBounds(
+    new kakao.maps.LatLng(fixedCenter.getLat(), fixedCenter.getLng()),
+    new kakao.maps.LatLng(fixedCenter.getLat(), fixedCenter.getLng())
+  );
+
+  console.log('Previous Bounds:', previousBounds.toString());
+
+  // 이전의 레벨을 고정된 레벨로 설정
+  options = {
+    center: fixedCenter,
+    level: fixedLevel,
+    draggable: true,
+    disableDoubleClick: false,
+    scrollwheel: true
+  };
+
+  map.setLevel(fixedLevel);
+  map.setCenter(fixedCenter);
+
+  // 이전의 레벨과 중심좌표로 지도를 초기화
+  map.setOptions(options);
+}
+
+// 버튼 이벤트 등록
+document.getElementById('comeback').addEventListener('click', setBounds);
+
+// 드래그 이벤트 등록
+kakao.maps.event.addListener(map, 'dragend', function () {
+  // 이전 지도 영역을 기억
+  previousBounds = map.getBounds();
+});
+
+// 지도 이벤트 등록
+kakao.maps.event.addListener(map, 'bounds_changed', function () {
+  // 지도의 중심좌표를 확인하고, 원래대로 돌아갈 수 있는 경우에 버튼을 활성화
+  if (
+    map.getLevel() !== fixedLevel ||
+    !previousBounds.equals(map.getBounds())
+  ) {
+    document.getElementById('comeback').disabled = false;
+  } else {
+    document.getElementById('comeback').disabled = true;
+  }
+});
 </script>
 <!-- 끝 -->

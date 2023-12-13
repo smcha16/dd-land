@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.dd.test.worldcup.course.mapper.WorldCupCourseMapper">
+
+	<select id="getTotalCount" resultType="int">
+		select count(*)
+		from tblCWC cwc
+		join tblCourse c
+			ON cwc.course_seq = c.course_seq
+	</select>
+	
+	<select id="getAllCourse" parameterType="map" resultType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		select * from (
+		    select n.*, rownum as rnum
+		    from (
+		        SELECT c.*, cwc.is_test
+		        FROM tblCWC cwc
+		        JOIN tblCourse c ON cwc.course_seq = c.course_seq
+		    ) n
+		) where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<update id="updateCourseStatus" parameterType="map">
+	    update tblCWC
+	    set is_test = #{isTest}
+	    where course_seq = #{courseSeq}
+	</update>
+	
+	<insert id="addCourse" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		insert into tblCourse (course_seq, name, img)
+		values (seqtblCourse.nextVal, #{name}, #{img})
+	</insert>
+	
+	<insert id="addCWC" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		insert into tblCWC (cwc_seq, is_test, course_seq)
+		values (seqtblCWC.NEXTVAL, 'Y', #{course_seq})
+	</insert>
+	
+	<insert id="addCWCWin" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		insert into tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
+		values (seqtblCWCWin.NEXTVAL, 0, 0, #{course_seq})
+	</insert>
+	
+	<insert id="addCWCFinalWin" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		insert into tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
+		values (seqtblCWCFinalWin.NEXTVAL, 0, #{course_seq})
+	</insert>
+	
+	<select id="getCourseSeq" resultType="String">
+		select max(course_seq) as course_seq from tblCourse
+	</select>
+	
+	<select id="checkNameDuplication" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO" resultType="int">
+		select count(*) from tblCourse where name = #{name}
+	</select>
+	
+</mapper>

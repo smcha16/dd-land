@@ -18,7 +18,7 @@ public class AdminWorldCupAttractionController {
 	@Autowired
 	private WorldCupAttractionService attractionService;
 
-	@GetMapping(value = "/admin/test/worldcup/view.do")
+	@GetMapping(value = "/admin/test/worldcup/attraction/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model,
 			@RequestParam(defaultValue = "n") String close, @RequestParam(defaultValue = "Y") String isTest) {
 
@@ -27,33 +27,25 @@ public class AdminWorldCupAttractionController {
 		model.addAttribute("currentPage", page); // 페이징
 		model.addAttribute("map", map); // 페이징
 		model.addAttribute("listAttraction", attractionService.getAllAttraction(map));
+        //model.addAttribute("listAWCWin", attractionService.getAllAWCWin());
+        //model.addAttribute("listAWCFinalWin", attractionService.getAllAWCFinalWin());
 
 		// System.out.println(attractionService.getAllAttraction(map));
 
-		return "admin/test/worldcup/view";
+		return "admin/test/worldcup/attraction/view";
 	}
 
-	/*
-	@PostMapping(value = "/admin/test/worldcup/view.do")
-	public String updateAttractionStatus(@RequestParam String attractionSeq, @RequestParam String isChecked, Model model) {
-		System.out.println("seq:" + attractionSeq + " check:" + isChecked);
-	    attractionService.updateAttractionStatus(attractionSeq, isChecked);
+	@PostMapping(value = "/admin/test/worldcup/attraction/view.do")
+	public String updateAttractionStatus(@RequestParam String attractionSeq, @RequestParam String isTest, Model model) {
+	    //System.out.println("seq:" + attractionSeq + " check:" + isTest);
 	    
-	    return "redirect:/admin/test/worldcup/view.do"; 
-	}
-	*/
-	
-	@PostMapping(value = "/admin/test/worldcup/view.do")
-	public String updateAttractionStatus(@RequestParam String attractionSeq, @RequestParam String isChecked, Model model) {
-	    //System.out.println("seq:" + attractionSeq + " check:" + isChecked);
-	    
-	    Map<String, String> paramMap = new HashMap<>();
-	    paramMap.put("isChecked", isChecked);
-	    paramMap.put("attractionSeq", attractionSeq);
+	    Map<String, String> map = new HashMap<>();
+	    map.put("isTest", isTest);
+	    map.put("attractionSeq", attractionSeq);
 
-	    attractionService.updateAttractionStatus(paramMap);
+	    attractionService.updateAttractionStatus(map);
 	    
-	    return "redirect:/admin/test/worldcup/view.do"; 
+	    return "redirect:/admin/test/worldcup/attraction/view.do"; 
 	}
 
 }
