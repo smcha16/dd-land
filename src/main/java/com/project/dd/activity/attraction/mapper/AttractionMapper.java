@@ -49,4 +49,6 @@ public interface AttractionMapper {
 
 	int delAttractionImgByImgSeq(String imgseq);
 
+	List<AttractionImgDTO> getAllAttractionImgList();
+
 }
