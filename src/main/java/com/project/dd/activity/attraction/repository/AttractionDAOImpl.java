@@ -114,4 +114,9 @@ public class AttractionDAOImpl implements AttractionDAO {
 		return mapper.delAttractionImgByImgSeq(imgseq);
 	}
 
+	@Override
+	public List<AttractionImgDTO> getAllAttractionImgList() {
+		return mapper.getAllAttractionImgList();
+	}
+
 }

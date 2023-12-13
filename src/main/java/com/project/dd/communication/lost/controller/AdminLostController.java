@@ -24,7 +24,7 @@ public class AdminLostController {
 	@Autowired
 	private LostPropertyService service;
 	
-	// 목록
+	/* 목록 */
 	
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
@@ -41,7 +41,7 @@ public class AdminLostController {
 
 	}
 	
-	// 추가
+	/* 추가 */
 	
 	@GetMapping(value = "/add.do")
 	public String add() {
@@ -69,7 +69,7 @@ public class AdminLostController {
 
 	}
 	
-	// 수정
+	/* 수정 */
 	
 	@GetMapping(value = "/edit.do")
 	public String edit(String seq, Model model) {
@@ -101,7 +101,7 @@ public class AdminLostController {
 
 	}
 	
-	// 삭제	
+	/* 삭제 */
 	
 	@PostMapping(value = "/del.do")
 	public String del(String[] seqList) {

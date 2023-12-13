@@ -59,6 +59,8 @@
 		font-weight: bold;
 		background: transparent;
 		border-radius: 0 0 10px 10px;
+		justify-content: center;
+    	align-items: center;
 	}
 	.hidden-div {
 		display: none;

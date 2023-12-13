@@ -89,4 +89,8 @@
 		delete from tblAttractionImg where attraction_img_seq = #{attraction_img_seq}
 	</delete>
 	
+	<select id="getAllAttractionImgList" resultType="com.project.dd.activity.attraction.domain.AttractionImgDTO">
+		select * from tblAttractionImg
+	</select>
+	
 </mapper>

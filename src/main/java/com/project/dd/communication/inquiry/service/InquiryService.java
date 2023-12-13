@@ -21,7 +21,7 @@ public class InquiryService {
 	@Autowired
 	private InquiryDAO dao;
 	
-	// 파일 저장
+	/* 파일 저장 */
 
 	public String saveFile(HttpServletRequest req, MultipartFile doc) {
 			
@@ -57,7 +57,7 @@ public class InquiryService {
 		
 	}
 	
-	// 파일 추가
+	/* 파일 추가 */
 	
 	public InquiryDTO addFile(InquiryDTO dto, HttpServletRequest req, MultipartFile doc) {
 		
@@ -75,7 +75,7 @@ public class InquiryService {
 		
 	}
 	
-	// 추가
+	/* 추가 */
 	
 	public int addInquiry(InquiryDTO dto) {
 		

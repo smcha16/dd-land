@@ -13,5 +13,9 @@ public interface WorldCupCourseDAO {
     List<CourseDTO> getAllCourse(Map<String, String> map);
 
 	void updateCourseStatus(Map<String, String> map);
-    
+
+	int addCourse(CourseDTO dto);
+
+	int checkNameDuplication(CourseDTO dto);
+	
 }

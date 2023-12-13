@@ -23,6 +23,8 @@ public class VocService {
 	@Autowired
 	private VocDAO dao;
 	
+	/* 방문일 */
+	
 	public List<String> getVisitDateList(String email) {
 		
 		List<String> visitDateList = dao.getVisitDateList(email);
@@ -39,6 +41,8 @@ public class VocService {
 		return list;
 		
 	}
+	
+	/* 파일 저장 */
 
 	public String saveFile(HttpServletRequest req, MultipartFile doc) {
 
@@ -73,7 +77,27 @@ public class VocService {
 		return null;
 		
 	}
+	
+	/* 파일 추가 */
+	
+	public VocDTO addFile(VocDTO dto, HttpServletRequest req, MultipartFile doc) {
+		
+		if (doc == null || doc.isEmpty()) {
+			
+			dto.setAttach(null);
+			
+		} else {
+			
+			dto.setAttach(saveFile(req, doc));
+			
+		}
 
+		return dto;
+		
+	}
+
+	/* 추가 */
+	
 	public int addVoc(VocDTO dto) {
 
 		return dao.addVoc(dto);

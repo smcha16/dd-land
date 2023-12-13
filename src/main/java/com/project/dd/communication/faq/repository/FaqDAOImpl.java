@@ -17,7 +17,7 @@ public class FaqDAOImpl implements FaqDAO {
 	@Autowired
 	private FaqMapper mapper;
 	
-	// 총 개수
+	/* 총 개수 */
 	
 	@Override
 	public int getTotalCount(String type) {
@@ -26,7 +26,7 @@ public class FaqDAOImpl implements FaqDAO {
 
 	}
 	
-	// 목록
+	/* 목록 */
 
 	@Override
 	public List<FaqDTO> getFaqList(Map<String, String> map) {
@@ -35,7 +35,7 @@ public class FaqDAOImpl implements FaqDAO {
 		
 	}
 	
-	// 추가
+	/* 추가 */
 
 	@Override
 	public int addFaq(FaqDTO dto) {
@@ -44,7 +44,7 @@ public class FaqDAOImpl implements FaqDAO {
 		
 	}
 	
-	// 상세
+	/* 상세 */
 
 	@Override
 	public FaqDTO getFaq(String seq) {
@@ -53,7 +53,7 @@ public class FaqDAOImpl implements FaqDAO {
 		
 	}
 	
-	// 수정
+	/* 수정 */
 
 	@Override
 	public int editFaq(FaqDTO dto) {
@@ -62,7 +62,7 @@ public class FaqDAOImpl implements FaqDAO {
 		
 	}
 	
-	// 삭제
+	/* 삭제 */
 
 	@Override
 	public void deleteFaq(String seq) {

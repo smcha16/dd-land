@@ -28,4 +28,17 @@
 	    where course_seq = #{courseSeq}
 	</update>
 	
+	<insert id="addCourse" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		insert into tblCourse (course_seq, name, img)
+		values (seqtblCourse.nextVal, #{name}, #{img})
+	</insert>
+	
+	<select id="getCourseSeq" resultType="int">
+		select max(course_seq) as course_seq from tblCourse
+	</select>
+	
+	<select id="checkNameDuplication" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO" resultType="int">
+		select count(*) from tblCourse where name = #{name}
+	</select>
+	
 </mapper>
