@@ -22,7 +22,7 @@ public class UserReviewController {
 	@Autowired
 	private ReviewService service;
 	
-	// 목록
+	/* 목록 */
 	
 	@GetMapping(value = "/view.do")
 	public String view(HttpSession session, @RequestParam(defaultValue = "n") String order, @RequestParam(defaultValue = "1") int page, Model model) {
@@ -41,7 +41,7 @@ public class UserReviewController {
 
 	}
 	
-	// 상세
+	/* 상세 */
 	
 	@GetMapping(value = "/detail.do")
 	public String detail(HttpSession session, String seq, Model model) {

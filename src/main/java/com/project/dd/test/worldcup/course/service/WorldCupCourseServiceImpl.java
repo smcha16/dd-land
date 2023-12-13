@@ -1,12 +1,17 @@
 package com.project.dd.test.worldcup.course.service;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
 import com.project.dd.test.worldcup.course.repository.WorldCupCourseDAO;
@@ -19,7 +24,7 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 	private WorldCupCourseDAO courseDAO;
 
 	public Map<String, String> paging(int page) { // 페이징 메서드
-		int pageSize = 9; // 나타났으면 하는 개수
+		int pageSize = 10; // 조회할 글 개수
 
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
@@ -37,15 +42,49 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 
 		return map;
 	}
-	
+
 	@Override
 	public List<CourseDTO> getAllCourse(Map<String, String> map) {
 		return courseDAO.getAllCourse(map);
 	}
-	
+
 	@Override
 	public void updateCourseStatus(Map<String, String> map) {
 		courseDAO.updateCourseStatus(map);
 	}
 	
+	@Override
+	public int addCourse(CourseDTO dto, MultipartFile img, HttpServletRequest req) {
+		
+		if (img.isEmpty()) {
+			
+			dto.setImg("course.png");
+			
+		} else {
+			
+			try {
+				
+				UUID uuid = UUID.randomUUID();
+				
+				String filename = uuid + "_" + img.getOriginalFilename();
+				
+				img.transferTo(new File(req.getRealPath("/resources/test/worldcup/course") + "\\" + filename));
+				
+				dto.setImg(filename);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return courseDAO.addCourse(dto);
+	}
+	
+	@Override
+	public int checkNameDuplication(CourseDTO dto) {
+		
+		return courseDAO.checkNameDuplication(dto);
+	}
+
 }

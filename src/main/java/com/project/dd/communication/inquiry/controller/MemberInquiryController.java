@@ -22,7 +22,7 @@ public class MemberInquiryController {
 	@Autowired
 	private InquiryService service;
 	
-	// 추가
+	/* 추가 */
 	
 	@GetMapping(value = "/add.do")
 	public String add(Authentication auth, Model model) {

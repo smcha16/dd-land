@@ -22,18 +22,17 @@
 		font-size: 48px;
 	    text-align: center;
 	}
-	#date {
+	#info {
 		font-size: 1.05rem;
 		text-align: center;
 		margin-top: 40px;
 	}
-	#date span {
+	#person, #readcount, #date span {
 		font-weight: bold;
 		color: #444;
 		margin-left: 7px;
-		margin-right: 12px;
 	}
-	#visit-date, #regdate {
+	#person {
 		margin-right: 50px !important;
 	}
 	.section-image {
@@ -67,20 +66,33 @@
 		z-index: 100;
 		position: absolute;
 	}
-	.slick-prev, .slick-next {
+	.slick-prev {
 		top: 50%;
 		left: 20px;
+	}
+	.slick-next {
+		top: 50%;
+		right: 20px;
 	}
 	#review-detail {
 		min-height: 400px;
 		text-align: center;
+	}
+	#date {
+		width: 72%;
+		text-align: left;
+		margin: 50px auto 15px;
+	}
+	#visit-date {
+		margin-right: 30px !important;
 	}
 	#content {
 		width: 75%;
 	    font-size: 1.1rem;
 	    color: #555;
 	    text-align: left;
-	    padding-top: 50px;
+	    padding: 30px 15px 0;
+	    border-top: 1px solid #333;
 	    margin: 0 auto;
 	}
 	#button button {
@@ -100,11 +112,10 @@
 	
 		<div class="section-header">
 			<h1><c:out value="${dto.subject}" /></h1>
-			<div id="date">
-	            <i class="bi bi-calendar-check"></i><span>방문일</span><span id="visit-date">${dto.visit_date}</span>
-	            <i class="bi bi-calendar-check"></i><span>등록일</span><span id="regdate">${dto.regdate}</span>
-	            <i class="bi bi-eye-fill"></i><span>조회수</span><span id="readcount">${dto.readcount}</span>
-	        </div>
+			<div id="info">
+				<i class="bi bi-person-fill"></i><span id="person">${dto.name} (${dto.email})</span>
+				<i class="bi bi-eye-fill"></i><span id="readcount">조회수</span><span id="readcount">${dto.readcount}</span>
+			</div>
 		</div>
 		
 		<div class="image-slider">
@@ -121,6 +132,11 @@
 <!-- ======= Main Section ======= -->
 
 <main id="review-detail">
+	<div id="date">
+        <i class="bi bi-calendar-check"></i><span>방문일</span><span id="visit-date">${dto.visit_date}</span>
+        <i class="bi bi-calendar-check"></i><span>등록일</span><span id="regdate">${dto.regdate}</span>
+    </div>
+    
 	<div id="content"><c:out value="${dto.content}" /></div>
 	
 	<div id="button">
