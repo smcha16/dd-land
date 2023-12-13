@@ -51,23 +51,15 @@ public class AdminBenefitController {
 			return "admin/pb/benefit/add";
 		}
 
-		try {
-			
-			String path = req.getRealPath("/resources/files/benefit");
-			File file = new File(path + "\\" + attach.getOriginalFilename());
-			attach.transferTo(file);
+		System.out.println(benefitDTO.toString());
 		
-
-			model.addAttribute("benefitDTO", benefitDTO);
-			model.addAttribute("filename",   attach.getOriginalFilename());
-			model.addAttribute("orgfilename", attach.getOriginalFilename());
-
-			System.out.println(System.nanoTime() + "_" + attach.getOriginalFilename());
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		int result = service.addBenefit(benefitDTO,attach,req);
+		
+		if (result == 0 ) {
+			bindingResult.reject("addFail"," 혜택 추가에 실패 했습니다.");
+			return "admin/pb/benefit/add";
 		}
-
+		
 		return "redirect:admin/pb/benefit/view";
 	}
 

@@ -1,9 +1,15 @@
 package com.project.dd.pb.benefit.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.pb.benefit.domain.BenefitDTO;
 import com.project.dd.pb.benefit.repository.BenefitDAO;
@@ -128,6 +134,23 @@ public class BenefitService {
 		
 		
 		return dao.benefitInfo(seq);
+	}
+
+	public int addBenefit(BenefitDTO benefitDTO, MultipartFile attach, HttpServletRequest req) {
+		
+		try {
+			UUID uuid = UUID.randomUUID();
+			
+			String filename = uuid + "_" +attach.getOriginalFilename();
+			
+			attach.transferTo(new File(req.getRealPath("/resources/files/benefit") + "/" + filename));
+			
+			benefitDTO.setImg(filename);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dao.addBenefit(benefitDTO);
 	}
 
 }

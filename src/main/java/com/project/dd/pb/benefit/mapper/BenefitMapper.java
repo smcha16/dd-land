@@ -3,6 +3,7 @@ package com.project.dd.pb.benefit.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.project.dd.pb.benefit.domain.BenefitDTO;
 
@@ -26,6 +27,9 @@ public interface BenefitMapper {
 
 	@Select("SELECT benefit_seq, name, type,  TO_CHAR(START_DATE, 'YYYY-MM-DD') AS start_date, TO_CHAR(END_DATE,'YYYY-MM-DD') AS end_date, discount_rate, img FROM TBLBENEFIT where BENEFIT_SEQ = #{seq}")
 	List<BenefitDTO> benefitInfo(String seq);
+	
+	@Update("insert into TBLBENEFIT(benefit_seq, name, type, start_date, end_date, discount_rate, img) values (SEQTBLBENEFIT.nextval,#{name},#{type},#{start_date},#{end_date},#{discount_rate},#{img})")
+	int addBenefit(BenefitDTO benefitDTO);
 
 	
 }
