@@ -4,12 +4,35 @@
 
 <mapper namespace="com.project.dd.communication.faq.mapper.FaqMapper">
 	<select id="getTotalCount" parameterType="String" resultType="int">
-		select count(*) from tblFaq where type = #{type}
+		select count(*) from tblFaq
+		<if test="type != '없음'">
+			where type = #{type}
+		</if>
 	</select>
 	
 	<select id="getFaqList" parameterType="map" resultType="com.project.dd.communication.faq.domain.FaqDTO">
 		select *
-		from (select f.*, rownum as rnum from (select * from tblFAQ where type = #{type} order by faq_seq desc) f)
+		from (select f.*, rownum as rnum from (select * from tblFAQ
+		<if test="type != '없음'">
+			where type = #{type}
+		</if>
+		order by faq_seq desc) f)
 		where rnum between #{startIndex} and #{endIndex}
 	</select>
+	
+	<insert id="addFaq" parameterType="com.project.dd.communication.faq.domain.FaqDTO">
+		insert into tblFaq (faq_seq, type, question, answer) values (seqtblFaq.nextVal, #{type}, #{question}, #{answer})
+	</insert>
+	
+	<select id="getFaq" parameterType="String" resultType="com.project.dd.communication.faq.domain.FaqDTO">
+		select * from tblFaq where faq_seq = #{seq}
+	</select>
+	
+	<update id="editFaq" parameterType="com.project.dd.communication.faq.domain.FaqDTO">
+		update tblFaq set type = #{type}, question = #{question}, answer = #{answer} where faq_seq = #{faq_seq}
+	</update>
+	
+	<delete id="deleteFaq" parameterType="String">
+		delete from tblFaq where faq_seq = #{seq}
+	</delete>
 </mapper>

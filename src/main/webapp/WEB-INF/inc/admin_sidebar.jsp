@@ -64,7 +64,7 @@
 	         		</a>
 	       		</li>
 	       		<li>
-	         		<a href="/dd/admin/activity/photo-zone/view.do">
+	         		<a href="/dd/admin/activity/photozone/view.do">
 	           			<i class="bi bi-circle"></i><span>포토존</span>
 	         		</a>
 	       		</li>

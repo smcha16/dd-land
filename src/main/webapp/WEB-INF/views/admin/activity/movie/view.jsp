@@ -201,11 +201,6 @@
 <!-- movie > view JavaScript -->
 <script>
 
-	/* tblMovie 삭제 실패 시, pop-up창 */
-	<c:if test="${not empty alertMessage}">
-		alert("${alertMessage}");
-	</c:if>
-
 	/* 수정 시, 체크 박스 1개만 선택 하여 seq 전달 하기 */
 	function edit() {
 		

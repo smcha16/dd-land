@@ -36,11 +36,6 @@
     	color: #b71c1c;
     }
     
-    /* placeholder CSS */
-    #name {
-    	
-    }
-    
     /* 기존 첨부파일 목록 CSS */
     .attached {
     	padding: 10px 0;
@@ -146,17 +141,12 @@
 
 </main>
 
-<!-- movie add용 JavaScript -->
+<!-- movie edit용 JavaScript -->
 <script>
 
 	function submit() {
 		$('form').submit();
 	}
-	
-	/* tblMovie 수정 실패 시, pop-up창 */
-	<c:if test="${not empty alertMessage}">
-		alert("${alertMessage}");
-	</c:if>
 	
 	/* 기존 첨부한 첨부파일 삭제 시 > 지우고 input[type="file"] 태그 활성화 */
 	function delAttached() {

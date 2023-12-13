@@ -18,7 +18,11 @@
     }
 	#add-form {
 		width: 70%;
+		padding: 35px 40px 40px;
+		border-collapse: separate;
+		border-radius: 10px;
 		margin: 50px auto 0;
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 	}
 	#add-form th, #add-form td {
 		height: 70px;
@@ -77,7 +81,6 @@
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
 					<div id="title" style="padding: 0 !important; font-size: 48px; font-weight: 700; color: #fff; margin: 0">이용문의</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -191,7 +194,6 @@
 	    	$('#content-message').css('display', 'block');
 	    	$('#content-message').text('내용을 입력하세요.');
 	    }
-			
 		
 		if ($('input[name="subject"]').val().trim() && $('textarea[name="content"]').val().trim()) {
 			if (!$('#agree').prop('checked')) {
@@ -204,8 +206,6 @@
 	});
 	
 	$('#back-button').click(function () {
-	    if (confirm('작성 중인 내용이 저장되지 않을 수 있습니다.\n취소하시겠습니까?')) {
-	        location.href='/dd/index.do';
-	    }
+		location.href='/dd/index.do';
 	});
 </script>
