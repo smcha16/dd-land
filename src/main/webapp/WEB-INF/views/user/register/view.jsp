@@ -356,6 +356,7 @@ button#checkDuplicateBtn {
 	</form>
 
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
 
 function submit() {
@@ -599,61 +600,69 @@ function submit() {
 		}).open();
 	}
 </script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+<!-- 생략... -->
 
 <script>
 $(document).ready(function () {
     var idInput = $("#id");
     var errorBox = $(".error_next_box");
 
-    // 아이디 입력란에서 포커스가 떠날 때마다 유효성 검사
     idInput.on("focusout", function () {
         var id = idInput.val();
         var idPattern = /[a-zA-Z0-9_-]{5,20}/;
 
         if (id === "") {
-            errorBox.text("필수 정보입니다.");
+            displayError("emailErrorBox", "필수 정보입니다.");
         } else if (!idPattern.test(id)) {
-            errorBox.text("5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.");
+            displayError("emailErrorBox", "5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.");
         } else {
-            errorBox.text("멋진 아이디네요!");
-            errorBox.css("color", "#08A600");
-        }
-
-        // 이메일 형식 유효성 검사
-        var email = idInput.val();
-        if (!isValidEmail(email)) {
-            errorBox.text("올바른 이메일 형식이 아닙니다.");
-            return;
-        }
-
-        // 중복 검사 수행
-        $.ajax({
-            type: "GET",
-            url: "/dd/user/register/checkEmailDuplicate",
-            data: { email: email },
-            success: function (response) {
-                if (response === "DUPLICATED") {
-                    errorBox.text("이미 사용 중인 이메일입니다.");
-                } else {
-                    errorBox.text("사용 가능한 이메일입니다.");
-                }
-            },
-            error: function () {
-                console.error("Error during email duplicate check.");
+            displaySuccess("emailErrorBox", "멋진 아이디네요!");
+            // 이메일 형식 유효성 검사
+            var email = idInput.val();
+            if (!isValidEmail(email)) {
+                displayError("emailErrorBox", "올바른 이메일 형식이 아닙니다.");
+                return;
             }
-        });
+            // 중복 검사 수행
+            $.ajax({
+                type: "GET",
+                url: "/dd/user/register/checkEmailDuplicate",
+                data: { email: email },
+                success: function (response) {
+                    if (response === "DUPLICATED") {
+                        displayError("emailErrorBox", "이미 사용 중인 이메일입니다.");
+                    } else {
+                        displaySuccess("emailErrorBox", "사용 가능한 이메일입니다.");
+                    }
+                },
+                error: function () {
+                    console.error("Error during email duplicate check.");
+                }
+            });
+        }
     });
 
     // 이메일 형식 유효성 검사 함수 (필요 시 추가)
     function isValidEmail(email) {
-        // 간단한 이메일 형식 체크 예시
         var emailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/;
         return emailPattern.test(email);
     }
+
+    // 에러 메시지를 표시하는 함수
+    function displayError(errorBoxId, message) {
+        $("#" + errorBoxId).text(message).css("color", "red").show();
+    }
+
+    // 성공 메시지를 표시하는 함수
+    function displaySuccess(errorBoxId, message) {
+        $("#" + errorBoxId).text(message).css("color", "#08A600").show();
+    }
 });
-
-
 </script>
+
+
+<!-- 생략... -->
 
 </html>
