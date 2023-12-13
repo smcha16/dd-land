@@ -27,5 +27,7 @@ public interface WorldCupAttractionMapper {
     List<WorldCupAttractionDTO> getAllAWCFinalWin();
 
 	void updateAttractionStatus(Map<String, String> map);
+
+	int getAWCFinalWinTotalCount();
 	
 }

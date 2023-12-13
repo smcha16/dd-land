@@ -78,5 +78,10 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 	public List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> attractions) {
 		return attractionDAO.getRandomTwoAttractions(attractions);
 	}
+	
+	@Override
+	public int getAWCFinalWinTotalCount() {
+		return attractionDAO.getAWCFinalWinTotalCount();
+	}
 
 }

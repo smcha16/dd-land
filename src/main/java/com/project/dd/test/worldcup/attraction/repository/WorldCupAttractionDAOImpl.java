@@ -60,6 +60,11 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 		mapper.updateAttractionStatus(map);
 	}
 	
+	@Override
+	public int getAWCFinalWinTotalCount() {
+		return mapper.getAWCFinalWinTotalCount();
+	}
+	
 	// 선택되지 않은 어트랙션 가져오기
 	@Override
 	public List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions) {

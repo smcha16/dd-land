@@ -26,4 +26,6 @@ public interface WorldCupAttractionService {
 
     List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> attractions);
 
+	int getAWCFinalWinTotalCount();
+
 }

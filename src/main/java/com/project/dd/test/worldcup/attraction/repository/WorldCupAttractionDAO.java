@@ -33,5 +33,7 @@ public interface WorldCupAttractionDAO {
 
     // 리스트에서 두 개의 랜덤 어트랙션 가져오기
     List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> attractions);
+
+	int getAWCFinalWinTotalCount();
 	
 }

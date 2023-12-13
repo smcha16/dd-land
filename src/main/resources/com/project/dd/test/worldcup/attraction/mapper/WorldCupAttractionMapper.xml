@@ -73,6 +73,10 @@
 	    where attraction_seq = #{attractionSeq}
 	</update>
 	
+	<select id="getAWCFinalWinTotalCount" resultType="int">
+		select sum(awc_final_win_count) as total_awc_final_win_count from tblAWCFinalWin
+	</select>
+	
 	<!-- 
 	<update id="updateAttractionStatus" parameterType="String">
 	    UPDATE tblAWC
