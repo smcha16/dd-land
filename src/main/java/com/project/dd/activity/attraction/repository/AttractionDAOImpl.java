@@ -114,4 +114,19 @@ public class AttractionDAOImpl implements AttractionDAO {
 		return mapper.delAttractionImgByImgSeq(imgseq);
 	}
 
+	@Override
+	public int addAWC(AttractionDTO dto) {
+		return mapper.addCWC(dto);
+	}
+	
+	@Override
+	public int addAWCWin(AttractionDTO dto) {
+		return mapper.addCWCWin(dto);
+	}
+	
+	@Override
+	public int addAWCFinalWin(AttractionDTO dto) {
+		return mapper.addCWCFinalWin(dto);
+	}
+	
 }

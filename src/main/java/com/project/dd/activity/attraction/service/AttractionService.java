@@ -376,6 +376,30 @@ public class AttractionService {
 		
 		return result;
 	}
-	
+
+	public int getAttractionSeq() {
+		return dao.getAttractionSeq();
+	}
+
+	public int addAWC(AttractionDTO dto, String seq) {
+
+		dto.setAttraction_seq(seq);
+		
+		return dao.addAWC(dto);
+	}
+
+	public int addAWCWin(AttractionDTO dto, String seq) {
+
+		dto.setAttraction_seq(seq);
+		
+		return dao.addAWCWin(dto);
+	}
+
+	public int addAWCFinalWin(AttractionDTO dto, String seq) {
+
+		dto.setAttraction_seq(seq);
+		
+		return dao.addAWCFinalWin(dto);
+	}
 	
 }

@@ -55,7 +55,6 @@ public class AdminAttractionController {
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, AttractionDTO dto, MultipartFile[] imgs, HttpServletRequest req) {
 		
-		
 //		System.out.println(imgs[0].isEmpty());
 //		System.out.println(dto.toString());
 		
@@ -68,6 +67,14 @@ public class AdminAttractionController {
 		int result = service.addAttraction(dto, imgs, req);
 		
 		if (result > 0) {
+			
+			//어트랙션 
+			String seq = service.getAttractionSeq() + "";
+			
+			service.addAWC(dto, seq);
+			service.addAWCWin(dto, seq);
+			service.addAWCFinalWin(dto, seq);
+			
 			return "redirect:/admin/activity/attraction/view.do";
 		} else {
 			return "redirect:/admin/activity/attraction/add.do";
