@@ -49,10 +49,12 @@ public interface AttractionMapper {
 
 	int delAttractionImgByImgSeq(String imgseq);
 
+	List<AttractionImgDTO> getAllAttractionImgList();
+
 	int addCWC(AttractionDTO dto);
 
 	int addCWCWin(AttractionDTO dto);
 
 	int addCWCFinalWin(AttractionDTO dto);
-
+	
 }

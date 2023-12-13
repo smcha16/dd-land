@@ -37,12 +37,18 @@ public class AdminAttractionController {
 		//Attraction 목록(운영종료 제외)
 		List<AttractionDTO> list = service.getAttractionList(map);
 		
+		//모달용 AttractionImg 목록
+		List<AttractionImgDTO> ilist = service.getAllAttractionImgList();
+		
 		//페이징 전달
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
 		
 		//어트 목록 전달
 		model.addAttribute("list", list);
+		
+		//모달용 AttractionImg 목록 전달
+		model.addAttribute("ilist", ilist);
 		
 		return "admin/activity/attraction/view";
 	}
@@ -126,18 +132,13 @@ public class AdminAttractionController {
 
 		int result = service.editAttraction(dto, imgs, req, deleteImgSeq);
 		
-//		if (result > 0) {
-//			return "redirect:/admin/activity/attraction/view.do";
-//		} else {
-//			return "redirect:/admin/activity/attraction/edit.do";
-//		}
-		
-		return "redirect:/admin/activity/attraction/view.do";
+		if (result > 0) {
+			return "redirect:/admin/activity/attraction/view.do";
+		} else {
+			return "redirect:/admin/activity/attraction/edit.do";
+		}
 		
 	}
-	
-	
-	
 	
 	
 	@PostMapping(value = "/del.do")

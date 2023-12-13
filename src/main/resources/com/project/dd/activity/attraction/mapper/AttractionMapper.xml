@@ -89,6 +89,10 @@
 		delete from tblAttractionImg where attraction_img_seq = #{attraction_img_seq}
 	</delete>
 	
+	<select id="getAllAttractionImgList" resultType="com.project.dd.activity.attraction.domain.AttractionImgDTO">
+		select * from tblAttractionImg
+	</select>
+	
 	<insert id="addAWC" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		insert into tblAWC (awc_seq, is_test, attraction_seq)
 		values (seqtblAWC.NEXTVAL, 'Y', #{attraction_seq})
