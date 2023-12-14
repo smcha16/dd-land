@@ -33,6 +33,20 @@
 		) where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
+	<select id="getAttractionList" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		select
+			al.*,
+			awc.is_test,
+			w.awc_match_count,
+			w.awc_win_count,
+			fw.awc_final_win_count
+		from vwAttractionList al
+		join tblAWC awc on awc.attraction_seq = al.attraction_seq
+		join tblAWCWin w on w.attraction_seq = al.attraction_seq
+		join tblAWCFinalWin fw on fw.attraction_seq = al.attraction_seq
+		where awc.is_test = 'Y'
+	</select>
+	
 	<select id="getRunAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
     	select
 	        al.*

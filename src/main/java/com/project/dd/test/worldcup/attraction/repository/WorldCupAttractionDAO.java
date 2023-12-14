@@ -13,7 +13,9 @@ public interface WorldCupAttractionDAO {
 	
     // 모든 어트랙션 가져오기
     List<AttractionDTO> getAllAttraction(Map<String, String> map);
-    
+
+	List<AttractionDTO> getAttractionList();
+	
     // 운영중인 어트랙션 가져오기
     List<AttractionDTO> getRunAttraction(String close);
 

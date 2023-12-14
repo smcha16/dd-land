@@ -13,6 +13,8 @@ public interface WorldCupAttractionMapper {
 
 	// 모든 어트랙션 리스트 조회
 	List<AttractionDTO> getAllAttraction(Map<String, String> map);
+
+	List<AttractionDTO> getAttractionList();
 	
     // 운영중인 어트랙션 리스트 조회
     List<AttractionDTO> getRunAttraction(String close);

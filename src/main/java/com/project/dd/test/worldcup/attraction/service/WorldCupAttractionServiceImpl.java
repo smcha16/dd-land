@@ -45,6 +45,11 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 	}
 
 	@Override
+	public List<AttractionDTO> getAttractionList() {
+		return attractionDAO.getAttractionList();
+	}
+	
+	@Override
 	public List<AttractionDTO> getRunAttraction(String close) {
 		return attractionDAO.getRunAttraction(close);
 	}

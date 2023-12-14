@@ -9,9 +9,11 @@ import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO;
 public interface WorldCupAttractionService {
 
 	Map<String, String> paging(int page);
-	
+
     List<AttractionDTO> getAllAttraction(Map<String, String> map);
-    
+
+	List<AttractionDTO> getAttractionList();
+	
     List<AttractionDTO> getRunAttraction(String close);
 
     List<WorldCupAttractionDTO> getAllAWC(String isTest);
