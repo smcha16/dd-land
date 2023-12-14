@@ -156,7 +156,7 @@ th {
 										<tbody>
 											<c:forEach items="${list}" var="dto">
 												<tr>
-													<td><input type="radio" name="selectedReview"
+													<td><input type="checkbox" name="selectedReview"
 														value="${dto.review_seq}"></td>
 													<td>${dto.subject}</td>
 													<td>${dto.regdate}</td>
@@ -166,9 +166,9 @@ th {
 										</tbody>
 									</table>
 									<!-- <button type="submit" id="delete-button">리뷰 삭제</button> -->
-								<!-- <button type="submit" id="modify-button">리뷰 수정</button> -->
-									 <button type="button" onclick="deleteReviews()">리뷰 삭제</button>
-									 <button type="button" onclick="modifyReviews()">리뷰 수정</button>
+									<!-- <button type="submit" id="modify-button">리뷰 수정</button> -->
+									<button type="button" onclick="deleteReviews()">리뷰 삭제</button>
+									<button type="button" onclick="modifyReviews()">리뷰 수정</button>
 									<!-- <button type="button" onclick="location.href='/dd/member/mypage/review/delete.do?seq=${dto.review_seq}'">리뷰 삭제</button> -->
 									<%-- <button type="button" onclick="location.href='/dd/member/mypage/review/edit.do?seq=${dto.review_seq}';">리뷰 수정</button> --%>
 									<input type="hidden" name="${_csrf.parameterName}"
@@ -194,7 +194,7 @@ th {
 						</c:when>
 						<c:otherwise>
 							<li class="page-item"><a class="page-link"
-								href="/dd/member/mypage/ticket/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+								href="/dd/member/mypage/review/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -204,7 +204,6 @@ th {
 
 </main>
 <script>
-
 	/* $('#delete-button').click(function(e) {
 	 var result = confirm("정말 예매를 취소하시겠습니까?");
 	 if (!result) {
@@ -232,17 +231,27 @@ th {
 			}
 		}
 	}
-	 
-	function modifyReviews() {
-		// 선택된 체크박스가 있다면
-		if ($("input[name='selectedReview']:checked").length > 0) {
-			// 수정 form 설정 및 제출
-			/* $('#reviewForm').attr('action', '/dd/member/mypage/review/edit.do');
-			$('#reviewForm').submit(); */
-			
-			const seq = $('input[type="radio"]:checked').val();
-			
-			location.href='/dd/member/mypage/review/edit.do?seq=' + seq;
+
+	 function modifyReviews() {
+		    // 선택된 체크박스들의 seq 값을 담을 배열
+		    let selectedSeqs = [];
+
+		    // 선택된 체크박스가 있다면
+		    $("input[name='selectedReview']:checked").each(function() {
+		        selectedSeqs.push($(this).val()); // 선택된 각 체크박스의 seq 값을 배열에 추가
+		    });
+
+		    // 배열에 값이 있는지 확인
+		    if (selectedSeqs.length === 0) {
+		        // 선택된 리뷰가 없는 경우
+		        alert('수정할 리뷰를 선택해주세요.');
+		    } else if (selectedSeqs.length === 1) {
+		        // 선택된 리뷰가 1개인 경우
+		        // 선택된 seq를 edit.do로 전송
+		        location.href = '/dd/member/mypage/review/edit.do?seq=' + selectedSeqs[0];
+		    } else {
+		        // 선택된 리뷰가 2개 이상인 경우
+		        alert('수정할 리뷰는 1개만 선택해주세요.');
+		    }
 		}
-	} 
 </script>

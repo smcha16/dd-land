@@ -9,7 +9,7 @@ public interface MypageAttractionMapper {
 
 	List<AttractionDTO> list(Map<String, String> map);
 
-	int delete(String selectedAttraction);
+	int delete(String seq);
 	
 	int getTotalCount();
 

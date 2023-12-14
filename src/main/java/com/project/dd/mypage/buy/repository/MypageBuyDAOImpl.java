@@ -30,9 +30,9 @@ public class MypageBuyDAOImpl implements MypageBuyDAO{
 	}
 	
 	@Override
-	public int delete(String selectedItem) {
+	public int delete(String seq) {
 		
-		return mapper.delete(selectedItem);
+		return mapper.delete(seq);
 	}
 
 }

@@ -30,9 +30,9 @@ public class MypageInquiryDAOImpl implements MypageInquiryDAO{
 	}
 	
 	@Override
-	public int delete(String selectedInquiry) {
+	public int delete(String seq) {
 		
-		return mapper.delete(selectedInquiry);
+		return mapper.delete(seq);
 	}
 	
 }

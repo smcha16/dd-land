@@ -24,17 +24,21 @@ public class MemberMypageTicketController {
 	private MypageTicketService service;
 
 	@GetMapping(value = "/view.do")
-	public String view(Model model, Authentication auth, @RequestParam(defaultValue = "1") int page) {
+	public String view(Model model, TicketDTO dto, Authentication auth, @RequestParam(defaultValue = "1") int page) {
 
 		Map<String, String> map = service.paging(page);  //페이징
+		
+		//리뷰작성여부 서비스
 		
 		String email = ((CustomUser) auth.getPrincipal()).getDto().getEmail();
 		
 		map.put("email", email);
+		map.put("user_book_seq", dto.getUser_book_seq());
 
 		List<TicketDTO> list = service.list(map);
 		List<TicketDTO> plist = service.plist(map);
 
+		
 		model.addAttribute("list", list);
 		model.addAttribute("plist", plist);
 		model.addAttribute("email", email);
@@ -46,7 +50,7 @@ public class MemberMypageTicketController {
 	
 
 	@PostMapping(value = "/delete.do")
-	public String delete(Model model, String selectedTickets) {
+	public String delete(Model model, String[] selectedTickets) {
 
 		int result = service.delete(selectedTickets);
 

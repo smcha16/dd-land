@@ -42,9 +42,18 @@ public class MypageBuyService {
 	      return map;
 	}
 
-	public int delete(String selectedItem) {
+	public int delete(String[] selectedItem) {
 		
-		return dao.delete(selectedItem);
+		int totalDeleted = 0;
+
+		for (String seq : selectedItem) {
+
+			int deleted = dao.delete(seq);
+			totalDeleted += deleted;
+
+		}
+
+		return totalDeleted;
 	}
 
 }

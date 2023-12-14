@@ -42,9 +42,18 @@ public class MypageVOCService {
 	      return map;
 	}
 
-	public int delete(String selectedVOC) {
+	public int delete(String[] selectedVOC) {
 		
-		return dao.delete(selectedVOC);
+		int totalDeleted = 0;
+
+		for (String seq : selectedVOC) {
+
+			int deleted = dao.delete(seq);
+			totalDeleted += deleted;
+
+		}
+
+		return totalDeleted;
 	}
 
 }

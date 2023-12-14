@@ -135,8 +135,8 @@ button:hover {
 	background-color: #0056b3; /* 호버 시 배경색 변경 */
 }
 
-#content{
-height: 200px;
+#content {
+	height: 200px;
 }
 </style>
 
@@ -164,21 +164,27 @@ height: 200px;
 									</ol>
 								</nav>
 
-								<form action="/dd/member/mypage/review/addok.do" method="post">
+								<form action="/dd/member/mypage/review/addok.do" method="post" enctype="multipart/form-data">
 									<div class="form-group">
-										<label for="title">제목:</label> 
-										<input type="text" id="subject" name="subject" required>
+										<label for="title">제목:</label> <input type="text" id="subject"
+											name="subject" required>
 									</div>
 									<div class="form-group">
 										<label for="content">내용:</label>
 										<textarea id="content" name="content" required></textarea>
 									</div>
+									<div class="form-group">
+										<label for="formFile" class="col-sm-2 col-form-label">이미지</label>
+										<div class="col-sm-10">
+											<input class="form-control" type="file" id="formFile"
+												name="imgs" multiple>
+										</div>
+									</div>
 									<button type="submit">작성</button>
-									
+
 									<input type="hidden" name="${_csrf.parameterName}"
-										value="${_csrf.token}">
-									<input type="hidden" name="user_book_seq"
-										value="${user_book_seq}">
+										value="${_csrf.token}"> <input type="hidden"
+										name="user_book_seq" value="${user_book_seq}">
 								</form>
 
 

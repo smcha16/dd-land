@@ -3,6 +3,8 @@ package com.project.dd.mypage.review.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.login.domain.CustomUser;
 import com.project.dd.mypage.review.domain.ReviewDTO;
@@ -45,7 +48,7 @@ public class MemberMypageReviewController {
 	}
 
 	@PostMapping(value = "/delete.do")
-	public String delete(Model model, String selectedReview) {
+	public String delete(Model model, String[] selectedReview) {
 
 		int imgResult = service.imgDelete(selectedReview);
 		int result = service.delete(selectedReview);
@@ -68,16 +71,19 @@ public class MemberMypageReviewController {
 	public String add(Model model, String selectedReview) {
 
 		model.addAttribute("user_book_seq", selectedReview);
-
+		
 		return "mypage/review/add";
 	}
 
 	@PostMapping(value = "/addok.do")
-	public String addok(Model model, ReviewDTO dto) {
+	public String addok(Model model, ReviewDTO dto, MultipartFile[] imgs, HttpServletRequest req) {
 
-		int result = service.add(dto);
+		int result = service.add(dto, imgs, req);
+		
+		System.out.println(imgs);
+		System.out.println(imgs[0].isEmpty());
 
-		if (result == 1) {
+		if (result > 0) {
 
 			return "redirect:/member/mypage/review/view.do";
 
@@ -93,8 +99,6 @@ public class MemberMypageReviewController {
 	@GetMapping(value = "/edit.do")
 	public String edit(Model model, String seq) {
 		
-		System.out.println(seq);
-
 		 ReviewDTO dto = service.get(seq);
 		  
 		 model.addAttribute("dto", dto);

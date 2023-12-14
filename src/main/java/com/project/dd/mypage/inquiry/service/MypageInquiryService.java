@@ -42,9 +42,19 @@ public class MypageInquiryService {
 	      return map;
 	}
 
-	public int delete(String selectedInquiry) {
+	public int delete(String[] selectedInquiry) {
 		
-		return dao.delete(selectedInquiry);
+		int totalDeleted = 0;
+
+		for (String seq : selectedInquiry) {
+
+			int deleted = dao.delete(seq);
+			totalDeleted += deleted;
+
+		}
+
+		return totalDeleted;
+		
 	}
 
 }

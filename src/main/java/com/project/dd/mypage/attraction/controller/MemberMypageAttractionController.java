@@ -45,7 +45,7 @@ public class MemberMypageAttractionController {
 	}
 	
 	@PostMapping(value = "/delete.do")
-	public String delete(Model model, String selectedAttraction) {
+	public String delete(Model model, String[] selectedAttraction) {
 
 		int result = service.delete(selectedAttraction);
 

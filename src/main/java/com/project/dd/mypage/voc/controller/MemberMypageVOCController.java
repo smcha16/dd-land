@@ -43,7 +43,7 @@ public class MemberMypageVOCController {
 	}
 	
 	@PostMapping(value = "/delete.do")
-	public String delete(Model model, String selectedVOC) {
+	public String delete(Model model, String[] selectedVOC) {
 
 		int result = service.delete(selectedVOC);
 

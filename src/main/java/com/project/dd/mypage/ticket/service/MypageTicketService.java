@@ -21,9 +21,18 @@ public class MypageTicketService {
 		return dao.list(map);
 	}
 
-	public int delete(String selectedTickets) {
+	public int delete(String[] selectedTickets) {
 		
-		return dao.delete(selectedTickets);
+		int totalDeleted = 0;
+
+		for (String seq : selectedTickets) {
+
+			int deleted = dao.delete(seq);
+			totalDeleted += deleted;
+
+		}
+
+		return totalDeleted;
 	}
 
 	public Map<String, String> paging(int page) {  //페이징 메서드
@@ -51,5 +60,7 @@ public class MypageTicketService {
 		
 		return dao.plist(map);
 	}
+
+	
 	
 }

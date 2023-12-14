@@ -24,9 +24,9 @@ public class MypageAttractionDAOImpl implements MypageAttractionDAO{
 	}
 	
 	@Override
-	public int delete(String selectedAttraction) {
+	public int delete(String seq) {
 		
-		return mapper.delete(selectedAttraction);
+		return mapper.delete(seq);
 	}
 	
 	@Override

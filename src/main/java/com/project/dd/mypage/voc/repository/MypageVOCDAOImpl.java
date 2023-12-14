@@ -30,8 +30,8 @@ public class MypageVOCDAOImpl implements MypageVOCDAO{
 	}
 	
 	@Override
-	public int delete(String selectedVOC) {
+	public int delete(String seq) {
 		
-		return mapper.delete(selectedVOC);
+		return mapper.delete(seq);
 	}
 }

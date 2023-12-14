@@ -140,7 +140,7 @@ th {
 									</ol>
 								</nav>
 
-								<form action="/dd/member/mypage/inquiry/inquiry/delete.do" method="post">
+								<form id="cancelForm" action="/dd/member/mypage/inquiry/inquiry/delete.do" method="post">
 								<table class="table">
 									<thead>
 										<tr>
@@ -153,7 +153,7 @@ th {
 									<tbody>
 										<c:forEach items="${list}" var="dto">
 											<tr>
-												<td><input type="radio" name="selectedInquiry" value="${dto.inquiry_seq}"></td>
+												<td><input type="checkbox" name="selectedInquiry" value="${dto.inquiry_seq}"></td>
 												<td>${dto.type}</td>
 												<td>${dto.subject}</td>
 												<td>${dto.regdate}</td>
@@ -161,7 +161,7 @@ th {
 										</c:forEach>
 									</tbody>
 								</table>
-								<button type="submit">문의삭제</button>
+								<button type="button" onclick="confirmCancel()">문의삭제</button>
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}">
 								</form>
@@ -201,3 +201,14 @@ th {
 	</section>
 
 </main>
+
+<script>
+    function confirmCancel() {
+        var result = confirm("정말 주문을 취소하시겠습니까?");
+        if (result) {
+            document.getElementById('cancelForm').submit(); // 확인 버튼을 클릭한 경우 form을 제출합니다.
+        } else {
+            // 취소 버튼을 클릭한 경우 아무 작업도 수행하지 않습니다.
+        }
+    }
+</script>

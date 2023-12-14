@@ -41,4 +41,6 @@ public class MypageTicketDAOImpl implements MypageTicketDAO{
 		return mapper.plist(map);
 	}
 	
+	
+	
 }
