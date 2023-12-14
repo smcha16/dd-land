@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
+import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 import com.project.dd.test.worldcup.course.mapper.WorldCupCourseMapper;
 
 @Repository
@@ -21,15 +22,20 @@ public class WorldCupCourseDAOImpl implements WorldCupCourseDAO {
 	public int getTotalCount() {
 		return mapper.getTotalCount();
 	}
-	
+
 	@Override
 	public List<CourseDTO> getAllCourse(Map<String, String> map) {
 		return mapper.getAllCourse(map);
 	}
-	
+
 	@Override
 	public void updateCourseStatus(Map<String, String> map) {
 		mapper.updateCourseStatus(map);
+	}
+
+	@Override
+	public String getCourseSeq() {
+		return mapper.getCourseSeq();
 	}
 	
 	@Override
@@ -38,8 +44,23 @@ public class WorldCupCourseDAOImpl implements WorldCupCourseDAO {
 	}
 	
 	@Override
-	public int checkNameDuplication(CourseDTO dto) {
-	    return mapper.checkNameDuplication(dto);
+	public int addCWC(CourseDTO dto) {
+		return mapper.addCWC(dto);
+	}
+
+	@Override
+	public int addCWCWin(CourseDTO dto) {
+		return mapper.addCWCWin(dto);
 	}
 	
+	@Override
+	public int addCWCFinalWin(CourseDTO dto) {
+		return mapper.addCWCFinalWin(dto);
+	}
+	
+	@Override
+	public int checkNameDuplication(CourseDTO dto) {
+		return mapper.checkNameDuplication(dto);
+	}
+
 }

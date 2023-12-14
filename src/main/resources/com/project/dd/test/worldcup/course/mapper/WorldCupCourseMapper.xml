@@ -33,7 +33,22 @@
 		values (seqtblCourse.nextVal, #{name}, #{img})
 	</insert>
 	
-	<select id="getCourseSeq" resultType="int">
+	<insert id="addCWC" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		insert into tblCWC (cwc_seq, is_test, course_seq)
+		values (seqtblCWC.NEXTVAL, 'Y', #{course_seq})
+	</insert>
+	
+	<insert id="addCWCWin" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		insert into tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
+		values (seqtblCWCWin.NEXTVAL, 0, 0, #{course_seq})
+	</insert>
+	
+	<insert id="addCWCFinalWin" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		insert into tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
+		values (seqtblCWCFinalWin.NEXTVAL, 0, #{course_seq})
+	</insert>
+	
+	<select id="getCourseSeq" resultType="String">
 		select max(course_seq) as course_seq from tblCourse
 	</select>
 	

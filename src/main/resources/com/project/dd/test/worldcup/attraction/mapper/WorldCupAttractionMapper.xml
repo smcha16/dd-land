@@ -18,12 +18,17 @@
         - 결과 타입은 AttractionDTO입니다.
     -->
 	<select id="getAllAttraction" parameterType="map" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
-	    select * from (
-		    select n.*, rownum as rnum
-		    from (
-		        SELECT al.*, awc.is_test
+	    SELECT * FROM (
+		    SELECT n.*, ROWNUM AS rnum FROM (
+		        SELECT al.*,
+		               awc.is_test,
+		               w.awc_match_count,
+		               w.awc_win_count,
+		               fw.awc_final_win_count
 		        FROM tblAWC awc
 		        JOIN vwAttractionList al ON awc.attraction_seq = al.attraction_seq
+		        JOIN tblAWCWin w ON w.attraction_seq = al.attraction_seq
+		        JOIN tblAWCFinalWin fw ON fw.attraction_seq = al.attraction_seq
 		    ) n
 		) where rnum between #{startIndex} and #{endIndex}
 	</select>

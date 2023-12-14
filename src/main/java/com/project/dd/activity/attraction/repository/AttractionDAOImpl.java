@@ -119,4 +119,19 @@ public class AttractionDAOImpl implements AttractionDAO {
 		return mapper.getAllAttractionImgList();
 	}
 
+	@Override
+	public int addAWC(AttractionDTO dto) {
+		return mapper.addAWC(dto);
+	}
+	
+	@Override
+	public int addAWCWin(AttractionDTO dto) {
+		return mapper.addAWCWin(dto);
+	}
+	
+	@Override
+	public int addAWCFinalWin(AttractionDTO dto) {
+		return mapper.addAWCFinalWin(dto);
+	}
+
 }

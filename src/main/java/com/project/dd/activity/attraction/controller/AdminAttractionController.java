@@ -37,18 +37,12 @@ public class AdminAttractionController {
 		//Attraction 목록(운영종료 제외)
 		List<AttractionDTO> list = service.getAttractionList(map);
 		
-		//모달용 AttractionImg 목록
-		List<AttractionImgDTO> ilist = service.getAllAttractionImgList();
-		
 		//페이징 전달
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
 		
 		//어트 목록 전달
 		model.addAttribute("list", list);
-		
-		//모달용 AttractionImg 목록 전달
-		model.addAttribute("ilist", ilist);
 		
 		return "admin/activity/attraction/view";
 	}
@@ -60,7 +54,6 @@ public class AdminAttractionController {
 
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, AttractionDTO dto, MultipartFile[] imgs, HttpServletRequest req) {
-		
 		
 //		System.out.println(imgs[0].isEmpty());
 //		System.out.println(dto.toString());
@@ -74,6 +67,14 @@ public class AdminAttractionController {
 		int result = service.addAttraction(dto, imgs, req);
 		
 		if (result > 0) {
+			
+			//어트랙션 월드컵 관련 insert
+			String seq = service.getAttractionSeq() + "";
+			
+			service.addAWC(dto, seq);
+			service.addAWCWin(dto, seq);
+			service.addAWCFinalWin(dto, seq);
+			
 			return "redirect:/admin/activity/attraction/view.do";
 		} else {
 			return "redirect:/admin/activity/attraction/add.do";
@@ -125,13 +126,18 @@ public class AdminAttractionController {
 
 		int result = service.editAttraction(dto, imgs, req, deleteImgSeq);
 		
-		if (result > 0) {
-			return "redirect:/admin/activity/attraction/view.do";
-		} else {
-			return "redirect:/admin/activity/attraction/edit.do";
-		}
+//		if (result > 0) {
+//			return "redirect:/admin/activity/attraction/view.do";
+//		} else {
+//			return "redirect:/admin/activity/attraction/edit.do";
+//		}
+		
+		return "redirect:/admin/activity/attraction/view.do";
 		
 	}
+	
+	
+	
 	
 	
 	@PostMapping(value = "/del.do")
