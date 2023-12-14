@@ -60,24 +60,22 @@
 							<div class="row mb-3">
 								<label class="col-sm-2 col-form-label">어트랙션명</label>
 								<div class="col-sm-10">
-									<%-- <select name="attraction_seq" class="form-control">
-											
-											<option value="${dto.attraction_seq}">${dto.name}</option>
-									
-									</select> ??????????????--%>
+									<input type="text" id="name" name="name" value="${dto.name}" readOnly required>
 								</div>
 							</div>
 
 							<div class="row mb-3">
                 				<label for="inputDate" class="col-sm-2 col-form-label">날짜</label>
                 				<div class="col-sm-10">
-                  					운휴 시작일 <input type="date" name="start_date" id="start_date">
-                  					운휴 종료일 <input type="date" name="end_date" id="end_date">
+                  					운휴 시작일 <input type="date" name="start_date" id="start_date" value="${dto.start_date}">
+                  					운휴 종료일 <input type="date" name="end_date" id="end_date"value="${dto.end_date}">
                					</div>
               				</div>
 
 							<!-- 토큰 -->
               				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+              				
+              				<input type="hidden" name="attraction_close_seq" value="${dto.attraction_close_seq}">
 						</form>
 					</div>
 				</div>
@@ -88,52 +86,41 @@
 
 <script>
 	const date = document.getElementById('start_date');
+	const now = new Date();
+	const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
 	
-	$('select[name=attraction]').change(function() {
-			for (let i=0; i<close_list.length; i++) {
-				if (close_list[i].seq == $(this).val()) {
-					selDate(i);
-				}
-			}
-	});
+	function selDate() {
+	    if (nowStr > start_date.value) {
+	        $('#start_date').val(start_date.value.substr(0, 10));
+	        $('#start_date').prop('disabled', true);
+	    } else {
+	        $('#start_date').attr('min', nowStr);
+	        $('#start_date').val(start_date.value.substr(0, 10));
+	        $('#start_date').prop('disabled', false);
+	    }
+	    
+	    if (nowStr > end_date.value) {
+            $('#end_date').prop('disabled', true);
+        }
+	    changeDate();
+	}
 	
+	function changeDate() {
+	    $('#end_date').attr('min', date.value);
+	    $('#end_date').val(end_date.value.substr(0, 10));
+	    $('#start_date').change(function () {
+	        $('#end_date').attr('min', date.value);
+	    });
+	}
 	
-	function selDate(i) {
-		const now = new Date();  //현재날짜
-		const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' +  now.getDate();
-		
-		if (nowStr > close_list[i].start_date) {
-			$('#start_date').val(close_list[i].start_date.substr(0,  10));
-			$('#start_date').prop('readOnly', true);  //운휴가 현재날짜보다 이전이면 -> 운휴 이미 시작이므로 readonly.
-		} else {
-			$('#start_date').attr('min', nowStr);
-			$('#start_date').val(close_list[i].start_date.substr(0,  10));
-			$('#start_date').prop('readOnly', false);
+	selDate();
+	
+	function submit(){
+		if(!$('input[name="start_date"]').val().trim() || !$('input[name="end_date"]').val().trim()){
+			alert('운휴시작일 또는 운휴종료일을 모두 선택해주세요.');
+		}else {
+			$('form').submit();
 		}
-	
-		changeDate(i);
 	}
-	
-	
-	function changeDate(i) {
-		$('#end_date').attr('min', date.value);  //end_date는 재선택한 운휴시작일 넣어주기
-		$('#end_date').val(close_list[i].end_date.substr(0,  10));
-		$('#start_date').change(function() {
-			$('#end_date').attr('min', date.value);
-		});
-	}
-	
-	
-	const close_list = [];
-	<c:forEach items="${list}" var="dto">
-		close_list.push({
-			seq: ${dto.attraction_close_seq},
-			start_date:'${dto.start_date}',
-			end_date:'${dto.end_date}'
-		});
-		
-	</c:forEach>
-	
-	selDate(0);
 	
 </script>

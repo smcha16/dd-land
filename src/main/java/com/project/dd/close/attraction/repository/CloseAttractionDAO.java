@@ -20,4 +20,6 @@ public interface CloseAttractionDAO {
 
 	CloseAttractionDTO getOne(String seq);
 
+	int editClose(CloseAttractionDTO dto);
+
 }

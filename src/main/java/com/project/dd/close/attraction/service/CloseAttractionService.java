@@ -63,7 +63,25 @@ public class CloseAttractionService {
 
 	public CloseAttractionDTO getOne(String seq) {
 		
-		return closeAttrDao.getOne(seq);
+		CloseAttractionDTO dto = closeAttrDao.getOne(seq);
+		
+		//운휴 시작일, 종료일 가공해서 가져오기
+		String start_date=dto.getStart_date();
+		String end_date=dto.getEnd_date();
+		
+		start_date=start_date.substring(0, 10);
+		end_date=end_date.substring(0, 10);
+		
+		dto.setStart_date(start_date);
+		dto.setEnd_date(end_date);
+		
+		
+		return dto;
+	}
+
+	public int editClose(CloseAttractionDTO dto) {
+		
+		return closeAttrDao.editClose(dto);
 	}
 
 }

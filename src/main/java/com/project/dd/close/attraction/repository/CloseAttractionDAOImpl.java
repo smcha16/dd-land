@@ -48,4 +48,9 @@ public class CloseAttractionDAOImpl implements CloseAttractionDAO{
 		return mapper.getOne(seq);
 	}
 
+	@Override
+	public int editClose(CloseAttractionDTO dto) {
+		return mapper.editClose(dto);
+	}
+
 }

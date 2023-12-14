@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.close.attraction.domain.CloseAttractionDTO;
 import com.project.dd.close.attraction.service.CloseAttractionService;
-import com.project.dd.guide.domain.ConvenientDTO;
+import com.project.dd.communication.notice.domain.NoticeDTO;
 
 @Controller
 @RequestMapping(value="/admin/close/attraction")
@@ -68,12 +68,25 @@ public class AdminCloseAttractionController {
 		
 		CloseAttractionDTO dto = closeAttrService.getOne(seq); 
 		
+		//System.out.println(dto);
+		
 		model.addAttribute("dto", dto);
 		
 		return "admin/close/attraction/edit";
 	}
-
 	
+	@PostMapping(value = "/editok.do")
+	public String editok(CloseAttractionDTO dto) {
+
+		System.out.println(dto);
+		int result = closeAttrService.editClose(dto);
+		
+		
+		if (result == 1) {
+	 		return "redirect:/admin/close/attraction/view.do";
+	 	} else 
+	 		return "redirect:/admin/close/attraction/edit.do";
+	}
 	
 	//삭제하기
 	@PostMapping(value = "/del.do")

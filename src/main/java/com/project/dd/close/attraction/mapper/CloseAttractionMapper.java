@@ -20,4 +20,6 @@ public interface CloseAttractionMapper {
 
 	CloseAttractionDTO getOne(String seq);
 
+	int editClose(CloseAttractionDTO dto);
+
 }
