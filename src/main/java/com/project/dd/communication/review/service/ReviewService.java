@@ -7,10 +7,12 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.project.dd.communication.review.domain.ReviewDTO;
 import com.project.dd.communication.review.repository.ReviewDAO;
+import com.project.dd.login.domain.CustomUser;
 
 @Service
 public class ReviewService {
@@ -46,9 +48,11 @@ public class ReviewService {
 	
 	/* 목록 */
 
-	public List<ReviewDTO> getReviewList(Map<String, String> map) {
+	public List<ReviewDTO> getReviewList(Authentication auth, Map<String, String> map) {
 		
 		List<ReviewDTO> list = dao.getReviewList(map);
+		
+		String level = ((CustomUser)auth.getPrincipal()).getDto().getAuth();
 
 		for (ReviewDTO dto : list) {
 			
@@ -65,17 +69,21 @@ public class ReviewService {
             }
             
             // 내용
-            
-            String content = dto.getContent();
 
-            if (content.length() > 170) {
-
-            	content = content.substring(0, 170) + " ...";
+            if (level.equals("1")) {
             	
-            	dto.setContent(content);
+            	String content = dto.getContent();
 
+                if (content.length() > 170) {
+
+                	content = content.substring(0, 170) + " ...";
+                	
+                	dto.setContent(content);
+
+                }
+            	
             }
-			
+
 		}
 		
 		return list;
