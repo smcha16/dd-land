@@ -27,6 +27,8 @@ public class AdminWorldCupAttractionController {
 		model.addAttribute("currentPage", page); // 페이징
 		model.addAttribute("map", map); // 페이징
 		model.addAttribute("listAttraction", attractionService.getAllAttraction(map));
+        //model.addAttribute("listAWCWin", attractionService.getAllAWCWin());
+        //model.addAttribute("listAWCFinalWin", attractionService.getAllAWCFinalWin());
 
 		// System.out.println(attractionService.getAllAttraction(map));
 
@@ -37,11 +39,11 @@ public class AdminWorldCupAttractionController {
 	public String updateAttractionStatus(@RequestParam String attractionSeq, @RequestParam String isTest, Model model) {
 	    //System.out.println("seq:" + attractionSeq + " check:" + isTest);
 	    
-	    Map<String, String> paramMap = new HashMap<>();
-	    paramMap.put("isTest", isTest);
-	    paramMap.put("attractionSeq", attractionSeq);
+	    Map<String, String> map = new HashMap<>();
+	    map.put("isTest", isTest);
+	    map.put("attractionSeq", attractionSeq);
 
-	    attractionService.updateAttractionStatus(paramMap);
+	    attractionService.updateAttractionStatus(map);
 	    
 	    return "redirect:/admin/test/worldcup/attraction/view.do"; 
 	}

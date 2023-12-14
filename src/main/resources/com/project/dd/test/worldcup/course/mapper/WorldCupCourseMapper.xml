@@ -28,4 +28,32 @@
 	    where course_seq = #{courseSeq}
 	</update>
 	
+	<insert id="addCourse" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		insert into tblCourse (course_seq, name, img)
+		values (seqtblCourse.nextVal, #{name}, #{img})
+	</insert>
+	
+	<insert id="addCWC" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		insert into tblCWC (cwc_seq, is_test, course_seq)
+		values (seqtblCWC.NEXTVAL, 'Y', #{course_seq})
+	</insert>
+	
+	<insert id="addCWCWin" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		insert into tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
+		values (seqtblCWCWin.NEXTVAL, 0, 0, #{course_seq})
+	</insert>
+	
+	<insert id="addCWCFinalWin" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		insert into tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
+		values (seqtblCWCFinalWin.NEXTVAL, 0, #{course_seq})
+	</insert>
+	
+	<select id="getCourseSeq" resultType="String">
+		select max(course_seq) as course_seq from tblCourse
+	</select>
+	
+	<select id="checkNameDuplication" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO" resultType="int">
+		select count(*) from tblCourse where name = #{name}
+	</select>
+	
 </mapper>

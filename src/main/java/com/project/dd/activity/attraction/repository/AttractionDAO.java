@@ -46,4 +46,12 @@ public interface AttractionDAO {
 
 	int delAttractionImgByImgSeq(String imgseq);
 
+	List<AttractionImgDTO> getAllAttractionImgList();
+
+	int addAWC(AttractionDTO dto);
+	
+	int addAWCWin(AttractionDTO dto);
+	
+	int addAWCFinalWin(AttractionDTO dto);
+	
 }
