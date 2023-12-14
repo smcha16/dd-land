@@ -44,7 +44,7 @@ public class UserWorldCupAttractionController {
         //System.out.println("1 선택하지 않은 어트랙션 리스트" + remainingAttractions);
         
         // 선택하지 않은 어트랙션 중에서 랜덤으로 두 개 선택
-        List<AttractionDTO> selectedTwoAttractions = getRandomTwoAttractions(remainingAttractions);
+        List<AttractionDTO> selectedTwoAttractions = attractionService.getRandomTwoAttractions(remainingAttractions);
         //System.out.println("2 선택하지 않은 어트랙션 중에서 랜덤으로 두 개 선택" + selectedTwoAttractions);
         
         // 선택한 어트랙션과 선택한 두 어트랙션을 모델에 저장
@@ -53,32 +53,6 @@ public class UserWorldCupAttractionController {
 
         return "user/test/worldcup/attraction/view";
     }
-
-    private ArrayList<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> remainingAttractions) {
-		ArrayList<AttractionDTO> selectedTwoAttractions = new ArrayList<>();
-
-		Random random = new Random();
-
-		// 어트랙션 리스트가 있고, 크기가 1보다 큰 경우
-		if (remainingAttractions != null && remainingAttractions.size() > 1) {
-			int index1 = random.nextInt(remainingAttractions.size());
-			int index2;
-
-			// index1과 다른 index2 선택 (중복 회피)
-			do {
-				index2 = random.nextInt(remainingAttractions.size());
-			} while (index1 == index2);
-
-			// 두 개의 어트랙션을 리스트에 추가
-			selectedTwoAttractions.add(remainingAttractions.get(index1));
-			selectedTwoAttractions.add(remainingAttractions.get(index2));
-		} else if (remainingAttractions != null && remainingAttractions.size() == 1) {
-			// 어트랙션이 하나만 남았을 경우
-			selectedTwoAttractions.add(remainingAttractions.get(0));
-		}
-
-		return selectedTwoAttractions;
-	}
     
     @GetMapping(value = "/user/test/worldcup/attraction/initialization.do")
     public String initialization(Model model, HttpSession session) {
@@ -93,11 +67,9 @@ public class UserWorldCupAttractionController {
     public ResponseEntity<Map<String, Object>> attractionSelection(@RequestParam String attractionSeq, Model model, HttpSession session) {
         //System.out.println("사용자 선택 어트랙션" + attractionSeq);
 
-        // 세션에서 선택한 어트랙션 리스트 가져오기
+    	// 세션에서 선택한 어트랙션 리스트 가져오기
         @SuppressWarnings("unchecked") // 제네릭 경고 무시
         List<String> selectedAttractions = (ArrayList<String>) session.getAttribute("selectedAttractions");
-        //System.out.println("세션 어트랙션 리스트" + selectedAttractions);
-
         // 선택한 어트랙션이 중복되지 않았을 경우 추가
         if (!selectedAttractions.contains(attractionSeq)) {
             selectedAttractions.add(attractionSeq);
@@ -105,14 +77,8 @@ public class UserWorldCupAttractionController {
         }
 
         // 두 개의 어트랙션을 다시 선택
-        List<AttractionDTO> remainingAttractions = new ArrayList<>();
-        for (AttractionDTO attraction : attractionService.getAttractionList()) {
-            if (!selectedAttractions.contains(attraction.getAttraction_seq())) {
-                remainingAttractions.add(attraction);
-            }
-        }
-
-        List<AttractionDTO> selectedTwoAttractions = getRandomTwoAttractions(remainingAttractions);
+        List<AttractionDTO> remainingAttractions = attractionService.getRemainingAttractions(selectedAttractions);
+        List<AttractionDTO> selectedTwoAttractions = attractionService.getRandomTwoAttractions(remainingAttractions);
         //System.out.println("1 전송" + remainingAttractions);
         //System.out.println("2 전송" + selectedTwoAttractions);
 

@@ -24,10 +24,10 @@ public interface WorldCupAttractionService {
 
 	void updateAttractionStatus(Map<String, String> map);
 	
-    List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions);
-
-    List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> attractions);
-
 	int getAWCFinalWinTotalCount();
+	
+	List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> remainingAttractions);
+
+	List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions);
 
 }
