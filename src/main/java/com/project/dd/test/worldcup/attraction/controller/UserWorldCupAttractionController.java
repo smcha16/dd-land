@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService;
 
@@ -29,7 +27,7 @@ public class UserWorldCupAttractionController {
     @Autowired
     private WorldCupAttractionService attractionService;
 
-    private final Gson gson = new Gson();
+    //private final Gson gson = new Gson();
     
     @GetMapping(value = "/user/test/worldcup/attraction/view.do")
     public String view(Model model, HttpSession session) {
@@ -115,13 +113,14 @@ public class UserWorldCupAttractionController {
         }
 
         List<AttractionDTO> selectedTwoAttractions = getRandomTwoAttractions(remainingAttractions);
+        //System.out.println("1 전송" + remainingAttractions);
         //System.out.println("2 전송" + selectedTwoAttractions);
 
         // 모델에 추가
-        //model.addAttribute("remainingAttractions", remainingAttractions);
-        //model.addAttribute("selectedTwoAttractions", selectedTwoAttractions);
+        model.addAttribute("remainingAttractions", remainingAttractions);
+        model.addAttribute("selectedTwoAttractions", selectedTwoAttractions);
 
-        JsonObject data = new JsonObject();
+        //JsonObject data = new JsonObject();
         JsonArray remainingAttractionSeqsJsonArray = new JsonArray();
         for (AttractionDTO attraction : remainingAttractions) {
             remainingAttractionSeqsJsonArray.add(attraction.getAttraction_seq());
@@ -134,7 +133,7 @@ public class UserWorldCupAttractionController {
 
         //System.out.println("jsonResponse" + new ResponseEntity<>(data.toString(), HttpStatus.OK));
         
-        // HTTP status OK와 함께 JSON 응답
+        // HTTP status OK와 함께 JSON 형식 응답
         return new ResponseEntity<>(responseData, HttpStatus.OK);
         
     }

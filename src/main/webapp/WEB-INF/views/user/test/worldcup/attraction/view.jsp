@@ -110,14 +110,12 @@
 					<div id="result-info"></div>
 					<div id="worldcup-container" class="button-container">
 						<!-- 어트랙션 출력 -->
-						<c:forEach var="attraction" items="${selectedTwoAttractions}"
-							varStatus="loop">
-							<div class="item" id="item${loop.index + 1}"
-								onclick="selectAttraction('${attraction.attraction_seq}')">
-								<div>${attraction.attraction_seq}</div>
-								<div class="img-container" style="background-image: url('/dd/resources/files/activity/attraction/${attraction.img}');"></div>
-								<h3>${attraction.name}</h3>
-							</div>
+						<c:forEach var="attraction" items="${selectedTwoAttractions}" varStatus="loop">
+						    <div class="item" id="item${loop.index + 1}" onclick="selectAttraction('${attraction.attraction_seq}')">
+						        <div style="display:none" data-attraction-seq="${attraction.attraction_seq}"></div>
+						        <div class="img-container" style="background-image: url('/dd/resources/files/activity/attraction/${attraction.img}');"></div>
+						        <h3>${attraction.name}</h3>
+						    </div>
 						</c:forEach>
 					</div>
 				</div>
@@ -154,13 +152,30 @@
 	}
 
 	function selectAttraction(attractionSeq) {
+		// 첫 번째 어트랙션의 attraction_seq
+		const attractionSeq1 = $('#item1 > div:nth-child(1)').data('attraction-seq');
 
+		// 두 번째 어트랙션의 attraction_seq
+		const attractionSeq2 = $('#item2 > div:nth-child(1)').data('attraction-seq');
+
+		let selectedAttractionSeq;
+
+	    if (attractionSeq !== attractionSeq1) {
+	        selectedAttractionSeq = attractionSeq1;
+	    } else if (attractionSeq !== attractionSeq2) {
+	        selectedAttractionSeq = attractionSeq2;
+	    } else {
+	        console.error('No matching attractionSeq found.');
+	        return;
+	    }
+	    
 		$.ajax({
 			type : 'POST',
 			url : '/dd/user/test/worldcup/attraction/view.do',
 			data : {
-				'attractionSeq' : attractionSeq
+				'attractionSeq' : selectedAttractionSeq
 			},
+		    dataType: 'json',
 			success : function(data) {
 				console.log('선택한 어트랙션 정보:', data.selectedTwoAttractions);
 				console.log('남은 어트랙션:', data.remainingAttractionSeqs);
@@ -200,13 +215,10 @@
 				// 동적으로 id 생성
 				const itemId = 'item' + (i + 1);
 
-				const item = $(
-						'<div class="item" id="' + itemId
-								+ '" onclick="selectAttraction('
-								+ attraction.attraction_seq + ')">').append(
-						'<div class="img-container" style="background-image: url(\''
-								+ imgUrl + '\');"></div>').append(
-						'<h3>' + attraction.name + '</h3>');
+				const item = $('<div class="item" id="' + itemId + '" onclick="selectAttraction(' + attraction.attraction_seq + ')">')
+					.append('<div style="display:none" data-attraction-seq=' + attraction.attraction_seq + '></div>')
+					.append('<div class="img-container" style="background-image: url(\'' + imgUrl + '\');"></div>')
+					.append('<h3>' + attraction.name + '</h3>');
 				$('#worldcup-container').append(item);
 			}
 		} else {
@@ -218,13 +230,10 @@
 			// 동적으로 id 생성
 			const itemId = 'item3';
 
-			const item = $(
-					'<div class="item" id="' + itemId
-							+ '" onclick="selectAttraction('
-							+ attraction.attraction_seq + ')">').append(
-					'<div class="img-container" style="background-image: url(\''
-							+ imgUrl + '\');"></div>').append(
-					'<h3>' + attraction.name + '</h3>');
+			const item = $('<div class="item" id="' + itemId + '" onclick="selectAttraction(' + attraction.attraction_seq + ')">')
+				.append('<div style="display:none" data-attraction-seq=' + attraction.attraction_seq + '></div>')
+				.append('<div class="img-container" style="background-image: url(\'' + imgUrl + '\');"></div>')
+				.append('<h3>' + attraction.name + '</h3>');
 			$('#worldcup-container').append(item);
 		}
 	}
