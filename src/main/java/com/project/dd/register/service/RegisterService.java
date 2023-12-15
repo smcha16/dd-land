@@ -2,6 +2,7 @@ package com.project.dd.register.service;
 
 import java.text.DecimalFormat;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.project.dd.register.domain.MemberDTO;
@@ -15,6 +16,10 @@ public class RegisterService {
 	
 	private final RegisterDAO dao;
 	
+	private final BCryptPasswordEncoder passwordEncoder;
+	
+	
+	
 	public int check(String email) {
 		return dao.check(email);
 	}
@@ -25,15 +30,20 @@ public class RegisterService {
 	    // 번호가 10자리 이상이면 하이픈 추가
 	    if (cleanedNumber.length() >= 10) {
 	        cleanedNumber = cleanedNumber.substring(0, 3) + "-"
-	                + cleanedNumber.substring(3, 6) + "-"
-	                + cleanedNumber.substring(6);
+	                + cleanedNumber.substring(3, 7) + "-"
+	                + cleanedNumber.substring(7);
 	    }
 
 	    return cleanedNumber;
 	}
 
+
 	
 	public int register(MemberDTO memberDTO) {
+		 // 비밀번호 암호화
+	    String encodedPassword = passwordEncoder.encode(memberDTO.getPw());
+	    memberDTO.setPw(encodedPassword);
+		
 		return dao.register(memberDTO);
 	}
 	

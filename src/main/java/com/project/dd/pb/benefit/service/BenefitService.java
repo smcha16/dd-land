@@ -143,7 +143,7 @@ public class BenefitService {
 			
 			String filename = uuid + "_" +attach.getOriginalFilename();
 			
-			attach.transferTo(new File(req.getRealPath("/resources/files/benefit") + "/" + filename));
+			attach.transferTo(new File(req.getRealPath("/resources/files/benefit") + "\\" + filename));
 			
 			benefitDTO.setImg(filename);
 			
