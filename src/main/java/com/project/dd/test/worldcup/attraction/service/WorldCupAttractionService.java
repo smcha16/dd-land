@@ -30,4 +30,16 @@ public interface WorldCupAttractionService {
 
 	List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions);
 
+	int addAWC(AttractionDTO dto, String seq);
+	
+	int addAWCWin(AttractionDTO dto, String seq);
+	
+	int addAWCFinalWin(AttractionDTO dto, String seq);
+	
+	void updateAWCMatchCount(String attractionSeq);
+
+	void updateAWCWinCount(String attractionSeq);
+
+	void updateAWCFinalWinCount(String attractionSeq);
+
 }

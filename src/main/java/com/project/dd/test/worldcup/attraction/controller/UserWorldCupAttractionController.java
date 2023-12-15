@@ -25,7 +25,7 @@ import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService
 public class UserWorldCupAttractionController {
 
     @Autowired
-    private WorldCupAttractionService attractionService;
+    private WorldCupAttractionService awcService;
 
     //private final Gson gson = new Gson();
     
@@ -33,7 +33,7 @@ public class UserWorldCupAttractionController {
     public String view(Model model, HttpSession session) {
     	
         // 어트랙션 리스트 가져오기
-        List<AttractionDTO> attractionList = attractionService.getAttractionList();
+        List<AttractionDTO> attractionList = awcService.getAttractionList();
 
         // 세션에서 선택한 어트랙션 리스트 가져오기
         @SuppressWarnings("unchecked") // 제네릭 경고 무시
@@ -44,7 +44,7 @@ public class UserWorldCupAttractionController {
         //System.out.println("1 선택하지 않은 어트랙션 리스트" + remainingAttractions);
         
         // 선택하지 않은 어트랙션 중에서 랜덤으로 두 개 선택
-        List<AttractionDTO> selectedTwoAttractions = attractionService.getRandomTwoAttractions(remainingAttractions);
+        List<AttractionDTO> selectedTwoAttractions = awcService.getRandomTwoAttractions(remainingAttractions);
         //System.out.println("2 선택하지 않은 어트랙션 중에서 랜덤으로 두 개 선택" + selectedTwoAttractions);
         
         // 선택한 어트랙션과 선택한 두 어트랙션을 모델에 저장
@@ -64,21 +64,27 @@ public class UserWorldCupAttractionController {
     }
 
     @PostMapping("/user/test/worldcup/attraction/view.do")
-    public ResponseEntity<Map<String, Object>> attractionSelection(@RequestParam String attractionSeq, Model model, HttpSession session) {
-        //System.out.println("사용자 선택 어트랙션" + attractionSeq);
-
+    public ResponseEntity<Map<String, Object>> attractionSelection(@RequestParam String winAttractionSeq, @RequestParam String lostAttractionSeq, Model model, HttpSession session) {
+    	System.out.println("winAttractionSeq " + winAttractionSeq);
+    	System.out.println("lostAttractionSeq " + lostAttractionSeq);
+    	
+    	
+    	awcService.updateAWCMatchCount(winAttractionSeq);
+    	awcService.updateAWCWinCount(winAttractionSeq);
+    	awcService.updateAWCMatchCount(lostAttractionSeq);
+    	
     	// 세션에서 선택한 어트랙션 리스트 가져오기
         @SuppressWarnings("unchecked") // 제네릭 경고 무시
         List<String> selectedAttractions = (ArrayList<String>) session.getAttribute("selectedAttractions");
         // 선택한 어트랙션이 중복되지 않았을 경우 추가
-        if (!selectedAttractions.contains(attractionSeq)) {
-            selectedAttractions.add(attractionSeq);
+        if (!selectedAttractions.contains(lostAttractionSeq)) {
+            selectedAttractions.add(lostAttractionSeq);
             session.setAttribute("selectedAttractions", selectedAttractions);
         }
 
         // 두 개의 어트랙션을 다시 선택
-        List<AttractionDTO> remainingAttractions = attractionService.getRemainingAttractions(selectedAttractions);
-        List<AttractionDTO> selectedTwoAttractions = attractionService.getRandomTwoAttractions(remainingAttractions);
+        List<AttractionDTO> remainingAttractions = awcService.getRemainingAttractions(selectedAttractions);
+        List<AttractionDTO> selectedTwoAttractions = awcService.getRandomTwoAttractions(remainingAttractions);
         //System.out.println("1 전송" + remainingAttractions);
         //System.out.println("2 전송" + selectedTwoAttractions);
 
@@ -102,6 +108,13 @@ public class UserWorldCupAttractionController {
         // HTTP status OK와 함께 JSON 형식 응답
         return new ResponseEntity<>(responseData, HttpStatus.OK);
         
+    }
+    
+    @PostMapping("/user/test/worldcup/attraction/final.do")
+    public ResponseEntity<String> finalUpdate(@RequestParam String finalWinAttractionSeq) {
+        awcService.updateAWCFinalWinCount(finalWinAttractionSeq);
+        
+        return new ResponseEntity<>("Final Win update completed", HttpStatus.OK);
     }
 
 }

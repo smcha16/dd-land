@@ -112,5 +112,35 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 
 		return selectedTwoAttractions;
 	}
+
+	@Override
+	public int addAWC(AttractionDTO dto) {
+		return mapper.addAWC(dto);
+	}
+	
+	@Override
+	public int addAWCWin(AttractionDTO dto) {
+		return mapper.addAWCWin(dto);
+	}
+	
+	@Override
+	public int addAWCFinalWin(AttractionDTO dto) {
+		return mapper.addAWCFinalWin(dto);
+	}
+
+	@Override
+	public void updateAWCMatchCount(String attractionSeq) {
+		mapper.updateAWCMatchCount(attractionSeq);
+	}
+	
+	@Override
+	public void updateAWCWinCount(String attractionSeq) {
+		mapper.updateAWCWinCount(attractionSeq);
+	}
+	
+	@Override
+	public void updateAWCFinalWinCount(String attractionSeq) {
+		mapper.updateAWCFinalWinCount(attractionSeq);
+	}
 	
 }

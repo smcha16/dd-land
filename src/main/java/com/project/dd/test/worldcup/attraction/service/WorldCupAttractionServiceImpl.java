@@ -121,5 +121,44 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
                 .filter(attraction -> !selectedAttractions.contains(attraction.getAttraction_seq()))
                 .collect(Collectors.toList());
     }
-    
+
+	@Override
+	public int addAWC(AttractionDTO dto, String seq) {
+
+		dto.setAttraction_seq(seq);
+		
+		return attractionDAO.addAWC(dto);
+	}
+
+	@Override
+	public int addAWCWin(AttractionDTO dto, String seq) {
+
+		dto.setAttraction_seq(seq);
+		
+		return attractionDAO.addAWCWin(dto);
+	}
+
+	@Override
+	public int addAWCFinalWin(AttractionDTO dto, String seq) {
+
+		dto.setAttraction_seq(seq);
+		
+		return attractionDAO.addAWCFinalWin(dto);
+	}
+	
+	@Override
+	public void updateAWCMatchCount(String attractionSeq) {
+		attractionDAO.updateAWCMatchCount(attractionSeq);
+	}
+	
+	@Override
+	public void updateAWCWinCount(String attractionSeq) {
+		attractionDAO.updateAWCWinCount(attractionSeq);
+	}
+	
+	@Override
+	public void updateAWCFinalWinCount(String attractionSeq) {
+		attractionDAO.updateAWCFinalWinCount(attractionSeq);
+	}
+	
 }

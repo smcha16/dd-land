@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
 import com.project.dd.activity.attraction.service.AttractionService;
+import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService;
 
 
 @Controller
@@ -26,6 +27,9 @@ public class AdminAttractionController {
 	
 	@Autowired
 	private AttractionService service;
+
+    @Autowired
+    private WorldCupAttractionService awcService;
 	
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
@@ -71,9 +75,9 @@ public class AdminAttractionController {
 			//어트랙션 월드컵 관련 insert
 			String seq = service.getAttractionSeq() + "";
 			
-			service.addAWC(dto, seq);
-			service.addAWCWin(dto, seq);
-			service.addAWCFinalWin(dto, seq);
+			awcService.addAWC(dto, seq);
+			awcService.addAWCWin(dto, seq);
+			awcService.addAWCFinalWin(dto, seq);
 			
 			return "redirect:/admin/activity/attraction/view.do";
 		} else {

@@ -158,27 +158,32 @@
 		// 두 번째 어트랙션의 attraction_seq
 		const attractionSeq2 = $('#item2 > div:nth-child(1)').data('attraction-seq');
 
-		let selectedAttractionSeq;
+		
+		let winAttractionSeq;
+	    let lostAttractionSeq;
 
 	    if (attractionSeq !== attractionSeq1) {
-	        selectedAttractionSeq = attractionSeq1;
+	        winAttractionSeq = attractionSeq2;
+	        lostAttractionSeq = attractionSeq1;
 	    } else if (attractionSeq !== attractionSeq2) {
-	        selectedAttractionSeq = attractionSeq2;
+	        winAttractionSeq = attractionSeq1;
+	        lostAttractionSeq = attractionSeq2;
 	    } else {
 	        console.error('No matching attractionSeq found.');
 	        return;
 	    }
 	    
 		$.ajax({
-			type : 'POST',
-			url : '/dd/user/test/worldcup/attraction/view.do',
-			data : {
-				'attractionSeq' : selectedAttractionSeq
+			type: 'POST',
+			url: '/dd/user/test/worldcup/attraction/view.do',
+			data: {
+				'winAttractionSeq': winAttractionSeq,
+				'lostAttractionSeq': lostAttractionSeq
 			},
 		    dataType: 'json',
-			success : function(data) {
-				console.log('선택한 어트랙션 정보:', data.selectedTwoAttractions);
-				console.log('남은 어트랙션:', data.remainingAttractionSeqs);
+			success: function(data) {
+				//console.log('선택한 어트랙션:', data.selectedTwoAttractions);
+				//console.log('남은 어트랙션:', data.remainingAttractionSeqs);
 
 				// 전역 변수에 할당
 				selectedTwoAttractions = data.selectedTwoAttractions;
@@ -198,7 +203,7 @@
 			}
 		});
 	}
-
+	
 	function refreshScreen() {
 		//console.log('refreshScreen 함수 호출');
 
@@ -257,15 +262,34 @@
 		resultContainer.append(imgContainer).append(infoname);
 
 		// 클릭 이벤트 처리
-		resultContainer
-				.click(function() {
-					// 어트랙션 상세 페이지로 이동
-					window.location.href = '/dd/user/activity/attraction/detail.do?seq='
-							+ selectedAttraction.attraction_seq;
-				});
+		resultContainer.click(function() {
+			// 어트랙션 상세 페이지로 이동
+			window.location.href = '/dd/user/activity/attraction/detail.do?seq=' + selectedAttraction.attraction_seq;
+			
+			updateAWCFinalWinCount(selectedAttraction.attraction_seq);
+		});
 
 		// #worldcup-container에 추가
 		$('#worldcup-container').append(resultContainer);
+	}
+
+	function updateAWCFinalWinCount(finalWinAttractionSeq) {
+	    $.ajax({
+	        type: 'POST',
+	        url: '/dd/user/test/worldcup/attraction/final.do',
+	        data: {
+	            'finalWinAttractionSeq': finalWinAttractionSeq
+	        },
+	        success: function(data) {
+	            console.log('Final update completed:', data);
+	        },
+	        beforeSend: function(xhr) {
+	            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	        },
+	        error: function(a, b, c) {
+	            console.error('Error during final update:', a, b, c);
+	        }
+	    });
 	}
 </script>
 
