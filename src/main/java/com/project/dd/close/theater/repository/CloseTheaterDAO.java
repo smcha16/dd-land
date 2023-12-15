@@ -1,11 +1,11 @@
-package com.project.dd.close.theater.mapper;
+package com.project.dd.close.theater.repository;
 
 import java.util.List;
 import java.util.Map;
 
 import com.project.dd.close.theater.domain.CloseTheaterDTO;
 
-public interface CloseTheaterMapper {
+public interface CloseTheaterDAO {
 
 	int getTotalCount();
 

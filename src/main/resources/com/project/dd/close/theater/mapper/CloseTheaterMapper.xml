@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.dd.close.theater.mapper.CloseTheaterMapper">
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from tbltheaterclose
+	</select>
+	
+	<select id="list" parameterType="map" resultType="com.project.dd.close.theater.domain.CloseTheaterDTO">
+		select tc.theater_close_seq, t.name, tc.theater_seq, to_char(tc.start_date, 'yyyy-MM-dd')as start_date, to_char(tc.end_date, 'yyyy-MM-dd')as end_date
+		from tbltheater t inner join tbltheaterclose tc on t.	theater_seq=tc.theater_seq order by tc.theater_close_seq desc
+	</select>
+	
+	<select id="theaterlist" resultType="com.project.dd.activity.theater.domain.TheaterDTO">
+		select * from tbltheater where name not like '%(운영종료)%'
+	</select>
+	
+	<insert id="addCloseTheater" parameterType="com.project.dd.close.theater.domain.CloseTheaterDTO">
+		insert into tbltheaterclose (theater_close_seq, start_date, end_date, theater_seq)
+    	values (seqtblTheaterClose.nextVal, to_date(#{start_date}, 'yyyy-mm-dd'), to_date(#{end_date}, 'yyyy-mm-dd'), #{theater_seq, jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="getOne" parameterType="String" resultType="com.project.dd.close.theater.domain.CloseTheaterDTO">
+		select a.*, (select name from tblTheater where theater_seq = a.theater_seq)as name from tblTheaterClose a where theater_close_seq = #{theater_close_seq}
+	</select>
+	
+	<update id="editClose" parameterType="com.project.dd.close.theater.domain.CloseTheaterDTO">
+		update tbltheaterclose set start_date = #{start_date}, end_date = #{end_date} where theater_close_seq = #{theater_close_seq}
+	</update>
+	
+	<delete id="del" parameterType="String">
+		delete from tbltheaterclose where theater_close_seq = #{seq}
+	</delete>
+	
+
+</mapper>

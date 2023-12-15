@@ -3,7 +3,6 @@ package com.project.dd.close.attraction.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.close.attraction.domain.CloseAttractionDTO;
 import com.project.dd.close.attraction.service.CloseAttractionService;
-import com.project.dd.communication.notice.domain.NoticeDTO;
+
 
 @Controller
 @RequestMapping(value="/admin/close/attraction")
@@ -78,9 +77,8 @@ public class AdminCloseAttractionController {
 	@PostMapping(value = "/editok.do")
 	public String editok(CloseAttractionDTO dto) {
 
-		System.out.println(dto);
+		//System.out.println(dto);
 		int result = closeAttrService.editClose(dto);
-		
 		
 		if (result == 1) {
 	 		return "redirect:/admin/close/attraction/view.do";
