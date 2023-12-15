@@ -177,7 +177,7 @@ th {
 												            aria-valuemin="0" aria-valuemax="100"
 												            data-bs-toggle="tooltip" data-bs-placement="top"
 												            title="${dto.cwc_final_win_count}/${cwcFinalWinTotalCount}">
-												            ${String.format('%.2f', (dto.cwc_final_win_count / cwcFinalWinTotalCount) * 100)}%
+												            ${dto.cwc_final_win_count != 0 ? String.format('%.2f', (dto.cwc_final_win_count / cwcFinalWinTotalCount) * 100) : '0'}%
 												        </div>
 												    </div>
 												</td>
@@ -190,7 +190,7 @@ th {
 													        aria-valuemin="0" aria-valuemax="100"
 													        data-bs-toggle="tooltip" data-bs-placement="top"
 													        title="${dto.cwc_win_count}/${dto.cwc_match_count}">
-													        ${String.format('%.2f', (dto.cwc_win_count / dto.cwc_match_count) * 100)}%
+													    	${dto.cwc_win_count != 0 && dto.cwc_match_count != 0 ? String.format('%.2f', (dto.cwc_win_count / dto.cwc_match_count) * 100) : '0'}%
 													    </div>
 													</div>
 												</td>

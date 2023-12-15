@@ -172,7 +172,7 @@ th {
 												            aria-valuemin="0" aria-valuemax="100"
 												            data-bs-toggle="tooltip" data-bs-placement="top"
 												            title="${dto.awc_final_win_count}/${awcFinalWinTotalCount}">
-												            ${String.format('%.2f', (dto.awc_final_win_count / awcFinalWinTotalCount) * 100)}%
+												            ${dto.awc_final_win_count != 0 ? String.format('%.2f', (dto.awc_final_win_count / awcFinalWinTotalCount) * 100) : '0'}%
 												        </div>
 												    </div>
 												</td>
@@ -185,7 +185,7 @@ th {
 													        aria-valuemin="0" aria-valuemax="100"
 													        data-bs-toggle="tooltip" data-bs-placement="top"
 													        title="${dto.awc_win_count}/${dto.awc_match_count}">
-													        ${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}%
+													        ${dto.awc_win_count != 0 && dto.awc_match_count != 0 ? String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100) : '0'}%
 													    </div>
 													</div>
 												</td>
@@ -278,32 +278,3 @@ th {
 						});
 			});
 </script>
-
-
-<!--
-<script>
-    jQuery(document).ready(function ($) {
-        // 각 행에 대해 승률 계산 및 동적으로 추가
-        $('.table tbody tr').each(function () {
-            var winCountText = $(this).find('td:nth-child(4)').text().trim();
-            var matchCountText = $(this).find('td:nth-child(5)').text().trim();
-
-            // 정규식을 사용하여 숫자 확인
-            var winCount = /^\d+$/.test(winCountText) ? parseFloat(winCountText) : NaN;
-            var matchCount = /^\d+$/.test(matchCountText) ? parseFloat(matchCountText) : NaN;
-
-            // 숫자가 아닌 경우에 대비하여 체크
-            if (!isNaN(winCount) && !isNaN(matchCount)) {
-                // 승률 계산 (승리횟수/전체1:1대결수)
-                var winRate = (winCount / matchCount * 100).toFixed(2);
-                console.log(winRate);
-
-                // 계산된 승률을 해당 행에 추가
-                $(this).find('td:nth-child(6)').text(winRate + '%');
-            } else {
-                console.log('Invalid winCount or matchCount:', winCountText, matchCountText);
-            }
-        });
-    });
-</script>
--->

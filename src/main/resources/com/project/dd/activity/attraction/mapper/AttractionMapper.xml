@@ -93,19 +93,4 @@
 		select * from tblAttractionImg
 	</select>
 	
-	<insert id="addAWC" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		insert into tblAWC (awc_seq, is_test, attraction_seq)
-		values (seqtblAWC.NEXTVAL, 'Y', #{attraction_seq})
-	</insert>
-	
-	<insert id="addAWCWin" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		insert into tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
-		values (seqtblAWCWin.NEXTVAL, 0, 0, #{attraction_seq})
-	</insert>
-	
-	<insert id="addAWCFinalWin" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		insert into tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-		values (seqtblAWCFinalWin.NEXTVAL, 0, #{attraction_seq})
-	</insert>
-	
 </mapper>

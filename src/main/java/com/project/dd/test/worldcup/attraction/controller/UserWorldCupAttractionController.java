@@ -65,9 +65,8 @@ public class UserWorldCupAttractionController {
 
     @PostMapping("/user/test/worldcup/attraction/view.do")
     public ResponseEntity<Map<String, Object>> attractionSelection(@RequestParam String winAttractionSeq, @RequestParam String lostAttractionSeq, Model model, HttpSession session) {
-    	System.out.println("winAttractionSeq " + winAttractionSeq);
-    	System.out.println("lostAttractionSeq " + lostAttractionSeq);
-    	
+    	//System.out.println("winAttractionSeq " + winAttractionSeq);
+    	//System.out.println("lostAttractionSeq " + lostAttractionSeq);
     	
     	awcService.updateAWCMatchCount(winAttractionSeq);
     	awcService.updateAWCWinCount(winAttractionSeq);
@@ -85,8 +84,8 @@ public class UserWorldCupAttractionController {
         // 두 개의 어트랙션을 다시 선택
         List<AttractionDTO> remainingAttractions = awcService.getRemainingAttractions(selectedAttractions);
         List<AttractionDTO> selectedTwoAttractions = awcService.getRandomTwoAttractions(remainingAttractions);
-        //System.out.println("1 전송" + remainingAttractions);
-        //System.out.println("2 전송" + selectedTwoAttractions);
+        System.out.println("remainingAttractions " + remainingAttractions);
+        System.out.println("selectedTwoAttractions " + selectedTwoAttractions);
 
         // 모델에 추가
         model.addAttribute("remainingAttractions", remainingAttractions);
