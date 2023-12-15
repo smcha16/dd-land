@@ -235,11 +235,11 @@ public class AttractionService {
 		//6. 기존 첨부 O + 수정 후 첨부 O + 기존 파일 유지: 기존 AttractionImg 유지 및 첨부 파일 추가
 		//7. 기존 첨부 O + 수정 후 첨부 O + 기존 파일 일부/전체 삭제: 기존 파일 삭제 및 첨부 파일 추가
 		
-		System.out.println(dto.toString());
-		System.out.println(imgs[0].isEmpty());
-		System.out.println(imgs.length);
-		System.out.println(Arrays.toString(deleteImgSeq));
-		System.out.println(deleteImgSeq.length);
+//		System.out.println(dto.toString());
+//		System.out.println(imgs[0].isEmpty());
+//		System.out.println(imgs.length);
+//		System.out.println(Arrays.toString(deleteImgSeq));
+//		System.out.println(deleteImgSeq.length);
 		
 		String seq = dto.getAttraction_seq();
 		int result = 0;
@@ -252,7 +252,7 @@ public class AttractionService {
 		result = dao.editAttraction(dto);
 		result = dao.editAttractionLocation(dto);
 		
-		System.out.println(dto.getImg());
+//		System.out.println(dto.getImg());
 
 		//기존 첨부 O vs X 판단: dto.getImg().equalsIgnoreCase("attraction.png") > Case 1, Case 2
 		if (dto.getImg() != null && dto.getImg().equalsIgnoreCase("attraction.png")) {
