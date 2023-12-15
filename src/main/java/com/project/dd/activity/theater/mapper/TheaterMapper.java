@@ -15,4 +15,22 @@ public interface TheaterMapper {
 
 	TheaterDTO getTheater(String seq);
 
+	int checkLocationDuplication(TheaterDTO dto);
+
+	int checkNameDuplication(TheaterDTO dto);
+
+	int editTheater(TheaterDTO dto);
+
+	int editTheaterLocation(TheaterDTO dto);
+
+	int countTheaterLocation(String seq);
+
+	int delTheaterLocation(String seq);
+
+	int delTheater(String seq);
+
+	String getTheaterSeq();
+
+	int addTheaterLocation(TheaterDTO dto);
+
 }

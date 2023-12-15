@@ -43,10 +43,64 @@ public class TheaterService {
 	}
 
 	public int addTheater(TheaterDTO dto) {
-		return dao.addTheater(dto);
+		
+		//addTheater
+		//1. tblTheater INSERT
+		//2. tblTheaterLocation INSERT
+		
+		//1.
+		int result = dao.addTheater(dto);
+		
+		//방금 등록한 Theater_seq 가져오기
+		String seq = dao.getTheaterSeq();
+		dto.setTheater_seq(seq);
+		
+		//2.
+		result = dao.addTheaterLocation(dto);
+		
+		return result;
 	}
 
 	public TheaterDTO getTheater(String seq) {
 		return dao.getTheater(seq);
+	}
+
+	public int checkLocationDuplication(TheaterDTO dto) {
+		return dao.checkLocationDuplication(dto);
+	}
+
+	public int checkNameDuplication(TheaterDTO dto) {
+		return dao.checkNameDuplication(dto);
+	}
+
+	public int editTheater(TheaterDTO dto) {
+		
+		int result = dao.editTheater(dto);
+			
+		result = dao.editTheaterLocation(dto);
+		
+		return result;
+	}
+
+	public int delTheater(String[] theater_seq) {
+		
+		int result = 0;
+		
+		//삭제할 영화관의 seq 뽑아내기
+		for (String seq : theater_seq) {
+			
+			//tblTheaterLocaion의 레코드가 존재 O > tblTheaterLocation DELETE
+			//tblTheaterLocaion의 레코드가 존재 X > tblTheater UPDATE
+			int locationCount = dao.countTheaterLocation(seq);
+			
+			if (locationCount > 0) {
+				dao.delTheaterLocation(seq);
+			}
+			
+			result += dao.delTheater(seq);
+			
+		}
+		
+		return result;
 	}
 }

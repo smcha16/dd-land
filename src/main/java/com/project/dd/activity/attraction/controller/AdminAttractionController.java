@@ -121,7 +121,7 @@ public class AdminAttractionController {
 	@PostMapping(value = "/editok.do")
 	public String editok(Model model, AttractionDTO dto, MultipartFile[] imgs, HttpServletRequest req, String[] deleteImgSeq) {
 
-		System.out.println(Arrays.toString(deleteImgSeq));
+//		System.out.println(Arrays.toString(deleteImgSeq));
 		
 		//img
 		AttractionDTO temp = service.getAttraction(dto.getAttraction_seq());

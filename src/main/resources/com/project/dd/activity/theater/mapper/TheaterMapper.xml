@@ -7,23 +7,67 @@
 	<!-- id == 인터페이스의 추상메서드의 이름 -->
 	<!-- 페이징 -->
 	<select id="getTotalCount" resultType="int">
-      select count(*) from tblTheater
+      select count(*) from tblTheater where name not like '%(운영종료)%'
 	</select>
 	
 	<select id="getTheaterList" parameterType="map" resultType="com.project.dd.activity.theater.domain.TheaterDTO">
 		select *
 		from (select n.*, rownum as rnum from
-				(select * from tblTheater) n)
+				(select a.*, 
+				(select lat from tblTheaterLocation where theater_seq = a.theater_seq) as lat, 
+				(select lng from tblTheaterLocation where theater_seq = a.theater_seq) as lng from tblTheater a 
+					where name not like '%(운영종료)%'
+					order by theater_seq desc) n)
 		where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
+	<select id="getTheater" parameterType="String" resultType="com.project.dd.activity.theater.domain.TheaterDTO">
+		select a.*,
+			(select lat from tblTheaterLocation where theater_seq = a.theater_seq) as lat,
+			(select lng from tblTheaterLocation where theater_seq = a.theater_seq) as lng 
+		from tblTheater a  where theater_seq = #{theater_seq}
+	</select>
+
 	<insert id="addTheater" parameterType="com.project.dd.activity.theater.domain.TheaterDTO">
 		INSERT INTO tblTheater (theater_seq, name)
-		VALUES (seqtblTheater.NEXTVAL, #{dto.name})
+		VALUES (seqtblTheater.NEXTVAL, #{name})
 	</insert>
 	
-	<select id="getTheater" parameterType="String" resultType="com.project.dd.activity.theater.domain.TheaterDTO">
-		select * from tblTheater where theater_seq = #{theater_seq}
+	<insert id="addTheaterLocation" parameterType="com.project.dd.activity.theater.domain.TheaterDTO">
+		INSERT INTO tblTheaterLocation (theater_location_seq, lat, lng, theater_seq ) VALUES (seqTheaterLocation.nextVal, #{lat}, #{lng}, #{theater_seq})
+	</insert>
+
+	
+	<select id="checkLocationDuplication" parameterType="com.project.dd.activity.theater.domain.TheaterDTO" resultType="int">
+		select count(*) from vwLocation where lat = #{lat} and lng = #{lng}
+	</select>
+	
+	<select id="checkNameDuplication" parameterType="com.project.dd.activity.theater.domain.TheaterDTO" resultType="int">
+		select count(*) from tblTheater where name = #{name}
+	</select>
+	
+	<update id="editTheater" parameterType="com.project.dd.activity.theater.domain.TheaterDTO">
+		update tblTheater set name = #{name} where theater_seq = #{theater_seq}
+	</update>
+	
+	<update id="editTheaterLocation" parameterType="com.project.dd.activity.theater.domain.TheaterDTO">
+		update tblTheaterLocation set lat = #{lat}, lng = #{lng} where theater_seq = #{theater_seq}
+	</update>
+	
+	<select id="countTheaterLocation" parameterType="String" resultType="int">
+		select count(*) from tblTheaterLocation where theater_seq = #{theater_seq}
+	</select>
+	
+	<delete id="delTheaterLocation" parameterType="String">
+		delete from tblTheaterLocation where theater_seq = #{theater_seq}
+	</delete>
+	
+	<update id="delTheater" parameterType="String">
+		update tblTheater set name = name || '(운영종료)' where theater_seq = #{theater_seq}
+	</update>
+	
+	<select id="getTheaterSeq" resultType="String">
+		select max(theater_seq) as theater_seq from tblTheater
 	</select>
 	
 </mapper>

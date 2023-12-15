@@ -36,4 +36,49 @@ public class TheaterDAOImpl implements TheaterDAO {
 	public TheaterDTO getTheater(String seq) {
 		return mapper.getTheater(seq);
 	}
+
+	@Override
+	public int checkLocationDuplication(TheaterDTO dto) {
+		return mapper.checkLocationDuplication(dto);
+	}
+
+	@Override
+	public int checkNameDuplication(TheaterDTO dto) {
+		return mapper.checkNameDuplication(dto);
+	}
+
+	@Override
+	public int editTheater(TheaterDTO dto) {
+		return mapper.editTheater(dto);
+	}
+
+	@Override
+	public int editTheaterLocation(TheaterDTO dto) {
+		return mapper.editTheaterLocation(dto);
+	}
+
+	@Override
+	public int countTheaterLocation(String seq) {
+		return mapper.countTheaterLocation(seq);
+	}
+
+	@Override
+	public int delTheaterLocation(String seq) {
+		return mapper.delTheaterLocation(seq);
+	}
+
+	@Override
+	public int delTheater(String seq) {
+		return mapper.delTheater(seq);
+	}
+
+	@Override
+	public String getTheaterSeq() {
+		return mapper.getTheaterSeq();
+	}
+
+	@Override
+	public int addTheaterLocation(TheaterDTO dto) {
+		return mapper.addTheaterLocation(dto);
+	}
 }

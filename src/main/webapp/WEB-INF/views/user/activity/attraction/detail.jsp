@@ -146,6 +146,7 @@
 		margin: 20px 10px;
 	}
 	
+	/* slick slider */
 	.image-slider {
       width: 700px;
       height: 350px;
