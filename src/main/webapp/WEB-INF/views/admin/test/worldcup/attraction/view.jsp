@@ -167,8 +167,8 @@ th {
 												<td>
 												    <div class="progress" style="height: 20px;">
 												        <div class="progress-bar" role="progressbar"
-												            style="width: ${String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 5)) * 100)}%;"
-												            aria-valuenow="${String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 5)) * 100)}"
+												            style="width: ${dto.awc_final_win_count != 0 ? String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 5)) * 100) : '0'}%;"
+												            aria-valuenow="${dto.awc_final_win_count != 0 ? String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 5)) * 100) : '0'}"
 												            aria-valuemin="0" aria-valuemax="100"
 												            data-bs-toggle="tooltip" data-bs-placement="top"
 												            title="${dto.awc_final_win_count}/${awcFinalWinTotalCount}">
@@ -180,8 +180,8 @@ th {
 										        <td>
 												   <div class="progress" style="height: 20px;">
 													    <div class="progress-bar" role="progressbar"
-													        style="width: ${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}%;"
-													        aria-valuenow="${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}"
+													        style="width: ${dto.awc_win_count != 0 && dto.awc_match_count != 0 ? String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100) : '0'}%;"
+													        aria-valuenow="${dto.awc_win_count != 0 && dto.awc_match_count != 0 ? String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100) : '0'}"
 													        aria-valuemin="0" aria-valuemax="100"
 													        data-bs-toggle="tooltip" data-bs-placement="top"
 													        title="${dto.awc_win_count}/${dto.awc_match_count}">
