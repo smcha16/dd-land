@@ -352,13 +352,12 @@
 		$('.image-slider').html('');
 		addModalImg(seq);
 		
-		
 		$('#modal-name').text(name);
         $('.m-info').text(info);
         $('.m-capacity').text(capacity);
         $('.m-time').text(time);
         $('.m-restriction').text(restriction);
-
+        
         $('#modal').modal('show');
 	}
 	
@@ -396,7 +395,6 @@
 			nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
 			draggable : true
 		});
-		
 		
 	}
 	
@@ -474,6 +472,9 @@
 		} else {
 			$('.slick-slide').css('width', '500px');
 		}
+		
+		setTimeout($('.image-slider').css('display', 'display'), 500);
+		
 	});
 
 	$(window).resize(function() {
@@ -483,6 +484,10 @@
 		} else {
 			$('.slick-slide').css('width', '500px');
 		}
+	});
+	
+	$(window).resize(function() {
+		$('.image-slider')[0].slick.refresh();
 	});
 	
 	

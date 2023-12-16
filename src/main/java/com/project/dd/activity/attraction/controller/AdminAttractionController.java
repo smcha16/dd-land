@@ -1,6 +1,5 @@
 package com.project.dd.activity.attraction.controller;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 

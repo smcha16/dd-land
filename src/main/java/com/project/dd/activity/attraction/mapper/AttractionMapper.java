@@ -23,7 +23,7 @@ public interface AttractionMapper {
 
 	int addAttraction(AttractionDTO dto);
 
-	int getAttractionSeq();
+	String getAttractionSeq();
 
 	int addAttractionLocation(AttractionDTO dto);
 
