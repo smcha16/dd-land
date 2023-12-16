@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.dd.close.giftshop.mapper.CloseShopMapper">
+
+	<select id="getTotalCount" resultType="int">
+		select count(*) from tblshopclose
+	</select>
+	
+	<select id="list" parameterType="map" resultType="com.project.dd.close.giftshop.domain.CloseGiftShopDTO">
+		select *
+		from (select n.*, rownum as rnum from (select sc.shop_close_seq, s.name, sc.shop_seq, to_char(sc.start_date, 'yyyy-MM-dd')as start_date, to_char(sc.end_date, 'yyyy-MM-dd')as end_date
+		from tblshop s inner join tblshopclose sc on s.	shop_seq=sc.shop_seq order by sc.shop_close_seq desc) n)
+		where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<select id="shoplist" resultType="com.project.dd.shop.giftshop.domain.ShopDTO">
+		select * from tblshop where name not like '%(운영종료)%'
+	</select>
+	
+	<insert id="addCloseShop" parameterType="com.project.dd.close.giftshop.domain.CloseGiftShopDTO">
+		insert into tblshopclose (shop_close_seq, start_date, end_date, shop_seq)
+    	values (seqtblShopClose.nextVal, to_date(#{start_date}, 'yyyy-mm-dd'), to_date(#{end_date}, 'yyyy-mm-dd'), #{shop_seq, jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="getOne" parameterType="String" resultType="com.project.dd.close.giftshop.domain.CloseGiftShopDTO">
+		select a.*, (select name from tblShop where shop_seq = a.shop_seq)as name from tblShopClose a where shop_close_seq = #{shop_close_seq}
+	</select>
+	
+	<update id="editClose" parameterType="com.project.dd.close.giftshop.domain.CloseGiftShopDTO">
+		update tblshopclose set start_date = #{start_date}, end_date = #{end_date} where shop_close_seq = #{shop_close_seq}
+	</update>
+	
+	<delete id="del" parameterType="String">
+		delete from tblshopclose where shop_close_seq = #{seq}
+	</delete>
+	
+
+</mapper>
