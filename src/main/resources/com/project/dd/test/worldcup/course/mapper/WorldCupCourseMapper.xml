@@ -13,11 +13,16 @@
 	
 	<select id="getAllCourse" parameterType="map" resultType="com.project.dd.test.worldcup.course.domain.CourseDTO">
 		select * from (
-		    select n.*, rownum as rnum
-		    from (
-		        SELECT c.*, cwc.is_test
-		        FROM tblCWC cwc
-		        JOIN tblCourse c ON cwc.course_seq = c.course_seq
+		    select n.*, rownum as rnum FROM (
+		    	select c.*,
+		        	cwc.is_test,
+		        	w.cwc_match_count,
+		        	w.cwc_win_count,
+		        	fw.cwc_final_win_count
+		        from tblCWC cwc
+		        join tblCourse c on cwc.course_seq = c.course_seq
+		        join tblCWCWin w on w.course_seq = c.course_seq
+		        join tblCWCFinalWin fw on fw.course_seq = c.course_seq
 		    ) n
 		) where rnum between #{startIndex} and #{endIndex}
 	</select>
@@ -54,6 +59,10 @@
 	
 	<select id="checkNameDuplication" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO" resultType="int">
 		select count(*) from tblCourse where name = #{name}
+	</select>
+	
+	<select id="getCWCFinalWinTotalCount" resultType="int">
+		select sum(cwc_final_win_count) as total_cwc_final_win_count from tblCWCFinalWin
 	</select>
 	
 </mapper>

@@ -26,5 +26,7 @@ public interface WorldCupCourseMapper {
 	int addCWCWin(CourseDTO dto);
 	
 	int addCWCFinalWin(CourseDTO dto);
+
+	int getCWCFinalWinTotalCount();
 	
 }

@@ -153,8 +153,8 @@ th {
 											<!-- <th></th> -->
 											<th>No</th>
 											<th>이름</th>
-											<th>우승비율 (최종우승횟수/전체게임횟수)</th>
-											<th>승률 (승리횟수/전체1:1대결수)</th>
+											<th>우승비율 (우승횟수/게임횟수)</th>
+											<th>승률 (승리횟수/대결수)</th>
 											<th>테스트 채택</th>
 										</tr>
 									</thead>
@@ -164,9 +164,32 @@ th {
 												<!-- <td><input type="checkbox"></td> -->
 												<td>${dto.attraction_seq}</td>
 												<td>${dto.name}</td>
-												<td>${dto.awc_final_win_count}</td>
-								                <td>${dto.awc_win_count}/${dto.awc_match_count}</td>
-									        
+												<td>
+												    <div class="progress" style="height: 20px;">
+												        <div class="progress-bar" role="progressbar"
+												            style="width: ${String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 5)) * 100)}%;"
+												            aria-valuenow="${String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 5)) * 100)}"
+												            aria-valuemin="0" aria-valuemax="100"
+												            data-bs-toggle="tooltip" data-bs-placement="top"
+												            title="${dto.awc_final_win_count}/${awcFinalWinTotalCount}">
+												            ${String.format('%.2f', (dto.awc_final_win_count / awcFinalWinTotalCount) * 100)}%
+												        </div>
+												    </div>
+												</td>
+
+										        <td>
+												   <div class="progress" style="height: 20px;">
+													    <div class="progress-bar" role="progressbar"
+													        style="width: ${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}%;"
+													        aria-valuenow="${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}"
+													        aria-valuemin="0" aria-valuemax="100"
+													        data-bs-toggle="tooltip" data-bs-placement="top"
+													        title="${dto.awc_win_count}/${dto.awc_match_count}">
+													        ${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}%
+													    </div>
+													</div>
+												</td>
+
 												<td>
 													<div class="d-flex justify-content-center">
 														<div class="form-check form-switch">
@@ -254,7 +277,9 @@ th {
 							});
 						});
 			});
-</script
+</script>
+
+
 <!--
 <script>
     jQuery(document).ready(function ($) {

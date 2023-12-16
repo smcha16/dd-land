@@ -27,4 +27,6 @@ public interface WorldCupCourseDAO {
 	
 	int addCWCFinalWin(CourseDTO dto);
 
+	int getCWCFinalWinTotalCount();
+	
 }

@@ -101,60 +101,199 @@
 	</div>
 </section>
 <!-- End Stats Counter Section -->
+
 <section id="menu" class="menu">
 	<div class="container" data-aos="fade-up">
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div id="attraction-container" class="munti-content-container">
-					<table>
-						<c:forEach items="${listAttraction}" var="dto">
-							<tr>
-								<td>
-									<div class="item" data-attraction-id="${dto.attraction_seq}">
-										<div
-											style="background-image: url('/dd/resources/assets/img/${dto.imgList[0].img}');"></div>
-										<div>${dto.name}</div>
-										<div class="hidden-div">${dto.info}</div>
-									</div>
-								</td>
-							</tr>
+					<div id="result-info"></div>
+					<div id="worldcup-container" class="button-container">
+						<!-- 어트랙션 출력 -->
+						<c:forEach var="attraction" items="${selectedTwoAttractions}" varStatus="loop">
+						    <div class="item" id="item${loop.index + 1}" onclick="selectAttraction('${attraction.attraction_seq}')">
+						        <div style="display:none" data-attraction-seq="${attraction.attraction_seq}"></div>
+						        <div class="img-container" style="background-image: url('/dd/resources/files/activity/attraction/${attraction.img}');"></div>
+						        <h3>${attraction.name}</h3>
+						    </div>
 						</c:forEach>
-					</table>
-
-					<table>
-						<c:forEach items="${listAWC}" var="dto">
-							<tr>
-								<td>${dto.awc_seq}</td>
-								<td>${dto.is_test}</td>
-								<td>${dto.attraction_seq}</td>
-							</tr>
-						</c:forEach>
-					</table>
-					<table>
-						<c:forEach items="${listAWCWin}" var="dto">
-							<tr>
-								<td>${dto.awc_win_seq}</td>
-								<td>${dto.awc_match_count}</td>
-								<td>${dto.awc_win_count}</td>
-								<td>${dto.attraction_seq}</td>
-							</tr>
-						</c:forEach>
-					</table>
-					<table>
-						<c:forEach items="${listAWCFinalWin}" var="dto">
-							<tr>
-								<td>${dto.awc_final_win_seq}</td>
-								<td>${dto.awc_final_win_count}</td>
-								<td>${dto.attraction_seq}</td>
-							</tr>
-						</c:forEach>
-					</table>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+<script>
+	let selectedTwoAttractions;
 
+	// CSRF token
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+
+	//페이지가 로드될 때 월드컵 세션 초기화
+	$(document).ready(function() {
+	    initializeSession();
+	});
+
+	function initializeSession() {
+		$.ajax({
+			type : 'GET',
+			url : '/dd/user/test/worldcup/attraction/initialization.do',
+			data : {
+				'isNewSession' : true
+			},
+			success : function(data) {
+				//console.log('세션 초기화');
+			},
+			error : function(a, b, c) {
+				console.error(a, b, c);
+			}
+		});
+	}
+
+	function selectAttraction(attractionSeq) {
+		// 첫 번째 어트랙션의 attraction_seq
+		const attractionSeq1 = $('#item1 > div:nth-child(1)').data('attraction-seq');
+
+		// 두 번째 어트랙션의 attraction_seq
+		const attractionSeq2 = $('#item2 > div:nth-child(1)').data('attraction-seq');
+
+		
+		let winAttractionSeq;
+	    let lostAttractionSeq;
+
+	    if (attractionSeq !== attractionSeq1) {
+	        winAttractionSeq = attractionSeq2;
+	        lostAttractionSeq = attractionSeq1;
+	    } else if (attractionSeq !== attractionSeq2) {
+	        winAttractionSeq = attractionSeq1;
+	        lostAttractionSeq = attractionSeq2;
+	    } else {
+	        console.error('No matching attractionSeq found.');
+	        return;
+	    }
+	    
+		$.ajax({
+			type: 'POST',
+			url: '/dd/user/test/worldcup/attraction/view.do',
+			data: {
+				'winAttractionSeq': winAttractionSeq,
+				'lostAttractionSeq': lostAttractionSeq
+			},
+		    dataType: 'json',
+			success: function(data) {
+				//console.log('선택한 어트랙션:', data.selectedTwoAttractions);
+				//console.log('남은 어트랙션:', data.remainingAttractionSeqs);
+
+				// 전역 변수에 할당
+				selectedTwoAttractions = data.selectedTwoAttractions;
+
+				// 어트랙션 정보에 따라 화면 갱신
+				if (selectedTwoAttractions.length > 1) {
+					refreshScreen();
+				} else {
+					resultScreen(selectedTwoAttractions[0]);
+				}
+			},
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			error : function(a, b, c) {
+				console.error(a, b, c);
+			}
+		});
+	}
+	
+	function refreshScreen() {
+		//console.log('refreshScreen 함수 호출');
+
+		// 모든 어트랙션을 화면에 갱신
+		$('#worldcup-container').empty();
+
+		if (selectedTwoAttractions.length == 2) {
+			for (let i = 0; i < selectedTwoAttractions.length; i++) {
+				const attraction = selectedTwoAttractions[i];
+				const imgUrl = attraction.img ? '/dd/resources/files/activity/attraction/'
+						+ attraction.img
+						: 'attraction.png';
+
+				// 동적으로 id 생성
+				const itemId = 'item' + (i + 1);
+
+				const item = $('<div class="item" id="' + itemId + '" onclick="selectAttraction(' + attraction.attraction_seq + ')">')
+					.append('<div style="display:none" data-attraction-seq=' + attraction.attraction_seq + '></div>')
+					.append('<div class="img-container" style="background-image: url(\'' + imgUrl + '\');"></div>')
+					.append('<h3>' + attraction.name + '</h3>');
+				$('#worldcup-container').append(item);
+			}
+		} else {
+			const attraction = selectedTwoAttractions[0];
+			const imgUrl = attraction.img ? '/dd/resources/files/activity/attraction/'
+					+ attraction.img
+					: 'attraction.png';
+
+			// 동적으로 id 생성
+			const itemId = 'item3';
+
+			const item = $('<div class="item" id="' + itemId + '" onclick="selectAttraction(' + attraction.attraction_seq + ')">')
+				.append('<div style="display:none" data-attraction-seq=' + attraction.attraction_seq + '></div>')
+				.append('<div class="img-container" style="background-image: url(\'' + imgUrl + '\');"></div>')
+				.append('<h3>' + attraction.name + '</h3>');
+			$('#worldcup-container').append(item);
+		}
+	}
+
+	function resultScreen(selectedAttraction) {
+		// 어트랙션을 화면에 갱신
+		$('#worldcup-container').empty();
+
+		const resultContainer = $('<div class="item result-container" id="item3">');
+		const imgContainer = $('<div class="img-container" style="background-image: url(\'/dd/resources/files/activity/attraction/'
+				+ selectedAttraction.img + '\');"></div>');
+		const infoname = $('<h3>' + selectedAttraction.name + '</h3>');
+		const message = $('<p id="result-message">최고의 어트랙션이죠!<br>['
+				+ selectedAttraction.name + ']</p>'
+				+ '<p id="attinfo">클릭시 해당 어트랙션 페이지로 이동합니다.</p>');
+
+		// 메시지
+		$('#result-info').append(message);
+
+		// 최종 선택 어트랙션
+		resultContainer.append(imgContainer).append(infoname);
+
+		// 클릭 이벤트 처리
+		resultContainer.click(function() {
+			// 어트랙션 상세 페이지로 이동
+			window.location.href = '/dd/user/activity/attraction/detail.do?seq=' + selectedAttraction.attraction_seq;
+			
+			updateAWCFinalWinCount(selectedAttraction.attraction_seq);
+		});
+
+		// #worldcup-container에 추가
+		$('#worldcup-container').append(resultContainer);
+	}
+
+	function updateAWCFinalWinCount(finalWinAttractionSeq) {
+	    $.ajax({
+	        type: 'POST',
+	        url: '/dd/user/test/worldcup/attraction/final.do',
+	        data: {
+	            'finalWinAttractionSeq': finalWinAttractionSeq
+	        },
+	        success: function(data) {
+	            console.log('Final update completed:', data);
+	        },
+	        beforeSend: function(xhr) {
+	            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	        },
+	        error: function(a, b, c) {
+	            console.error('Error during final update:', a, b, c);
+	        }
+	    });
+	}
+</script>
+
+<!--  
 <script>
 	var itemElements = document.querySelectorAll('.item');
 	itemElements.forEach(function(item) {
@@ -169,3 +308,4 @@
 		});
 	});
 </script>
+-->
