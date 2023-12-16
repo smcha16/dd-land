@@ -1,10 +1,8 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<!-- list (1) Template -->
-<!-- user > test > view.jsp -->
+<!-- user > test > worldcup > attraction > view.jsp -->
 <style>
 #title+p {
 	text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
@@ -123,6 +121,7 @@
 		</div>
 	</div>
 </section>
+
 <script>
 	let selectedTwoAttractions;
 	let remainingAttractions;
@@ -158,7 +157,6 @@
 
 		// 두 번째 어트랙션의 attraction_seq
 		const attractionSeq2 = $('#item2 > div:nth-child(1)').data('attraction-seq');
-
 		
 		let winAttractionSeq;
 	    let lostAttractionSeq;
@@ -195,6 +193,9 @@
 					refreshScreen();
 				} else {
 					resultScreen(selectedTwoAttractions[0]);
+					
+					// 최종 우승 어트랙션
+                    updateAWCFinalWinCount(selectedTwoAttractions[0].attraction_seq);
 				}
 			},
 			beforeSend : function(xhr) {
@@ -215,9 +216,7 @@
 		if (selectedTwoAttractions.length == 2) {
 			for (let i = 0; i < selectedTwoAttractions.length; i++) {
 				const attraction = selectedTwoAttractions[i];
-				const imgUrl = attraction.img ? '/dd/resources/files/activity/attraction/'
-						+ attraction.img
-						: 'attraction.png';
+				const imgUrl = attraction.img ? '/dd/resources/files/activity/attraction/' + attraction.img : 'attraction.png';
 
 				// 동적으로 id 생성
 				const itemId = 'item' + (i + 1);
@@ -230,9 +229,7 @@
 			}
 		} else {
 			const attraction = selectedTwoAttractions[0];
-			const imgUrl = attraction.img ? '/dd/resources/files/activity/attraction/'
-					+ attraction.img
-					: 'attraction.png';
+			const imgUrl = attraction.img ? '/dd/resources/files/activity/attraction/' + attraction.img : 'attraction.png';
 
 			// 동적으로 id 생성
 			const itemId = 'item3';
@@ -250,11 +247,9 @@
 		$('#worldcup-container').empty();
 
 		const resultContainer = $('<div class="item result-container" id="item3">');
-		const imgContainer = $('<div class="img-container" style="background-image: url(\'/dd/resources/files/activity/attraction/'
-				+ selectedAttraction.img + '\');"></div>');
+		const imgContainer = $('<div class="img-container" style="background-image: url(\'/dd/resources/files/activity/attraction/' + selectedAttraction.img + '\');"></div>');
 		const infoname = $('<h3>' + selectedAttraction.name + '</h3>');
-		const message = $('<p id="result-message">최고의 어트랙션이죠!<br>['
-				+ selectedAttraction.name + ']</p>'
+		const message = $('<p id="result-message">최고의 어트랙션이죠!<br>[' + selectedAttraction.name + ']</p>'
 				+ '<p id="attinfo">클릭시 해당 어트랙션 페이지로 이동합니다.</p>');
 
 		// 메시지
@@ -267,8 +262,6 @@
 		resultContainer.click(function() {
 			// 어트랙션 상세 페이지로 이동
 			window.location.href = '/dd/user/activity/attraction/detail.do?seq=' + selectedAttraction.attraction_seq;
-			
-			updateAWCFinalWinCount(selectedAttraction.attraction_seq);
 		});
 
 		// #worldcup-container에 추가
