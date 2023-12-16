@@ -273,7 +273,7 @@ CREATE TABLE tblMovie (
    story VARCHAR2(2000) NOT NULL, /* 줄거리 */
    runningtime NUMBER NOT NULL, /* 러닝타임 */
    img VARCHAR2(500) DEFAULT 'movie.png' NOT NULL, /* 포스터이미지 */
-   preview VARCHAR2(500) /* 영화예고편영상 */
+   preview VARCHAR2(2000) /* 영화예고편영상 */
 );
 
 /* 영화상영 */

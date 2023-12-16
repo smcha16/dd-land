@@ -16,44 +16,38 @@ import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService
 public class AdminWorldCupAttractionController {
 
 	@Autowired
-	private WorldCupAttractionService attractionService;
+	private WorldCupAttractionService awcService;
 
-	@GetMapping(value = "/admin/test/worldcup/view.do")
+	@GetMapping(value = "/admin/test/worldcup/attraction/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model,
 			@RequestParam(defaultValue = "n") String close, @RequestParam(defaultValue = "Y") String isTest) {
 
-		Map<String, String> map = attractionService.paging(page); // 페이징
+		Map<String, String> map = awcService.paging(page); // 페이징
 
 		model.addAttribute("currentPage", page); // 페이징
 		model.addAttribute("map", map); // 페이징
-		model.addAttribute("listAttraction", attractionService.getAllAttraction(map));
+		model.addAttribute("listAttraction", awcService.getAllAttraction(map));
+		model.addAttribute("awcFinalWinTotalCount", awcService.getAWCFinalWinTotalCount());
 
-		// System.out.println(attractionService.getAllAttraction(map));
+	    //model.addAttribute("listAWCWin", awcService.getAllAWCWin());
+        //model.addAttribute("listAWCFinalWin", awcService.getAllAWCFinalWin());
 
-		return "admin/test/worldcup/view";
+		// System.out.println(awcService.getAllAttraction(map));
+
+		return "admin/test/worldcup/attraction/view";
 	}
 
-	/*
-	@PostMapping(value = "/admin/test/worldcup/view.do")
-	public String updateAttractionStatus(@RequestParam String attractionSeq, @RequestParam String isChecked, Model model) {
-		System.out.println("seq:" + attractionSeq + " check:" + isChecked);
-	    attractionService.updateAttractionStatus(attractionSeq, isChecked);
+	@PostMapping(value = "/admin/test/worldcup/attraction/view.do")
+	public String updateAttractionStatus(@RequestParam String attractionSeq, @RequestParam String isTest, Model model) {
+	    //System.out.println("seq:" + attractionSeq + " check:" + isTest);
 	    
-	    return "redirect:/admin/test/worldcup/view.do"; 
-	}
-	*/
-	
-	@PostMapping(value = "/admin/test/worldcup/view.do")
-	public String updateAttractionStatus(@RequestParam String attractionSeq, @RequestParam String isChecked, Model model) {
-	    //System.out.println("seq:" + attractionSeq + " check:" + isChecked);
-	    
-	    Map<String, String> paramMap = new HashMap<>();
-	    paramMap.put("isChecked", isChecked);
-	    paramMap.put("attractionSeq", attractionSeq);
+	    Map<String, String> map = new HashMap<>();
+	    map.put("isTest", isTest);
+	    map.put("attractionSeq", attractionSeq);
 
-	    attractionService.updateAttractionStatus(paramMap);
+	    awcService.updateAttractionStatus(map);
 	    
-	    return "redirect:/admin/test/worldcup/view.do"; 
+	    return "redirect:/admin/test/worldcup/attraction/view.do"; 
 	}
 
 }

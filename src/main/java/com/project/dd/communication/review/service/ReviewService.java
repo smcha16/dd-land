@@ -17,6 +17,8 @@ public class ReviewService {
 	
 	@Autowired
 	private ReviewDAO dao;
+	
+	/* 페이징 */
 
 	public Map<String, String> paging(String order, int page) {
 		
@@ -41,12 +43,16 @@ public class ReviewService {
 		return map;
 		
 	}
+	
+	/* 목록 */
 
 	public List<ReviewDTO> getReviewList(Map<String, String> map) {
 		
 		List<ReviewDTO> list = dao.getReviewList(map);
 
 		for (ReviewDTO dto : list) {
+			
+			// 제목
 			
 			String subject = dto.getSubject();
 
@@ -58,6 +64,8 @@ public class ReviewService {
 
             }
             
+            // 내용
+            
             String content = dto.getContent();
 
             if (content.length() > 170) {
@@ -68,33 +76,43 @@ public class ReviewService {
 
             }
 			
-			String regdate = dto.getRegdate();
-			
-			regdate = regdate.substring(0, 10);
-			
-			dto.setRegdate(regdate);
-			
 		}
 		
 		return list;
 		
 	}
+	
+	/* 상세 */
 
 	public ReviewDTO getReview(String seq) {
 		
 		ReviewDTO dto = dao.getReview(seq);
-
+		
+		// 이메일
+		
+		String email = dto.getEmail();
+		
+	    email = email.substring(0, 2) + email.substring(2, email.indexOf('@')).replaceAll(".", "*") + email.substring(email.indexOf('@'));
+	    
+	    dto.setEmail(email);
+	    
+	    // 방문일
+		
+ 		String visit_date = dto.getVisit_date().substring(0, 10);
+ 		
+ 		dto.setVisit_date(visit_date);
+	    
+	    // 등록일
+	        
 		String regdate = dto.getRegdate().substring(0, 10);
 		
 		dto.setRegdate(regdate);
-		
-		String visit_date = dto.getVisit_date().substring(0, 10);
-		
-		dto.setVisit_date(visit_date);
-		
+
 		return dto;
 		
 	}
+	
+	/* 조회수 */
 
 	public void updateReadCount(HttpSession session, String seq) {
 		

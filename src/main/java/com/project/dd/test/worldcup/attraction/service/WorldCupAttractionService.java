@@ -7,9 +7,13 @@ import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO;
 
 public interface WorldCupAttractionService {
-	
+
+	Map<String, String> paging(int page);
+
     List<AttractionDTO> getAllAttraction(Map<String, String> map);
-    
+
+	List<AttractionDTO> getAttractionList();
+	
     List<AttractionDTO> getRunAttraction(String close);
 
     List<WorldCupAttractionDTO> getAllAWC(String isTest);
@@ -18,12 +22,24 @@ public interface WorldCupAttractionService {
 
     List<WorldCupAttractionDTO> getAllAWCFinalWin();
 
-    List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions);
+	void updateAttractionStatus(Map<String, String> map);
+	
+	int getAWCFinalWinTotalCount();
+	
+	List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> remainingAttractions);
 
-    List<AttractionDTO> getRandomTwoAttractions(List<AttractionDTO> attractions);
+	List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions);
 
-	Map<String, String> paging(int page);
+	int addAWC(AttractionDTO dto, String seq);
+	
+	int addAWCWin(AttractionDTO dto, String seq);
+	
+	int addAWCFinalWin(AttractionDTO dto, String seq);
+	
+	void updateAWCMatchCount(String attractionSeq);
 
-	void updateAttractionStatus(Map<String, String> paramMap);
+	void updateAWCWinCount(String attractionSeq);
+
+	void updateAWCFinalWinCount(String attractionSeq);
 
 }

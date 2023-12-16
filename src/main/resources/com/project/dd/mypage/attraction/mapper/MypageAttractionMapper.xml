@@ -4,8 +4,24 @@
 <!-- namespace == 호출할 Interface 이름 적기 -->
 <mapper namespace="com.project.dd.mypage.attraction.mapper.MypageAttractionMapper">
 
-	<select id="list" parameterType="String" resultType="com.project.dd.mypage.attraction.domain.AttractionDTO">
-		select * from vwBookUser
+	<select id="list" parameterType="map" resultType="com.project.dd.mypage.attraction.domain.AttractionDTO">
+		select *
+      from (select n.*, rownum as rnum from (select * from vwBookUser where email = #{email} and regdate &gt;= to_char(sysdate, 'yyyy-mm-dd') order by regdate desc) n)
+      where rnum between #{startIndex} and #{endIndex}
 	</select>
+	
+	<select id="plist" parameterType="map" resultType="com.project.dd.mypage.attraction.domain.AttractionDTO">
+		select *
+      from (select n.*, rownum as rnum from (select * from vwBookUser where email = #{email} and regdate &lt; to_char(sysdate, 'yyyy-mm-dd') order by regdate desc) n)
+      where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<delete id="delete">
+		delete from tblBookUser where book_user_seq = #{selectedAttraction}
+	</delete>
+	
+	<select id="getTotalCount" resultType="int">
+      select count(*) from vwBookUser
+    </select>
 
 </mapper>

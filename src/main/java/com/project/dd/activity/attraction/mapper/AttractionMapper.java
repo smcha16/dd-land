@@ -19,4 +19,36 @@ public interface AttractionMapper {
 
 	int getTotalCount();
 
+	int checkLocationDuplication(AttractionDTO dto);
+
+	int addAttraction(AttractionDTO dto);
+
+	int getAttractionSeq();
+
+	int addAttractionLocation(AttractionDTO dto);
+
+	int addAttractionImg(AttractionImgDTO idto);
+
+	int delAttraction(String seq);
+
+	int countAttractionImg(String seq);
+
+	int delAttractionImg(String seq);
+
+	int delAttractionLocation(String seq);
+
+	int countAttractionLocation(String seq);
+
+	int checkNameDuplication(AttractionDTO dto);
+
+	String getAttractionDefaultImgName(String seq);
+
+	int editAttractionLocation(AttractionDTO dto);
+
+	int editAttraction(AttractionDTO dto);
+
+	int delAttractionImgByImgSeq(String imgseq);
+
+	List<AttractionImgDTO> getAllAttractionImgList();
+
 }
