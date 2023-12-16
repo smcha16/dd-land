@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace == 호출할 Interface 이름 적기 -->
+<mapper namespace="com.project.dd.mypage.unregister.mapper.UnregisterMapper">
+
+	<update id="deleteMember" parameterType="com.project.dd.mypage.modify.domain.ModifyDTO">
+	    UPDATE tblUser
+	    SET ing = 'N'
+	    WHERE email = #{email}
+	</update>
+	
+	<select id="isValidUser" parameterType="String" resultType="int">
+    SELECT COUNT(*) FROM tblUser WHERE email = #{email}
+	</select>
+
+</mapper>

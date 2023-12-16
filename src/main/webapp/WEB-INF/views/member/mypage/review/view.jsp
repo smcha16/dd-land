@@ -101,6 +101,21 @@ th {
 	justify-content: center;
 	margin-top: 40px;
 }
+
+#page-bar {
+	margin-top: 50px;
+}
+
+.page-link {
+	color: #CE1212;
+}
+
+.active>.page-link, .page-link.active {
+	z-index: 3;
+	color: var(- -bs-pagination-active-color);
+	background-color: #CE1212;
+	border-color: #CE1212;
+}
 </style>
 
 <!-- ======= Main ======= -->
@@ -121,43 +136,46 @@ th {
 
 								<nav class="d-flex justify-content-end">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a href="index.html">추가</a></li>
+										<!-- <li class="breadcrumb-item"><a href="index.html">추가</a></li>
 										<li class="breadcrumb-item"><a href="#">수정</a></li>
-										<li class="breadcrumb-item active"><a href="#">삭제</a></li>
+										<li class="breadcrumb-item active"><a href="#">삭제</a></li> -->
 									</ol>
 								</nav>
 
-								<table class="table">
-									<thead>
-										<tr>
-											<th></th>
-											<th>No</th>
-											<th>제목</th>
-											<th>등록일</th>
-											<th>조회수</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${list}" var="dto">
+								<!-- <form action="/dd/member/mypage/review/delete.do" method="post"> -->
+								<form id="reviewForm" method="post">
+									<table class="table">
+										<thead>
 											<tr>
-												<td><input type="checkbox" name="attraction_checkbox"></td>
-												<td>${dto.review_seq}</td>
-												<td>${dto.subject}</td>
-												<td>${dto.regdate}</td>
-												<td>${dto.readcount}</td>
+												<th></th>
+												<th>제목</th>
+												<th>등록일</th>
+												<th>조회수</th>
 											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
+										</thead>
+										<tbody>
+											<c:forEach items="${list}" var="dto">
+												<tr>
+													<td><input type="radio" name="selectedReview"
+														value="${dto.review_seq}"></td>
+													<td>${dto.subject}</td>
+													<td>${dto.regdate}</td>
+													<td>${dto.readcount}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<!-- <button type="submit" id="delete-button">리뷰 삭제</button> -->
+								<!-- <button type="submit" id="modify-button">리뷰 수정</button> -->
+									 <button type="button" onclick="deleteReviews()">리뷰 삭제</button>
+									 <button type="button" onclick="modifyReviews()">리뷰 수정</button>
+									<!-- <button type="button" onclick="location.href='/dd/member/mypage/review/delete.do?seq=${dto.review_seq}'">리뷰 삭제</button> -->
+									<%-- <button type="button" onclick="location.href='/dd/member/mypage/review/edit.do?seq=${dto.review_seq}';">리뷰 수정</button> --%>
+									<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}">
+								</form>
 
-								<ul class="pagination pagination-sm">
-									<li class="page-item active" aria-current="page"><span
-										class="page-link">1</span></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">4</a></li>
-									<li class="page-item"><a class="page-link" href="#">5</a></li>
-								</ul>
+
 							</div>
 
 						</div>
@@ -167,6 +185,64 @@ th {
 			</div>
 
 		</div>
+		<nav id="page-bar" aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
+					<c:choose>
+						<c:when test="${pageStatus.index == currentPage}">
+							<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link"
+								href="/dd/member/mypage/ticket/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</ul>
+		</nav>
 	</section>
 
 </main>
+<script>
+
+	/* $('#delete-button').click(function(e) {
+	 var result = confirm("정말 예매를 취소하시겠습니까?");
+	 if (!result) {
+	 e.preventDefault(); // 확인을 누르지 않으면 기본 동작(폼 제출)을 막음
+	 }
+	 }); */
+
+	/*
+	 $('#modify-button').click(function() {
+	 window.location.href = '/dd/member/mypage/review/edit.do';
+
+	 }); */
+
+	function deleteReviews() {
+		// 선택된 체크박스가 있다면
+		if ($("input[name='selectedReview']:checked").length > 0) {
+
+			var result = confirm("정말 예매를 취소하시겠습니까?");
+			if (result) {
+
+				// 삭제 form 설정 및 제출
+				$('#reviewForm').attr('action',
+						'/dd/member/mypage/review/delete.do');
+				$('#reviewForm').submit();
+			}
+		}
+	}
+	 
+	function modifyReviews() {
+		// 선택된 체크박스가 있다면
+		if ($("input[name='selectedReview']:checked").length > 0) {
+			// 수정 form 설정 및 제출
+			/* $('#reviewForm').attr('action', '/dd/member/mypage/review/edit.do');
+			$('#reviewForm').submit(); */
+			
+			const seq = $('input[type="radio"]:checked').val();
+			
+			location.href='/dd/member/mypage/review/edit.do?seq=' + seq;
+		}
+	} 
+</script>

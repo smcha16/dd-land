@@ -4,8 +4,18 @@
 <!-- namespace == 호출할 Interface 이름 적기 -->
 <mapper namespace="com.project.dd.mypage.inquiry.mapper.MypageInquiryMapper">
 
-	<select id="list" parameterType="String" resultType="com.project.dd.mypage.inquiry.domain.InquiryDTO">
-		select * from tblInquiry
+	<select id="list" parameterType="map" resultType="com.project.dd.mypage.inquiry.domain.InquiryDTO">
+		select *
+      from (select n.*, rownum as rnum from (select * from vwInquiry where email = #{email} ) n)
+      where rnum between #{startIndex} and #{endIndex}
 	</select>
+	
+	<select id="getTotalCount" resultType="int">
+      select count(*) from vwInquiry
+    </select>
+    
+    <delete id="delete">
+		delete from tblInquiry where inquiry_seq = #{selectedInquiry}
+	</delete>
 
 </mapper>

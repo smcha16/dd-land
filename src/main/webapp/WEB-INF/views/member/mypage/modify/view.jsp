@@ -190,63 +190,60 @@ th {
 
 								<nav class="d-flex justify-content-end">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a href="index.html">추가</a></li>
+										<!-- <li class="breadcrumb-item"><a href="index.html">추가</a></li>
 										<li class="breadcrumb-item"><a href="#">수정</a></li>
-										<li class="breadcrumb-item active"><a href="#">삭제</a></li>
+										<li class="breadcrumb-item active"><a href="#">삭제</a></li> -->
 									</ol>
 								</nav>
 
 								<div class="containers">
-									<form action="/dd/member/mypage/modify/edit.do" method="post">
+									<form id="editForm" action="/dd/member/mypage/modify/edit.do" method="post">
 										<div class="form-group">
 											<label for="email">이메일</label> <input type="text" id="email"
-												name="email" value=${dto.email} disabled>
+												name="email" value="${list[0].email}" readonly>
 										</div>
 										<div class="form-group">
 											<label for="name">이름</label> <input type="text" id="name"
-												name="name" required value=${dto.name}>
+												name="name" required value="${list[0].name}">
 										</div>
 										<div class="form-group">
 											<label for="birth">생년월일</label> <input type="text" id="birth"
-												name="birth" required value=${dto.birth}>
+												name="birth" required value=${list[0].birth}>
 										</div>
 										<div class="form-group">
 											<label for="tel">연락처</label> <input type="tel" id="tel"
-												name="tel" required value=${dto.tel}>
+												name="tel" required value="${list[0].tel}">
 										</div>
 										<div class="form-group">
 											<label for="post-code">우편번호</label> <input type="text"
 												name="post-code" id="post-code" class="middle-flat"
-												placeholder="우편번호">
+												placeholder="우편번호" required>
 											<button type="button" class="button check"
 												onclick="execDaumPostcode()">우편번호 검색</button>
 										</div>
 										<div class="form-group">
 											<label for="address-basis">기본주소</label> <input type="text"
 												name="address-basis" id="address-basis" class="middle-flat"
-												placeholder="기본주소" value=${dto.address}>
+												placeholder="기본주소" required>
 										</div>
 										<div class="form-group">
 											<label for="address-detail">상세주소</label> <input type="text"
 												name="address-detail" id="address-detail"
-												class="middle-flat" placeholder="상세주소">
+												class="middle-flat" placeholder="상세주소" value="${list[0].address}" required>
 										</div>
 										<div class="btn-container">
 											<button type="button" class="btn" onclick="combineAddress()">수정</button>
 											<button type="button" class="btn cancel"
 												onclick="location.href='/dd/member/mypage/view.do'">취소</button>
 										</div>
+										<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}">
+										
+										<!-- 테스트 -->
+										<input type="hidden" name="address">
 									</form>
 								</div>
 
-								<ul class="pagination pagination-sm">
-									<li class="page-item active" aria-current="page"><span
-										class="page-link">1</span></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">4</a></li>
-									<li class="page-item"><a class="page-link" href="#">5</a></li>
-								</ul>
 							</div>
 
 						</div>
@@ -259,73 +256,88 @@ th {
 	</section>
 
 </main>
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-	function execDaumPostcode() {
-		new daum.Postcode({
-			oncomplete : function(data) {
-				var addr = '';
-				var extraAddr = '';
+function execDaumPostcode() {
+	new daum.Postcode({
+		oncomplete : function(data) {
+			var addr = '';
+			var extraAddr = '';
 
-				if (data.userSelectedType === 'R') { // 도로명 주소 선택
-					addr = data.roadAddress;
-				} else { // 지번 주소 선택
-					addr = data.jibunAddress;
-				}
-
-				if (data.userSelectedType === 'R') {
-					if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-						extraAddr += data.bname;
-					}
-					if (data.buildingName !== '' && data.apartment === 'Y') {
-						extraAddr += (extraAddr !== '' ? ', '
-								+ data.buildingName : data.buildingName);
-					}
-					if (extraAddr !== '') {
-						extraAddr = ' (' + extraAddr + ')';
-					}
-				} else {
-					document.getElementById("address-basis").value = '';
-				}
-
-				// 우편번호와 주소 정보를 input 박스에 삽입
-				document.getElementById('post-code').value = data.zonecode;
-				document.getElementById("address-basis").value = addr;
-				document.getElementById("address-detail").focus(); // 상세주소로 포커스 이동
+			if (data.userSelectedType === 'R') { // 도로명 주소 선택
+				addr = data.roadAddress;
+			} else { // 지번 주소 선택
+				addr = data.jibunAddress;
 			}
-		}).open();
-	}
+
+			if (data.userSelectedType === 'R') {
+				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+					extraAddr += data.bname;
+				}
+				if (data.buildingName !== '' && data.apartment === 'Y') {
+					extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+				}
+				if (extraAddr !== '') {
+					extraAddr = ' (' + extraAddr + ')';
+				}
+			} else {
+				document.getElementById("address-basis").value = '';
+			}
+
+			// 우편번호와 주소 정보를 input 박스에 삽입
+			document.getElementById('post-code').value = data.zonecode;
+			document.getElementById("address-basis").value = addr;
+			document.getElementById("address-detail").focus(); // 상세주소로 포커스 이동
+		}
+	}).open();
+}
+/*
+function combineAddress() {
+    var basis = document.getElementById("address-basis").value;
+    var detail = document.getElementById("address-detail").value;
+
+    // 주소나 상세주소가 비어 있을 경우 빈 문자열로 처리
+    //주원 To-do list: 조건 걸기
+    basis = basis.trim() || "";
+    detail = detail.trim() || "";
+
+    var combinedAddress = basis + " " + detail;
+
+    // 폼에 새로운 필드를 추가하고, 합쳐진 주소를 할당
+    var addressInput = document.createElement("input");
+    addressInput.type = "hidden";
+    addressInput.name = "address";
+    addressInput.value = combinedAddress;
+
+    // 이전에 존재하던 주소 관련 필드들을 폼에서 제거
+    var form = document.querySelector("form"); // 폼 요소에 대한 참조 가져오기
+    var previousAddressInputs = document.querySelectorAll('[name^="address-"]');
+    previousAddressInputs.forEach(function (input) {
+        var parentNode = input.parentNode;
+        if (parentNode.parentNode) {
+            parentNode.parentNode.removeChild(parentNode);
+        }
+    });
+
+    form.appendChild(addressInput);
+
+    // 수정된 필드를 폼에 추가한 후에 서브밋
+    form.submit();
+} */
 
 	function combineAddress() {
-		var basis = document.getElementById("address-basis").value;
-		var detail = document.getElementById("address-detail").value;
-
-		// 주소나 상세주소가 비어 있을 경우 빈 문자열로 처리
-		basis = basis.trim() || "";
-		detail = detail.trim() || "";
-
-		var combinedAddress = basis + " " + detail;
-
-		// 폼에 새로운 필드를 추가하고, 합쳐진 주소를 할당
-		var addressInput = document.createElement("input");
-		addressInput.type = "hidden";
-		addressInput.name = "address";
-		addressInput.value = combinedAddress;
-
-		// 이전에 존재하던 주소 관련 필드들을 폼에서 제거
-		var form = document.querySelector("form"); // 폼 요소에 대한 참조 가져오기
-		var previousAddressInputs = document
-				.querySelectorAll('[name^="address-"]');
-		previousAddressInputs.forEach(function(input) {
-			var parentNode = input.parentNode;
-			if (parentNode.parentNode) {
-				parentNode.parentNode.removeChild(parentNode);
-			}
-		});
-
-		form.appendChild(addressInput);
-
-		// 수정된 필드를 폼에 추가한 후에 서브밋
-		form.submit();
+		//console.log($('input[name="address-basis"]').val());
+		//console.log($('input[name="address-detail"]').val());
+	
+		/* 주소합치기 */
+		let fullAddress = $('input[name="address-basis"]').val()+ " " + $('input[name="address-detail"]').val();
+	
+	
+		$('input[name="address"]').val(fullAddress);
+	
+	
+		$('form').submit();
 	}
+
+
 </script>
