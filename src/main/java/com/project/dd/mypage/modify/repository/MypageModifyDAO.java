@@ -6,6 +6,8 @@ import com.project.dd.mypage.modify.domain.ModifyDTO;
 
 public interface MypageModifyDAO {
 
-	List<ModifyDTO> list();
+	List<ModifyDTO> list(String email);
+
+	int edit(ModifyDTO dto);
 
 }

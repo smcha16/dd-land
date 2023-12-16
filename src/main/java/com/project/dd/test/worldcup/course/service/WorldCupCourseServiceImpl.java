@@ -22,7 +22,7 @@ import com.project.dd.test.worldcup.course.repository.WorldCupCourseDAO;
 public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 
 	@Autowired
-	private WorldCupCourseDAO courseDAO;
+	private WorldCupCourseDAO dao;
 
 	public Map<String, String> paging(int page) { // 페이징 메서드
 		int pageSize = 10; // 조회할 글 개수
@@ -35,7 +35,7 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 
-		int totalPosts = courseDAO.getTotalCount();
+		int totalPosts = dao.getTotalCount();
 		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
 
 		map.put("totalPosts", String.format("%d", totalPosts));
@@ -46,12 +46,12 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 
 	@Override
 	public List<CourseDTO> getAllCourse(Map<String, String> map) {
-		return courseDAO.getAllCourse(map);
+		return dao.getAllCourse(map);
 	}
 
 	@Override
 	public void updateCourseStatus(Map<String, String> map) {
-		courseDAO.updateCourseStatus(map);
+		dao.updateCourseStatus(map);
 	}
 	
 	@Override
@@ -79,12 +79,12 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 			
 		}
 		
-		return courseDAO.addCourse(dto);
+		return dao.addCourse(dto);
 	}
 	
 	@Override
 	public String getCourseSeq() {
-		return courseDAO.getCourseSeq();
+		return dao.getCourseSeq();
 	}
 	
 	@Override
@@ -92,7 +92,7 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 
         dto.setCourse_seq(courseSeq);
         
-		return courseDAO.addCWC(dto);
+		return dao.addCWC(dto);
 	}
 	
 	@Override
@@ -100,7 +100,7 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 
         dto.setCourse_seq(courseSeq);
         
-		return courseDAO.addCWCWin(dto);
+		return dao.addCWCWin(dto);
 	}
 	
 	@Override
@@ -108,19 +108,19 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 
         dto.setCourse_seq(courseSeq);
         
-		return courseDAO.addCWCFinalWin(dto);
+		return dao.addCWCFinalWin(dto);
 	}
 	
 	@Override
 	public int checkNameDuplication(CourseDTO dto) {
 		
-		return courseDAO.checkNameDuplication(dto);
+		return dao.checkNameDuplication(dto);
 	}
 	
 	@Override
 	public int getCWCFinalWinTotalCount() {
 		
-		return courseDAO.getCWCFinalWinTotalCount();
+		return dao.getCWCFinalWinTotalCount();
 	}
 
 }

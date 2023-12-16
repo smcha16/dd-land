@@ -336,7 +336,7 @@
         //수정 > 기존과 이름이 동일하지 않을 때만 중복 검사 진행
         const originalName = '${dto.name}';
         
-        console.log("확인용 기존 어트랙션명: " + originalName);
+        //console.log("확인용 기존 어트랙션명: " + originalName);
         
         if ($('input[name="name"]').val() != originalName) {
         	

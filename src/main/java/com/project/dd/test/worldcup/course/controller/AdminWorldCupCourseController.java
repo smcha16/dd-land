@@ -20,18 +20,18 @@ import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
 public class AdminWorldCupCourseController {
 
 	@Autowired
-	private WorldCupCourseService courseService;
+	private WorldCupCourseService cwcService;
 
 	@GetMapping(value = "/admin/test/worldcup/course/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model,
 			@RequestParam(defaultValue = "Y") String isTest) {
 
-		Map<String, String> map = courseService.paging(page);
+		Map<String, String> map = cwcService.paging(page);
 
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
-		model.addAttribute("listCourse", courseService.getAllCourse(map));
-		model.addAttribute("cwcFinalWinTotalCount", courseService.getCWCFinalWinTotalCount());
+		model.addAttribute("listCourse", cwcService.getAllCourse(map));
+		model.addAttribute("cwcFinalWinTotalCount", cwcService.getCWCFinalWinTotalCount());
 
 		return "admin/test/worldcup/course/view";
 
@@ -48,15 +48,15 @@ public class AdminWorldCupCourseController {
 		// System.out.println("DTO: " + dto.toString());
 		// System.out.println("Image File Name: " + image.getOriginalFilename());
 		
-		int result = courseService.addCourse(dto, image, req);
+		int result = cwcService.addCourse(dto, image, req);
 		
 		if (result > 0) {
-			String courseSeq = courseService.getCourseSeq();
+			String courseSeq = cwcService.getCourseSeq();
 			//System.out.println(courseSeq);
 			
-			courseService.addCWC(dto, courseSeq);
-			courseService.addCWCWin(dto, courseSeq);
-			courseService.addCWCFinalWin(dto, courseSeq);
+			cwcService.addCWC(dto, courseSeq);
+			cwcService.addCWCWin(dto, courseSeq);
+			cwcService.addCWCFinalWin(dto, courseSeq);
 			
 			return "redirect:/admin/test/worldcup/course/view.do";
 		} else {
@@ -74,7 +74,7 @@ public class AdminWorldCupCourseController {
 		map.put("isTest", isTest);
 		map.put("courseSeq", courseSeq);
 
-		courseService.updateCourseStatus(map);
+		cwcService.updateCourseStatus(map);
 
 		return "redirect:/admin/test/worldcup/course/view.do";
 	}
