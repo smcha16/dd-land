@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.dd.close.restaurant.mapper.CloseRestaurantMapper">
+
+	<select id="getTotalCount" resultType="int">
+		select count(*) from tblrestaurantclose
+	</select>
+	
+	<select id="list" parameterType="map" resultType="com.project.dd.close.restaurant.domain.CloseRestaurantDTO">
+		select *
+		from (select n.*, rownum as rnum from (select rc.restaurant_close_seq, r.name, rc.restaurant_seq, to_char(rc.start_date, 'yyyy-MM-dd')as start_date, to_char(rc.end_date, 'yyyy-MM-dd')as end_date
+		from tblrestaurant r inner join tblrestaurantclose rc on r.restaurant_seq=rc.restaurant_seq order by rc.restaurant_close_seq desc) n)
+		where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<select id="restaurantlist" resultType="com.project.dd.shop.restaurant.domain.RestaurantDTO">
+		select * from tblrestaurant where name not like '%(운영종료)%'
+	</select>
+	
+	<insert id="addCloseRestaurant" parameterType="com.project.dd.close.restaurant.domain.CloseRestaurantDTO">
+		insert into tblrestaurantclose (restaurant_close_seq, start_date, end_date, restaurant_seq)
+    	values (seqtblRestaurantClose.nextVal, to_date(#{start_date}, 'yyyy-mm-dd'), to_date(#{end_date}, 'yyyy-mm-dd'), #{restaurant_seq, jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="getOne" parameterType="String" resultType="com.project.dd.close.restaurant.domain.CloseRestaurantDTO">
+		select a.*, (select name from tblRestaurant where restaurant_seq = a.restaurant_seq)as name from tblRestaurantClose a where restaurant_close_seq = #{restaurant_close_seq}
+	</select>
+	
+	<update id="editClose" parameterType="com.project.dd.close.restaurant.domain.CloseRestaurantDTO">
+		update tblRestaurantclose set start_date = #{start_date}, end_date = #{end_date} where restaurant_close_seq = #{restaurant_close_seq}
+	</update>
+	
+	<delete id="del" parameterType="String">
+		delete from tblRestaurantclose where restaurant_close_seq = #{seq}
+	</delete>
+
+</mapper>

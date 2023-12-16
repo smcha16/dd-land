@@ -1,4 +1,4 @@
-package com.project.dd.close.theater.service;
+package com.project.dd.close.restaurant.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,16 +7,16 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.dd.close.attraction.domain.CloseAttractionDTO;
-import com.project.dd.close.theater.domain.CloseTheaterDTO;
-import com.project.dd.close.theater.repository.CloseTheaterDAO;
+import com.project.dd.close.restaurant.domain.CloseRestaurantDTO;
+import com.project.dd.close.restaurant.repository.CloseRestaurantDAO;
+
 
 @Service
-public class CloseTheaterService {
-
-	@Autowired
-	private CloseTheaterDAO dao;
+public class CloseRestaurantService {
 	
+	@Autowired
+	private CloseRestaurantDAO dao;
+
 	public Map<String, String> paging(int page) {
 		int pageSize = 9;  //나타났으면 하는 개수
 		
@@ -37,24 +37,24 @@ public class CloseTheaterService {
 		return map;
 	}
 
-	public List<CloseTheaterDTO> list(Map<String, String> map) {
-		//목록 리스트 가져오기
+	public List<CloseRestaurantDTO> list(Map<String, String> map) {
+		
 		return dao.list(map);
 	}
 
-	public List<CloseTheaterDTO> theaterlist() {
+	public List<CloseRestaurantDTO> restaurantlist() {
 		
-		return dao.theaterlist();
+		return dao.restaurantlist();
 	}
 
-	public int addCloseTheater(CloseTheaterDTO dto) {
+	public int addCloseRestaurant(CloseRestaurantDTO dto) {
 		
-		return dao.addCloseTheater(dto);
+		return dao.addCloseRestaurant(dto);
 	}
 
-	public CloseTheaterDTO getOne(String seq) {
+	public CloseRestaurantDTO getOne(String seq) {
 		
-		CloseTheaterDTO dto = dao.getOne(seq);
+		CloseRestaurantDTO dto = dao.getOne(seq);
 		
 		//운휴 시작일, 종료일 가공
 		String start_date=dto.getStart_date();
@@ -69,15 +69,16 @@ public class CloseTheaterService {
 		return dto;
 	}
 
-	public int editClose(CloseTheaterDTO dto) {
+	public int editClose(CloseRestaurantDTO dto) {
 		
 		return dao.editClose(dto);
 	}
 
-	public void del(String[] closeTheater_seq) {
-		for(String seq : closeTheater_seq) {
+	public void del(String[] closeRestaurant_seq) {
+		for(String seq : closeRestaurant_seq) {
 			dao.del(seq);
 		}
+		
 	}
 
 }

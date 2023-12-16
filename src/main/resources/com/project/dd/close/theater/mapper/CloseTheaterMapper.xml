@@ -8,8 +8,10 @@
 	</select>
 	
 	<select id="list" parameterType="map" resultType="com.project.dd.close.theater.domain.CloseTheaterDTO">
-		select tc.theater_close_seq, t.name, tc.theater_seq, to_char(tc.start_date, 'yyyy-MM-dd')as start_date, to_char(tc.end_date, 'yyyy-MM-dd')as end_date
-		from tbltheater t inner join tbltheaterclose tc on t.	theater_seq=tc.theater_seq order by tc.theater_close_seq desc
+		select *
+		from (select n.*, rownum as rnum from (select tc.theater_close_seq, t.name, tc.theater_seq, to_char(tc.start_date, 'yyyy-MM-dd')as start_date, to_char(tc.end_date, 'yyyy-MM-dd')as end_date
+		from tbltheater t inner join tbltheaterclose tc on t.	theater_seq=tc.theater_seq order by tc.theater_close_seq desc) n)
+		where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
 	<select id="theaterlist" resultType="com.project.dd.activity.theater.domain.TheaterDTO">

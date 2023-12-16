@@ -1,11 +1,11 @@
-package com.project.dd.close.restaurant.mapper;
+package com.project.dd.close.restaurant.repository;
 
 import java.util.List;
 import java.util.Map;
 
 import com.project.dd.close.restaurant.domain.CloseRestaurantDTO;
 
-public interface CloseRestaurantMapper {
+public interface CloseRestaurantDAO {
 
 	int getTotalCount();
 

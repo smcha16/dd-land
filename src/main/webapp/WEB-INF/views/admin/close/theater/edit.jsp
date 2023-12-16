@@ -115,6 +115,27 @@
 	
 	selDate();
 	
+	$(document).ready(function () {	
+		// #start 요소의 값이 변경될 때 이벤트 핸들러
+	    $('#start_date').on('change', function () {
+	        // 선택된 시작 날짜
+	        const selectedStartDate = new Date($('#start_date').val());
+
+	        // 최소 종료 날짜를 선택된 시작 날짜로 설정
+	        $('#end_date').attr('min', selectedStartDate.toISOString().split('T')[0]);
+
+	        // 만약 종료 날짜가 선택된 시작 날짜보다 이전이라면 종료 날짜를 최소 종료 날짜로 설정
+	        if ($('#end_date').val() && new Date($('#end_date').val()) < selectedStartDate) {
+	            $('#end_date').val(selectedStartDate.toISOString().split('T')[0]);
+	        }
+	    });
+
+	    // 오늘 날짜를 최소 시작 날짜로 설정
+	    const today = new Date();
+	    const formattedToday = today.toISOString().split('T')[0];
+	    $('#start_date').attr('min', formattedToday);
+	});
+	
 	function submit(){
 		if(!$('input[name="start_date"]').val().trim() || !$('input[name="end_date"]').val().trim()){
 			alert('운휴시작일 또는 운휴종료일을 모두 선택해주세요.');

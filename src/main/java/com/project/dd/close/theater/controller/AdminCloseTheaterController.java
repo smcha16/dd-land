@@ -41,7 +41,7 @@ public class AdminCloseTheaterController {
 	@GetMapping(value = "/add.do")
 	public String add(Model model) {
 			
-		model.addAttribute("theaterlist", service.theaterlist());  //추가할 어트랙션 리스트 가져오기
+		model.addAttribute("theaterlist", service.theaterlist());  
 
 		return "admin/close/theater/add";
 	}

@@ -8,8 +8,10 @@
 	</select>
 
 	<select id="list" parameterType="map" resultType="com.project.dd.close.attraction.domain.CloseAttractionDTO">
-		select ac.attraction_close_seq, a.name, ac.attraction_seq, to_char(ac.start_date, 'yyyy-MM-dd')as start_date, to_char(ac.end_date, 'yyyy-MM-dd')as end_date
-		from tblattraction a inner join tblattractionclose ac on a.attraction_seq=ac.attraction_seq order by ac.attraction_close_seq desc
+		select *
+		from (select n.*, rownum as rnum from (select ac.attraction_close_seq, a.name, ac.attraction_seq, to_char(ac.start_date, 'yyyy-MM-dd')as start_date, to_char(ac.end_date, 'yyyy-MM-dd')as end_date
+		from tblattraction a inner join tblattractionclose ac on a.attraction_seq=ac.attraction_seq order by ac.attraction_close_seq desc) n)
+		where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
 	<!-- 어트 운휴에 필요한 전체 어트랙션 리스트 가져오기 -->
