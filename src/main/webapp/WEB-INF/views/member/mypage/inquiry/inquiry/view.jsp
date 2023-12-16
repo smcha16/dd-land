@@ -192,7 +192,7 @@ th {
 						</c:when>
 						<c:otherwise>
 							<li class="page-item"><a class="page-link"
-								href="/dd/member/mypage/attraction/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+								href="/dd/member/mypage/inquiry/inquiry/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>

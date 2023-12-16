@@ -154,7 +154,7 @@ th {
 										<c:forEach items="${list}" var="dto">
 											<tr>
 												<td><input type="checkbox" name="selectedItem" value="${dto.user_buy_seq}"></td>
-												<td>${dto.itemName}</td>
+												<td><a onclick="showModal('${dto.imgList}')"><b><c:out value="${dto.itemName}" /></b></a></td>
 												<td>${dto.ea}</td>
 												<td>${dto.price}</td>
 												<td>${dto.buy_date}</td>
@@ -166,6 +166,20 @@ th {
 								<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}">
 								</form>
+								
+								<!-- 모달 -->
+								
+								<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+								    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+								        <div class="modal-content">
+								            <div class="modal-body">
+								                <div class="d-flex align-items-center justify-content-center">
+								                    <img id="modal-image" src="" alt="Image" style="max-width: 100%;">
+								                </div>
+								            </div>
+								        </div>
+								    </div>
+								</div>
 
 							</div>
 
@@ -204,4 +218,16 @@ th {
             // 취소 버튼을 클릭한 경우 아무 작업도 수행하지 않습니다.
         }
     }
+    
+    <!-- 모달 -->
+	
+	function showModal(image) {
+	    if (image) {
+	        $('#modal-image').attr('src', '/dd/resources/files/item/' + image);
+	    } else {
+	    	$('#modal-image').hide();
+	    }
+
+	    $('#modal').modal('show');
+	}
 </script>

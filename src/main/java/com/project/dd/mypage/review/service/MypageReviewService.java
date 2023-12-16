@@ -82,8 +82,10 @@ public class MypageReviewService {
 
 		int result = 0;
 		
+		result += dao.add(dto);
 		
-		// 방금 등록한 Attraction seq 가져오기
+		
+		// 방금 등록한 review seq 가져오기
 		int seq = dao.getReviewSeq();
 		dto.setReview_seq(seq + "");
 		
@@ -93,11 +95,8 @@ public class MypageReviewService {
 		System.out.println(dto);
 		
 
-		if (imgs[0].isEmpty()) {
 
-		result += dao.add(dto);
-
-		} else {
+		if (!imgs[0].isEmpty()) {
 
 			for (MultipartFile file : imgs) {
 

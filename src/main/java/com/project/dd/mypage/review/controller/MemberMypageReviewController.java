@@ -80,8 +80,8 @@ public class MemberMypageReviewController {
 
 		int result = service.add(dto, imgs, req);
 		
-		System.out.println(imgs);
-		System.out.println(imgs[0].isEmpty());
+		//System.out.println(imgs);
+		//System.out.println(imgs[0].isEmpty());
 
 		if (result > 0) {
 

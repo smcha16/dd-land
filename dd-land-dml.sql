@@ -3403,6 +3403,11 @@ VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-05', 'YYYY-MM-DD'), TO_DATE('
 INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
 VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-06', 'YYYY-MM-DD'), TO_DATE('2023-12-30', 'YYYY-MM-DD'), 6, 51000, 6, 6);
 
+INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-06', 'YYYY-MM-DD'), TO_DATE('2023-12-13', 'YYYY-MM-DD'), 6, 51000, 7, 6);
+
+INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-06', 'YYYY-MM-DD'), TO_DATE('2023-12-14', 'YYYY-MM-DD'), 6, 51000, 8, 6);
 /* 회원/예매 */
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
 VALUES (seqtblUserBook.NEXTVAL, 1, 1);
@@ -3427,6 +3432,12 @@ VALUES (seqtblUserBook.NEXTVAL, 3, 5);
 
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
 VALUES (seqtblUserBook.NEXTVAL, 3, 6);
+
+INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
+VALUES (seqtblUserBook.NEXTVAL, 3, 21);
+
+INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
+VALUES (seqtblUserBook.NEXTVAL, 3, 22);
 
 /* 리뷰 */
 INSERT INTO tblReview (review_seq, subject, content, readcount, user_book_seq)

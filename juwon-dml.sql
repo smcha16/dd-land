@@ -26,12 +26,6 @@ delete from tblReview where review_seq = 5;
 select subject,content from tblreview where review_seq = 1;
 
 select * from tblticketbook;
+select * from tblreview;
+select * from vwuserbook;
 
-SELECT *
-FROM vwUserBook vw
-WHERE NOT EXISTS (
-    SELECT 1
-    FROM tblReview r
-    WHERE r.user_book_seq = vw.user_book_seq
-    
-) and email = 'hwang@kakao.com';

@@ -116,6 +116,11 @@ th {
 	background-color: #CE1212;
 	border-color: #CE1212;
 }
+
+.table td a:hover {
+	font-weight: bold !important;
+    color: #0d6efd !important;
+}
 </style>
 
 <!-- ======= Main ======= -->
@@ -158,7 +163,7 @@ th {
 												<tr>
 													<td><input type="checkbox" name="selectedReview"
 														value="${dto.review_seq}"></td>
-													<td>${dto.subject}</td>
+													<td><a onclick="showModal(`${dto.subject}`, `${dto.content}`, '${dto.imgList}')"><b><c:out value="${dto.subject}" /></b></a></td>
 													<td>${dto.regdate}</td>
 													<td>${dto.readcount}</td>
 												</tr>
@@ -174,6 +179,25 @@ th {
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}">
 								</form>
+								
+								<!-- 모달 -->
+								
+								<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+								    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+								        <div class="modal-content">
+								            <div class="modal-header">
+								                <h5 id="modal-subject" class="modal-title"></h5>
+								                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								            </div>
+								            <div class="modal-body">
+								            	<div class="mt-3" id="modal-content" style="margin-bottom: 30px;"></div>
+								                <div class="d-flex align-items-center justify-content-center">
+								                    <img id="modal-image" src="" alt="Image" style="max-width: 100%;">
+								                </div>
+								            </div>
+								        </div>
+								    </div>
+								</div>
 
 
 							</div>
@@ -204,19 +228,6 @@ th {
 
 </main>
 <script>
-	/* $('#delete-button').click(function(e) {
-	 var result = confirm("정말 예매를 취소하시겠습니까?");
-	 if (!result) {
-	 e.preventDefault(); // 확인을 누르지 않으면 기본 동작(폼 제출)을 막음
-	 }
-	 }); */
-
-	/*
-	 $('#modify-button').click(function() {
-	 window.location.href = '/dd/member/mypage/review/edit.do';
-
-	 }); */
-
 	function deleteReviews() {
 		// 선택된 체크박스가 있다면
 		if ($("input[name='selectedReview']:checked").length > 0) {
@@ -253,5 +264,20 @@ th {
 		        // 선택된 리뷰가 2개 이상인 경우
 		        alert('수정할 리뷰는 1개만 선택해주세요.');
 		    }
+		}
+	 
+	 <!-- 모달 -->
+		
+		function showModal(subject, content, image) {
+		    $('#modal-subject').text(subject);
+		    $('#modal-content').text(content);
+		    
+		    if (image) {
+		        $('#modal-image').attr('src', '/dd/resources/files/review/' + image);
+		    } else {
+		    	$('#modal-image').hide();
+		    }
+
+		    $('#modal').modal('show');
 		}
 </script>

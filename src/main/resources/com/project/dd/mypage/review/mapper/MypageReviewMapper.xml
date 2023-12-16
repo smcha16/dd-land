@@ -42,9 +42,9 @@
 		select max(review_seq) as review_seq from tblReview
 	</select>
 	
-	<insert id="addReviewImg" parameterType="com.project.dd.mypage.review.domain.ReviewImgDTO">
+	<insert id="addReviewImg"  parameterType="com.project.dd.mypage.review.domain.ReviewImgDTO">
 		INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
-		VALUES (seqtblAttractionImg.NEXTVAL, #{img}, #{review_seq})
+		VALUES (seqtblReviewImg.NEXTVAL, #{img}, #{review_seq})
 	</insert>
 	
 </mapper>
