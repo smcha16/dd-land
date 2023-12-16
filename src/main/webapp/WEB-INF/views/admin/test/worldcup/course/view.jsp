@@ -199,91 +199,94 @@ th {
 
 								<nav class="d-flex justify-content-end">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a
-											href="/dd/admin/test/worldcup/course/add.do">추가</a></li>
-										<li class="breadcrumb-item"><a
-											href="/dd/admin/test/worldcup/course/edit.do">수정</a></li>
+										<li class="breadcrumb-item"><a href="/dd/admin/test/worldcup/course/add.do">추가</a></li>
+										<li class="breadcrumb-item"><a href="javascript:void(0);" onclick="edit()">수정</a></li>
 										<li class="breadcrumb-item active"><a href="#">삭제</a></li>
 									</ol>
 								</nav>
-
-								<table class="table">
-									<thead>
-										<tr>
-											<th></th>
-											<th>No</th>
-											<th>이름</th>
-											<th>우승비율 (우승횟수/게임횟수)</th>
-											<th>승률 (승리횟수/대결수)</th>
-											<th>테스트 채택</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${listCourse}" var="dto">
+								
+								<form id="del-form" method="POST" action="/dd/admin/test/worldcup/course/del.do">
+									<table class="table">
+										<thead>
 											<tr>
-												<td><input type="checkbox"></td>
-												<td>${dto.course_seq}</td>
-												<td><a onclick="showModal('${dto.course_seq}', '${dto.name}','${dto.img}', '${dto.cwc_final_win_count}', '${dto.cwc_win_count}', '${dto.cwc_match_count}')"><c:out value="${dto.name}" /></a></td>
-												<td>
-												    <div class="progress" style="height: 20px;">
-												        <div class="progress-bar" role="progressbar"
-												            style="width: ${dto.cwc_final_win_count != 0 ? String.format('%.2f', (dto.cwc_final_win_count / (cwcFinalWinTotalCount / 2)) * 100) : '0'}%;"
-												            aria-valuenow="${dto.cwc_final_win_count != 0 ? String.format('%.2f', (dto.cwc_final_win_count / (cwcFinalWinTotalCount / 2)) * 100) : '0'}"
-												            aria-valuemin="0" aria-valuemax="100"
-												            data-bs-toggle="tooltip" data-bs-placement="top"
-												            title="${dto.cwc_final_win_count}/${cwcFinalWinTotalCount}">
-												            ${dto.cwc_final_win_count != 0 ? String.format('%.2f', (dto.cwc_final_win_count / cwcFinalWinTotalCount) * 100) : '0'}%
-												        </div>
-												    </div>
-												</td>
-
-										        <td>
-												   <div class="progress" style="height: 20px;">
-													    <div class="progress-bar" role="progressbar"
-													        style="width: ${dto.cwc_win_count != 0 && dto.cwc_match_count != 0 ? String.format('%.2f', (dto.cwc_win_count / dto.cwc_match_count) * 100) : '0'}%;"
-													        aria-valuenow="${dto.cwc_win_count != 0 && dto.cwc_match_count != 0 ? String.format('%.2f', (dto.cwc_win_count / dto.cwc_match_count) * 100) : '0'}"
-													        aria-valuemin="0" aria-valuemax="100"
-													        data-bs-toggle="tooltip" data-bs-placement="top"
-													        title="${dto.cwc_win_count}/${dto.cwc_match_count}">
-													    	${dto.cwc_win_count != 0 && dto.cwc_match_count != 0 ? String.format('%.2f', (dto.cwc_win_count / dto.cwc_match_count) * 100) : '0'}%
-													    </div>
-													</div>
-												</td>
-												<td>
-													<div class="d-flex justify-content-center">
-														<div class="form-check form-switch">
-															<c:choose>
-																<c:when test="${dto.is_test eq 'Y'}">
-																	<input class="form-check-input" type="checkbox"
-																		id="flexSwitchCheckDefault" checked>
-																</c:when>
-																<c:otherwise>
-																	<input class="form-check-input" type="checkbox"
-																		id="flexSwitchCheckDefault">
-																</c:otherwise>
-															</c:choose>
-														</div>
-													</div>
-												</td>
+												<th></th>
+												<th>No</th>
+												<th>이름</th>
+												<th>우승비율 (우승횟수/게임횟수)</th>
+												<th>승률 (승리횟수/대결수)</th>
+												<th>테스트 채택</th>
 											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${listCourse}" var="dto">
+												<tr>
+													<td><input type="checkbox" name="course_seq" value="${dto.course_seq}"></td>
+													<td>${dto.course_seq}</td>
+													<td><a onclick="showModal('${dto.course_seq}', '${dto.name}','${dto.img}', '${dto.cwc_final_win_count}', '${dto.cwc_win_count}', '${dto.cwc_match_count}')"><c:out value="${dto.name}" /></a></td>
+													<td>
+													    <div class="progress" style="height: 20px;">
+													        <div class="progress-bar" role="progressbar"
+													            style="width: ${dto.cwc_final_win_count != 0 ? String.format('%.2f', (dto.cwc_final_win_count / (cwcFinalWinTotalCount / 2)) * 100) : '0'}%;"
+													            aria-valuenow="${dto.cwc_final_win_count != 0 ? String.format('%.2f', (dto.cwc_final_win_count / (cwcFinalWinTotalCount / 2)) * 100) : '0'}"
+													            aria-valuemin="0" aria-valuemax="100"
+													            data-bs-toggle="tooltip" data-bs-placement="top"
+													            title="${dto.cwc_final_win_count}/${cwcFinalWinTotalCount}">
+													            ${dto.cwc_final_win_count != 0 ? String.format('%.2f', (dto.cwc_final_win_count / cwcFinalWinTotalCount) * 100) : '0'}%
+													        </div>
+													    </div>
+													</td>
+	
+											        <td>
+													   <div class="progress" style="height: 20px;">
+														    <div class="progress-bar" role="progressbar"
+														        style="width: ${dto.cwc_win_count != 0 && dto.cwc_match_count != 0 ? String.format('%.2f', (dto.cwc_win_count / dto.cwc_match_count) * 100) : '0'}%;"
+														        aria-valuenow="${dto.cwc_win_count != 0 && dto.cwc_match_count != 0 ? String.format('%.2f', (dto.cwc_win_count / dto.cwc_match_count) * 100) : '0'}"
+														        aria-valuemin="0" aria-valuemax="100"
+														        data-bs-toggle="tooltip" data-bs-placement="top"
+														        title="${dto.cwc_win_count}/${dto.cwc_match_count}">
+														    	${dto.cwc_win_count != 0 && dto.cwc_match_count != 0 ? String.format('%.2f', (dto.cwc_win_count / dto.cwc_match_count) * 100) : '0'}%
+														    </div>
+														</div>
+													</td>
+													<td>
+														<div class="d-flex justify-content-center">
+															<div class="form-check form-switch">
+																<c:choose>
+																	<c:when test="${dto.is_test eq 'Y'}">
+																		<input class="form-check-input" type="checkbox"
+																			id="flexSwitchCheckDefault" checked>
+																	</c:when>
+																	<c:otherwise>
+																		<input class="form-check-input" type="checkbox"
+																			id="flexSwitchCheckDefault">
+																	</c:otherwise>
+																</c:choose>
+															</div>
+														</div>
+													</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+	
+									<ul class="pagination justify-content-center">
+										<c:forEach begin="1" end="${map.totalPages}"
+											varStatus="pageStatus">
+											<c:choose>
+												<c:when test="${pageStatus.index == currentPage}">
+													<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+												</c:when>
+												<c:otherwise>
+													<li class="page-item"><a class="page-link"
+														href="/dd/admin/test/worldcup/course/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+												</c:otherwise>
+											</c:choose>
 										</c:forEach>
-									</tbody>
-								</table>
-
-								<ul class="pagination justify-content-center">
-									<c:forEach begin="1" end="${map.totalPages}"
-										varStatus="pageStatus">
-										<c:choose>
-											<c:when test="${pageStatus.index == currentPage}">
-												<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
-											</c:when>
-											<c:otherwise>
-												<li class="page-item"><a class="page-link"
-													href="/dd/admin/test/worldcup/course/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
-								</ul>
+									</ul>
+								
+									<!-- 토큰 -->
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+								</form>
 							</div>
 						</div>
 					</div>
@@ -332,6 +335,18 @@ th {
 			});
 		});
 	});
+
+	function edit() {
+		// 선택된 체크박수 개수 확인
+	    let checkboxes = $('input[type="checkbox"][name="course_seq"]');
+	    
+	    if (checkboxes.filter(':checked').length === 1) {
+	        const seq = checkboxes.filter(':checked').val();
+	        location.href = '/dd/admin/test/worldcup/course/edit.do?seq=' + seq;
+	    } else {
+	        alert('1개의 코스를 선택 후, 수정 버튼을 눌러주세요.');
+	    }
+	}
 
 	// 코스 및 코스 월드컵 상세 모달
 	function showModal(seq, name, img, cwc_final_win_count, cwc_win_count, cwc_match_count) {

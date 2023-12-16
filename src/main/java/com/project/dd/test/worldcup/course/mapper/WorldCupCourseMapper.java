@@ -3,6 +3,11 @@ package com.project.dd.test.worldcup.course.mapper;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
 import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 
@@ -28,5 +33,11 @@ public interface WorldCupCourseMapper {
 	int addCWCFinalWin(CourseDTO dto);
 
 	int getCWCFinalWinTotalCount();
+
+	CourseDTO getCourse(String courseSeq);
+
+	int editCourse(CourseDTO dto);
+
+	String getCourseImgFileName(String courseSeq);
 	
 }

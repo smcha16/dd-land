@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
 import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 
@@ -31,5 +32,9 @@ public interface WorldCupCourseService {
 	int addCWCFinalWin(CourseDTO dto, String courseSeq);
 
 	int getCWCFinalWinTotalCount();
+
+	CourseDTO getCourse(String courseSeq);
+
+	int editCourse(CourseDTO dto, MultipartFile image, HttpServletRequest req);
 	
 }

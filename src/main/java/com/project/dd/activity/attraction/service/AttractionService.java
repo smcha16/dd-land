@@ -386,5 +386,5 @@ public class AttractionService {
 	public List<AttractionImgDTO> getAllAttractionImgList() {
 		return dao.getAllAttractionImgList();
 	}
-
+	
 }

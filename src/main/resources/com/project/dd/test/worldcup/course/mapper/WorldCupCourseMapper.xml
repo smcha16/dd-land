@@ -65,4 +65,16 @@
 		select sum(cwc_final_win_count) as total_cwc_final_win_count from tblCWCFinalWin
 	</select>
 	
+	<select id="getCourse" parameterType="String" resultType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		select * from tblCourse where course_seq = #{courseSeq}
+	</select>
+	
+	<update id="editCourse" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		update tblCourse set name = #{name}, img = #{img} where course_seq = #{course_seq}
+	</update>
+	
+	<select id="getCourseImgFileName" parameterType="String" resultType="String">
+		select img from tblCourse where course_seq = #{course_seq}
+	</select>
+	
 </mapper>

@@ -13,6 +13,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.dd.activity.attraction.domain.AttractionDTO;
+import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
 import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 import com.project.dd.test.worldcup.course.repository.WorldCupCourseDAO;
@@ -123,4 +125,41 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 		return dao.getCWCFinalWinTotalCount();
 	}
 
+	@Override
+	public CourseDTO getCourse(String courseSeq) {
+		
+		return dao.getCourse(courseSeq);
+	}
+
+	@Override
+	public int editCourse(CourseDTO dto, MultipartFile image, HttpServletRequest req) {
+		
+		if (image == null) {
+			
+			String imgFileName = dao.getCourseImgFileName(dto.getCourse_seq());
+			
+			dto.setImg(imgFileName);
+			
+		} else if (image.isEmpty()) {
+			
+			dto.setImg("course.png");
+		} else {
+			try {
+				
+				UUID uuid = UUID.randomUUID();
+				
+				String filename = uuid + "_" + image.getOriginalFilename();
+				
+				image.transferTo(new File(req.getRealPath("/resources/files/test/worldcup/course") + "\\" + filename));
+				
+				dto.setImg(filename);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return dao.editCourse(dto);
+	}
+	
 }

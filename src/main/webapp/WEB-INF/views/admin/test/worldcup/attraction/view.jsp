@@ -85,10 +85,10 @@ th {
 }
 
 .table th:nth-child(1) { width: 5%; }
-.table th:nth-child(2) { width: 30%; }
+.table th:nth-child(2) { width: 35%; }
 .table th:nth-child(3) { width: 25%; }
 .table th:nth-child(4) { width: 25%; }
-.table th:nth-child(5) { width: 15%; }
+.table th:nth-child(5) { width: 10%; }
 
 .table td i {
 	color: #0d6efd;

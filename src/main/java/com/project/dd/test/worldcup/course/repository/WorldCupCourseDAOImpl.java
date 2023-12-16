@@ -3,10 +3,14 @@ package com.project.dd.test.worldcup.course.repository;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
 import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 import com.project.dd.test.worldcup.course.mapper.WorldCupCourseMapper;
@@ -68,4 +72,19 @@ public class WorldCupCourseDAOImpl implements WorldCupCourseDAO {
 		return mapper.getCWCFinalWinTotalCount();
 	}
 
+	@Override
+	public CourseDTO getCourse(String courseSeq) {
+		return mapper.getCourse(courseSeq);
+	}
+	
+	@Override
+	public int editCourse(CourseDTO dto) {
+		return mapper.editCourse(dto);
+	}
+
+	@Override
+	public String getCourseImgFileName(String courseSeq) {
+		return mapper.getCourseImgFileName(courseSeq);
+	}
+	
 }

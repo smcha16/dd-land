@@ -191,6 +191,5 @@ label {
         	$('.check-name-duplication').removeAttr("data-type");
         	console.log("check-name-duplication: " + $('.check-name-duplication').data('type'));
         }
-		
 	});
 </script>

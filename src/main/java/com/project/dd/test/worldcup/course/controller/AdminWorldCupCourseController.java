@@ -1,6 +1,7 @@
 package com.project.dd.test.worldcup.course.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.dd.activity.attraction.domain.AttractionDTO;
+import com.project.dd.activity.attraction.domain.AttractionImgDTO;
+import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
 import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
 
@@ -35,6 +39,19 @@ public class AdminWorldCupCourseController {
 
 		return "admin/test/worldcup/course/view";
 
+	}
+
+	@PostMapping(value = "/admin/test/worldcup/course/view.do")
+	public String updateCourseStatus(@RequestParam String courseSeq, @RequestParam String isTest, Model model) {
+		// System.out.println("seq:" + courseSeq + " check:" + isTest);
+
+		Map<String, String> map = new HashMap<>();
+		map.put("isTest", isTest);
+		map.put("courseSeq", courseSeq);
+
+		cwcService.updateCourseStatus(map);
+
+		return "redirect:/admin/test/worldcup/course/view.do";
 	}
 
 	@GetMapping(value = "/admin/test/worldcup/course/add.do")
@@ -65,18 +82,34 @@ public class AdminWorldCupCourseController {
 		}
 		
 	}
-
-	@PostMapping(value = "/admin/test/worldcup/course/view.do")
-	public String updateCourseStatus(@RequestParam String courseSeq, @RequestParam String isTest, Model model) {
-		// System.out.println("seq:" + courseSeq + " check:" + isTest);
-
-		Map<String, String> map = new HashMap<>();
-		map.put("isTest", isTest);
-		map.put("courseSeq", courseSeq);
-
-		cwcService.updateCourseStatus(map);
-
-		return "redirect:/admin/test/worldcup/course/view.do";
+	
+	@GetMapping(value = "/admin/test/worldcup/course/edit.do")
+	public String edit(Model model, String seq) {
+		
+		CourseDTO dto = cwcService.getCourse(seq);
+		String img = dto.getImg();
+		
+		//UUID 제거
+		if (img.length() > 37 && img.contains("-") && img.contains("_")) {
+			String originalFileName = img.substring(img.indexOf("_") + 1);
+			dto.setImg(originalFileName);
+		}
+		
+		model.addAttribute("dto", dto);
+		
+		return "admin/test/worldcup/course/edit";
 	}
+	
+	@PostMapping(value = "/admin/test/worldcup/course/editok.do")
+	public String editok(Model model, CourseDTO dto, MultipartFile image, HttpServletRequest req) {
 
+		int result = cwcService.editCourse(dto, image, req);
+		
+		if (result > 0) {
+			return "redirect:/admin/test/worldcup/course/view.do";
+		} else {
+			return "redirect:/admin/test/worldcup/course/edit.do";
+		}
+	}
+	
 }
