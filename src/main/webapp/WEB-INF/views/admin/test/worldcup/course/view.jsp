@@ -357,9 +357,11 @@ th {
 	    let checkboxes = $('input[type="checkbox"][name="course_seq"]');
 		
 	    if (checkboxes.filter(':checked').length >= 1) {
-	    	$('#del-form').submit();
+	    	if (confirm(checkboxes.filter(':checked').length + "개의 코스를 삭제하시겠습니까?")) {
+	            $('#del-form').submit();
+	        }
 	    } else {
-	        alert('1개 이상 코스를 선택 후, 삭제 버튼을 눌러주세요.');
+	        alert('1개 이상의 코스를 선택 후, 삭제 버튼을 눌러주세요.');
 	    }
 	    
 	}
