@@ -60,7 +60,7 @@
 		<nav class="d-flex justify-content-end">
       		<ol class="breadcrumb">
           		<li class="breadcrumb-item"><a href="javascript:void(0);" onclick="submit();">수정</a></li>
-          		<li class="breadcrumb-item active"><a href="/dd/admin/test/worldcup/course/view.do">취소</a></li>
+          		<li class="breadcrumb-item active"><a href="/dd/admin/test/worldcup/course/list.do">취소</a></li>
       		</ol>
 		</nav>
 	</div>

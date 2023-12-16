@@ -22,6 +22,20 @@ public class AdminWorldCupCourseController {
 	@Autowired
 	private WorldCupCourseService cwcService;
 
+	@GetMapping(value = "/admin/test/worldcup/course/list.do")
+	public String list(@RequestParam(defaultValue = "1") int page, Model model,
+			@RequestParam(defaultValue = "Y") String isTest) {
+
+		Map<String, String> map = cwcService.paging(page);
+
+		model.addAttribute("currentPage", page);
+		model.addAttribute("map", map);
+		model.addAttribute("listCourse", cwcService.getAllCourse(map));
+
+		return "admin/test/worldcup/course/list";
+
+	}
+	
 	@GetMapping(value = "/admin/test/worldcup/course/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model,
 			@RequestParam(defaultValue = "Y") String isTest) {
@@ -71,7 +85,7 @@ public class AdminWorldCupCourseController {
 			cwcService.addCWCWin(dto, courseSeq);
 			cwcService.addCWCFinalWin(dto, courseSeq);
 			
-			return "redirect:/admin/test/worldcup/course/view.do";
+			return "redirect:/admin/test/worldcup/course/list.do";
 		} else {
 			model.addAttribute("alertMessage", "코스 추가에 실패했습니다.");
 			return "redirect:/admin/test/worldcup/course/add.do";
@@ -102,7 +116,7 @@ public class AdminWorldCupCourseController {
 		int result = cwcService.editCourse(dto, image, req);
 		
 		if (result > 0) {
-			return "redirect:/admin/test/worldcup/course/view.do";
+			return "redirect:/admin/test/worldcup/course/list.do";
 		} else {
 			return "redirect:/admin/test/worldcup/course/edit.do";
 		}
@@ -118,10 +132,10 @@ public class AdminWorldCupCourseController {
 		int result = cwcService.delCourse(course_seq);
 		
 		if (result > 0) {
-			return "redirect:/admin/test/worldcup/course/view.do";
+			return "redirect:/admin/test/worldcup/course/list.do";
 		} else {
 			model.addAttribute("alertMessage", "코스 삭제에 실패했습니다.");
-			return "redirect:/admin/test/worldcup/course/view.do";
+			return "redirect:/admin/test/worldcup/course/list.do";
 		}
 	}
 	

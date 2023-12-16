@@ -84,8 +84,8 @@ th {
 	background-color: #f2f2f2 !important;
 }
 
-.table th:nth-child(1) { width: 5%; }
-.table th:nth-child(2) { width: 35%; }
+.table th:nth-child(1) { width: 10%; }
+.table th:nth-child(2) { width: 30%; }
 .table th:nth-child(3) { width: 25%; }
 .table th:nth-child(4) { width: 25%; }
 .table th:nth-child(5) { width: 10%; }
@@ -112,6 +112,10 @@ th {
 	min-height: 0 !important;
 }
 
+.hidden-seq {
+	display: none;
+}
+
 /* 모달 CSS */
 #modal table.m-desc {
 	width: 100%;
@@ -135,7 +139,7 @@ th {
 <main id="main" class="main">
 
 	<div class="pagetitle">
-		<h1>어트랙션 월드컵</h1>
+		<h1>어트랙션 월드컵 관리</h1>
 	</div>
 
 	<section class="section">
@@ -255,6 +259,7 @@ th {
 														</div>
 													</div>
 												</td>
+												<td class="hidden-seq">${dto.attraction_seq}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -279,6 +284,7 @@ th {
 					</div>
 				</div>
 			</div>
+		</div>
 	</section>
 </main>
 
@@ -291,8 +297,8 @@ th {
 			var isTest = $(this).is(':checked') ? 'Y' : 'N';
 
 			// 선택한 어트랙션 일련번호
-			var attractionSeq = $(this).closest('tr').find('td:nth-child(1)').text();
-
+			var attractionSeq = $(this).closest('tr').find('td:nth-child(6)').text();
+			
 			// CSRF token
 			var csrfHeaderName = "${_csrf.headerName}";
 			var csrfTokenValue = "${_csrf.token}";

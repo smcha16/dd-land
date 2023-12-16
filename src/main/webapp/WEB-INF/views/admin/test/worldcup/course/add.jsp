@@ -69,7 +69,7 @@ label {
           			<a href="javascript:void(0);" onclick="submit();">등록</a>
           		</li>
           		<li class="breadcrumb-item active">
-          			<a href="/dd/admin/test/worldcup/course/view.do">취소</a>
+          			<a href="/dd/admin/test/worldcup/course/list.do">취소</a>
           		</li>
       		</ol>
 		</nav>
