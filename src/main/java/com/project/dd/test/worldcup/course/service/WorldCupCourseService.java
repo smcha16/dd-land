@@ -36,5 +36,13 @@ public interface WorldCupCourseService {
 	CourseDTO getCourse(String courseSeq);
 
 	int editCourse(CourseDTO dto, MultipartFile image, HttpServletRequest req);
-	
+
+	int delCourse(String[] course_seq);
+
+	int delCWC(String[] course_seq);
+
+	int delCWCWin(String[] course_seq);
+
+	int delCWCFinalWin(String[] course_seq);
+
 }

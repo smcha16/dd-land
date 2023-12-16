@@ -64,7 +64,6 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 			dto.setImg("course.png");
 			
 		} else {
-			
 			try {
 				
 				UUID uuid = UUID.randomUUID();
@@ -160,6 +159,56 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 		}
 		
 		return dao.editCourse(dto);
+	}
+	
+	public int delCourse(String[] course_seq) {
+		
+		int result = 0;
+		
+		for (String seq : course_seq) {
+			
+			result += dao.delCourse(seq);
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public int delCWC(String[] course_seq) {
+		
+		int result = 0;
+		
+		for (String seq : course_seq) {
+			
+			result += dao.delCWC(seq);
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int delCWCWin(String[] course_seq) {
+		
+		int result = 0;
+		
+		for (String seq : course_seq) {
+			
+			result += dao.delCWCWin(seq);
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public int delCWCFinalWin(String[] course_seq) {
+		int result = 0;
+		
+		for (String seq : course_seq) {
+			
+			result += dao.delCWCFinalWin(seq);
+		}
+		
+		return result;
 	}
 	
 }

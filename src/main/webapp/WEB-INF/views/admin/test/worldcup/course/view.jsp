@@ -113,6 +113,10 @@ th {
 	min-height: 0 !important;
 }
 
+.hidden-course-seq {
+	display: none;
+}
+
 /* 모달 CSS */
 #modal table.m-desc {
 	width: 100%;
@@ -201,7 +205,7 @@ th {
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="/dd/admin/test/worldcup/course/add.do">추가</a></li>
 										<li class="breadcrumb-item"><a href="javascript:void(0);" onclick="edit()">수정</a></li>
-										<li class="breadcrumb-item active"><a href="#">삭제</a></li>
+										<li class="breadcrumb-item active"><a href="javascript:void(0);" onclick="del()">삭제</a></li>
 									</ol>
 								</nav>
 								
@@ -218,10 +222,10 @@ th {
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${listCourse}" var="dto">
+											<c:forEach items="${listCourse}" var="dto" varStatus="status">
 												<tr>
 													<td><input type="checkbox" name="course_seq" value="${dto.course_seq}"></td>
-													<td>${dto.course_seq}</td>
+													<td>${status.count}</td>
 													<td><a onclick="showModal('${dto.course_seq}', '${dto.name}','${dto.img}', '${dto.cwc_final_win_count}', '${dto.cwc_win_count}', '${dto.cwc_match_count}')"><c:out value="${dto.name}" /></a></td>
 													<td>
 													    <div class="progress" style="height: 20px;">
@@ -264,6 +268,7 @@ th {
 															</div>
 														</div>
 													</td>
+													<td class="hidden-course-seq">${dto.course_seq}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -304,9 +309,8 @@ th {
 			// 테스트 채택
 			var isTest = $(this).is(':checked') ? 'Y' : 'N';
 
-			// 선택한 어트랙션 일련번호
-			var courseSeq = $(this).closest('tr').find(
-					'td:nth-child(2)').text();
+			// 선택한 코스 일련번호
+			var courseSeq = $(this).closest('tr').find('td:nth-child(7)').text();
 
 			// CSRF token
 			var csrfHeaderName = "${_csrf.headerName}";
@@ -346,6 +350,18 @@ th {
 	    } else {
 	        alert('1개의 코스를 선택 후, 수정 버튼을 눌러주세요.');
 	    }
+	}
+	
+	function del() {
+		// 선택된 체크박수 개수 확인
+	    let checkboxes = $('input[type="checkbox"][name="course_seq"]');
+		
+	    if (checkboxes.filter(':checked').length >= 1) {
+	    	$('#del-form').submit();
+	    } else {
+	        alert('1개 이상 코스를 선택 후, 삭제 버튼을 눌러주세요.');
+	    }
+	    
 	}
 
 	// 코스 및 코스 월드컵 상세 모달

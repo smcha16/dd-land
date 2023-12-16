@@ -1,7 +1,6 @@
 package com.project.dd.test.worldcup.course.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.dd.activity.attraction.domain.AttractionDTO;
-import com.project.dd.activity.attraction.domain.AttractionImgDTO;
-import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
 import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
 
@@ -109,6 +105,23 @@ public class AdminWorldCupCourseController {
 			return "redirect:/admin/test/worldcup/course/view.do";
 		} else {
 			return "redirect:/admin/test/worldcup/course/edit.do";
+		}
+	}
+	
+	@PostMapping(value = "/admin/test/worldcup/course/del.do")
+	public String del(Model model, String[] course_seq) {
+
+		cwcService.delCWC(course_seq);
+		cwcService.delCWCWin(course_seq);
+		cwcService.delCWCFinalWin(course_seq);
+		
+		int result = cwcService.delCourse(course_seq);
+		
+		if (result > 0) {
+			return "redirect:/admin/test/worldcup/course/view.do";
+		} else {
+			model.addAttribute("alertMessage", "코스 삭제에 실패했습니다.");
+			return "redirect:/admin/test/worldcup/course/view.do";
 		}
 	}
 	

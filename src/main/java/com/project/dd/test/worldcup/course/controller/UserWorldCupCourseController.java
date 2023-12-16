@@ -18,4 +18,5 @@ public class UserWorldCupCourseController {
 
 		return "user/test/worldcup/course/view";
 	}
+	
 }

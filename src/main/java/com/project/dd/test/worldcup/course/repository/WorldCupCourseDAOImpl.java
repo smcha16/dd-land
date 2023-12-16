@@ -87,4 +87,24 @@ public class WorldCupCourseDAOImpl implements WorldCupCourseDAO {
 		return mapper.getCourseImgFileName(courseSeq);
 	}
 	
+	@Override
+	public int delCourse(String seq) {
+		return mapper.delCourse(seq);
+	}
+	
+	@Override
+	public int delCWC(String seq) {
+		return mapper.delCWC(seq);
+	}
+
+	@Override
+	public int delCWCWin(String seq) {
+		return mapper.delCWCWin(seq);
+	}
+	
+	@Override
+	public int delCWCFinalWin(String seq) {
+		return mapper.delCWCFinalWin(seq);
+	}
+
 }

@@ -19,5 +19,5 @@ public class RestCourseController {
 		
 		return cwcService.checkNameDuplication(dto);
 	}
-
+	
 }

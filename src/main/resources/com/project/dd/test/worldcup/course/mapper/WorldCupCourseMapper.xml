@@ -76,5 +76,21 @@
 	<select id="getCourseImgFileName" parameterType="String" resultType="String">
 		select img from tblCourse where course_seq = #{course_seq}
 	</select>
+
+	<delete id="delCourse" parameterType="String">
+		delete tblCourse where course_seq = #{course_seq}
+	</delete>
+	
+	<delete id="delCWC" parameterType="String">
+		delete tblCWC where course_seq = #{course_seq}
+	</delete>
+	
+	<delete id="delCWCWin" parameterType="String">
+		delete tblCWCWin where course_seq = #{course_seq}
+	</delete>
+	
+	<delete id="delCWCFinalWin" parameterType="String">
+		delete tblCWCFinalWin where course_seq = #{course_seq}
+	</delete>
 	
 </mapper>

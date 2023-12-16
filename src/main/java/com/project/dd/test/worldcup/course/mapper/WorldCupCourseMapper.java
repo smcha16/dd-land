@@ -39,5 +39,13 @@ public interface WorldCupCourseMapper {
 	int editCourse(CourseDTO dto);
 
 	String getCourseImgFileName(String courseSeq);
+
+	int delCourse(String seq);
+
+	int delCWC(String seq);
+
+	int delCWCWin(String seq);
+
+	int delCWCFinalWin(String seq);
 	
 }
