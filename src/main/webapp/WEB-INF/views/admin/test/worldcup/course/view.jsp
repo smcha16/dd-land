@@ -1,4 +1,3 @@
-
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -113,6 +112,24 @@ th {
 .form-check {
 	min-height: 0 !important;
 }
+
+/* 모달 CSS */
+#modal table.m-desc {
+	width: 100%;
+	font-size: 14px;
+}
+
+#modal table tr > th {
+	width: 120px;
+	text-align: left;
+	font-weight: bold;
+	background: #FFF !important;
+	padding: 10px;
+}
+
+#modal table tr > td {
+	padding: 10px;
+}
 </style>
 
 <!-- ======= Main ======= -->
@@ -137,6 +154,44 @@ th {
 									<i class="bi bi-search"></i>
 								</button>
 							</form>
+							
+							<!-- 코스 상세 모달 -->
+							<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+							    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+							        <div class="modal-content">
+							            <div class="modal-header">
+							                <h5 id="modal-name" class="modal-title"></h5>
+							                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							            </div>
+						                
+							            <div class="modal-body">
+							            	<table class="m-desc">
+							            		<colgroup>
+							            			<col style="width: 100px">
+							            		</colgroup>
+							            		<tbody>
+							            			<tr>
+							            				<th>이미지</th>
+							            				<td class="m-img"></td>
+							            			</tr>
+							            			<tr>
+							            				<th>최종우승횟수</th>
+							            				<td class="m-cwc_final_win_count">회</td>
+							            			</tr>
+							            			<tr>
+							            				<th>승리횟수</th>
+							            				<td class="m-cwc_win_count">회</td>
+							            			</tr>
+							            			<tr>
+							            				<th>1:1 대결수</th>
+							            				<td class="m-cwc_match_count">회</td>
+							            			</tr>
+							            		</tbody>
+							            	</table>
+							            </div>
+							        </div>
+							    </div>
+							</div>
 						</div>
 
 						<div class="card">
@@ -168,7 +223,7 @@ th {
 											<tr>
 												<td><input type="checkbox"></td>
 												<td>${dto.course_seq}</td>
-												<td>${dto.name}</td>
+												<td><a onclick="showModal('${dto.course_seq}', '${dto.name}','${dto.img}', '${dto.cwc_final_win_count}', '${dto.cwc_win_count}', '${dto.cwc_match_count}')"><c:out value="${dto.name}" /></a></td>
 												<td>
 												    <div class="progress" style="height: 20px;">
 												        <div class="progress-bar" role="progressbar"
@@ -240,49 +295,54 @@ th {
 
 <script>
 	// 문서가 완전히 로드 된 뒤에 실행
-	$(document).ready(
-			function() {
-				// 체크박스 클릭 이벤트
-				$(document).on(
-						'change',
-						'.form-check-input',
-						function() {
-							// 테스트 채택
-							var isTest = $(this).is(':checked') ? 'Y' : 'N';
-							//console.log(isTest);
+	$(document).ready(function() {
+		// 체크박스 클릭 이벤트
+		$(document).on('change', '.form-check-input', function() {
+			// 테스트 채택
+			var isTest = $(this).is(':checked') ? 'Y' : 'N';
 
-							// 선택한 어트랙션 일련번호
-							var courseSeq = $(this).closest('tr').find(
-									'td:nth-child(2)').text();
-							//console.log(courseSeq);
+			// 선택한 어트랙션 일련번호
+			var courseSeq = $(this).closest('tr').find(
+					'td:nth-child(2)').text();
 
-							// CSRF token
-							var csrfHeaderName = "${_csrf.headerName}";
-							var csrfTokenValue = "${_csrf.token}";
-							//console.log(csrfHeaderName);
-							//console.log(csrfTokenValue);
+			// CSRF token
+			var csrfHeaderName = "${_csrf.headerName}";
+			var csrfTokenValue = "${_csrf.token}";
 
-							// 데이터베이스 업데이트
-							$.ajax({
-								type : 'POST',
-								url : '/dd/admin/test/worldcup/course/view.do',
-								data : {
-									courseSeq : courseSeq,
-									isTest : isTest
-								},
-								beforeSend : function(xhr) {
-									xhr.setRequestHeader(csrfHeaderName,
-											csrfTokenValue);
-								},
-								/*
-								success: function(response) {
-									// console.log(response); // 응답 처리
-								},
-								 */
-								error : function(a, b, c) {
-									console.error(a, b, c);
-								}
-							});
-						});
+			// 데이터베이스 업데이트
+			$.ajax({
+				type : 'POST',
+				url : '/dd/admin/test/worldcup/course/view.do',
+				data : {
+					courseSeq : courseSeq,
+					isTest : isTest
+				},
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName,
+							csrfTokenValue);
+				},
+				/*
+				success: function(response) {
+					// console.log(response); // 응답 처리
+				},
+				 */
+				error : function(a, b, c) {
+					console.error(a, b, c);
+				}
 			});
+		});
+	});
+
+	// 코스 및 코스 월드컵 상세 모달
+	function showModal(seq, name, img, cwc_final_win_count, cwc_win_count, cwc_match_count) {
+	    
+		$('#modal-name').text(name);
+	
+	    $('.m-img').text(img);
+	    $('.m-cwc_final_win_count').text(cwc_final_win_count);
+	    $('.m-cwc_win_count').text(cwc_win_count);
+	    $('.m-cwc_match_count').text(cwc_match_count);
+	    
+	    $('#modal').modal('show');
+	}
 </script>

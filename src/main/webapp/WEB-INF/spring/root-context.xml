@@ -9,21 +9,8 @@
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
       <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
       <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe"></property>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
       <property name="username" value="ddseungwon"></property>
       <property name="password" value="pass"></property>
-=======
-=======
->>>>>>> 1fdab11fc9b8f5892b8c333b8d1892c63fc1bd4c
-      <property name="username" value="ddtest"></property>
-      <property name="password" value="java1234"></property>
->>>>>>> 064811b58eab2a054145c7994d0c0e0897bb3778
-=======
-      <property name="username" value="lje"></property>
-      <property name="password" value="java1234"></property>
->>>>>>> 18ee2b17838352bfc3352a9cc075725c79b22de5
 	</bean>
 
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">

@@ -84,8 +84,8 @@ th {
 	background-color: #f2f2f2 !important;
 }
 
-.table th:nth-child(1) { width: 10%; }
-.table th:nth-child(2) { width: 25%; }
+.table th:nth-child(1) { width: 5%; }
+.table th:nth-child(2) { width: 30%; }
 .table th:nth-child(3) { width: 25%; }
 .table th:nth-child(4) { width: 25%; }
 .table th:nth-child(5) { width: 15%; }
@@ -111,6 +111,24 @@ th {
 .form-check {
 	min-height: 0 !important;
 }
+
+/* 모달 CSS */
+#modal table.m-desc {
+	width: 100%;
+	font-size: 14px;
+}
+
+#modal table tr > th {
+	width: 120px;
+	text-align: left;
+	font-weight: bold;
+	background: #FFF !important;
+	padding: 10px;
+}
+
+#modal table tr > td {
+	padding: 10px;
+}
 </style>
 
 <!-- ======= Main ======= -->
@@ -135,6 +153,40 @@ th {
 									<i class="bi bi-search"></i>
 								</button>
 							</form>
+							
+							<!-- 어트랙션 월드컵 상세 모달 -->
+							<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+							    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+							        <div class="modal-content">
+							            <div class="modal-header">
+							                <h5 id="modal-name" class="modal-title"></h5>
+							                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							            </div>
+						                
+							            <div class="modal-body">
+							            	<table class="m-desc">
+							            		<colgroup>
+							            			<col style="width: 100px">
+							            		</colgroup>
+							            		<tbody>
+							            			<tr>
+							            				<th>최종우승횟수</th>
+							            				<td class="m-awc_final_win_count">회</td>
+							            			</tr>
+							            			<tr>
+							            				<th>승리횟수</th>
+							            				<td class="m-awc_win_count">회</td>
+							            			</tr>
+							            			<tr>
+							            				<th>1:1 대결수</th>
+							            				<td class="m-awc_match_count">회</td>
+							            			</tr>
+							            		</tbody>
+							            	</table>
+							            </div>
+							        </div>
+							    </div>
+							</div>
 						</div>
 
 						<div class="card">
@@ -142,8 +194,7 @@ th {
 
 								<nav class="d-flex justify-content-end">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a
-											href="/dd/admin/activity/attraction/view.do">어트랙션 관리</a></li>
+										<li class="breadcrumb-item"><a href="/dd/admin/activity/attraction/view.do">어트랙션 관리</a></li>
 									</ol>
 								</nav>
 
@@ -163,7 +214,7 @@ th {
 											<tr>
 												<!-- <td><input type="checkbox"></td> -->
 												<td>${dto.attraction_seq}</td>
-												<td>${dto.name}</td>
+												<td><a onclick="showModal('${dto.attraction_seq}', '${dto.name}', '${dto.awc_final_win_count}', '${dto.awc_win_count}', '${dto.awc_match_count}')"><c:out value="${dto.name}" /></a></td>
 												<td>
 												    <div class="progress" style="height: 20px;">
 												        <div class="progress-bar" role="progressbar"
@@ -228,53 +279,56 @@ th {
 					</div>
 				</div>
 			</div>
-		</div>
 	</section>
 </main>
 
 <script>
 	// 문서가 완전히 로드 된 뒤에 실행
-	$(document).ready(
-			function() {
-				// 체크박스 클릭 이벤트
-				$(document).on(
-						'change',
-						'.form-check-input',
-						function() {
-							// 테스트 채택
-							var isTest = $(this).is(':checked') ? 'Y' : 'N';
-							//console.log(isTest);
+	$(document).ready(function() {
+		// 체크박스 클릭 이벤트
+		$(document).on('change', '.form-check-input', function() {
+			// 테스트 채택
+			var isTest = $(this).is(':checked') ? 'Y' : 'N';
 
-							// 선택한 어트랙션 일련번호
-							var attractionSeq = $(this).closest('tr').find('td:nth-child(1)').text();
-							//console.log(attractionSeq);
+			// 선택한 어트랙션 일련번호
+			var attractionSeq = $(this).closest('tr').find('td:nth-child(1)').text();
 
-							// CSRF token
-							var csrfHeaderName = "${_csrf.headerName}";
-							var csrfTokenValue = "${_csrf.token}";
-							//console.log(csrfHeaderName);
-							//console.log(csrfTokenValue);
+			// CSRF token
+			var csrfHeaderName = "${_csrf.headerName}";
+			var csrfTokenValue = "${_csrf.token}";
 
-							// 데이터베이스 업데이트
-							$.ajax({
-								type : 'POST',
-								url : '/dd/admin/test/worldcup/attraction/view.do',
-								data : {
-									attractionSeq : attractionSeq,
-									isTest : isTest
-								},
-								beforeSend : function(xhr) {
-									xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-								},
-								/*
-								success: function(response) {
-									// console.log(response); // 응답 처리
-								},
-								 */
-								error : function(a, b, c) {
-									console.error(a, b, c);
-								}
-							});
-						});
+			// 데이터베이스 업데이트
+			$.ajax({
+				type : 'POST',
+				url : '/dd/admin/test/worldcup/attraction/view.do',
+				data : {
+					attractionSeq : attractionSeq,
+					isTest : isTest
+				},
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				/*
+				success: function(response) {
+					// console.log(response); // 응답 처리
+				},
+				 */
+				error : function(a, b, c) {
+					console.error(a, b, c);
+				}
 			});
+		});
+	});
+
+	// 어트랙션 월드컵 상세 모달
+	function showModal(seq, name, awc_final_win_count, awc_win_count, awc_match_count) {
+	    
+		$('#modal-name').text(name);
+
+	    $('.m-awc_final_win_count').text(awc_final_win_count);
+	    $('.m-awc_win_count').text(awc_win_count);
+	    $('.m-awc_match_count').text(awc_match_count);
+	    
+	    $('#modal').modal('show');
+	}
 </script>
