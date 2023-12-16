@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
+import com.project.dd.activity.moveplay.domain.MoviePlayDTO;
 import com.project.dd.activity.movie.domain.MovieDTO;
-import com.project.dd.activity.movie.domain.MoviePlayDTO;
 import com.project.dd.activity.movie.mapper.MovieMapper;
 
 @Primary

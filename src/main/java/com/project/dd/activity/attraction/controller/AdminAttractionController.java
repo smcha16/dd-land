@@ -129,13 +129,11 @@ public class AdminAttractionController {
 
 		int result = service.editAttraction(dto, imgs, req, deleteImgSeq);
 		
-//		if (result > 0) {
-//			return "redirect:/admin/activity/attraction/view.do";
-//		} else {
-//			return "redirect:/admin/activity/attraction/edit.do";
-//		}
-		
-		return "redirect:/admin/activity/attraction/view.do";
+		if (result > 0) {
+			return "redirect:/admin/activity/attraction/view.do";
+		} else {
+			return "redirect:/admin/activity/attraction/edit.do";
+		}
 		
 	}
 	

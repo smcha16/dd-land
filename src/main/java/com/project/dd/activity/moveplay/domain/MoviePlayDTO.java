@@ -1,4 +1,4 @@
-package com.project.dd.activity.movie.domain;
+package com.project.dd.activity.moveplay.domain;
 
 import lombok.Data;
 
@@ -13,7 +13,7 @@ public class MoviePlayDTO {
 	private String theater_seq;
 	
 	//tblTheater
-	private String name;
+	private String theater_name;
 	
 	//tblTheaterLocation
 	private String theater_location_seq;
@@ -22,4 +22,7 @@ public class MoviePlayDTO {
 	
 	//운휴 여부(y: 운휴, n: 운영)
 	private String close;
+	
+	//tblMovie
+	private String movie_name;
 }

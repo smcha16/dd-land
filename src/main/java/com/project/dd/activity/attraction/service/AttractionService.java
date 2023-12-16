@@ -379,7 +379,7 @@ public class AttractionService {
 		return result;
 	}
 
-	public int getAttractionSeq() {
+	public String getAttractionSeq() {
 		return dao.getAttractionSeq();
 	}
 
