@@ -13,6 +13,8 @@ public interface WorldCupAttractionMapper {
 
 	// 모든 어트랙션 리스트 조회
 	List<AttractionDTO> getAllAttraction(Map<String, String> map);
+
+	List<AttractionDTO> getAttractionList();
 	
     // 운영중인 어트랙션 리스트 조회
     List<AttractionDTO> getRunAttraction(String close);
@@ -27,5 +29,19 @@ public interface WorldCupAttractionMapper {
     List<WorldCupAttractionDTO> getAllAWCFinalWin();
 
 	void updateAttractionStatus(Map<String, String> map);
+
+	int getAWCFinalWinTotalCount();
+
+	int addAWC(AttractionDTO dto);
+
+	int addAWCWin(AttractionDTO dto);
+
+	int addAWCFinalWin(AttractionDTO dto);
+	
+	void updateAWCMatchCount(String attractionSeq);
+
+	void updateAWCWinCount(String attractionSeq);
+
+	void updateAWCFinalWinCount(String attractionSeq);
 	
 }

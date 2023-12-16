@@ -24,7 +24,7 @@
 		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_2')" />
 		
 		
-		<security:form-login login-page="/user/login/view.do" authentication-success-handler-ref="customLoginSuccessHandler" />
+		<security:form-login login-page="/user/login/view.do" authentication-success-handler-ref="customLoginSuccessHandler"/>
 
 		<security:logout logout-url="/logout.do" logout-success-url="/index.do" invalidate-session="true" />
 

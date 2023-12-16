@@ -32,4 +32,11 @@ public class AttractionDTO {
 	//tblAWC
 	private String is_test;
 	
+	//tblAWCWin
+	private String awc_match_count;
+	private String awc_win_count;
+	
+	//tblAWCFinalWin
+	private String awc_final_win_count;
+	
 }

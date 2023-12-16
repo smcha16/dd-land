@@ -3,8 +3,6 @@ package com.project.dd.communication.review.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +19,8 @@ public class AdminReviewController {
 	
 	@Autowired
 	private ReviewService service;
+	
+	/* 목록 */
 	
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {

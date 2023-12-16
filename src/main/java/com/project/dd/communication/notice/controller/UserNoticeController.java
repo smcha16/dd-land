@@ -20,7 +20,7 @@ public class UserNoticeController {
 	@Autowired
 	private NoticeService service;
 	
-	// 목록
+	/* 목록 */
 	
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
@@ -37,7 +37,7 @@ public class UserNoticeController {
 
 	}
 	
-	// 상세
+	/* 상세 */
 	
 	@GetMapping(value = "/detail.do")
 	public String detail(String seq, Model model) {

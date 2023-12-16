@@ -18,14 +18,33 @@
         - 결과 타입은 AttractionDTO입니다.
     -->
 	<select id="getAllAttraction" parameterType="map" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
-	    select * from (
-		    select n.*, rownum as rnum
-		    from (
-		        SELECT al.*, awc.is_test
+	    SELECT * FROM (
+		    SELECT n.*, ROWNUM AS rnum FROM (
+		        SELECT al.*,
+		               awc.is_test,
+		               w.awc_match_count,
+		               w.awc_win_count,
+		               fw.awc_final_win_count
 		        FROM tblAWC awc
 		        JOIN vwAttractionList al ON awc.attraction_seq = al.attraction_seq
+		        JOIN tblAWCWin w ON w.attraction_seq = al.attraction_seq
+		        JOIN tblAWCFinalWin fw ON fw.attraction_seq = al.attraction_seq
 		    ) n
 		) where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<select id="getAttractionList" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		select
+			al.*,
+			awc.is_test,
+			w.awc_match_count,
+			w.awc_win_count,
+			fw.awc_final_win_count
+		from vwAttractionList al
+		join tblAWC awc on awc.attraction_seq = al.attraction_seq
+		join tblAWCWin w on w.attraction_seq = al.attraction_seq
+		join tblAWCFinalWin fw on fw.attraction_seq = al.attraction_seq
+		where awc.is_test = 'Y'
 	</select>
 	
 	<select id="getRunAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
@@ -68,6 +87,10 @@
 	    where attraction_seq = #{attractionSeq}
 	</update>
 	
+	<select id="getAWCFinalWinTotalCount" resultType="int">
+		select sum(awc_final_win_count) as total_awc_final_win_count from tblAWCFinalWin
+	</select>
+	
 	<!-- 
 	<update id="updateAttractionStatus" parameterType="String">
 	    UPDATE tblAWC
@@ -75,4 +98,41 @@
 	    WHERE attractionSeq = #{attractionSeq}
 	</update>
 	-->
+	
+	<insert id="addAWC" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		insert into tblAWC (awc_seq, is_test, attraction_seq)
+		values (seqtblAWC.NEXTVAL, 'Y', #{attraction_seq})
+	</insert>
+	
+	<insert id="addAWCWin" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		insert into tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+		values (seqtblAWCWin.NEXTVAL, 0, 0, #{attraction_seq})
+	</insert>
+	
+	<insert id="addAWCFinalWin" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		insert into tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+		values (seqtblAWCFinalWin.NEXTVAL, 0, #{attraction_seq})
+	</insert>
+	
+	<update id="updateAWCMatchCount" parameterType="String">
+	    update
+			tblAWCWin
+		set awc_match_count = awc_match_count + 1
+		where attraction_seq = #{attractionSeq}
+	</update>
+	
+	<update id="updateAWCWinCount" parameterType="String">
+	    update
+			tblAWCWin
+		set awc_win_count = awc_win_count + 1
+		where attraction_seq = #{attractionSeq}
+	</update>
+	
+	<update id="updateAWCFinalWinCount" parameterType="String">
+	    update
+			tblAWCFinalWin
+		set awc_final_win_count = awc_final_win_count + 1
+		where attraction_seq = #{attractionSeq}
+	</update>
+	
 </mapper>

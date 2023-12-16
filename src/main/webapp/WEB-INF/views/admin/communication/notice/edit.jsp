@@ -37,11 +37,11 @@
     }
     .required::after {
 		content: " *";
-		color: #FF6347;
+		color: #F00;
 	}
 	.option::after {
 		content: " *";
-		color: #6495ED;
+		color: #00F;
 	}
     .message {
 		font-size: 14px;

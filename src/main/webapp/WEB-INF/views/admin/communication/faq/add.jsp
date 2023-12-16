@@ -37,7 +37,7 @@
     }
     .required::after {
 		content: " *";
-		color: #FF6347;
+		color: #F00;
 	}
     .message {
 		font-size: 14px;

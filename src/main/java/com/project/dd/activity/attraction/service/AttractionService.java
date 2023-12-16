@@ -296,10 +296,10 @@ public class AttractionService {
 					result += dao.addAttractionImg(idto);
 				}
 				
+				return result;
 			}
 			
-			return result;
-			
+			return 1;//1번 경우의 수
 		}
 		
 		//2. 수정 후 첨부 O vs X 판단: imgs[0].isEmpty > Case 3 ~ 7
@@ -327,6 +327,8 @@ public class AttractionService {
 				
 				dao.addAttractionImg(idto);
 				
+			} else if (deleteImgSeq.length == 0) {
+				return 1; //3번 경우의 수
 			}
 			
 			
@@ -376,6 +378,13 @@ public class AttractionService {
 		
 		return result;
 	}
-	
-	
+
+	public int getAttractionSeq() {
+		return dao.getAttractionSeq();
+	}
+
+	public List<AttractionImgDTO> getAllAttractionImgList() {
+		return dao.getAllAttractionImgList();
+	}
+
 }

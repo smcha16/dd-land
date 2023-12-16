@@ -49,7 +49,7 @@
             			<h5 class="card-title">General Form Elements</h5> 
 
             			<form:form method="post" action="/dd/admin/pb/benefit/add.do"
-							modelAttribute="benefitDTO">
+							modelAttribute="benefitDTO" enctype="multipart/form-data">
             			
               				<div class="row mb-3">
                 				<label for="inputText" class="col-sm-2 col-form-label">혜택명</label>
@@ -62,7 +62,7 @@
               				
               				
               				<fieldset class="row mb-3">
-                				<legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+                				<legend class="col-form-label col-sm-2 pt-0">혜택</legend>
                 				<div class="col-sm-10">
                   					<div class="form-check">
                     					<input class="form-check-input" type="radio" name="type" id="gridRadios1" value="일반" checked>
@@ -106,7 +106,8 @@
 							<div class="row mb-3">
                 				<label for="inputNumber" class="col-sm-2 col-form-label">이미지 업로드</label>
                 				<div class="col-sm-10">
-                  					<input class="form-control" type="file" id="formFile">
+                  					<input class="form-control" name="img" type="file" id="formFile">
+                  					<form:errors path="img" cssClass="text-danger" />
                 				</div>
               				</div>
 							
