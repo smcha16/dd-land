@@ -116,8 +116,8 @@ public class AttractionService {
 		result = dao.addAttraction(dto);
 		
 		//방금 등록한 Attraction seq 가져오기
-		int seq = dao.getAttractionSeq();
-		dto.setAttraction_seq(seq + "");
+		String seq = dao.getAttractionSeq();
+		dto.setAttraction_seq(seq);
 		
 		//2. tblAttractionLocation 추가
 		result = dao.addAttractionLocation(dto);
@@ -379,7 +379,7 @@ public class AttractionService {
 		return result;
 	}
 
-	public int getAttractionSeq() {
+	public String getAttractionSeq() {
 		return dao.getAttractionSeq();
 	}
 

@@ -11,9 +11,12 @@
       <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe"></property>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <property name="username" value="ddseungwon"></property>
       <property name="password" value="pass"></property>
 =======
+=======
+>>>>>>> 1fdab11fc9b8f5892b8c333b8d1892c63fc1bd4c
       <property name="username" value="ddtest"></property>
       <property name="password" value="java1234"></property>
 >>>>>>> 064811b58eab2a054145c7994d0c0e0897bb3778

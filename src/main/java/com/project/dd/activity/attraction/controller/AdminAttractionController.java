@@ -1,6 +1,5 @@
 package com.project.dd.activity.attraction.controller;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -94,8 +93,6 @@ public class AdminAttractionController {
 		//List<AttractionImgDTO> 가져오기
 		List<AttractionImgDTO> ilist = service.getAttractionImgList(seq);
 		
-		//ilist > AttractionDTO에 담기
-		dto.setImgList(ilist);
 		
 		//UUID 제거(DB에 먼저 넣은 더미 데이터, 구현된 페이지에서 직접 추가한 데이터 > UUID 유무 상이)
 		// - 따라서 1. DB에 먼저 넣은 더미 데이터도 UUID를 추가하거나
@@ -108,10 +105,12 @@ public class AdminAttractionController {
 				
 				//UUID 제거
 				String originalFileName = idto.getImg().substring(idto.getImg().indexOf("_") + 1);
-				dto.setImg(originalFileName);
+				idto.setImg(originalFileName);
 			}
 			
 		}
+		//ilist > AttractionDTO에 담기
+		dto.setImgList(ilist);
 		
 		model.addAttribute("dto", dto);
 		
@@ -130,13 +129,11 @@ public class AdminAttractionController {
 
 		int result = service.editAttraction(dto, imgs, req, deleteImgSeq);
 		
-//		if (result > 0) {
-//			return "redirect:/admin/activity/attraction/view.do";
-//		} else {
-//			return "redirect:/admin/activity/attraction/edit.do";
-//		}
-		
-		return "redirect:/admin/activity/attraction/view.do";
+		if (result > 0) {
+			return "redirect:/admin/activity/attraction/view.do";
+		} else {
+			return "redirect:/admin/activity/attraction/edit.do";
+		}
 		
 	}
 	

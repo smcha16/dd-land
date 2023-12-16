@@ -80,7 +80,7 @@ public class AttractionDAOImpl implements AttractionDAO {
 	}
 
 	@Override
-	public int getAttractionSeq() {
+	public String getAttractionSeq() {
 		return mapper.getAttractionSeq();
 	}
 

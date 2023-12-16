@@ -16,4 +16,34 @@ public interface PhotoZoneDAO {
 
 	int getTotalCount();
 
+	List<PhotoZoneImgDTO> getAllPhotozoneImgList();
+
+	int addPhotozone(PhotoZoneDTO dto);
+
+	int checkLocationDuplication(PhotoZoneDTO dto);
+
+	int checkNameDuplication(PhotoZoneDTO dto);
+
+	String getPhotozoneSeq();
+
+	int addPhotozoneLocation(PhotoZoneDTO dto);
+
+	int addPhotozoneImg(PhotoZoneImgDTO idto);
+
+	int editPhotozone(PhotoZoneDTO dto);
+
+	int editPhotozoneLocation(PhotoZoneDTO dto);
+
+	int delPhotozoneImg(String seq);
+
+	int countPhotozoneImg(String seq);
+
+	int delPhotozoneImgByImgSeq(String imgseq);
+
+	int countPhotozoneLocation(String seq);
+
+	int delPhotozoneLocation(String seq);
+
+	int delPhotozone(String seq);
+
 }
