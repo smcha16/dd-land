@@ -64,14 +64,14 @@ label {
 		<h1>코스 등록</h1>
 		
 		<nav class="d-flex justify-content-end">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item">
-					<a href="javascript:void(0);" onclick="submit();">등록</a>
-				</li>
-				<li class="breadcrumb-item active">
-					<a href="/dd/admin/test/worldcup/course/view.do">취소</a>
-				</li>
-			</ol>
+      		<ol class="breadcrumb">
+          		<li class="breadcrumb-item">
+          			<a href="javascript:void(0);" onclick="submit();">등록</a>
+          		</li>
+          		<li class="breadcrumb-item active">
+          			<a href="/dd/admin/test/worldcup/course/view.do">취소</a>
+          		</li>
+      		</ol>
 		</nav>
 	</div>
 
@@ -96,13 +96,12 @@ label {
 									</div>
 								</div>
 							</div>
-							
-							<!-- 이미지 -->
+              				
 							<div class="row mb-3">
 								<label for="formFile" class="col-sm-2 col-form-label">이미지</label>
 								
 								<div class="col-sm-10">
-									<input class="form-control" type="file" id="formFile" name="img">
+									<input class="form-control" type="file" id="formFile" name="image">
 								</div>
 							</div>
 
@@ -119,11 +118,7 @@ label {
 </main>
 
 <script>
-	//console.log("check-name-duplication: " + $('.check-name-duplication').data('type'));
-
 	function submit() {
-		// console.log($('textarea[name="info"]').val());
-
 		if (!$('input[name="name"]').val().trim() || $('.check-name-duplication').data('type') != 'y') {
 			
 			if ($('.check-name-duplication').data('type') == 'n') {
@@ -134,15 +129,13 @@ label {
 			
 		} else {
             // 전송 데이터 확인
-            /*
-            console.log("전송 데이터:");
-            console.log("Name: " + $('input[name="name"]').val());
-            console.log("Image Files: " + $('#formFile')[0].files);
-            var files = $('#formFile')[0].files;
-            for (var i = 0; i < files.length; i++) {
-                console.log("Image File Name: " + files[i].name);
-            }
-            */
+            // console.log("전송 데이터:");
+            // console.log("Name: " + $('input[name="name"]').val());
+            // console.log("Image Files: " + $('#formFile')[0].files);
+            // var files = $('#formFile')[0].files;
+            // for (var i = 0; i < files.length; i++) {
+            //     console.log("Image File Name: " + files[i].name);
+            // }
             
             // 데이터 전송
             $('form').submit();

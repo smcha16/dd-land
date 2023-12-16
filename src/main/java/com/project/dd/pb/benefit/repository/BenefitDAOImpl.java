@@ -48,6 +48,11 @@ public class BenefitDAOImpl implements BenefitDAO{
 		return mapper.benefitInfo(seq);
 	}
 
+	@Override
+	public int addBenefit(BenefitDTO benefitDTO) {
+		return mapper.addBenefit(benefitDTO);
+	}
+
 
 
 	

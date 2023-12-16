@@ -85,10 +85,12 @@ th {
 	background-color: #f2f2f2 !important;
 }
 
-.table th:nth-child(1) { width: 6%; }
-.table th:nth-child(2) { width: 9%; }
-.table th:nth-child(3) { width: 63%; }
-.table th:nth-child(4) { width: 22%; }
+.table th:nth-child(1) { width: 5%; }
+.table th:nth-child(2) { width: 5%; }
+.table th:nth-child(3) { width: 30%; }
+.table th:nth-child(4) { width: 25%; }
+.table th:nth-child(5) { width: 25%; }
+.table th:nth-child(6) { width: 10%; }
 
 .table td i {
 	color: #0d6efd;
@@ -156,6 +158,8 @@ th {
 											<th></th>
 											<th>No</th>
 											<th>이름</th>
+											<th>우승비율 (우승횟수/게임횟수)</th>
+											<th>승률 (승리횟수/대결수)</th>
 											<th>테스트 채택</th>
 										</tr>
 									</thead>
@@ -165,6 +169,31 @@ th {
 												<td><input type="checkbox"></td>
 												<td>${dto.course_seq}</td>
 												<td>${dto.name}</td>
+												<td>
+												    <div class="progress" style="height: 20px;">
+												        <div class="progress-bar" role="progressbar"
+												            style="width: ${String.format('%.2f', (dto.cwc_final_win_count / (cwcFinalWinTotalCount / 2)) * 100)}%;"
+												            aria-valuenow="${String.format('%.2f', (dto.cwc_final_win_count / (cwcFinalWinTotalCount / 2)) * 100)}"
+												            aria-valuemin="0" aria-valuemax="100"
+												            data-bs-toggle="tooltip" data-bs-placement="top"
+												            title="${dto.cwc_final_win_count}/${cwcFinalWinTotalCount}">
+												            ${String.format('%.2f', (dto.cwc_final_win_count / cwcFinalWinTotalCount) * 100)}%
+												        </div>
+												    </div>
+												</td>
+
+										        <td>
+												   <div class="progress" style="height: 20px;">
+													    <div class="progress-bar" role="progressbar"
+													        style="width: ${String.format('%.2f', (dto.cwc_win_count / dto.cwc_match_count) * 100)}%;"
+													        aria-valuenow="${String.format('%.2f', (dto.cwc_win_count / dto.cwc_match_count) * 100)}"
+													        aria-valuemin="0" aria-valuemax="100"
+													        data-bs-toggle="tooltip" data-bs-placement="top"
+													        title="${dto.cwc_win_count}/${dto.cwc_match_count}">
+													        ${String.format('%.2f', (dto.cwc_win_count / dto.cwc_match_count) * 100)}%
+													    </div>
+													</div>
+												</td>
 												<td>
 													<div class="d-flex justify-content-center">
 														<div class="form-check form-switch">

@@ -153,8 +153,8 @@ th {
 											<!-- <th></th> -->
 											<th>No</th>
 											<th>이름</th>
-											<th>우승비율 (최종우승횟수/전체게임횟수)</th>
-											<th>승률 (승리횟수/전체1:1대결수)</th>
+											<th>우승비율 (우승횟수/게임횟수)</th>
+											<th>승률 (승리횟수/대결수)</th>
 											<th>테스트 채택</th>
 										</tr>
 									</thead>
@@ -164,28 +164,32 @@ th {
 												<!-- <td><input type="checkbox"></td> -->
 												<td>${dto.attraction_seq}</td>
 												<td>${dto.name}</td>
-												
-										        <!-- Check if listAWCFinalWin has data for the current attraction -->
-										        <c:choose>
-										            <c:when test="${not empty listAWCFinalWin and not empty listAWCFinalWin[dto.attraction_seq]}">
-										                <c:set var="awcFinalWinData" value="${listAWCFinalWin[dto.attraction_seq]}" />
-										                <td>${awcFinalWinData.awc_final_win_count}</td>
-										            </c:when>
-										            <c:otherwise>
-										                <td>N/A</td>
-										            </c:otherwise>
-										        </c:choose>
-										        
-												<c:choose>
-										            <c:when test="${not empty listAWCWin and not empty listAWCWin[dto.attraction_seq]}">
-										                <c:set var="awcWinData" value="${listAWCWin[dto.attraction_seq]}" />
-										                <td>${awcWinData.awc_win_count}/${awcWinData.awc_match_count}</td>
-										            </c:when>
-										            <c:otherwise>
-										                <td>N/A</td>
-										            </c:otherwise>
-										        </c:choose>
-										        
+												<td>
+												    <div class="progress" style="height: 20px;">
+												        <div class="progress-bar" role="progressbar"
+												            style="width: ${String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 5)) * 100)}%;"
+												            aria-valuenow="${String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 5)) * 100)}"
+												            aria-valuemin="0" aria-valuemax="100"
+												            data-bs-toggle="tooltip" data-bs-placement="top"
+												            title="${dto.awc_final_win_count}/${awcFinalWinTotalCount}">
+												            ${String.format('%.2f', (dto.awc_final_win_count / awcFinalWinTotalCount) * 100)}%
+												        </div>
+												    </div>
+												</td>
+
+										        <td>
+												   <div class="progress" style="height: 20px;">
+													    <div class="progress-bar" role="progressbar"
+													        style="width: ${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}%;"
+													        aria-valuenow="${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}"
+													        aria-valuemin="0" aria-valuemax="100"
+													        data-bs-toggle="tooltip" data-bs-placement="top"
+													        title="${dto.awc_win_count}/${dto.awc_match_count}">
+													        ${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}%
+													    </div>
+													</div>
+												</td>
+
 												<td>
 													<div class="d-flex justify-content-center">
 														<div class="form-check form-switch">
@@ -274,3 +278,32 @@ th {
 						});
 			});
 </script>
+
+
+<!--
+<script>
+    jQuery(document).ready(function ($) {
+        // 각 행에 대해 승률 계산 및 동적으로 추가
+        $('.table tbody tr').each(function () {
+            var winCountText = $(this).find('td:nth-child(4)').text().trim();
+            var matchCountText = $(this).find('td:nth-child(5)').text().trim();
+
+            // 정규식을 사용하여 숫자 확인
+            var winCount = /^\d+$/.test(winCountText) ? parseFloat(winCountText) : NaN;
+            var matchCount = /^\d+$/.test(matchCountText) ? parseFloat(matchCountText) : NaN;
+
+            // 숫자가 아닌 경우에 대비하여 체크
+            if (!isNaN(winCount) && !isNaN(matchCount)) {
+                // 승률 계산 (승리횟수/전체1:1대결수)
+                var winRate = (winCount / matchCount * 100).toFixed(2);
+                console.log(winRate);
+
+                // 계산된 승률을 해당 행에 추가
+                $(this).find('td:nth-child(6)').text(winRate + '%');
+            } else {
+                console.log('Invalid winCount or matchCount:', winCountText, matchCountText);
+            }
+        });
+    });
+</script>
+-->

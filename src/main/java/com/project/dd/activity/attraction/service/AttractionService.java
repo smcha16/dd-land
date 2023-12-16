@@ -379,9 +379,12 @@ public class AttractionService {
 		return result;
 	}
 
+	public int getAttractionSeq() {
+		return dao.getAttractionSeq();
+	}
+
 	public List<AttractionImgDTO> getAllAttractionImgList() {
 		return dao.getAllAttractionImgList();
 	}
-	
-	
+
 }
