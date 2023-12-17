@@ -12,6 +12,8 @@ public interface MBTIService {
 
 	Map<String, String> paging(int page);
 
+	int getTotalCount();
+	
     List<MBTIDTO> getAllMBTI(Map<String, String> map);
 
 	MBTIDTO getMBTI(String seq);

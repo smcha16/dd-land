@@ -10,10 +10,16 @@
 	</select>
 
 	<select id="getAllMBTI" parameterType="map" resultType="com.project.dd.test.mbti.domain.MBTIDTO">
-		select *
-		from (select n.*, rownum as rnum from
-				(select * from tblMBTI) n)
-		where rnum between #{startIndex} and #{endIndex}
+		select * from (
+			select n.*, rownum as rnum from (
+				select m.*,
+					a.name as attraction_name,
+					c.name as course_name
+				from tblMBTI m
+				join tblAttraction a on m.attraction_seq = a.attraction_seq
+				join tblCourse c on m.course_seq = c.course_seq
+			) n
+		) where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
 	<select id="getMBTI" parameterType="String" resultType="com.project.dd.test.mbti.domain.MBTIDTO">

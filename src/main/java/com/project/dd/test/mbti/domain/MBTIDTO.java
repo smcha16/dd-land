@@ -12,4 +12,10 @@ public class MBTIDTO {
 	private String course_seq; // 코스번호
 	private String attraction_seq; // 어트랙션 번호
 	
+	// tblAttraction
+	private String attraction_name; // 어트랙션 이름
+	
+	// tblCourse
+	private String course_name; // 코스 이름
+	
 }
