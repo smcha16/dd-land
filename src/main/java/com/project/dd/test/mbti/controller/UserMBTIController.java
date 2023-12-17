@@ -28,7 +28,7 @@ public class UserMBTIController {
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 
 		// 페이징
-		Map<String, String> map = mbtiService.paging(page);
+		Map<String, String> map = mbtiService.paging(page, 9);
 
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);

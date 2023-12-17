@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.dd.test.mbti.domain.MBTIDTO;
 import com.project.dd.test.mbti.service.MBTIService;
 import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService;
-import com.project.dd.test.worldcup.course.domain.CourseDTO;
 import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
 
 @Controller
@@ -33,7 +32,7 @@ public class AdminMBTIController {
 	@GetMapping(value = "/admin/test/mbti/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 		
-		Map<String, String> map = mbtiService.paging(page);
+		Map<String, String> map = mbtiService.paging(page, 10);
 
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
@@ -93,6 +92,19 @@ public class AdminMBTIController {
 			return "redirect:/admin/test/mbti/view.do";
 		} else {
 			return "redirect:/admin/test/mbti/edit.do";
+		}
+	}
+	
+	@PostMapping(value = "/admin/test/mbti/del.do")
+	public String del(Model model, String[] mbti_seq) {
+		
+		int result = mbtiService.delMBTI(mbti_seq);
+		
+		if (result > 0) {
+			return "redirect:/admin/test/mbti/view.do";
+		} else {
+			model.addAttribute("alertMessage", "MBTI별 추천 삭제에 실패했습니다.");
+			return "redirect:/admin/test/mbti/view.do";
 		}
 	}
 	

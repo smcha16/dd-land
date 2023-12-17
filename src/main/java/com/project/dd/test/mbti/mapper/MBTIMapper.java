@@ -23,4 +23,6 @@ public interface MBTIMapper {
 
 	String getMBTIImgFileName(String mbtiSeq);
 
+	int delMBTI(String seq);
+
 }

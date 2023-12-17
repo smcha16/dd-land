@@ -23,4 +23,6 @@ public interface MBTIDAO {
 
 	String getMBTIImgFileName(String mbtiSeq);
 
+	int delMBTI(String seq);
+
 }

@@ -49,5 +49,9 @@
 	<select id="getMBTIImgFileName" parameterType="String" resultType="String">
 		select mbti_img from tblMBTI where mbti_seq = #{mbti_seq}
 	</select>
+	
+	<delete id="delMBTI" parameterType="String">
+		delete tblMBTI where mbti_seq = #{mbti_seq}
+	</delete>
 
 </mapper>

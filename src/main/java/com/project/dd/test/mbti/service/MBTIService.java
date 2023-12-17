@@ -14,7 +14,7 @@ import com.project.dd.test.worldcup.course.domain.CourseDTO;
 @Service
 public interface MBTIService {
 
-	Map<String, String> paging(int page);
+	Map<String, String> paging(int page, int pageSize);
 
 	int getTotalCount();
 	
@@ -27,5 +27,7 @@ public interface MBTIService {
 	int checkMBTINameDuplication(MBTIDTO dto);
 
 	int editMBTI(MBTIDTO dto, MultipartFile image, HttpServletRequest req);
+
+	int delMBTI(String[] mbti_seq);
 
 }

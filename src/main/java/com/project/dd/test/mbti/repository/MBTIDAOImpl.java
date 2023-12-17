@@ -54,4 +54,9 @@ public class MBTIDAOImpl implements MBTIDAO {
 		return mapper.getMBTIImgFileName(mbtiSeq);
 	}
 
+	@Override
+	public int delMBTI(String seq) {
+		return mapper.delMBTI(seq);
+	}
+	
 }

@@ -3,16 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- user > test > mbti > view.jsp -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-
-<!-- Slick -->
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-
-<!-- view 2 전용 style tag -->
 <style>
 #title+p {
 	text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
@@ -97,7 +89,7 @@
 	border-radius: 10px 10px 0 0;
 	z-index: 1;
 }
-/* 폰트는 테스트용 임시 */
+
 @font-face {
 	font-family: 'SUIT-Regular';
 	src:
@@ -254,7 +246,6 @@ section:last-of-type {
 	object-fit: cover;
 }
 
-/* Slick Button Style */
 .slick-prev, .slick-next {
 	border: 0;
 	background: transparent;
@@ -271,7 +262,7 @@ section:last-of-type {
 	top: 50%;
 	right: 20px;
 }
-/* 버튼 */
+
 #button {
 	display: flex;
 	justify-content: center;
@@ -304,7 +295,6 @@ div#reservation-btn>button {
 }
 </style>
 
-<!-- ======= Title & Image Section ======= -->
 <section>
 
 	<div class="container" data-aos="zoom-out">
@@ -318,19 +308,6 @@ div#reservation-btn>button {
 			<div>${mdto.name}</div>
 			<div class="hidden-div">${mdto.result}</div>
 		</div>
-
-		<!-- Slick Slider -->
-		<div class="image-slider">
-			<c:forEach items="${adto.imgList}" var="dto">
-				<div>
-					<img src="/dd/resources/files/activity/attraction/${adto.img}"
-						alt="Image">
-				</div>
-			</c:forEach>
-		</div>
-		<!-- End Slick Slider -->
-		
-		<p class="section-info">${adto.info}</p>
 	</div>
 </section>
 <!-- End Title & Image Section -->
@@ -342,29 +319,3 @@ div#reservation-btn>button {
 		<i class="bi bi-list"></i>목록
 	</button>
 </div>
-
-
-<!-- view2 Template 전용 JavaScript -->
-<!-- Kakao Map Open API -->
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c089ee6f3d885cfbe52b2f15d8f3f531"></script>
-
-<!-- Slick Slider -->
-<script type="text/javascript"
-	src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-<script>
-	/* Slick Slider */
-	$('.image-slider').slick({
-		variableWidth : true,
-		infinite : true,
-		autoplay : true,
-		autoplaySpeed : 5000,
-		pauseOnHover : true,
-		arrows : true,
-		prevArrow : "<button type='button' class='slick-prev'>&#10094;</button>",
-		nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
-		draggable : true
-	});
-</script>
-<!-- 끝 -->

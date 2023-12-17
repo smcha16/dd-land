@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.test.mbti.domain.MBTIDTO;
 import com.project.dd.test.mbti.repository.MBTIDAO;
-import com.project.dd.test.worldcup.course.domain.CourseDTO;
 
 @Service
 @Primary
@@ -30,8 +29,7 @@ public class MBTIServiceImpl implements MBTIService {
     }
     
 	// 페이징 메서드
-	public Map<String, String> paging(int page) {
-		int pageSize = 10; // 조회할 글 개수
+	public Map<String, String> paging(int page, int pageSize) {
 
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
@@ -123,5 +121,18 @@ public class MBTIServiceImpl implements MBTIService {
 		
 		return dao.editMBTI(dto);
 	}
+    
+    @Override
+    public int delMBTI(String[] mbti_seq) {
+    	
+		int result = 0;
+		
+		for (String seq : mbti_seq) {
+			
+			result += dao.delMBTI(seq);
+		}
+		
+		return result;
+    }
     
 }
