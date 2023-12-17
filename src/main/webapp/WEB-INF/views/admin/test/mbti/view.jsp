@@ -113,10 +113,6 @@ th:nth-child(6) { width: 22%; }
 	min-height: 0 !important;
 }
 
-.hidden-seq {
-	display: none;
-}
-
 /* 모달 CSS */
 #modal table.m-desc {
 	width: 100%;
@@ -206,7 +202,7 @@ th:nth-child(6) { width: 22%; }
 									</ol>
 								</nav>
 
-								<form id="del-form" method="POST" action="/dd/admin/test/worldcup/course/del.do">
+								<form id="del-form" method="POST" action="/dd/admin/test/mbti/del.do">
 									<table class="table">
 										<thead>
 											<tr>
@@ -227,7 +223,6 @@ th:nth-child(6) { width: 22%; }
 													<td>${fn:substring(dto.result, 0, 20)}${fn:length(dto.result) > 20 ? '...' : ''}</td>
 													<td>${fn:substring(dto.attraction_name, 0, 15)}${fn:length(dto.attraction_name) > 15 ? '...' : ''}</td>
 													<td>${fn:substring(dto.course_name, 0, 15)}${fn:length(dto.course_name) > 15 ? '...' : ''}</td>
-													<td class="hidden-seq">${dto.mbti_seq}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
