@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>DD : 아이디찾기</title>
+<title>DD : 실패</title>
 <link rel="stylesheet" href="new_main.css">
 <style>
 /* 레이아웃 틀 */
@@ -196,7 +196,6 @@ button#checkDuplicateBtn {
 			src="/dd/resources/files/dd/DD.png" id="logo"></a>
 	</div>
 
-	<form:form method='POST' action="/dd/user/login/findid.do" modelAttribute="MemberDTO">
 		<!-- wrapper -->
 		<div id="wrapper">
 
@@ -205,89 +204,22 @@ button#checkDuplicateBtn {
 
 	
 
+		<div class="text-center" style="display: flex; align-items: center; justify-content: center;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="#ce1212" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+  </svg>
+  
+</div>
+<p style="display: flex; align-items: center; justify-content: center;"> 존재하지 않는 회원입니다.</p>
+	
+
 
 				
-
-				<!-- NAME -->
-				<div>
-					<h3 class="join_title">
-						<label for="name">이름</label>
-					</h3>
-					<span class="box int_name"> <input type="text" name="name"
-						id="name" class="int" maxlength="20">
-					</span> 
-					<form:errors path="name" cssClass="error-message" />
-					<span class="error_next_box"></span>
-				</div>
-
-				<!-- BIRTH -->
-				<div>
-					<h3 class="join_title">
-						<label for="yy">생년월일</label>
-					</h3>
-
-					<div id="bir_wrap">
-						<!-- BIRTH_YY -->
-						<div id="bir_yy">
-							<span class="box"> <input type="text" name="birth" id="yy"
-								class="int" maxlength="4" placeholder="년(4자)">
-							</span>
-							<form:errors path="birth" cssClass="error-message" />
-						</div>
-
-						<!-- BIRTH_MM -->
-						<div id="bir_mm">
-							<span class="box"> <select id="mm" class="sel" name="mm">
-									<option>월</option>
-									<option value="01">1</option>
-									<option value="02">2</option>
-									<option value="03">3</option>
-									<option value="04">4</option>
-									<option value="05">5</option>
-									<option value="06">6</option>
-									<option value="07">7</option>
-									<option value="08">8</option>
-									<option value="09">9</option>
-									<option value="10">10</option>
-									<option value="11">11</option>
-									<option value="12">12</option>
-							</select>
-							</span>
-						</div>
-
-						<!-- BIRTH_DD -->
-						<div id="bir_dd">
-							<span class="box"> <input type="text" id="dd" class="int"
-								name="dd" maxlength="2" placeholder="일">
-							</span>
-						</div>
-
-					</div>
-					<span class="error_next_box"></span>
-				</div>
-
-				
-
-
-
-
-				<!-- MOBILE -->
-				<div>
-					<h3 class="join_title">
-						<label for="phoneNo">휴대전화</label>
-					</h3>
-					<span class="box int_mobile"> <input type="tel" id="mobile"
-						name="tel" class="int" maxlength="16" placeholder="전화번호 입력">
-					</span> 
-					<form:errors path="tel" cssClass="error-message" />
-					<span class="error_next_box"></span>
-				</div>
-
 
 				<!-- JOIN BTN-->
 				<div class="btn_area">
-					<button type="button" id="btnJoin" onclick="submit();">
-						<span>아이디 찾기</span>
+					<button type="button" id="btnJoin" >
+						<span>확인</span>
 					</button>
 				</div>
 
@@ -298,9 +230,7 @@ button#checkDuplicateBtn {
 
 		</div>
 		<!-- wrapper -->
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}">
-	</form:form>
+		
 
 </body>
 
@@ -308,6 +238,11 @@ button#checkDuplicateBtn {
 
 
  <script>
+ 
+ document.getElementById("btnJoin").onclick = function() {
+     // 페이지 이동을 처리하는 코드
+     window.location.href = "/dd/index.do";
+ };
 
 function submit() {
 	$('form').submit();

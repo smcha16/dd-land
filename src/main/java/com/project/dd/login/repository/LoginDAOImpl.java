@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -47,5 +49,28 @@ public class LoginDAOImpl implements LoginDAO {
 	
 		return new ArrayList<>(store.values());
 	}
+
+	public MemberDTO findId(@Valid MemberDTO memberDTO) {
+		
+		return mapper.findId(memberDTO);
+	}
+
+	public MemberDTO findMember(String user_seq) {
+		return mapper.findMember(user_seq);
+	}
+
+	public int changePw(String pw, String user_seq) {
+		return mapper.changePw(pw,user_seq);
+	}
+
+	public void encoderPw(MemberDTO memberDTO) {
+			mapper.encoderPw(memberDTO);
+	}
+
+	public String findSeq(@Valid MemberDTO memberDTO) {
+		return mapper.findSeq(memberDTO);
+	}
+
+	
 
 }
