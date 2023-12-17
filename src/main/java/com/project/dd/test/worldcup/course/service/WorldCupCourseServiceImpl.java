@@ -30,12 +30,14 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 	public int getTotalCount() {
 		return dao.getTotalCount();
 	}
+	
 	@Override
 	public int getTestCount() {
 		return dao.getTestCount();
 	}
 	
-	public Map<String, String> paging(int page) { // 페이징 메서드
+	// 페이징 메서드
+	public Map<String, String> paging(int page) { 
 		int pageSize = 10; // 조회할 글 개수
 
 		int startIndex = (page - 1) * pageSize + 1;
