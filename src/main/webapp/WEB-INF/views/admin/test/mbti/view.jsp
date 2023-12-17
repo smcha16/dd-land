@@ -84,25 +84,12 @@ th {
 	background-color: #f2f2f2 !important;
 }
 
-th:nth-child(1) {
-	width: 10%;
-}
-
-th:nth-child(2) {
-	width: 10%;
-}
-
-th:nth-child(3) {
-	width: 30%;
-}
-
-th:nth-child(4) {
-	width: 25%;
-}
-
-th:nth-child(5) {
-	width: 25%;
-}
+th:nth-child(1) { width: 8%; }
+th:nth-child(2) { width: 8%; }
+th:nth-child(3) { width: 10%; }
+th:nth-child(4) { width: 30%; }
+th:nth-child(5) { width: 22%; }
+th:nth-child(6) { width: 22%; }
 
 .table td i {
 	color: #0d6efd;
@@ -223,6 +210,7 @@ th:nth-child(5) {
 									<table class="table">
 										<thead>
 											<tr>
+												<th></th>
 												<th>No</th>
 												<th>이름</th>
 												<th>결과</th>
@@ -233,8 +221,9 @@ th:nth-child(5) {
 										<tbody>
 											<c:forEach items="${listMBTI}" var="dto" varStatus="status">
 												<tr>
+													<td><input type="checkbox" name="mbti_seq" value="${dto.mbti_seq}"></td>
 													<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
-													<td><a onclick="showModal('${dto.name}','${dto.result}', '${dto.mbti_img}', '${dto.attraction_name}', '${dto.course_name}')"><c:out value="${dto.name}" /></a></td>
+													<td><a onclick="showModal('${dto.name}','${dto.result}', '${fn:contains(dto.mbti_img, '_') ? fn:substringAfter(dto.mbti_img, '_') : dto.mbti_img}', '${dto.attraction_name}', '${dto.course_name}')"><c:out value="${dto.name}" /></a></td>
 													<td>${fn:substring(dto.result, 0, 20)}${fn:length(dto.result) > 20 ? '...' : ''}</td>
 													<td>${fn:substring(dto.attraction_name, 0, 15)}${fn:length(dto.attraction_name) > 15 ? '...' : ''}</td>
 													<td>${fn:substring(dto.course_name, 0, 15)}${fn:length(dto.course_name) > 15 ? '...' : ''}</td>
@@ -271,6 +260,31 @@ th:nth-child(5) {
 </main>
 
 <script>
+	function edit() {
+		// 선택된 체크박수 개수 확인
+	    let checkboxes = $('input[type="checkbox"][name="mbti_seq"]');
+	    
+	    if (checkboxes.filter(':checked').length === 1) {
+	        const seq = checkboxes.filter(':checked').val();
+	        location.href = '/dd/admin/test/mbti/edit.do?seq=' + seq;
+	    } else {
+	        alert('1개의 MBTI별 추천을 선택 후, 수정 버튼을 눌러주세요.');
+	    }
+	}
+	
+	function del() {
+		// 선택된 체크박수 개수 확인
+	    let checkboxes = $('input[type="checkbox"][name="mbti_seq"]');
+		
+	    if (checkboxes.filter(':checked').length >= 1) {
+	    	if (confirm(checkboxes.filter(':checked').length + "개의 MBTI별 추천을 삭제하시겠습니까?")) {
+	            $('#del-form').submit();
+	        }
+	    } else {
+	        alert('1개 이상의 MBTI별 추천을 선택 후, 삭제 버튼을 눌러주세요.');
+	    }
+	}
+
 	// 어트랙션 월드컵 상세 모달
 	function showModal(name, result, mbti_img, attraction_name, course_name) {
 	    

@@ -144,7 +144,7 @@ label {
         }
 	}
 	
-	// 기존 첨부한 첨부파일 삭제 시 > 지우고 input[type="file"] 태그 활성화
+	// 기존 첨부한 첨부파일 삭제 시 지우고 input[type="file"] 태그 활성화
 	function delAttached() {
 		$(event.target).parent().remove();
 		$('input[type="file"]').prop('disabled', false);

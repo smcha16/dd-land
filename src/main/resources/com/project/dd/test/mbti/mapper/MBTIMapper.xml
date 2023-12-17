@@ -24,11 +24,12 @@
 	</select>
 	
 	<select id="getMBTI" parameterType="String" resultType="com.project.dd.test.mbti.domain.MBTIDTO">
-		select
-			m.*
-		from tblMbti m
-		join tblAttraction a
-			on m.attraction_seq = a.attraction_seq
+		select m.*,
+			a.name as attraction_name,
+			c.name as course_name
+		from tblMBTI m
+		join tblAttraction a on m.attraction_seq = a.attraction_seq
+		join tblCourse c on m.course_seq = c.course_seq
 		where m.mbti_seq = #{mbti_seq}
 	</select>
 	
@@ -39,6 +40,14 @@
 	
 	<select id="checkMBTINameDuplication" parameterType="com.project.dd.test.mbti.domain.MBTIDTO" resultType="int">
 		select count(*) from tblMBTI where name = #{name}
+	</select>
+	
+	<update id="editMBTI" parameterType="com.project.dd.test.mbti.domain.MBTIDTO">
+		update tblMBTI set result = #{result}, name = #{name}, mbti_img = #{mbti_img}, attraction_seq = #{attraction_seq}, course_seq = #{course_seq} where mbti_seq = #{mbti_seq}
+	</update>
+	
+	<select id="getMBTIImgFileName" parameterType="String" resultType="String">
+		select mbti_img from tblMBTI where mbti_seq = #{mbti_seq}
 	</select>
 
 </mapper>

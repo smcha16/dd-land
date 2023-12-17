@@ -19,4 +19,8 @@ public interface MBTIDAO {
 
 	int checkMBTINameDuplication(MBTIDTO dto);
 
+	int editMBTI(MBTIDTO dto);
+
+	String getMBTIImgFileName(String mbtiSeq);
+
 }

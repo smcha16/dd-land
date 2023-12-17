@@ -206,7 +206,7 @@ th {
 												<tr>
 													<td><input type="checkbox" name="course_seq" value="${dto.course_seq}"></td>
 													<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
-													<td><a onclick="showModal('${dto.course_seq}', '${dto.name}','${dto.img}')"><c:out value="${dto.name}" /></a></td>
+													<td><a onclick="showModal('${dto.course_seq}', '${dto.name}','${fn:contains(dto.img, '_') ? fn:substringAfter(dto.img, '_') : dto.img}')"><c:out value="${dto.name}" /></a></td>
 													<td>${fn:contains(dto.img, '_') ? fn:substringAfter(dto.img, '_') : dto.img}</td>
 												</tr>
 											</c:forEach>
@@ -263,7 +263,6 @@ th {
 	    } else {
 	        alert('1개 이상의 코스를 선택 후, 삭제 버튼을 눌러주세요.');
 	    }
-	    
 	}
 
 	// 코스 상세 모달

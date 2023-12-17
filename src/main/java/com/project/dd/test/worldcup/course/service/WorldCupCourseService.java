@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
 
 public interface WorldCupCourseService {

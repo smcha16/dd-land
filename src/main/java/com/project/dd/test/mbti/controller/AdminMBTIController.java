@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.dd.test.mbti.domain.MBTIDTO;
 import com.project.dd.test.mbti.service.MBTIService;
 import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService;
+import com.project.dd.test.worldcup.course.domain.CourseDTO;
 import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
 
 @Controller
@@ -60,6 +61,38 @@ public class AdminMBTIController {
 		} else {
 			model.addAttribute("alertMessage", "MBTI별 추천 추가에 실패했습니다.");
 			return "redirect:/admin/test/mbti/add.do";
+		}
+	}
+	
+	@GetMapping(value = "/admin/test/mbti/edit.do")
+	public String edit(Model model, String seq) {
+
+		model.addAttribute("attractionList", awcService.getAttractionNameList());
+		model.addAttribute("courseList", cwcService.getCourseNameList());
+		
+		MBTIDTO dto = mbtiService.getMBTI(seq);
+		String img = dto.getMbti_img();
+		
+		//UUID 제거
+		if (img.length() > 37 && img.contains("-") && img.contains("_")) {
+			String originalFileName = img.substring(img.indexOf("_") + 1);
+			dto.setMbti_img(originalFileName);
+		}
+		
+		model.addAttribute("dto", dto);
+		
+		return "admin/test/mbti/edit";
+	}
+	
+	@PostMapping(value = "/admin/test/mbti/editok.do")
+	public String editok(Model model, MBTIDTO dto, MultipartFile image, HttpServletRequest req) {
+
+		int result = mbtiService.editMBTI(dto, image, req);
+		
+		if (result > 0) {
+			return "redirect:/admin/test/mbti/view.do";
+		} else {
+			return "redirect:/admin/test/mbti/edit.do";
 		}
 	}
 	

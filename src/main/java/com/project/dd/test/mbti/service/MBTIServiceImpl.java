@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.test.mbti.domain.MBTIDTO;
 import com.project.dd.test.mbti.repository.MBTIDAO;
+import com.project.dd.test.worldcup.course.domain.CourseDTO;
 
 @Service
 @Primary
@@ -92,4 +93,35 @@ public class MBTIServiceImpl implements MBTIService {
     	return dao.checkMBTINameDuplication(dto);
     }
 
+    @Override
+	public int editMBTI(MBTIDTO dto, MultipartFile image, HttpServletRequest req) {
+		
+		if (image == null) {
+			
+			String imgFileName = dao.getMBTIImgFileName(dto.getMbti_seq());
+			
+			dto.setMbti_img(imgFileName);
+			
+		} else if (image.isEmpty()) {
+			
+			dto.setMbti_img("course.png");
+		} else {
+			try {
+				
+				UUID uuid = UUID.randomUUID();
+				
+				String filename = uuid + "_" + image.getOriginalFilename();
+				
+				image.transferTo(new File(req.getRealPath("/resources/files/test/mbti") + "\\" + filename));
+				
+				dto.setMbti_img(filename);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return dao.editMBTI(dto);
+	}
+    
 }

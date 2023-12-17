@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.test.mbti.domain.MBTIDTO;
+import com.project.dd.test.worldcup.course.domain.CourseDTO;
 
 @Service
 public interface MBTIService {
@@ -24,5 +25,7 @@ public interface MBTIService {
 	int addMBTI(MBTIDTO dto, MultipartFile image, HttpServletRequest req);
 
 	int checkMBTINameDuplication(MBTIDTO dto);
+
+	int editMBTI(MBTIDTO dto, MultipartFile image, HttpServletRequest req);
 
 }
