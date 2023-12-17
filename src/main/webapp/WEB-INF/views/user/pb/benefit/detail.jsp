@@ -9,6 +9,25 @@
 
 <!-- Slick -->
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+	rel="stylesheet">
+
+<link href="/dd/resources/price/vendor/aos/aos.css" rel="stylesheet">
+<link href="/dd/resources/price/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="/dd/resources/price/vendor/bootstrap-icons/bootstrap-icons.css"
+	rel="stylesheet">
+<link href="/dd/resources/price/vendor/boxicons/css/boxicons.min.css"
+	rel="stylesheet">
+<link href="/dd/resources/price/vendor/glightbox/css/glightbox.min.css"
+	rel="stylesheet">
+<link href="/dd/resources/price/vendor/swiper/swiper-bundle.min.css"
+	rel="stylesheet">
+
+<link href="/dd/resources/price/css/style.css" rel="stylesheet">
+
 
 <!-- view 2 전용 style tag -->
 <style>
@@ -221,9 +240,9 @@
 		</div>
 		<!-- Slick Slider -->
 		<div class="image-slider">
-			<c:forEach items="${dto.imgList}" var="dto">
+			<c:forEach items="${benefitInfoList.img}" var="dto">
 				<div>
-					<img src="/dd/resources/files/activity/attraction/${dto.img}" alt="Image">
+					<img src="/dd/resources/files/benefit/attraction/${dto.img}" alt="Image">
 				</div>
 			</c:forEach>
 		</div>
@@ -258,34 +277,266 @@
 			</div>
 		</div>
 	</div>
-	<div class="result-container">
-		<div class="result-item">
-			<img src="/dd/resources/files/activity/time_icon.png" alt="Image" class="icon" />
-			<div class="label">운영시간</div>
-			<div class="value">${dto.time}</div>
+	<!-- <div class="result-container"> -->
+	
+	<section id="pricing" class="pricing">
+		<div class="container" data-aos="fade-up">
+
+			
+
+			<div class="row">
+
+				<div class="col-lg-3 col-md-6" data-aos="fade-up"
+					data-aos-delay="100">
+					<div class="box">
+						<h3>청소년</h3>
+						<span class="advanced">1DAY</span>
+						<div></div>
+						<%-- <c:forEach items="${discountList1Day1}" var="discount"> --%>
+						<h4>
+							<sup>₩</sup> ${discountList1Day2}
+						</h4>
+						<%-- </c:forEach> --%>
+						<ul>
+							<c:forEach items="${list}" var="dto">
+								<c:if test="${dto.ticket_type eq '1Day' && dto.age eq '청소년'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 13세 이상 ~</li>
+							<li>만 18세</li>
+							<li>청소년 요금 적용</li>
+							<li>(학교 및 학년 무관)</li>
+						</ul>
+						<div class="btn-wrap">
+							<a href="#" class="btn-buy">Buy Now</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up"
+					data-aos-delay="200">
+					<div class="box">
+						<h3>성인</h3>
+						<span class="advanced">1DAY</span>
+						<h4>
+							<sup>₩</sup>${discountList1Day1}
+						</h4>
+
+						<ul>
+							<c:forEach items="${list}" var="dto">
+								<c:if test="${dto.ticket_type eq '1Day' && dto.age eq '성인'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 19세 이상 ~</li>
+							<li>만 64세</li>
+							<li>성인 요금 적용</li>
+							<li>(출생 및 인종 무관)</li>
+						</ul>
+						<div class="btn-wrap">
+							<a href="#" class="btn-buy">Buy Now</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 mt-4 mt-lg-0" data-aos="fade-up"
+					data-aos-delay="300">
+					<div class="box">
+						<h3>청소년</h3>
+						<span class="advanced">After4</span>
+
+
+						<h4>
+							<sup>₩</sup> ${discountListAfter42 }
+						</h4>
+
+						<ul>
+							<c:forEach items="${list}" var="dto">
+								<c:if test="${dto.ticket_type eq 'After4' && dto.age eq '청소년'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 13세 이상 ~</li>
+							<li>만 18세</li>
+							<li>청소년 요금 적용</li>
+							<li>(학교 및 학년 무관)</li>
+						</ul>
+						<div class="btn-wrap">
+							<a href="#" class="btn-buy">Buy Now</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 mt-4 mt-lg-0" data-aos="fade-up"
+					data-aos-delay="400">
+					<div class="box">
+						<span class="advanced">After4</span>
+						<h3>성인</h3>
+
+						<h4>
+							<sup>₩</sup> ${discountListAfter41}
+
+						</h4>
+
+						<ul>
+							<c:forEach items="${list}" var="dto">
+								<c:if test="${dto.ticket_type eq 'After4' && dto.age eq '성인'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 19세 이상 ~</li>
+							<li>만 64세</li>
+							<li>성인 요금 적용</li>
+							<li>(출생 및 인종 무관)</li>
+						</ul>
+						<div class="btn-wrap">
+							<a href="#" class="btn-buy">Buy Now</a>
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+
 		</div>
-		<div class="result-item">
-			<img src="/dd/resources/files/activity/people_icon.png" alt="Image" class="icon" />
-			<div class="label">탑승인원</div>
-			<div class="value">${dto.capacity}</div>
+
+	</section>
+
+	<!-- </div> -->
+<!--  단체 -->
+	<section id="pricing" class="pricing">
+		<div class="container" data-aos="fade-up">
+
+			<!-- <div class="section-title">
+				<h3>단체</h3>
+				<p>어드벤처&매직아일랜드 입장 및 놀이시설 이용 (게임시설 등 유료시설 제외), 상기 이용권은 일반 할인 혜택
+					적용이 불가하며 특수한 경우에 한하여 할인 혜택 적용이 가능합니다. (장애인 우대, 대관행사 등)</p>
+			</div>
+ -->
+			<div class="row">
+
+				<div class="col-lg-3 col-md-6" data-aos="fade-up"
+					data-aos-delay="100">
+					<div class="box">
+						<h3>청소년</h3>
+						<span class="advanced">1DAY</span>
+
+						<div></div>
+						<h4>
+							<sup>₩</sup> ${groupDiscount1Day2}
+						</h4>
+
+						<ul>
+							<c:forEach items="${groupList}" var="dto">
+								<c:if test="${dto.ticket_type eq '1Day' && dto.age eq '청소년'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 13세 이상 ~</li>
+							<li>만 18세</li>
+							<li>청소년 요금 적용</li>
+							<li>(학교 및 학년 무관)</li>
+						</ul>
+						<div class="btn-wrap">
+							<a href="#" class="btn-buy">Buy Now</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up"
+					data-aos-delay="200">
+					<div class="box">
+						<h3>성인</h3>
+						<span class="advanced">1DAY</span>
+
+						<h4>
+							<sup>₩</sup> ${groupDiscount1Day1}
+						</h4>
+						<ul>
+						<c:forEach items="${groupList}" var="dto">
+								<c:if test="${dto.ticket_type eq '1Day' && dto.age eq '성인'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 19세 이상 ~</li>
+							<li>만 64세</li>
+							<li>성인 요금 적용</li>
+							<li>(출생 및 인종 무관)</li>
+						</ul>
+						<div class="btn-wrap">
+							<a href="#" class="btn-buy">Buy Now</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 mt-4 mt-lg-0" data-aos="fade-up"
+					data-aos-delay="300">
+					<div class="box">
+						<h3>청소년</h3>
+						<span class="advanced">After4</span>
+
+						<h4>
+							<sup>₩</sup> ${groupDiscountAfter42}
+						</h4>
+
+						<ul>
+						<c:forEach items="${groupList}" var="dto">
+								<c:if test="${dto.ticket_type eq 'After4' && dto.age eq '청소년'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 13세 이상 ~</li>
+							<li>만 18세</li>
+							<li>청소년 요금 적용</li>
+							<li>(학교 및 학년 무관)</li>
+						</ul>
+						<div class="btn-wrap">
+							<a href="#" class="btn-buy">Buy Now</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 mt-4 mt-lg-0" data-aos="fade-up"
+					data-aos-delay="400">
+					<div class="box">
+						<span class="advanced">After4</span>
+						<h3>성인</h3>
+
+						<h4>
+							<sup>₩</sup> ${groupDiscountAfter41}
+						</h4>
+
+						<ul>
+						<c:forEach items="${groupList}" var="dto">
+								<c:if test="${dto.ticket_type eq 'After4' && dto.age eq '성인'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 19세 이상 ~</li>
+							<li>만 64세</li>
+							<li>성인 요금 적용</li>
+							<li>(출생 및 인종 무관)</li>
+						</ul>
+						<div class="btn-wrap">
+							<a href="#" class="btn-buy">Buy Now</a>
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+
 		</div>
-		<div class="result-item">
-			<img src="/dd/resources/files/activity/info_icon.png" alt="Image" class="icon" />
-			<div class="label">제한 사항</div>
-			<div class="value">${dto.restriction}</div>
-		</div>
-	</div>
+
+	</section>
 </section>
 
-<!-- 위치 정보 -->
-<section>
-	<div class="location">
-		<div class="label">위치 정보</div>
-		<div class="value location">
-			<div id="map" style="width: 950px; height: 400px;"></div>
-		</div>
-	</div>
-</section>
+
 
 <!-- 목록보기 버튼 -->
 <div id="button">
@@ -343,4 +594,21 @@
 		draggable : true
 	});
 </script>
+
+<script
+		src="/dd/resources/price/vendor/purecounter/purecounter_vanilla.js"></script>
+	<script src="/dd/resources/price/vendor/aos/aos.js"></script>
+	<script
+		src="/dd/resources/price/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/dd/resources/price/vendor/glightbox/js/glightbox.min.js"></script>
+	<script
+		src="/dd/resources/price/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	<script src="/dd/resources/price/vendor/swiper/swiper-bundle.min.js"></script>
+	<script
+		src="/dd/resources/price/vendor/waypoints/noframework.waypoints.js"></script>
+	<script src="/dd/resources/price/vendor/php-email-form/validate.js"></script>
+
+
+	<script src="/dd/resources/price/js/main.js"></script>
+
 <!-- 끝 -->
