@@ -240,11 +240,11 @@
 		</div>
 		<!-- Slick Slider -->
 		<div class="image-slider">
-			<c:forEach items="${benefitInfoList.img}" var="dto">
+			<%-- <c:forEach items="${benefitInfoList.img}" var="dto"> --%>
 				<div>
 					<img src="/dd/resources/files/benefit/attraction/${dto.img}" alt="Image">
 				</div>
-			</c:forEach>
+			<%-- </c:forEach> --%>
 		</div>
 		<!-- End Slick Slider -->
 		<p class="section-info">
