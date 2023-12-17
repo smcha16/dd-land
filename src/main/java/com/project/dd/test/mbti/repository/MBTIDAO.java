@@ -14,5 +14,9 @@ public interface MBTIDAO {
     List<MBTIDTO> getAllMBTI(Map<String, String> map);
 
 	MBTIDTO getMBTI(String seq);
-    
+
+	int addMBTI(MBTIDTO dto);
+
+	int checkMBTINameDuplication(MBTIDTO dto);
+
 }

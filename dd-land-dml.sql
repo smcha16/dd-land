@@ -2846,52 +2846,52 @@ INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
 VALUES (seqtblCWCFinalWin.NEXTVAL, 65, 8);
 
 /* MBTI */
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '몇 시에 일어나서 무슨 옷을 입고 몇 시에 출발할지 모두 계획하는 사람', 'ISTJ', 'ISTJ.png', '1', '1');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '무서워하는 친구를 챙겨주는 세심한 사람', 'ISFJ', 'ISFJ.png', '2', '2');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '친구들의 부탁을 잘 들어주는 사람', 'INFJ', 'INFJ.png', '4', '3');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '타고 싶은 거 안 타고 싶은 거 이유를 칼같이 말하는 논리적인 사람', 'INTJ', 'INTJ.png', '7', '4');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '조용히 있는 듯 없는 듯 다 타는 스릴러를 즐기는 사람', 'ISTP', 'ISTP.png', '5', '5');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '내 갈길 간다! 친구가 못 타면 나라도 타고오는 사람', 'ISFP', 'ISFP.png', '3', '6');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '타고 싶은 게 있어도 말 안하고 친구들이 타고 싶다하는 거 타러 가는 사람', 'INFP', 'INFP.png','4', '7');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '타고 싶은 건 많지만 귀찮아서 몇 개만 타는 사람', 'INTP', 'INTP.png', '5', '8');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '처음 타는 것도 바로 적응하고 계속 타는 사람', 'ESTP', 'ESTP.png', '6', '9');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '인싸중에 핵인싸 놀이동산 오자고 한 사람', 'ESFP', 'ESFP.png', '8', '10');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '무서워도 웃고 재밌어도 웃고 신나서 계속 웃는 사람', 'ENFP', 'ENFP.png', '1', '11');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '반복적인 거 싫어하고 도전하는 거 좋아해서 처음 보는 거 다 타는 사람', 'ENTP', 'ENTP.png', '6', '12');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '이거 타자 저거 타자 의견 제시하는 사람', 'ESTJ', 'ESTJ.png', '4', '13');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '갑자기 놀이동산 가자하면 지체없이 바로 출발하는 사람', 'ESFJ', 'ESFJ.png', '5', '14');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '놀이기구 제일 잘 타는(줄 아는) 사람', 'ENFJ', 'ENFJ.png', '2', '15');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '오늘 타려고 계획했던 건 다 타야 하는 사람', 'ENTJ', 'ENTJ.png', '4', '16');
 
 /* 칭찬/불편/건의 */

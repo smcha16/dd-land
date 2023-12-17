@@ -1,55 +1,58 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
-	#main h1 {
-		font-size: 2rem !important;
-   		margin-top: 45px !important;
-   		margin-left: 10px;
-  	}
-    .d-md-block {
-    	margin-right: 15px;
-  	}
-  	.pagetitle {
-    	margin-top: 10px;
-  	}
-    .breadcrumb {
-    	margin-right: 20px 15px 0 0;
-  	}
-    .breadcrumb a {
-    	color: #012970;
-  	}
-  	.breadcrumb a:hover {
-      	color: #ce1212;
-    }
-    .card-body {
-      min-height: 600px;
-    }
-    
-    label {
-		font-weight: bold !important;
-    }
-    
-    /* 필수 입력사항 required */
-    .required::after  {
-    	content: ' *';
-    	color: #b71c1c;
-    }
-    
-    /* 기존 첨부파일 목록 CSS */
-    .attached {
-    	padding: 10px 0;
-    	display: inline-block;
-    }
-    
-    .attached > span {
-    	cursor: pointer;
-    	display: inline-block;
-    	vertical-align: middle;
-    	font-weight: bold;
-    	color: #777;
-    }
+#main h1 {
+	font-size: 2rem !important;
+	margin-top: 45px !important;
+	margin-left: 10px;
+}
+
+.d-md-block {
+	margin-right: 15px;
+}
+
+.pagetitle {
+	margin-top: 10px;
+}
+
+.breadcrumb {
+	margin-right: 20px 15px 0 0;
+}
+
+.breadcrumb a {
+	color: #012970;
+}
+
+.breadcrumb a:hover {
+	color: #ce1212;
+}
+
+.card-body {
+	min-height: 600px;
+}
+
+label {
+	font-weight: bold !important;
+}
+
+.required::after {
+	content: ' *';
+	color: #b71c1c;
+}
+
+.attached {
+	padding: 10px 0;
+	display: inline-block;
+}
+
+.attached>span {
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: bold;
+	color: #777;
+}
 </style>
 
 <main id="main" class="main">

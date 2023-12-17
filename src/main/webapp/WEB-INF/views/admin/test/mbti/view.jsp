@@ -234,7 +234,7 @@ th:nth-child(5) {
 											<c:forEach items="${listMBTI}" var="dto" varStatus="status">
 												<tr>
 													<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
-													<td><a onclick="showModal('${dto.mbti}','${dto.result}', '${dto.mbti_img}', '${dto.attraction_name}', '${dto.course_name}')"><c:out value="${dto.mbti}" /></a></td>
+													<td><a onclick="showModal('${dto.name}','${dto.result}', '${dto.mbti_img}', '${dto.attraction_name}', '${dto.course_name}')"><c:out value="${dto.name}" /></a></td>
 													<td>${fn:substring(dto.result, 0, 20)}${fn:length(dto.result) > 20 ? '...' : ''}</td>
 													<td>${fn:substring(dto.attraction_name, 0, 15)}${fn:length(dto.attraction_name) > 15 ? '...' : ''}</td>
 													<td>${fn:substring(dto.course_name, 0, 15)}${fn:length(dto.course_name) > 15 ? '...' : ''}</td>
@@ -271,12 +271,10 @@ th:nth-child(5) {
 </main>
 
 <script>
-
-
 	// 어트랙션 월드컵 상세 모달
-	function showModal(mbti, result, mbti_img, attraction_name, course_name) {
+	function showModal(name, result, mbti_img, attraction_name, course_name) {
 	    
-		$('#modal-name').text(mbti);
+		$('#modal-name').text(name);
 	
 	    $('.m-result').text(result);
 	    $('.m-mbti_img').text(mbti_img);

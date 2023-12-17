@@ -1,9 +1,7 @@
 package com.project.dd.test.worldcup.attraction.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -144,6 +142,11 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 	@Override
 	public void updateAWCFinalWinCount(String attractionSeq) {
 		mapper.updateAWCFinalWinCount(attractionSeq);
+	}
+	
+	@Override
+	public List<AttractionDTO> getAttractionNameList() {
+		return mapper.getAttractionNameList();
 	}
 	
 }

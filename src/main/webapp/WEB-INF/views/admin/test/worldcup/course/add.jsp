@@ -1,5 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
@@ -37,18 +36,11 @@ label {
 	font-weight: bold !important;
 }
 
-/* 필수 입력사항 required */
 .required::after {
 	content: ' *';
 	color: #b71c1c;
 }
 
-/* placeholder CSS */
-#name {
-	
-}
-
-/* 유효성검사 CSS */
 .check-location-duplication {
 	padding: 10px 10px;
 }
@@ -97,6 +89,7 @@ label {
 								</div>
 							</div>
               				
+              				<!-- 이미지 -->
 							<div class="row mb-3">
 								<label for="formFile" class="col-sm-2 col-form-label">이미지</label>
 								
@@ -107,7 +100,6 @@ label {
 
 							<!-- 토큰 -->
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-							
 						</form>
 						
 					</div>

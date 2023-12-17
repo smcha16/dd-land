@@ -31,6 +31,7 @@
 		        join tblCourse c on cwc.course_seq = c.course_seq
 		        join tblCWCWin w on w.course_seq = c.course_seq
 		        join tblCWCFinalWin fw on fw.course_seq = c.course_seq
+		        order by c.course_seq desc
 		    ) n
 		) where rnum between #{startIndex} and #{endIndex}
 	</select>
@@ -65,7 +66,7 @@
 		select max(course_seq) as course_seq from tblCourse
 	</select>
 	
-	<select id="checkNameDuplication" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO" resultType="int">
+	<select id="checkCourseNameDuplication" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO" resultType="int">
 		select count(*) from tblCourse where name = #{name}
 	</select>
 	
@@ -136,5 +137,9 @@
 		set cwc_final_win_count = cwc_final_win_count + 1
 		where course_seq = #{courseSeq}
 	</update>
+	
+	<select id="getCourseNameList" resultType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		select course_seq, name from tblCourse order by course_seq
+	</select>
 	
 </mapper>

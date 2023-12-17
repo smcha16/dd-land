@@ -1,14 +1,18 @@
 package com.project.dd.test.mbti.service;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.test.mbti.domain.MBTIDTO;
 import com.project.dd.test.mbti.repository.MBTIDAO;
 
@@ -55,4 +59,37 @@ public class MBTIServiceImpl implements MBTIService {
 		return dao.getMBTI(seq);
 	}
     
+    @Override
+	public int addMBTI(MBTIDTO dto, MultipartFile image, HttpServletRequest req) {
+		
+		if (image.isEmpty()) {
+			
+			dto.setMbti_img("mbti.png");
+			System.out.println(dto.getMbti_img());
+			
+		} else {
+			try {
+				
+				UUID uuid = UUID.randomUUID();
+				
+				String filename = uuid + "_" + image.getOriginalFilename();
+				
+				image.transferTo(new File(req.getRealPath("/resources/files/test/mbti") + "\\" + filename));
+				
+				dto.setMbti_img(filename);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return dao.addMBTI(dto);
+	}
+    
+    @Override
+    public int checkMBTINameDuplication(MBTIDTO dto) {
+    	return dao.checkMBTINameDuplication(dto);
+    }
+
 }

@@ -124,9 +124,9 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 	}
 	
 	@Override
-	public int checkNameDuplication(CourseDTO dto) {
+	public int checkCourseNameDuplication(CourseDTO dto) {
 		
-		return dao.checkNameDuplication(dto);
+		return dao.checkCourseNameDuplication(dto);
 	}
 	
 	@Override
@@ -280,6 +280,11 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 	@Override
 	public void updateCWCFinalWinCount(String courseSeq) {
 		dao.updateCWCFinalWinCount(courseSeq);
+	}
+	
+	@Override
+	public List<CourseDTO> getCourseNameList() {
+		return dao.getCourseNameList();
 	}
 	
 }

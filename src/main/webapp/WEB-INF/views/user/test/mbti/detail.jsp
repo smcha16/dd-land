@@ -309,13 +309,13 @@ div#reservation-btn>button {
 
 	<div class="container" data-aos="zoom-out">
 		<div class="section-header">
-			<h2>${mdto.mbti}</h2>
+			<h2>${mdto.name}</h2>
 		</div>
 
 		<div class="item">
-			<img src="/dd/resources/files/test/MBTI/${mdto.mbti_img}"
+			<img src="/dd/resources/files/test/mbti/${mdto.mbti_img}"
 				alt="출처: #어반브러시 #타미">
-			<div>${mdto.mbti}</div>
+			<div>${mdto.name}</div>
 			<div class="hidden-div">${mdto.result}</div>
 		</div>
 

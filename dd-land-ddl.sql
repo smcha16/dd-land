@@ -415,7 +415,7 @@ CREATE TABLE tblCWCFinalWin (
 CREATE TABLE tblMBTI (
 	mbti_seq NUMBER PRIMARY KEY, /* MBTI번호 */
 	result VARCHAR2(500) NOT NULL, /* 결과 */
-	mbti VARCHAR2(500) NOT NULL, /* MBTI명 */
+	name VARCHAR2(500) NOT NULL, /* MBTI명 */
 	mbti_img VARCHAR2(500), /* MBTI이미지 */
 	course_seq NUMBER REFERENCES tblCourse(course_seq) NOT NULL, /* 코스번호 */
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */

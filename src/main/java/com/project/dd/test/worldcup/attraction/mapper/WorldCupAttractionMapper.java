@@ -46,4 +46,6 @@ public interface WorldCupAttractionMapper {
 
 	void updateAWCFinalWinCount(String attractionSeq);
 
+	List<AttractionDTO> getAttractionNameList();
+
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
 
 public interface WorldCupCourseService {
@@ -23,7 +24,7 @@ public interface WorldCupCourseService {
 
 	int addCourse(CourseDTO dto, MultipartFile image, HttpServletRequest req);
 
-	int checkNameDuplication(CourseDTO dto);
+	int checkCourseNameDuplication(CourseDTO dto);
 	
 	String getCourseSeq();
 
@@ -59,4 +60,6 @@ public interface WorldCupCourseService {
 
 	void updateCWCFinalWinCount(String courseSeq);
 
+	List<CourseDTO> getCourseNameList();
+	
 }

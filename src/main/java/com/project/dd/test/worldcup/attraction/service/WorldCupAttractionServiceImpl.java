@@ -32,8 +32,9 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 		return dao.getTestCount();
 	}
 
+	// 페이징 메서드
 	@Override
-	public Map<String, String> paging(int page) { // 페이징 메서드
+	public Map<String, String> paging(int page) { 
 		int pageSize = 10; // 조회할 글 개수
 
 		int startIndex = (page - 1) * pageSize + 1;
@@ -170,6 +171,11 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 	@Override
 	public void updateAWCFinalWinCount(String attractionSeq) {
 		dao.updateAWCFinalWinCount(attractionSeq);
+	}
+	
+	@Override
+	public List<AttractionDTO> getAttractionNameList() {
+		return dao.getAttractionNameList();
 	}
 	
 }

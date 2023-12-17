@@ -20,7 +20,7 @@ public interface WorldCupCourseMapper {
 
 	String getCourseSeq();
 
-	int checkNameDuplication(CourseDTO dto);
+	int checkCourseNameDuplication(CourseDTO dto);
 
 	int addCWC(CourseDTO dto);
 
@@ -51,5 +51,7 @@ public interface WorldCupCourseMapper {
 	void updateCWCWinCount(String courseSeq);
 
 	void updateCWCFinalWinCount(String courseSeq);
+
+	List<CourseDTO> getCourseNameList();
 	
 }

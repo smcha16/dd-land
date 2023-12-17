@@ -115,8 +115,8 @@
 				<div class="munti-content-container">
 					<c:forEach items="${listMBTI}" var="dto">
 						<div class="item" onclick="location.href= '/dd/user/test/mbti/detail.do?mbti_seq=' + ${dto.mbti_seq};">
-							<img src="/dd/resources/files/test/MBTI/${dto.mbti_img}" alt="출처: #어반브러시 #타미">
-							<div>${dto.mbti}</div>
+							<img src="/dd/resources/files/test/mbti/${dto.mbti_img}" alt="출처: #어반브러시 #타미">
+							<div>${dto.name}</div>
 							<div class="hidden-div">${dto.result}</div>
 						</div>
 					</c:forEach>

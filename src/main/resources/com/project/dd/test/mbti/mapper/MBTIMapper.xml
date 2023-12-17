@@ -18,6 +18,7 @@
 				from tblMBTI m
 				join tblAttraction a on m.attraction_seq = a.attraction_seq
 				join tblCourse c on m.course_seq = c.course_seq
+				order by m.mbti_seq desc
 			) n
 		) where rnum between #{startIndex} and #{endIndex}
 	</select>
@@ -29,6 +30,15 @@
 		join tblAttraction a
 			on m.attraction_seq = a.attraction_seq
 		where m.mbti_seq = #{mbti_seq}
+	</select>
+	
+	<insert id="addMBTI" parameterType="com.project.dd.test.mbti.domain.MBTIDTO">
+		insert into tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
+		values (seqtblMBTI.NEXTVAL, #{result}, #{name}, #{mbti_img}, #{course_seq}, #{attraction_seq})
+	</insert>
+	
+	<select id="checkMBTINameDuplication" parameterType="com.project.dd.test.mbti.domain.MBTIDTO" resultType="int">
+		select count(*) from tblMBTI where name = #{name}
 	</select>
 
 </mapper>

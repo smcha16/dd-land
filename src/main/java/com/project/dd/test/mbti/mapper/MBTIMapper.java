@@ -15,4 +15,8 @@ public interface MBTIMapper {
 
 	MBTIDTO getMBTI(String seq);
 
+	int addMBTI(MBTIDTO dto);
+
+	int checkMBTINameDuplication(MBTIDTO dto);
+
 }

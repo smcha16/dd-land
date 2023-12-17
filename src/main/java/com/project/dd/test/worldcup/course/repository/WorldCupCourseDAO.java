@@ -18,7 +18,7 @@ public interface WorldCupCourseDAO {
 
 	int addCourse(CourseDTO dto);
 
-	int checkNameDuplication(CourseDTO dto);
+	int checkCourseNameDuplication(CourseDTO dto);
 
     String getCourseSeq();
     
@@ -57,5 +57,7 @@ public interface WorldCupCourseDAO {
 	void updateCWCWinCount(String courseSeq);
 
 	void updateCWCFinalWinCount(String courseSeq);
+
+	List<CourseDTO> getCourseNameList();
 
 }
