@@ -7,5 +7,5 @@ public class FestivalImgDTO {
 
 	private String festival_img_seq;
 	private String img;
-	private String fetival_seq;
+	private String festival_seq;
 }

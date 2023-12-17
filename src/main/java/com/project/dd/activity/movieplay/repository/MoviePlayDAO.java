@@ -1,9 +1,11 @@
-package com.project.dd.activity.moveplay.repository;
+package com.project.dd.activity.movieplay.repository;
 
 import java.util.List;
 import java.util.Map;
 
-import com.project.dd.activity.moveplay.domain.MoviePlayDTO;
+import com.project.dd.activity.movie.domain.MovieDTO;
+import com.project.dd.activity.movieplay.domain.MoviePlayDTO;
+import com.project.dd.activity.theater.domain.TheaterDTO;
 
 public interface MoviePlayDAO {
 
@@ -18,5 +20,9 @@ public interface MoviePlayDAO {
 	int editMoviePlay(MoviePlayDTO dto);
 
 	MoviePlayDTO getMoviePlay(String seq);
+
+	List<MovieDTO> getMovieList();
+
+	List<TheaterDTO> getTheaterList();
 
 }

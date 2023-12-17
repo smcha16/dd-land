@@ -1,4 +1,4 @@
-package com.project.dd.activity.moveplay.service;
+package com.project.dd.activity.movieplay.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,8 +7,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.dd.activity.moveplay.domain.MoviePlayDTO;
-import com.project.dd.activity.moveplay.repository.MoviePlayDAO;
+import com.project.dd.activity.movie.domain.MovieDTO;
+import com.project.dd.activity.movieplay.domain.MoviePlayDTO;
+import com.project.dd.activity.movieplay.repository.MoviePlayDAO;
+import com.project.dd.activity.theater.domain.TheaterDTO;
 
 @Service
 public class MoviePlayService {
@@ -71,6 +73,14 @@ public class MoviePlayService {
 
 	public MoviePlayDTO getMoviePlay(String seq) {
 		return dao.getMoviePlay(seq);
+	}
+
+	public List<MovieDTO> getMovieList() {
+		return dao.getMovieList();
+	}
+
+	public List<TheaterDTO> getTheaterList() {
+		return dao.getTheaterList();
 	}
 
 }

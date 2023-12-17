@@ -1,9 +1,11 @@
-package com.project.dd.activity.moveplay.mapper;
+package com.project.dd.activity.movieplay.mapper;
 
 import java.util.List;
 import java.util.Map;
 
-import com.project.dd.activity.moveplay.domain.MoviePlayDTO;
+import com.project.dd.activity.movie.domain.MovieDTO;
+import com.project.dd.activity.movieplay.domain.MoviePlayDTO;
+import com.project.dd.activity.theater.domain.TheaterDTO;
 
 public interface MoviePlayMapper {
 
@@ -18,5 +20,9 @@ public interface MoviePlayMapper {
 	int editMoviePlay(MoviePlayDTO dto);
 
 	MoviePlayDTO getMoviePlayList(String seq);
+
+	List<MovieDTO> getMovieList();
+
+	List<TheaterDTO> getTheaterList();
 
 }

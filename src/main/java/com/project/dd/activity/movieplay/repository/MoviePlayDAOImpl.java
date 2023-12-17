@@ -1,4 +1,4 @@
-package com.project.dd.activity.moveplay.repository;
+package com.project.dd.activity.movieplay.repository;
 
 import java.util.List;
 import java.util.Map;
@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
-import com.project.dd.activity.moveplay.domain.MoviePlayDTO;
-import com.project.dd.activity.moveplay.mapper.MoviePlayMapper;
+import com.project.dd.activity.movie.domain.MovieDTO;
+import com.project.dd.activity.movieplay.domain.MoviePlayDTO;
+import com.project.dd.activity.movieplay.mapper.MoviePlayMapper;
+import com.project.dd.activity.theater.domain.TheaterDTO;
 
 @Primary
 @Repository
@@ -45,6 +47,16 @@ public class MoviePlayDAOImpl implements MoviePlayDAO{
 	@Override
 	public MoviePlayDTO getMoviePlay(String seq) {
 		return mapper.getMoviePlayList(seq);
+	}
+
+	@Override
+	public List<MovieDTO> getMovieList() {
+		return mapper.getMovieList();
+	}
+
+	@Override
+	public List<TheaterDTO> getTheaterList() {
+		return mapper.getTheaterList();
 	}
 
 	

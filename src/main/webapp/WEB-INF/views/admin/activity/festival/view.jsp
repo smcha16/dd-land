@@ -75,18 +75,37 @@
   	table td:nth-child(3) a {
 		cursor: pointer;
 	}
-  	table td:nth-child(5) i {
+  	table td:nth-child(7) i {
 		cursor: pointer;
 	}
-  	table td:nth-child(6) i {
-		cursor: pointer;
+	
+	/* 모달 CSS */
+	#modal table.m-desc {
+		width: 100%;
+		font-size: 14px;
+	}
+	
+	#modal table tr > th {
+		/* width: 100px; */
+		text-align: left;
+		font-weight: bold;
+		background: #FFF !important;
+		padding: 10px;
+	}
+	
+	#modal table tr > td {
+		padding: 10px;
+	}
+	
+	.m-info {
+		padding: 10px;
 	}
 </style>
 
 <!-- ======= Main ======= -->
 <main id="main" class="main">
 
-    <div class="pagetitle">
+     <div class="pagetitle">
 		<h1>페스티벌 관리</h1>
     </div>
 
@@ -127,7 +146,6 @@
 	                        					<th>시간</th>
 	                        					<th>시작일</th>
 	                        					<th>종료일</th>
-	                        					<th>이미지</th>
 	                        					<th>위치</th>
 	                      					</tr>
 	                    				</thead>
@@ -136,108 +154,281 @@
 		                      					<tr>
 		                        					<td><input type="checkbox" name="festival_seq" value="${dto.festival_seq}"></td>
 		                        					<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
-		                        					<td><a><c:out value="${dto.name}" /></a></td>
-		                        					<td>${dto.capacity}</td>
-		                        					<c:if test="${dto.imgList == 'festival.png'}">
-		                        						<td></td>
-		                        					</c:if>
-		                        					<c:if test="${dto.imgList != 'festival.png'}">
-		                        						<td><i class="bi bi-image"></i></td>
-		                        					</c:if>
-		                        					<td><i class="bi bi-geo-alt"></i></td>
+		                        					<td><a onclick="showModal('${dto.festival_seq}', `${dto.name}`,'${dto.time}', `${dto.info}`,'${dto.start_date}', '${dto.end_date}')"><c:out value="${dto.name}" /></a></td>
+		                        					<td>${dto.time}</td>
+		                        					<td>${dto.start_date}</td>
+		                        					<td>${dto.end_date}</td>
+		                        					<td><a onclick="showLocationModal(`${dto.name}`, '${dto.lat}', '${dto.lng}')"><i class="bi bi-geo-alt"></i></a></td>
 		                      					</tr>
 	                      					</c:forEach>
 	                   					</tbody>
-	                  					</table>
+                  					</table>
 	                  					
-	                  					<!-- 토큰 -->
-										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                  					</form>
+                  					<!-- 토큰 -->
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                				</form>
+                  					
+                				<!-- Festival 상세 모달 -->
+								<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+								    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+								        <div class="modal-content">
+								            <div class="modal-header">
+								                <h5 id="modal-name" class="modal-title"></h5>
+								                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								            </div>
+							                
+							                
+								            <div class="modal-body">
+									            <!-- 모달 이미지 슬라이드-->
+								                <div class="image-slider"></div>
+								                <!-- 설명 -->
+								            	<div class="m-info"></div>
+								            	<!-- 상세 -->
+								            	<table class="m-desc">
+								            		<colgroup>
+								            			<col style="width: 100px">
+								            			<col>
+								            		</colgroup>
+								            		<tbody>
+								            			<tr>
+								            				<th>시간</th>
+								            				<td class="m-time"></td>
+								            			</tr>
+								            			<tr>
+								            				<th>일정</th>
+								            				<td class="m-date"></td>
+								            			</tr>
+								            		</tbody>
+								            	</table>
+								            </div>
+								        </div>
+								    </div>
+								</div>
+                				
+                				<!-- Festival Location Modal -->
+								<div id="location-modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+								    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+								        <div class="modal-content">
+								            <div class="modal-header">
+								                <h5 id="location-modal-name" class="modal-title"></h5>
+								                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								            </div>
+							                
+								            <div class="modal-body">
+								            	<div id="map" style="height: 380px; border-radius: var(--bs-border-radius);"></div>
+								            </div>
+								        </div>
+								    </div>
+								</div>
 
-<!-- 페이징 -->
-	<nav id="page-bar" aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-			<c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
-				<c:choose>
-					<c:when test="${pageStatus.index == currentPage}">
-						<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
-					</c:when>
-					<c:otherwise>
-						<li class="page-item"><a class="page-link"
-							href="/dd/admin/activity/attraction/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		</ul>
-	</nav>
+								<!-- paging -->
+								<nav id="page-bar" aria-label="Page navigation example">
+									<ul class="pagination justify-content-center">
+										<c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
+											<c:choose>
+												<c:when test="${pageStatus.index == currentPage}">
+													<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+												</c:when>
+												<c:otherwise>
+													<li class="page-item"><a class="page-link" href="/dd/admin/activity/festival/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</ul>
+								</nav>
+               				</div>
 
-
-                  					<!-- <ul class="pagination pagination-sm">
-					                    <li class="page-item active" aria-current="page">
-					                    	<span class="page-link">1</span>
-					                    </li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item"><a class="page-link" href="#">4</a></li>
-										<li class="page-item"><a class="page-link" href="#">5</a></li>
-                  					</ul> -->
-                				</div>
-
-              				</div>
-            			</div>
-
- 					</div>
+             			</div>
+            		</div>
 				</div>
-
 			</div>
+
+		</div>
 	</section>
 
 </main>
 
-<!-- attraction > view JavaScript -->
+<!-- Kakao Map Open API -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c089ee6f3d885cfbe52b2f15d8f3f531"></script>
+
+<!-- Slick Slider -->
+<script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
 
-	/* 수정 시, 체크 박스 1개만 선택 하여 seq 전달 하기 */
 	function edit() {
 		
-		/* 선택된 체크박수 개수 확인 */
 		let checkedCount = $('input[type="checkbox"]:checked').length;
 		
-		/* 1개 이상? out! */
 		if (checkedCount > 1 || checkedCount < 1) {
-			alert('1개의 어트랙션을 선택 후, 수정 버튼을 눌러주세요.');
+			alert('1개의 페스티벌을 선택 후, 수정 버튼을 눌러주세요.');
 		} else {
 
 			const seq = $('input[type="checkbox"]:checked').val();
 			
-			location.href='/dd/admin/activity/attraction/edit.do?seq=' + seq;
+			location.href='/dd/admin/activity/festival/edit.do?seq=' + seq;
 						
 		}
 		
 	}//function
 	
-	/* 삭제 시, 체크 박스 1개 이상 선택 하여 seq 전달하기 */
-	/* 1. 체크박스 1개 2. 체크박스 1개 이상 */
 	function del() {
 		
-		/* 선택된 체크박수 개수 확인 */
 		let checkedCount = $('input[type="checkbox"]:checked').length;
 		
 		if (checkedCount == 0) {
-			alert('1개 이상의 어트랙션을 선택 후, 삭제 버튼을 눌러주세요.');
+			alert('1개 이상의 페스티벌을 선택 후, 삭제 버튼을 눌러주세요.');
 		} else {
 			
-			if (confirm('선택한 어트랙션을 삭제하시겠습니까?')) {
-				
+			if (confirm('선택한 페스티벌을 삭제하시겠습니까?')) {
 				$('#del-form').submit();
-
 			}
-			
-			
 			
 		} 
 		
 	}//function
+	
+	/* Festival Detail Modal */
+	function showModal(seq, name, time, info, start_date, end_date) {
+	    
+		$('.image-slider').html('');
+		addModalImg(seq);
+		
+		$('#modal-name').text(name);
+        $('.m-info').text(info);
+        $('.m-time').text(time);
+        $('.m-date').text(start_date + " ~ " + end_date);
+        
+        $('#modal').modal('show');
+	}
+	
+	function addModalImg(seq) {
+		
+		const filterImg = img_list.filter(obj => obj.festival_seq == seq);
+		
+		if (filterImg.length > 0) {
+			
+			filterImg.forEach(obj => {
+				
+				let imgSrc = '/dd/resources/files/activity/festival/' + obj.img;
+				
+				$('.image-slider').append(`
+				
+					<div>
+						<img class="modal-image" alt="Image" src="\${imgSrc}">
+					</div>
+						
+				`);
+			});
+			
+		}
+
+		
+		/* Slick Slider */
+		$('.image-slider').slick({
+			variableWidth : true,
+			infinite : true,
+			autoplay : true,
+			autoplaySpeed : 5000,
+			pauseOnHover : true,
+			arrows : true,
+			prevArrow : "<button type='button' class='slick-prev'>&#10094;</button>",
+			nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
+			draggable : true
+		});
+		
+	}
+	
+	/* when modal was hidden, unslick setting */
+	$('#modal').on('hidden.bs.modal', function () {
+		$('.image-slider').slick('unslick');
+	});
+	
+	/* Festival Location Modal */
+	function showLocationModal(name, lat, lng) {
+		
+		$('#location-modal-name').text(name);
+		
+		m = new kakao.maps.Marker({
+	        position: new kakao.maps.LatLng(lat, lng),
+	        image: markerImg
+	    });
+
+		//mark the marker on the map
+	    m.setMap(map);
+		
+		$('#location-modal').modal('show');
+	}
+	
+	/* When location modal was shown, relayout Kakaomap setting */
+	$('#location-modal').on('shown.bs.modal', function () {
+		map.relayout();
+		map.setLevel(10);
+		map.setCenter(new kakao.maps.LatLng(33.361488, 126.529212));
+	});
+	
+	/* when location modal was hidden, Kakaomap reset marker setting */
+	$('#location-modal').on('hidden.bs.modal', function () {
+		m.setMap(null);
+	});
+	
+	/* Kakaomap */
+	const container = document.getElementById('map');
+
+	const options = {
+		center : new kakao.maps.LatLng(33.361488, 126.529212),
+		level : 10
+		/* draggable : false, // 이동 금지
+		disableDoubleClick : true, // 더블클릭 확대 금지
+		scrollwheel : false // 휠 확대/축소 금지 */
+	};
+	
+	const map = new kakao.maps.Map(container, options);
+	
+	let m = null;
+	
+	//mark the marker
+    let imageSrc = '/dd/resources/files/marker/festival_marker3.png';
+    const imageSize = new kakao.maps.Size(40,40);
+    const option = {};
+    
+    //marker setting
+    const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
+	
+	
+	/* FestivalImg Array for Modal */
+	const img_list = new Array();
+	<c:forEach items="${ilist}" var="dto">
+		img_list.push({
+			festival_img_seq: ${dto.festival_img_seq},
+			img: `${dto.img}`,
+			festival_seq: ${dto.festival_seq}
+		});
+	</c:forEach>
+	
+	/* Slick responsive setting */
+	$('#modal').on('shown.bs.modal', function () {
+		if ($('.modal-content').css('width') == '800px') {
+			$('.slick-slide').css('width', '800px');
+		} else {
+			$('.slick-slide').css('width', '500px');
+		}
+		
+		setTimeout($('.image-slider').css('display', 'display'), 500);
+		
+	});
+
+	$(window).resize(function() {
+	
+		if ($('.modal-content').css('width') == '800px') {
+			$('.slick-slide').css('width', '800px');
+		} else {
+			$('.slick-slide').css('width', '500px');
+		}
+	});
+	
+	/* $(window).resize(function() {
+		$('.image-slider')[0].slick.refresh();
+	}); */
 
 
 </script>

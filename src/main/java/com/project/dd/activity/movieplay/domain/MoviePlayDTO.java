@@ -1,4 +1,4 @@
-package com.project.dd.activity.moveplay.domain;
+package com.project.dd.activity.movieplay.domain;
 
 import lombok.Data;
 
@@ -25,4 +25,7 @@ public class MoviePlayDTO {
 	
 	//tblMovie
 	private String movie_name;
+	private String story;
+	private String img;
+	
 }
