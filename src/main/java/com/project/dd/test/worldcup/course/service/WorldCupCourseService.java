@@ -11,6 +11,10 @@ import com.project.dd.test.worldcup.course.domain.CourseDTO;
 
 public interface WorldCupCourseService {
 
+	int getTotalCount();
+	
+	int getTestCount();
+	
 	Map<String, String> paging(int page);
 
 	List <CourseDTO> getAllCourse(Map<String, String> map);

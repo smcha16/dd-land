@@ -105,6 +105,7 @@
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div id="course-container" class="munti-content-container">
+					<div id="remaining-course-count" style="text-align: center; margin-top: 20px; font-size: 18px;">남은 코스 수: ${testCount}</div>
 					<div id="result-info"></div>
 					<div id="worldcup-container" class="button-container">
 						<!-- 코스 출력 -->
@@ -191,8 +192,16 @@
 				// 코스 정보에 따라 화면 갱신
 				if (selectedTwoCourses.length > 1) {
 					refreshScreen();
+					
+					if (remainingCourses.length != 2) {
+						$('#remaining-course-count').text('남은 코스 수: ' + remainingCourses.length);
+					} else {
+						$('#remaining-course-count').text('결승');
+					}
+					
 				} else {
 					resultScreen(selectedTwoCourses[0]);
+					$('#remaining-course-count').text('');
 					
 					// 최종 우승 코스
                     updateCWCFinalWinCount(selectedTwoCourses[0].course_seq);
@@ -234,7 +243,7 @@
 			// 동적으로 id 생성
 			const itemId = 'item3';
 
-			const item = $('<div class="item" id="' + itemId + '" onclick="selectCourse(' + course.course_seq + ')">')
+			const item = $('<div class="item" id="' + itemId + '>')
 				.append('<div style="display:none" data-course-seq=' + course.course_seq + '></div>')
 				.append('<div class="img-container" style="background-image: url(\'' + imgUrl + '\');"></div>')
 				.append('<h3>' + course.name + '</h3>');
@@ -249,20 +258,13 @@
 		const resultContainer = $('<div class="item result-container" id="item3">');
 		const imgContainer = $('<div class="img-container" style="background-image: url(\'/dd/resources/files/test/worldcup/course/' + selectedCourse.img + '\');"></div>');
 		const infoname = $('<h3>' + selectedCourse.name + '</h3>');
-		const message = $('<p id="result-message">최고의 코스죠!<br>[' + selectedCourse.name + ']</p>'
-				+ '<p id="corinfo">클릭시 해당 어트랙코스지로 이동합니다.</p>');
+		const message = $('<p id="result-message">최고의 코스죠!<br>[' + selectedCourse.name + ']</p>');
 
 		// 메시지
 		$('#result-info').append(message);
 
 		// 최종 선택 코스
 		resultContainer.append(imgContainer).append(infoname);
-
-		// 클릭 이벤트 처리 (삭제)
-		resultContainer.click(function() {
-			// 코스 상세 페이지로 이동 (삭제)
-			window.location.href = '/dd/user/activity/course/detail.do?seq=' + selectedCourse.course_seq;
-		});
 
 		// #worldcup-container에 추가
 		$('#worldcup-container').append(resultContainer);

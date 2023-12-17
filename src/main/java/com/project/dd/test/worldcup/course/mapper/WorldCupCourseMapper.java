@@ -9,6 +9,8 @@ public interface WorldCupCourseMapper {
 
     // 페이징
 	int getTotalCount();
+
+	int getTestCount();
 	
 	List<CourseDTO> getAllCourse(Map<String, String> map);
 	

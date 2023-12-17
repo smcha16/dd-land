@@ -32,20 +32,18 @@ public class UserWorldCupAttractionController {
 		// 어트랙션 리스트 가져오기
 		List<AttractionDTO> attractionList = awcService.getAttractionList();
 
-		// 세션에서 선택한 어트랙션 리스트 가져오기
-		@SuppressWarnings("unchecked") // 제네릭 경고 무시
-		List<String> selectedAttractions = (ArrayList<String>) session.getAttribute("selectedAttractions");
-
 		// 선택하지 않은 어트랙션 리스트 생성
 		List<AttractionDTO> remainingAttractions = new ArrayList<>(attractionList);
 
 		// 선택하지 않은 어트랙션 중에서 랜덤으로 두 개 선택
 		List<AttractionDTO> selectedTwoAttractions = awcService.getRandomTwoAttractions(remainingAttractions);
 
-		// 선택한 어트랙션과 선택한 두 어트랙션을 모델에 저장
-		model.addAttribute("selectedAttractions", selectedAttractions);
+		model.addAttribute("attractionList", attractionList);
 		model.addAttribute("selectedTwoAttractions", selectedTwoAttractions);
 
+		// 월드컵을 진행할 어트랙션의 개수
+		model.addAttribute("testCount", awcService.getTestCount());
+		
 		return "user/test/worldcup/attraction/view";
 	}
 
@@ -61,8 +59,6 @@ public class UserWorldCupAttractionController {
 	@PostMapping("/user/test/worldcup/attraction/view.do")
 	public ResponseEntity<Map<String, Object>> attractionSelection(@RequestParam String winAttractionSeq,
 			@RequestParam String lostAttractionSeq, Model model, HttpSession session) {
-		// System.out.println("winAttractionSeq " + winAttractionSeq);
-		// System.out.println("lostAttractionSeq " + lostAttractionSeq);
 
 		awcService.updateAWCMatchCount(winAttractionSeq);
 		awcService.updateAWCWinCount(winAttractionSeq);
@@ -81,26 +77,10 @@ public class UserWorldCupAttractionController {
 		// 두 개의 어트랙션을 다시 선택
 		List<AttractionDTO> remainingAttractions = awcService.getRemainingAttractions(selectedAttractions);
 		List<AttractionDTO> selectedTwoAttractions = awcService.getRandomTwoAttractions(remainingAttractions);
-		// System.out.println("remainingAttractions " + remainingAttractions);
-		// System.out.println("selectedTwoAttractions " + selectedTwoAttractions);
 
-		// 모델에 추가
-		model.addAttribute("remainingAttractions", remainingAttractions);
-		model.addAttribute("selectedTwoAttractions", selectedTwoAttractions);
-
-		// JsonObject data = new JsonObject();
-		JsonArray remainingAttractionSeqsJsonArray = new JsonArray();
-		for (AttractionDTO attraction : remainingAttractions) {
-			remainingAttractionSeqsJsonArray.add(attraction.getAttraction_seq());
-		}
-
-		// JSON 응답을 위한 Map 생성
 		Map<String, Object> responseData = new HashMap<>();
 		responseData.put("selectedTwoAttractions", selectedTwoAttractions);
-		responseData.put("remainingAttractionSeqs", remainingAttractionSeqsJsonArray.toString());
-
-		// System.out.println("jsonResponse" + new ResponseEntity<>(data.toString(),
-		// HttpStatus.OK));
+		responseData.put("remainingAttractions", remainingAttractions);
 
 		// HTTP status OK와 함께 JSON 형식 응답
 		return new ResponseEntity<>(responseData, HttpStatus.OK);

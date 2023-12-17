@@ -11,6 +11,8 @@ public interface WorldCupAttractionMapper {
     // 페이징
 	int getTotalCount();
 
+	int getTestCount();
+	
 	// 모든 어트랙션 리스트 조회
 	List<AttractionDTO> getAllAttraction(Map<String, String> map);
 
@@ -43,5 +45,5 @@ public interface WorldCupAttractionMapper {
 	void updateAWCWinCount(String attractionSeq);
 
 	void updateAWCFinalWinCount(String attractionSeq);
-	
+
 }

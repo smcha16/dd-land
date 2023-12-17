@@ -9,7 +9,9 @@ public interface WorldCupCourseDAO {
 
     // 페이징
 	int getTotalCount();
-	
+
+	int getTestCount();
+
     List<CourseDTO> getAllCourse(Map<String, String> map);
 
 	void updateCourseStatus(Map<String, String> map);
@@ -45,10 +47,10 @@ public interface WorldCupCourseDAO {
 	List<CourseDTO> getCourseList();
 	
     // 선택되지 않은 코스 가져오기
-    List<CourseDTO> getRemainingCourses(List<String> selectedCourses);
+    //List<CourseDTO> getRemainingCourses(List<String> selectedCourses);
 
     // 리스트에서 두 개의 랜덤 코스 가져오기
-    List<CourseDTO> getRandomTwoCourses(List<CourseDTO> courses);
+    //List<CourseDTO> getRandomTwoCourses(List<CourseDTO> courses);
 
 	void updateCWCMatchCount(String courseSeq);
 

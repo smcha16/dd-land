@@ -32,20 +32,18 @@ public class UserWorldCupCourseController {
 		// 코스 리스트 가져오기
 		List<CourseDTO> courseList = cwcService.getCourseList();
 
-		// 세션에서 선택한 코스 리스트 가져오기
-		@SuppressWarnings("unchecked") // 제네릭 경고 무시
-		List<String> selectedCourses = (ArrayList<String>) session.getAttribute("selectedCourses");
-
 		// 선택하지 않은 코스 리스트 생성
 		List<CourseDTO> remainingCourses = new ArrayList<>(courseList);
 
 		// 선택하지 않은 코스 중에서 랜덤으로 두 개 선택
 		List<CourseDTO> selectedTwoCourses = cwcService.getRandomTwoCourses(remainingCourses);
 
-		// 선택한 코스과 선택한 두 코스를 모델에 저장
-		model.addAttribute("selectedCourses", selectedCourses);
+		model.addAttribute("courseList", courseList);
 		model.addAttribute("selectedTwoCourses", selectedTwoCourses);
 
+		// 월드컵을 진행할 코스의 개수
+		model.addAttribute("testCount", cwcService.getTestCount());
+		
 		return "user/test/worldcup/course/view";
 	}
 
@@ -84,23 +82,9 @@ public class UserWorldCupCourseController {
 		// System.out.println("remainingCourses " + remainingCourses);
 		// System.out.println("selectedTwoCourses " + selectedTwoCourses);
 
-		// 모델에 추가
-		model.addAttribute("remainingCourses", remainingCourses);
-		model.addAttribute("selectedTwoCourses", selectedTwoCourses);
-
-		// JsonObject data = new JsonObject();
-		JsonArray remainingCourseSeqsJsonArray = new JsonArray();
-		for (CourseDTO course : remainingCourses) {
-			remainingCourseSeqsJsonArray.add(course.getCourse_seq());
-		}
-
-		// JSON 응답을 위한 Map 생성
 		Map<String, Object> responseData = new HashMap<>();
 		responseData.put("selectedTwoCourses", selectedTwoCourses);
-		responseData.put("remainingCourseSeqs", remainingCourseSeqsJsonArray.toString());
-
-		// System.out.println("jsonResponse" + new ResponseEntity<>(data.toString(),
-		// HttpStatus.OK));
+		responseData.put("remainingCourses", remainingCourses);
 
 		// HTTP status OK와 함께 JSON 형식 응답
 		return new ResponseEntity<>(responseData, HttpStatus.OK);

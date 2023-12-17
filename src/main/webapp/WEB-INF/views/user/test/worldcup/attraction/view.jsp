@@ -105,6 +105,7 @@
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div id="attraction-container" class="munti-content-container">
+                    <div id="remaining-attractions-count" style="text-align: center; margin-top: 20px; font-size: 18px;">남은 어트랙션 수: ${testCount}</div>
 					<div id="result-info"></div>
 					<div id="worldcup-container" class="button-container">
 						<!-- 어트랙션 출력 -->
@@ -187,12 +188,20 @@
 				// 전역 변수에 할당
 				selectedTwoAttractions = data.selectedTwoAttractions;
 				remainingAttractions = data.remainingAttractions;
-
+				
 				// 어트랙션 정보에 따라 화면 갱신
 				if (selectedTwoAttractions.length > 1) {
 					refreshScreen();
+					
+					if (remainingAttractions.length != 2) {
+						$('#remaining-attractions-count').text('남은 어트랙션 수: ' + remainingAttractions.length);
+					} else {
+						$('#remaining-attractions-count').text('결승');
+					}
+					
 				} else {
 					resultScreen(selectedTwoAttractions[0]);
+					$('#remaining-attractions-count').text('');
 					
 					// 최종 우승 어트랙션
                     updateAWCFinalWinCount(selectedTwoAttractions[0].attraction_seq);

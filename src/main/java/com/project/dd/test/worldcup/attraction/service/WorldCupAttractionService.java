@@ -8,6 +8,10 @@ import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO;
 
 public interface WorldCupAttractionService {
 
+	int getTotalCount();
+	
+	int getTestCount();
+	
 	Map<String, String> paging(int page);
 
     List<AttractionDTO> getAllAttraction(Map<String, String> map);

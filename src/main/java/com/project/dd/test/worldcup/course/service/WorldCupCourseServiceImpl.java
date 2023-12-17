@@ -26,6 +26,15 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 	@Autowired
 	private WorldCupCourseDAO dao;
 
+	@Override
+	public int getTotalCount() {
+		return dao.getTotalCount();
+	}
+	@Override
+	public int getTestCount() {
+		return dao.getTestCount();
+	}
+	
 	public Map<String, String> paging(int page) { // 페이징 메서드
 		int pageSize = 10; // 조회할 글 개수
 
@@ -37,7 +46,7 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 
-		int totalPosts = dao.getTotalCount();
+		int totalPosts = getTotalCount();
 		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
 
 		map.put("totalPosts", String.format("%d", totalPosts));

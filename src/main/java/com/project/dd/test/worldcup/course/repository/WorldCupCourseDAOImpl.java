@@ -23,6 +23,11 @@ public class WorldCupCourseDAOImpl implements WorldCupCourseDAO {
 	public int getTotalCount() {
 		return mapper.getTotalCount();
 	}
+	
+	@Override
+	public int getTestCount() {
+		return mapper.getTestCount();
+	}
 
 	@Override
 	public List<CourseDTO> getAllCourse(Map<String, String> map) {
@@ -109,48 +114,46 @@ public class WorldCupCourseDAOImpl implements WorldCupCourseDAO {
 		return mapper.getCourseList();
 	}
 	
-	// 두 개의 랜덤 코스 가져오기
-	@Override
-	public List<CourseDTO> getRandomTwoCourses(List<CourseDTO> courses) {
-		List<CourseDTO> selectedTwoCourses = new ArrayList<>();
-
-		Random random = new Random();
-
-		// 최소한 두 개의 어트랙션이 있는 경우, 두 개를 랜덤으로 선택
-		if (courses.size() >= 2) {
-			int index1 = random.nextInt(courses.size());
-			int index2;
-
-			// index2가 index1과 다른지 확인하여 중복 방지
-			do {
-				index2 = random.nextInt(courses.size());
-			} while (index1 == index2);
-
-			selectedTwoCourses.add(courses.get(index1));
-			selectedTwoCourses.add(courses.get(index2));
-		} else if (!courses.isEmpty()) {
-			// 어트랙션이 하나만 있는 경우, 그것을 리스트에 추가
-			selectedTwoCourses.add(courses.get(0));
-		}
-
-		return selectedTwoCourses;
-	}
-
-	// 선택되지 않은 코스 가져오기
-	@Override
-	public List<CourseDTO> getRemainingCourses(List<String> selectedCourses) {
-		List<CourseDTO> allCourses = getCourseList();
-		List<CourseDTO> remainingCourses = new ArrayList<>();
-
-		// 선택되지 않은 어트랙션 찾기
-		for (CourseDTO course : allCourses) {
-			if (!selectedCourses.contains(course.getCourse_seq())) {
-				remainingCourses.add(course);
-			}
-		}
-
-		return remainingCourses;
-	}
+//	@Override
+//	public List<CourseDTO> getRandomTwoCourses(List<CourseDTO> courses) {
+//		List<CourseDTO> selectedTwoCourses = new ArrayList<>();
+//
+//		Random random = new Random();
+//
+//		// 최소한 두 개의 어트랙션이 있는 경우, 두 개를 랜덤으로 선택
+//		if (courses.size() >= 2) {
+//			int index1 = random.nextInt(courses.size());
+//			int index2;
+//
+//			// index2가 index1과 다른지 확인하여 중복 방지
+//			do {
+//				index2 = random.nextInt(courses.size());
+//			} while (index1 == index2);
+//
+//			selectedTwoCourses.add(courses.get(index1));
+//			selectedTwoCourses.add(courses.get(index2));
+//		} else if (!courses.isEmpty()) {
+//			// 어트랙션이 하나만 있는 경우, 그것을 리스트에 추가
+//			selectedTwoCourses.add(courses.get(0));
+//		}
+//
+//		return selectedTwoCourses;
+//	}
+//
+//	@Override
+//	public List<CourseDTO> getRemainingCourses(List<String> selectedCourses) {
+//		List<CourseDTO> allCourses = getCourseList();
+//		List<CourseDTO> remainingCourses = new ArrayList<>();
+//
+//		// 선택되지 않은 어트랙션 찾기
+//		for (CourseDTO course : allCourses) {
+//			if (!selectedCourses.contains(course.getCourse_seq())) {
+//				remainingCourses.add(course);
+//			}
+//		}
+//
+//		return remainingCourses;
+//	}
 	
 	@Override
 	public void updateCWCMatchCount(String courseSeq) {
