@@ -137,7 +137,6 @@
 }
 </style>
 
-<!-- ======= Stats Counter Section ======= -->
 <section id="stats-counter" class="stats-counter">
     <div id="pagetitle" class="container" data-aos="zoom-out">
         <div class="gy-4" style="justify-content: center; width: 100%;">
@@ -152,7 +151,6 @@
         </div>
     </div>
 </section>
-<!-- End Stats Counter Section -->
 
 <section id="menu" class="menu">
 	<div class="container" data-aos="fade-up">
