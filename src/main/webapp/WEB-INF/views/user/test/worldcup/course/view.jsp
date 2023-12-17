@@ -92,7 +92,7 @@
                     <div id="title" style="font-size: 48px; display: block; color: #fff; font-weight: 700;">
                         코스 월드컵
                     </div>
-                    <p>설명(나에게 딱 맞는 코스를 찾아보세요!)</p>
+                    <p>나에게 딱 맞는 코스를 찾아보세요!</p>
                 </div>
             </div>
         </div>

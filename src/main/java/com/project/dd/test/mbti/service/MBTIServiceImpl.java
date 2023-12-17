@@ -64,7 +64,6 @@ public class MBTIServiceImpl implements MBTIService {
 		if (image.isEmpty()) {
 			
 			dto.setMbti_img("mbti.png");
-			System.out.println(dto.getMbti_img());
 			
 		} else {
 			try {

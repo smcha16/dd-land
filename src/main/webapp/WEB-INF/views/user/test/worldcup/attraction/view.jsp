@@ -23,7 +23,6 @@
 }
 
 .munti-content-container {
-	/* display: flex; */
 	flex-wrap: wrap;
 	margin: 30px 50px 0 50px;
 	padding: 0 !important;
@@ -47,8 +46,58 @@
 	box-shadow: 12px 12px 17px rgba(0, 0, 0, 0.20);
 }
 
+.item {
+	width: 50%;
+	height: 600px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
+	border-radius: 8px;
+	margin: 10px;
+	padding: 20px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: all 0.35s ease;
+	transform-origin: center bottom;
+	cursor: pointer;
+	font-size: 40px;
+	font-weight: 600;
+	color: #333;
+	position: relative;
+	overflow: hidden;
+}
+
+#attinfo {
+	font-size : 18px;
+	text-align: center;
+	color: #444;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+
+#result-message {
+	margin-top: 40px;
+	text-align: center;
+	color: #3498db;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+#worldcup-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.item div.img-container {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+}
+
 .item>div:nth-child(1) {
-	height: 70%;
 	background-color: transparent;
 	background-size: cover;
 	background-position: center;
@@ -57,14 +106,12 @@
 }
 
 .item>div:nth-child(2) {
-	height: 30%;
 	display: flex;
 	flex-direction: column;
 	padding: 20px;
 	font-size: 1.3rem;
 	font-weight: bold;
-	background: transparent;
-	border-radius: 0 0 10px 10px;
+	border-radius: 10px 10px 10px 10px;
 }
 
 .hidden-div {
@@ -77,9 +124,16 @@
 	height: 70%;
 	padding: 20px;
 	background-color: black;
-	opacity: 0.65; /* 투명도 조절 */
+	opacity: 0.65;
 	border-radius: 10px 10px 0 0;
-	z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
+	z-index: 1;
+}
+
+.remain-test {
+	text-align: center;
+	font-size: 30px;
+    margin-bottom: 30px;
+    margin-top: -30px;
 }
 </style>
 
@@ -92,7 +146,7 @@
                     <div id="title" style="font-size: 48px; display: block; color: #fff; font-weight: 700;">
                         어트랙션 월드컵
                     </div>
-                    <p>설명(나에게 딱 맞는 어트랙션을 찾아보세요!)</p>
+                    <p>나에게 딱 맞는 어트랙션을 찾아보세요!</p>
                 </div>
             </div>
         </div>
@@ -105,7 +159,7 @@
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div id="attraction-container" class="munti-content-container">
-                    <div id="remaining-attractions-count" style="text-align: center; margin-top: 20px; font-size: 18px;">남은 어트랙션 수: ${testCount}</div>
+                    <div id="remaining-attractions-count" class="remain-test">남은 어트랙션 수: ${testCount}</div>
 					<div id="result-info"></div>
 					<div id="worldcup-container" class="button-container">
 						<!-- 어트랙션 출력 -->
