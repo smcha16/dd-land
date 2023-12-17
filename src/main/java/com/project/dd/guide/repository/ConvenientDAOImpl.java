@@ -33,6 +33,53 @@ public class ConvenientDAOImpl implements ConvenientDAO{
 		return mapper.one(seq);
 	}
 
+	@Override
+	public int checkLocationDuplication(ConvenientDTO dto) {
+		
+		return mapper.checkLocationDuplication(dto);
+	}
+
+	@Override
+	public int checkNameDuplication(ConvenientDTO dto) {
+		
+		return mapper.checkNameDuplication(dto);
+	}
+
+	@Override
+	public int addConv(ConvenientDTO dto) {
+		
+		return mapper.addConv(dto);
+	}
+
+	@Override
+	public String getConvSeq() {
+		
+		return mapper.getConvSeq();
+	}
+
+	@Override
+	public int addConvLocation(ConvenientDTO dto) {
+		
+		return mapper.addConvLocation(dto);
+	}
+
+	@Override
+	public int countConvenientLocation(String seq) {
+		
+		return mapper.countConvenientLocation(seq);
+	}
+
+	@Override
+	public int delConvenientLocation(String seq) {
+		return mapper.delConvenientLocation(seq);
+	}
+
+	@Override
+	public int delConvenient(String seq) {
+		
+		return mapper.delConvenient(seq);
+	}
+
 	
 	
 }

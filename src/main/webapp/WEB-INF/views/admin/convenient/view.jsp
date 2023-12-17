@@ -84,36 +84,6 @@
   	table td:nth-child(6) i {
 		cursor: pointer;
 	}
-    
-	.image-slider div {
-		/* width: 700px;
-		height: 350px; */
-		overflow: hidden;
-	}
-	
-	.image-slider img {
-		width: 100%;
-		max-height: 100%;
-		object-fit: cover;
-	}
-	
-	/* Slick Button Style */
-	.slick-prev, .slick-next {
-		border: 0;
-		background: transparent;
-		z-index: 100;
-		position: absolute;
-	}
-	
-	.slick-prev {
-		top: 50%;
-		left: 20px;
-	}
-	
-	.slick-next {
-		top: 50%;
-		right: 20px;
-	}
 	
 	/* 모달 CSS */
 	#modal table.m-desc {
@@ -189,7 +159,7 @@
 		                      					<tr>
 		                        					<td><input type="checkbox" name="convenient_seq" value="${dto.convenient_seq}"></td>
 		                        					<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
-		                        					<td><a onclick="showModal('${dto.convenient_seq}', `${dto.name}`,'${dto.img}', `${dto.time}`,`${dto.tel}`)"><c:out value="${dto.name}" /></a></td>
+		                        					<td><a onclick="showModal(`${dto.name}`,'${dto.img}', `${dto.time}`,`${dto.tel}`)"><c:out value="${dto.name}" /></a></td>
 		                        					<td>${dto.tel}</td>
 		                        					<td><a onclick="showLocationModal(`${dto.name}`, '${dto.lat}', '${dto.lng}')"><i class="bi bi-geo-alt"></i></a></td>
 		                      					</tr>
@@ -212,8 +182,10 @@
 							                
 							                
 								            <div class="modal-body">
-									            <!-- 모달 이미지 슬라이드-->
-								                <div class="image-slider"></div>
+									            <!-- 모달 이미지-->
+								                <div class="image" >
+								                	<img id="modal-image" src="" alt="Image">
+								                </div>
 								                <!-- 설명 -->
 								            	<div class="m-info"></div>
 								            	<!-- 상세 -->
@@ -248,7 +220,7 @@
 								            </div>
 							                
 								            <div class="modal-body">
-								            	<div id="map" style="height: 380px; border-radius: var(--bs-border-radius);"></div>
+								            	<div id="map" style="height: 435px; border-radius: var(--bs-border-radius);"></div>
 								            </div>
 								        </div>
 								    </div>
@@ -297,12 +269,12 @@
 		
 		/* 1개 이상? out! */
 		if (checkedCount > 1 || checkedCount < 1) {
-			alert('1개의 어트랙션을 선택 후, 수정 버튼을 눌러주세요.');
+			alert('1개의 편의시설을 선택 후, 수정 버튼을 눌러주세요.');
 		} else {
 
 			const seq = $('input[type="checkbox"]:checked').val();
 			
-			location.href='/dd/admin/activity/attraction/edit.do?seq=' + seq;
+			location.href='/dd/admin/convenient/edit.do?seq=' + seq;
 						
 		}
 		
@@ -316,10 +288,10 @@
 		let checkedCount = $('input[type="checkbox"]:checked').length;
 		
 		if (checkedCount == 0) {
-			alert('1개 이상의 어트랙션을 선택 후, 삭제 버튼을 눌러주세요.');
+			alert('1개 이상의 편의시설을 선택 후, 삭제 버튼을 눌러주세요.');
 		} else {
 			
-			if (confirm('선택한 어트랙션을 삭제하시겠습니까?')) {
+			if (confirm('선택한 편의시설을 삭제하시겠습니까?')) {
 				
 				$('#del-form').submit();
 
@@ -330,55 +302,15 @@
 	}//function
 	
 	/* 어트랙션 상세 모달 */
-	function showModal(seq, name, info, tel, time, restriction) {
+	function showModal(name, img, tel, time) {
 	    
-		$('.image-slider').html('');
-		addModalImg(seq);
+		$('#modal-image').attr('src', '/dd/resources/files/guide/convenient/' + img);
 		
 		$('#modal-name').text(name);
-        $('.m-info').text(info);
         $('.m-tel').text(	tel);
         $('.m-time').text(time);
-        $('.m-restriction').text(restriction);
         
         $('#modal').modal('show');
-	}
-	
-	function addModalImg(seq) {
-		
-		const filterImg = img_list.filter(obj => obj.attraction_seq == seq);
-		
-		if (filterImg.length > 0) {
-			
-			filterImg.forEach(obj => {
-				
-				let imgSrc = '/dd/resources/files/activity/attraction/' + obj.img;
-				
-				$('.image-slider').append(`
-				
-					<div>
-						<img class="modal-image" alt="Image" src="\${imgSrc}">
-					</div>
-						
-				`);
-			});
-			
-		}
-
-		
-		/* Slick Slider */
-		$('.image-slider').slick({
-			variableWidth : true,
-			infinite : true,
-			autoplay : true,
-			autoplaySpeed : 5000,
-			pauseOnHover : true,
-			arrows : true,
-			prevArrow : "<button type='button' class='slick-prev'>&#10094;</button>",
-			nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
-			draggable : true
-		});
-		
 	}
 	
 	/* 모달이 닫힐 때 uslick 설정 */
@@ -430,48 +362,11 @@
 	let m = null;
 	
 	//마커 출력
-    let imageSrc = '/dd/resources/files/marker/attraction_marker2.png'; // 마커이미지의 주소
+    let imageSrc = '/dd/resources/files/marker/info.png'; // 마커이미지의 주소
     const imageSize = new kakao.maps.Size(40,40);
     const option = {};
     
     //마커 설정
     const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
-	
-	
-	/* 모달 슬라이드용 img 배열에 넣기 */
-	const img_list = new Array();
-	<c:forEach items="${ilist}" var="dto">
-		img_list.push({
-			attraction_img_seq: ${dto.attraction_img_seq},
-			img: `${dto.img}`,
-			attraction_seq: ${dto.attraction_seq}
-		});
-	</c:forEach>
-	
-	/* 반응형 슬릭 이미지 조절 테스트 */
-	$('#modal').on('shown.bs.modal', function () {
-		if ($('.modal-content').css('width') == '800px') {
-			$('.slick-slide').css('width', '800px');
-		} else {
-			$('.slick-slide').css('width', '500px');
-		}
-		
-		setTimeout($('.image-slider').css('display', 'display'), 500);
-		
-	});
-
-	$(window).resize(function() {
-	
-		if ($('.modal-content').css('width') == '800px') {
-			$('.slick-slide').css('width', '800px');
-		} else {
-			$('.slick-slide').css('width', '500px');
-		}
-	});
-	
-	$(window).resize(function() {
-		$('.image-slider')[0].slick.refresh();
-	});
-	
 	
 </script>

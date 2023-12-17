@@ -11,7 +11,7 @@
 	<select id="list" parameterType="map" resultType="com.project.dd.guide.domain.ConvenientDTO">
 		select *
 		from (select n.*, rownum as rnum from (select c.convenient_seq, c.name, c.time, c.tel, c.img, cl.lat, cl.lng 
-		from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq=cl.convenient_seq) n)
+		from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq=cl.convenient_seq order by cl.convenient_seq desc) n)
 		where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
@@ -54,5 +54,43 @@
 		select f.name, fl.lat, fl.lng
 		from tblfestival f inner join tblfestivallocation fl on f.festival_seq=fl.festival_seq
 	</select>
+	
+	<!-- 관리자 편의시설 CRUD -->
+	<select id="checkLocationDuplication" parameterType="com.project.dd.guide.domain.ConvenientDTO" resultType="int">
+		select count(*)
+		from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq = cl.convenient_seq
+		where lat=#{lng} and lng=#{lng}
+	</select>
+
+	<select id="checkNameDuplication" parameterType="com.project.dd.guide.domain.ConvenientDTO" resultType="int">
+		SELECT COUNT(*) FROM tblconvenient WHERE REPLACE(name, ' ', '') = #{name}
+	</select>
+	
+	<!-- 추가 -->
+	<insert id="addConv" parameterType="com.project.dd.guide.domain.ConvenientDTO">
+		insert into tblConvenient (convenient_seq, name, time, tel, img)
+		values (seqtblConvenient.nextVal, #{name}, '10:00 - 22:00', #{tel}, #{img, jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="getConvSeq" resultType="String">
+		select max(convenient_seq) as convenient_seq from tblConvenient
+	</select>
+	
+	<insert id="addConvLocation" parameterType="com.project.dd.guide.domain.ConvenientDTO">
+		INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal, #{lat}, #{lng}, #{convenient_seq})
+	</insert>
+	
+	<!-- 삭제 -->
+	<select id="countConvenientLocation" parameterType="String" resultType="int">
+		select count(*) from tblconvenientLocation where convenient_seq = #{convenient_seq}
+	</select>
+	
+	<delete id="delConvenientLocation" parameterType="String">
+		delete from tblConvenientLocation where convenient_seq = #{convenient_seq}
+	</delete>
+	
+	<delete id="delConvenient" parameterType="String">
+		delete from tblConvenient where convenient_seq = #{convenient_seq}
+	</delete>
 
 </mapper>

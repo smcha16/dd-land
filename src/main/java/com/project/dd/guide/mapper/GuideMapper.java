@@ -37,6 +37,22 @@ public interface GuideMapper {
 
 	List<FestivalDTO> getFestList();
 
+	//관리자 편의시설 CRUD
 	
+	int checkLocationDuplication(ConvenientDTO dto);
+
+	int checkNameDuplication(ConvenientDTO dto);
+
+	int addConv(ConvenientDTO dto);
+
+	String getConvSeq();
+
+	int addConvLocation(ConvenientDTO dto);
+
+	int countConvenientLocation(String seq);
+
+	int delConvenientLocation(String seq);
+
+	int delConvenient(String seq);
 
 }

@@ -12,6 +12,22 @@ public interface ConvenientDAO {
 	List<ConvenientDTO> list(Map<String, String> map);
 
 	ConvenientDTO one(String seq);
+
+	int checkLocationDuplication(ConvenientDTO dto);
+
+	int checkNameDuplication(ConvenientDTO dto);
+
+	int addConv(ConvenientDTO dto);
+
+	String getConvSeq();
+
+	int addConvLocation(ConvenientDTO dto);
+
+	int countConvenientLocation(String seq);
+
+	int delConvenientLocation(String seq);
+
+	int delConvenient(String seq);
 	
 
 }
