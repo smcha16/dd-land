@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
-import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 
 public interface WorldCupCourseService {
 
@@ -44,5 +42,17 @@ public interface WorldCupCourseService {
 	int delCWCWin(String[] course_seq);
 
 	int delCWCFinalWin(String[] course_seq);
+
+	List<CourseDTO> getCourseList();
+
+	List<CourseDTO> getRandomTwoCourses(List<CourseDTO> remainingCourses);
+	
+	List<CourseDTO> getRemainingCourses(List<String> selectedCourses);
+
+	void updateCWCMatchCount(String courseSeq);
+
+	void updateCWCWinCount(String courseSeq);
+
+	void updateCWCFinalWinCount(String courseSeq);
 
 }

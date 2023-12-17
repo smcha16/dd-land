@@ -3,13 +3,7 @@ package com.project.dd.test.worldcup.course.repository;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.web.multipart.MultipartFile;
-
-import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
-import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 
 public interface WorldCupCourseDAO {
 
@@ -47,5 +41,19 @@ public interface WorldCupCourseDAO {
 	int delCWCWin(String seq);
 
 	int delCWCFinalWin(String seq);
+
+	List<CourseDTO> getCourseList();
 	
+    // 선택되지 않은 코스 가져오기
+    List<CourseDTO> getRemainingCourses(List<String> selectedCourses);
+
+    // 리스트에서 두 개의 랜덤 코스 가져오기
+    List<CourseDTO> getRandomTwoCourses(List<CourseDTO> courses);
+
+	void updateCWCMatchCount(String courseSeq);
+
+	void updateCWCWinCount(String courseSeq);
+
+	void updateCWCFinalWinCount(String courseSeq);
+
 }

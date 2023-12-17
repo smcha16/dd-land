@@ -93,4 +93,40 @@
 		delete tblCWCFinalWin where course_seq = #{course_seq}
 	</delete>
 	
+	
+	<select id="getCourseList" resultType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		select
+			c.*,
+			cwc.is_test,
+			w.cwc_match_count,
+			w.cwc_win_count,
+			fw.cwc_final_win_count
+		from tblCWC cwc
+		join tblCourse c on cwc.course_seq = c.course_seq
+		join tblCWCWin w on w.course_seq = c.course_seq
+		join tblCWCFinalWin fw on fw.course_seq = c.course_seq
+		where cwc.is_test = 'Y'
+	</select>
+	
+	<update id="updateCWCMatchCount" parameterType="String">
+	    update
+			tblCWCWin
+		set cwc_match_count = cwc_match_count + 1
+		where course_seq = #{courseSeq}
+	</update>
+	
+	<update id="updateCWCWinCount" parameterType="String">
+	    update
+			tblCWCWin
+		set cwc_win_count = cwc_win_count + 1
+		where course_seq = #{courseSeq}
+	</update>
+	
+	<update id="updateCWCFinalWinCount" parameterType="String">
+	    update
+			tblCWCFinalWin
+		set cwc_final_win_count = cwc_final_win_count + 1
+		where course_seq = #{courseSeq}
+	</update>
+	
 </mapper>

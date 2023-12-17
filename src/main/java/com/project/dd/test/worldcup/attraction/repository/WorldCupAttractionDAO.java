@@ -50,5 +50,4 @@ public interface WorldCupAttractionDAO {
 
 	void updateAWCFinalWinCount(String attractionSeq);
 
-
 }

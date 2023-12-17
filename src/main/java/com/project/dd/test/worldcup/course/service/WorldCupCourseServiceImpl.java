@@ -1,10 +1,13 @@
 package com.project.dd.test.worldcup.course.service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,10 +16,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.dd.activity.attraction.domain.AttractionDTO;
-import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
-import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 import com.project.dd.test.worldcup.course.repository.WorldCupCourseDAO;
 
 @Service
@@ -209,6 +209,66 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 		}
 		
 		return result;
+	}
+	
+	@Override
+	public List<CourseDTO> getCourseList() {
+		return dao.getCourseList();
+	}
+	
+	@Override
+	public List<CourseDTO> getRandomTwoCourses(List<CourseDTO> remainingCourses) {
+		ArrayList<CourseDTO> selectedTwoCourses = new ArrayList<>();
+
+		Random random = new Random();
+
+		// 어트랙션 리스트가 있고, 크기가 1보다 큰 경우
+		if (remainingCourses != null && remainingCourses.size() > 1) {
+			int index1 = random.nextInt(remainingCourses.size());
+			int index2;
+
+			// index1과 다른 index2 선택 (중복 회피)
+			do {
+				index2 = random.nextInt(remainingCourses.size());
+			} while (index1 == index2);
+
+			// 두 개의 어트랙션을 리스트에 추가
+			selectedTwoCourses.add(remainingCourses.get(index1));
+			selectedTwoCourses.add(remainingCourses.get(index2));
+		} else if (remainingCourses != null && remainingCourses.size() == 1) {
+			// 어트랙션이 하나만 남았을 경우
+			selectedTwoCourses.add(remainingCourses.get(0));
+		}
+
+		return selectedTwoCourses;
+	}
+	
+	@Override
+    public List<CourseDTO> getRemainingCourses(List<String> selectedCourses) {
+        List<CourseDTO> allCourses = getCourseList();
+
+        if (selectedCourses == null) {
+            return allCourses;
+        }
+
+        return allCourses.stream()
+                .filter(course -> !selectedCourses.contains(course.getCourse_seq()))
+                .collect(Collectors.toList());
+    }
+	
+	@Override
+	public void updateCWCMatchCount(String courseSeq) {
+		dao.updateCWCMatchCount(courseSeq);
+	}
+	
+	@Override
+	public void updateCWCWinCount(String courseSeq) {
+		dao.updateCWCWinCount(courseSeq);
+	}
+	
+	@Override
+	public void updateCWCFinalWinCount(String courseSeq) {
+		dao.updateCWCFinalWinCount(courseSeq);
 	}
 	
 }

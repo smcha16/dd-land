@@ -3,13 +3,7 @@ package com.project.dd.test.worldcup.course.mapper;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.web.multipart.MultipartFile;
-
-import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
-import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 
 public interface WorldCupCourseMapper {
 
@@ -47,5 +41,13 @@ public interface WorldCupCourseMapper {
 	int delCWCWin(String seq);
 
 	int delCWCFinalWin(String seq);
+
+	List<CourseDTO> getCourseList();
+
+	void updateCWCMatchCount(String courseSeq);
+
+	void updateCWCWinCount(String courseSeq);
+
+	void updateCWCFinalWinCount(String courseSeq);
 	
 }

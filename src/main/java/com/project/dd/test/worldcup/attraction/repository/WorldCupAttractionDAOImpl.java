@@ -69,22 +69,6 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 	public int getAWCFinalWinTotalCount() {
 		return mapper.getAWCFinalWinTotalCount();
 	}
-	
-	// 선택되지 않은 어트랙션 가져오기
-	@Override
-	public List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions) {
-		List<AttractionDTO> allAttractions = getRunAttraction("Y");
-		List<AttractionDTO> remainingAttractions = new ArrayList<>();
-
-		// 선택되지 않은 어트랙션 찾기
-		for (AttractionDTO attraction : allAttractions) {
-			if (!selectedAttractions.contains(attraction.getAttraction_seq())) {
-				remainingAttractions.add(attraction);
-			}
-		}
-
-		return remainingAttractions;
-	}
 
 	// 두 개의 랜덤 어트랙션 가져오기
 	@Override
@@ -113,6 +97,22 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 		return selectedTwoAttractions;
 	}
 
+	// 선택되지 않은 어트랙션 가져오기
+	@Override
+	public List<AttractionDTO> getRemainingAttractions(List<String> selectedAttractions) {
+		List<AttractionDTO> allAttractions = getRunAttraction("Y");
+		List<AttractionDTO> remainingAttractions = new ArrayList<>();
+
+		// 선택되지 않은 어트랙션 찾기
+		for (AttractionDTO attraction : allAttractions) {
+			if (!selectedAttractions.contains(attraction.getAttraction_seq())) {
+				remainingAttractions.add(attraction);
+			}
+		}
+
+		return remainingAttractions;
+	}
+	
 	@Override
 	public int addAWC(AttractionDTO dto) {
 		return mapper.addAWC(dto);
