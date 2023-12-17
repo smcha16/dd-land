@@ -1,11 +1,11 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>DD : 아이디찾기</title>
+<title>DD : 비밀번호찾기</title>
 <link rel="stylesheet" href="new_main.css">
 <style>
 /* 레이아웃 틀 */
@@ -184,8 +184,9 @@ select {
 	font-weight: 400;
 	font-family: Dotum, '돋움', Helvetica, sans-serif;
 }
+
 button#checkDuplicateBtn {
-    margin-left: 10px; /* 버튼을 아이디(이메일) 옆으로 이동 */
+	margin-left: 10px; /* 버튼을 아이디(이메일) 옆으로 이동 */
 }
 </style>
 </head>
@@ -196,17 +197,28 @@ button#checkDuplicateBtn {
 			src="/dd/resources/files/dd/DD.png" id="logo"></a>
 	</div>
 
-	<form:form method='POST' action="/dd/user/login/findid.do" modelAttribute="MemberDTO">
+	<form:form method="POST" action="/dd/user/login/changepw.do"
+		modelAttribute="MemberDTO">
 		<!-- wrapper -->
 		<div id="wrapper">
 
 			<!-- content-->
 			<div id="content">
 
-	
+				<!-- ID -->
+				<div>
+					<h3 class="join_title">
+						<label for="id">아이디(이메일)</label>
+					</h3>
+					<span class="box int_id"> <input type="text" name="email"
+						id="id" class="int" maxlength="20">
+					</span> <span class="error_next_box" id="emailErrorBox"
+						style="color: red;"></span>
+				</div>
 
 
-				
+
+
 
 				<!-- NAME -->
 				<div>
@@ -215,7 +227,7 @@ button#checkDuplicateBtn {
 					</h3>
 					<span class="box int_name"> <input type="text" name="name"
 						id="name" class="int" maxlength="20">
-					</span> 
+					</span>
 					<form:errors path="name" cssClass="error-message" />
 					<span class="error_next_box"></span>
 				</div>
@@ -266,7 +278,7 @@ button#checkDuplicateBtn {
 					<span class="error_next_box"></span>
 				</div>
 
-				
+
 
 
 
@@ -278,7 +290,7 @@ button#checkDuplicateBtn {
 					</h3>
 					<span class="box int_mobile"> <input type="tel" id="mobile"
 						name="tel" class="int" maxlength="16" placeholder="전화번호 입력">
-					</span> 
+					</span>
 					<form:errors path="tel" cssClass="error-message" />
 					<span class="error_next_box"></span>
 				</div>
@@ -287,7 +299,7 @@ button#checkDuplicateBtn {
 				<!-- JOIN BTN-->
 				<div class="btn_area">
 					<button type="button" id="btnJoin" onclick="submit();">
-						<span>아이디 찾기</span>
+						<span>비밀번호 찾기</span>
 					</button>
 				</div>
 
@@ -307,7 +319,7 @@ button#checkDuplicateBtn {
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 
- <script>
+<script>
 
 function submit() {
 	$('form').submit();
@@ -316,7 +328,7 @@ function submit() {
 	
 
 </script>
- 
+
 </html>
 
 

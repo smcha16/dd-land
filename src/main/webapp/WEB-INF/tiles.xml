@@ -114,5 +114,12 @@
 	<!-- register -->
 	<definition name="user/register/view" template="/WEB-INF/views/user/register/view.jsp"></definition>
 		<definition name="user/login/view" template="/WEB-INF/views/user/login/view.jsp"></definition>
+		<definition name="user/login/findid" template="/WEB-INF/views/user/login/findid.jsp"></definition>
+		<definition name="user/login/findpw" template="/WEB-INF/views/user/login/findpw.jsp"></definition>
+		<definition name="user/login/fail" template="/WEB-INF/views/user/login/fail.jsp"></definition>
+		<definition name="user/login/success" template="/WEB-INF/views/user/login/success.jsp">
+		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
+		</definition>
+		<definition name="user/login/changepw" template="/WEB-INF/views/user/login/changepw.jsp"></definition>
 	
 </tiles-definitions>

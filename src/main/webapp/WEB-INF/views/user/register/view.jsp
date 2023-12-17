@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lnag="ko">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>DD : 회원가입</title>
@@ -183,8 +183,9 @@ select {
 	font-weight: 400;
 	font-family: Dotum, '돋움', Helvetica, sans-serif;
 }
+
 button#checkDuplicateBtn {
-    margin-left: 10px; /* 버튼을 아이디(이메일) 옆으로 이동 */
+	margin-left: 10px; /* 버튼을 아이디(이메일) 옆으로 이동 */
 }
 </style>
 </head>
@@ -203,15 +204,15 @@ button#checkDuplicateBtn {
 			<div id="content">
 
 				<!-- ID -->
-<div>
-    <h3 class="join_title">
-        <label for="id">아이디(이메일)</label>
-    </h3>
-    <span class="box int_id">
-        <input type="text" name="email" id="id" class="int" maxlength="20">
-    </span>
-    <span class="error_next_box" id="emailErrorBox" style="color: red;"></span>
-</div>
+				<div>
+					<h3 class="join_title">
+						<label for="id">아이디(이메일)</label>
+					</h3>
+					<span class="box int_id"> <input type="text" name="email"
+						id="id" class="int" maxlength="20">
+					</span> <span class="error_next_box" id="emailErrorBox"
+						style="color: red;"></span>
+				</div>
 
 
 				<!-- PW1 -->
@@ -358,10 +359,9 @@ button#checkDuplicateBtn {
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-
-function submit() {
-	$('form').submit();
-}
+	function submit() {
+		$('form').submit();
+	}
 
 	/*변수 선언*/
 
@@ -391,7 +391,7 @@ function submit() {
 
 	/*이벤트 핸들러 연결*/
 
-	 id.addEventListener("focusout", checkId); 
+	id.addEventListener("focusout", checkId);
 	pw1.addEventListener("focusout", checkPw);
 	pw2.addEventListener("focusout", comparePw);
 	userName.addEventListener("focusout", checkName);
@@ -543,21 +543,19 @@ function submit() {
 	}
 
 	function checkPhoneNum() {
-	    var isPhoneNum = /([01]{2})([01679]{1})([0-9]{3,4})([0-9]{4})/;
+		var isPhoneNum = /([01]{2})([01679]{1})([0-9]{3,4})([0-9]{4})/;
 
-	    if(mobile.value === "") {
-	        error[7].innerHTML = "필수 정보입니다.";
-	        error[7].style.display = "block";
-	    } else if(!isPhoneNum.test(mobile.value)) {
-	        error[7].innerHTML = "형식에 맞지 않는 번호입니다.";
-	        error[7].style.display = "block";
-	    } else {
-	        error[7].style.display = "none";
-	    }
+		if (mobile.value === "") {
+			error[7].innerHTML = "필수 정보입니다.";
+			error[7].style.display = "block";
+		} else if (!isPhoneNum.test(mobile.value)) {
+			error[7].innerHTML = "형식에 맞지 않는 번호입니다.";
+			error[7].style.display = "block";
+		} else {
+			error[7].style.display = "none";
+		}
 
-	    
 	}
-
 </script>
 
 <script
@@ -605,61 +603,82 @@ function submit() {
 <!-- 생략... -->
 
 <script>
-$(document).ready(function () {
-    var idInput = $("#id");
-    var errorBox = $(".error_next_box");
+	$(document)
+			.ready(
+					function() {
+						var idInput = $("#id");
+						var errorBox = $(".error_next_box");
 
-    idInput.on("focusout", function () {
-        var id = idInput.val();
-        var idPattern = /[a-zA-Z0-9_-]{5,20}/;
+						idInput
+								.on(
+										"focusout",
+										function() {
+											var id = idInput.val();
+											var idPattern = /[a-zA-Z0-9_-]{5,20}/;
 
-        if (id === "") {
-            displayError("emailErrorBox", "필수 정보입니다.");
-        } else if (!idPattern.test(id)) {
-            displayError("emailErrorBox", "5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.");
-        } else {
-            displaySuccess("emailErrorBox", "멋진 아이디네요!");
-            // 이메일 형식 유효성 검사
-            var email = idInput.val();
-            if (!isValidEmail(email)) {
-                displayError("emailErrorBox", "올바른 이메일 형식이 아닙니다.");
-                return;
-            }
-            // 중복 검사 수행
-            $.ajax({
-                type: "GET",
-                url: "/dd/user/register/checkEmailDuplicate",
-                data: { email: email },
-                success: function (response) {
-                    if (response === "DUPLICATED") {
-                        displayError("emailErrorBox", "이미 사용 중인 이메일입니다.");
-                    } else {
-                        displaySuccess("emailErrorBox", "사용 가능한 이메일입니다.");
-                    }
-                },
-                error: function () {
-                    console.error("Error during email duplicate check.");
-                }
-            });
-        }
-    });
+											if (id === "") {
+												displayError("emailErrorBox",
+														"필수 정보입니다.");
+											} else if (!idPattern.test(id)) {
+												displayError("emailErrorBox",
+														"5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.");
+											} else {
+												displaySuccess("emailErrorBox",
+														"멋진 아이디네요!");
+												// 이메일 형식 유효성 검사
+												var email = idInput.val();
+												if (!isValidEmail(email)) {
+													displayError(
+															"emailErrorBox",
+															"올바른 이메일 형식이 아닙니다.");
+													return;
+												}
+												// 중복 검사 수행
+												$
+														.ajax({
+															type : "GET",
+															url : "/dd/user/register/checkEmailDuplicate",
+															data : {
+																email : email
+															},
+															success : function(
+																	response) {
+																if (response === "DUPLICATED") {
+																	displayError(
+																			"emailErrorBox",
+																			"이미 사용 중인 이메일입니다.");
+																} else {
+																	displaySuccess(
+																			"emailErrorBox",
+																			"사용 가능한 이메일입니다.");
+																}
+															},
+															error : function() {
+																console
+																		.error("Error during email duplicate check.");
+															}
+														});
+											}
+										});
 
-    // 이메일 형식 유효성 검사 함수 (필요 시 추가)
-    function isValidEmail(email) {
-        var emailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/;
-        return emailPattern.test(email);
-    }
+						// 이메일 형식 유효성 검사 함수 (필요 시 추가)
+						function isValidEmail(email) {
+							var emailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/;
+							return emailPattern.test(email);
+						}
 
-    // 에러 메시지를 표시하는 함수
-    function displayError(errorBoxId, message) {
-        $("#" + errorBoxId).text(message).css("color", "red").show();
-    }
+						// 에러 메시지를 표시하는 함수
+						function displayError(errorBoxId, message) {
+							$("#" + errorBoxId).text(message).css("color",
+									"red").show();
+						}
 
-    // 성공 메시지를 표시하는 함수
-    function displaySuccess(errorBoxId, message) {
-        $("#" + errorBoxId).text(message).css("color", "#08A600").show();
-    }
-});
+						// 성공 메시지를 표시하는 함수
+						function displaySuccess(errorBoxId, message) {
+							$("#" + errorBoxId).text(message).css("color",
+									"#08A600").show();
+						}
+					});
 </script>
 
 
