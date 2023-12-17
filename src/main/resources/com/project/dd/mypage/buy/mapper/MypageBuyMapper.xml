@@ -4,8 +4,18 @@
 <!-- namespace == 호출할 Interface 이름 적기 -->
 <mapper namespace="com.project.dd.mypage.buy.mapper.MypageBuyMapper">
 
-	<select id="list" parameterType="String" resultType="com.project.dd.mypage.buy.domain.BuyDTO">
-		select * from vwUserBuy
+	<select id="list" parameterType="map" resultType="com.project.dd.mypage.buy.domain.BuyDTO">
+		select *
+      from (select n.*, rownum as rnum from (select * from vwUserBuy where email = #{email} ) n)
+      where rnum between #{startIndex} and #{endIndex}
 	</select>
+	
+	<select id="getTotalCount" resultType="int">
+      select count(*) from vwUserBuy
+    </select>
+    
+    <delete id="delete">
+		delete from tblUserBuy where user_buy_seq = #{selectedItem}
+	</delete>
 	
 </mapper>

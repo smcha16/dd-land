@@ -1,4 +1,3 @@
-
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -85,10 +84,11 @@ th {
 	background-color: #f2f2f2 !important;
 }
 
-.table th:nth-child(1) { width: 6%; }
-.table th:nth-child(2) { width: 9%; }
-.table th:nth-child(3) { width: 63%; }
-.table th:nth-child(4) { width: 22%; }
+.table th:nth-child(1) { width: 10%; }
+.table th:nth-child(2) { width: 30%; }
+.table th:nth-child(3) { width: 25%; }
+.table th:nth-child(4) { width: 25%; }
+.table th:nth-child(5) { width: 10%; }
 
 .table td i {
 	color: #0d6efd;
@@ -111,13 +111,35 @@ th {
 .form-check {
 	min-height: 0 !important;
 }
+
+.hidden-seq {
+	display: none;
+}
+
+/* 모달 CSS */
+#modal table.m-desc {
+	width: 100%;
+	font-size: 14px;
+}
+
+#modal table tr > th {
+	width: 120px;
+	text-align: left;
+	font-weight: bold;
+	background: #FFF !important;
+	padding: 10px;
+}
+
+#modal table tr > td {
+	padding: 10px;
+}
 </style>
 
 <!-- ======= Main ======= -->
 <main id="main" class="main">
 
 	<div class="pagetitle">
-		<h1>코스 월드컵</h1>
+		<h1>코스 월드컵 관리</h1>
 	</div>
 
 	<section class="section">
@@ -135,6 +157,40 @@ th {
 									<i class="bi bi-search"></i>
 								</button>
 							</form>
+							
+							<!-- 코스 상세 모달 -->
+							<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+							    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+							        <div class="modal-content">
+							            <div class="modal-header">
+							                <h5 id="modal-name" class="modal-title"></h5>
+							                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							            </div>
+						                
+							            <div class="modal-body">
+							            	<table class="m-desc">
+							            		<colgroup>
+							            			<col style="width: 100px">
+							            		</colgroup>
+							            		<tbody>
+							            			<tr>
+							            				<th>최종우승횟수</th>
+							            				<td class="m-cwc_final_win_count">회</td>
+							            			</tr>
+							            			<tr>
+							            				<th>승리횟수</th>
+							            				<td class="m-cwc_win_count">회</td>
+							            			</tr>
+							            			<tr>
+							            				<th>1:1 대결수</th>
+							            				<td class="m-cwc_match_count">회</td>
+							            			</tr>
+							            		</tbody>
+							            	</table>
+							            </div>
+							        </div>
+							    </div>
+							</div>
 						</div>
 
 						<div class="card">
@@ -142,29 +198,50 @@ th {
 
 								<nav class="d-flex justify-content-end">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a
-											href="/dd/admin/test/worldcup/course/add.do">추가</a></li>
-										<li class="breadcrumb-item"><a
-											href="/dd/admin/test/worldcup/course/edit.do">수정</a></li>
-										<li class="breadcrumb-item active"><a href="#">삭제</a></li>
+										<li class="breadcrumb-item"><a href="/dd/admin/test/worldcup/course/list.do">코스 관리</a></li>
 									</ol>
 								</nav>
-
+							
 								<table class="table">
 									<thead>
 										<tr>
-											<th></th>
 											<th>No</th>
 											<th>이름</th>
+											<th>우승비율 (우승횟수/게임횟수)</th>
+											<th>승률 (승리횟수/대결수)</th>
 											<th>테스트 채택</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${listCourse}" var="dto">
+										<c:forEach items="${listCourse}" var="dto" varStatus="status">
 											<tr>
-												<td><input type="checkbox"></td>
-												<td>${dto.course_seq}</td>
-												<td>${dto.name}</td>
+												<td>${status.count}</td>
+												<td><a onclick="showModal('${dto.course_seq}', '${dto.name}','${dto.cwc_final_win_count}', '${dto.cwc_win_count}', '${dto.cwc_match_count}')"><c:out value="${dto.name}" /></a></td>
+												<td>
+												    <div class="progress" style="height: 20px;">
+												        <div class="progress-bar" role="progressbar"
+												            style="width: ${dto.cwc_final_win_count != 0 ? String.format('%.2f', (dto.cwc_final_win_count / (cwcFinalWinTotalCount / 2)) * 100) : '0'}%;"
+												            aria-valuenow="${dto.cwc_final_win_count != 0 ? String.format('%.2f', (dto.cwc_final_win_count / (cwcFinalWinTotalCount / 2)) * 100) : '0'}"
+												            aria-valuemin="0" aria-valuemax="100"
+												            data-bs-toggle="tooltip" data-bs-placement="top"
+												            title="${dto.cwc_final_win_count}/${cwcFinalWinTotalCount}">
+												            ${dto.cwc_final_win_count != 0 ? String.format('%.2f', (dto.cwc_final_win_count / cwcFinalWinTotalCount) * 100) : '0'}%
+												        </div>
+												    </div>
+												</td>
+
+										        <td>
+												   <div class="progress" style="height: 20px;">
+													    <div class="progress-bar" role="progressbar"
+													        style="width: ${dto.cwc_win_count != 0 && dto.cwc_match_count != 0 ? String.format('%.2f', (dto.cwc_win_count / dto.cwc_match_count) * 100) : '0'}%;"
+													        aria-valuenow="${dto.cwc_win_count != 0 && dto.cwc_match_count != 0 ? String.format('%.2f', (dto.cwc_win_count / dto.cwc_match_count) * 100) : '0'}"
+													        aria-valuemin="0" aria-valuemax="100"
+													        data-bs-toggle="tooltip" data-bs-placement="top"
+													        title="${dto.cwc_win_count}/${dto.cwc_match_count}">
+													    	${dto.cwc_win_count != 0 && dto.cwc_match_count != 0 ? String.format('%.2f', (dto.cwc_win_count / dto.cwc_match_count) * 100) : '0'}%
+													    </div>
+													</div>
+												</td>
 												<td>
 													<div class="d-flex justify-content-center">
 														<div class="form-check form-switch">
@@ -181,6 +258,7 @@ th {
 														</div>
 													</div>
 												</td>
+												<td class="hidden-seq">${dto.course_seq}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -200,6 +278,7 @@ th {
 										</c:choose>
 									</c:forEach>
 								</ul>
+								
 							</div>
 						</div>
 					</div>
@@ -211,49 +290,52 @@ th {
 
 <script>
 	// 문서가 완전히 로드 된 뒤에 실행
-	$(document).ready(
-			function() {
-				// 체크박스 클릭 이벤트
-				$(document).on(
-						'change',
-						'.form-check-input',
-						function() {
-							// 테스트 채택
-							var isTest = $(this).is(':checked') ? 'Y' : 'N';
-							//console.log(isTest);
+	$(document).ready(function() {
+		// 체크박스 클릭 이벤트
+		$(document).on('change', '.form-check-input', function() {
+			// 테스트 채택
+			var isTest = $(this).is(':checked') ? 'Y' : 'N';
 
-							// 선택한 어트랙션 일련번호
-							var courseSeq = $(this).closest('tr').find(
-									'td:nth-child(2)').text();
-							//console.log(courseSeq);
+			// 선택한 코스 일련번호
+			var courseSeq = $(this).closest('tr').find('td:nth-child(6)').text();
 
-							// CSRF token
-							var csrfHeaderName = "${_csrf.headerName}";
-							var csrfTokenValue = "${_csrf.token}";
-							//console.log(csrfHeaderName);
-							//console.log(csrfTokenValue);
+			// CSRF token
+			var csrfHeaderName = "${_csrf.headerName}";
+			var csrfTokenValue = "${_csrf.token}";
 
-							// 데이터베이스 업데이트
-							$.ajax({
-								type : 'POST',
-								url : '/dd/admin/test/worldcup/course/view.do',
-								data : {
-									courseSeq : courseSeq,
-									isTest : isTest
-								},
-								beforeSend : function(xhr) {
-									xhr.setRequestHeader(csrfHeaderName,
-											csrfTokenValue);
-								},
-								/*
-								success: function(response) {
-									// console.log(response); // 응답 처리
-								},
-								 */
-								error : function(a, b, c) {
-									console.error(a, b, c);
-								}
-							});
-						});
+			// 데이터베이스 업데이트
+			$.ajax({
+				type : 'POST',
+				url : '/dd/admin/test/worldcup/course/view.do',
+				data : {
+					courseSeq : courseSeq,
+					isTest : isTest
+				},
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName,
+							csrfTokenValue);
+				},
+				/*
+				success: function(response) {
+					// console.log(response); // 응답 처리
+				},
+				 */
+				error : function(a, b, c) {
+					console.error(a, b, c);
+				}
 			});
+		});
+	});
+
+	// 코스 월드컵 상세 모달
+	function showModal(seq, name, cwc_final_win_count, cwc_win_count, cwc_match_count) {
+	    
+		$('#modal-name').text(name);
+	
+	    $('.m-cwc_final_win_count').text(cwc_final_win_count);
+	    $('.m-cwc_win_count').text(cwc_win_count);
+	    $('.m-cwc_match_count').text(cwc_match_count);
+	    
+	    $('#modal').modal('show');
+	}
 </script>

@@ -5,19 +5,24 @@
 <mapper namespace="com.project.dd.test.worldcup.course.mapper.WorldCupCourseMapper">
 
 	<select id="getTotalCount" resultType="int">
-		select count(*)
-		from tblCWC cwc
-		join tblCourse c
-			ON cwc.course_seq = c.course_seq
+		select count(*) from tblCWC cwc
+		join tblCourse c on cwc.course_seq = c.course_seq
+		join tblCWCWin w on w.course_seq = c.course_seq
+		join tblCWCFinalWin fw on fw.course_seq = c.course_seq
 	</select>
 	
 	<select id="getAllCourse" parameterType="map" resultType="com.project.dd.test.worldcup.course.domain.CourseDTO">
 		select * from (
-		    select n.*, rownum as rnum
-		    from (
-		        SELECT c.*, cwc.is_test
-		        FROM tblCWC cwc
-		        JOIN tblCourse c ON cwc.course_seq = c.course_seq
+		    select n.*, rownum as rnum FROM (
+		    	select c.*,
+		        	cwc.is_test,
+		        	w.cwc_match_count,
+		        	w.cwc_win_count,
+		        	fw.cwc_final_win_count
+		        from tblCWC cwc
+		        join tblCourse c on cwc.course_seq = c.course_seq
+		        join tblCWCWin w on w.course_seq = c.course_seq
+		        join tblCWCFinalWin fw on fw.course_seq = c.course_seq
 		    ) n
 		) where rnum between #{startIndex} and #{endIndex}
 	</select>
@@ -55,5 +60,37 @@
 	<select id="checkNameDuplication" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO" resultType="int">
 		select count(*) from tblCourse where name = #{name}
 	</select>
+	
+	<select id="getCWCFinalWinTotalCount" resultType="int">
+		select sum(cwc_final_win_count) as total_cwc_final_win_count from tblCWCFinalWin
+	</select>
+	
+	<select id="getCourse" parameterType="String" resultType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		select * from tblCourse where course_seq = #{courseSeq}
+	</select>
+	
+	<update id="editCourse" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
+		update tblCourse set name = #{name}, img = #{img} where course_seq = #{course_seq}
+	</update>
+	
+	<select id="getCourseImgFileName" parameterType="String" resultType="String">
+		select img from tblCourse where course_seq = #{course_seq}
+	</select>
+
+	<delete id="delCourse" parameterType="String">
+		delete tblCourse where course_seq = #{course_seq}
+	</delete>
+	
+	<delete id="delCWC" parameterType="String">
+		delete tblCWC where course_seq = #{course_seq}
+	</delete>
+	
+	<delete id="delCWCWin" parameterType="String">
+		delete tblCWCWin where course_seq = #{course_seq}
+	</delete>
+	
+	<delete id="delCWCFinalWin" parameterType="String">
+		delete tblCWCFinalWin where course_seq = #{course_seq}
+	</delete>
 	
 </mapper>

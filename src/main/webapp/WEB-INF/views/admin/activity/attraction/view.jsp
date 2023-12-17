@@ -70,9 +70,9 @@
     	background-color: #f2f2f2 !important;
   	}
   	.pagination {
-   		justify-content: center;
-   		margin-top: 40px;
-  	}
+		justify-content: center;
+		margin-top: 40px;
+	}
   	
   	/* 목록 커서 CSS */
   	table td:nth-child(3) a {
@@ -83,6 +83,24 @@
 	}
   	table td:nth-child(6) i {
 		cursor: pointer;
+	}
+	
+	/* slick slider */
+	/* .image-slider {
+		width: 700px;
+		height: 350px;
+    } */
+    
+	.image-slider div {
+		/* width: 700px;
+		height: 350px; */
+		overflow: hidden;
+	}
+	
+	.image-slider img {
+		width: 100%;
+		max-height: 100%;
+		object-fit: cover;
 	}
 	
 	/* Slick Button Style */
@@ -120,6 +138,11 @@
 	#modal table tr > td {
 		padding: 10px;
 	}
+	
+	.m-info {
+		padding: 10px;
+	}
+	
 </style>
 
 <!-- ======= Main ======= -->
@@ -164,7 +187,7 @@
 	                        					<th>No</th>
 	                        					<th>이름</th>
 	                        					<th>수용인원</th>
-	                        					<th>이미지</th>
+	                        					<!-- <th>이미지</th> -->
 	                        					<th>위치</th>
 	                      					</tr>
 	                    				</thead>
@@ -175,13 +198,13 @@
 		                        					<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
 		                        					<td><a onclick="showModal('${dto.attraction_seq}', `${dto.name}`,`${dto.info}`,'${dto.capacity}', `${dto.time}`,`${dto.restriction}`)"><c:out value="${dto.name}" /></a></td>
 		                        					<td>${dto.capacity}</td>
-		                        					<c:if test="${dto.img == 'attraction.png'}">
+		                        					<%-- <c:if test="${dto.img == 'attraction.png'}">
 		                        						<td></td>
 		                        					</c:if>
 		                        					<c:if test="${dto.img != 'attraction.png'}">
 		                        						<td><i class="bi bi-image"></i></td>
-		                        					</c:if>
-		                        					<td><i class="bi bi-geo-alt"></i></td>
+		                        					</c:if> --%>
+		                        					<td><a onclick="showLocationModal(`${dto.name}`, '${dto.lat}', '${dto.lng}')"><i class="bi bi-geo-alt"></i></a></td>
 		                      					</tr>
 	                      					</c:forEach>
 	                   					</tbody>
@@ -199,18 +222,14 @@
 								                <h5 id="modal-name" class="modal-title"></h5>
 								                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								            </div>
-								            <!-- 이미지 슬라이드가 들어갈 자리 -->
-							                <!-- <div class="d-flex align-items-center justify-content-center">
-							                    <img id="modal-image" src="" alt="Image" style="max-width: 100%;">
-							                </div> -->
-							                <div class="image-slider">
-													<!-- <div>
-														<img id="modal-image" src="" alt="Image">
-													</div> -->
-											</div>
+							                
 							                
 								            <div class="modal-body">
+									            <!-- 모달 이미지 슬라이드-->
+								                <div class="image-slider"></div>
+								                <!-- 설명 -->
 								            	<div class="m-info"></div>
+								            	<!-- 상세 -->
 								            	<table class="m-desc">
 								            		<colgroup>
 								            			<col style="width: 100px">
@@ -235,21 +254,22 @@
 								        </div>
 								    </div>
 								</div>
-<!-- 								<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+                				
+                				<!-- 어트랙션 위치 모달 -->
+								<div id="location-modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
 								    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
 								        <div class="modal-content">
 								            <div class="modal-header">
-								                <h5 id="modal-name" class="modal-title"></h5>
+								                <h5 id="location-modal-name" class="modal-title"></h5>
 								                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								            </div>
+							                
 								            <div class="modal-body">
-								                <div class="d-flex align-items-center justify-content-center">
-								                    <img id="modal-image" src="" alt="Image" style="max-width: 100%;">
-								                </div>
+								            	<div id="map" style="height: 380px; border-radius: var(--bs-border-radius);"></div>
 								            </div>
 								        </div>
 								    </div>
-								</div> -->
+								</div>
 
 								<!-- 페이징 -->
 								<nav id="page-bar" aria-label="Page navigation example">
@@ -326,9 +346,10 @@
 		
 	}//function
 	
-	/* 모달 */
+	/* 어트랙션 상세 모달 */
 	function showModal(seq, name, info, capacity, time, restriction) {
 	    
+		$('.image-slider').html('');
 		addModalImg(seq);
 		
 		$('#modal-name').text(name);
@@ -336,53 +357,103 @@
         $('.m-capacity').text(capacity);
         $('.m-time').text(time);
         $('.m-restriction').text(restriction);
-
+        
         $('#modal').modal('show');
 	}
 	
 	function addModalImg(seq) {
 		
 		const filterImg = img_list.filter(obj => obj.attraction_seq == seq);
-		console.log(filterImg);
 		
 		if (filterImg.length > 0) {
 			
 			filterImg.forEach(obj => {
-				console.log(obj.img);
-				$('image-slider').append(`
+				
+				let imgSrc = '/dd/resources/files/activity/attraction/' + obj.img;
+				
+				$('.image-slider').append(`
 				
 					<div>
-						<img class="modal-image" src="/dd/resources/files/activity/attraction/" + obj.img alt="Image">
+						<img class="modal-image" alt="Image" src="\${imgSrc}">
 					</div>
 						
 				`);
-				$('modal-body').append(`
-				
-					<div>
-						<img class="modal-image" src="/dd/resources/files/activity/attraction/" + obj.img alt="Image">
-					</div>
-						
-				`);
-				console.log('bye');
 			});
 			
 		}
-			
+
+		
+		/* Slick Slider */
+		$('.image-slider').slick({
+			variableWidth : true,
+			infinite : true,
+			autoplay : true,
+			autoplaySpeed : 5000,
+			pauseOnHover : true,
+			arrows : true,
+			prevArrow : "<button type='button' class='slick-prev'>&#10094;</button>",
+			nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
+			draggable : true
+		});
+		
 	}
-	/* Slick Slider */
-	$('.image-slider').slick({
-		variableWidth : true,
-		infinite : true,
-		autoplay : true,
-		autoplaySpeed : 5000,
-		pauseOnHover : true,
-		arrows : true,
-		prevArrow : "<button type='button' class='slick-prev'>&#10094;</button>",
-		nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
-		draggable : true
+	
+	/* 모달이 닫힐 때 uslick 설정 */
+	$('#modal').on('hidden.bs.modal', function () {
+		$('.image-slider').slick('unslick');
 	});
 	
-	/* $(".slider").not('.slick-initialized').slick() */
+	/* 어트랙션 위치 모달 */
+	function showLocationModal(name, lat, lng) {
+		
+		$('#location-modal-name').text(name);
+		
+		m = new kakao.maps.Marker({
+	        position: new kakao.maps.LatLng(lat, lng),
+	        image: markerImg
+	    });
+
+		//마커 지도에 출력
+	    m.setMap(map);
+		
+		$('#location-modal').modal('show');
+	}
+	
+	/* 어트랙션 위치 모달이 열릴 때 카카오맵 relayout 설정 */
+	$('#location-modal').on('shown.bs.modal', function () {
+		map.relayout();
+		map.setLevel(10);
+		map.setCenter(new kakao.maps.LatLng(33.361488, 126.529212));
+	});
+	
+	/* 모달이 닫힐 때 카카오맵 관련 reset 설정 */
+	$('#location-modal').on('hidden.bs.modal', function () {
+		m.setMap(null);
+	});
+	
+	/* 카카오맵 */
+	const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+
+	const options = { //지도를 생성할 때 필요한 기본 옵션
+		center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
+		level : 10 //지도의 레벨(확대, 축소 정도)
+		/* draggable : false, // 이동 금지
+		disableDoubleClick : true, // 더블클릭 확대 금지
+		scrollwheel : false // 휠 확대/축소 금지 */
+	};
+	
+	const map = new kakao.maps.Map(container, options);
+	
+	let m = null;
+	
+	//마커 출력
+    let imageSrc = '/dd/resources/files/marker/attraction_marker2.png'; // 마커이미지의 주소
+    const imageSize = new kakao.maps.Size(40,40);
+    const option = {};
+    
+    //마커 설정
+    const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
+	
 	
 	/* 모달 슬라이드용 img 배열에 넣기 */
 	const img_list = new Array();
@@ -393,5 +464,31 @@
 			attraction_seq: ${dto.attraction_seq}
 		});
 	</c:forEach>
+	
+	/* 반응형 슬릭 이미지 조절 테스트 */
+	$('#modal').on('shown.bs.modal', function () {
+		if ($('.modal-content').css('width') == '800px') {
+			$('.slick-slide').css('width', '800px');
+		} else {
+			$('.slick-slide').css('width', '500px');
+		}
+		
+		setTimeout($('.image-slider').css('display', 'display'), 500);
+		
+	});
+
+	$(window).resize(function() {
+	
+		if ($('.modal-content').css('width') == '800px') {
+			$('.slick-slide').css('width', '800px');
+		} else {
+			$('.slick-slide').css('width', '500px');
+		}
+	});
+	
+	$(window).resize(function() {
+		$('.image-slider')[0].slick.refresh();
+	});
+	
 	
 </script>

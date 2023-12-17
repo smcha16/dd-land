@@ -17,7 +17,7 @@ import com.project.dd.test.mbti.repository.MBTIDAO;
 public class MBTIServiceImpl implements MBTIService {
 
     @Autowired
-    private MBTIDAO mbtiDAO;
+    private MBTIDAO dao;
 
 	public Map<String, String> paging(int page) { // 페이징 메서드
 		int pageSize = 9; // 나타났으면 하는 개수
@@ -30,7 +30,7 @@ public class MBTIServiceImpl implements MBTIService {
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 
-		int totalPosts = mbtiDAO.getTotalCount();
+		int totalPosts = dao.getTotalCount();
 		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
 
 		map.put("totalPosts", String.format("%d", totalPosts));
@@ -41,12 +41,12 @@ public class MBTIServiceImpl implements MBTIService {
 	
     @Override
     public List<MBTIDTO> getAllMBTI(Map<String, String> map) {
-        return mbtiDAO.getAllMBTI(map);
+        return dao.getAllMBTI(map);
     }
 
     @Override
 	public MBTIDTO getMBTI(String seq) {
-		return mbtiDAO.getMBTI(seq);
+		return dao.getMBTI(seq);
 	}
     
 }

@@ -17,9 +17,15 @@ public class MypageModifyDAOImpl implements MypageModifyDAO{
 	private MypageModifyMapper mapper;
 	
 	@Override
-	public List<ModifyDTO> list() {
+	public List<ModifyDTO> list(String email) {
 		
-		return mapper.list();
+		return mapper.list(email);
+	}
+	
+	@Override
+	public int edit(ModifyDTO dto) {
+		
+		return mapper.edit(dto);
 	}
 
 }

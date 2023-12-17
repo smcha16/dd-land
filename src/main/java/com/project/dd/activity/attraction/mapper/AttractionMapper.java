@@ -23,7 +23,7 @@ public interface AttractionMapper {
 
 	int addAttraction(AttractionDTO dto);
 
-	int getAttractionSeq();
+	String getAttractionSeq();
 
 	int addAttractionLocation(AttractionDTO dto);
 
@@ -51,10 +51,4 @@ public interface AttractionMapper {
 
 	List<AttractionImgDTO> getAllAttractionImgList();
 
-	int addAWC(AttractionDTO dto);
-
-	int addAWCWin(AttractionDTO dto);
-
-	int addAWCFinalWin(AttractionDTO dto);
-	
 }

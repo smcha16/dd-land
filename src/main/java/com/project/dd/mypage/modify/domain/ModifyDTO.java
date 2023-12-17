@@ -10,5 +10,6 @@ public class ModifyDTO {
 	private String tel;
 	private String address;
 	private String birth;
+	private String ing;
 
 }

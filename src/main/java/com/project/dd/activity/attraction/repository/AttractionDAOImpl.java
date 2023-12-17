@@ -80,7 +80,7 @@ public class AttractionDAOImpl implements AttractionDAO {
 	}
 
 	@Override
-	public int getAttractionSeq() {
+	public String getAttractionSeq() {
 		return mapper.getAttractionSeq();
 	}
 
@@ -117,21 +117,6 @@ public class AttractionDAOImpl implements AttractionDAO {
 	@Override
 	public List<AttractionImgDTO> getAllAttractionImgList() {
 		return mapper.getAllAttractionImgList();
-	}
-
-	@Override
-	public int addAWC(AttractionDTO dto) {
-		return mapper.addAWC(dto);
-	}
-	
-	@Override
-	public int addAWCWin(AttractionDTO dto) {
-		return mapper.addAWCWin(dto);
-	}
-	
-	@Override
-	public int addAWCFinalWin(AttractionDTO dto) {
-		return mapper.addAWCFinalWin(dto);
 	}
 
 }

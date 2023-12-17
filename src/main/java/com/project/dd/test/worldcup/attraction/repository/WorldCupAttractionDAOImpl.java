@@ -31,6 +31,11 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 		return mapper.getAllAttraction(map);
 	}
 	
+	@Override
+	public List<AttractionDTO> getAttractionList() {
+		return mapper.getAttractionList();
+	}
+	
 	// 운영중인 어트랙션 리스트 가져오기
 	@Override
 	public List<AttractionDTO> getRunAttraction(String close) {
@@ -58,6 +63,11 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 	@Override
 	public void updateAttractionStatus(Map<String, String> map) {
 		mapper.updateAttractionStatus(map);
+	}
+	
+	@Override
+	public int getAWCFinalWinTotalCount() {
+		return mapper.getAWCFinalWinTotalCount();
 	}
 	
 	// 선택되지 않은 어트랙션 가져오기
@@ -101,6 +111,36 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 		}
 
 		return selectedTwoAttractions;
+	}
+
+	@Override
+	public int addAWC(AttractionDTO dto) {
+		return mapper.addAWC(dto);
+	}
+	
+	@Override
+	public int addAWCWin(AttractionDTO dto) {
+		return mapper.addAWCWin(dto);
+	}
+	
+	@Override
+	public int addAWCFinalWin(AttractionDTO dto) {
+		return mapper.addAWCFinalWin(dto);
+	}
+
+	@Override
+	public void updateAWCMatchCount(String attractionSeq) {
+		mapper.updateAWCMatchCount(attractionSeq);
+	}
+	
+	@Override
+	public void updateAWCWinCount(String attractionSeq) {
+		mapper.updateAWCWinCount(attractionSeq);
+	}
+	
+	@Override
+	public void updateAWCFinalWinCount(String attractionSeq) {
+		mapper.updateAWCFinalWinCount(attractionSeq);
 	}
 	
 }

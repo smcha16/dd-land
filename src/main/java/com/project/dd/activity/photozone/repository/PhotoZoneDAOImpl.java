@@ -37,4 +37,79 @@ public class PhotoZoneDAOImpl implements PhotoZoneDAO {
 	public int getTotalCount() {
 		return mapper.getTotalCount();
 	}
+
+	@Override
+	public List<PhotoZoneImgDTO> getAllPhotozoneImgList() {
+		return mapper.getAllPhotozoneImgList();
+	}
+
+	@Override
+	public int addPhotozone(PhotoZoneDTO dto) {
+		return mapper.addPhotozone(dto);
+	}
+
+	@Override
+	public int checkLocationDuplication(PhotoZoneDTO dto) {
+		return mapper.checkLocationDuplication(dto);
+	}
+
+	@Override
+	public int checkNameDuplication(PhotoZoneDTO dto) {
+		return mapper.checkNameDuplication(dto);
+	}
+
+	@Override
+	public String getPhotozoneSeq() {
+		return mapper.getPhotozoneSeq();
+	}
+
+	@Override
+	public int addPhotozoneLocation(PhotoZoneDTO dto) {
+		return mapper.addPhotozoneLocation(dto);
+	}
+
+	@Override
+	public int addPhotozoneImg(PhotoZoneImgDTO idto) {
+		return mapper.addPhotozoneImg(idto);
+	}
+
+	@Override
+	public int editPhotozone(PhotoZoneDTO dto) {
+		return mapper.editPhotozone(dto);
+	}
+
+	@Override
+	public int editPhotozoneLocation(PhotoZoneDTO dto) {
+		return mapper.editPhotozoneLocation(dto);
+	}
+
+	@Override
+	public int delPhotozoneImg(String seq) {
+		return mapper.delPhotozoneImg(seq);
+	}
+
+	@Override
+	public int countPhotozoneImg(String seq) {
+		return mapper.countPhotozoneImg(seq);
+	}
+
+	@Override
+	public int delPhotozoneImgByImgSeq(String imgseq) {
+		return mapper.delPhotozoneImgByImgSeq(imgseq);
+	}
+
+	@Override
+	public int countPhotozoneLocation(String seq) {
+		return mapper.countPhotozoneLocation(seq);
+	}
+
+	@Override
+	public int delPhotozoneLocation(String seq) {
+		return mapper.delPhotozoneLocation(seq);
+	}
+
+	@Override
+	public int delPhotozone(String seq) {
+		return mapper.delPhotozone(seq);
+	}
 }
