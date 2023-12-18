@@ -28,7 +28,7 @@ public class UserMBTIController {
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 
 		// 페이징
-		Map<String, String> map = mbtiService.paging(page);
+		Map<String, String> map = mbtiService.paging(page, 9);
 
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
@@ -40,20 +40,9 @@ public class UserMBTIController {
 	@GetMapping(value = "/user/test/mbti/detail.do")
 	public String detail(Model model, @RequestParam String mbti_seq) {	
 		
-		// MBTI 1개
-		MBTIDTO mdto = mbtiService.getMBTI(mbti_seq);
-		
-		// Attraction 1개
-		AttractionDTO adto = attractionService.getAttraction(mdto.getAttraction_seq());
-
-		// List<AttractionImgDTO> 가져오기
-		List<AttractionImgDTO> imglist = attractionService.getAttractionImgList(mdto.getAttraction_seq());
-
-		// imglist > AttractionDTO에 담기
-		adto.setImgList(imglist);
-
-		model.addAttribute("mdto", mdto);
-		model.addAttribute("adto", adto);
+		// MBTI
+		MBTIDTO dto = mbtiService.getMBTI(mbti_seq);
+		model.addAttribute("dto", dto);
 
 		return "user/test/mbti/detail";
 	}

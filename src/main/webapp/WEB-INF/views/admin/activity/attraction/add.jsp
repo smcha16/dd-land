@@ -72,7 +72,7 @@
           			<div class="card-body">
             			<h5 class="card-title">어트랙션 정보 입력</h5>
 
-<!-- 어트랙션명, 어트랙션소개, 탑승인원, (운영시간 > 생략) 제한사항, 위치, 이미지 -->
+						<!-- 어트랙션명, 어트랙션소개, 탑승인원, (운영시간 > 생략) 제한사항, 위치, 이미지 -->
             			<form method="POST" action="/dd/admin/activity/attraction/addok.do" enctype="multipart/form-data">
             			
             				<!-- 어트랙션명 -->
@@ -230,6 +230,11 @@
 		// CSRF token
         var csrfHeaderName = "${_csrf.headerName}";
         var csrfTokenValue = "${_csrf.token}";
+        
+        
+        //test
+        console.log('lat: ' + lat);
+        console.log('lng: ' + lng);
 		
 		$.ajax({
 			type: 'POST',

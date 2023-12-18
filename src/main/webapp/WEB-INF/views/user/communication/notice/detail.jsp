@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <style>
 	* {
@@ -11,6 +12,9 @@
 	    align-items: center;
 	    height: 368.4px;
 	    padding: 100px 0 7px;
+	}
+	section div {
+		width: 1000px;
 	}
 	section h1 {
 		font-size: 48px;
@@ -59,8 +63,9 @@
 <section id="gallery" class="gallery section-bg">
     <div>
         <h1><c:out value="${dto.subject}" /></h1>
+        
         <div id="regdate">
-            <i class="bi bi-calendar-check"></i><span>등록일</span>${dto.regdate}
+            <i class="bi bi-calendar-check"></i><span>등록일</span>${fn:substring(dto.regdate, 0, 10)}
         </div>
     </div>
 </section>

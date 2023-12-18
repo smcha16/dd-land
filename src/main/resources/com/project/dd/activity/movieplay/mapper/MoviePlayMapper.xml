@@ -8,16 +8,10 @@
 	<!-- 페이징 -->
 	<select id="getTotalCount"  parameterType="String" resultType="int">
       <if test="solting == 'admin'">
-      	select a.*,
-		(select name from tblTheater where theater_seq = a.theater_seq) as theater_name,
-		(select name from tblMovie where movie_seq = a.movie_seq) as movie_name,
-		(select story from tblMovie where movie_seq = a.movie_seq) as story,
-		(select img from tblMovie where movie_seq = a.movie_seq) as img,
-		nvl((select 'y' from tblTheaterClose where to_char(sysdate, 'yyyy-mm-dd') between start_date and end_date and theater_seq = a.theater_seq), 'n') as close
-		from tblMovieplay a
-		order by movie_play_seq desc
+      	select count(*) from tblMovieplay
       </if>
       <if test="solting == 'user'">
+      	select count(*) from tblMovieplay
       </if>
 	</select>
 	
@@ -25,7 +19,7 @@
 		select *
 		from (select n.*, rownum as rnum from(
 		
-				select a.*,
+				select a.movie_play_seq, a.movie_seq, a.time, to_char(a.start_date, 'yyyy-mm-dd') as start_date, to_char(a.end_date, 'yyyy-mm-dd') as end_date, a.theater_seq,
 				(select name from tblTheater where theater_seq = a.theater_seq) as theater_name,
 				(select name from tblMovie where movie_seq = a.movie_seq) as movie_name,
 				(select story from tblMovie where movie_seq = a.movie_seq) as story,
@@ -50,8 +44,16 @@
 		update tblMoviePlay set time = #{time}, start_date = TO_DATE(#{start_date}, 'YYYY-MM-DD'), end_date = TO_DATE(#{end_date}, 'YYYY-MM-DD'), theater_seq = #{theater_seq}
 	</update>
 	
-	<select id="getMoviePlay" parameterType="String">
+	<select id="getMoviePlay" parameterType="String" resultType="com.project.dd.activity.movieplay.domain.MoviePlayDTO">
 		
+	</select>
+	
+	<select id="getMovieList" resultType="com.project.dd.activity.movie.domain.MovieDTO">
+		select * from tblMovie where name not like '%(상영종료)%' order by movie_seq desc
+	</select>
+	
+	<select id="getTheaterList" resultType="com.project.dd.activity.theater.domain.TheaterDTO">
+		select * from tblTheater where name not like '%(운영종료)%' order by theater_seq desc
 	</select>
 	
 </mapper>

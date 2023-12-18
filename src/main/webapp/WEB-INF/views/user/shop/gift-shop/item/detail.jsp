@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
-<link href="/dd/resources/air-datepicker/dist/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
-    <!-- Air datepicker css -->
-    <script src="/dd/resources/air-datepicker/dist/js/datepicker.js"></script> <!-- Air datepicker js -->
-    <script src="/dd/resources/air-datepicker/dist/js/i18n/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
+<link href="/dd/resources/air-datepicker/dist/css/datepicker.min.css"
+	rel="stylesheet" type="text/css" media="all">
+<!-- Air datepicker css -->
+<script src="/dd/resources/air-datepicker/dist/js/datepicker.js"></script>
+<!-- Air datepicker js -->
+<script src="/dd/resources/air-datepicker/dist/js/i18n/datepicker.ko.js"></script>
+<!-- 달력 한글 추가를 위해 커스텀 -->
 
 <!-- Font Awesome -->
 <link rel="stylesheet"
@@ -30,10 +35,6 @@
 * {
 	font-family: 'SUIT-Regular';
 }
-
-
-
-
 
 /* 폰트 테스트 끝 */
 body {
@@ -190,33 +191,37 @@ section:first-of-type {
 }
 
 /* 버튼 */
-	#button {
-		display: flex;
-		justify-content: center;
-		margin-top: 50px;
-		margin-bottom: 50px;
-	}
-	#back-button {
-		background-color: #CE1212;
-		border-color: #CE1212;
-	}
-	#back-button i {
-		margin-right: 7px;
-	}
-	div#reservation-btn {
-		display: flex;
-		justify-content: center;
-		padding: 0 0 50px 0;
-	}	
-	div#reservation-btn > button {
-		padding: 13px 15px;
-		background: #b71c1c;
-		border: #b71c1c;
-		border-radius: 7px;
-		color: #FFF;
-		font-weight: bold;
-		font-size: 17px;
-	}
+#button {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#back-button {
+	background-color: #CE1212;
+	border-color: #CE1212;
+}
+
+#back-button i {
+	margin-right: 7px;
+}
+
+div#reservation-btn {
+	display: flex;
+	justify-content: center;
+	padding: 0 0 50px 0;
+}
+
+div#reservation-btn>button {
+	padding: 13px 15px;
+	background: #b71c1c;
+	border: #b71c1c;
+	border-radius: 7px;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 17px;
+}
 </style>
 
 <!-- ======= Title & Image Section ======= -->
@@ -248,65 +253,85 @@ section:first-of-type {
 			<div class="value">${dto.info }</div>
 		</div>
 		<div class="result-item">
-		<div class="label">상품 가격</div>
-			<div class="value">${dto.price} 원</div>
+			<div class="label">상품 가격</div>
+			<div class="value">${dto.price}원</div>
 		</div>
+		<form method="post" action="/dd/member/purchase/view.do">
 		<div class="result-item">
 			<div class="label">상품 개수</div>
-			<div class="value">몇개 살래?</div>
-			<div>
-				<button>장바구니</button>
-				<button>바로구매</button>
-			</div>
-			<div>
-				<input type="text" id="datepicker" data-language='ko'>
-				<label>Date</label>
-				<span></span>
-			</div>
-			<div class="datepicker-here" data-language='ko'></div>
-			<input type="text"
-    data-range="true"
-    data-multiple-dates-separator=" - "
-    data-language="ko"
-    class="datepicker-here"/>
+			<sec:authorize access="isAnonymous()">
+				<div class="value">상품을 구매하시려면 로그인하세요.</div>
+			</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+					<div class="value">
+						<select name="ea">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select> 개
+					</div>
+					<div>
+						<button id="back-button" class="btn btn-primary cart" type="button" onclick="location.href='/dd/member/purchase/view.do'">장바구니</button>
+						<button id="back-button" class="btn btn-primary" type="submit">바로구매</button>
+					</div>
+			</sec:authorize>
 		</div>
+		<input type="hidden" name="item_seq" value="${dto.item_seq }">
+		<input type="hidden" name="name" value="${dto.name }">
+		<input type="hidden" name="price" value="${dto.price }">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		</form>
 	</div>
 </div>
 
 <!-- 목록보기 버튼 -->
 <div id="button">
-	<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/shop/gift-shop/item/view.do';"><i class="bi bi-list"></i>목록</button>
+	<button type="button" id="back-button" class="btn btn-primary"
+		onclick="location.href='/dd/user/shop/gift-shop/item/view.do';">
+		<i class="bi bi-list"></i>목록
+	</button>
 </div>
 
 <script>
-    $("#datepicker").datepicker({
-    	language: 'ko'
-    }); 
+	$('.cart').click(function() {
+		let num = $("select[name='num']").val();
+		let item_seq = '${dto.item_seq}';
+		
+		$.ajax({
+			type: 'POST',
+			url: '',
+			data: ,
+			dataType: 'json',
+			success:
+		});
+	});
 </script>
 
-<!-- view2 Template 전용 JavaScript -->
-<!-- Kakao Map Open API -->
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c089ee6f3d885cfbe52b2f15d8f3f531"></script>
+<script>
+	$("#datepicker").datepicker({
+		language : 'ko'
+	});
+</script>
 
 <!-- Slick Slider -->
 <script type="text/javascript"
 	src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <script>
-
-
 	/* Slick Slider */
-	$('.image-slider').slick({
-		variableWidth : true,
-		infinite : true,
-		autoplay : true,
-		autoplaySpeed : 5000,
-		pauseOnHover : true,
-		arrows : true,
-		prevArrow : "<button type='button' class='slick-prev'>&#10094;</button>",
-		nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
-		draggable : true
-	});
+	$('.image-slider')
+			.slick(
+					{
+						variableWidth : true,
+						infinite : true,
+						autoplay : true,
+						autoplaySpeed : 5000,
+						pauseOnHover : true,
+						arrows : true,
+						prevArrow : "<button type='button' class='slick-prev'>&#10094;</button>",
+						nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
+						draggable : true
+					});
 </script>
 <!-- 끝 -->

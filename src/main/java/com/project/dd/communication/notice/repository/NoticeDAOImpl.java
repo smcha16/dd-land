@@ -20,9 +20,9 @@ public class NoticeDAOImpl implements NoticeDAO {
 	/* 총 개수 */
 
 	@Override
-	public int getTotalCount() {
+	public int getTotalCount(Map<String, String> map) {
 		
-		return mapper.getTotalCount();
+		return mapper.getTotalCount(map);
 		
 	}
 	

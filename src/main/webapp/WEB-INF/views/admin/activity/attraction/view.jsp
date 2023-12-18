@@ -86,14 +86,14 @@
 	}
 	
 	/* slick slider */
-	/* .image-slider {
-		width: 700px;
+	.image-slider {
+		width: 800px;
 		height: 350px;
-    } */
+    }
     
 	.image-slider div {
-		/* width: 700px;
-		height: 350px; */
+		width: 800px;
+		height: 350px;
 		overflow: hidden;
 	}
 	
@@ -141,6 +141,10 @@
 	
 	.m-info {
 		padding: 10px;
+	}
+	
+	.modal-body {
+		padding: 0;
 	}
 	
 </style>
@@ -466,28 +470,15 @@
 	</c:forEach>
 	
 	/* 반응형 슬릭 이미지 조절 테스트 */
-	$('#modal').on('shown.bs.modal', function () {
-		if ($('.modal-content').css('width') == '800px') {
-			$('.slick-slide').css('width', '800px');
-		} else {
-			$('.slick-slide').css('width', '500px');
-		}
-		
-		setTimeout($('.image-slider').css('display', 'display'), 500);
-		
-	});
-
 	$(window).resize(function() {
 	
 		if ($('.modal-content').css('width') == '800px') {
-			$('.slick-slide').css('width', '800px');
+			$('.image-slider').css('width', '800px');
+			$('.image-slider div').css('width', '800px');
 		} else {
-			$('.slick-slide').css('width', '500px');
+			$('.image-slider').css('width', '500px');
+			$('.image-slider div').css('width', '500px');
 		}
-	});
-	
-	$(window).resize(function() {
-		$('.image-slider')[0].slick.refresh();
 	});
 	
 	

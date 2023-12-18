@@ -78,7 +78,7 @@ public class AdminAttractionController {
 		if (result > 0) {
 			
 			//어트랙션 월드컵 관련 insert
-			String seq = service.getAttractionSeq() + "";
+			String seq = service.getAttractionSeq();
 			
 			awcService.addAWC(dto, seq);
 			awcService.addAWCWin(dto, seq);

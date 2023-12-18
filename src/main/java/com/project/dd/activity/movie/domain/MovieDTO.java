@@ -2,7 +2,7 @@ package com.project.dd.activity.movie.domain;
 
 import java.util.List;
 
-import com.project.dd.activity.moveplay.domain.MoviePlayDTO;
+import com.project.dd.activity.movieplay.domain.MoviePlayDTO;
 
 import lombok.Data;
 

@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,6 +83,48 @@ public class InquiryService {
 	public int addInquiry(InquiryDTO dto) {
 		
 		return dao.addInquiry(dto);
+		
+	}
+	
+	/* 페이징 */
+
+	public Map<String, String> paging(int page) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		int pageSize = 10;
+		
+		int startIndex = (page - 1) * pageSize + 1;
+		int endIndex = startIndex + pageSize - 1;
+
+		map.put("startIndex", String.format("%d", startIndex));
+		map.put("endIndex", String.format("%d", endIndex));
+		
+		int totalPosts = dao.getTotalCount();
+		int totalPages = (int)Math.ceil((double)totalPosts / pageSize);
+		
+		map.put("totalPosts", String.format("%d", totalPosts));
+		map.put("totalPages", String.format("%d", totalPages));
+		
+		return map;
+		
+	}
+	
+	/* 목록 */
+
+	public List<InquiryDTO> getInquiryList(Map<String, String> map) {
+		
+		List<InquiryDTO> list = dao.getInquiryList(map);
+		
+		return list;
+		
+	}
+	
+	/* 답변 */
+
+	public void editAnswer(InquiryDTO dto) {
+		
+		dao.editAnswer(dto);
 		
 	}
 	

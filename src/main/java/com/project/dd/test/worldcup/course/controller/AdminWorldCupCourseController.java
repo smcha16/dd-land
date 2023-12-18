@@ -20,21 +20,48 @@ import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
 public class AdminWorldCupCourseController {
 
 	@Autowired
-	private WorldCupCourseService courseService;
+	private WorldCupCourseService cwcService;
 
+	@GetMapping(value = "/admin/test/worldcup/course/list.do")
+	public String list(@RequestParam(defaultValue = "1") int page, Model model,
+			@RequestParam(defaultValue = "Y") String isTest) {
+
+		Map<String, String> map = cwcService.paging(page);
+
+		model.addAttribute("currentPage", page);
+		model.addAttribute("map", map);
+		model.addAttribute("listCourse", cwcService.getAllCourse(map));
+
+		return "admin/test/worldcup/course/list";
+
+	}
+	
 	@GetMapping(value = "/admin/test/worldcup/course/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model,
 			@RequestParam(defaultValue = "Y") String isTest) {
 
-		Map<String, String> map = courseService.paging(page);
+		Map<String, String> map = cwcService.paging(page);
 
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
-		model.addAttribute("listCourse", courseService.getAllCourse(map));
-		model.addAttribute("cwcFinalWinTotalCount", courseService.getCWCFinalWinTotalCount());
+		model.addAttribute("listCourse", cwcService.getAllCourse(map));
+		model.addAttribute("cwcFinalWinTotalCount", cwcService.getCWCFinalWinTotalCount());
 
 		return "admin/test/worldcup/course/view";
 
+	}
+	
+	@PostMapping(value = "/admin/test/worldcup/course/view.do")
+	public String updateCourseStatus(@RequestParam String courseSeq, @RequestParam String isTest, Model model) {
+		// System.out.println("seq:" + courseSeq + " check:" + isTest);
+
+		Map<String, String> map = new HashMap<>();
+		map.put("isTest", isTest);
+		map.put("courseSeq", courseSeq);
+
+		cwcService.updateCourseStatus(map);
+
+		return "redirect:/admin/test/worldcup/course/view.do";
 	}
 
 	@GetMapping(value = "/admin/test/worldcup/course/add.do")
@@ -48,35 +75,68 @@ public class AdminWorldCupCourseController {
 		// System.out.println("DTO: " + dto.toString());
 		// System.out.println("Image File Name: " + image.getOriginalFilename());
 		
-		int result = courseService.addCourse(dto, image, req);
+		int result = cwcService.addCourse(dto, image, req);
 		
 		if (result > 0) {
-			String courseSeq = courseService.getCourseSeq();
+			String courseSeq = cwcService.getCourseSeq();
 			//System.out.println(courseSeq);
 			
-			courseService.addCWC(dto, courseSeq);
-			courseService.addCWCWin(dto, courseSeq);
-			courseService.addCWCFinalWin(dto, courseSeq);
+			cwcService.addCWC(dto, courseSeq);
+			cwcService.addCWCWin(dto, courseSeq);
+			cwcService.addCWCFinalWin(dto, courseSeq);
 			
-			return "redirect:/admin/test/worldcup/course/view.do";
+			return "redirect:/admin/test/worldcup/course/list.do";
 		} else {
 			model.addAttribute("alertMessage", "코스 추가에 실패했습니다.");
 			return "redirect:/admin/test/worldcup/course/add.do";
 		}
 		
 	}
-
-	@PostMapping(value = "/admin/test/worldcup/course/view.do")
-	public String updateCourseStatus(@RequestParam String courseSeq, @RequestParam String isTest, Model model) {
-		// System.out.println("seq:" + courseSeq + " check:" + isTest);
-
-		Map<String, String> map = new HashMap<>();
-		map.put("isTest", isTest);
-		map.put("courseSeq", courseSeq);
-
-		courseService.updateCourseStatus(map);
-
-		return "redirect:/admin/test/worldcup/course/view.do";
+	
+	@GetMapping(value = "/admin/test/worldcup/course/edit.do")
+	public String edit(Model model, String seq) {
+		
+		CourseDTO dto = cwcService.getCourse(seq);
+		String img = dto.getImg();
+		
+		//UUID 제거
+		if (img.length() > 37 && img.contains("-") && img.contains("_")) {
+			String originalFileName = img.substring(img.indexOf("_") + 1);
+			dto.setImg(originalFileName);
+		}
+		
+		model.addAttribute("dto", dto);
+		
+		return "admin/test/worldcup/course/edit";
 	}
+	
+	@PostMapping(value = "/admin/test/worldcup/course/editok.do")
+	public String editok(Model model, CourseDTO dto, MultipartFile image, HttpServletRequest req) {
 
+		int result = cwcService.editCourse(dto, image, req);
+		
+		if (result > 0) {
+			return "redirect:/admin/test/worldcup/course/list.do";
+		} else {
+			return "redirect:/admin/test/worldcup/course/edit.do";
+		}
+	}
+	
+	@PostMapping(value = "/admin/test/worldcup/course/del.do")
+	public String del(Model model, String[] course_seq) {
+
+		cwcService.delCWC(course_seq);
+		cwcService.delCWCWin(course_seq);
+		cwcService.delCWCFinalWin(course_seq);
+		
+		int result = cwcService.delCourse(course_seq);
+		
+		if (result > 0) {
+			return "redirect:/admin/test/worldcup/course/list.do";
+		} else {
+			model.addAttribute("alertMessage", "코스 삭제에 실패했습니다.");
+			return "redirect:/admin/test/worldcup/course/list.do";
+		}
+	}
+	
 }

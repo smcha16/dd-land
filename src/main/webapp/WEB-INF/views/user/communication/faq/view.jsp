@@ -135,7 +135,9 @@
 					
 					<div style="width: 400px; height: 40px; position: relative;">
 					
-						<form method="GET" action="#" id="search-form">
+						<form method="GET" action="/dd/user/communication/faq/view.do" id="search-form">
+							<input type="hidden" name="type" value="${map.type}">
+						
 							<input type="text" name="word" id="search-field" autocomplete="off" style="width: 325px; background-color: transparent; border: 0; position: absolute; left: 25px;">
 		                	<button type="submit" id="search-button" style="background: none; border: none; cursor: pointer; position: absolute; right: 10px; top: 6px;">
 						        <i class="fa-solid fa-magnifying-glass"></i>
@@ -143,6 +145,7 @@
 		                </form>
 		                
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -190,6 +193,16 @@
 </main>
 		
 <script>
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#search-field').val('${map.word}');
+	</c:if>
+	
+	$(document).keydown(function(event) {
+		if (event.key === 'F5') {
+			location.href='/dd/user/communication/faq/view.do';
+		}
+	});
+
     document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".faq").forEach((faq) => {
             faq.addEventListener("click", () => {
