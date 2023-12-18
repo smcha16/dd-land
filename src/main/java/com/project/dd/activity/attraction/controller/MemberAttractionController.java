@@ -40,9 +40,6 @@ public class MemberAttractionController {
 	
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, BookUserDTO dto, Authentication auth) {
-
-		
-		
 		
 		System.out.println(((CustomUser)auth.getPrincipal()).getDto());
 		System.out.println(((CustomUser)auth.getPrincipal()).getUsername());

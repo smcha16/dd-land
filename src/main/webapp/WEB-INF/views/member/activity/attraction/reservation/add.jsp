@@ -230,16 +230,11 @@
 	/* 화면 로딩 시, 현재 시간 확인 하여 이전 시간은 'disabled' 처리 */
 	let currentDate = new Date();
 	
-	console.log('n: ' + $('[data-type="n"]').length);
-	console.log('y: ' + $('[data-type="y"]').length);
-	
 	/* 필수 항목이 반드시 입력되어야만 submit 클릭 시 넘어가도록 */
 	function submit() {
 		
-		let countTime = $('[data-type="y"]').length;
-		console.log('y: ' + countTime);
-		console.log('n: ' + $('[data-type="n"]').length);
-		console.log('y: ' + $('[data-type="y"]').length);
+		let countTime = $('.time-btn[data-type="y"]').length;
+		console.log('countTime: ' + countTime);
 		
 		if (!$('input[name="capacity"]').val().trim()
 				|| countTime != 1) {
@@ -262,15 +257,9 @@
 		$('.time-btn').data('type', 'n');
 		$(this).css('background-color', 'gold');
 		$(this).data('type', 'y');
-		console.log('현재버튼의 data-type: ' + $(this).data('type'));
-		console.log('근데 나는 누구?: ' + this);
-		
-		console.log('n: ' + $('[data-type="n"]').length);
-		console.log('y: ' + $('[data-type="y"]').length);
 		
 		//선택한 버튼의 값 전송할 태그의 value로 넣기
 		$('input[name="attraction_book_seq"]').val($(this).val());
-		console.log($('input[name="attraction_book_seq"]').val());
 		
 		let obj = {
 				attraction_book_seq: $('input[name="attraction_book_seq"]').val(),

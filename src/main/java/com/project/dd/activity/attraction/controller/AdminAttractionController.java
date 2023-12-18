@@ -164,6 +164,33 @@ public class AdminAttractionController {
 		}
 	}
 	
+	@GetMapping(value = "/reservation/view.do")
+	public String reservationView(@RequestParam(defaultValue = "1") int page, Model model) {
+
+		//페이징
+		String solting = "admin";
+		Map<String, String> map = service.paging(page, solting);
+		
+		//Attraction 목록(운영종료 제외)
+		List<AttractionDTO> list = service.getAttractionList(map);
+		
+		//모달용 AttractionImg 목록
+		List<AttractionImgDTO> ilist = service.getAllAttractionImgList();
+		
+		//페이징 전달
+		model.addAttribute("currentPage", page);
+		model.addAttribute("map", map);
+		
+		//어트 목록 전달
+		model.addAttribute("list", list);
+		
+		//모달용 AttractionImg 목록 전달
+		model.addAttribute("ilist", ilist);
+		
+		return "admin/activity/attraction/reservationView";
+		
+	}
+	
 	
 	
 
