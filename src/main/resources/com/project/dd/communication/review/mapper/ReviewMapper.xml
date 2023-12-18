@@ -3,28 +3,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.dd.communication.review.mapper.ReviewMapper">
-	<select id="getTotalCount" resultType="int">
-		select count(*) from tblReview
-	</select>
 	
-	<select id="getReviewList" parameterType="map" resultType="com.project.dd.communication.review.domain.ReviewDTO">
-		select *
-		from (select r.*, rownum as rnum from (select r.*, visit_date, u.name, u.email, (select img from tblReviewImg i where r.review_seq = i.review_seq and rownum = 1) as img
-              from tblReview r
-              	inner join tblUserBook ub
-              		on r.user_book_seq = ub.user_book_seq
-                inner join tblTicketBook tb
-                    on ub.ticket_book_seq = tb.ticket_book_seq
-                inner join tblUser u
-                    on ub.user_seq = u.user_seq
-			  <if test="order == 'n'.toString()">
-				order by regdate desc, review_seq desc
-			  </if>
-			  <if test="order == 'y'.toString()">
-				order by readcount desc, review_seq desc
-			  </if>
-		) r)
-		where rnum between #{startIndex} and #{endIndex}
+	<!-- 총 개수 -->
+
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(*)
+		from tblReview r
+			inner join tblUserBook ub
+		    	on r.user_book_seq = ub.user_book_seq
+		    inner join tblUser u
+		        on ub.user_seq = u.user_seq
+		<if test="searchStatus == 'y'.toString()">
+	        where name like '%' || #{word} || '%' or email like '%' || #{word} || '%'
+	    </if>
 	</select>
 
 	<resultMap type="com.project.dd.communication.review.domain.ReviewDTO" id="reviewMap">
@@ -46,8 +37,38 @@
 		<result property="review_seq" column="review_seq" />
 	</resultMap>
 	
-	<select id="getReview" parameterType="String" resultMap="reviewMap">
+	<!-- 목록 -->
+	
+	<select id="getReviewList" parameterType="map" resultMap="reviewMap">
 		select r.review_seq, r.subject, r.content, r.regdate, r.readcount, r.user_book_seq, r.name, r.email, r.visit_date, i.img
+		from (select r.*, rownum as rnum
+		      from (select r.*, visit_date, u.name, u.email
+		            from tblReview r
+		                inner join tblUserBook ub
+		                    on r.user_book_seq = ub.user_book_seq
+		                inner join tblTicketBook tb
+		                    on ub.ticket_book_seq = tb.ticket_book_seq
+		                inner join tblUser u
+		                    on ub.user_seq = u.user_seq) r
+		            <if test="searchStatus == 'y'.toString()">
+				        where name like '%' || #{word} || '%' or email like '%' || #{word} || '%'
+				    </if>
+				    ) r
+		      left outer join tblReviewImg i
+		      	  on r.review_seq = i.review_seq
+		where rnum between #{startIndex} and #{endIndex}
+		<if test="order == 'n'.toString()">
+			order by regdate desc, review_seq desc
+		</if>
+		<if test="order == 'y'.toString()">
+			order by readcount desc, review_seq desc
+		</if>
+	</select>
+	
+	<!-- 상세 -->
+
+	<select id="getReview" parameterType="String" resultMap="reviewMap">
+		select r.review_seq, r.subject, r.content, r.regdate, r.readcount, r.user_book_seq, r.name, r.email, r.visit_date, i.review_img_seq, i.img
 		from (select r.*, rownum as rnum
 		      from (select r.*, visit_date, u.name, u.email
 		            from tblReview r
@@ -62,7 +83,33 @@
 		where r.review_seq = #{seq}
 	</select>
 	
+	<!-- 조회수 -->
+
 	<update id="updateReadCount" parameterType="String">
 		update tblReview set readcount = readcount + 1
 	</update>
+	
+	<!-- 파일 수정 -->
+	
+	<delete id="editFile" parameterType="String">
+		delete from tblReviewImg where review_img_seq = #{seq}
+	</delete>
+	
+	<!-- 수정 -->
+	
+	<update id="editReview" parameterType="com.project.dd.communication.review.domain.ReviewDTO">
+		update tblReview set subject = #{subject}, content = #{content} where review_seq = #{review_seq}
+	</update>
+	
+	<!-- 파일 삭제 -->
+	
+	<delete id="deleteFile" parameterType="String">
+		delete from tblReviewImg where review_seq = #{seq}
+	</delete>
+	
+	<!-- 삭제 -->
+	
+	<delete id="deleteReview" parameterType="String">
+		delete from tblReview where review_seq = #{seq}
+	</delete>
 </mapper>

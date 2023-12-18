@@ -20,9 +20,9 @@ public class FaqDAOImpl implements FaqDAO {
 	/* 총 개수 */
 	
 	@Override
-	public int getTotalCount(String type) {
+	public int getTotalCount(Map<String, String> map) {
 
-		return mapper.getTotalCount(type);
+		return mapper.getTotalCount(map);
 
 	}
 	

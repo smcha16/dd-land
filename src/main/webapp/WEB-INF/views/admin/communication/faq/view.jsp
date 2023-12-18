@@ -1,5 +1,5 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
 	#main h1 {
@@ -58,8 +58,11 @@
   	.breadcrumb a:hover {
       	color: #0d6efd;
     }
-  	.table {
+  	table {
     	text-align: center;
+  	}
+  	th {
+    	background-color: #f2f2f2 !important;
   	}
   	th:nth-child(1) {
   		width: 7%;
@@ -73,17 +76,14 @@
 	th:nth-child(4) {
 		width: 68%;
 	}
-  	th {
-    	background-color: #f2f2f2 !important;
-  	}
-  	.table td i {
+  	td i {
 		color: #0d6efd;
 		margin-top: 7px;
 	}
-	.table td a {
+	td a {
 		color: #000;
 	}
-	.table td a:hover {
+	td a:hover {
 		font-weight: bold !important;
       	color: #0d6efd !important;
     }
@@ -106,8 +106,8 @@
 					<div class="col-12">
 
               			<div id="search" class="header">
-                  			<form method="GET" action="#" class="search-form d-flex align-items-center">
-                    			<input type="text" name="query" placeholder="Search">
+                  			<form method="GET" action="/dd/admin/communication/faq/view.do" class="search-form d-flex align-items-center">
+                    			<input type="text" name="word" id="search-field" placeholder="제목을 입력하세요." autocomplete="off">
                     			<button type="submit"><i class="bi bi-search"></i></button>
                   			</form>
               			</div>
@@ -122,6 +122,8 @@
                       					<li class="breadcrumb-item"><a href="javascript:void(0);" onclick="del();">삭제</a></li>
                     				</ol>
 								</nav>
+								
+								<!-- 테이블 -->
 								
 								<form method="POST" action="/dd/admin/communication/faq/del.do" id="del-form">
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -158,7 +160,7 @@
 								                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								            </div>
 								            <div class="modal-body">
-								            	<div class="mt-3" id="modal-answer"></div>
+								            	<div id="modal-answer" class="mt-3" style="margin-top: 0 !important;"></div>
 								            </div>
 								        </div>
 								    </div>
@@ -178,16 +180,30 @@
 										</c:choose>
 									</c:forEach>
 								</ul>
+								
                				</div>
              			</div>
            			</div>
+           			
 				</div>
 			</div>
 		</div>
 	</section>
+	
 </main>
 
 <script>
+	<!-- 검색 -->
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#search-field').val('${map.word}');
+	</c:if>
+	
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/admin/communication/faq/view.do';
+	    }
+	});
+
 	<!-- 수정 -->
 	
 	function edit() {

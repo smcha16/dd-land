@@ -18,11 +18,13 @@ public class FaqService {
 	
 	/* 페이징 */
 
-	public Map<String, String> paging(String type, int page) {
+	public Map<String, String> paging(String type, String searchStatus, String word, int page) {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		
 		map.put("type", type);
+		map.put("searchStatus", searchStatus);
+		map.put("word", word);
 
 		int pageSize = 10;
 		
@@ -32,7 +34,7 @@ public class FaqService {
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 		
-		int totalPosts = dao.getTotalCount(type);
+		int totalPosts = dao.getTotalCount(map);
 		int totalPages = (int)Math.ceil((double)totalPosts / pageSize);
 		
 		map.put("totalPosts", String.format("%d", totalPosts));

@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
@@ -18,6 +19,14 @@
 	    padding-top: 140px;
 	    padding-bottom: 50px !important;
 	}
+	.section-header {
+	    padding-bottom: 0;
+	}
+	<c:if test="${dto.imgList[0].img != null}">
+	    .section-header {
+			padding-bottom: 30px;
+	    }
+  	</c:if>
 	section h1 {
 		font-size: 48px;
 	    text-align: center;
@@ -27,21 +36,13 @@
 		text-align: center;
 		margin-top: 40px;
 	}
-	#person, #readcount, #date span {
+	#person, .readcount, #date span {
 		font-weight: bold;
 		color: #444;
 		margin-left: 7px;
 	}
 	#person {
 		margin-right: 50px !important;
-	}
-	.section-image {
-		display: flex;
-		justify-content: center;
-		padding-bottom: 30px;
-	}
-	.section-image > img {
-		border-radius: 15px;
 	}
 	.image-slider {
 		width: 700px;
@@ -114,17 +115,19 @@
 			<h1><c:out value="${dto.subject}" /></h1>
 			<div id="info">
 				<i class="bi bi-person-fill"></i><span id="person">${dto.name} (${dto.email})</span>
-				<i class="bi bi-eye-fill"></i><span id="readcount">조회수</span><span id="readcount">${dto.readcount}</span>
+				<i class="bi bi-eye-fill"></i><span class="readcount">조회수</span><span class="readcount">${dto.readcount}</span>
 			</div>
 		</div>
 		
-		<div class="image-slider">
-			<c:forEach items="${dto.imgList}" var="dto">
-				<div>
-					<img src="/dd/resources/files/communication/review/${dto.img}" alt="Image">
-				</div>
-			</c:forEach>
-		</div>
+		<c:if test="${dto.imgList[0].img != null}">
+			<div class="image-slider">
+				<c:forEach items="${dto.imgList}" var="dto">
+					<div>
+						<img src="/dd/resources/files/communication/review/${dto.img}" alt="Image">
+					</div>
+				</c:forEach>
+			</div>
+		</c:if>
 		
 	</div>
 </section>
@@ -133,8 +136,8 @@
 
 <main id="review-detail">
 	<div id="date">
-        <i class="bi bi-calendar-check"></i><span>방문일</span><span id="visit-date">${dto.visit_date}</span>
-        <i class="bi bi-calendar-check"></i><span>등록일</span><span id="regdate">${dto.regdate}</span>
+        <i class="bi bi-calendar-check"></i><span>방문일</span><span id="visit-date">${fn:substring(dto.visit_date, 0, 10)}</span>
+        <i class="bi bi-calendar-check"></i><span>등록일</span><span id="regdate">${fn:substring(dto.regdate, 0, 10)}</span>
     </div>
     
 	<div id="content"><c:out value="${dto.content}" /></div>

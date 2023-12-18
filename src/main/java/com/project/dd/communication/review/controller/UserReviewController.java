@@ -28,11 +28,15 @@ public class UserReviewController {
 	@GetMapping(value = "/view.do")
 	public String view(Authentication auth, HttpSession session, @RequestParam(defaultValue = "n") String order, @RequestParam(defaultValue = "1") int page, Model model) {
 		
+		String solting = "user";
+		
 		session.setAttribute("read", "n");
 		
-		Map<String, String> map = service.paging(order, page);
+		Map<String, String> map = service.paging(solting, page);
+
+		map.put("order", order);
 		
-		List<ReviewDTO> list = service.getReviewList(auth, map);
+		List<ReviewDTO> list = service.getReviewList(map);
 
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);

@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <style>
 	#main h1 {
@@ -60,8 +61,11 @@
   	.breadcrumb a:hover {
       	color: #0d6efd;
     }
-  	.table {
+  	table {
     	text-align: center;
+  	}
+  	th {
+    	background-color: #f2f2f2 !important;
   	}
   	th:nth-child(1) {
   		width: 6%;
@@ -75,17 +79,14 @@
 	th:nth-child(4) {
 		width: 22%;
 	}
-  	th {
-    	background-color: #f2f2f2 !important;
-  	}
-  	.table td i {
+  	td i {
 		color: #0d6efd;
 		margin-top: 7px;
 	}
-	.table td a {
+	td a {
 		color: #000;
 	}
-	.table td a:hover {
+	td a:hover {
 		font-weight: bold !important;
       	color: #0d6efd !important;
     }
@@ -108,8 +109,8 @@
 					<div class="col-12">
 
               			<div id="search" class="header">
-                  			<form method="GET" action="#" class="search-form d-flex align-items-center">
-                    			<input type="text" name="query" placeholder="Search">
+                  			<form method="GET" action="/dd/admin/communication/notice/view.do" class="search-form d-flex align-items-center">
+                    			<input type="text" name="word" id="search-field" placeholder="제목 또는 내용을 입력하세요." autocomplete="off">
                     			<button type="submit"><i class="bi bi-search"></i></button>
                   			</form>
               			</div>
@@ -124,6 +125,8 @@
                       					<li class="breadcrumb-item"><a href="javascript:void(0);" onclick="del();">삭제</a></li>
                     				</ol>
 								</nav>
+								
+								<!-- 테이블 -->
 								
 								<form method="POST" action="/dd/admin/communication/notice/del.do" id="del-form">
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -143,7 +146,7 @@
 													<td><input type="checkbox" name="seqList" value="${dto.notice_seq}"></td>
 													<td>${map.totalPosts - numberStatus.index - map.startIndex + 1}</td>
 										            <td><a onclick="showModal(`${dto.subject}`, `${dto.content}`, '${dto.attach}')"><c:out value="${dto.subject}" /></a></td>
-										            <td>${dto.regdate}</td>
+										            <td>${fn:substring(dto.regdate, 0, 10)}</td>
 										        </tr>
 											</c:forEach>
 										</tbody>
@@ -154,18 +157,21 @@
 								
 								<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
 								    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+								    
 								        <div class="modal-content">
 								            <div class="modal-header">
 								                <h5 id="modal-subject" class="modal-title"></h5>
 								                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								            </div>
+								            
 								            <div class="modal-body">
-								            	<div class="mt-3" id="modal-content" style="margin-bottom: 30px;"></div>
+								            	<div class="mt-3" id="modal-content" style="margin-top: 0 !important;"></div>
 								                <div class="d-flex align-items-center justify-content-center">
-								                    <img id="modal-image" src="" alt="Image" style="max-width: 100%;">
+								                    <img id="modal-image" src="" alt="Image" style="max-width: 100%; margin-top: 16px">
 								                </div>
 								            </div>
 								        </div>
+								        
 								    </div>
 								</div>
 								
@@ -183,16 +189,31 @@
 										</c:choose>
 									</c:forEach>
 								</ul>
+								
                				</div>
              			</div>
+             			
            			</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	
 </main>
 
 <script>
+	<!-- 검색 -->
+
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#search-field').val('${map.word}');
+	</c:if>
+	
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/admin/communication/notice/view.do';
+	    }
+	});
+
 	<!-- 수정 -->
 	
 	function edit() {

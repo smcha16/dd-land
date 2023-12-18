@@ -13,5 +13,8 @@ public class InquiryDTO {
 	private String attach;
 	private String answer;
 	private String user_seq;
+	
+	private String name;
+	private String email;
 
 }

@@ -1,6 +1,7 @@
 package com.project.dd.communication.voc.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -31,6 +32,33 @@ public class VocDAOImpl implements VocDAO {
 	public int addVoc(VocDTO dto) {
 		
 		return mapper.addVoc(dto);
+		
+	}
+	
+	/* 총 개수 */
+
+	@Override
+	public int getTotalCount(Map<String, String> map) {
+		
+		return mapper.getTotalCount(map);
+		
+	}
+	
+	/* 목록 */
+
+	@Override
+	public List<VocDTO> getVocList(Map<String, String> map) {
+		
+		return mapper.getVocList(map);
+		
+	}
+	
+	/* 답변 */
+
+	@Override
+	public void editAnswer(VocDTO dto) {
+
+		mapper.editAnswer(dto);
 		
 	}
 
