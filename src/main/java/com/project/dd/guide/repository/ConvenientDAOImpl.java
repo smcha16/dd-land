@@ -86,6 +86,26 @@ public class ConvenientDAOImpl implements ConvenientDAO{
 		return mapper.delConvenient(seq);
 	}
 
+	@Override
+	public String getFileName(String convenient_seq) {
+		
+		return mapper.getFileName(convenient_seq);
+	}
+
+	@Override
+	public int editConv(ConvenientDTO convenient) {
+		
+		return mapper.editConv(convenient);
+	}
+
+	@Override
+	public int editConvLocation(ConvenientDTO convenient) {
+		
+		return mapper.editConvLocation(convenient);
+	}
+
+	
+
 	
 
 	

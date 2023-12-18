@@ -96,5 +96,18 @@
 	<delete id="delConvenient" parameterType="String">
 		delete from tblConvenient where convenient_seq = #{convenient_seq}
 	</delete>
+	
+	<!-- 수정 -->
+	<select id="getFileName" parameterType="String" resultType="String">
+		select img from tblConvenient where convenient_seq = #{convenient_seq}
+	</select>
+	
+	<update id="editConv" parameterType="com.project.dd.guide.domain.ConvenientDTO">
+		update tblConvenient set name = #{name}, tel = #{tel}, img = #{img, jdbcType=VARCHAR} where convenient_seq = #{convenient_seq}
+	</update>
+	
+	<update id="editConvLocation" parameterType="com.project.dd.guide.domain.ConvenientDTO">
+		update tblConvenientLocation set lat = #{lat}, lng = #{lng} where convenient_seq = #{convenient_seq}
+	</update>
 
 </mapper>

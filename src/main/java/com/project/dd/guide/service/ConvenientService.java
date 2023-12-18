@@ -157,6 +157,32 @@ public class ConvenientService {
 		return result;
 	}
 
+	// 파일 수정
+	public ConvenientDTO editFile(ConvenientDTO dto, HttpServletRequest req, MultipartFile image) {
+		
+		if (image == null) {
+			dto.setImg(convenientDao.getFileName(dto.getConvenient_seq()));
+		} else if (image.isEmpty()) {
+			dto.setImg(null);
+		} else {
+			dto.setImg(saveFile(req, image));
+		}
+
+		return dto;
+	}
+
+	public int editConv(ConvenientDTO convenient) {
+		
+		int result=0;
+		
+		result=convenientDao.editConv(convenient);
+		result=convenientDao.editConvLocation(convenient);
+		
+		return result;
+	}
+
+	
+
 	
 	
 		

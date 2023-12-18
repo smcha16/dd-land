@@ -57,6 +57,14 @@ public interface GuideMapper {
 
 	int delConvenient(String seq);
 
+	ConvenientDTO getConvenient(String seq);
+
+	String getFileName(String convenient_seq);
+
+	int editConv(ConvenientDTO convenient);
+
+	int editConvLocation(ConvenientDTO convenient);
+
 	
 
 }

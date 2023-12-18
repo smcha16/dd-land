@@ -77,9 +77,32 @@ public class AdminConvenientController {
 	//수정하기
 	@GetMapping(value = "/edit.do")
 	public String edit(Model model, String seq) {
+		
+		ConvenientDTO dto = service.one(seq);
+		
+		model.addAttribute("dto", dto);
 
 		return "admin/convenient/edit";
 	}
+	
+	@PostMapping(value = "/editok.do")
+	public String editok(ConvenientDTO dto, HttpServletRequest req, MultipartFile image) {
+
+		ConvenientDTO convenient = service.editFile(dto, req, image);
+
+		int result = service.editConv(convenient);
+		
+		if (result == 1) {
+
+	 		return "redirect:/admin/convenient/view.do";
+	 
+	 	} else {
+	 
+	 		return "redirect:/admin/convenient/edit.do";
+	 
+	 	}
+	}
+
 
 	
 	

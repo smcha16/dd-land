@@ -31,6 +31,14 @@ public interface ConvenientDAO {
 
 	int delConvenient(String seq);
 
+	String getFileName(String convenient_seq);
+
+	int editConv(ConvenientDTO convenient);
+
+	int editConvLocation(ConvenientDTO convenient);
+
+	
+
 	
 	
 

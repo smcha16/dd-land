@@ -196,8 +196,26 @@
 	const map = new kakao.maps.Map(container, options);
 	
 	let m = null;
-	let lat = null;
-	let lng = null;
+	let lat = ${dto.lat};
+	let lng = ${dto.lng};
+	
+	 
+	//마커 출력
+    let imageSrc = '/dd/resources/files/marker/info.png'; // 마커이미지의 주소
+    const imageSize = new kakao.maps.Size(40,40);
+    const option = {};
+    
+    //마커 설정
+    const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
+	
+	
+	m = new kakao.maps.Marker({
+        position: new kakao.maps.LatLng(lat, lng),
+        image: markerImg
+    });
+
+	//마커 지도에 출력
+    m.setMap(map);
 	
 	 
 	kakao.maps.event.addListener(map, 'click', function(evt) {
@@ -276,6 +294,12 @@
         var csrfHeaderName = "${_csrf.headerName}";
         var csrfTokenValue = "${_csrf.token}";
 
+        
+      	//수정 > 기존과 이름이 동일하지 않을 때만 중복 검사 진행
+        const originalName = '${dto.name}';
+        
+        if ($('input[name="name"]').val() != originalName) {
+        
         if ($('input[name="name"]').val().trim()) {
         	
 			$.ajax({
@@ -313,6 +337,11 @@
         	$('.check-name-duplication').removeAttr("data-type");
         	console.log("check-name-duplication: " + $('.check-name-duplication').data('type'));
         }
+        }else{ //기존 어트랙션명과 동일할 경우
+        	$('.check-name-duplication').text('');
+        	$('.check-name-duplication').removeAttr("data-type");
+        	console.log("check-name-duplication: " + $('.check-name-duplication').data('type'));
+        }
 	
 	});
 	
@@ -327,6 +356,11 @@
         var csrfHeaderName = "${_csrf.headerName}";
         var csrfTokenValue = "${_csrf.token}";
 
+        //수정 -> 기존 번호와 동일하지 않을때만 중복검사 진행
+        const originalTel = '${dto.tel}';
+        
+        if ($('input[name="tel"]').val() != originalTel) {
+        
         if ($('input[name="tel"]').val().trim()) {
         	
 			$.ajax({
@@ -364,7 +398,22 @@
         	$('.check-tel-duplication').removeAttr("data-type");
         	console.log("check-tel-duplication: " + $('.check-tel-duplication').data('type'));
         }
+        }else{  //기존 전화번호와 동일할 때
+        	$('.check-tel-duplication').text('');
+        	$('.check-tel-duplication').removeAttr("data-type");
+        	console.log("check-tel-duplication: " + $('.check-tel-duplication').data('type'));
+        	
+        }
 		
 	});
+	
+	/* 기존 첨부한 첨부파일 삭제 */
+	let allDeleteImgSeq = "";	
+	
+	function delAttached(seq) {
+		//alert(seq);
+		allDeleteImgSeq += seq + ",";
+		$(event.target).parent().remove();
+	}
 	
 </script>
