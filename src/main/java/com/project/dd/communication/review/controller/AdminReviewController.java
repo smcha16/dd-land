@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.gson.Gson;
 import com.project.dd.communication.review.domain.ReviewDTO;
-import com.project.dd.communication.review.domain.ReviewImgDTO;
 import com.project.dd.communication.review.service.ReviewService;
 
 @Controller

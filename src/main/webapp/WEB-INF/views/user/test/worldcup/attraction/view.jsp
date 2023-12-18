@@ -2,8 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+
 <!-- user > test > worldcup > attraction > view.jsp -->
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+
 #title {
 	font-size: 48px;
 	display: block;
@@ -143,6 +149,19 @@
 	text-shadow: 0px 1px 5px black;
 }
 
+.vs {
+    position: absolute;
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 100px;
+    font-style: italic;
+    color: white;
+    transform: translateY(162%);
+    z-index: 1;
+    transition: all 0.3s;
+    letter-spacing: 5px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
 .stats-counter {
 	background-image: url('/dd/resources/files/test/worldcup/attraction/attraction_worldcup_title.png');
 	background-size: cover;
@@ -193,6 +212,7 @@
 						        <div class="test-name">${attraction.name}</div>
 						    </div>
 						</c:forEach>
+						<div class="vs">VS</div>
 					</div>
 				</div>
 			</div>
@@ -312,6 +332,8 @@
 					.append('<div class="img-container" style="background-image: url(\'' + imgUrl + '\');"></div>')
 					.append('<div class="test-name">' + attraction.name + '</div>')
 				$('#worldcup-container').append(item);
+
+				$('#worldcup-container').append('<div class="vs">VS</div>');
 			}
 		} else {
 			const attraction = selectedTwoAttractions[0];
@@ -355,9 +377,8 @@
 		// 최종 선택 어트랙션
 		resultContainer.append(imgContainer);
 
-		// 클릭 이벤트 처리
+		// 클릭 시 어트랙션 상세 페이지로 이동
 		resultContainer.click(function() {
-			// 어트랙션 상세 페이지로 이동
 			window.location.href = '/dd/user/activity/attraction/detail.do?seq=' + selectedAttraction.attraction_seq;
 		});
 
@@ -373,7 +394,7 @@
 	            'finalWinAttractionSeq': finalWinAttractionSeq
 	        },
 	        success: function(data) {
-	            console.log('Final update completed:', data);
+	        	// console.log('최종 우승 업데이트 완료: ', data);
 	        },
 	        beforeSend: function(xhr) {
 	            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);

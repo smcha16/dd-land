@@ -1,6 +1,5 @@
 package com.project.dd.test.mbti.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.dd.activity.attraction.domain.AttractionDTO;
-import com.project.dd.activity.attraction.domain.AttractionImgDTO;
-import com.project.dd.activity.attraction.service.AttractionService;
 import com.project.dd.test.mbti.domain.MBTIDTO;
 import com.project.dd.test.mbti.service.MBTIService;
 
@@ -21,14 +17,13 @@ public class UserMBTIController {
 	@Autowired
 	private MBTIService mbtiService;
 
-	@Autowired
-	private AttractionService attractionService;
-	
 	@GetMapping(value = "/user/test/mbti/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 
-		// 페이징
-		Map<String, String> map = mbtiService.paging(page, 9);
+		String solting = "admin";
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
+
+		Map<String, String> map = mbtiService.paging(solting, searchStatus, word, page, 9); // 페이징
 
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);

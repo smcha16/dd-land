@@ -13,8 +13,14 @@
 	
 	<!-- 총 개수 -->
 	
-	<select id="getTotalCount" resultType="int">
-		select count(*) from tblInquiry
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(*)
+		from tblInquiry i
+			inner join tblUser u
+			  	on i.user_seq = u.user_seq
+		<if test="searchStatus == 'y'.toString()">
+	        where name like '%' || #{word} || '%' or email like '%' || #{word} || '%'
+	    </if>
 	</select>
 	
 	<!-- 목록 -->
@@ -23,10 +29,14 @@
 		select *
 		from (select i.*, rownum as rnum
 			  from (select i.*, name, email
-			  		from tblInquiry
-			  			i inner join tblUser u
+			  		from tblInquiry i
+			  			inner join tblUser u
 			  				on i.user_seq = u.user_seq
-			  		order by regdate desc, inquiry_seq desc) i)
+			  		order by regdate desc, inquiry_seq desc) i
+			  <if test="searchStatus == 'y'.toString()">
+				  where name like '%' || #{word} || '%' or email like '%' || #{word} || '%'
+			  </if>
+			  )
 		where rnum between #{startIndex} and #{endIndex}
 	</select>
 	

@@ -110,8 +110,8 @@
 						<!-- 검색 -->
 
               			<div id="search" class="header">
-                  			<form method="GET" action="#" class="search-form d-flex align-items-center">
-                    			<input type="text" name="query" placeholder="Search">
+                  			<form method="GET" action="/dd/admin/communication/inquiry/view.do" class="search-form d-flex align-items-center">
+                    			<input type="text" name="word" placeholder="작성자 이름 또는 이메일을 입력하세요." autocomplete="off">
                     			<button type="submit"><i class="bi bi-search"></i></button>
                   			</form>
               			</div>
@@ -214,6 +214,18 @@
 </main>
 
 <script>
+	<!-- 검색 -->
+	
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#search-field').val('${map.word}');
+	</c:if>
+	
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/admin/communication/inquiry/view.do';
+	    }
+	});
+
 	<!-- 모달 -->
 	
 	function showModal(seq, subject, content, image, answer) {

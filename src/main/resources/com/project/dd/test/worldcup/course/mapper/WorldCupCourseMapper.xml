@@ -9,6 +9,9 @@
 		join tblCourse c on cwc.course_seq = c.course_seq
 		join tblCWCWin w on w.course_seq = c.course_seq
 		join tblCWCFinalWin fw on fw.course_seq = c.course_seq
+		<if test="solting == 'admin' and searchStatus == 'y'.toString()">
+		where name like '%' || #{word} || '%'
+		</if>
 	</select>
 	
 	<select id="getTestCount" resultType="int">
@@ -31,8 +34,10 @@
 		        join tblCourse c on cwc.course_seq = c.course_seq
 		        join tblCWCWin w on w.course_seq = c.course_seq
 		        join tblCWCFinalWin fw on fw.course_seq = c.course_seq
-		        order by c.course_seq desc
-		    ) n
+		        order by c.course_seq desc) n
+	        <if test="solting == 'admin' and searchStatus == 'y'.toString()">
+			where name like '%' || #{word} || '%'
+			</if>
 		) where rnum between #{startIndex} and #{endIndex}
 	</select>
 	

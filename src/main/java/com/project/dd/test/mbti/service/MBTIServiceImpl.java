@@ -29,12 +29,16 @@ public class MBTIServiceImpl implements MBTIService {
     }
     
 	// 페이징 메서드
-	public Map<String, String> paging(int page, int pageSize) {
-
+    public Map<String, String> paging(String solting, String searchStatus, String word, int page, int pageSize) {
+    	
+    	Map<String, String> map = new HashMap<String, String>();
+		
+    	map.put("solting", solting);
+		map.put("searchStatus", searchStatus);
+		map.put("word", word);
+		
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
-
-		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
