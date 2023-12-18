@@ -22,20 +22,13 @@
 	margin-bottom: 20px;
 }
 
-.munti-content-container {
-	/* display: flex; */
-	flex-wrap: wrap;
-	margin: 30px 50px 0 50px;
-	padding: 0 !important;
-}
-
 .item {
 	position: relative;
 	width: 25.5%;
 	aspect-ratio: 0.75;
 	padding: 0;
 	box-sizing: border-box;
-	min-width: 270px;
+	min-width: 500px;
 	border: 1px solid #E1E1E1;
 	margin: 10px 45px 50px 45px;
 	border-radius: 10px;
@@ -47,8 +40,49 @@
 	box-shadow: 12px 12px 17px rgba(0, 0, 0, 0.20);
 }
 
+.item {
+	width: 50%;
+	height: 600px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
+	border-radius: 8px;
+	margin: 10px;
+	padding: 20px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: all 0.35s ease;
+	transform-origin: center bottom;
+	cursor: pointer;
+	font-size: 40px;
+	font-weight: 600;
+	color: #333;
+	position: relative;
+	overflow: hidden;
+}
+
+#result-message {
+	padding-top: 20px;
+	color: white;
+	text-shadow: 0px 1px 5px black;
+}
+
+#worldcup-container {
+	width: 100%;
+	display: flex;
+	padding-bottom: 20px;
+	justify-content: center;
+}
+
+.item div.img-container {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+}
+
 .item>div:nth-child(1) {
-	height: 70%;
 	background-color: transparent;
 	background-size: cover;
 	background-position: center;
@@ -57,29 +91,41 @@
 }
 
 .item>div:nth-child(2) {
-	height: 30%;
 	display: flex;
 	flex-direction: column;
 	padding: 20px;
 	font-size: 1.3rem;
 	font-weight: bold;
-	background: transparent;
-	border-radius: 0 0 10px 10px;
+	border-radius: 10px 10px 10px 10px;
 }
 
-.hidden-div {
-	display: none;
-	color: white;
+.course-container {
+    text-align: center;
+}
+
+.remain-test {
+    width: 140px;
+    padding: 5px;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+    margin-top: -20px;
+    color: #fff;
+    font-weight: bold;
+    background: linear-gradient(135deg, #3498db, #8e44ad);
+    border: 1px solid #2980b9;
+    border-radius: 70px;
+    display: inline-block;
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.test-name {
+	padding: 30px !important;
+    font-size: 40px !important;
+	text-align: center;
 	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 70%;
-	padding: 20px;
-	background-color: black;
-	opacity: 0.65; /* 투명도 조절 */
-	border-radius: 10px 10px 0 0;
-	z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
+	color: white;
+	text-shadow: 0px 1px 5px black;
 }
 </style>
 
@@ -102,8 +148,8 @@
 	<div class="container" data-aos="fade-up">
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 			<div class="tab-pane fade active show" id="menu-starters">
-				<div id="course-container" class="munti-content-container">
-					<div id="remaining-course-count" style="text-align: center; margin-top: 20px; font-size: 18px;">남은 코스 수: ${testCount}</div>
+				<div class="course-container">
+					<div id="remaining-course-count" class="remain-test">1 / ${testCount - 1}</div>
 					<div id="result-info"></div>
 					<div id="worldcup-container" class="button-container">
 						<!-- 코스 출력 -->
@@ -111,7 +157,7 @@
 						    <div class="item" id="item${loop.index + 1}" onclick="selectCourse('${course.course_seq}')">
 						        <div style="display:none" data-course-seq="${course.course_seq}"></div>
 						        <div class="img-container" style="background-image: url('/dd/resources/files/test/worldcup/course/${course.img}');"></div>
-						        <h3>${course.name}</h3>
+						        <div class="test-name">${course.name}</div>
 						    </div>
 						</c:forEach>
 					</div>
@@ -192,7 +238,7 @@
 					refreshScreen();
 					
 					if (remainingCourses.length != 2) {
-						$('#remaining-course-count').text('남은 코스 수: ' + remainingCourses.length);
+						$('#remaining-course-count').text(${testCount - 1} - (remainingCourses.length - 2) + ' / ' + ${testCount - 1});
 					} else {
 						$('#remaining-course-count').text('결승');
 					}
@@ -231,9 +277,10 @@
 				const item = $('<div class="item" id="' + itemId + '" onclick="selectCourse(' + course.course_seq + ')">')
 					.append('<div style="display:none" data-course-seq=' + course.course_seq + '></div>')
 					.append('<div class="img-container" style="background-image: url(\'' + imgUrl + '\');"></div>')
-					.append('<h3>' + course.name + '</h3>')
+					.append('<div class="test-name">' + course.name + '</div>')
 				$('#worldcup-container').append(item);
 			}
+
 		} else {
 			const course = selectedTwoCourses[0];
 			const imgUrl = course.img ? '/dd/resources/files/test/worldcup/course/' + course.img : 'course.png';
@@ -244,7 +291,7 @@
 			const item = $('<div class="item" id="' + itemId + '>')
 				.append('<div style="display:none" data-course-seq=' + course.course_seq + '></div>')
 				.append('<div class="img-container" style="background-image: url(\'' + imgUrl + '\');"></div>')
-				.append('<h3>' + course.name + '</h3>');
+				.append('<div class="test-name"></div>');
 			$('#worldcup-container').append(item);
 		}
 	}
@@ -252,17 +299,28 @@
 	function resultScreen(selectedCourse) {
 		// 코스를 화면에 갱신
 		$('#worldcup-container').empty();
-
+		$('.course-container').css({
+		    'margin-top': '0px',
+		    'text-align': 'center',
+		    'font-weight': 'bold',
+		    'font-size': '30px',
+		    'background-color': '#ecf0f1',
+		    'border-radius': '10px',
+		    'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)',
+		    'transition': 'background-color 0.3s ease'
+		});
+		
+		$('.remain-test').remove();
+		
 		const resultContainer = $('<div class="item result-container" id="item3">');
 		const imgContainer = $('<div class="img-container" style="background-image: url(\'/dd/resources/files/test/worldcup/course/' + selectedCourse.img + '\');"></div>');
-		const infoname = $('<h3>' + selectedCourse.name + '</h3>');
 		const message = $('<p id="result-message">최고의 코스죠!<br>[' + selectedCourse.name + ']</p>');
 
 		// 메시지
 		$('#result-info').append(message);
 
 		// 최종 선택 코스
-		resultContainer.append(imgContainer).append(infoname);
+		resultContainer.append(imgContainer);
 
 		// #worldcup-container에 추가
 		$('#worldcup-container').append(resultContainer);
@@ -287,20 +345,3 @@
 	    });
 	}
 </script>
-
-<!--  
-<script>
-	var itemElements = document.querySelectorAll('.item');
-	itemElements.forEach(function(item) {
-		item.addEventListener('mouseover', function() {
-			// 마우스 오버 시 hidden-div를 보이게 변경
-			item.querySelector('.hidden-div').style.display = 'block';
-		});
-
-		item.addEventListener('mouseout', function() {
-			// 마우스 아웃 시 hidden-div를 다시 숨김
-			item.querySelector('.hidden-div').style.display = 'none';
-		});
-	});
-</script>
--->

@@ -22,19 +22,13 @@
 	margin-bottom: 20px;
 }
 
-.munti-content-container {
-	flex-wrap: wrap;
-	margin: 30px 50px 0 50px;
-	padding: 0 !important;
-}
-
 .item {
 	position: relative;
 	width: 25.5%;
 	aspect-ratio: 0.75;
 	padding: 0;
 	box-sizing: border-box;
-	min-width: 270px;
+	min-width: 500px;
 	border: 1px solid #E1E1E1;
 	margin: 10px 45px 50px 45px;
 	border-radius: 10px;
@@ -68,25 +62,16 @@
 	overflow: hidden;
 }
 
-#attinfo {
-	font-size : 18px;
-	text-align: center;
-	color: #444;
-	font-weight: bold;
-	margin-bottom: 3px;
-}
-
 #result-message {
-	margin-top: 40px;
-	text-align: center;
-	color: #3498db;
-	font-weight: bold;
-	font-size: 30px;
+	padding-top: 20px;
+	color: white;
+	text-shadow: 0px 1px 5px black;
 }
 
 #worldcup-container {
 	width: 100%;
 	display: flex;
+	padding-bottom: 20px;
 	justify-content: center;
 }
 
@@ -114,26 +99,33 @@
 	border-radius: 10px 10px 10px 10px;
 }
 
-.hidden-div {
-	display: none;
-	color: white;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 70%;
-	padding: 20px;
-	background-color: black;
-	opacity: 0.65;
-	border-radius: 10px 10px 0 0;
-	z-index: 1;
+.attraction-container {
+    text-align: center;
 }
 
 .remain-test {
+    width: 140px;
+    padding: 5px;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+    margin-top: -20px;
+    color: #fff;
+    font-weight: bold;
+    background: linear-gradient(135deg, #3498db, #8e44ad);
+    border: 1px solid #2980b9;
+    border-radius: 70px;
+    display: inline-block;
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.test-name {
+	padding: 30px !important;
+    font-size: 40px !important;
 	text-align: center;
-	font-size: 30px;
-    margin-bottom: 30px;
-    margin-top: -30px;
+	position: absolute;
+	color: white;
+	text-shadow: 0px 1px 5px black;
 }
 </style>
 
@@ -156,8 +148,8 @@
 	<div class="container" data-aos="fade-up">
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 			<div class="tab-pane fade active show" id="menu-starters">
-				<div id="attraction-container" class="munti-content-container">
-                    <div id="remaining-attractions-count" class="remain-test">남은 어트랙션 수: ${testCount}</div>
+				<div class="attraction-container">
+                    <div id="remaining-attractions-count" class="remain-test">1 / ${testCount - 1}</div>
 					<div id="result-info"></div>
 					<div id="worldcup-container" class="button-container">
 						<!-- 어트랙션 출력 -->
@@ -246,7 +238,7 @@
 					refreshScreen();
 					
 					if (remainingAttractions.length != 2) {
-						$('#remaining-attractions-count').text('남은 어트랙션 수: ' + remainingAttractions.length);
+						$('#remaining-attractions-count').text(${testCount - 1} - (remainingAttractions.length - 2) + ' / ' + ${testCount - 1});
 					} else {
 						$('#remaining-attractions-count').text('결승');
 					}
@@ -285,7 +277,7 @@
 				const item = $('<div class="item" id="' + itemId + '" onclick="selectAttraction(' + attraction.attraction_seq + ')">')
 					.append('<div style="display:none" data-attraction-seq=' + attraction.attraction_seq + '></div>')
 					.append('<div class="img-container" style="background-image: url(\'' + imgUrl + '\');"></div>')
-					.append('<h3>' + attraction.name + '</h3>')
+					.append('<div class="test-name">' + attraction.name + '</div>')
 				$('#worldcup-container').append(item);
 			}
 		} else {
@@ -298,7 +290,7 @@
 			const item = $('<div class="item" id="' + itemId + '" onclick="selectAttraction(' + attraction.attraction_seq + ')">')
 				.append('<div style="display:none" data-attraction-seq=' + attraction.attraction_seq + '></div>')
 				.append('<div class="img-container" style="background-image: url(\'' + imgUrl + '\');"></div>')
-				.append('<h3>' + attraction.name + '</h3>');
+				.append('<div class="test-name">' + attraction.name + '</div>');
 			$('#worldcup-container').append(item);
 		}
 	}
@@ -306,10 +298,21 @@
 	function resultScreen(selectedAttraction) {
 		// 어트랙션을 화면에 갱신
 		$('#worldcup-container').empty();
-
+		$('.attraction-container').css({
+		    'margin-top': '0px',
+		    'text-align': 'center',
+		    'font-weight': 'bold',
+		    'font-size': '30px',
+		    'background-color': '#ecf0f1',
+		    'border-radius': '10px',
+		    'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)',
+		    'transition': 'background-color 0.3s ease'
+		});
+		
+		$('.remain-test').remove();
+		
 		const resultContainer = $('<div class="item result-container" id="item3">');
 		const imgContainer = $('<div class="img-container" style="background-image: url(\'/dd/resources/files/activity/attraction/' + selectedAttraction.img + '\');"></div>');
-		const infoname = $('<h3>' + selectedAttraction.name + '</h3>');
 		const message = $('<p id="result-message">최고의 어트랙션이죠!<br>[' + selectedAttraction.name + ']</p>'
 				+ '<p id="attinfo">클릭시 해당 어트랙션 페이지로 이동합니다.</p>');
 
@@ -317,7 +320,7 @@
 		$('#result-info').append(message);
 
 		// 최종 선택 어트랙션
-		resultContainer.append(imgContainer).append(infoname);
+		resultContainer.append(imgContainer);
 
 		// 클릭 이벤트 처리
 		resultContainer.click(function() {
@@ -348,20 +351,3 @@
 	    });
 	}
 </script>
-
-<!--  
-<script>
-	var itemElements = document.querySelectorAll('.item');
-	itemElements.forEach(function(item) {
-		item.addEventListener('mouseover', function() {
-			// 마우스 오버 시 hidden-div를 보이게 변경
-			item.querySelector('.hidden-div').style.display = 'block';
-		});
-
-		item.addEventListener('mouseout', function() {
-			// 마우스 아웃 시 hidden-div를 다시 숨김
-			item.querySelector('.hidden-div').style.display = 'none';
-		});
-	});
-</script>
--->

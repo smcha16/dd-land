@@ -38,10 +38,7 @@ public class UserWorldCupCourseController {
 		// 선택하지 않은 코스 중에서 랜덤으로 두 개 선택
 		List<CourseDTO> selectedTwoCourses = cwcService.getRandomTwoCourses(remainingCourses);
 
-		model.addAttribute("courseList", courseList);
 		model.addAttribute("selectedTwoCourses", selectedTwoCourses);
-
-		// 월드컵을 진행할 코스의 개수
 		model.addAttribute("testCount", cwcService.getTestCount());
 		
 		return "user/test/worldcup/course/view";

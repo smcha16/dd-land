@@ -38,10 +38,7 @@ public class UserWorldCupAttractionController {
 		// 선택하지 않은 어트랙션 중에서 랜덤으로 두 개 선택
 		List<AttractionDTO> selectedTwoAttractions = awcService.getRandomTwoAttractions(remainingAttractions);
 
-		model.addAttribute("attractionList", attractionList);
 		model.addAttribute("selectedTwoAttractions", selectedTwoAttractions);
-
-		// 월드컵을 진행할 어트랙션의 개수
 		model.addAttribute("testCount", awcService.getTestCount());
 		
 		return "user/test/worldcup/attraction/view";
