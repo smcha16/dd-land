@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <style>
 	#main h1 {
@@ -60,8 +61,11 @@
   	.breadcrumb a:hover {
       	color: #0d6efd;
     }
-  	.table {
+  	table {
     	text-align: center;
+  	}
+  	th {
+    	background-color: #f2f2f2 !important;
   	}
   	th:nth-child(1) {
 		width: 6%;
@@ -84,17 +88,14 @@
 	th:nth-child(7) {
 		width: 15%;
 	}
-  	th {
-    	background-color: #f2f2f2 !important;
-  	}
-  	.table td i {
+  	td i {
 		color: #0d6efd;
 		margin-top: 7px;
 	}
-	.table td a {
+	td a {
 		color: #000;
 	}
-	.table td a:hover {
+	td a:hover {
 		font-weight: bold !important;
       	color: #0d6efd !important;
     }
@@ -117,8 +118,8 @@
 					<div class="col-12">
 
               			<div id="search" class="header">
-                  			<form method="GET" action="#" class="search-form d-flex align-items-center">
-                    			<input type="text" name="query" placeholder="Search">
+                  			<form method="GET" action="/dd/admin/communication/lost-property/view.do" class="search-form d-flex align-items-center">
+                    			<input type="text" name="word" id="search-field" placeholder="습득물 또는 습득장소를 입력하세요." autocomplete="off">
                     			<button type="submit"><i class="bi bi-search"></i></button>
                   			</form>
               			</div>
@@ -165,7 +166,7 @@
 										            </c:if>
 										            
 										            <td><c:out value="${dto.location}" /></td>
-										            <td>${dto.lost_property_date}</td>
+										            <td>${fn:substring(dto.lost_property_date, 0, 10)}</td>
 		            								<td>${dto.result}</td>
 										        </tr>
 											</c:forEach>
@@ -205,16 +206,31 @@
 										</c:choose>
 									</c:forEach>
 								</ul>
+								
                				</div>
              			</div>
+             			
            			</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	
 </main>
 
 <script>
+	<!-- 검색 -->
+	
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#search-field').val('${map.word}');
+	</c:if>
+	
+	$(document).keydown(function(event) {
+		if (event.key === 'F5') {
+			location.href='/dd/admin/communication/lost-property/view.do';
+		}
+	});
+
 	<!-- 수정 -->
 	
 	function edit() {

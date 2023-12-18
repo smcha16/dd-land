@@ -7,7 +7,7 @@ import com.project.dd.communication.lost.domain.LostPropertyDTO;
 
 public interface LostPropertyDAO {
 
-	int getTotalCount();
+	int getTotalCount(Map<String, String> map);
 
 	List<LostPropertyDTO> getLostPropertyList(Map<String, String> map);
 
