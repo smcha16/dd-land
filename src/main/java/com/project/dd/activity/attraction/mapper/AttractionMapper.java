@@ -58,4 +58,6 @@ public interface AttractionMapper {
 
 	int getAttractionBookCapacity(BookUserDTO dto);
 
+	List<BookUserDTO> getAttractionBookList();
+
 }

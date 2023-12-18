@@ -11,4 +11,8 @@ public class BookUserDTO {
 	private String attraction_book_seq;
 	private String user_seq;
 	private String attraction_seq;
+	
+	private String attraction_name;
+	private String user_name;
+	private String email;
 }

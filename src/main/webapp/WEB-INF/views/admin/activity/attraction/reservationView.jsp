@@ -200,7 +200,7 @@
 		                      					<tr>
 		                        					<td><input type="checkbox" name="book_user_seq" value="${dto.book_user_seq}"></td>
 		                        					<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
-		                        					<td>${dto.name}</td>
+		                        					<td>${dto.attraction_name}</td>
 		                        					<td>${dto.regdate}</td>
 		                        					<td>${dto.capacity}</td>
 		                        					<td>${dto.user_name}(${dto.email})</td>

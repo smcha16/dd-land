@@ -135,4 +135,9 @@ public class AttractionDAOImpl implements AttractionDAO {
 		return mapper.getAttractionBookCapacity(dto);
 	}
 
+	@Override
+	public List<BookUserDTO> getAttractionBookList() {
+		return mapper.getAttractionBookList();
+	}
+
 }
