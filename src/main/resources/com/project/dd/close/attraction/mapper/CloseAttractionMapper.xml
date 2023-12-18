@@ -21,7 +21,7 @@
 	
 	<insert id="addCloseAtt" parameterType="com.project.dd.close.attraction.domain.CloseAttractionDTO">
 		insert into tblattractionclose (attraction_close_seq, start_date, end_date, attraction_seq)
-    	values (seqtblAttractionClose.nextVal, to_date($(start_date), 'yyyy-mm-dd'), to_date($(end_date), 'yyyy-mm-dd'), #{attraction_seq, jdbcType=VARCHAR})
+    	values (seqtblAttractionClose.nextVal, to_date(#{start_date}, 'yyyy-mm-dd'), to_date(#{end_date}, 'yyyy-mm-dd'), #{attraction_seq, jdbcType=VARCHAR})
 	</insert>
 	
 	<select id="getOne" parameterType="String" resultType="com.project.dd.close.attraction.domain.CloseAttractionDTO">

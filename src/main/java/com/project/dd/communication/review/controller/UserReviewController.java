@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,11 +26,18 @@ public class UserReviewController {
 	/* 목록 */
 	
 	@GetMapping(value = "/view.do")
-	public String view(HttpSession session, @RequestParam(defaultValue = "n") String order, @RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(Authentication auth, HttpSession session, @RequestParam(defaultValue = "n") String order, @RequestParam(defaultValue = "1") int page, Model model) {
+		
+		String solting = "user";
 		
 		session.setAttribute("read", "n");
 		
-		Map<String, String> map = service.paging(order, page);
+		String searchStatus = "n";
+		String word = null;
+		
+		Map<String, String> map = service.paging(solting, searchStatus, word, page);
+
+		map.put("order", order);
 		
 		List<ReviewDTO> list = service.getReviewList(map);
 

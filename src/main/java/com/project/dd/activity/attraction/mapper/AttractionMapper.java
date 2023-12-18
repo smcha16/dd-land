@@ -25,7 +25,7 @@ public interface AttractionMapper {
 	int addAttraction(AttractionDTO dto);
 
 	String getAttractionSeq();
-
+	
 	int addAttractionLocation(AttractionDTO dto);
 
 	int addAttractionImg(AttractionImgDTO idto);
@@ -57,5 +57,7 @@ public interface AttractionMapper {
 	int addAttractionBook(BookUserDTO dto);
 
 	int getAttractionBookCapacity(BookUserDTO dto);
+
+	List<BookUserDTO> getAttractionBookList();
 
 }

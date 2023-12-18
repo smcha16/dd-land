@@ -19,7 +19,7 @@ public interface GuideMapper {
 
 	ConvenientDTO one(String seq);
 
-	int getTotalCount();
+	int getTotalCount(Map<String, String> map);
 	
 	//가이드맵
 
@@ -36,6 +36,34 @@ public interface GuideMapper {
 	List<PhotoZoneDTO> getPhotoList();
 
 	List<FestivalDTO> getFestList();
+
+	//관리자 편의시설 CRUD
+	
+	int checkLocationDuplication(ConvenientDTO dto);
+
+	int checkNameDuplication(ConvenientDTO dto);
+	
+	int checkTelDuplication(ConvenientDTO dto);
+
+	int addConv(ConvenientDTO dto);
+
+	String getConvSeq();
+
+	int addConvLocation(ConvenientDTO dto);
+
+	int countConvenientLocation(String seq);
+
+	int delConvenientLocation(String seq);
+
+	int delConvenient(String seq);
+
+	ConvenientDTO getConvenient(String seq);
+
+	String getFileName(String convenient_seq);
+
+	int editConv(ConvenientDTO convenient);
+
+	int editConvLocation(ConvenientDTO convenient);
 
 	
 

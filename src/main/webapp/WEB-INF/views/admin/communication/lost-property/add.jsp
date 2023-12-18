@@ -131,6 +131,7 @@
       		</div>
     	</div>
 	</section>
+	
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -139,7 +140,10 @@
 	<!-- 기본값(습득일) -->
 	
 	$(document).ready(function () {
-	    $('input[name="lost_property_date"]').val(moment().format('YYYY-MM-DD'));
+	    var today = moment().format('YYYY-MM-DD');
+
+	    $('input[name="lost_property_date"]').val(today);
+	    $('input[name="lost_property_date"]').attr('max', today);
 	});
 
 	var property = $('input[name="name"]');

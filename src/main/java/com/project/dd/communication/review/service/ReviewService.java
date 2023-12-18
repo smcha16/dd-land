@@ -1,15 +1,20 @@
 package com.project.dd.communication.review.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
 import com.project.dd.communication.review.domain.ReviewDTO;
+import com.project.dd.communication.review.domain.ReviewImgDTO;
 import com.project.dd.communication.review.repository.ReviewDAO;
 
 @Service
@@ -20,13 +25,25 @@ public class ReviewService {
 	
 	/* 페이징 */
 
-	public Map<String, String> paging(String order, int page) {
+	public Map<String, String> paging(String solting, String searchStatus, String word, int page) {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		
-		map.put("order", order);
-
-		int pageSize = 9;
+		map.put("solting", solting);
+		map.put("searchStatus", searchStatus);
+		map.put("word", word);
+		
+		int pageSize = 0;
+		
+		if (solting.equals("user")) {
+			
+			pageSize = 9;
+			
+		} else if (solting.equals("admin")) {
+			
+			pageSize = 10;
+			
+		}
 		
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
@@ -34,7 +51,7 @@ public class ReviewService {
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 		
-		int totalPosts = dao.getTotalCount();
+		int totalPosts = dao.getTotalCount(map);
 		int totalPages = (int)Math.ceil((double)totalPosts / pageSize);
 		
 		map.put("totalPosts", String.format("%d", totalPosts));
@@ -50,35 +67,33 @@ public class ReviewService {
 		
 		List<ReviewDTO> list = dao.getReviewList(map);
 
+		return list;
+		
+	}
+	
+	public String getReviewImgList(List<ReviewDTO> list) {
+		
+		List<ReviewImgDTO> iList = new ArrayList<ReviewImgDTO>();
+
 		for (ReviewDTO dto : list) {
 			
-			// 제목
-			
-			String subject = dto.getSubject();
+			for (ReviewImgDTO img_dto : dto.getImgList()) {
+				
+				if (img_dto.getImg() != null) {
+					
+					iList.add(img_dto);
+					
+				}
+				
+			}
 
-            if (subject.length() > 13) {
-
-                subject = subject.substring(0, 13) + " ...";
-                
-                dto.setSubject(subject);
-
-            }
-            
-            // 내용
-            
-            String content = dto.getContent();
-
-            if (content.length() > 170) {
-
-            	content = content.substring(0, 170) + " ...";
-            	
-            	dto.setContent(content);
-
-            }
-			
 		}
 		
-		return list;
+		Gson gson = new Gson();
+		
+		String imgList = gson.toJson(iList);
+		
+		return imgList;
 		
 	}
 	
@@ -95,18 +110,6 @@ public class ReviewService {
 	    email = email.substring(0, 2) + email.substring(2, email.indexOf('@')).replaceAll(".", "*") + email.substring(email.indexOf('@'));
 	    
 	    dto.setEmail(email);
-	    
-	    // 방문일
-		
- 		String visit_date = dto.getVisit_date().substring(0, 10);
- 		
- 		dto.setVisit_date(visit_date);
-	    
-	    // 등록일
-	        
-		String regdate = dto.getRegdate().substring(0, 10);
-		
-		dto.setRegdate(regdate);
 
 		return dto;
 		
@@ -121,6 +124,54 @@ public class ReviewService {
 			dao.updateReadCount(seq);
 			
 			session.setAttribute("read", "y");
+			
+		}
+		
+	}
+
+	/* 파일 수정 */
+
+	public void editFile(String[] seqList, HttpServletRequest req, MultipartFile[] docs) {
+			
+		if (seqList.length > 0) {
+				
+			for (String seq : seqList) {
+					
+				dao.editFile(seq);
+					
+			}
+			
+		}
+		
+	}
+	
+	/* 수정 */
+
+	public int editReview(ReviewDTO dto) {
+
+		return dao.editReview(dto);
+		
+	}
+	
+	/* 파일 삭제 */
+	
+	public void deleteFile(String[] seqList) {
+
+		for (String seq : seqList) {
+			
+			dao.deleteFile(seq);
+			
+		}
+		
+	}
+	
+	/* 삭제 */
+
+	public void deleteReview(String[] seqList) {
+
+		for (String seq : seqList) {
+			
+			dao.deleteReview(seq);
 			
 		}
 		

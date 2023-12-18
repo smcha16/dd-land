@@ -710,53 +710,46 @@ CREATE SEQUENCE seqtblBuy;
 CREATE SEQUENCE seqtblUserBuy;
 
 /* 나래 누나 View */
---1. Photozone
-create or replace view vwPhotozoneList
-as
-select a.*, (select img from tblPhotozoneImg where photozone_seq = a.photozone_seq and rownum = 1) as img 
-from tblPhotozone a
-order by photozone_seq;
-
-create or replace view vwPhotozoneOne
-as
-select a.photozone_seq, a.name, a.time, a.info, b.photozone_location_seq, b.lat, b.lng
-from vwPhotozoneList a
-inner join tblPhotozoneLocation b
-on a.photozone_seq = b.photozone_seq;
-
---2. Festival
-
-create or replace view vwFestivalList
-as
-select a.*, 
-(select img from tblFestivalImg where festival_seq = a.festival_seq and rownum = 1)as img
-from tblFestival a
-order by a.festival_seq;
-
-create or replace view vwFestivalOne
-as
-select a.festival_seq, a.name, a.time, a.info, a.start_date, a.end_date, b.festival_location_seq, b.lat, b.lng
-from vwFestivalList a
-inner join tblFestivalLocation b
-on a.festival_seq = b.festival_seq;
-
---3. Attraction
-
+-- 1. Attraction(Update_18DEC23)
 create or replace view vwAttractionList
 as
 select a.*, 
 (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1)as img,
-nvl((select 'y' from tblAttractionclose where attraction_seq = a.attraction_seq and to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')), 'n')as close
+nvl((select 'y' from tblAttractionclose where attraction_seq = a.attraction_seq and to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')), 'n')as close,
+(select attraction_location_seq from tblAttractionLocation where attraction_seq = a.attraction_seq) as attraction_location_seq,
+(select lat from tblAttractionLocation where attraction_seq = a.attraction_seq) as lat,
+(select lng from tblAttractionLocation where attraction_seq = a.attraction_seq) as lng
 from tblAttraction a
 where name not like '%(운영종료)%'
-order by a.attraction_seq;
+order by a.attraction_seq desc;
 
-create or replace view vwAttractionOne
+-- 기존 view > vwAttractionOne 삭제
+
+-- 2. Festival(Update_18DEC23)
+create or replace view vwFestivalList
 as
-select a.attraction_seq, a.name, a.info, a.capacity, a.time, a.restriction, a.close, b.attraction_location_seq, b.lat, b.lng
-from vwAttractionlist a
-inner join tblAttractionLocation b
-on a.attraction_seq = b.attraction_seq;
+select a.*, 
+(select img from tblFestivalImg where festival_seq = a.festival_seq and rownum = 1)as img,
+(select festival_location_seq from tblFestivalLocation where festival_seq = a.festival_seq) as festival_location_seq,
+(select lat from tblFestivalLocation where festival_seq = a.festival_seq) as lat,
+(select lng from tblFestivalLocation where festival_seq = a.festival_seq) as lng
+from tblFestival a
+order by a.festival_seq;
+
+-- 기존 view > vwFestivalOne 삭제
+
+--3. Photozone
+create or replace view vwPhotozoneList
+as
+select a.*,
+(select img from tblPhotozoneImg where photozone_seq = a.photozone_seq and rownum = 1) as img,
+(select photozone_location_seq from tblPhotozoneLocation where photozone_seq = a.photozone_seq) as photozone_location_seq,
+(select lat from tblPhotozoneLocation where photozone_seq = a.photozone_seq) as lat,
+(select lng from tblPhotozoneLocation where photozone_seq = a.photozone_seq) as lng
+from tblPhotozone a
+order by photozone_seq desc;
+
+-- 기존 view > vwPhotozoneOne 삭제
 
 --4. Movie
 
@@ -773,6 +766,22 @@ where exists (select 'O' from tblMoviePlay b
                         between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd') 
                         and theater_seq = b.theater_seq));
 
+-- 위치 중복 확인용 VIEW
+create or replace view vwLocation
+as
+select * from tblAttractionLocation
+union
+select * from tblFestivalLocation
+union
+select * from tblTheaterLocation
+union
+select * from tblPhotozoneLocation
+union
+select * from tblRestaurantLocation
+union
+select * from tblShopLocation
+union
+select * from tblConvenientLocation;
 
 /* View ~삭제예정~ */
 CREATE OR REPLACE VIEW vwUserBook as

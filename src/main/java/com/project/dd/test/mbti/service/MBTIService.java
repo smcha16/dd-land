@@ -9,14 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.test.mbti.domain.MBTIDTO;
-import com.project.dd.test.worldcup.course.domain.CourseDTO;
 
 @Service
 public interface MBTIService {
 
-	Map<String, String> paging(int page, int pageSize);
-
 	int getTotalCount();
+	
+	Map<String, String> paging(String solting, String searchStatus, String word, int page, int pageSize);
 	
     List<MBTIDTO> getAllMBTI(Map<String, String> map);
 
