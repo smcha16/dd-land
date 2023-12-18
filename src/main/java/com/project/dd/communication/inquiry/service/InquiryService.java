@@ -88,9 +88,12 @@ public class InquiryService {
 	
 	/* 페이징 */
 
-	public Map<String, String> paging(int page) {
+	public Map<String, String> paging(String searchStatus, String word, int page) {
 		
 		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("searchStatus", searchStatus);
+		map.put("word", word);
 		
 		int pageSize = 10;
 		
@@ -100,7 +103,7 @@ public class InquiryService {
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 		
-		int totalPosts = dao.getTotalCount();
+		int totalPosts = dao.getTotalCount(map);
 		int totalPages = (int)Math.ceil((double)totalPosts / pageSize);
 		
 		map.put("totalPosts", String.format("%d", totalPosts));
