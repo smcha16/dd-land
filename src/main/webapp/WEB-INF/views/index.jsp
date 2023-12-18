@@ -313,7 +313,7 @@
 		<!-- start reservation  -->
 		 <div class="col-lg-12 col-md-6 text-center bg-dark" style="padding: 2rem;" id="reservationBox">
        	 	<h1 class="text-uppercase text-light mb-4">더 빠른 탑승을 위한 최고의 선택!</h1>
-        	<a href="/ddstudio/activity/attraction.do" class="btn btn-primary py-3 px-5" style="background-color: #ec2727; color:#fff; border: 1px solid #ec2727">어트랙션 예약</a>
+        	<a href="/dd/user/activity/attraction/view.do" class="btn btn-primary py-3 px-5" style="background-color: #ec2727; color:#fff; border: 1px solid #ec2727">어트랙션 예약</a>
     	</div>
 		
 		
