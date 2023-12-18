@@ -232,7 +232,7 @@ p {
 		</div>
 		<div style="text-align: center;">
 			<img src="/dd/resources/files/guide/convenient/${dto.img }"
-				alt="Image">
+				alt="Image" style="width:900px; height:500px;">
 		</div>
 	</div>
 </section>

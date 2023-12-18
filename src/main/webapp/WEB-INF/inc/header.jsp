@@ -84,13 +84,21 @@
               <li><a href="/dd/user/communication/review/view.do">리뷰</a></li>
             </ul>
           </li>
-          <li><a href="/dd/user/search/view.do"><span>검색</span></a></li>
           <li class="dropdown"><a><span>예매</span></a>
           	<ul>
               <li><a href="/dd/member/ticket/personal-reservation/view.do">개인 예매</a></li>
               <li><a href="/dd/member/ticket/group-reservation/view.do">단체 예매</a></li>
             </ul>
           </li>
+          <li class="dropdown"><a href="/dd/user/chat/view.do"><span>OpenChat</span></a></li>
+          <!-- <li>
+          	<div>
+				<div class="group">
+					<label>대화명</label> <input type="text" name="name" id="name" class="short" style="width: 150px;">
+					<button type="button" class="in">들어가기</button>
+				</div>
+			</div>
+          </li> -->
         </ul>
       </nav><!-- .navbar -->
 	  <div>
@@ -128,5 +136,9 @@
 	});
 	</script>
 	-->
+	
+	
+  
+  
   
   

@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+
 <style>
 	#title+p {
 		text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
@@ -43,16 +46,17 @@
 	}
 	
 	.item>div:nth-child(1) {
-	  height: 70%;
+	  height: 20%;
 	  background-color: transparent;
 	  background-size: cover;
 	  background-position: center;
 	  background-repeat: no-repeat;
 	  border-radius: 10px 10px 0 0;
+	  font-size: 20px;
 	}
 	
 	.item>div:nth-child(2) {
-	  height: 30%;
+	  height: 80%;
 	  display: flex;
 	  flex-direction: column;
 	  padding: 20px;
@@ -110,30 +114,14 @@
 
             <div class="munti-content-container">
               <div class="item">
-                <div style="background-image: url('/dd/resources/files/guide/use-guide.jpg');"></div>
-                <div>주의사항</div>
+                <div><i class="fa-solid fa-triangle-exclamation" style="color:pink;"></i>주의사항<i class="fa-solid fa-triangle-exclamation" style="color:pink;"></i></div>
+                <div style="background-color:#CCC;">erhmgndfghdfhnredfhsertfjhrthrt</div>
+                
                <!--  <div class="hidden-div" style="color:black;">설명쓰기</div> -->
               </div>
             </div>
-        </div><!-- End Starter Menu Content -->
+			</div><!-- End Starter Menu Content -->
       </div>
      </div>
     </section><!-- End Menu Section -->
     
-    <script>
-    var itemElements = document.querySelectorAll('.item');
-    itemElements.forEach(function(item) {
-        item.addEventListener('mouseover', function() {
-          // 마우스 오버 시 hidden-div를 보이게 변경
-          item.querySelector('.hidden-div').style.display = 'block';
-        });
-
-        item.addEventListener('mouseout', function() {
-          // 마우스 아웃 시 hidden-div를 다시 숨김
-            item.querySelector('.hidden-div').style.display = 'none';
-        });
-    });
-
-  </script>
-
-<!-- 끝 -->
