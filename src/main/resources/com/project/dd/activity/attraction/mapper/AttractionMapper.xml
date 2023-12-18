@@ -116,11 +116,20 @@
 	
 	<insert id="addAttractionBook" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO">
 		INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
-		VALUES (seqtblBookUser.NEXTVAL, sysdate, #{capacity}, #{attraction_book_seq}, ?????, #{attraction_seq});
+		VALUES (seqtblBookUser.NEXTVAL, sysdate, #{capacity}, #{attraction_book_seq}, #{user_seq}, #{attraction_seq})
 	</insert>
 	
 	<select id="getAttractionBookCapacity" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO" resultType="int">
 		select capacity from tblAttractionBook where attraction_book_seq = #{attraction_book_seq}
+	</select>
+	
+	<select id="getAttractionBookList" resultType="com.project.dd.activity.attraction.domain.BookUserDTO">
+		select a.book_user_seq, to_char(a.regdate, 'yyyy-mm-dd') as regdate, a.capacity, a.attraction_book_seq, a.user_seq, a.attraction_seq,
+		(select name from tblAttraction where attraction_seq = a.attraction_seq) as attraction_name,
+		(select name from tblUser where user_seq = a.user_seq) as user_name,
+		(select email from tblUser where user_seq = a.user_seq) as email
+		from tblBookUser a
+		order by regdate desc
 	</select>
 	
 </mapper>

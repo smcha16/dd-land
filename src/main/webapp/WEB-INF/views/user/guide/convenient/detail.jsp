@@ -48,7 +48,6 @@ body {
 	justify-content: center;
 	padding-bottom: 30px;
 }
-
 .section-image>img {
 	border-radius: 15px;
 }
@@ -222,6 +221,20 @@ p {
 	margin-bottom: 1rem;
 	color: darkgray;
 }
+
+button#comeback {
+	border: 0;
+	border-radius: 50px;
+	width: 50px;
+	background-color: #FFF;
+	color: #000;
+	position: absolute;
+	z-index: 100;		
+	padding: 10px;
+    right: 10px;
+    bottom: 10px;
+}
+
 </style>
 
 <!-- ======= Title & Image Section ======= -->
@@ -232,7 +245,7 @@ p {
 		</div>
 		<div style="text-align: center;">
 			<img src="/dd/resources/files/guide/convenient/${dto.img }"
-				alt="Image" style="width:900px; height:500px;">
+				alt="Image" style="width: 700px; height:350px; border-radius:15px;">
 		</div>
 	</div>
 </section>
@@ -272,10 +285,9 @@ p {
 		<div class="label">위치 정보</div>
 		<p>* 스크롤과 드래그로 지도를 움직일 수 있습니다. *</p>
 		<div class="value location">
-			<div id="map" style="width: 950px; height: 435px;"></div>
-		</div>
-		<div>
-			<button onclick="setBounds()" id="comeback">원래대로 돌아가기</button>
+			<div id="map" style="width: 950px; height: 435px;">
+				<button onclick="setBounds()" id="comeback"><i class="fa-solid fa-rotate-left"></i></button>
+			</div>
 		</div>
 	</div>
 </section>

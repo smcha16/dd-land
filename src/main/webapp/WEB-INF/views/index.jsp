@@ -13,185 +13,147 @@
 	#reservationBox{
 		background-color: cornflowerblue;
 	}
-	.chefs .chef-member .member-img {
-		padding-bottom: 10px;
-	}
-	.chef-member {
- 	   cursor: pointer;
-	}
 </style>
+
 	<main id="main">
 	
 	<!-- ======= Events Section ======= -->
+	
+	<style>
+		.events .event-item .description {
+			margin-bottom: 40px;
+		}
+	</style>
 
 		<section id="events" class="events">
 			<div class="container-fluid" data-aos="fade-up">
 
 				<div class="section-header" style="margin-top: 58px;">
-					<h2>Events</h2>
 					<p>
-						Share <span>Your Moments</span> In Our Restaurant
+						Share <span>Your Moments</span> In Our Amusement Park
 					</p>
 				</div>
 
 				<div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
 					<div class="swiper-wrapper">
 
-						<div
-							class="swiper-slide event-item d-flex flex-column justify-content-end"
-							style="background-image: url(resources/main/img/events-1.jpg)">
-							<h3>Custom Parties</h3>
-							<div class="price align-self-start">$99</div>
-							<p class="description">Quo corporis voluptas ea ad.
-								Consectetur inventore sapiente ipsum voluptas eos omnis facere.
-								Enim facilis veritatis id est rem repudiandae nulla expedita
-								quas.</p>
-						</div>
+						<a href="/dd/user/activity/festival/view.do" class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(resources/main/img/events-1.jpg)">
+							<div class="price align-self-start">Festival</div>
+							<p class="description">
+								크리스마스를 맞이하여 펼쳐지는 환상적인 퍼레이드 축제!
+							</p>
+						</a>
 						<!-- End Event item -->
 
-						<div
-							class="swiper-slide event-item d-flex flex-column justify-content-end"
-							style="background-image: url(resources/main/img/events-2.jpg)">
-							<h3>Private Parties</h3>
-							<div class="price align-self-start">$289</div>
-							<p class="description">In delectus sint qui et enim. Et ab
-								repudiandae inventore quaerat doloribus. Facere nemo vero est ut
-								dolores ea assumenda et. Delectus saepe accusamus aspernatur.</p>
-						</div>
+						<a href="/dd/user/communication/review/view.do" class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(resources/main/img/events-2.jpg)">
+						    <div class="price align-self-start">Review</div>
+						    <p class="description">
+						    	DD-Land에서 있었던 따뜻한 추억을 리뷰로 공유해주세요!
+						    </p>
+						</a>
+
 						<!-- End Event item -->
 
-						<div
-							class="swiper-slide event-item d-flex flex-column justify-content-end"
-							style="background-image: url(resources/main/img/events-3.jpg)">
-							<h3>Birthday Parties</h3>
-							<div class="price align-self-start">$499</div>
-							<p class="description">Laborum aperiam atque omnis minus
-								omnis est qui assumenda quos. Quis id sit quibusdam. Esse
-								quisquam ducimus officia ipsum ut quibusdam maxime. Non enim
-								perspiciatis.</p>
-						</div>
+						<a href="/dd/user/shop/restaurant/view.do" class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(resources/main/img/events-3.jpg)">
+							<div class="price align-self-start">Restaurant</div>
+							<p class="description">
+								맛있는 휴식, 달콤한 상상! 가족·친구·연인과 함께 즐겨보세요!
+							</p>
+						</a>
 						<!-- End Event item -->
 
 					</div>
-					<div class="swiper-pagination"></div>
+					<div class="swiper-pagination" style="padding-bottom: 65px;"></div>
 				</div>
 
 			</div>
 		</section>
 		<!-- End Events Section -->
 		
+		<style>
+			#time {
+				position: relative;
+				left: 450px;
+			}
+			#time span:first-child {
+				font-size: 2rem;
+				padding-left: 110px;
+				padding-bottom: 10px;
+			}
+			#time span:not(:first-child) {
+			    font-size: 4rem;
+			}
+			#interval {
+				margin: 0 15px;
+			}
+			.stats-counter {
+		       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/time.jpg") center center;
+		       background-size: cover;
+		       background-attachment: fixed;
+		    }
+		</style>
+		
 		<!-- ======= Stats Counter Section ======= -->
-		<section id="stats-counter" class="stats-counter" style="padding: 20px;">
-			<div class="container" data-aos="zoom-out">
-
-				<div class="row gy-4">
-
-					<div class="col-lg-3 col-md-6">
-						<div class="stats-item text-center w-100 h-100">
-							<span data-purecounter-start="0" data-purecounter-end="10"
-								data-purecounter-duration="1.8" class="purecounter"></span>
-							<span data-purecounter-start="0" data-purecounter-end="22"
-								data-purecounter-duration="1.5" class="purecounter"></span>
-						</div>
-					</div>
-					<!-- End Stats Item -->
-
-				</div>
-
-			</div>
+		<section id="stats-counter" class="stats-counter" style="padding: 30px 30px 20px;">
+		    <div class="container" data-aos="zoom-out" style="white-space: nowrap;">
+		
+		        <div class="row gy-4">
+		
+		            <div class="col-lg-3 col-md-6">
+		                <div id="time" class="stats-item text-center w-100 h-100">
+		                	<span>운영시간</span>
+		                    <span style="display: inline-block;" data-purecounter-start="0" data-purecounter-end="9" data-purecounter-duration="1.8" class="purecounter"></span>
+		                    <span style="display: inline-block;">: 00</span>
+		                    <span id="interval" style="display: inline-block;">-</span>
+		                    <span style="display: inline-block;" data-purecounter-start="0" data-purecounter-end="22" data-purecounter-duration="1.5" class="purecounter"></span>
+		                    <span style="display: inline-block;">: 00</span>
+		                </div>
+		            </div>
+		
+		            <!-- End Stats Item -->
+		
+		        </div>
+		
+		    </div>
 		</section>
 		<!-- End Stats Counter Section -->
-	
-
-		<!-- ======= Why Us Section ======= -->
-		<section id="why-us" class="why-us section-bg">
-		
-		<div id="reference">추천3!</div>
-			<div class="container" data-aos="fade-up">
-
-				<div class="row gy-4" id="total">
-					<div class="col-lg-8 d-flex align-items-center">
-						<div class="row gy-4">
-
-							<div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
-								<div
-									class="icon-box d-flex flex-column justify-content-center align-items-center">
-									<i class="bi bi-clipboard-data"></i>
-									<h4>Corporis voluptates officia eiusmod</h4>
-									<p>Consequuntur sunt aut quasi enim aliquam quae harum
-										pariatur laboris nisi ut aliquip</p>
-								</div>
-							</div>
-							<!-- End Icon Box -->
-
-							<div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
-								<div
-									class="icon-box d-flex flex-column justify-content-center align-items-center">
-									<i class="bi bi-gem"></i>
-									<h4>Ullamco laboris ladore pan</h4>
-									<p>Excepteur sint occaecat cupidatat non proident, sunt in
-										culpa qui officia deserunt</p>
-								</div>
-							</div>
-							<!-- End Icon Box -->
-
-							<div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
-								<div
-									class="icon-box d-flex flex-column justify-content-center align-items-center">
-									<i class="bi bi-inboxes"></i>
-									<h4>Labore consequatur incidid dolore</h4>
-									<p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus
-										ut maiores omnis facere</p>
-								</div>
-							</div>
-							<!-- End Icon Box -->
-
-						</div>
-					</div>
-
-				</div>
-
-			</div>
-		</section>
-		<!-- End Why Us Section -->
 
 		<!-- ======= 어트랙션 추천 ======= -->
-		<section id="chefs" class="chefs section-bg">
-			<div class="container" data-aos="fade-up">
+      <section id="chefs" class="chefs section-bg" style="padding-top: 150px;">
+         <div class="container" data-aos="fade-up">
 
-				<div class="section-header">
-					<h2>어트랙션 추천</h2>
-					<p>오늘은 <span>어떻게</span> 놀아볼까?</p>
-				</div>
+            <div class="section-header">
+               <h2>어트랙션 추천</h2>
+               <p>오늘은 <span>어떻게</span> 놀아볼까?</p>
+            </div>
 
-				<div class="row gy-4">
-					<c:forEach var="attraction" items="${TopThreeAttraction}" varStatus="status">
-						<div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-							<div class="chef-member" onclick="location.href= '/dd/user/activity/attraction/detail.do?seq=' + ${attraction.attraction_seq};">
-								<div class="member-img">
-									<img src="/dd/resources/files/activity/attraction/${attraction.img}" class="img-fluid" alt="${attraction.img}">
-								</div>
-								<div class="member-info">
-									<h4>${attraction.name}</h4>
-									<span>${status.index + 1}위</span>
-									<p>${attraction.info}</p>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
-			</div>
-		</section>
-		<!-- 어트랙션 추천 끝 -->
+            <div class="row gy-4">
+               <c:forEach var="attraction" items="${TopThreeAttraction}" varStatus="status">
+                  <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                     <div class="chef-member" onclick="location.href= '/dd/user/activity/attraction/detail.do?seq=' + ${attraction.attraction_seq};">
+                        <div class="member-img">
+                           <img src="/dd/resources/files/activity/attraction/${attraction.img}" class="img-fluid" alt="${attraction.img}">
+                        </div>
+                        <div class="member-info">
+                           <h4>${attraction.name}</h4>
+                           <span>${status.index + 1}위</span>
+                           <p>${attraction.info}</p>
+                        </div>
+                     </div>
+                  </div>
+               </c:forEach>
+            </div>
+         </div>
+      </section>
+      <!-- 어트랙션 추천 끝 -->
 
 		<!-- ======= Gallery Section ======= -->
 		<section id="gallery" class="gallery section-bg">
 			<div class="container" data-aos="fade-up">
 
 				<div class="section-header">
-					<h2>gallery</h2>
 					<p>
-						Check <span>Our Gallery</span>
+						Check <span>Our Attraction</span>
 					</p>
 				</div>
 
@@ -199,50 +161,50 @@
 					<div class="swiper-wrapper align-items-center">
 						<div class="swiper-slide">
 							<a class="glightbox" data-gallery="images-gallery"
-								href="resources/main/img/gallery/gallery-1.jpg"><img
-								src="resources/main/img/gallery/gallery-1.jpg" class="img-fluid"
+								href="/dd/resources/files/activity/attraction/너구리 대작전.jpg"><img
+								src="/dd/resources/files/activity/attraction/너구리 대작전.jpg" class="img-fluid"
 								alt=""></a>
 						</div>
 						<div class="swiper-slide">
 							<a class="glightbox" data-gallery="images-gallery"
-								href="resources/main/img/gallery/gallery-2.jpg"><img
-								src="resources/main/img/gallery/gallery-2.jpg" class="img-fluid"
+								href="/dd/resources/files/activity/attraction/벼랑 기차.jpeg"><img
+								src="/dd/resources/files/activity/attraction/벼랑 기차.jpeg" class="img-fluid"
 								alt=""></a>
 						</div>
 						<div class="swiper-slide">
 							<a class="glightbox" data-gallery="images-gallery"
-								href="resources/main/img/gallery/gallery-3.jpg"><img
-								src="resources/main/img/gallery/gallery-3.jpg" class="img-fluid"
+								href="/dd/resources/files/activity/attraction/우리는 빙글빙글2.jpeg"><img
+								src="/dd/resources/files/activity/attraction/우리는 빙글빙글2.jpeg" class="img-fluid"
 								alt=""></a>
 						</div>
 						<div class="swiper-slide">
 							<a class="glightbox" data-gallery="images-gallery"
-								href="resources/main/img/gallery/gallery-4.jpg"><img
-								src="resources/main/img/gallery/gallery-4.jpg" class="img-fluid"
+								href="/dd/resources/files/activity/attraction/니모이야기2.jpeg"><img
+								src="/dd/resources/files/activity/attraction/니모이야기2.jpeg" class="img-fluid"
 								alt=""></a>
 						</div>
 						<div class="swiper-slide">
 							<a class="glightbox" data-gallery="images-gallery"
-								href="resources/main/img/gallery/gallery-5.jpg"><img
-								src="resources/main/img/gallery/gallery-5.jpg" class="img-fluid"
+								href="/dd/resources/files/activity/attraction/후렌치레볼루션.jpeg"><img
+								src="/dd/resources/files/activity/attraction/후렌치레볼루션.jpeg" class="img-fluid"
 								alt=""></a>
 						</div>
 						<div class="swiper-slide">
 							<a class="glightbox" data-gallery="images-gallery"
-								href="resources/main/img/gallery/gallery-6.jpg"><img
-								src="resources/main/img/gallery/gallery-6.jpg" class="img-fluid"
+								href="/dd/resources/files/activity/attraction/거북이 그네.jpeg"><img
+								src="/dd/resources/files/activity/attraction/거북이 그네.jpeg" class="img-fluid"
 								alt=""></a>
 						</div>
 						<div class="swiper-slide">
 							<a class="glightbox" data-gallery="images-gallery"
-								href="resources/main/img/gallery/gallery-7.jpg"><img
-								src="resources/main/img/gallery/gallery-7.jpg" class="img-fluid"
+								href="/dd/resources/files/activity/attraction/지트란티스.jpeg"><img
+								src="/dd/resources/files/activity/attraction/지트란티스.jpeg" class="img-fluid"
 								alt=""></a>
 						</div>
 						<div class="swiper-slide">
 							<a class="glightbox" data-gallery="images-gallery"
-								href="resources/main/img/gallery/gallery-8.jpg"><img
-								src="resources/main/img/gallery/gallery-8.jpg" class="img-fluid"
+								href="/dd/resources/files/activity/attraction/우리는 빙글빙글1.jpeg"><img
+								src="/dd/resources/files/activity/attraction/우리는 빙글빙글1.jpeg" class="img-fluid"
 								alt=""></a>
 						</div>
 					</div>
@@ -255,9 +217,9 @@
 		
 		<!-- start reservation  -->
 		 <div class="col-lg-12 col-md-6 text-center bg-dark" style="padding: 2rem;" id="reservationBox">
-       	 	<h1 class="text-uppercase text-light mb-4">더 빠른 탑승을 위한 최고의 선택!</h1>
-        	<a href="/ddstudio/activity/attraction.do" class="btn btn-primary py-3 px-5" style="background-color: #ec2727; color:#fff; border: 1px solid #ec2727">어트랙션 예약</a>
-    	</div>
+              <h1 class="text-uppercase text-light mb-4">더 빠른 탑승을 위한 최고의 선택!</h1>
+           <a href="/dd/user/activity/attraction/view.do" class="btn btn-primary py-3 px-5" style="background-color: #ec2727; color:#fff; border: 1px solid #ec2727">어트랙션 예약</a>
+       </div>
 		
-	</main>
-	<!-- end reservation -->
+		
+		<!-- end reservation -->

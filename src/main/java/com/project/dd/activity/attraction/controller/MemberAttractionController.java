@@ -1,6 +1,5 @@
 package com.project.dd.activity.attraction.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.project.dd.activity.attraction.domain.AttractionBookDTO;
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.BookUserDTO;
 import com.project.dd.activity.attraction.service.AttractionService;
@@ -25,10 +23,6 @@ public class MemberAttractionController {
 	
 	@GetMapping(value = "/add.do")
 	public String add(Model model, String seq) {
-
-//		//시간대별 예약 인원 불러오기
-//		List<AttractionBookDTO> list = service.getAttractionBookList();
-//		model.addAttribute("list", list);
 		
 		//해당 어트랙션 정보 가져오기
 		AttractionDTO dto = service.getAttraction(seq);
@@ -41,18 +35,14 @@ public class MemberAttractionController {
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, BookUserDTO dto, Authentication auth) {
 
-		
-		
-		
-		System.out.println(((CustomUser)auth.getPrincipal()).getDto());
-		System.out.println(((CustomUser)auth.getPrincipal()).getUsername());
+		dto.setUser_seq(((CustomUser)auth.getPrincipal()).getDto().getUser_seq());
 		
 		int result = service.addAttractionBook(dto);
 		
 		if (result > 0) {
-			return "redirect:";
+			return "redirect:/user/activity/attraction/detail.do?seq=" + dto.getAttraction_seq();
 		} else {
-			return "redirect:";
+			return "redirect:/member/activity/attraction/add.do";
 		}
 		
 	}
