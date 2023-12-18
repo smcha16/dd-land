@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dd.purchase.mapper.PurchaseMapper">
+
+	<insert id="addBuy"
+		parameterType="com.project.dd.purchase.domain.PurchaseDTO">
+		insert into tblbuy values (seqtblbuy.nextVal, sysdate,
+		#{ea}, #{price}, #{item_seq})
+	</insert>
+
+	<insert id="addUserBuy" parameterType="map">
+		insert into tblUserbuy values
+		(seqtblUserbuy.nextVal, #{user_seq}, #{seq})
+	</insert>
+
+</mapper>

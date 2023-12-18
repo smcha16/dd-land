@@ -50,7 +50,7 @@ public class AdminWorldCupCourseController {
 		return "admin/test/worldcup/course/view";
 
 	}
-
+	
 	@PostMapping(value = "/admin/test/worldcup/course/view.do")
 	public String updateCourseStatus(@RequestParam String courseSeq, @RequestParam String isTest, Model model) {
 		// System.out.println("seq:" + courseSeq + " check:" + isTest);

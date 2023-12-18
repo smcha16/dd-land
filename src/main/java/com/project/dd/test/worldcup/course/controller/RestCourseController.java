@@ -15,9 +15,9 @@ public class RestCourseController {
 	private WorldCupCourseService cwcService;
 
 	@PostMapping(value = "/admin/test/worldcup/course/name", produces = "application/json")
-	public int checkName(@RequestBody CourseDTO dto) {
+	public int checkCourseName(@RequestBody CourseDTO dto) {
 		
-		return cwcService.checkNameDuplication(dto);
+		return cwcService.checkCourseNameDuplication(dto);
 	}
 	
 }

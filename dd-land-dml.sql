@@ -1,5 +1,7 @@
 -- dd-land-dml
 
+SET DEFINE OFF;
+
 /* 유저 */
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '관리자', 'admin@naver.com', 'admin1111!', '010-1545-4623', '73575 제주 84동 63층 769호', TO_DATE('19940909', 'yyyy-mm-dd'), '2', 'Y');
@@ -2441,6 +2443,280 @@ VALUES (seqtblAttractionImg.NEXTVAL, '이웃집 탐방기.jpeg', 29);
 INSERT INTO tblAttractionImg (attraction_img_seq, img, attraction_seq)
 VALUES (seqtblAttractionImg.NEXTVAL, '귀를 기울이면.jpeg', 30);
 
+
+/* 어트랙션월드컵 */
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 1);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 2);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 3);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 4);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 5);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 6);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 7);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 8);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 9);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 10);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 11);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 12);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 13);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 14);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 15);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 16);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 17);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'Y', 18);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 19);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 20);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 21);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 22);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 23);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 24);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 25);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 26);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 27);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 28);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 29);
+
+INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
+VALUES (seqtblAWC.NEXTVAL, 'N', 30);
+
+/* 어트랙션월드컵승리 */
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 682, 502, 1);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 670, 408, 2);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 703, 203, 3);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 710, 350, 4);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 700, 550, 5);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 690, 480, 6);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 720, 400, 7);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 690, 480, 8);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 710, 350, 9);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 700, 390, 10);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 705, 420, 11);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 695, 470, 12);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 725, 380, 13);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 715, 410, 14);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 730, 360, 15);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 700, 400, 16);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 710, 390, 17);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 690, 420, 18);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 705, 370, 19);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 715, 430, 20);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 725, 350, 21);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 695, 440, 22);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 730, 380, 23);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 720, 390, 24);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 710, 400, 25);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 700, 410, 26);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 690, 420, 27);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 710, 350, 28);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 690, 480, 29);
+
+INSERT INTO tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+VALUES (seqtblAWCWin.NEXTVAL, 710, 350, 30);
+
+/* 어트랙션월드컵최종승리 */
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 150, 1);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 123, 2);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 66, 3);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 110, 4);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 120, 5);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 112, 6);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 100, 7);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 95, 8);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 110, 9);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 70, 10);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 113, 11);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 115, 12);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 92, 13);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 105, 14);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 60, 15);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 49, 16);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 98, 17);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 110, 18);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 96, 19);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 100, 20);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 92, 21);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 73, 22);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 83, 23);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 105, 24);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 50, 25);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 65, 26);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 90, 27);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 82, 28);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 62, 29);
+
+INSERT INTO tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+VALUES (seqtblAWCFinalWin.NEXTVAL, 57, 30);
+
 /* 어트랙션월드컵 */
 INSERT INTO tblAWC (awc_seq, is_test, attraction_seq)
 VALUES (seqtblAWC.NEXTVAL, 'Y', 1);
@@ -2846,52 +3122,52 @@ INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
 VALUES (seqtblCWCFinalWin.NEXTVAL, 65, 8);
 
 /* MBTI */
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '몇 시에 일어나서 무슨 옷을 입고 몇 시에 출발할지 모두 계획하는 사람', 'ISTJ', 'ISTJ.png', '1', '1');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '무서워하는 친구를 챙겨주는 세심한 사람', 'ISFJ', 'ISFJ.png', '2', '2');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '친구들의 부탁을 잘 들어주는 사람', 'INFJ', 'INFJ.png', '4', '3');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '타고 싶은 거 안 타고 싶은 거 이유를 칼같이 말하는 논리적인 사람', 'INTJ', 'INTJ.png', '7', '4');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '조용히 있는 듯 없는 듯 다 타는 스릴러를 즐기는 사람', 'ISTP', 'ISTP.png', '5', '5');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '내 갈길 간다! 친구가 못 타면 나라도 타고오는 사람', 'ISFP', 'ISFP.png', '3', '6');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '타고 싶은 게 있어도 말 안하고 친구들이 타고 싶다하는 거 타러 가는 사람', 'INFP', 'INFP.png','4', '7');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '타고 싶은 건 많지만 귀찮아서 몇 개만 타는 사람', 'INTP', 'INTP.png', '5', '8');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '처음 타는 것도 바로 적응하고 계속 타는 사람', 'ESTP', 'ESTP.png', '6', '9');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '인싸중에 핵인싸 놀이동산 오자고 한 사람', 'ESFP', 'ESFP.png', '8', '10');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '무서워도 웃고 재밌어도 웃고 신나서 계속 웃는 사람', 'ENFP', 'ENFP.png', '1', '11');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '반복적인 거 싫어하고 도전하는 거 좋아해서 처음 보는 거 다 타는 사람', 'ENTP', 'ENTP.png', '6', '12');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '이거 타자 저거 타자 의견 제시하는 사람', 'ESTJ', 'ESTJ.png', '4', '13');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '갑자기 놀이동산 가자하면 지체없이 바로 출발하는 사람', 'ESFJ', 'ESFJ.png', '5', '14');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '놀이기구 제일 잘 타는(줄 아는) 사람', 'ENFJ', 'ENFJ.png', '2', '15');
 
-INSERT INTO tblMBTI (mbti_seq, result, mbti, mbti_img, course_seq, attraction_seq)
+INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '오늘 타려고 계획했던 건 다 타야 하는 사람', 'ENTJ', 'ENTJ.png', '4', '16');
 
 /* 칭찬/불편/건의 */
@@ -2918,82 +3194,82 @@ VALUES (seqtblInquiry.NEXTVAL, '문의유형3', '문의 제목 3', '문의 내�
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '스튜디오를 나갔다가 다시 들어올 수 있나요?', 'DD Studio에서는 스튜디오 입장 후 퇴장하시면 원칙적으로 재입장이 불가능합니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '이용정보', '홈페이지 로그인이 되지 않아요.',
-		'1. 로그인이 되지 않을 때 쿠키설정을 확인해주시기 바랍니다.
-		인터넷 익스플로러 브라우저 사용 시 ''쿠키 처리 방식''이 ''허용''으로 되어 있어야 로그인이 가능합니다.
-		※ 확인 방법 : 인터넷 옵션 → 개인정보 → 고급 → 현재 사이트의 쿠키/링크된 사이트의 쿠키 설정 ''허용''
+'1. 로그인이 되지 않을 때 쿠키설정을 확인해주시기 바랍니다.
+인터넷 익스플로러 브라우저 사용 시 ''쿠키 처리 방식''이 ''허용''으로 되어 있어야 로그인이 가능합니다.
+※ 확인 방법 : 인터넷 옵션 → 개인정보 → 고급 → 현재 사이트의 쿠키/링크된 사이트의 쿠키 설정 ''허용''
 
-		2. 팝업 차단이 되어 있을 경우 로그인창이 뜨지 않을 수 있습니다.
-		팝업 설정을 ''허용''으로 변경해주시기 바랍니다.
-		※ 확인 방법 : 인터넷 옵션 → 개인정보 → ''팝업 차단 사용'' 체크박스 해지');
+2. 팝업 차단이 되어 있을 경우 로그인창이 뜨지 않을 수 있습니다.
+팝업 설정을 ''허용''으로 변경해주시기 바랍니다.
+※ 확인 방법 : 인터넷 옵션 → 개인정보 → ''팝업 차단 사용'' 체크박스 해지');
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '개명에 따른 이름변경을 하려면 어떻게 해야하죠?', '개명신청으로 이름이 변경되셨을 경우 고객센터(1899-8900)로 연락 주시면 정보 변경이 가능합니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '고객을 위한 어떤 편의시설을 갖추고 있나요?', '안내데스크, 물품보관함, 유아휴게실, 의무실, 휴대폰 충전소, 피크닉 라운지 등 많은 시설들이 손님분들의 즐거운 시간을 위해 준비되어 있습니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '이용정보', '물건을 잃어버렸는데 어떻게 해야 할까요?',
-		'홈페이지 고객센터의 분실물센터 혹은 서울랜드 중앙안내실로 확인부탁드립니다. (중앙안내실 02-509-6501)
-		공원안에서 발견된 분실물들은 분실물센터로 모아지며, 회수된 물품은 분실물 접수건과 대조해서 해당고객에게 연락을 드립니다.');
-		INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '어린이는 몇살부터 몇살까지인가요?', '어린이 요금은 36개월 이상의 어린이부터 초등학생까지, 청소년 요금은 중.고등학생에 한해 적용됩니다.');
+'홈페이지 고객센터의 분실물센터 혹은 서울랜드 중앙안내실로 확인부탁드립니다. (중앙안내실 02-509-6501)
+공원안에서 발견된 분실물들은 분실물센터로 모아지며, 회수된 물품은 분실물 접수건과 대조해서 해당고객에게 연락을 드립니다.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '어린이는 몇살부터 몇살까지인가요?', '어린이 요금은 36개월 이상의 어린이부터 초등학생까지, 청소년 요금은 중.고등학생에 한해 적용됩니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '이용정보', '애완동물을 데리고 입장할 수 있나요?',
-		'소형견에 한하여 동반입장이 가능합니다. 다만 아래의 주의사항을 꼭 따라주시길 부탁드립니다.
-		- 목줄 착용 후 안거나, 애견전용 유모차 및 케이지로 이동 
-		- 실내시설(음식점.상점.공연장)에 입장 및 놀이시설 이용 불가
-		- 배변봉투 및 휴지 필수지참, 배변 처리 필수');
+'소형견에 한하여 동반입장이 가능합니다. 다만 아래의 주의사항을 꼭 따라주시길 부탁드립니다.
+- 목줄 착용 후 안거나, 애견전용 유모차 및 케이지로 이동 
+- 실내시설(음식점.상점.공연장)에 입장 및 놀이시설 이용 불가
+- 배변봉투 및 휴지 필수지참, 배변 처리 필수');
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '액티비티', '키를 잴 때 신발을 신고 재나요?', '모든 놀이시설 이용을 위한 신장 측정시 신발을 신고 측정합니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '액티비티', '놀이시설 이용제한은 어디서 확인할 수 있나요?', '홈페이지 내 어트랙션 카테고리에서 확인 가능합니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '액티비티', '놀이시설 운영은 날씨와 관계없이 가능한가요?', '내리는 비, 눈의 양, 바람, 온도, 습도 등 기상 상황에 따라 놀이시설 운영이 제한될 수 있습니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '액티비티', '36개월 미만 어린이가 이용할 수 있는 놀이시설은 무엇인가요?',
-		'DD Studio 놀이시설은 고객님의 안전한 이용을 위해 이용제한이 마련되어 있습니다.
-		이용제한의 경우 연령제한이 아닌 신장제한으로 운영되고 있으니
-		놀이시설 마다의 탑승 가능 신장을 확인하시어 이용해주시기 바랍니다.');
+'DD Studio 놀이시설은 고객님의 안전한 이용을 위해 이용제한이 마련되어 있습니다.
+이용제한의 경우 연령제한이 아닌 신장제한으로 운영되고 있으니
+놀이시설 마다의 탑승 가능 신장을 확인하시어 이용해주시기 바랍니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '혜택', '제휴카드가 여러 장 있습니다. 티켓을 여러 장 구입할 수 있나요?',
-		'가능합니다.
-		다만, 같은 카드로 결제하실 경우 카드마다 이용횟수가 제한되어 있기때문에 구매가 제한될 수 있습니다.
-		자세한 내용은 카드사에 문의 부탁드립니다.');
+'가능합니다.
+다만, 같은 카드로 결제하실 경우 카드마다 이용횟수가 제한되어 있기때문에 구매가 제한될 수 있습니다.
+자세한 내용은 카드사에 문의 부탁드립니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '혜택', '부모님 제휴카드로 제가 할인을 받을 수 있나요?',
-		'카드는 본인사용을 원칙으로하지만
-		부모님의 카드를 양도받으실 경우 카드 소유주의 신분증(또는 사본)을 지참하신다면 카드 사용이 가능합니다.');
+'카드는 본인사용을 원칙으로하지만
+부모님의 카드를 양도받으실 경우 카드 소유주의 신분증(또는 사본)을 지참하신다면 카드 사용이 가능합니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '혜택', 'KT/SKT 멤버십 포인트 부족 시 할인이 불가능한가요?',
-		'KT/SKT 등 멤버십 혜택의 경우 일정한 포인트 차감 후 티켓 할인이 되기때문에
-		포인트가 부족할 경우 티켓 할인이 불가할 수 있습니다.
-		
-		기타 포인트 차감 및 자세한 문의는 소지하신 카드 뒷면 고객센터로 문의하여 주시기 바랍니다.');
+'KT/SKT 등 멤버십 혜택의 경우 일정한 포인트 차감 후 티켓 할인이 되기때문에
+포인트가 부족할 경우 티켓 할인이 불가할 수 있습니다.
+
+기타 포인트 차감 및 자세한 문의는 소지하신 카드 뒷면 고객센터로 문의하여 주시기 바랍니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '혜택', '제휴카드 결제가 되지 않습니다.',
-		'제휴카드 결제가 되지 않는 경우는 아래와 같을수 있습니다.
-		1. DD Studio 제휴카드가 아닌경우
-		2. 카드사 제한이 걸려 있는경우 예) 통합한도, 실적 등
-		3. 기타 인터넷, 네트워크 등 장애로 인한 경우');
+'제휴카드 결제가 되지 않는 경우는 아래와 같을수 있습니다.
+1. DD Studio 제휴카드가 아닌경우
+2. 카드사 제한이 걸려 있는경우 예) 통합한도, 실적 등
+3. 기타 인터넷, 네트워크 등 장애로 인한 경우');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '예매', '직접 방문하지 않아도 온라인으로 티켓을 구입할 수 있나요?',
-		'롯데월드 어드벤처는 더 빠르고 편리한 이용을 위해 온라인 예매 서비스를 시행하고 있습니다.
-		이용권의 종류, 사용일, 결제종류 등을 선택하셔서 미리 예매하시면 받으시는 분의 휴대폰으로 모바일 티켓이 전송됩니다.
-		앱을 사용해 마이티켓에 들어가시면 현재 사용할 수 있는 티켓을 바로 찾으실 수 있습니다.
-		단, 2G 폰을 사용중인 손님분들은 앱을 이용한 모바일 티켓을 사용하실 수 없습니다. 
-		현장에서 티켓을 별도로 구매해 주시기 바랍니다.');
+'롯데월드 어드벤처는 더 빠르고 편리한 이용을 위해 온라인 예매 서비스를 시행하고 있습니다.
+이용권의 종류, 사용일, 결제종류 등을 선택하셔서 미리 예매하시면 받으시는 분의 휴대폰으로 모바일 티켓이 전송됩니다.
+앱을 사용해 마이티켓에 들어가시면 현재 사용할 수 있는 티켓을 바로 찾으실 수 있습니다.
+단, 2G 폰을 사용중인 손님분들은 앱을 이용한 모바일 티켓을 사용하실 수 없습니다. 
+현장에서 티켓을 별도로 구매해 주시기 바랍니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '예매', '온라인 예매 시작 화면이 하얗게 나오는데 어떻게 하나요?',
-		'온라인 예매 시작 전에 ActiveX설치가 원활히 이루어지지 않아서 그렇습니다.
-		온라인 예매 시작 전에 ActiveX설치를 위한 PC 환경을 확인해주세요.');
+'온라인 예매 시작 전에 ActiveX설치가 원활히 이루어지지 않아서 그렇습니다.
+온라인 예매 시작 전에 ActiveX설치를 위한 PC 환경을 확인해주세요.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '예매', '예매 결제 단계에서 ''결제''버튼을 눌렀는데 아무런 반응이 없어요.',
-		'결제수단에 대한 ActiveX설치가 원활히 이루어지지 않아서 그렇습니다.
-		ActiveX 설치를 위한 PC 환경을 다시 한 번 확인해주세요.');
+'결제수단에 대한 ActiveX설치가 원활히 이루어지지 않아서 그렇습니다.
+ActiveX 설치를 위한 PC 환경을 다시 한 번 확인해주세요.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '예매', '''이 웹 사이트의 추가 기능을 실행하지 못했습니다.''라는 문구가 떠요.',
-		'Internet Explorer를 관리자 권한으로 실행해주세요.
-		Internet Explorer 아이콘 위에서 마우스 오른쪽 버튼 클릭– 관리자 권한으로 실행 선택');
+'Internet Explorer를 관리자 권한으로 실행해주세요.
+Internet Explorer 아이콘 위에서 마우스 오른쪽 버튼 클릭– 관리자 권한으로 실행 선택');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '예매', '예매 후 티켓은 어디서 받는 건가요?',
-		'모바일/온라인 예매를 하셨다면 앱 안에 티켓이 생성되며, 별도의 지류티켓 발권 없이 바로 앱 화면을 통해 게이트로 입장하실 수 있습니다.');
+'모바일/온라인 예매를 하셨다면 앱 안에 티켓이 생성되며, 별도의 지류티켓 발권 없이 바로 앱 화면을 통해 게이트로 입장하실 수 있습니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '기타', '회원가입, 탈퇴는 어떻게 하나요?', '회원가입과 탈퇴는 롯데월드 어드벤처 홈페이지에서 로그인창에서 가입과 탈퇴를 할수 있습니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '기타', 'DD Studio 캐스트에 지원하려면 어떻게 해야 하나요?',
-		'DD Studio는 즐겁게 일하고 손님에게 최선의 서비스를 제공할 준비가 되어 있는 지원자를 찾고 있습니다.
-		DD Studio는 다양한 지원자 분들의 편의와 효율적인 채용관리를 위해 인재채용 홈페이지를 운영해 채용공고를 게시하고 있습니다.');
+'DD Studio는 즐겁게 일하고 손님에게 최선의 서비스를 제공할 준비가 되어 있는 지원자를 찾고 있습니다.
+DD Studio는 다양한 지원자 분들의 편의와 효율적인 채용관리를 위해 인재채용 홈페이지를 운영해 채용공고를 게시하고 있습니다.');
 
 /* 공지사항 */
 INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix)
@@ -3003,7 +3279,7 @@ VALUES (seqtblNotice.nextVal, '반려견 동반 출입 안내 ''댕댕이 어서
         아래 내용을 확인하셔서 반려견과 함께 즐거운 여행 되세요!
         
         <DD Studio 반려견 동반 출입 안내>
-		1. 몸무게 : 소형견(10kg 미만)
+1. 몸무게 : 소형견(10kg 미만)
         2. 이동방법 : 리드줄(목줄) 착용 후 안거나 케이지에 넣어 이동
         3. 기타 확인사항
         ① 반려견과 함께 놀이시설 및 실내 매장 이용이 불가합니다.
@@ -3087,6 +3363,7 @@ INSERT INTO TBLTICKET (TICKET_SEQ, TICKET_TYPE, PERSON_TYPE, AGE, PRICE) VALUES 
 INSERT INTO TBLTICKET (TICKET_SEQ, TICKET_TYPE, PERSON_TYPE, AGE, PRICE) VALUES (SEQTBLTICKET.nextval, 'After4', '단체', '성인', 8000);
 
 /* 혜택 */
+INSERT INTO TBLBENEFIT (BENEFIT_SEQ, NAME, TYPE, START_DATE, END_DATE, DISCOUNT_RATE, IMG) VALUES (0, 0, 0, '00/01/01', '00/01/01', 0, 0);
 INSERT INTO TBLBENEFIT (BENEFIT_SEQ, NAME, TYPE, START_DATE, END_DATE, DISCOUNT_RATE, IMG) VALUES (SEQTBLBENEFIT.nextval, 'KT 혜택을 더담다', '카드/통신사', DATE '2023-11-15', DATE '2023-11-17', 15, 'benefitimg1.jpeg');
 INSERT INTO TBLBENEFIT (BENEFIT_SEQ, NAME, TYPE, START_DATE, END_DATE, DISCOUNT_RATE, IMG) VALUES (SEQTBLBENEFIT.nextval, '삼성카드X알뜰폰 할인', '카드/통신사', DATE '2023-11-17', DATE '2023-11-29', 20, 'benefitimg2.jpg');
 INSERT INTO TBLBENEFIT (BENEFIT_SEQ, NAME, TYPE, START_DATE, END_DATE, DISCOUNT_RATE, IMG) VALUES (SEQTBLBENEFIT.nextval, 'BC그린카드 V2 출시!!', '카드/통신사', DATE '2023-11-16', DATE '2023-11-18', 10, 'benefitimg3.jpeg');
@@ -3129,6 +3406,11 @@ VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-05', 'YYYY-MM-DD'), TO_DATE('
 INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
 VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-06', 'YYYY-MM-DD'), TO_DATE('2023-12-30', 'YYYY-MM-DD'), 6, 51000, 6, 6);
 
+INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-06', 'YYYY-MM-DD'), TO_DATE('2023-12-13', 'YYYY-MM-DD'), 6, 51000, 7, 6);
+
+INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-06', 'YYYY-MM-DD'), TO_DATE('2023-12-14', 'YYYY-MM-DD'), 6, 51000, 8, 6);
 /* 회원/예매 */
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
 VALUES (seqtblUserBook.NEXTVAL, 1, 1);
@@ -3153,6 +3435,12 @@ VALUES (seqtblUserBook.NEXTVAL, 3, 5);
 
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
 VALUES (seqtblUserBook.NEXTVAL, 3, 6);
+
+INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
+VALUES (seqtblUserBook.NEXTVAL, 3, 21);
+
+INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
+VALUES (seqtblUserBook.NEXTVAL, 3, 22);
 
 /* 리뷰 */
 INSERT INTO tblReview (review_seq, subject, content, readcount, user_book_seq)
@@ -3231,14 +3519,14 @@ INSERT INTO tblUserCart (user_cart_seq, user_seq, cart_seq)
 VALUES (seqtblUserCart.NEXTVAL, 3, 3);
 
 /* 구매내역 */
-INSERT INTO tblBuy (buy_seq, buy_date, ea, buy_option, item_seq)
-VALUES (seqtblBuy.NEXTVAL, TO_DATE('2023-11-02', 'YYYY-MM-DD'), 2, '옵션 1', 1);
+INSERT INTO tblBuy (buy_seq, buy_date, ea, price, item_seq)
+VALUES (seqtblBuy.NEXTVAL, TO_DATE('2023-11-02', 'YYYY-MM-DD'), 2, 123123, 1);
 
-INSERT INTO tblBuy (buy_seq, buy_date, ea, buy_option, item_seq)
-VALUES (seqtblBuy.NEXTVAL, TO_DATE('2023-11-10', 'YYYY-MM-DD'), 1, '옵션 2', 2);
+INSERT INTO tblBuy (buy_seq, buy_date, ea, price, item_seq)
+VALUES (seqtblBuy.NEXTVAL, TO_DATE('2023-11-10', 'YYYY-MM-DD'), 1,  234234, 2);
 
-INSERT INTO tblBuy (buy_seq, buy_date, ea, buy_option, item_seq)
-VALUES (seqtblBuy.NEXTVAL, TO_DATE('2023-11-15', 'YYYY-MM-DD'), 3, '옵션 3', 3);
+INSERT INTO tblBuy (buy_seq, buy_date, ea, price, item_seq)
+VALUES (seqtblBuy.NEXTVAL, TO_DATE('2023-11-15', 'YYYY-MM-DD'), 3, 234324, 3);
 
 /* 회원/구매 */
 INSERT INTO tblUserBuy (user_buy_seq, user_seq, buy_seq)
@@ -3349,5 +3637,3 @@ INSERT INTO tblShopLocation (shop_location_seq, lat, lng, shop_seq ) VALUES (seq
 INSERT INTO tblShopLocation (shop_location_seq, lat, lng, shop_seq ) VALUES (seqShopLocation.nextVal, 33.505710, 126.732057, 2);
 INSERT INTO tblShopLocation (shop_location_seq, lat, lng, shop_seq ) VALUES (seqShopLocation.nextVal, 33.389263, 126.529013, 3);
 INSERT INTO tblShopLocation (shop_location_seq, lat, lng, shop_seq ) VALUES (seqShopLocation.nextVal, 33.454406, 126.484988, 4);
-
-

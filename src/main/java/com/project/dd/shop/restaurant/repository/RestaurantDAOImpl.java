@@ -37,5 +37,10 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	public int getTotalCount() {
 		return mapper.getTotalCount();
 	}
+	
+	@Override
+	public List<RestaurantImageDTO> getImgList() {
+		return mapper.getImgList();
+	}
 
 }

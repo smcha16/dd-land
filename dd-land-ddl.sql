@@ -225,7 +225,7 @@ CREATE TABLE tblConvenient (
 	name VARCHAR2(500) NOT NULL UNIQUE, /* 편의시설이름 */
 	time VARCHAR2(500) NOT NULL, /* 운영시간 */
 	tel VARCHAR2(500) NOT NULL, /* 편의시설전화번호 */
-	img VARCHAR2(500) DEFAULT 'convenient.png' NOT NULL /* 편의시설 이미지 */
+	img VARCHAR2(500) DEFAULT 'convenient.png' /* 편의시설 이미지 */
 );
 
 /* 기프트샵 */
@@ -415,7 +415,7 @@ CREATE TABLE tblCWCFinalWin (
 CREATE TABLE tblMBTI (
 	mbti_seq NUMBER PRIMARY KEY, /* MBTI번호 */
 	result VARCHAR2(500) NOT NULL, /* 결과 */
-	mbti VARCHAR2(500) NOT NULL, /* MBTI명 */
+	name VARCHAR2(500) NOT NULL, /* MBTI명 */
 	mbti_img VARCHAR2(500), /* MBTI이미지 */
 	course_seq NUMBER REFERENCES tblCourse(course_seq) NOT NULL, /* 코스번호 */
 	attraction_seq NUMBER REFERENCES tblAttraction(attraction_seq) NOT NULL /* 어트랙션번호 */
@@ -585,7 +585,7 @@ CREATE TABLE tblBuy (
    buy_seq NUMBER PRIMARY KEY, /* 구매내역번호 */
    buy_date DATE DEFAULT sysdate NOT NULL, /* 결제일 */
    ea NUMBER NOT NULL, /* 구매수량 */
-   buy_option VARCHAR2(500) NOT NULL, /* 구매옵션 */
+   price NUMBER NOT NULL, /* 구매가격 */
    item_seq NUMBER REFERENCES tblItem(item_seq) NOT NULL /* 아이템번호 */
 );
 
@@ -840,12 +840,96 @@ join tblInquiry I on U.user_seq = I.user_seq
 join tblVOC V on V.user_seq = U.user_seq;
 
 create or replace view vwRestaurant
-as
-select restaurant_seq, name, menu, time, capacity, tel, location_seq, (select lat from tblLocation where location_seq = r.location_seq) as lat, (select lng from tblLocation where location_seq = r.location_seq) as lng, (select name from tblCategory where category_seq = r.category_seq) as category, (select img from tblRestaurantImg where restaurant_seq = r.restaurant_seq and rownum = 1) as img from tblRestaurant r;
+AS
+SELECT
+    r.*,
+    coalesce((
+        SELECT
+            CASE
+                WHEN to_char(sysdate, 'YYYY-MM-DD') BETWEEN to_char(start_date, 'YYYY-MM-DD') AND to_char(end_date, 'YYYY-MM-DD') THEN
+                    'y'
+                ELSE
+                    'n'
+            END
+        FROM
+            tblrestaurantclose
+        WHERE
+            restaurant_seq = r.restaurant_seq
+    ),
+             'n') AS close,
+    (
+        SELECT
+            lat AS lat
+        FROM
+                 tblrestaurantlocation rl
+        WHERE
+            rl.restaurant_seq = r.restaurant_seq
+    )             AS lat,
+    (
+        SELECT
+            lng AS lng
+        FROM
+                 tblrestaurantlocation rl
+        WHERE
+            rl.restaurant_seq = r.restaurant_seq
+    )             AS lng,
+    (
+        SELECT
+            img
+        FROM
+            tblrestaurantimg
+        WHERE
+                restaurant_seq = r.restaurant_seq
+            AND ROWNUM = 1
+    )             AS img
+FROM
+    tblrestaurant r;
 
-create or replace view vwShop
-as
-select shop_seq, name, time, info, tel, location_seq, (select lat from tblLocation where location_seq = s.location_seq) as lat, (select lng from tblLocation where location_seq = s.location_seq) as lng, (select img from tblShopImg where shop_seq = s.shop_seq and rownum = 1) as img from tblShop s;
+create or replace view vwGiftshop
+AS
+SELECT
+    s.*,
+    coalesce((
+        SELECT
+            CASE
+                WHEN to_char(sysdate, 'YYYY-MM-DD') BETWEEN to_char(start_date, 'YYYY-MM-DD') AND to_char(end_date, 'YYYY-MM-DD') THEN
+                    'y'
+                ELSE
+                    'n'
+            END
+        FROM
+            tblshopclose
+        WHERE
+            shop_seq = s.shop_seq
+    ),
+             'n') AS close,
+    (
+        SELECT
+            lat AS lat
+        FROM
+                 tblshoplocation
+        WHERE
+            shop_seq = s.shop_seq
+    )             AS lat,
+    (
+        SELECT
+            lng AS lng
+        FROM
+                 tblshoplocation
+        WHERE
+            shop_seq = s.shop_seq
+    )             AS lng,
+    (
+        SELECT
+            img
+        FROM
+            tblshopimg
+        WHERE
+                shop_seq = s.shop_seq
+            AND ROWNUM = 1
+    )             AS img
+FROM
+    tblshop s;
 
 -- 어트랙션 리스트 (seq, name, img)
 CREATE OR REPLACE VIEW vwAttractionList

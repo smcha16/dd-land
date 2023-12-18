@@ -11,6 +11,14 @@
 		join tblAWCFinalWin fw on fw.attraction_seq = al.attraction_seq
 	</select>
    
+	<select id="getTestCount" resultType="int">
+		select count(*) from tblAWC awc
+		join vwAttractionList al on awc.attraction_seq = al.attraction_seq
+		join tblAWCWin w on w.attraction_seq = al.attraction_seq
+		join tblAWCFinalWin fw on fw.attraction_seq = al.attraction_seq
+		where awc.is_test = 'Y'
+	</select>
+   
 	<!--
         어트랙션 리스트를 조회하는 쿼리입니다.
         - close 파라미터로 오픈 여부를 전달받습니다.
@@ -29,6 +37,7 @@
 		        JOIN vwAttractionList al ON awc.attraction_seq = al.attraction_seq
 		        JOIN tblAWCWin w ON w.attraction_seq = al.attraction_seq
 		        JOIN tblAWCFinalWin fw ON fw.attraction_seq = al.attraction_seq
+		        order by al.attraction_seq desc
 		    ) n
 		) where rnum between #{startIndex} and #{endIndex}
 	</select>
@@ -47,6 +56,7 @@
 		where awc.is_test = 'Y'
 	</select>
 	
+	<!-- 삭제 예정 -->
 	<select id="getRunAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
     	select
 	        al.*
@@ -134,5 +144,9 @@
 		set awc_final_win_count = awc_final_win_count + 1
 		where attraction_seq = #{attractionSeq}
 	</update>
+	
+	<select id="getAttractionNameList" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		select attraction_seq, name from tblAttraction order by attraction_seq
+	</select>
 	
 </mapper>

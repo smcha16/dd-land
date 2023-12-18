@@ -1,6 +1,6 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <style>
 #main h1 {
@@ -111,10 +111,6 @@ th {
 	min-height: 0 !important;
 }
 
-.hidden-course-seq {
-	display: none;
-}
-
 /* 모달 CSS */
 #modal table.m-desc {
 	width: 100%;
@@ -209,9 +205,9 @@ th {
 											<c:forEach items="${listCourse}" var="dto" varStatus="status">
 												<tr>
 													<td><input type="checkbox" name="course_seq" value="${dto.course_seq}"></td>
-													<td>${status.count}</td>
-													<td><a onclick="showModal('${dto.course_seq}', '${dto.name}','${dto.img}')"><c:out value="${dto.name}" /></a></td>
-													<td>${dto.img}</td>
+													<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
+													<td><a onclick="showModal('${dto.course_seq}', '${dto.name}','${fn:contains(dto.img, '_') ? fn:substringAfter(dto.img, '_') : dto.img}')"><c:out value="${dto.name}" /></a></td>
+													<td>${fn:contains(dto.img, '_') ? fn:substringAfter(dto.img, '_') : dto.img}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -225,8 +221,7 @@ th {
 													<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
 												</c:when>
 												<c:otherwise>
-													<li class="page-item"><a class="page-link"
-														href="/dd/admin/test/worldcup/course/list.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+													<li class="page-item"><a class="page-link" href="/dd/admin/test/worldcup/course/list.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
@@ -268,7 +263,6 @@ th {
 	    } else {
 	        alert('1개 이상의 코스를 선택 후, 삭제 버튼을 눌러주세요.');
 	    }
-	    
 	}
 
 	// 코스 상세 모달

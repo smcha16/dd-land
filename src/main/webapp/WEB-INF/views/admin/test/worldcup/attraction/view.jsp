@@ -1,6 +1,6 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <style>
 #main h1 {
@@ -149,10 +149,8 @@ th {
 					<div class="col-12">
 
 						<div id="search" class="header">
-							<form class="search-form d-flex align-items-center" method="POST"
-								action="#">
-								<input type="text" name="query" placeholder="Search"
-									title="Enter search keyword">
+							<form class="search-form d-flex align-items-center" method="POST" action="#">
+								<input type="text" name="query" placeholder="Search" title="Enter search keyword">
 								<button type="submit" title="Search">
 									<i class="bi bi-search"></i>
 								</button>
@@ -175,15 +173,15 @@ th {
 							            		<tbody>
 							            			<tr>
 							            				<th>최종우승횟수</th>
-							            				<td class="m-awc_final_win_count">회</td>
+							            				<td class="m-awc_final_win_count"></td>
 							            			</tr>
 							            			<tr>
 							            				<th>승리횟수</th>
-							            				<td class="m-awc_win_count">회</td>
+							            				<td class="m-awc_win_count"></td>
 							            			</tr>
 							            			<tr>
 							            				<th>1:1 대결수</th>
-							            				<td class="m-awc_match_count">회</td>
+							            				<td class="m-awc_match_count"></td>
 							            			</tr>
 							            		</tbody>
 							            	</table>
@@ -214,11 +212,11 @@ th {
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${listAttraction}" var="dto">
+										<c:forEach items="${listAttraction}" var="dto" varStatus="status">
 											<tr>
 												<!-- <td><input type="checkbox"></td> -->
-												<td>${dto.attraction_seq}</td>
-												<td><a onclick="showModal('${dto.attraction_seq}', '${dto.name}', '${dto.awc_final_win_count}', '${dto.awc_win_count}', '${dto.awc_match_count}')"><c:out value="${dto.name}" /></a></td>
+												<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
+												<td><a onclick="showModal('${dto.attraction_seq}', '${dto.name}', '${dto.awc_final_win_count}', '${dto.awc_win_count}', '${dto.awc_match_count}')"><c:out value="${fn:substring(dto.name, 0, 22)}${fn:length(dto.name) > 22 ? '...' : ''}" /></a></td>
 												<td>
 												    <div class="progress" style="height: 20px;">
 												        <div class="progress-bar" role="progressbar"

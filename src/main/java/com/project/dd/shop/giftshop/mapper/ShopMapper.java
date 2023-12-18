@@ -21,4 +21,7 @@ public interface ShopMapper {
 	
 	@Select("select count(*) from vwGiftshop where lat != '0'")
 	public int getTotalCount();
+
+	@Select("select * from tblShopImg")
+	public List<GiftshopImageDTO> getImgList();
 }

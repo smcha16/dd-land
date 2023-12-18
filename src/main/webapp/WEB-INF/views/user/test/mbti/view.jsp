@@ -1,10 +1,15 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- list (1) Template -->
 <!-- user > test > mbti > view.jsp -->
 <style>
+#title {
+	font-size: 48px;
+	display: block;
+	color: #fff;
+	font-weight: 700;
+}
+
 #title+p {
 	text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
 	padding: 5px 20px;
@@ -23,7 +28,7 @@
 	margin-bottom: 20px;
 }
 
-.munti-content-container {
+.multi-content-container {
 	display: flex;
 	flex-wrap: wrap;
 	margin: 30px 50px 0 50px;
@@ -44,9 +49,10 @@
 }
 
 .item img {
-	width: 100%;
-	height: auto;
-	vertical-align: baseline;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
 }
 
 .item:hover {
@@ -54,16 +60,24 @@
 	box-shadow: 12px 12px 17px rgba(0, 0, 0, 0.20);
 }
 
-.item>div:nth-child(1) {
+.item > div:nth-child(1) {
 	height: 70%;
 	background-color: transparent;
 	background-size: cover;
-	/* background-position: center; */
+	background-position: center;
 	background-repeat: no-repeat;
 	border-radius: 10px 10px 0 0;
+	position: relative;
 }
 
-.item>div:nth-child(2) {
+.item > div:nth-child(1) > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.item > div:nth-child(2) {
 	height: 30%;
 	display: flex;
 	flex-direction: column;
@@ -72,6 +86,8 @@
 	font-weight: bold;
 	background: transparent;
 	border-radius: 0 0 10px 10px;
+	justify-content: center;
+   	align-items: center;
 }
 
 .hidden-div {
@@ -81,48 +97,61 @@
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 70%;
+	height: 300px;
 	padding: 20px;
 	background-color: black;
 	opacity: 0.65;
 	border-radius: 10px 10px 0 0;
 	z-index: 1;
 }
+
+.stats-counter {
+	background-image: url('/dd/resources/files/test/mbti/mbti_title.png');
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+#overlay-div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 458px;
+	background-color: black;
+	opacity: 0.45;
+	z-index: 0;
+}
 </style>
 
-<!-- ======= Stats Counter Section ======= -->
 <section id="stats-counter" class="stats-counter">
+	<div id="overlay-div"></div>
 	<div id="pagetitle" class="container" data-aos="zoom-out">
 		<div class="gy-4" style="justify-content: center; width: 100%;">
 
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
-					<div id="title"
-						style="font-size: 48px; display: block; color: #fff; font-weight: 700;">MBTI</div>
-					<p>설명(나에게 딱 맞는 어트랙션을 찾아보세요!)</p>
+					<div id="title">MBTI</div>
+					<p>내 성격 유형에 맞는 어트랙션과 코스를 찾아보세요!</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-<!-- End Stats Counter Section -->
 
-<!-- ======= Menu Section ======= -->
 <section id="menu" class="menu">
 	<div class="container" data-aos="fade-up">
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 			<div class="tab-pane fade active show" id="menu-starters">
-				<div class="munti-content-container">
+				<div class="multi-content-container">
 					<c:forEach items="${listMBTI}" var="dto">
 						<div class="item" onclick="location.href= '/dd/user/test/mbti/detail.do?mbti_seq=' + ${dto.mbti_seq};">
-							<img src="/dd/resources/files/test/MBTI/${dto.mbti_img}" alt="출처: #어반브러시 #타미">
-							<div>${dto.mbti}</div>
+							<img src="/dd/resources/files/test/mbti/${dto.mbti_img}" alt="출처: #어반브러시 #타미">
+							<div>${dto.name}</div>
 							<div class="hidden-div">${dto.result}</div>
 						</div>
 					</c:forEach>
 				</div>
 			</div>
-			<!-- End Starter Menu Content -->
 		</div>
 	</div>
 	
@@ -142,10 +171,7 @@
 			</c:forEach>
 		</ul>
 	</nav>
-	
 </section>
-
-<!-- End Menu Section -->
 
 <script>
 	var itemElements = document.querySelectorAll('.item');

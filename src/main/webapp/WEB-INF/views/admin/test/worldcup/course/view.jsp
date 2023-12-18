@@ -1,6 +1,6 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <style>
 #main h1 {
@@ -175,15 +175,15 @@ th {
 							            		<tbody>
 							            			<tr>
 							            				<th>최종우승횟수</th>
-							            				<td class="m-cwc_final_win_count">회</td>
+							            				<td class="m-cwc_final_win_count"></td>
 							            			</tr>
 							            			<tr>
 							            				<th>승리횟수</th>
-							            				<td class="m-cwc_win_count">회</td>
+							            				<td class="m-cwc_win_count"></td>
 							            			</tr>
 							            			<tr>
 							            				<th>1:1 대결수</th>
-							            				<td class="m-cwc_match_count">회</td>
+							            				<td class="m-cwc_match_count"></td>
 							            			</tr>
 							            		</tbody>
 							            	</table>
@@ -215,8 +215,8 @@ th {
 									<tbody>
 										<c:forEach items="${listCourse}" var="dto" varStatus="status">
 											<tr>
-												<td>${status.count}</td>
-												<td><a onclick="showModal('${dto.course_seq}', '${dto.name}','${dto.cwc_final_win_count}', '${dto.cwc_win_count}', '${dto.cwc_match_count}')"><c:out value="${dto.name}" /></a></td>
+												<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
+												<td><a onclick="showModal('${dto.course_seq}', '${dto.name}','${dto.cwc_final_win_count}', '${dto.cwc_win_count}', '${dto.cwc_match_count}')"><c:out value="${fn:substring(dto.name, 0, 22)}${fn:length(dto.name) > 22 ? '...' : ''}" /></a></td>
 												<td>
 												    <div class="progress" style="height: 20px;">
 												        <div class="progress-bar" role="progressbar"

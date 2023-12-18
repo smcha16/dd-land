@@ -15,4 +15,14 @@ public interface MBTIMapper {
 
 	MBTIDTO getMBTI(String seq);
 
+	int addMBTI(MBTIDTO dto);
+
+	int checkMBTINameDuplication(MBTIDTO dto);
+
+	int editMBTI(MBTIDTO dto);
+
+	String getMBTIImgFileName(String mbtiSeq);
+
+	int delMBTI(String seq);
+
 }
