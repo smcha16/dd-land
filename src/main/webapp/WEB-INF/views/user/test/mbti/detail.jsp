@@ -100,16 +100,21 @@
     text-align: center;
     font-size: 28px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
     color: #333;
 }
 
 .result-name {
+    position: relative;
     font-size: 22px;
     margin-top: 10px;
     color: #555;
     font-weight: bold;
     margin-bottom: 3px;
+    background-color: #f4f4f4;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 8px;
 }
 
 #message-container {
@@ -119,6 +124,15 @@
     border-radius: 5px;
     display: none;
     pointer-events: none;
+}
+
+underline {
+	border-bottom: 2px solid #555;
+    padding-bottom: 2px;
+}
+
+underline:hover {
+    color: #FF5733;
 }
 
 .stats-counter {
@@ -159,28 +173,21 @@
 		<div class="tab-content" data-aos-delay="900">
 			<div class="tab-pane fade active show" id="menu-starters">
 			
-				<div class="text-container">
-				    선택한 성향에 추천하는 어트랙션과 코스입니다.
-				</div>
+					<div class="text-container">
+					    ${dto.name}에게 추천하는 <underline>어트랙션</underline>과 <underline>코스</underline>입니다.
+					</div>
 				
 				<div class="multi-content-container">
-					<%--
-					<div class="item">
-						<img src="/dd/resources/files/test/mbti/${dto.mbti_img}" alt="출처: #어반브러시 #타미">
-					</div>
-					--%>
 					<div class="item" onclick="redirectToAttractionDetail(${dto.attraction_seq})">
-					    <div class="item-content">
-					        <img src="/dd/resources/files/activity/attraction/${dto.attraction_img}">
-					        <div class="result-name">${dto.attraction_name}</div>
-					        <div class="message">클릭 시 해당 어트랙션 페이지로 이동합니다.</div>
-					    </div>
+				        <img src="/dd/resources/files/activity/attraction/${dto.attraction_img}">
+				        <div class="result-name">${dto.attraction_name}</div>
+				        <div class="message">클릭 시 해당 어트랙션 페이지로 이동합니다.</div>
 					</div>
 					
 					<div class="item">
 						<img src="/dd/resources/files/test/worldcup/course/${dto.course_img}">
-						<div class="result-name">${dto.course_name}</div>
-					</div>
+						<div class="result-name">${dto.course_name}
+					</div></div>
 				</div>
 			</div>
 		</div>
