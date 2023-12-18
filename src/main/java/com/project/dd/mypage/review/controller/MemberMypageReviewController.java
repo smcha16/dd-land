@@ -37,12 +37,15 @@ public class MemberMypageReviewController {
 		
 		List<ReviewDTO> list = service.list(map);
 		
-		//System.out.println(list.toString());
+		String imgList = service.getReviewImgList(list);
+
+		System.out.println(list.toString());
 
 		model.addAttribute("list", list);
 		model.addAttribute("email", email);
 		model.addAttribute("currentPage", page); // 페이징
 		model.addAttribute("map", map); // 페이징
+		model.addAttribute("imgList", imgList);
 
 		return "mypage/review/view";
 	}

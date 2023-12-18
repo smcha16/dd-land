@@ -10,5 +10,5 @@ public class BuyDTO {
 	private String ea;
 	private String price;
 	private String buy_date;
-
+	
 }

@@ -169,7 +169,7 @@ th {
 <main id="main" class="main">
 
 	<div class="pagetitle">
-		<h1>티켓 예매내역</h1>
+		<h1>이전 티켓 예매내역</h1>
 	</div>
 
 	<section class="section">
@@ -182,14 +182,15 @@ th {
 							<div class="card-body">
 
 
+
 								<nav class="d-flex justify-content-end">
 									<ol class="breadcrumb">
 									</ol>
 								</nav>
 
 
-								<form id="cancelForm"
-									action="/dd/member/mypage/ticket/delete.do" method="post">
+								<form id="reviewForm" action="/dd/member/mypage/review/add.do"
+									method="post">
 									<table class="table">
 										<thead>
 											<tr>
@@ -204,10 +205,11 @@ th {
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${list}" var="dto">
+											<c:forEach items="${plist}" var="dto">
 												<tr>
-													<td><input type="checkbox" name="selectedTickets"
-														value="${dto.user_book_seq}"></td>
+													<td><input type="radio" name="selectedReview"
+														value="${dto.user_book_seq}"
+														data-type="${dto.reviewCount}"></td>
 
 													<td>${dto.book_date}</td>
 													<td>${dto.ticket_type}</td>
@@ -221,7 +223,7 @@ th {
 											</c:forEach>
 										</tbody>
 									</table>
-									<button id="cancelBtn" type="button" onclick="deleteTicket()">예매취소</button>
+									<button id="cancelBtn" type="button" onclick="submitReview()">리뷰작성</button>
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}">
 								</form>
@@ -242,7 +244,7 @@ th {
 							</c:when>
 							<c:otherwise>
 								<li class="page-item"><a class="page-link"
-									href="/dd/member/mypage/ticket/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+									href="/dd/member/mypage/ticket/pview.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -253,22 +255,12 @@ th {
 </main>
 
 <script>
-	function deleteTicket() {
-		// 선택된 체크박스가 있다면
-		if ($("input[name='selectedTickets']:checked").length > 0) {
-	
-			var result = confirm("정말 리뷰를 삭제하시겠습니까?");
-			if (result) {
-	
-				// 삭제 form 설정 및 제출
-				$('#cancelForm').attr('action',
-						'/dd/member/mypage/ticket/delete.do');
-				$('#cancelForm').submit();
-			}
-		} else{
-			alert("취소할 티켓을 선택해주세요.");
+	$('#delete-button').click(function(e) {
+		var result = confirm("정말 예매를 취소하시겠습니까?");
+		if (!result) {
+			e.preventDefault(); // 확인을 누르지 않으면 기본 동작(폼 제출)을 막음
 		}
-	}
+	});
 
 	function submitReview() {
 		// 선택된 체크박스의 개수 확인

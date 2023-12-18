@@ -32,9 +32,18 @@
 		#{selectedTickets}
 	</delete>
 
-	<select id="getTotalCount" resultType="int">
-		select count(*) from
-		vwUserBook
+	<select id="getTotalCount" parameterType="String" resultType="int">
+		select count(*)
+	    from vwUserBook
+	    where email = #{email}
+	    and visit_date &gt;= to_char(sysdate, 'yyyy-mm-dd')
+	</select>
+	
+	<select id="pGetTotalCount" parameterType="String" resultType="int">
+	    select count(*)
+	    from vwUserBook
+	    where email = #{email}
+	    and visit_date &lt; to_char(sysdate, 'yyyy-mm-dd')
 	</select>
 
 

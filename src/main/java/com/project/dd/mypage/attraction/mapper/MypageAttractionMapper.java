@@ -11,8 +11,12 @@ public interface MypageAttractionMapper {
 
 	int delete(String seq);
 	
-	int getTotalCount();
+	int getTotalCount(String email);
 
 	List<AttractionDTO> plist(Map<String, String> map);
+
+	int pGetTotalCount(String email);
+	
+	
 
 }

@@ -1,6 +1,8 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- Slick -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
 <style>
 #header {
@@ -44,6 +46,7 @@ h1 {
 
 .card-body {
 	min-height: 600px;
+	text-align: center;
 }
 
 div.header {
@@ -107,19 +110,66 @@ th {
 }
 
 .page-link {
-	color: #CE1212;
+	color: #012970;
 }
 
 .active>.page-link, .page-link.active {
 	z-index: 3;
 	color: var(- -bs-pagination-active-color);
-	background-color: #CE1212;
-	border-color: #CE1212;
+	background-color: #012970;
+	border-color: #012970;
 }
 
 .table td a:hover {
 	font-weight: bold !important;
-    color: #0d6efd !important;
+	color: #0d6efd !important;
+}
+/* slick slider */
+.image-slider {
+	max-width: 100%;
+	overflow: hidden;
+}
+
+.image-slider img {
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 350px; /* 이미지 높이 제한 설정 - 필요에 따라 조정 */
+	object-fit: contain;
+}
+	
+	/* Slick Button Style */
+	.slick-prev, .slick-next {
+		border: 0;
+		background: transparent;
+		z-index: 100;
+		position: absolute;
+	}
+	
+	.slick-prev {
+		top: 50%;
+		left: 20px;
+	}
+	
+	.slick-next {
+		top: 50%;
+		right: 20px;
+	}
+	
+	#cancelBtn {
+    display: inline-block;
+    margin: 80px 10px 20px; 
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #fff;
+    background-color: #007bff;
+}
+
+#cancelBtn:hover {
+    background-color: #0056b3;
 }
 </style>
 
@@ -163,40 +213,47 @@ th {
 												<tr>
 													<td><input type="checkbox" name="selectedReview"
 														value="${dto.review_seq}"></td>
-													<td><a onclick="showModal(`${dto.subject}`, `${dto.content}`, '${dto.imgList}')"><b><c:out value="${dto.subject}" /></b></a></td>
+													<td><a
+														onclick="showModal(`${dto.subject}`, `${dto.content}`, '${dto.review_seq}')"><b><c:out
+																	value="${dto.subject}" /></b></a></td>
 													<td>${dto.regdate}</td>
 													<td>${dto.readcount}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
-									<!-- <button type="submit" id="delete-button">리뷰 삭제</button> -->
-									<!-- <button type="submit" id="modify-button">리뷰 수정</button> -->
-									<button type="button" onclick="deleteReviews()">리뷰 삭제</button>
-									<button type="button" onclick="modifyReviews()">리뷰 수정</button>
-									<!-- <button type="button" onclick="location.href='/dd/member/mypage/review/delete.do?seq=${dto.review_seq}'">리뷰 삭제</button> -->
-									<%-- <button type="button" onclick="location.href='/dd/member/mypage/review/edit.do?seq=${dto.review_seq}';">리뷰 수정</button> --%>
+									<button type="button" id="cancelBtn" onclick="addReviews()">리뷰 작성</button>
+									<button type="button" id="cancelBtn" onclick="modifyReviews()">리뷰 수정</button>
+									<button type="button" id="cancelBtn" onclick="deleteReviews()">리뷰 삭제</button>
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}">
 								</form>
-								
+
 								<!-- 모달 -->
-								
-								<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
-								    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-								        <div class="modal-content">
-								            <div class="modal-header">
-								                <h5 id="modal-subject" class="modal-title"></h5>
-								                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								            </div>
-								            <div class="modal-body">
-								            	<div class="mt-3" id="modal-content" style="margin-bottom: 30px;"></div>
-								                <div class="d-flex align-items-center justify-content-center">
-								                    <img id="modal-image" src="" alt="Image" style="max-width: 100%;">
-								                </div>
-								            </div>
-								        </div>
-								    </div>
+
+								<div id="modal" class="modal fade show" tabindex="-1"
+									aria-labelledby="exampleModalScrollableTitle" aria-modal="true"
+									role="dialog">
+									<div
+										class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 id="modal-subject" class="modal-title"></h5>
+												<button type="button" class="btn-close"
+													data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												<div class="mt-3" id="modal-content"
+													style="margin-bottom: 30px;"></div>
+												<!-- <div
+													class="d-flex align-items-center justify-content-center">
+													<img id="modal-image" src="" alt="Image"
+														style="max-width: 100%;">
+												</div> -->
+												<div class="image-slider"></div>
+											</div>
+										</div>
+									</div>
 								</div>
 
 
@@ -227,12 +284,17 @@ th {
 	</section>
 
 </main>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
+	function addReviews() {
+		alert("이전 예매 내역에서 예매내역을 선택하신 후 리뷰를 작성할 수 있습니다.");
+	}
+
 	function deleteReviews() {
 		// 선택된 체크박스가 있다면
 		if ($("input[name='selectedReview']:checked").length > 0) {
 
-			var result = confirm("정말 예매를 취소하시겠습니까?");
+			var result = confirm("정말 리뷰를 삭제하시겠습니까?");
 			if (result) {
 
 				// 삭제 form 설정 및 제출
@@ -240,6 +302,8 @@ th {
 						'/dd/member/mypage/review/delete.do');
 				$('#reviewForm').submit();
 			}
+		} else{
+			alert("삭제할 리뷰를 선택해주세요.");
 		}
 	}
 
@@ -267,17 +331,48 @@ th {
 		}
 	 
 	 <!-- 모달 -->
-		
-		function showModal(subject, content, image) {
+		var imgList = ${imgList};	
+	 
+		function showModal(subject, content, seq) {
 		    $('#modal-subject').text(subject);
 		    $('#modal-content').text(content);
 		    
-		    if (image) {
-		        $('#modal-image').attr('src', '/dd/resources/files/review/' + image);
-		    } else {
-		    	$('#modal-image').hide();
-		    }
-
+		    $('.image-slider').empty();
+		    
+		    for (var i = 0; i < imgList.length; i++) {
+		           if (imgList[i].review_seq == seq) {
+		            var imgSrc = "/dd/resources/files/review/" + imgList[i].img;
+		            
+		            /* $('#modal-image').attr('src', imgSrc); */
+		            
+		            $('.image-slider').append(`
+		                  <div>
+		                     <img src="\${imgSrc}" alt="Image" class="modal-image">
+		                  </div>
+		            `);
+		           }
+		        }
+		    
 		    $('#modal').modal('show');
+		    
+		    /* Slick Slider */
+			$('.image-slider').slick({
+				variableWidth : true,
+				infinite : true,
+				autoplay : true,
+				autoplaySpeed : 5000,
+				pauseOnHover : true,
+				arrows : true,
+				prevArrow : "<button type='button' class='slick-prev'>&#10094;</button>",
+				nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
+				draggable : true
+			});
+		    
+			/* 모달이 닫힐 때 uslick 설정 */
+			$('#modal').on('hidden.bs.modal', function () {
+				$('.image-slider').slick('unslick');
+			});
 		}
+		
+		
 </script>

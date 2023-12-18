@@ -26,26 +26,43 @@ public class MemberMypageTicketController {
 	@GetMapping(value = "/view.do")
 	public String view(Model model, TicketDTO dto, Authentication auth, @RequestParam(defaultValue = "1") int page) {
 
-		Map<String, String> map = service.paging(page);  //페이징
-		
-		//리뷰작성여부 서비스
-		
 		String email = ((CustomUser) auth.getPrincipal()).getDto().getEmail();
+		
+		Map<String, String> map = service.paging(page, email);  //페이징
 		
 		map.put("email", email);
 		map.put("user_book_seq", dto.getUser_book_seq());
 
 		List<TicketDTO> list = service.list(map);
-		List<TicketDTO> plist = service.plist(map);
 
 		
 		model.addAttribute("list", list);
-		model.addAttribute("plist", plist);
 		model.addAttribute("email", email);
 		model.addAttribute("currentPage", page);  //페이징
 	    model.addAttribute("map", map);  //페이징
 
 		return "mypage/ticket/view";
+	}
+	
+	@GetMapping(value = "/pview.do")
+	public String pview(Model model, TicketDTO dto, Authentication auth, @RequestParam(defaultValue = "1") int page) {
+
+		String email = ((CustomUser) auth.getPrincipal()).getDto().getEmail();
+		
+		Map<String, String> map = service.pPaging(page, email);  //페이징
+		
+		map.put("email", email);
+		map.put("user_book_seq", dto.getUser_book_seq());
+
+		List<TicketDTO> plist = service.plist(map);
+
+		
+		model.addAttribute("plist", plist);
+		model.addAttribute("email", email);
+		model.addAttribute("currentPage", page);  //페이징
+	    model.addAttribute("map", map);  //페이징
+
+		return "mypage/ticket/pview";
 	}
 	
 

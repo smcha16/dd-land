@@ -105,14 +105,31 @@ th {
       margin-top: 50px;
    }
    .page-link {
-      color: #CE1212;
+      color: #012970;
    }
    .active > .page-link, .page-link.active {
       z-index: 3;
        color: var(--bs-pagination-active-color);
-       background-color: #CE1212;
-       border-color: #CE1212;
+       background-color: #012970;
+       border-color: #012970;
    }
+   
+   #cancelBtn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #fff;
+    background-color: #007bff;
+    margin-top: 80px;
+}
+
+#cancelBtn:hover {
+    background-color: #0056b3;
+}
 </style>
 
 <!-- ======= Main ======= -->
@@ -154,7 +171,7 @@ th {
 										<c:forEach items="${list}" var="dto">
 											<tr>
 												<td><input type="checkbox" name="selectedItem" value="${dto.user_buy_seq}"></td>
-												<td><a onclick="showModal('${dto.imgList}')"><b><c:out value="${dto.itemName}" /></b></a></td>
+												<td>${dto.itemName}</td>
 												<td>${dto.ea}</td>
 												<td>${dto.price}</td>
 												<td>${dto.buy_date}</td>
@@ -162,7 +179,7 @@ th {
 										</c:forEach>
 									</tbody>
 								</table>
-								<button type="button" onclick="confirmCancel()">주문 취소</button>
+								<button type="button" id="cancelBtn" onclick="confirmCancel()">주문 취소</button>
 								<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}">
 								</form>
@@ -211,12 +228,20 @@ th {
 
 <script>
     function confirmCancel() {
-        var result = confirm("정말 주문을 취소하시겠습니까?");
-        if (result) {
-            document.getElementById('cancelForm').submit(); // 확인 버튼을 클릭한 경우 form을 제출합니다.
-        } else {
-            // 취소 버튼을 클릭한 경우 아무 작업도 수행하지 않습니다.
-        }
+    	// 선택된 체크박스가 있다면
+		if ($("input[name='selectedItem']:checked").length > 0) {
+	
+			var result = confirm("정말 주문을 취소하시겠습니까?");
+			if (result) {
+	
+				// 삭제 form 설정 및 제출
+				$('#cancelForm').attr('action',
+						'/dd/member/mypage/buy/delete.do');
+				$('#cancelForm').submit();
+			}
+		} else{
+			alert("취소할 상품을 선택해주세요.");
+		}
     }
     
     <!-- 모달 -->

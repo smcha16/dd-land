@@ -27,5 +27,6 @@ select subject,content from tblreview where review_seq = 1;
 
 select * from tblticketbook;
 select * from tblreview;
-select * from vwuserbook;
+select * from tblreviewimg;
 
+select max(review_seq) as review_seq from tblReview;

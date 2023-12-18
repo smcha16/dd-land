@@ -101,6 +101,60 @@ th {
 	justify-content: center;
 	margin-top: 40px;
 }
+
+#page-bar {
+	margin-top: 50px;
+}
+
+.page-link {
+	color: #012970;
+}
+
+.active>.page-link, .page-link.active {
+	z-index: 3;
+	color: var(- -bs-pagination-active-color);
+	background-color: #012970;
+	border-color: #012970;
+}
+
+.answer-complete:hover {
+	color: red; /* 변경할 색상 설정 */
+	cursor: pointer; /* 마우스 커서 모양 변경 */
+}
+
+.modal-body {
+	padding: 20px; /* 내용과 모달 경계 간격 설정 */
+	background-color: #f7f7f7; /* 모달 내부 배경색 설정 */
+	border-radius: 10px; /* 모달 모서리 둥글게 설정 */
+}
+
+.modal-content {
+	border-radius: 10px;
+}
+
+/* content와 answer 사이의 구분선 스타일 */
+.modal-separator {
+	height: 1px;
+	background-color: #ddd; /* 구분선의 색상 설정 */
+	margin: 20px 0; /* 구분선과 내용 사이의 여백 설정 */
+}
+
+#cancelBtn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #fff;
+    background-color: #007bff;
+    margin-top: 80px;
+}
+
+#cancelBtn:hover {
+    background-color: #0056b3;
+}
 </style>
 
 <!-- ======= Main ======= -->
@@ -127,44 +181,79 @@ th {
 									</ol>
 								</nav>
 
-								<form id="cancelForm" action="/dd/member/mypage/inquiry/voc/delete.do" method="post">
-								<table class="table">
-									<thead>
-										<tr>
-											<th></th>
-											<th>구분</th>
-											<th>서비스유형</th>
-											<th>건의제목</th>
-											<th>등록일</th>
-											<th>방문일</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${list}" var="dto">
+								<form id="cancelForm"
+									action="/dd/member/mypage/inquiry/voc/delete.do" method="post">
+									<table class="table">
+										<thead>
 											<tr>
-												<td><input type="checkbox" name="selectedVOC" value="${dto.voc_seq}"></td>
-												<td>${dto.type}</td>
-												<td>${dto.service_type}</td>
-												<td>${dto.subject}</td>
-												<td>${dto.regdate}</td>
-												<td>${dto.visit_date}</td>
+												<th></th>
+												<th>구분</th>
+												<th>서비스유형</th>
+												<th>건의제목</th>
+												<th>등록일</th>
+												<th>방문일</th>
+												<th>답변 상태</th>
 											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-								<button type="button" onclick="confirmCancel()">문의삭제</button>
+										</thead>
+										<tbody>
+											<c:forEach items="${list}" var="dto">
+												<tr>
+													<td><input type="checkbox" name="selectedVOC"
+														value="${dto.voc_seq}"></td>
+													<td>${dto.type}</td>
+													<td>${dto.service_type}</td>
+													<td>${dto.subject}</td>
+													<td>${dto.regdate}</td>
+													<td>${dto.visit_date}</td>
+													<td><c:choose>
+															<c:when test="${dto.answer != null}">
+																<a
+																	onclick="showModal(`${dto.subject}`, `${dto.content}`, '${dto.answer}')"
+																	class="answer-complete"><b>답변완료</b></a>
+															</c:when>
+															<c:otherwise>
+										                    답변대기
+										                </c:otherwise>
+														</c:choose></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<button type="button" id="cancelBtn" onclick="confirmCancel()">문의삭제</button>
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}">
 								</form>
 
-								<!-- <ul class="pagination pagination-sm">
-									<li class="page-item active" aria-current="page"><span
-										class="page-link">1</span></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">4</a></li>
-									<li class="page-item"><a class="page-link" href="#">5</a></li>
-								</ul> -->
+								<!-- 모달 -->
+
+								<div id="modal" class="modal fade show" tabindex="-1"
+									aria-labelledby="exampleModalScrollableTitle" aria-modal="true"
+									role="dialog">
+									<div
+										class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 id="modal-subject" class="modal-title"></h5>
+												<button type="button" class="btn-close"
+													data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												<div class="mt-3" id="modal-content"
+													style="margin-bottom: 30px;"></div>
+												<!-- <div class="modal-separator"></div> content와 answer 사이의 구분선 -->
+											</div>
+											<div class="modal-header">
+												<h5 id="modal-subject" class="modal-title">답변</h5>
+											</div>
+											<div class="modal-body">
+												<div class="mt-3" id="modal-answer"
+													style="margin-bottom: 30px;"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
 							</div>
 
 						</div>
@@ -194,12 +283,30 @@ th {
 </main>
 
 <script>
-    function confirmCancel() {
-        var result = confirm("정말 주문을 취소하시겠습니까?");
-        if (result) {
-            document.getElementById('cancelForm').submit(); // 확인 버튼을 클릭한 경우 form을 제출합니다.
-        } else {
-            // 취소 버튼을 클릭한 경우 아무 작업도 수행하지 않습니다.
-        }
-    }
+function confirmCancel() {
+	// 선택된 체크박스가 있다면
+	if ($("input[name='selectedVOC']:checked").length > 0) {
+
+		var result = confirm("정말 문의을 삭제하시겠습니까?");
+		if (result) {
+
+			// 삭제 form 설정 및 제출
+			$('#cancelForm').attr('action',
+					'/dd/member/mypage/inquiry/voc/delete.do');
+			$('#cancelForm').submit();
+		}
+	} else{
+		alert("삭제할 문의를 선택해주세요.");
+	}
+}
+	
+	<!-- 모달 -->
+	
+	function showModal(subject, content, answer) {
+	    $('#modal-subject').text(subject);
+	    $('#modal-content').text(content);
+	    $('#modal-answer').text(answer);
+	    
+	    $('#modal').modal('show');
+	}
 </script>

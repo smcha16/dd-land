@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
 import com.project.dd.mypage.review.domain.ReviewDTO;
 import com.project.dd.mypage.review.domain.ReviewImgDTO;
@@ -81,20 +82,16 @@ public class MypageReviewService {
 	public int add(ReviewDTO dto, MultipartFile[] imgs, HttpServletRequest req) {
 
 		int result = 0;
-		
+
 		result += dao.add(dto);
-		
-		
+
 		// 방금 등록한 review seq 가져오기
 		int seq = dao.getReviewSeq();
 		dto.setReview_seq(seq + "");
-		
 
 		dto.setImgList(new ArrayList<ReviewImgDTO>()); // 첨부 파일 배열
-		
-		System.out.println(dto);
-		
 
+		System.out.println(dto);
 
 		if (!imgs[0].isEmpty()) {
 
@@ -116,20 +113,18 @@ public class MypageReviewService {
 
 				} catch (Exception e) {
 					e.printStackTrace();
-				}                                                                                                                                                                                                                                                                                                                                     
+				}
 
 			}
 
-		} //if
+		} // if
 
-		
 		for (ReviewImgDTO idto : dto.getImgList()) {
 
 			idto.setReview_seq(seq + "");
 
 			result += dao.addReviewImg(idto);
 		}
-
 
 		return result;
 	}
@@ -142,6 +137,32 @@ public class MypageReviewService {
 	public int edit(ReviewDTO dto) {
 
 		return dao.edit(dto);
+	}
+
+	public String getReviewImgList(List<ReviewDTO> list) {
+
+		List<ReviewImgDTO> iList = new ArrayList<ReviewImgDTO>();
+
+		for (ReviewDTO dto : list) {
+
+			for (ReviewImgDTO img_dto : dto.getImgList()) {
+
+				if (img_dto.getImg() != null) {
+
+					iList.add(img_dto);
+
+				}
+
+			}
+
+		}
+
+		Gson gson = new Gson();
+
+		String imgList = gson.toJson(iList);
+
+		return imgList;
+
 	}
 
 }

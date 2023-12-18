@@ -30,15 +30,21 @@ public class MypageAttractionDAOImpl implements MypageAttractionDAO{
 	}
 	
 	@Override
-	public int getTotalCount() {
+	public int getTotalCount(String email) {
 		
-		return mapper.getTotalCount();
+		return mapper.getTotalCount(email);
 	}
 	
 	@Override
 	public List<AttractionDTO> plist(Map<String, String> map) {
 		
 		return mapper.plist(map);
+	}
+	
+	@Override
+	public int pGetTotalCount(String email) {
+		
+		return mapper.pGetTotalCount(email);
 	}
 
 }
