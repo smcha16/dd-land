@@ -355,64 +355,59 @@
 	
 	/* 지도 원래대로 돌아가기 버튼 */
 	// LatLngBounds 객체 초기화
-const defaultBounds = new kakao.maps.LatLngBounds();
+	const defaultBounds = new kakao.maps.LatLngBounds();
 
-// 고정된 지도의 중심좌표와 레벨
-const fixedCenter = new kakao.maps.LatLng(33.361488, 126.529212);
-const fixedLevel = 10;
+	// 고정된 지도의 중심좌표와 레벨
+	const fixedCenter = new kakao.maps.LatLng(33.361488, 126.529212);
+	const fixedLevel = 10;
 
-// 이전의 지도 영역을 기억하기 위한 변수
-let previousBounds;
+	// 이전의 지도 영역을 기억하기 위한 변수
+	let previousBounds;
 
-// 버튼 클릭 시 실행할 함수
-function setBounds() {
-  console.log('setBounds clicked');
+	// 버튼 클릭 시 실행할 함수
+	function setBounds() {
 
-  // 이전 지도 영역을 고정된 좌표로 설정
-  previousBounds = new kakao.maps.LatLngBounds(
-    new kakao.maps.LatLng(fixedCenter.getLat(), fixedCenter.getLng()),
-    new kakao.maps.LatLng(fixedCenter.getLat(), fixedCenter.getLng())
-  );
+		// 이전 지도 영역을 고정된 좌표로 설정
+		previousBounds = new kakao.maps.LatLngBounds(
+			new kakao.maps.LatLng(fixedCenter.getLat(), fixedCenter.getLng()),
+			new kakao.maps.LatLng(fixedCenter.getLat(), fixedCenter.getLng())
+		);
 
-  console.log('Previous Bounds:', previousBounds.toString());
 
-  // 이전의 레벨을 고정된 레벨로 설정
-  options = {
-    center: fixedCenter,
-    level: fixedLevel,
-    draggable: true,
-    disableDoubleClick: false,
-    scrollwheel: true
-  };
+		// 이전의 레벨을 고정된 레벨로 설정
+		options = {
+		center: fixedCenter,
+		level: fixedLevel,
+		draggable: true,
+		disableDoubleClick: false,
+		scrollwheel: true
+		};
+		
+		map.setLevel(fixedLevel);
+		map.setCenter(fixedCenter);
+		
+		// 이전의 레벨과 중심좌표로 지도를 초기화
+		map.setOptions(options);
+	}
 
-  map.setLevel(fixedLevel);
-  map.setCenter(fixedCenter);
+	// 버튼 이벤트 등록
+	document.getElementById('comeback').addEventListener('click', setBounds);
 
-  // 이전의 레벨과 중심좌표로 지도를 초기화
-  map.setOptions(options);
-}
+	// 드래그 이벤트 등록
+	kakao.maps.event.addListener(map, 'dragend', function () {
+		// 이전 지도 영역을 기억
+		previousBounds = map.getBounds();
+	});
 
-// 버튼 이벤트 등록
-document.getElementById('comeback').addEventListener('click', setBounds);
-
-// 드래그 이벤트 등록
-kakao.maps.event.addListener(map, 'dragend', function () {
-  // 이전 지도 영역을 기억
-  previousBounds = map.getBounds();
-});
-
-// 지도 이벤트 등록
-kakao.maps.event.addListener(map, 'bounds_changed', function () {
-  // 지도의 중심좌표를 확인하고, 원래대로 돌아갈 수 있는 경우에 버튼을 활성화
-  if (
-    map.getLevel() !== fixedLevel ||
-    !previousBounds.equals(map.getBounds())
-  ) {
-    document.getElementById('comeback').disabled = false;
-  } else {
-    document.getElementById('comeback').disabled = true;
-  }
-});
+	// 지도 이벤트 등록
+	kakao.maps.event.addListener(map, 'bounds_changed', function () {
+		// 지도의 중심좌표를 확인하고, 원래대로 돌아갈 수 있는 경우에 버튼을 활성화
+		if (map.getLevel() !== fixedLevel || !previousBounds.equals(map.getBounds())) {
+			document.getElementById('comeback').disabled = false;
+		} else {
+			document.getElementById('comeback').disabled = true;
+		}
+	});
 	
 	/* Slick Slider */
 	$('.image-slider').slick({
