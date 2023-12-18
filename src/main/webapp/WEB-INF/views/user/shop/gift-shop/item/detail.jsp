@@ -264,7 +264,7 @@ div#reservation-btn>button {
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 					<div class="value">
-						<select name="num">
+						<select name="ea">
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -272,11 +272,15 @@ div#reservation-btn>button {
 						</select> 개
 					</div>
 					<div>
-						<button class="btn" type="button" id="cart">장바구니</button>
-						<button class="btn" type="submit">바로구매</button>
+						<button id="back-button" class="btn btn-primary cart" type="button" onclick="location.href='/dd/member/purchase/view.do'">장바구니</button>
+						<button id="back-button" class="btn btn-primary" type="submit">바로구매</button>
 					</div>
 			</sec:authorize>
 		</div>
+		<input type="hidden" name="item_seq" value="${dto.item_seq }">
+		<input type="hidden" name="name" value="${dto.name }">
+		<input type="hidden" name="price" value="${dto.price }">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		</form>
 	</div>
 </div>
@@ -290,7 +294,7 @@ div#reservation-btn>button {
 </div>
 
 <script>
-	$('#cart').click(function() {
+	$('.cart').click(function() {
 		let num = $("select[name='num']").val();
 		let item_seq = '${dto.item_seq}';
 		

@@ -22,4 +22,7 @@ public interface RestaurantMapper {
 	@Select("select count(*) from vwRestaurant where lat != '0'")
 	int getTotalCount();
 
+	@Select("select * from tblRestaurantImg")
+	List<RestaurantImageDTO> getImgList();
+
 }

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import com.project.dd.shop.item.domain.ItemDTO;
+import com.project.dd.shop.item.domain.ItemImgDTO;
 import com.project.dd.shop.item.mapper.ItemMapper;
 
 @Repository
@@ -32,4 +33,18 @@ public class ItemDAOImpl implements ItemDAO {
 		return mapper.getItem(seq);
 	}
 	
+	@Override
+	public List<ItemImgDTO> getImg(String seq) {
+		return mapper.getImg(seq);
+	}
+	
+	@Override
+	public List<ItemDTO> getFullList(Map<String, String> map) {
+		return mapper.getFullList(map);
+	}
+	
+	@Override
+	public List<ItemImgDTO> getImgList() {
+		return mapper.getImgList();
+	}
 }
