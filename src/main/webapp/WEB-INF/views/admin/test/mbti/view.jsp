@@ -168,7 +168,15 @@ th:nth-child(6) { width: 22%; }
 							            		</colgroup>
 							            		<tbody>
 							            			<tr>
-							            				<th>이미지</th>
+							            				<th>이미지
+							            				<td>
+									            			<div class="d-flex">
+										                    	<img id="modal-image" src="" alt="Image" style="max-width: 100%;">
+										                	</div>
+									                	</td>
+							            			</tr>
+							            			<tr>
+							            				<th>
 							            				<td class="m-mbti_img"></td>
 							            			</tr>
 							            			<tr>
@@ -219,7 +227,7 @@ th:nth-child(6) { width: 22%; }
 												<tr>
 													<td><input type="checkbox" name="mbti_seq" value="${dto.mbti_seq}"></td>
 													<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
-													<td><a onclick="showModal('${dto.name}','${dto.result}', '${fn:contains(dto.mbti_img, '_') ? fn:substringAfter(dto.mbti_img, '_') : dto.mbti_img}', '${dto.attraction_name}', '${dto.course_name}')"><c:out value="${dto.name}" /></a></td>
+													<td><a onclick="showModal('${dto.name}','${dto.result}', '${dto.mbti_img}', '${dto.attraction_name}', '${dto.course_name}')"><c:out value="${dto.name}" /></a></td>
 													<td>${fn:substring(dto.result, 0, 20)}${fn:length(dto.result) > 20 ? '...' : ''}</td>
 													<td>${fn:substring(dto.attraction_name, 0, 15)}${fn:length(dto.attraction_name) > 15 ? '...' : ''}</td>
 													<td>${fn:substring(dto.course_name, 0, 15)}${fn:length(dto.course_name) > 15 ? '...' : ''}</td>
@@ -284,9 +292,15 @@ th:nth-child(6) { width: 22%; }
 	function showModal(name, result, mbti_img, attraction_name, course_name) {
 	    
 		$('#modal-name').text(name);
-	
+		$('#modal-image').attr('src', '/dd/resources/files/test/mbti/' + mbti_img);
+        
+	    var imgText = mbti_img;
+	    if (mbti_img.includes('_')) {
+	    	imgText = mbti_img.substring(mbti_img.indexOf('_') + 1);
+	    }
+	    $('.m-mbti_img').text(imgText);
+
 	    $('.m-result').text(result);
-	    $('.m-mbti_img').text(mbti_img);
 	    $('.m-attraction_name').text(attraction_name);
 	    $('.m-course_name').text(course_name);
 	    

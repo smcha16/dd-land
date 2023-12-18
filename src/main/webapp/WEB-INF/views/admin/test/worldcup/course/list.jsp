@@ -169,7 +169,15 @@ th {
 							            		</colgroup>
 							            		<tbody>
 							            			<tr>
-							            				<th>이미지</th>
+							            				<th>이미지
+							            				<td>
+									            			<div class="d-flex">
+										                    	<img id="modal-image" src="" alt="Image" style="max-width: 100%;">
+										                	</div>
+									                	</td>
+							            			</tr>
+							            			<tr>
+							            				<th></th>
 							            				<td class="m-img"></td>
 							            			</tr>
 							            		</tbody>
@@ -206,7 +214,7 @@ th {
 												<tr>
 													<td><input type="checkbox" name="course_seq" value="${dto.course_seq}"></td>
 													<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
-													<td><a onclick="showModal('${dto.course_seq}', '${dto.name}','${fn:contains(dto.img, '_') ? fn:substringAfter(dto.img, '_') : dto.img}')"><c:out value="${dto.name}" /></a></td>
+													<td><a onclick="showModal('${dto.course_seq}', '${dto.name}','${dto.img}')"><c:out value="${dto.name}" /></a></td>
 													<td>${fn:contains(dto.img, '_') ? fn:substringAfter(dto.img, '_') : dto.img}</td>
 												</tr>
 											</c:forEach>
@@ -269,7 +277,13 @@ th {
 	function showModal(seq, name, img) {
 	    
 		$('#modal-name').text(name);
-	    $('.m-img').text(img);
+		$('#modal-image').attr('src', '/dd/resources/files/test/worldcup/course/' + img);
+		
+		var imgText = img;
+	    if (img.includes('_')) {
+	    	imgText = img.substring(img.indexOf('_') + 1);
+	    }
+	    $('.m-img').text(imgText);
 	    
 	    $('#modal').modal('show');
 	}
