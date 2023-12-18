@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id="getAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		select * from vwAttractionOne where attraction_seq = #{attraction_seq}
+		select * from vwAttractionList where attraction_seq = #{attraction_seq}
 	</select>
 	
 	<select id="getAttractionImgList" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionImgDTO">

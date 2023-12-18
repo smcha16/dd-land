@@ -2331,6 +2331,9 @@ VALUES (seqtblAttractionBook.NEXTVAL, '19:00', 10);
 INSERT INTO tblAttractionBook (attraction_book_seq, book_time, capacity)
 VALUES (seqtblAttractionBook.NEXTVAL, '20:00', 10);
 
+INSERT INTO tblAttractionBook (attraction_book_seq, book_time, capacity)
+VALUES (seqtblAttractionBook.NEXTVAL, '21:00', 10);
+
 --어트랙션 이미지(tblAttractionImg): 30개
 /* 어트랙션이미지 */
 select * from tblAttractionImg;
