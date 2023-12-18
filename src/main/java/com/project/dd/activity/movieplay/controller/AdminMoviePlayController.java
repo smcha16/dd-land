@@ -63,6 +63,8 @@ public class AdminMoviePlayController {
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, MoviePlayDTO dto) {
 
+		System.out.println(dto.toString());
+		
 		int result = service.addMoviePlay(dto);
 		
 		if (result > 0) {

@@ -109,4 +109,17 @@
 		values (seqtblAWCFinalWin.NEXTVAL, 0, #{attraction_seq})
 	</insert>
 	
+	<select id="checkAvailableCapacity" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO" resultType="int">
+		
+	</select>
+	
+	<insert id="addAttractionBook" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO">
+		INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
+		VALUES (seqtblBookUser.NEXTVAL, sysdate, #{capacity}, #{attraction_book_seq}, ?????, #{attraction_seq});
+	</insert>
+	
+	<select id="getAttractionBookCapacity" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO" resultType="int">
+		select capacity from tblAttractionBook where attraction_book_seq = #{attraction_book_seq}
+	</select>
+	
 </mapper>

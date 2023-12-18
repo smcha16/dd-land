@@ -119,7 +119,7 @@
                 					<select name="theater_seq" class="form-select" aria-label="Default select example">
                 						<option value="title" selected>상영 영화관을 선택해주세요.</option>
                 						<c:forEach items="${tlist}" var="dto">
-                							<option value="${theater_seq}"><c:out value="${dto.name}" /></option>
+                							<option value="${dto.theater_seq}"><c:out value="${dto.name}" /></option>
                 						</c:forEach>
                 					</select>
                 				</div>
@@ -145,7 +145,8 @@
 	/* 필수 항목이 반드시 입력되어야만 submit 클릭 시 넘어가도록 */
 	function submit() {
 		
-		if (!$('input[name="name"]').val().trim() || !$('input[name="time"]').val().trim()
+		if (!$('input[name="time"]').val().trim()
+				|| $('input[name="start_date"]').val() == "" || $('input[name="end_date"]').val() == ""
 				|| $('select[name="movie_seq"]').val() == 'title' || $('select[name="theater_seq"]').val() == 'title'
 				|| $('.check-time-validation').data('type') != 'y') {
 			
