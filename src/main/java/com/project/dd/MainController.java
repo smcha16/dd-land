@@ -45,6 +45,7 @@ public class MainController {
 		return "logout";
 	}
 	
+	
 	@GetMapping(value = "/template1.do")
 	public String listTemplate1(Model model) {
 		

@@ -5,17 +5,17 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.close.giftshop.domain.CloseGiftShopDTO;
 import com.project.dd.close.giftshop.service.CloseShopService;
 
 @Controller
-@Repository(value = "/admin/close/gift-shop")
+@RequestMapping( "/admin/close/gift-shop")
 public class AdminCloseGiftShopController {
 	
 	@Autowired
@@ -24,7 +24,9 @@ public class AdminCloseGiftShopController {
 	//목록보기
 	@GetMapping(value = "/view.do") 
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
-				
+		
+		System.out.println(1111);
+		
 		Map<String, String> map = service.paging(page);  //페이징
 				
 		List<CloseGiftShopDTO> list = service.list(map); 

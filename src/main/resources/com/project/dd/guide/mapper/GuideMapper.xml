@@ -4,14 +4,27 @@
 <!-- namespace == 호출할 Interface 이름 적기 -->
 <mapper namespace="com.project.dd.guide.mapper.GuideMapper">
 	
-	<select id="getTotalCount" resultType="int">
+	<select id="getTotalCount" parameterType="map" resultType="int">
 		select count(*) from tblConvenient
+		<if test="solting == 'user' and searchStatus == 'y'.toString()">
+	        where ${category} like '%' || #{word} || '%'
+	    </if>
+	    <if test="solting == 'admin' and searchStatus == 'y'.toString()">
+	        where name like '%' || #{word} || '%' or tel like '%' || #{word} || '%'
+	    </if>
 	</select>
 	
 	<select id="list" parameterType="map" resultType="com.project.dd.guide.domain.ConvenientDTO">
 		select *
 		from (select n.*, rownum as rnum from (select c.convenient_seq, c.name, c.time, c.tel, c.img, cl.lat, cl.lng 
-		from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq=cl.convenient_seq) n)
+		from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq=cl.convenient_seq order by cl.convenient_seq desc) n
+		<if test="solting == 'user' and searchStatus == 'y'.toString()">
+	        where ${category} like '%' || #{word} || '%'
+	    </if>
+	    <if test="solting == 'admin' and searchStatus == 'y'.toString()">
+	        where name like '%' || #{word} || '%' or tel like '%' || #{word} || '%'
+	    </if>
+		)
 		where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
@@ -54,5 +67,60 @@
 		select f.name, fl.lat, fl.lng
 		from tblfestival f inner join tblfestivallocation fl on f.festival_seq=fl.festival_seq
 	</select>
+	
+	<!-- 관리자 편의시설 CRUD -->
+	<select id="checkLocationDuplication" parameterType="com.project.dd.guide.domain.ConvenientDTO" resultType="int">
+		select count(*)
+		from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq = cl.convenient_seq
+		where lat=#{lng} and lng=#{lng}
+	</select>
+
+	<select id="checkNameDuplication" parameterType="com.project.dd.guide.domain.ConvenientDTO" resultType="int">
+		SELECT COUNT(*) FROM tblconvenient WHERE name = #{name}
+	</select>
+	
+	<select id="checkTelDuplication" parameterType="com.project.dd.guide.domain.ConvenientDTO" resultType="int">
+		select count(*) from tblconvenient where tel = #{tel}
+	</select>
+	
+	<!-- 추가 -->
+	<insert id="addConv" parameterType="com.project.dd.guide.domain.ConvenientDTO">
+		insert into tblConvenient (convenient_seq, name, time, tel, img)
+		values (seqtblConvenient.nextVal, #{name}, '10:00 - 22:00', #{tel}, #{img, jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="getConvSeq" resultType="String">
+		select max(convenient_seq) as convenient_seq from tblConvenient
+	</select>
+	
+	<insert id="addConvLocation" parameterType="com.project.dd.guide.domain.ConvenientDTO">
+		INSERT INTO tblConvenientLocation (convenient_location_seq, lat, lng, convenient_seq) VALUES (seqConvenientLocation.nextVal, #{lat}, #{lng}, #{convenient_seq})
+	</insert>
+	
+	<!-- 삭제 -->
+	<select id="countConvenientLocation" parameterType="String" resultType="int">
+		select count(*) from tblconvenientLocation where convenient_seq = #{convenient_seq}
+	</select>
+	
+	<delete id="delConvenientLocation" parameterType="String">
+		delete from tblConvenientLocation where convenient_seq = #{convenient_seq}
+	</delete>
+	
+	<delete id="delConvenient" parameterType="String">
+		delete from tblConvenient where convenient_seq = #{convenient_seq}
+	</delete>
+	
+	<!-- 수정 -->
+	<select id="getFileName" parameterType="String" resultType="String">
+		select img from tblConvenient where convenient_seq = #{convenient_seq}
+	</select>
+	
+	<update id="editConv" parameterType="com.project.dd.guide.domain.ConvenientDTO">
+		update tblConvenient set name = #{name}, tel = #{tel}, img = #{img, jdbcType=VARCHAR} where convenient_seq = #{convenient_seq}
+	</update>
+	
+	<update id="editConvLocation" parameterType="com.project.dd.guide.domain.ConvenientDTO">
+		update tblConvenientLocation set lat = #{lat}, lng = #{lng} where convenient_seq = #{convenient_seq}
+	</update>
 
 </mapper>
