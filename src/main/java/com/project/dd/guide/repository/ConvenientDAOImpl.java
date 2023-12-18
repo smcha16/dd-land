@@ -44,6 +44,12 @@ public class ConvenientDAOImpl implements ConvenientDAO{
 		
 		return mapper.checkNameDuplication(dto);
 	}
+	
+	@Override
+	public int checkTelDuplication(ConvenientDTO dto) {
+		
+		return mapper.checkTelDuplication(dto);
+	}
 
 	@Override
 	public int addConv(ConvenientDTO dto) {
@@ -79,6 +85,8 @@ public class ConvenientDAOImpl implements ConvenientDAO{
 		
 		return mapper.delConvenient(seq);
 	}
+
+	
 
 	
 	

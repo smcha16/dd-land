@@ -48,6 +48,9 @@
     .check-name-duplication {
     	padding: 10px 10px;
     }
+    .check-tel-duplication{
+    	padding: 10px 10px;
+    }
     
 </style>
 
@@ -56,7 +59,7 @@
 	<div class="pagetitle">
 		<h1>편의시설 등록</h1>
 		
-		<nav class="d-flex justify-content-end">
+		<nav class="d-flex justify-co ntent-end">
       		<ol class="breadcrumb">
           		<li class="breadcrumb-item"><a href="javascript:void(0);" onclick="submit();">등록</a></li>
           		<li class="breadcrumb-item active"><a href="/dd/admin/convenient/view.do">취소</a></li>
@@ -88,7 +91,10 @@
               				<div class="row mb-3">
                 				<label for="capacity" class="col-sm-2 col-form-label required">전화번호</label>
                 				<div class="col-sm-10">
-                  					<input type="text" id="tel" name="tel" class="form-control" placeholder="'-'을 포함한 전화번호를 입력해주세요." required>
+                  					<input type="text" id="tel" name="tel" class="form-control" placeholder="'000-000-0000'의 형식으로 전화번호를 입력해주세요." required>
+                					<div style="height: 30px;">
+                  						<div class="check-tel-duplication"></div>
+                  					</div>
                 				</div>
               				</div>
 
@@ -106,7 +112,7 @@
               				<div class="row mb-3">
                 				<label for="formFile" class="col-sm-2 col-form-label">이미지</label>
                 				<div class="col-sm-10">
-                  					<input class="form-control" type="file" id="formFile" name="imgs" multiple>
+                  					<input class="form-control" type="file" id="formFile" name="image" multiple>
                 				</div>
               				</div>
               				
@@ -258,6 +264,7 @@
 				dataType: 'json',
 				success: function(result) {
 					//alert(result);
+					console.log();
 					if (result == 0) {
 						$('.check-name-duplication').text('사용 가능한 이름입니다.');
 						$('.check-name-duplication').css('color', '#212529');
@@ -284,7 +291,57 @@
         	$('.check-name-duplication').removeAttr("data-type");
         	console.log("check-name-duplication: " + $('.check-name-duplication').data('type'));
         }
+	
+	});
+	
+	/* 편의시설 전화번호 중복 검사 */
+	$('input[name="tel"]').keyup(function() {
 		
+		let obj = {
+				tel: $('input[name="tel"]').val()
+		};
+		
+		// CSRF token
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+
+        if ($('input[name="tel"]').val().trim()) {
+        	
+			$.ajax({
+				type: 'POST',
+				url: '/dd/admin/convenient/tel',
+				headers: {'content-Type': 'application/json'},
+				data: JSON.stringify(obj),
+				dataType: 'json',
+				success: function(result) {
+					//alert(result);
+					console.log();
+					if (result == 0) {
+						$('.check-tel-duplication').text('사용 가능한 전화번호입니다.');
+						$('.check-tel-duplication').css('color', '#212529');
+						$('.check-tel-duplication').data('type', 'y');
+						console.log("check-tel-duplication: " + $('.check-tel-duplication').data('type'));
+						
+					} else {
+						$('.check-tel-duplication').text('중복된 전화번호입니다. 다른 번호를 입력해주세요.');
+						$('.check-tel-duplication').css('color', '#dc3545');
+						$('.check-tel-duplication').data('type', 'n');
+						console.log("check-tel-duplication: " + $('.check-tel-duplication').data('type'));
+					}
+				},
+				beforeSend: function(xhr) {
+	            	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	            },
+				error: (a,b,c) => {
+					console.log(a,b,c);
+				}
+				
+			});
+        } else {
+        	$('.check-tel-duplication').text('');
+        	$('.check-tel-duplication').removeAttr("data-type");
+        	console.log("check-tel-duplication: " + $('.check-tel-duplication').data('type'));
+        }
 		
 	});
 	

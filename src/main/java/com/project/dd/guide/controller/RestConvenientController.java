@@ -9,7 +9,7 @@ import com.project.dd.guide.domain.ConvenientDTO;
 import com.project.dd.guide.service.ConvenientService;
 
 @RestController
-public class RestConvenientController {  //편의시설 수정시 이름과 위치 중복 확인
+public class RestConvenientController {  //편의시설 추가 및 수정시 이름, 위치, 전화번호 중복 확인
 	
 	@Autowired
 	private ConvenientService service;
@@ -24,6 +24,12 @@ public class RestConvenientController {  //편의시설 수정시 이름과 위�
 	public int checkName(@RequestBody ConvenientDTO dto) {
 		
 		return service.checkNameDuplication(dto);
+	}
+	
+	@PostMapping(value = "/admin/convenient/tel")
+	public int checkTel(@RequestBody ConvenientDTO dto) {
+		
+		return service.checkTelDuplication(dto);
 	}
 
 }

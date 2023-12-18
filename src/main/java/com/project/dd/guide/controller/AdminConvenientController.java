@@ -47,13 +47,13 @@ public class AdminConvenientController {
 	}
 	
 	@PostMapping(value = "/addok.do")
-	public String addok(Model model, ConvenientDTO dto, HttpServletRequest req, MultipartFile img) {
+	public String addok(Model model, ConvenientDTO dto, HttpServletRequest req, MultipartFile image) {
 		
-		ConvenientDTO conv = service.addFile(dto, req, img);
+		ConvenientDTO conv = service.addFile(dto, req, image);
 		
 		int result = service.addConv(conv);
 		
-		if (result == 1) {
+		if (result == 1) { 
 	 		return "redirect:/admin/convenient/view.do";
 	 	} else 
 	 		return "redirect:/admin/convenient/add.do";
@@ -73,6 +73,16 @@ public class AdminConvenientController {
 			return "redirect:/admin/convenient/view.do";
 		}
 	}
+	
+	//수정하기
+	@GetMapping(value = "/edit.do")
+	public String edit(Model model, String seq) {
+
+		return "admin/convenient/edit";
+	}
+
+	
+	
 
 
 

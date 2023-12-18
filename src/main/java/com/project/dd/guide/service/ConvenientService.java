@@ -64,20 +64,21 @@ public class ConvenientService {
 			return -1;
 		}
 		
+		result = convenientDao.checkTelDuplication(dto);  //전화번호 중복검사
+		if (result > 0) {
+			return -1;
+		}
+		
 		result= convenientDao.addConv(dto);
 		
-		//방금 등록한 seq 가져오기
+		//방금 등록한 seq 가져오기(위치테이블에 seq가 참조되어있어서)
 		String seq = convenientDao.getConvSeq();
 		dto.setConvenient_seq(seq);
 				
 		//Location 추가
 		result = convenientDao.addConvLocation(dto);
 		
-		
-		
-		
-		
-		return 0;
+		return result;
 	}
 
 	public int checkLocationDuplication(ConvenientDTO dto) {  
@@ -89,19 +90,25 @@ public class ConvenientService {
 		//이름 중복 확인
 		return convenientDao.checkNameDuplication(dto);
 	}
+	
+	public int checkTelDuplication(ConvenientDTO dto) {
+		//전화번호 중복 확인
+		return convenientDao.checkTelDuplication(dto);
+	}
+	
 
-	public ConvenientDTO addFile(ConvenientDTO dto, HttpServletRequest req, MultipartFile img) {
+	public ConvenientDTO addFile(ConvenientDTO dto, HttpServletRequest req, MultipartFile image) {
 		
-		if (img == null || img.isEmpty()) {	
+		if (image == null || image.isEmpty()) {	
 			dto.setImg(null);
 		} else {
-			dto.setImg(saveFile(req, img));
+			dto.setImg(saveFile(req, image));
 		}
 
 		return dto;
 	}
 
-	private String saveFile(HttpServletRequest req, MultipartFile img) {
+	private String saveFile(HttpServletRequest req, MultipartFile image) {
 		// 파일 저장
 		
 		try {
@@ -118,11 +125,11 @@ public class ConvenientService {
 
             UUID uuid = UUID.randomUUID();
             
-            String fileName = uuid + "_" + img.getOriginalFilename();
+            String fileName = uuid + "_" + image.getOriginalFilename();
            
             Path filePath = Paths.get(path, fileName);
 
-            img.transferTo(filePath.toFile());
+            image.transferTo(filePath.toFile());
             
             return fileName;
 
@@ -133,6 +140,7 @@ public class ConvenientService {
 		return null;
 	}
 
+	//삭제
 	public int delConv(String[] convenient_seq) {
 		int result=0;
 		
@@ -148,6 +156,7 @@ public class ConvenientService {
 		
 		return result;
 	}
+
 	
 	
 		

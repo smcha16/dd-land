@@ -16,6 +16,8 @@ public interface ConvenientDAO {
 	int checkLocationDuplication(ConvenientDTO dto);
 
 	int checkNameDuplication(ConvenientDTO dto);
+	
+	int checkTelDuplication(ConvenientDTO dto);
 
 	int addConv(ConvenientDTO dto);
 
@@ -28,6 +30,8 @@ public interface ConvenientDAO {
 	int delConvenientLocation(String seq);
 
 	int delConvenient(String seq);
+
+	
 	
 
 }

@@ -63,7 +63,11 @@
 	</select>
 
 	<select id="checkNameDuplication" parameterType="com.project.dd.guide.domain.ConvenientDTO" resultType="int">
-		SELECT COUNT(*) FROM tblconvenient WHERE REPLACE(name, ' ', '') = #{name}
+		SELECT COUNT(*) FROM tblconvenient WHERE name = #{name}
+	</select>
+	
+	<select id="checkTelDuplication" parameterType="com.project.dd.guide.domain.ConvenientDTO" resultType="int">
+		select count(*) from tblconvenient where tel = #{tel}
 	</select>
 	
 	<!-- 추가 -->

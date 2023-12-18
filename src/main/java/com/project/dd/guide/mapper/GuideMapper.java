@@ -42,6 +42,8 @@ public interface GuideMapper {
 	int checkLocationDuplication(ConvenientDTO dto);
 
 	int checkNameDuplication(ConvenientDTO dto);
+	
+	int checkTelDuplication(ConvenientDTO dto);
 
 	int addConv(ConvenientDTO dto);
 
@@ -54,5 +56,7 @@ public interface GuideMapper {
 	int delConvenientLocation(String seq);
 
 	int delConvenient(String seq);
+
+	
 
 }
