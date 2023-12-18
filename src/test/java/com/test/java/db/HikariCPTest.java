@@ -38,6 +38,8 @@ public class HikariCPTest {
 			
 			if (result == 1) {
 				System.out.println("변경");
+			} else {
+				System.out.println("변경 안됨");
 			}
 		}
 		
