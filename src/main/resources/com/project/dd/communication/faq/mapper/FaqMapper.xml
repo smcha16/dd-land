@@ -3,34 +3,65 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.dd.communication.faq.mapper.FaqMapper">
-	<select id="getTotalCount" parameterType="String" resultType="int">
-		select count(*) from tblFaq
-		<if test="type != '없음'">
-			where type = #{type}
-		</if>
+
+	<!-- 총 개수 -->
+
+	<select id="getTotalCount" parameterType="map" resultType="int">
+	    select count(*)
+	    from tblFAQ
+	    <where>
+	        <if test="type != '없음'">
+	        	type = #{type}
+	        </if>
+	        <if test="searchStatus == 'y'.toString()">
+				<if test="type != '없음'">
+	                and
+	            </if>
+	            question like '%' || #{word} || '%'
+	        </if>
+	    </where>
 	</select>
 	
+	<!-- 목록 -->
+	
 	<select id="getFaqList" parameterType="map" resultType="com.project.dd.communication.faq.domain.FaqDTO">
-		select *
-		from (select f.*, rownum as rnum from (select * from tblFAQ
-		<if test="type != '없음'">
-			where type = #{type}
-		</if>
-		order by faq_seq desc) f)
-		where rnum between #{startIndex} and #{endIndex}
+	    select *
+	    from (select f.*, rownum as rnum
+			  from tblFAQ f
+			  <where>
+			  	  <if test="type != '없음'">
+			  	  	  type = #{type}
+			  	  </if>
+			  	  <if test="searchStatus == 'y'.toString()">
+			  	  	  <if test="type != '없음'">
+			  	  	  	  and
+			  	  	  </if>
+			  	  	  question like '%' || #{word} || '%'
+			  	  </if>
+			  </where>
+			  order by faq_seq desc)
+	    where rnum between #{startIndex} and #{endIndex}
 	</select>
+	
+	<!-- 추가 -->
 	
 	<insert id="addFaq" parameterType="com.project.dd.communication.faq.domain.FaqDTO">
 		insert into tblFaq (faq_seq, type, question, answer) values (seqtblFaq.nextVal, #{type}, #{question}, #{answer})
 	</insert>
 	
+	<!-- 상세 -->
+	
 	<select id="getFaq" parameterType="String" resultType="com.project.dd.communication.faq.domain.FaqDTO">
 		select * from tblFaq where faq_seq = #{seq}
 	</select>
 	
+	<!-- 수정 -->
+	
 	<update id="editFaq" parameterType="com.project.dd.communication.faq.domain.FaqDTO">
 		update tblFaq set type = #{type}, question = #{question}, answer = #{answer} where faq_seq = #{faq_seq}
 	</update>
+	
+	<!-- 삭제 -->
 	
 	<delete id="deleteFaq" parameterType="String">
 		delete from tblFaq where faq_seq = #{seq}

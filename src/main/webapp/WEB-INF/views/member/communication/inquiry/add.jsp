@@ -111,11 +111,11 @@
 			</tr>
 			<tr>
 				<th>이름</th>
-				<td><input type="text" class="form-control" value="${name}" disabled readonly></td>
+				<td><input type="text" class="form-control" value="${name}" disabled></td>
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td><input type="text" class="form-control" value="${email}" disabled readonly></td>
+				<td><input type="text" class="form-control" value="${email}" disabled></td>
 			</tr>
 			<tr>
 				<th class="required">제목</th>

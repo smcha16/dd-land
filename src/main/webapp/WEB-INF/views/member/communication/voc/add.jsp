@@ -120,15 +120,15 @@
 			</tr>
 			<tr>
 				<th>이름</th>
-				<td><input type="text" class="form-control" value="${name}" disabled readonly></td>
+				<td><input type="text" class="form-control" value="${name}" disabled></td>
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td><input type="text" class="form-control" value="${email}" disabled readonly></td>
+				<td><input type="text" class="form-control" value="${email}" disabled></td>
 			</tr>
 			<tr>
 				<th>연락처</th>
-				<td><input type="text" class="form-control" value="${tel}" disabled readonly></td>
+				<td><input type="text" class="form-control" value="${tel}" disabled></td>
 			</tr>
 			<tr>
 				<th class="required">방문일</th>
@@ -208,6 +208,12 @@
 	});
 
 	$('#add-button').click(function () {
+		if ($('select[name="visit_date"]').val() == '없음') {
+			alert('방문 내역이 없어, 서비스 이용이 제한되었습니다.');
+			location.href='/dd/index.do';
+			return false;
+		}
+		
 		if (!$('input[name="subject"]').val().trim()) {
 	    	$('#subject-message').css('display', 'block');
 	    	$('#subject-message').text('제목을 입력하세요.');

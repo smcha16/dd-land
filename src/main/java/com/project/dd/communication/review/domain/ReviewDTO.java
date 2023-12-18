@@ -17,8 +17,7 @@ public class ReviewDTO {
 	private String name;
 	private String email;
 	private String visit_date;
-	
-	private String img;
+
 	private List<ReviewImgDTO> imgList;
 	
 }

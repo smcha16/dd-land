@@ -3,8 +3,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.dd.communication.inquiry.mapper.InquiryMapper">
+	
+	<!-- 추가 -->
+	
 	<insert id="addInquiry" parameterType="com.project.dd.communication.inquiry.domain.InquiryDTO">
 		insert into tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
 		values (seqtblInquiry.nextVal, #{type}, #{subject}, #{content}, default, #{attach, jdbcType=VARCHAR}, null, #{user_seq})
 	</insert>
+	
+	<!-- 총 개수 -->
+	
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(*)
+		from tblInquiry i
+			inner join tblUser u
+			  	on i.user_seq = u.user_seq
+		<if test="searchStatus == 'y'.toString()">
+	        where name like '%' || #{word} || '%' or email like '%' || #{word} || '%'
+	    </if>
+	</select>
+	
+	<!-- 목록 -->
+	
+	<select id="getInquiryList" parameterType="map" resultType="com.project.dd.communication.inquiry.domain.InquiryDTO">
+		select *
+		from (select i.*, rownum as rnum
+			  from (select i.*, name, email
+			  		from tblInquiry i
+			  			inner join tblUser u
+			  				on i.user_seq = u.user_seq
+			  		order by regdate desc, inquiry_seq desc) i
+			  <if test="searchStatus == 'y'.toString()">
+				  where name like '%' || #{word} || '%' or email like '%' || #{word} || '%'
+			  </if>
+			  )
+		where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<!-- 답변 -->
+	
+	<update id="editAnswer" parameterType="com.project.dd.communication.inquiry.domain.InquiryDTO">
+		update tblInquiry set answer = #{answer} where inquiry_seq = #{inquiry_seq}
+	</update>
 </mapper>

@@ -23,9 +23,13 @@ public class UserNoticeController {
 	/* 목록 */
 	
 	@GetMapping(value = "/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
-
-		Map<String, String> map = service.paging(page);
+	public String view(String category, String word, @RequestParam(defaultValue = "1") int page, Model model) {
+		
+		String solting = "user";
+		
+		String searchStatus = (category == null && word == null) || (category.equals("") && word.equals("")) ? "n" : "y";
+		
+		Map<String, String> map = service.paging(solting, searchStatus, category, word, page);
 
 		List<NoticeDTO> list = service.getNoticeList(map);
 
