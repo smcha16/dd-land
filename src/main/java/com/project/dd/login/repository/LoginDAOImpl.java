@@ -71,6 +71,10 @@ public class LoginDAOImpl implements LoginDAO {
 		return mapper.findSeq(memberDTO);
 	}
 
+	public List<MemberDTO> list() {
+		return mapper.list();
+	}
+
 	
 
 }

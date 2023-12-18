@@ -182,7 +182,7 @@
 /* list photo 변경 */
 .stats-counter {
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url("assets/img/barcelona-3960566_1280.jpg") center center;
+		url("/dd/resources/benefit/benefit_background.png") center center;
 	background-size: cover;
 	padding: 100px 0;
 	background-attachment: fixed;
@@ -213,14 +213,14 @@
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div class="munti-content-container">
-
+<!-- 
 					<ul class="tab tab_red" style="width: 300px;">
 						<li id="sel00" class="two"><a href="#tab00" id="selTab00">전체</a></li>
 						<li id="sel01" class="two on"><a href="#tab01" id="selTab01">일반혜택</a></li>
 						<li id="sel02" class="two"><a href="#tab02" id="selTab02">카드/통신사혜택</a></li>
-					</ul>
+					</ul> -->
 				
-					<c:forEach items="${list}" var="dto">
+					<%-- <c:forEach items="${list}" var="dto">
 						<div class="item" id="tab00" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
@@ -229,7 +229,7 @@
 							<div class="hidden-div">설명</div>
 						</div>
 					</c:forEach>
-					
+					 --%>
 					<c:forEach items="${normalList}" var="dto">
 						<div class="item" id="tab01" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
@@ -242,7 +242,7 @@
 			
 		
 					<c:forEach items="${cardList}" var="dto">
-						<div class="item" id="tab02" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
+						<div class="item hidden" id="tab02" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
 							<div>${dto.name}</div>
@@ -265,63 +265,69 @@
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("close").addEventListener("click", function () {
-        toggleLists();
+var itemElements = document.querySelectorAll('.item');
+var tabs = ["tab00", "tab01", "tab02"];
+
+function showTab(tabId) {
+    // 모든 탭 숨기기
+    tabs.forEach(function (tab) {
+        var tabElement = document.getElementById(tab);
+        if (tabElement) {
+            tabElement.style.display = "none";
+        }
     });
 
-    function toggleLists() {
-        var normalListElements = document.querySelectorAll('.item[data-category="normal"]');
-        var cardListElements = document.querySelectorAll('.item[data-category="card"]');
-
-        normalListElements.forEach(function (normalItem) {
-            if (normalItem.style.display === 'none') {
-                normalItem.style.display = 'block';
-            } else {
-                normalItem.style.display = 'none';
-            }
-        });
-
-        cardListElements.forEach(function (cardItem) {
-            if (cardItem.style.display === 'none') {
-                cardItem.style.display = 'block';
-            } else {
-                cardItem.style.display = 'none';
-            }
-        });
+    // 선택한 탭 보이기
+    var selectedTab = document.getElementById(tabId);
+    if (selectedTab) {
+        selectedTab.style.display = "block";
     }
+
+    // 해당 탭에 속하는 항목들의 hidden 클래스를 초기화
+    itemElements.forEach(function (item) {
+        var tabClass = item.getAttribute('data-category');
+        if (tabClass === tabId) {
+            item.classList.remove('hidden');
+        } else {
+            item.classList.add('hidden');
+        }
+    });
+}
+
+itemElements.forEach(function (item) {
+    item.addEventListener('mouseover', function () {
+        // 마우스 오버 시 hidden-div를 보이게 변경
+        item.querySelector('.hidden-div').style.display = 'block';
+    });
+
+    item.addEventListener('mouseout', function () {
+        // 마우스 아웃 시 hidden-div를 다시 숨김
+        item.querySelector('.hidden-div').style.display = 'none';
+    });
 });
 
+$('#close').change(function () {
+    console.log("Change event triggered");
+
+    itemElements.forEach(function (item) {
+        console.log("Item display:", item.style.display);
+
+        if (item.classList.contains('hidden')) {
+            console.log("Removing hidden class");
+            item.classList.remove('hidden');
+        } else {
+            console.log("Adding hidden class");
+            item.classList.add('hidden');
+        }
+    });
+});
+
+</script>
+
+</script>
+<script>
 
 
-/* 
-
-	var itemElements = document.querySelectorAll('.item');
-
-	itemElements.forEach(function(item) {
-		
-		item.addEventListener('mouseover', function() {
-			
-			
-			
-			// 마우스 오버 시 hidden-div를 보이게 변경
-			item.querySelector('.hidden-div').style.display = 'block';
-		});
-
-		item.addEventListener('mouseout', function() {
-			
-			
-			// 마우스 아웃 시 hidden-div를 다시 숨김
-			item.querySelector('.hidden-div').style.display = 'none';
-			
-			
-        });
-    
-	});
-	
-	 */
-	
-	
 	
 	
 	

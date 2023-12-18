@@ -15,7 +15,7 @@ public interface LoginMapper {
 
 	@Select("select user_seq, name, email, pw, tel, address, birth,  'ROLE_' || lv as auth, ing from tbluser where email = #{username}")
 	LoginDTO read(@Param("username") String username);
-	@Select("select * from tbluser")
+	@Select("select user_seq, name, email, pw, tel, address, TO_CHAR(birth,'YYYY-MM-DD') AS birth, lv, ing from TBLUSER")
 	List<MemberDTO> list();
 	@Select("select * from TBLUSER where NAME = #{name} and birth = #{birth} and tel = #{tel}")
 	MemberDTO findId(@Valid MemberDTO memberDTO);

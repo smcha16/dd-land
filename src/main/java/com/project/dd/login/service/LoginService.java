@@ -1,6 +1,8 @@
 package com.project.dd.login.service;
 
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -47,6 +49,10 @@ public class LoginService {
 
 	public String findSeq(@Valid MemberDTO memberDTO) {
 		return dao.findSeq(memberDTO);
+	}
+
+	public List<MemberDTO> list() {
+		return dao.list();
 	}
 
 	

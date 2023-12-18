@@ -104,10 +104,8 @@ th {
 					<div class="col-12">
 
 						  <div id="search" class="header">
-                  			<form class="search-form d-flex align-items-center" method="POST" action="/dd/admin/member/view.do">
+                  			<form class="search-form d-flex align-items-center" method="POST" action="#">
                     			 <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                    			 <input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}">
                     			<button type="submit" title="Search"><i class="bi bi-search"></i></button> 
                   			</form>
               			</div>  
@@ -149,51 +147,14 @@ th {
 										</c:forEach>
 								</table>
 
-		
-								
-								
-			<ul class="pagination justify-content-center">
-    <!-- 처음 페이지로 이동하는 버튼 -->
-    <c:if test="${currentPage > 10}">
-        <li class="page-item"><a class="page-link" href="/dd/admin/member/view.do?page=1">&lt;&lt;</a></li>
-    </c:if>
-
-    <!-- 이전 페이지로 이동하는 버튼 -->
-    <c:if test="${currentPage > 10}">
-        <li class="page-item"><a class="page-link" href="/dd/admin/member/view.do?page=${startPage - 1}">&lt;</a></li>
-    </c:if>
-
-    <!-- 페이지 번호를 10개씩 표시 -->
-    <c:forEach begin="${startPage}" end="${endPage}" varStatus="pageStatus">
-        <c:choose>
-            <c:when test="${pageStatus.index <= map.totalPages}">
-                <c:choose>
-                    <c:when test="${pageStatus.index == currentPage}">
-                        <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
-                    </c:when>
-                    <c:otherwise>
-                        <li class="page-item"><a class="page-link" href="/dd/admin/member/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
-                    </c:otherwise>
-                </c:choose>
-            </c:when>
-        </c:choose>
-    </c:forEach>
-
-    <!-- 다음 페이지로 이동하는 버튼 -->
-    <c:if test="${endPage < map.totalPages}">
-        <li class="page-item"><a class="page-link" href="/dd/admin/member/view.do?page=${endPage + 1}">&gt;</a></li>
-    </c:if>
-
-    <!-- 마지막 페이지로 이동하는 버튼 -->
-    <c:if test="${endPage < map.totalPages}">
-        <li class="page-item"><a class="page-link" href="/dd/admin/member/view.do?page=${map.totalPages}">&gt;&gt;</a></li>
-    </c:if>
-</ul>
-
-					
-					
-								
-								
+								<ul class="pagination pagination-sm">
+									<li class="page-item active" aria-current="page"><span
+										class="page-link">1</span></li>
+									<li class="page-item"><a class="page-link" href="#">2</a></li>
+									<li class="page-item"><a class="page-link" href="#">3</a></li>
+									<li class="page-item"><a class="page-link" href="#">4</a></li>
+									<li class="page-item"><a class="page-link" href="#">5</a></li>
+								</ul>
 							</div>
 
 						</div>

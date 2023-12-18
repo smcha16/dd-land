@@ -240,11 +240,11 @@
 		</div>
 		<!-- Slick Slider -->
 		<div class="image-slider">
-			<%-- <c:forEach items="${benefitInfoList.img}" var="dto"> --%>
+			 <c:forEach items="${benefitInfoList}" var="dto"> 
 				<div>
-					<img src="/dd/resources/files/benefit/attraction/${dto.img}" alt="Image">
+					<img src="/dd/resources/files/benefit/${dto.img}" alt="Image">
 				</div>
-			<%-- </c:forEach> --%>
+			</c:forEach> 
 		</div>
 		<!-- End Slick Slider -->
 		<p class="section-info">
@@ -256,7 +256,7 @@
 
 <!-- 어트랙션 예약 버튼 -->
 <div id="reservation-btn">
-	<button type="button" onclick="location.href='/reservation.do?seq=${dto.attraction_seq}'">어트랙션 예약하기 <i class="bi bi-hand-index-thumb-fill"></i></button>
+	<button type="button" onclick="location.href='/reservation.do?seq=${dto.attraction_seq}'">티켓 예매하기 <i class="bi bi-hand-index-thumb-fill"></i></button>
 </div>
 
 <!-- ======= 상세정보 Section ======= -->
@@ -264,16 +264,16 @@
 <section>
 	<div class="close-container">
 		<div class="close-item">
-			<div class="label">운휴일정</div>
+			<div class="label">할인혜택</div>
 			<div class="value">
-				<c:if test="${dto.close == 'n'}">
+				<%-- <c:if test="${dto.close == 'n'}"> --%>
 					<img src="/dd/resources/files/activity/calendar_icon.png" alt="Image" class="icon" />
 					정상 운영
-				</c:if>
-				<c:if test="${dto.close == 'y'}">
+			<%-- 	</c:if>
+				<c:if test="${dto.close == 'y'}"> --%>
 					<img src="/dd/resources/files/activity/close_icon.png" alt="Image" class="icon" />
 					금일 운휴
-				</c:if>
+				<%-- </c:if> --%>
 			</div>
 		</div>
 	</div>
