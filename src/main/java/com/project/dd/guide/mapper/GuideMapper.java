@@ -19,7 +19,7 @@ public interface GuideMapper {
 
 	ConvenientDTO one(String seq);
 
-	int getTotalCount();
+	int getTotalCount(Map<String, String> map);
 	
 	//가이드맵
 

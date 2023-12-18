@@ -7,7 +7,7 @@ import com.project.dd.guide.domain.ConvenientDTO;
 
 public interface ConvenientDAO {
 
-	int getTotalCount();
+	int getTotalCount(Map<String, String> map);
 	
 	List<ConvenientDTO> list(Map<String, String> map);
 

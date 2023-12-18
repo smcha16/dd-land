@@ -18,8 +18,8 @@ public class ConvenientDAOImpl implements ConvenientDAO{
 	private GuideMapper mapper;
 	
 	@Override
-	public int getTotalCount() {
-		return mapper.getTotalCount();
+	public int getTotalCount(Map<String, String> map) {
+		return mapper.getTotalCount(map);
 	}
 
 	@Override

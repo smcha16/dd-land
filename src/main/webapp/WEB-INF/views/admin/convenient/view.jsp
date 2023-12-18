@@ -123,12 +123,9 @@
 					<div class="col-12">
 
               			<div id="search" class="header">
-                  			<form class="search-form d-flex align-items-center" method="POST" action="#">
-                    			<input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                    			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                    			
-                    			<!-- 토큰 -->
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                  			<form method="GET" action="/dd/admin/convenient/view.do" class="search-form d-flex align-items-center">
+                    			<input type="text" name="word" id="search-field" placeholder="이름 또는 전화번호를 입력하세요." autocomplete="off">
+                    			<button type="submit"><i class="bi bi-search"></i></button>
                   			</form>
               			</div>
 
@@ -144,6 +141,7 @@
 								</nav>
                   
                   				<form id="del-form" method="POST" action="/dd/admin/convenient/del.do">
+                  					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	                  				<table class="table">
 	                    				<thead>
 	                      					<tr>
@@ -183,8 +181,8 @@
 							                
 								            <div class="modal-body">
 									            <!-- 모달 이미지-->
-								                <div class="image" >
-								                	<img id="modal-image" src="" alt="Image">
+								                <div class="d-flex align-items-center justify-content-center">
+								                    <img id="modal-image" src="" alt="Image" style="max-width: 100%; margin-top: 16px">
 								                </div>
 								                <!-- 설명 -->
 								            	<div class="m-info"></div>

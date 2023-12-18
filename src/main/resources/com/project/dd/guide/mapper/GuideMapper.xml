@@ -4,14 +4,27 @@
 <!-- namespace == 호출할 Interface 이름 적기 -->
 <mapper namespace="com.project.dd.guide.mapper.GuideMapper">
 	
-	<select id="getTotalCount" resultType="int">
+	<select id="getTotalCount" parameterType="map" resultType="int">
 		select count(*) from tblConvenient
+		<if test="solting == 'user' and searchStatus == 'y'.toString()">
+	        where ${category} like '%' || #{word} || '%'
+	    </if>
+	    <if test="solting == 'admin' and searchStatus == 'y'.toString()">
+	        where name like '%' || #{word} || '%' or tel like '%' || #{word} || '%'
+	    </if>
 	</select>
 	
 	<select id="list" parameterType="map" resultType="com.project.dd.guide.domain.ConvenientDTO">
 		select *
 		from (select n.*, rownum as rnum from (select c.convenient_seq, c.name, c.time, c.tel, c.img, cl.lat, cl.lng 
-		from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq=cl.convenient_seq order by cl.convenient_seq desc) n)
+		from tblconvenient c inner join tblconvenientlocation cl on c.convenient_seq=cl.convenient_seq order by cl.convenient_seq desc) n
+		<if test="solting == 'user' and searchStatus == 'y'.toString()">
+	        where ${category} like '%' || #{word} || '%'
+	    </if>
+	    <if test="solting == 'admin' and searchStatus == 'y'.toString()">
+	        where name like '%' || #{word} || '%' or tel like '%' || #{word} || '%'
+	    </if>
+		)
 		where rnum between #{startIndex} and #{endIndex}
 	</select>
 	

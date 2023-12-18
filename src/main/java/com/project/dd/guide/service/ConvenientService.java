@@ -32,18 +32,24 @@ public class ConvenientService {
 		return convenientDao.one(seq);
 	}
 
-	public Map<String, String> paging(int page) {  //페이징 메서드
+	public Map<String, String> paging(String solting, String searchStatus, String category, String word, int page) {  //페이징 메서드
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("solting", solting);
+		map.put("searchStatus", searchStatus);
+		map.put("category", category);
+		map.put("word", word);
+		
 		int pageSize = 9;  //나타났으면 하는 개수
 		
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
-		
-		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 		
-		int totalPosts = convenientDao.getTotalCount();
+		int totalPosts = convenientDao.getTotalCount(map);
 		int totalPages = (int)Math.ceil((double)totalPosts / pageSize);
 		
 		map.put("totalPosts", String.format("%d", totalPosts));
