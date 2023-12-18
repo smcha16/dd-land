@@ -47,4 +47,9 @@ public class ItemDAOImpl implements ItemDAO {
 	public List<ItemImgDTO> getImgList() {
 		return mapper.getImgList();
 	}
+	
+	@Override
+	public int getTotalCounts() {
+		return mapper.getTotalCounts();
+	}
 }

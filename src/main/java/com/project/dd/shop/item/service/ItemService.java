@@ -28,7 +28,7 @@ public class ItemService {
 	      map.put("startIndex", String.format("%d", startIndex));
 	      map.put("endIndex", String.format("%d", endIndex));
 	      
-	      int totalPosts = dao.getTotalCount(seq);
+	      int totalPosts = dao.getTotalCounts();
 	      int totalPages = (int)Math.ceil((double)totalPosts / pageSize);
 	      
 	      map.put("totalPosts", String.format("%d", totalPosts));

@@ -2,7 +2,7 @@ package com.test.java.db;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +28,9 @@ public class HikariCPTest {
 	public void testUpdatePw() {
 		assertNotNull(mapper);
 		
-		List<LoginDTO> list = mapper.select();
+		ArrayList<LoginDTO> list = mapper.select();
+		
+		int count = mapper.count();
 		
 		for (LoginDTO dto : list) {
 			String pw = encoder.encode(dto.getPw());

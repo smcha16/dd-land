@@ -20,4 +20,6 @@ public interface ItemDAO {
 
 	List<ItemImgDTO> getImgList();
 
+	int getTotalCounts();
+
 }

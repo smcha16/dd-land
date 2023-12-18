@@ -186,8 +186,9 @@
 	                        					<th></th>
 	                        					<th>No</th>
 	                        					<th>이름</th>
+	                        					<th>가격</th>
+	                        					<th>기프트샵</th>
 	                        					<!-- <th>이미지</th> -->
-	                        					<th>위치</th>
 	                      					</tr>
 	                    				</thead>
 	                    				<tbody>
@@ -195,15 +196,15 @@
 		                      					<tr>
 		                        					<td><input type="checkbox" name="item_seq" value="${dto.item_seq}"></td>
 		                        					<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
-		                        					<td><a onclick="showModal('${dto.item_seq}', `${dto.name}`,`${dto.info}`, `${dto.time}`,`${dto.tel}`)"><c:out value="${dto.name}" /></a></td>
-		                        					
+		                        					<td><a onclick="showModal('${dto.item_seq}', `${dto.name}`,`${dto.info}`, `${dto.price}`,`${dto.shop_name}`)"><c:out value="${dto.name}" /></a></td>
+		                        					<td>${dto.price }</td>
+		                        					<td>${dto.shop_name }</td>
 		                        					<%-- <c:if test="${dto.img == 'attraction.png'}">
 		                        						<td></td>
 		                        					</c:if>
 		                        					<c:if test="${dto.img != 'attraction.png'}">
 		                        						<td><i class="bi bi-image"></i></td>
 		                        					</c:if> --%>
-		                        					<td><a onclick="showLocationModal(`${dto.name}`, '${dto.lat}', '${dto.lng}')"><i class="bi bi-geo-alt"></i></a></td>
 		                      					</tr>
 	                      					</c:forEach>
 	                   					</tbody>
@@ -236,11 +237,11 @@
 								            		</colgroup>
 								            		<tbody>
 								            			<tr>
-								            				<th>시간</th>
+								            				<th>가격</th>
 								            				<td class="m-time"></td>
 								            			</tr>
 								            			<tr>
-								            				<th>전화번호</th>
+								            				<th>기프트샵</th>
 								            				<td class="m-restriction"></td>
 								            			</tr>
 								            		</tbody>
@@ -401,58 +402,6 @@
 	</script>
 	
 	<script>
-	
-	/* 어트랙션 위치 모달 */
-	function showLocationModal(name, lat, lng) {
-		
-		$('#location-modal-name').text(name);
-		
-		m = new kakao.maps.Marker({
-	        position: new kakao.maps.LatLng(lat, lng),
-	        image: markerImg
-	    });
-
-		//마커 지도에 출력
-	    m.setMap(map);
-		
-		$('#location-modal').modal('show');
-	}
-	
-	/* 어트랙션 위치 모달이 열릴 때 카카오맵 relayout 설정 */
-	$('#location-modal').on('shown.bs.modal', function () {
-		map.relayout();
-		map.setLevel(10);
-		map.setCenter(new kakao.maps.LatLng(33.361488, 126.529212));
-	});
-	
-	/* 모달이 닫힐 때 카카오맵 관련 reset 설정 */
-	$('#location-modal').on('hidden.bs.modal', function () {
-		m.setMap(null);
-	});
-	
-	/* 카카오맵 */
-	const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-
-	const options = { //지도를 생성할 때 필요한 기본 옵션
-		center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
-		level : 10 //지도의 레벨(확대, 축소 정도)
-		/* draggable : false, // 이동 금지
-		disableDoubleClick : true, // 더블클릭 확대 금지
-		scrollwheel : false // 휠 확대/축소 금지 */
-	};
-	
-	const map = new kakao.maps.Map(container, options);
-	
-	let m = null;
-	
-	//마커 출력
-    let imageSrc = '/dd/resources/files/marker/shop_marker.png'; // 마커이미지의 주소
-    const imageSize = new kakao.maps.Size(40,40);
-    const option = {};
-    
-    //마커 설정
-    const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
-	
 	
 	/* 모달 슬라이드용 img 배열에 넣기 */
 	const img_list = new Array();

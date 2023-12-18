@@ -11,7 +11,7 @@ import com.project.dd.shop.item.domain.ItemImgDTO;
 
 public interface ItemMapper {
 
-	@Select("select count(*) from tblitem where item_seq = #{seq} and name not like '%종료%'")
+	@Select("select count(*) from tblitem where shop_seq = #{seq} and name not like '%종료%'")
 	int getTotalCount(@Param("seq") String seq);
 
 	List<ItemDTO> getList(Map<String, String> map);
@@ -26,5 +26,8 @@ public interface ItemMapper {
 
 	@Select("select * from tblItemImg")
 	List<ItemImgDTO> getImgList();
+
+	@Select("select count(*) from tblitem where name not like '%종료%'")
+	int getTotalCounts();
 
 }
