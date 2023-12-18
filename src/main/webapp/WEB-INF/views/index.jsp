@@ -19,6 +19,11 @@
 	.chef-member {
  	   cursor: pointer;
 	}
+	.stats-counter {
+       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/time.jpg") center center;
+       background-size: cover;
+       background-attachment: fixed;
+    }
 </style>
 	<main id="main">
 	
