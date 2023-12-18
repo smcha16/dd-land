@@ -94,4 +94,32 @@
 		select * from tblAttractionImg
 	</select>
 	
+	<insert id="addAWC" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		insert into tblAWC (awc_seq, is_test, attraction_seq)
+		values (seqtblAWC.NEXTVAL, 'Y', #{attraction_seq})
+	</insert>
+	
+	<insert id="addAWCWin" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		insert into tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+		values (seqtblAWCWin.NEXTVAL, 0, 0, #{attraction_seq})
+	</insert>
+	
+	<insert id="addAWCFinalWin" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		insert into tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+		values (seqtblAWCFinalWin.NEXTVAL, 0, #{attraction_seq})
+	</insert>
+	
+	<select id="checkAvailableCapacity" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO" resultType="int">
+		
+	</select>
+	
+	<insert id="addAttractionBook" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO">
+		INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
+		VALUES (seqtblBookUser.NEXTVAL, sysdate, #{capacity}, #{attraction_book_seq}, ?????, #{attraction_seq});
+	</insert>
+	
+	<select id="getAttractionBookCapacity" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO" resultType="int">
+		select capacity from tblAttractionBook where attraction_book_seq = #{attraction_book_seq}
+	</select>
+	
 </mapper>

@@ -1,4 +1,4 @@
-package com.project.dd.activity.moveplay.controller;
+package com.project.dd.activity.movieplay.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.dd.activity.moveplay.domain.MoviePlayDTO;
-import com.project.dd.activity.moveplay.service.MoviePlayService;
+import com.project.dd.activity.movie.domain.MovieDTO;
+import com.project.dd.activity.movie.service.MovieService;
+import com.project.dd.activity.movieplay.domain.MoviePlayDTO;
+import com.project.dd.activity.movieplay.service.MoviePlayService;
+import com.project.dd.activity.theater.domain.TheaterDTO;
+import com.project.dd.activity.theater.service.TheaterService;
 
 @Controller
 @RequestMapping(value = "/admin/activity/movieplay")
@@ -44,12 +48,23 @@ public class AdminMoviePlayController {
 	@GetMapping(value = "/add.do")
 	public String add(Model model) {
 
+		//영화 목록
+		List<MovieDTO> mlist = service.getMovieList();
+		
+		//영화관 목록
+		List<TheaterDTO> tlist = service.getTheaterList();
+		
+		model.addAttribute("mlist", mlist);
+		model.addAttribute("tlist", tlist);
+		
 		return "admin/activity/movieplay/add";
 	}
 	
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, MoviePlayDTO dto) {
 
+		System.out.println(dto.toString());
+		
 		int result = service.addMoviePlay(dto);
 		
 		if (result > 0) {

@@ -1,11 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link href="/dd/resources/air-datepicker/dist/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
-<!-- Air datepicker css -->
-<script src="/dd/resources/air-datepicker/dist/js/datepicker.js"></script> <!-- Air datepicker js -->
-<script src="/dd/resources/air-datepicker/dist/js/i18n/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
-
 <style>
 	#main h1 {
 		font-size: 2rem !important;
@@ -47,120 +42,16 @@
     }
     
     /* 유효성검사 CSS */
-    .check-location-duplication {
+    .check-location-duplication, .check-time-validation {
     	padding: 10px 10px;
     }
-    .check-name-duplication {
-    	padding: 10px 10px;
-    }
-    
-     /* 달력 */
-
-.date {
-  position: relative;
-  /* width: 300px; */
-  margin-left: 50px;
-  margin-top: 100px;
-}
-
-/* #datepicker {
- font-size: 15px;
-  color: #222222;
-  width: 300px;
-  border: none;
-  border-bottom: solid #aaaaaa 1px;
-  padding-bottom: 10px;
-  text-align: center;
-  position: relative;
-  background: none;
-  z-index: 5;
-} */
-
-	input#datepicker1, input#datepicker2 {
-		border: none;
-		border-bottom: solid #AAA 1px;
-		
-	}
-	
-	input#datepicker1:focus, input#datepicker1:focus {
-		outline: none;
-	}
-	
-	div.date {
-		display: inline-block;
-	}
-
-
-	.date span {
-		display: block;
-		position: absolute;
-		bottom: 0;
-		left: 50%;  /* right로만 바꿔주면 오 - 왼 */
-		background-color: #666;
-		width: 0;
-		height: 2px;
-		border-radius: 2px;
-		transform: translateX(-50%);
-		transition: 0.5s;
-	}
-
-/* .date label {
-position: absolute;
-  color: #aaa;
-  left: 10px;
-  font-size: 20px;
-  bottom: 8px;
-  transition: all .2s;
-} */
-
-	.date label[for="datepicker1"] {
-		position: absolute;
-		color: #aaa;
-		left: 10px;
-		font-size: 20px;
-		bottom: 8px;
-		transition: all .2s;
-	}
-	.date label[for="datepicker2"] {
-		position: absolute;
-		color: #aaa;
-		left: 10px;
-		font-size: 20px;
-		bottom: 8px;
-		transition: all .2s;
-	}
-
-	input#datepicker1:focus ~ label, input#datepicker1:valid ~ label {
-		font-size: 16px;
-		bottom: 40px;
-		color: #666;
-		font-weight: bold;
-	}
-
-	input#datepicker1:focus ~ span, input#datepicker1:valid ~ span {
-		width: 100%;
-	}
-
-	input#datepicker2:focus ~ label, input#datepicker2:valid ~ label {
-		font-size: 16px;
-		bottom: 40px;
-		color: #666;
-		font-weight: bold;
-	}
-
-	input#datepicker2:focus ~ span, input#datepicker2:valid ~ span {
-		width: 100%;
-	}
-/* #total-date{
-   display: flex;
-} */
     
 </style>
 
 <main id="main" class="main">
 
 	<div class="pagetitle">
-		<h1>어트랙션 등록</h1>
+		<h1>페스티벌 등록</h1>
 		
 		<nav class="d-flex justify-content-end">
       		<ol class="breadcrumb">
@@ -177,61 +68,50 @@ position: absolute;
         		<div class="card">
           			<div class="card-body">
             			<h5 class="card-title">페스티벌 정보 입력</h5>
-            			
-            			
-            			<div class="row mb-3">
-                			<label for="info" class="col-sm-2 col-form-label required" >시작일 및 종료일</label>
-                			<div class="col-sm-10">
-	                			<div class="date">
-			            			<input id="datepicker1" type="text" data-language="ko" required> -
-			     					<label for="datepicker1">시작일</label>
-			     					<span></span>
-		     					</div>
-		     					<div class="date">
-			     					<input id="datepicker2" type="text" data-language="ko" required>
-			     					<label for="datepicker2">종료일</label>
-			     					<span></span>
-		     					</div>
-                			</div>
-             			</div>
-            			
-            			
 
-<!-- 어트랙션명, 어트랙션소개, 탑승인원, (운영시간 > 생략) 제한사항, 위치, 이미지 -->
-            			<%-- <form method="POST" action="/dd/admin/activity/attraction/addok.do" enctype="multipart/form-data">
+						<!-- 페스티벌명, 공연 시간, 소개, 공연 시작일, 공연 종료일, 위치, 이미지 -->
+            			<form method="POST" action="/dd/admin/activity/festival/addok.do" enctype="multipart/form-data">
             			
-            				<!-- 어트랙션명 -->
+            				<!-- 페스티벌명 -->
               				<div class="row mb-3">
-                				<label for="name" class="col-sm-2 col-form-label required">어트랙션명</label>
+                				<label for="name" class="col-sm-2 col-form-label required">페스티벌명</label>
                 				<div class="col-sm-10">
-                  					<input type="text" id="name" name="name" class="form-control" placeholder="어트랙션명을 입력해주세요." required>
-                  					<div style="height: 30px;">
-                  						<div class="check-name-duplication"></div>
+                  					<input type="text" id="name" name="name" class="form-control" placeholder="페스티벌명을 입력해주세요." required>
+                				</div>
+              				</div>
+
+							<!-- 공연 시간 -->
+              				<div class="row mb-3">
+                				<label for="time" class="col-sm-2 col-form-label required" >공연 시간</label>
+                				<div class="col-sm-10">
+                					<input type="text" id="time" name="time" class="form-control" placeholder="공연 시간(HH:MM)을 입력해주세요." required>
+                					<div style="height: 30px;">
+                  						<div class="check-time-validation"></div>
                   					</div>
                 				</div>
               				</div>
-
-							<!-- 어트랙션 소개 -->
+              				
+              				<!-- 페스티벌 소개 -->
               				<div class="row mb-3">
                 				<label for="info" class="col-sm-2 col-form-label required" >소개</label>
                 				<div class="col-sm-10">
-                  					<textarea id="info" name="info" class="form-control" style="height: 100px" placeholder="어트랙션의 소개 & 특징을 입력해주세요." required></textarea>
+                  					<textarea id="info" name="info" class="form-control" style="height: 100px" placeholder="페스티벌의 소개 & 특징을 입력해주세요." required></textarea>
                 				</div>
               				</div>
 
-							<!-- 탑승 인원 -->
+							<!-- 공연 시작일 -->
               				<div class="row mb-3">
-                				<label for="capacity" class="col-sm-2 col-form-label required">탑승 인원</label>
+                				<label for="start_date" class="col-sm-2 col-form-label required">공연 시작일</label>
                 				<div class="col-sm-10">
-                  					<input type="number" id="capacity" name="capacity" class="form-control" placeholder="탑승 인원(숫자)을 입력해주세요." required>
+                  					<input type="date" id="start_date" name="start_date" class="form-control" required>
                 				</div>
               				</div>
 
-							<!-- 제한사항 -->
+							<!-- 공연 종료일 -->
               				<div class="row mb-3">
-                				<label for="restriction" class="col-sm-2 col-form-label">제한사항</label>
+                				<label for="end_date" class="col-sm-2 col-form-label required">공연 종료일</label>
                 				<div class="col-sm-10">
-                  					<textarea id="restriction" name="restriction" class="form-control" style="height: 100px" placeholder="해당 어트랙션의 제한사항(키, 임산부, 노약자 등)을 입력해주세요." required></textarea>
+                  					<input type="date" id="end_date" name="end_date" class="form-control" required>
                 				</div>
               				</div>
               				
@@ -261,7 +141,7 @@ position: absolute;
               				<!-- 토큰 -->
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 							
-						</form> --%>
+						</form>
 			
 					</div>
 				</div>
@@ -273,93 +153,149 @@ position: absolute;
 </main>
 
 <!-- Kakao Map Open API -->
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c089ee6f3d885cfbe52b2f15d8f3f531"></script> -->
-
-<!-- Attraction add용 JavaScript -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c089ee6f3d885cfbe52b2f15d8f3f531"></script>
 <script>
 
-	//두개짜리 제어 연결된거 만들어주는 함수
-	datePickerSet($("#datepicker1"), $("#datepicker2"), true); //다중은 시작하는 달력 먼저, 끝달력 2번째
+	/* 필수 항목이 반드시 입력되어야만 submit 클릭 시 넘어가도록 */
+	function submit() {
+		
+		if (!$('input[name="name"]').val().trim() || !$('textarea[name="info"]').val().trim()
+				|| !$('input[name="time"]').val().trim()
+				|| $('input[name="start_date"]').val() == "" || $('input[name="end_date"]').val() == ""
+				|| $('.check-location-duplication').data('type') != 'y' || $('.check-time-validation').data('type') != 'y') {
+			
+			if ($('.check-location-duplication').data('type') == 'n') {
+				alert('중복된 항목을 수정해주세요.');
+			} else if ($('.check-time-validation').data('type') == 'n') {
+				alert('올바른 시간 형식(HH:MM)으로 입력해주세요.');
+			} else {
+				alert('필수 항목을 입력해주세요.');
+			}
+			
+		} else {
+			$('form').submit();
+		}
+	}
 	
-	/*
-    * 달력 생성기
-    * @param sDate 파라미터만 넣으면 1개짜리 달력 생성
-    * @example   datePickerSet($("#datepicker"));
-    * 
-    * 
-    * @param sDate, 
-    * @param eDate 2개 넣으면 연결달력 생성되어 서로의 날짜를 넘어가지 않음
-    * @example   datePickerSet($("#datepicker1"), $("#datepicker2"));
-    */
-	function datePickerSet(sDate, eDate, flag) {
+	/* 선택한 위치 추가 */
+	const latInput = document.getElementById('lat');
+	const lngInput = document.getElementById('lng');
 
-	    //시작 ~ 종료 2개 짜리 달력 datepicker	
-	    if (!isValidStr(sDate) && !isValidStr(eDate) && sDate.length > 0 && eDate.length > 0) {
-	        var sDay = sDate.val();
-	        var eDay = eDate.val();
-	
-	        if (flag && !isValidStr(sDay) && !isValidStr(eDay)) { //처음 입력 날짜 설정, update...			
-	            var sdp = sDate.datepicker().data("datepicker");
-	            sdp.selectDate(new Date(sDay.replace(/-/g, "/")));  //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
-	
-	            var edp = eDate.datepicker().data("datepicker");
-	            edp.selectDate(new Date(eDay.replace(/-/g, "/")));  //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
-	        }
-	
-	        //시작일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
-	        if (!isValidStr(eDay)) {
-	            sDate.datepicker({
-	                maxDate: new Date(eDay.replace(/-/g, "/"))
-	            });
-	        }
-	        sDate.datepicker({
-	            language: 'ko',
-	            autoClose: true,
-	            onSelect: function () {
-	                datePickerSet(sDate, eDate);
-	            }
-	        });
-	
-	        //종료일자 세팅하기 날짜가 없는경우엔 제한을 걸지 않음
-	        if (!isValidStr(sDay)) {
-	            eDate.datepicker({
-	                minDate: new Date(sDay.replace(/-/g, "/"))
-	            });
-	        }
-	        eDate.datepicker({
-	            language: 'ko',
-	            autoClose: true,
-	            onSelect: function () {
-	                datePickerSet(sDate, eDate);
-	            }
-	        });
+	const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 
-        //한개짜리 달력 datepicker
-    } else if (!isValidStr(sDate)) {
-        var sDay = sDate.val();
-        if (flag && !isValidStr(sDay)) { //처음 입력 날짜 설정, update...			
-            var sdp = sDate.datepicker().data("datepicker");
-            sdp.selectDate(new Date(sDay.replace(/-/g, "/"))); //익스에서는 그냥 new Date하면 -을 인식못함 replace필요
-        }
+	const options = { //지도를 생성할 때 필요한 기본 옵션
+		center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
+		level : 10 //지도의 레벨(확대, 축소 정도)
+		/* draggable : false, // 이동 금지
+		disableDoubleClick : true, // 더블클릭 확대 금지
+		scrollwheel : false // 휠 확대/축소 금지 */
+	};
+	
+	const map = new kakao.maps.Map(container, options);
+	
+	let m = null;
+	let lat = null;
+	let lng = null;
+	
+	 
+	kakao.maps.event.addListener(map, 'click', function(evt) {
+		lat = evt.latLng.getLat();
+		lng = evt.latLng.getLng();
 
-        sDate.datepicker({
-            language: 'ko',
-            autoClose: true
-        });
-    }
+		if (m != null) {
+			// 기존 마커 제거
+			m.setMap(null);
+		}
 
+		m = new kakao.maps.Marker({
+			position : new kakao.maps.LatLng(lat, lng)
+		});
 
-    function isValidStr(str) {
-        if (str == null || str == undefined || str == "")
-            return true;
-        else
-            return false;
-    }
-}	
+		m.setMap(map);
+
+		latInput.value = lat;
+		lngInput.value = lng;
+		
+		/* Festival 위치 중복 검사 */
+		let obj = {
+				lat: evt.latLng.getLat(),
+				lng: evt.latLng.getLng()
+		};
+		
+		// CSRF token
+        var csrfHeaderName = "${_csrf.headerName}";
+        var csrfTokenValue = "${_csrf.token}";
+		
+		$.ajax({
+			type: 'POST',
+			url: '/dd/admin/activity/festival/location',
+			headers: {'content-Type': 'application/json'},
+			data: JSON.stringify(obj),
+			dataType: 'json',
+			success: function(result) {
+				//alert('성공');
+				if (result == 0) {
+					$('.check-location-duplication').text('지정 가능한 위치입니다.');
+					$('.check-name-duplication').css('color', '#212529');
+					$('.check-location-duplication').data('type', 'y');
+					console.log('지정 가능');
+					console.log("check-location-duplication: " + $('.check-location-duplication').data('type'));
+					
+				} else {
+					$('.check-location-duplication').text('중복된 위치입니다. 다른 위치를 선택해주세요.');
+					$('.check-location-duplication').css('color', '#dc3545');
+					$('.check-location-duplication').data('type', 'n');
+					console.log('중복된 위치');
+					console.log("check-location-duplication: " + $('.check-location-duplication').data('type'));
+				}
+			},
+			beforeSend: function(xhr) {
+            	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+            },
+			error: function(a,b,c) {
+				console.log(a,b,c);
+			}
+			
+		});
+		
+	});
 	
+	/* 공연 시간 입력 형식 유효성 검사 */
+	const pattern = /^\d{2}:\d{2}$/;
+
+	$('input[name="time"]').keyup(function() {
+		
+		let time = $('input[name="time"]').val();
+		//console.log(time);
+		
+		if (pattern.test(time)) {
+		    $('.check-time-validation').text('');
+		    $('.check-time-validation').css('color', '#212529');
+		    $('.check-time-validation').data('type', 'y');
+		    
+		} else {
+		    $('.check-time-validation').text('올바른 형식(HH:MM)으로 입력해주세요.');
+		    $('.check-time-validation').css('color', '#dc3545');
+		    $('.check-time-validation').data('type', 'n');
+		}
+		
+	});
 	
-	
-	
-	
+	//날짜 입력 유효성 검사
+	 
+	 const start_date = document.getElementById('start_date');
+
+	 const now = new Date();
+	 const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+	 
+	 $('#start_date').attr('min', nowStr);//시작일은 최소 오늘 이후
+	 
+	 function isValidEndDate() {
+		 $('#end_date').attr('min', start_date.value);
+	 }
+	 
+	 $('#start_date').change(function() {
+		 isValidEndDate();
+	 });
 	
 </script>

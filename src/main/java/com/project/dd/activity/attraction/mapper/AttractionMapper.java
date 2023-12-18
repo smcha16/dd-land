@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
+import com.project.dd.activity.attraction.domain.BookUserDTO;
 
 public interface AttractionMapper {
 
@@ -50,5 +51,11 @@ public interface AttractionMapper {
 	int delAttractionImgByImgSeq(String imgseq);
 
 	List<AttractionImgDTO> getAllAttractionImgList();
+
+	int checkAvailableCapacity(BookUserDTO dto);
+
+	int addAttractionBook(BookUserDTO dto);
+
+	int getAttractionBookCapacity(BookUserDTO dto);
 
 }
