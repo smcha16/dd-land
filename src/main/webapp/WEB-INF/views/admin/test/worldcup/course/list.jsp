@@ -144,48 +144,44 @@ th {
 					<div class="col-12">
 
 						<div id="search" class="header">
-							<form class="search-form d-flex align-items-center" method="POST"
-								action="#">
-								<input type="text" name="query" placeholder="Search"
-									title="Enter search keyword">
-								<button type="submit" title="Search">
-									<i class="bi bi-search"></i>
-								</button>
-							</form>
-							
-							<!-- 코스 상세 모달 -->
-							<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
-							    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-							        <div class="modal-content">
-							            <div class="modal-header">
-							                <h5 id="modal-name" class="modal-title"></h5>
-							                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							            </div>
-						                
-							            <div class="modal-body">
-							            	<table class="m-desc">
-							            		<colgroup>
-							            			<col style="width: 100px">
-							            		</colgroup>
-							            		<tbody>
-							            			<tr>
-							            				<th>이미지
-							            				<td>
-									            			<div class="d-flex">
-										                    	<img id="modal-image" src="" alt="Image" style="max-width: 100%;">
-										                	</div>
-									                	</td>
-							            			</tr>
-							            			<tr>
-							            				<th></th>
-							            				<td class="m-img"></td>
-							            			</tr>
-							            		</tbody>
-							            	</table>
-							            </div>
-							        </div>
-							    </div>
-							</div>
+                  			<form method="GET" action="/dd/admin/test/worldcup/course/list.do" class="search-form d-flex align-items-center">
+                    			<input type="text" name="word" id="search-field" placeholder="제목 또는 내용을 입력하세요." autocomplete="off">
+                    			<button type="submit"><i class="bi bi-search"></i></button>
+                  			</form>
+              			</div>
+						
+						<!-- 코스 상세 모달 -->
+						<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+						    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <h5 id="modal-name" class="modal-title"></h5>
+						                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						            </div>
+					                
+						            <div class="modal-body">
+						            	<table class="m-desc">
+						            		<colgroup>
+						            			<col style="width: 100px">
+						            		</colgroup>
+						            		<tbody>
+						            			<tr>
+						            				<th>이미지
+						            				<td>
+								            			<div class="d-flex">
+									                    	<img id="modal-image" src="" alt="Image" style="max-width: 100%;">
+									                	</div>
+								                	</td>
+						            			</tr>
+						            			<tr>
+						            				<th></th>
+						            				<td class="m-img"></td>
+						            			</tr>
+						            		</tbody>
+						            	</table>
+						            </div>
+						        </div>
+						    </div>
 						</div>
 
 						<div class="card">
@@ -273,6 +269,17 @@ th {
 	    }
 	}
 
+	// 검색
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#search-field').val('${map.word}');
+	</c:if>
+	
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/admin/test/worldcup/course/list.do';
+	    }
+	});
+	
 	// 코스 상세 모달
 	function showModal(seq, name, img) {
 	    

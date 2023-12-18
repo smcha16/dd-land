@@ -322,7 +322,7 @@ th {
 		});
 	});
 
-	<!-- 검색 -->
+	// 검색
 	<c:if test="${map.searchStatus == 'y'}">
 		$('#search-field').val('${map.word}');
 	</c:if>

@@ -15,8 +15,8 @@ public interface WorldCupCourseService {
 	
 	int getTestCount();
 	
-	Map<String, String> paging(int page);
-
+	Map<String, String> paging(String solting, String searchStatus, String word, int page);
+	
 	List <CourseDTO> getAllCourse(Map<String, String> map);
 
 	void updateCourseStatus(Map<String, String> map);
@@ -60,5 +60,5 @@ public interface WorldCupCourseService {
 	void updateCWCFinalWinCount(String courseSeq);
 
 	List<CourseDTO> getCourseNameList();
-	
+
 }

@@ -19,6 +19,7 @@ import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService
 import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
 
 @Controller
+@RequestMapping("/admin/test/mbti")
 public class AdminMBTIController {
 
     @Autowired
@@ -30,10 +31,13 @@ public class AdminMBTIController {
 	@Autowired
 	private WorldCupCourseService cwcService;
 	
-	@GetMapping(value = "/admin/test/mbti/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
-		
-		Map<String, String> map = mbtiService.paging(page, 10);
+	@GetMapping(value = "/view.do")
+	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
+
+		String solting = "admin";
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
+
+		Map<String, String> map = mbtiService.paging(solting, searchStatus, word, page, 10); // 페이징
 
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
@@ -42,7 +46,7 @@ public class AdminMBTIController {
 		return "admin/test/mbti/view";
 	}
 	
-	@GetMapping(value = "/admin/test/mbti/add.do")
+	@GetMapping(value = "/add.do")
 	public String add(Model model) {
 
 		model.addAttribute("attractionList", awcService.getAttractionNameList());
@@ -51,7 +55,7 @@ public class AdminMBTIController {
 		return "admin/test/mbti/add";
 	}
 
-	@PostMapping(value = "/admin/test/mbti/addok.do")
+	@PostMapping(value = "/addok.do")
 	public String addok(Model model, MBTIDTO dto, MultipartFile image, HttpServletRequest req) {
 		
 		int result = mbtiService.addMBTI(dto, image, req);
@@ -64,7 +68,7 @@ public class AdminMBTIController {
 		}
 	}
 	
-	@GetMapping(value = "/admin/test/mbti/edit.do")
+	@GetMapping(value = "/edit.do")
 	public String edit(Model model, String seq) {
 
 		model.addAttribute("attractionList", awcService.getAttractionNameList());
@@ -84,7 +88,7 @@ public class AdminMBTIController {
 		return "admin/test/mbti/edit";
 	}
 	
-	@PostMapping(value = "/admin/test/mbti/editok.do")
+	@PostMapping(value = "/editok.do")
 	public String editok(Model model, MBTIDTO dto, MultipartFile image, HttpServletRequest req) {
 
 		int result = mbtiService.editMBTI(dto, image, req);
@@ -96,7 +100,7 @@ public class AdminMBTIController {
 		}
 	}
 	
-	@PostMapping(value = "/admin/test/mbti/del.do")
+	@PostMapping(value = "/del.do")
 	public String del(Model model, String[] mbti_seq) {
 		
 		int result = mbtiService.delMBTI(mbti_seq);

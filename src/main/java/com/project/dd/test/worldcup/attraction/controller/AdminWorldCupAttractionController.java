@@ -30,15 +30,10 @@ public class AdminWorldCupAttractionController {
 
 		Map<String, String> map = awcService.paging(solting, searchStatus, word, page); // 페이징
 
-		model.addAttribute("currentPage", page); // 페이징
-		model.addAttribute("map", map); // 페이징
+		model.addAttribute("currentPage", page);
+		model.addAttribute("map", map);
 		model.addAttribute("listAttraction", awcService.getAllAttraction(map));
 		model.addAttribute("awcFinalWinTotalCount", awcService.getAWCFinalWinTotalCount());
-
-	    //model.addAttribute("listAWCWin", awcService.getAllAWCWin());
-        //model.addAttribute("listAWCFinalWin", awcService.getAllAWCFinalWin());
-
-		// System.out.println(awcService.getAllAttraction(map));
 
 		return "admin/test/worldcup/attraction/view";
 	}

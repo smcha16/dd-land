@@ -25,10 +25,12 @@ public class UserMBTIController {
 	private AttractionService attractionService;
 	
 	@GetMapping(value = "/user/test/mbti/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 
-		// 페이징
-		Map<String, String> map = mbtiService.paging(page, 9);
+		String solting = "admin";
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
+
+		Map<String, String> map = mbtiService.paging(solting, searchStatus, word, page, 9); // 페이징
 
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
