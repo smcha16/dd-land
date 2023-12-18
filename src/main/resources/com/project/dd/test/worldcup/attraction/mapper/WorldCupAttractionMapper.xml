@@ -111,4 +111,35 @@
 		select attraction_seq, name from tblAttraction order by attraction_seq
 	</select>
 	
+	<select id="getTopThreeAttraction" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		select
+		    t.*,
+		    to_char(t.win_rate * 100, '999.99') as win_rate_per,
+		    to_char(t.final_win_rate * 100, '999.99') as final_win_rate_per
+		from (
+			select
+		        al.attraction_seq,
+		        al.name,
+		        al.info,
+		        al.img,
+		        w.awc_match_count as match_count,
+		        w.awc_win_count as win_count,
+		        fw.awc_final_win_count as final_win_count,
+		        (w.awc_win_count / w.awc_match_count) as win_rate,
+		        (fw.awc_final_win_count / total_final_win_count) as final_win_rate,
+		        ROWNUM as rnum
+		    from vwAttractionList al
+		        join tblAWC awc on awc.attraction_seq = al.attraction_seq
+		        join tblAWCWin w on w.attraction_seq = al.attraction_seq
+		        join tblAWCFinalWin fw on fw.attraction_seq = al.attraction_seq
+		        cross join (
+		            select SUM(awc_final_win_count) as total_final_win_count
+		            from tblAWCFinalWin
+		        )
+		    where awc.is_test = 'Y'
+		    order by win_rate desc, final_win_rate desc
+		) t
+		where t.rnum &lt;= 3
+	</select>
+	
 </mapper>

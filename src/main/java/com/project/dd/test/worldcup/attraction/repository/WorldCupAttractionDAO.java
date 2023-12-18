@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
+import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionRankDTO;
 
 public interface WorldCupAttractionDAO {
 
@@ -34,5 +35,7 @@ public interface WorldCupAttractionDAO {
 	void updateAWCFinalWinCount(String attractionSeq);
 
 	List<AttractionDTO> getAttractionNameList();
+
+	List<AttractionDTO> getTopThreeAttraction();
 
 }
