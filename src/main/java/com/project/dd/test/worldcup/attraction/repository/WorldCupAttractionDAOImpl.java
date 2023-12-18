@@ -83,4 +83,9 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 		return mapper.getAttractionNameList();
 	}
 	
+	@Override
+	public List<AttractionDTO> getTopThreeAttraction() {
+		return mapper.getTopThreeAttraction();
+	}
+	
 }
