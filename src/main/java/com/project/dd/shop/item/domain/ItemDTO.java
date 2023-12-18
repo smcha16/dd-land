@@ -13,4 +13,6 @@ public class ItemDTO {
 	private String img;
 	
 	private String ea;
+	private String user_seq;
+	private String cart_seq;
 }

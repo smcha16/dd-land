@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.shop.item.domain.ItemDTO;
@@ -37,6 +38,14 @@ public class AdminItemController {
 		model.addAttribute("ilist", ilist);
 		
 		return "admin/shop/item/view";
+	}
+	
+	@PostMapping(value = "/admin/shop/item/del.do")
+	public String del(Model model, String[] item_seq) {
+		
+		int result = service.delItem(item_seq);
+
+		return "redirect:/admin/shop/item/view.do";
 	}
 	
 }

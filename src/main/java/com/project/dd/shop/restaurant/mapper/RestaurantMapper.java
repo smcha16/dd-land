@@ -24,5 +24,18 @@ public interface RestaurantMapper {
 
 	@Select("select * from tblRestaurantImg")
 	List<RestaurantImageDTO> getImgList();
+	
+	int checkNameDuplication(RestaurantDTO dto);
+
+	int addRestaurant(RestaurantDTO dto);
+
+	@Select("select max(restaurant_seq) as restaurant_seq from tblRestaurant")
+	String getSeq();
+
+	void addRestaurantLocation(RestaurantDTO dto);
+
+	void addRestaurantImg(RestaurantDTO dto);
+
+	int delRestaurant(String seq);
 
 }

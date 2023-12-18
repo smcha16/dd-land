@@ -81,4 +81,17 @@ public class GiftshopService {
 		return dao.getImgList();
 	}
 
+	public int delGiftshop(String[] shop_seq) {
+		
+		int result = 0;
+		
+		for (String seq : shop_seq) {
+			dao.delItems(seq);
+			
+			result += dao.delGiftshop(seq);
+		}
+		
+		return result;
+	}
+
 }

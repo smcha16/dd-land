@@ -14,7 +14,7 @@
         WHERE
                 item_seq = i.item_seq
             AND ROWNUM = 1
-    )             AS img from tblItem i where shop_seq = #{seq} and  name not like '%종료%' order by item_seq DESC) n)
+    )             AS img from tblItem i where shop_seq = #{seq} and price != 0 order by item_seq DESC) n)
       where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
@@ -29,8 +29,28 @@
         WHERE
                 item_seq = i.item_seq
             AND ROWNUM = 1
-    )             AS img from tblItem i where name not like '%종료%' order by item_seq DESC) n)
+    )             AS img from tblItem i where price != 0 order by item_seq DESC) n)
       where rnum between #{startIndex} and #{endIndex}
 	</select>
+	
+	<select id="checkCart" parameterType="com.project.dd.shop.item.domain.ItemDTO" resultType="com.project.dd.shop.item.domain.ItemDTO">
+		select u.cart_seq, ea from tblusercart u inner join tblcart c on u.cart_seq = c.cart_seq where user_seq = #{user_seq} and item_seq = #{item_seq}
+	</select>
+	
+	<insert id="addCart" parameterType="com.project.dd.shop.item.domain.ItemDTO">
+		insert into tblCart values (seqtblcart.nextVal, #{ea}, #{item_seq})
+	</insert>
+	
+	<update id="editCart" parameterType="com.project.dd.shop.item.domain.ItemDTO">
+		update tblcart set ea = #{ea} where cart_seq = #{cart_seq}
+	</update>
+	
+	<insert id="addUserCart" parameterType="com.project.dd.shop.item.domain.ItemDTO">
+		insert into tblUserCart values (seqtblusercart.nextVal, #{user_seq}, #{cart_seq})
+	</insert>
+	
+	<update id="delItem" parameterType="String">
+		update tblItem set price = 0 where item_seq = #{seq}
+	</update>
 
 </mapper>

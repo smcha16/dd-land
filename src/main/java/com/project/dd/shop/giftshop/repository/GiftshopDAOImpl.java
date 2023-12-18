@@ -43,4 +43,14 @@ public class GiftshopDAOImpl implements GiftshopDAO {
 		return mapper.getImgList();
 	}
 	
+	@Override
+	public void delItems(String seq) {
+		mapper.delItems(seq);
+	}
+	
+	@Override
+	public int delGiftshop(String seq) {
+		return mapper.delGiftshop(seq);
+	}
+	
 }

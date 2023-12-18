@@ -18,4 +18,16 @@ public interface RestaurantDAO {
 
 	List<RestaurantImageDTO> getImgList();
 
+	int checkNameDuplication(RestaurantDTO dto);
+
+	int addRestaurant(RestaurantDTO dto);
+
+	String getSeq();
+
+	void addRestaurantLocation(RestaurantDTO dto);
+
+	void addRestaurantImg(RestaurantDTO dto);
+
+	int delRestaurant(String seq);
+
 }

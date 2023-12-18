@@ -18,4 +18,8 @@ public interface GiftshopDAO {
 
 	List<GiftshopImageDTO> getImgList();
 
+	void delItems(String seq);
+
+	int delGiftshop(String seq);
+
 }

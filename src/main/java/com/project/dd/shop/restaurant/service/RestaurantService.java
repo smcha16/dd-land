@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.shop.restaurant.domain.RestaurantDTO;
 import com.project.dd.shop.restaurant.domain.RestaurantImageDTO;
@@ -79,6 +82,45 @@ public class RestaurantService {
 
 	public List<RestaurantImageDTO> getImgList() {
 		return dao.getImgList();
+	}
+
+	public int checkNameDuplication(RestaurantDTO dto) {
+		return dao.checkNameDuplication(dto);
+	}
+
+	public int addRestaurant(RestaurantDTO dto) {
+		return dao.addRestaurant(dto);
+	}
+
+	public String getSeq() {
+		return dao.getSeq();
+	}
+
+	public void addRestaurantLocation(RestaurantDTO dto) {
+		dao.addRestaurantLocation(dto);
+
+	}
+
+	public void addRestaurantImg(RestaurantDTO dto) {
+		dao.addRestaurantImg(dto);
+	}
+
+	public int editRestaurant(RestaurantDTO dto, MultipartFile image, HttpServletRequest req, String deleteImgSeq) {
+		String seq = dto.getRestaurant_seq();
+		int result = 0;
+		
+		
+		return 0;
+	}
+
+	public int delRestaurant(String[] restaurant_seq) {
+		int result = 0;
+		
+		for (String seq : restaurant_seq) {
+			result += dao.delRestaurant(seq);
+		}
+		
+		return result;
 	}
 
 }

@@ -3,6 +3,7 @@ package com.project.dd.shop.item.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -11,7 +12,7 @@ import com.project.dd.shop.item.domain.ItemImgDTO;
 
 public interface ItemMapper {
 
-	@Select("select count(*) from tblitem where shop_seq = #{seq} and name not like '%종료%'")
+	@Select("select count(*) from tblitem where shop_seq = #{seq} and price != 0")
 	int getTotalCount(@Param("seq") String seq);
 
 	List<ItemDTO> getList(Map<String, String> map);
@@ -27,7 +28,26 @@ public interface ItemMapper {
 	@Select("select * from tblItemImg")
 	List<ItemImgDTO> getImgList();
 
-	@Select("select count(*) from tblitem where name not like '%종료%'")
+	@Select("select count(*) from tblitem where price != 0")
 	int getTotalCounts();
+
+	ItemDTO checkCart(ItemDTO dto);
+	
+	int addCart(ItemDTO dto);
+
+	int editCart(ItemDTO dto);
+
+	@Select("select max(cart_seq) as cart_seq from tblcart")
+	String getCartSeq();
+
+	int addUserCart(ItemDTO dto);
+
+	int delItem(String seq);
+
+	@Select("select cart_seq from tblCart where item_seq = #{seq}")
+	String[] getItemSeqs(@Param("seq") String seq);
+
+	@Delete("delete from tblusercart where cart_seq = #{seq}")
+	void delUserCart(@Param("seq") String cart_seq);
 
 }
