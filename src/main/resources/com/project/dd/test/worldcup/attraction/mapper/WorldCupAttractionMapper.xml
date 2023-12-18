@@ -9,6 +9,9 @@
 		join vwAttractionList al on awc.attraction_seq = al.attraction_seq
 		join tblAWCWin w on w.attraction_seq = al.attraction_seq
 		join tblAWCFinalWin fw on fw.attraction_seq = al.attraction_seq
+		<if test="solting == 'admin' and searchStatus == 'y'.toString()">
+		    where name like '%' || #{word} || '%' or info like '%' || #{word} || '%' or restriction like '%' || #{word} || '%'
+		</if>
 	</select>
    
 	<select id="getTestCount" resultType="int">
@@ -37,8 +40,10 @@
 		        JOIN vwAttractionList al ON awc.attraction_seq = al.attraction_seq
 		        JOIN tblAWCWin w ON w.attraction_seq = al.attraction_seq
 		        JOIN tblAWCFinalWin fw ON fw.attraction_seq = al.attraction_seq
-		        order by al.attraction_seq desc
-		    ) n
+		        order by al.attraction_seq desc) n
+				<if test="solting == 'admin' and searchStatus == 'y'.toString()">
+				    where name like '%' || #{word} || '%' or info like '%' || #{word} || '%' or restriction like '%' || #{word} || '%'
+				</if>
 		) where rnum between #{startIndex} and #{endIndex}
 	</select>
 	

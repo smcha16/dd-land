@@ -12,8 +12,8 @@ public interface WorldCupAttractionService {
 	
 	int getTestCount();
 	
-	Map<String, String> paging(int page);
-
+	Map<String, String> paging(String solting, String searchStatus, String word, int page);
+	
     List<AttractionDTO> getAllAttraction(Map<String, String> map);
 
 	List<AttractionDTO> getAttractionList();
@@ -47,5 +47,5 @@ public interface WorldCupAttractionService {
 	void updateAWCFinalWinCount(String attractionSeq);
 
 	List<AttractionDTO> getAttractionNameList();
-	
+
 }

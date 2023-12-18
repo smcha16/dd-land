@@ -34,13 +34,17 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 
 	// 페이징 메서드
 	@Override
-	public Map<String, String> paging(int page) { 
+	public Map<String, String> paging(String solting, String searchStatus, String word, int page) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("solting", solting);
+		map.put("searchStatus", searchStatus);
+		map.put("word", word);
+		
 		int pageSize = 10; // 조회할 글 개수
-
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
-
-		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
