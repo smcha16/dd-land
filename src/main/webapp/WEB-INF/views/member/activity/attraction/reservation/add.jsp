@@ -64,19 +64,15 @@
 	  background: transparent;
 	  border-radius: 0 0 10px 10px;
 	}
-	.hidden-div {
-	      display: none;
-	      color: white;
-	      position: absolute;
-	      top: 0;
-	      left: 0;
-	        width: 100%;
-	        height: 70%;
-	        padding: 20px;
-	        background-color: black;
-	        opacity: 0.65; /* 투명도 조절 */
-	        border-radius: 10px 10px 0 0;
-	        z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
+
+	/* list photo 변경 */
+	.stats-counter {
+		background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+			url("/dd/resources/files/activity/reserved.jpg")
+			center center;
+		background-size: cover;
+		padding: 100px 0;
+		background-attachment: fixed;
 	}
 	
 	/* 제목 영역 CSS */
@@ -139,9 +135,14 @@
 	}
 	
 	/* 버튼 영역 CSS */
-	#reservation-content {
+	#reservation-btn {
 		display: flex;
 		justify-content: center;
+	}
+	
+	#reservation-btn button {
+		background-color: #CE1212;
+		border-color: #CE1212;
 	}
 	
 </style>
@@ -211,10 +212,10 @@
 			</form>
 			
 			<!-- 버튼 영역 -->
-			<div id="reservation-content">
+			<div id="reservation-btn">
 				<div class="btn">
-					<button type="button" onclick="submit()"><i class="fa-solid fa-calendar-check"></i> 예약</button>
-					<button type="button" onclick="location.href= '/dd/user/activity/attraction/detail.do?seq=' + ${dto.attraction_seq};"><i class="fa-solid fa-circle-arrow-left"></i> 취소</button>
+					<button type="button" class="btn btn-primary" onclick="submit()"><i class="fa-solid fa-calendar-check"></i> 예약</button>
+					<button type="button" class="btn btn-primary" onclick="location.href= '/dd/user/activity/attraction/detail.do?seq=' + ${dto.attraction_seq};"><i class="fa-solid fa-circle-arrow-left"></i> 취소</button>
 				</div>
 			</div>
 			
@@ -229,12 +230,16 @@
 	/* 화면 로딩 시, 현재 시간 확인 하여 이전 시간은 'disabled' 처리 */
 	let currentDate = new Date();
 	
+	console.log('n: ' + $('[data-type="n"]').length);
+	console.log('y: ' + $('[data-type="y"]').length);
+	
 	/* 필수 항목이 반드시 입력되어야만 submit 클릭 시 넘어가도록 */
 	function submit() {
 		
 		let countTime = $('[data-type="y"]').length;
 		console.log('y: ' + countTime);
 		console.log('n: ' + $('[data-type="n"]').length);
+		console.log('y: ' + $('[data-type="y"]').length);
 		
 		if (!$('input[name="capacity"]').val().trim()
 				|| countTime != 1) {
@@ -257,7 +262,11 @@
 		$('.time-btn').data('type', 'n');
 		$(this).css('background-color', 'gold');
 		$(this).data('type', 'y');
-		console.log($(this).data('type'));
+		console.log('현재버튼의 data-type: ' + $(this).data('type'));
+		console.log('근데 나는 누구?: ' + this);
+		
+		console.log('n: ' + $('[data-type="n"]').length);
+		console.log('y: ' + $('[data-type="y"]').length);
 		
 		//선택한 버튼의 값 전송할 태그의 value로 넣기
 		$('input[name="attraction_book_seq"]').val($(this).val());

@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id="getAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		select * from vwAttractionOne where attraction_seq = #{attraction_seq}
+		select * from vwAttractionList where attraction_seq = #{attraction_seq}
 	</select>
 	
 	<select id="getAttractionImgList" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionImgDTO">
@@ -110,7 +110,8 @@
 	</insert>
 	
 	<select id="checkAvailableCapacity" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO" resultType="int">
-		
+		select nvl(sum(capacity), 0)as capacity  from tblBookUser 
+		where to_char(regdate, 'yyyy-mm-dd') = to_char(sysdate, 'yyyy-mm-dd') and attraction_seq = #{attraction_seq} and attraction_book_seq = #{attraction_book_seq}
 	</select>
 	
 	<insert id="addAttractionBook" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO">

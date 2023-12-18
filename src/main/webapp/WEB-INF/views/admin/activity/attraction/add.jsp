@@ -230,6 +230,11 @@
 		// CSRF token
         var csrfHeaderName = "${_csrf.headerName}";
         var csrfTokenValue = "${_csrf.token}";
+        
+        
+        //test
+        console.log('lat: ' + lat);
+        console.log('lng: ' + lng);
 		
 		$.ajax({
 			type: 'POST',

@@ -38,4 +38,9 @@ public class GiftshopDAOImpl implements GiftshopDAO {
 		return mapper.getTotalCount();
 	}
 	
+	@Override
+	public List<GiftshopImageDTO> getImgList() {
+		return mapper.getImgList();
+	}
+	
 }
