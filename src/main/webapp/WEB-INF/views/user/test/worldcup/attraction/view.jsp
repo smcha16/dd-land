@@ -82,6 +82,14 @@
 	justify-content: center;
 }
 
+#attinfo {
+	font-size : 18px;
+	text-align: center;
+	color: #444;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+
 .item div.img-container {
 	width: 100%;
 	height: 100%;
@@ -137,6 +145,8 @@
 
 .stats-counter {
 	background-image: url('/dd/resources/files/test/worldcup/attraction/attraction_worldcup_title.png');
+	background-size: cover;
+	background-attachment: fixed;
 }
 
 #overlay-div {

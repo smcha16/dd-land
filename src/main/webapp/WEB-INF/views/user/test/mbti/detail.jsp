@@ -20,34 +20,68 @@
 	margin-bottom: 20px;
 }
 
-.munti-content-container {
+.multi-content-container {
 	display: flex;
-	flex-wrap: wrap;
-	margin: 30px 50px 0 50px;
 	padding: 0 !important;
+	align-items: stretch;
+	justify-content: center;
+	text-align: center;
 }
 
 .item {
-	position: relative;
-	width: 40%;
-	padding: 0;
-	box-sizing: border-box;
-	min-width: 270px;
-	border: 1px solid #E1E1E1;
-	margin: 10px 45px 50px 45px;
-	border-radius: 10px;
-	transition: all 0.3s;
+    position: relative;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    min-width: 270px;
+    margin: 0px 20px 0px 20px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
 }
 
 .item img {
 	width: 100%;
-	padding:10px;
-	height: auto;
-	vertical-align: baseline;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 15px;
+	flex-grow: 1;
 }
 
-.munti-content-container {
-    justify-content: center;
+.item .item-content {
+    position: relative;
+}
+
+.item .message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.item:hover .message {
+    opacity: 1;
+}
+
+.item:hover img {
+    filter: brightness(70%);
+}
+
+.item>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 0 !important;
 }
 
 .item>div:nth-child(1) {
@@ -58,8 +92,39 @@
 	border-radius: 10px 10px 0 0;
 }
 
+.multi-content-container .item {
+    flex: 1;
+}
+
+.text-container {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.result-name {
+    font-size: 22px;
+    margin-top: 10px;
+    color: #555;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+#message-container {
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    pointer-events: none;
+}
+
 .stats-counter {
 	background-image: url('/dd/resources/files/test/mbti/mbti_title.png');
+	background-size: cover;
+	background-attachment: fixed;
 }
 
 #overlay-div {
@@ -93,18 +158,39 @@
 	<div class="container" data-aos="fade-up">
 		<div class="tab-content" data-aos-delay="900">
 			<div class="tab-pane fade active show" id="menu-starters">
-				<div class="munti-content-container">
+			
+				<div class="text-container">
+				    선택한 성향에 추천하는 어트랙션과 코스입니다.
+				</div>
+				
+				<div class="multi-content-container">
+					<%--
 					<div class="item">
 						<img src="/dd/resources/files/test/mbti/${dto.mbti_img}" alt="출처: #어반브러시 #타미">
 					</div>
-					<div class="item">
-						<img src="/dd/resources/files/activity/attraction/${dto.attraction_img}">
+					--%>
+					<div class="item" onclick="redirectToAttractionDetail(${dto.attraction_seq})">
+					    <div class="item-content">
+					        <img src="/dd/resources/files/activity/attraction/${dto.attraction_img}">
+					        <div class="result-name">${dto.attraction_name}</div>
+					        <div class="message">클릭 시 해당 어트랙션 페이지로 이동합니다.</div>
+					    </div>
 					</div>
+					
 					<div class="item">
 						<img src="/dd/resources/files/test/worldcup/course/${dto.course_img}">
+						<div class="result-name">${dto.course_name}</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+<script>
+	function redirectToAttractionDetail(seq) {
+	    var url = '/dd/user/activity/attraction/detail.do?seq=' + seq;
+	    
+	    window.location.href = url;
+	}
+</script>

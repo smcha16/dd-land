@@ -137,6 +137,8 @@
 
 .stats-counter {
 	background-image: url('/dd/resources/files/test/worldcup/course/course_worldcup_title.png');
+	background-size: cover;
+	background-attachment: fixed;
 }
 
 #overlay-div {

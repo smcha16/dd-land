@@ -1,7 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- list (1) Template -->
 <!-- user > test > mbti > view.jsp -->
 <style>
 #title {
@@ -29,7 +28,7 @@
 	margin-bottom: 20px;
 }
 
-.munti-content-container {
+.multi-content-container {
 	display: flex;
 	flex-wrap: wrap;
 	margin: 30px 50px 0 50px;
@@ -50,9 +49,10 @@
 }
 
 .item img {
-	width: 100%;
-	height: auto;
-	vertical-align: baseline;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
 }
 
 .item:hover {
@@ -60,16 +60,24 @@
 	box-shadow: 12px 12px 17px rgba(0, 0, 0, 0.20);
 }
 
-.item>div:nth-child(1) {
+.item > div:nth-child(1) {
 	height: 70%;
 	background-color: transparent;
 	background-size: cover;
-	/* background-position: center; */
+	background-position: center;
 	background-repeat: no-repeat;
 	border-radius: 10px 10px 0 0;
+	position: relative;
 }
 
-.item>div:nth-child(2) {
+.item > div:nth-child(1) > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.item > div:nth-child(2) {
 	height: 30%;
 	display: flex;
 	flex-direction: column;
@@ -78,6 +86,8 @@
 	font-weight: bold;
 	background: transparent;
 	border-radius: 0 0 10px 10px;
+	justify-content: center;
+   	align-items: center;
 }
 
 .hidden-div {
@@ -87,7 +97,7 @@
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 70%;
+	height: 300px;
 	padding: 20px;
 	background-color: black;
 	opacity: 0.65;
@@ -97,6 +107,8 @@
 
 .stats-counter {
 	background-image: url('/dd/resources/files/test/mbti/mbti_title.png');
+	background-size: cover;
+	background-attachment: fixed;
 }
 
 #overlay-div {
@@ -130,7 +142,7 @@
 	<div class="container" data-aos="fade-up">
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 			<div class="tab-pane fade active show" id="menu-starters">
-				<div class="munti-content-container">
+				<div class="multi-content-container">
 					<c:forEach items="${listMBTI}" var="dto">
 						<div class="item" onclick="location.href= '/dd/user/test/mbti/detail.do?mbti_seq=' + ${dto.mbti_seq};">
 							<img src="/dd/resources/files/test/mbti/${dto.mbti_img}" alt="출처: #어반브러시 #타미">
