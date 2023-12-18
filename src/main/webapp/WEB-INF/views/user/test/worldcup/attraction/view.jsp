@@ -2,8 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+
 <!-- user > test > worldcup > attraction > view.jsp -->
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+
 #title {
 	font-size: 48px;
 	display: block;
@@ -143,6 +149,19 @@
 	text-shadow: 0px 1px 5px black;
 }
 
+.vs {
+    position: absolute;
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 100px;
+    font-style: italic;
+    color: white;
+    transform: translateY(162%);
+    z-index: 1;
+    transition: all 0.3s;
+    -webkit-text-stroke: 6px #ff7500;
+    letter-spacing: 2px;
+}
+
 .stats-counter {
 	background-image: url('/dd/resources/files/test/worldcup/attraction/attraction_worldcup_title.png');
 	background-size: cover;
@@ -193,6 +212,7 @@
 						        <div class="test-name">${attraction.name}</div>
 						    </div>
 						</c:forEach>
+						<div class="vs">VS</div>
 					</div>
 				</div>
 			</div>
@@ -312,6 +332,8 @@
 					.append('<div class="img-container" style="background-image: url(\'' + imgUrl + '\');"></div>')
 					.append('<div class="test-name">' + attraction.name + '</div>')
 				$('#worldcup-container').append(item);
+
+				$('#worldcup-container').append('<div class="vs">VS</div>');
 			}
 		} else {
 			const attraction = selectedTwoAttractions[0];
