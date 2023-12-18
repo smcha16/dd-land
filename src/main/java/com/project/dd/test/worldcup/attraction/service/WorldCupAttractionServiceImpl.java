@@ -161,4 +161,9 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 		return dao.getAttractionNameList();
 	}
 	
+	@Override
+	public List<AttractionDTO> getTopThreeAttraction() {
+		return dao.getTopThreeAttraction();
+	}
+	
 }

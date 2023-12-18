@@ -39,4 +39,6 @@ public interface WorldCupAttractionService {
 
 	List<AttractionDTO> getAttractionNameList();
 
+	List<AttractionDTO> getTopThreeAttraction();
+
 }
