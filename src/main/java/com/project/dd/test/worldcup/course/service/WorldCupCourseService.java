@@ -27,11 +27,11 @@ public interface WorldCupCourseService {
 	
 	String getCourseSeq();
 
-	int addCWC(CourseDTO dto, String courseSeq);
+	int addCWC(CourseDTO dto, String seq);
 
-	int addCWCWin(CourseDTO dto, String courseSeq);
+	int addCWCWin(CourseDTO dto, String seq);
 	
-	int addCWCFinalWin(CourseDTO dto, String courseSeq);
+	int addCWCFinalWin(CourseDTO dto, String seq);
 
 	int getCWCFinalWinTotalCount();
 
@@ -53,11 +53,11 @@ public interface WorldCupCourseService {
 	
 	List<CourseDTO> getRemainingCourses(List<String> selectedCourses);
 
-	void updateCWCMatchCount(String courseSeq);
+	void updateCWCMatchCount(String seq);
 
-	void updateCWCWinCount(String courseSeq);
+	void updateCWCWinCount(String seq);
 
-	void updateCWCFinalWinCount(String courseSeq);
+	void updateCWCFinalWinCount(String seq);
 
 	List<CourseDTO> getCourseNameList();
 

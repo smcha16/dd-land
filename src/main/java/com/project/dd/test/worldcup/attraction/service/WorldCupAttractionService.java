@@ -18,14 +18,6 @@ public interface WorldCupAttractionService {
 
 	List<AttractionDTO> getAttractionList();
 	
-    List<AttractionDTO> getRunAttraction(String close);
-
-    List<WorldCupAttractionDTO> getAllAWC(String isTest);
-
-    List<WorldCupAttractionDTO> getAllAWCWin();
-
-    List<WorldCupAttractionDTO> getAllAWCFinalWin();
-
 	void updateAttractionStatus(Map<String, String> map);
 	
 	int getAWCFinalWinTotalCount();

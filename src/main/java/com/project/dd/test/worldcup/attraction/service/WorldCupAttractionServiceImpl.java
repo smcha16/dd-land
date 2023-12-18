@@ -67,27 +67,7 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 	public List<AttractionDTO> getAttractionList() {
 		return dao.getAttractionList();
 	}
-	
-	@Override
-	public List<AttractionDTO> getRunAttraction(String close) {
-		return dao.getRunAttraction(close);
-	}
 
-	@Override
-	public List<WorldCupAttractionDTO> getAllAWC(String isTest) {
-		return dao.getAllAWC(isTest);
-	}
-
-	@Override
-	public List<WorldCupAttractionDTO> getAllAWCWin() {
-		return dao.getAllAWCWin();
-	}
-
-	@Override
-	public List<WorldCupAttractionDTO> getAllAWCFinalWin() {
-		return dao.getAllAWCFinalWin();
-	}
-	
 	@Override
 	public void updateAttractionStatus(Map<String, String> map) {
 		dao.updateAttractionStatus(map);

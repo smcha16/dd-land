@@ -158,8 +158,8 @@
     transform: translateY(162%);
     z-index: 1;
     transition: all 0.3s;
-    -webkit-text-stroke: 6px #ff7500;
-    letter-spacing: 2px;
+    letter-spacing: 5px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 }
 
 .stats-counter {
