@@ -5,7 +5,7 @@
 
 	<select id="getList" parameterType="map" resultType="com.project.dd.shop.giftshop.domain.ShopDTO">
 		select *
-      from (select n.*, rownum as rnum from (select * from vwGiftshop where lat != 0) n)
+      from (select n.*, rownum as rnum from (select * from vwGiftshop where lat != 0 order by shop_seq DESC) n)
       where rnum between #{startIndex} and #{endIndex}
 	</select>
 

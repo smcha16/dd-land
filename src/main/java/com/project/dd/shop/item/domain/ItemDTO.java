@@ -9,5 +9,8 @@ public class ItemDTO {
 	private String info;
 	private String price;
 	private String shop_seq;
+	private String shop_name;
 	private String img;
+	
+	private String ea;
 }

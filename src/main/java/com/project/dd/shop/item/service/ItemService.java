@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.dd.shop.item.domain.ItemDTO;
+import com.project.dd.shop.item.domain.ItemImgDTO;
 import com.project.dd.shop.item.repository.ItemDAO;
 
 @Service
@@ -27,7 +28,7 @@ public class ItemService {
 	      map.put("startIndex", String.format("%d", startIndex));
 	      map.put("endIndex", String.format("%d", endIndex));
 	      
-	      int totalPosts = dao.getTotalCount(seq);
+	      int totalPosts = dao.getTotalCounts();
 	      int totalPages = (int)Math.ceil((double)totalPosts / pageSize);
 	      
 	      map.put("totalPosts", String.format("%d", totalPosts));
@@ -42,6 +43,18 @@ public class ItemService {
 
 	public ItemDTO getItem(String seq) {
 		return dao.getItem(seq);
+	}
+
+	public List<ItemImgDTO> getImg(String seq) {
+		return dao.getImg(seq);
+	}
+
+	public List<ItemDTO> getFullList(Map<String, String> map) {
+		return dao.getFullList(map);
+	}
+
+	public List<ItemImgDTO> getImgList() {
+		return dao.getImgList();
 	}
 
 }

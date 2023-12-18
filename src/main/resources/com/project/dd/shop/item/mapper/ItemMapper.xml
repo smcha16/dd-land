@@ -14,7 +14,22 @@
         WHERE
                 item_seq = i.item_seq
             AND ROWNUM = 1
-    )             AS img from tblItem i where shop_seq = #{seq} and  name not like '%종료%') n)
+    )             AS img from tblItem i where shop_seq = #{seq} and  name not like '%종료%' order by item_seq DESC) n)
+      where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<select id="getFullList" parameterType="map" resultType="com.project.dd.shop.item.domain.ItemDTO">
+	select *
+      from (select n.*, rownum as rnum from (select i.*, (select name as shop_name from tblshop where shop_seq = i.shop_seq) as shop_name,
+    (
+        SELECT
+            img
+        FROM
+            tblitemimg
+        WHERE
+                item_seq = i.item_seq
+            AND ROWNUM = 1
+    )             AS img from tblItem i where name not like '%종료%' order by item_seq DESC) n)
       where rnum between #{startIndex} and #{endIndex}
 	</select>
 
