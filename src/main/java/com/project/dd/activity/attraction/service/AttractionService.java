@@ -11,6 +11,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,6 +19,7 @@ import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
 import com.project.dd.activity.attraction.domain.BookUserDTO;
 import com.project.dd.activity.attraction.repository.AttractionDAO;
+import com.project.dd.login.domain.CustomUser;
 
 @Service
 public class AttractionService {
@@ -393,11 +395,16 @@ public class AttractionService {
 	}
 
 	public int addAttractionBook(BookUserDTO dto) {
+		
 		return dao.addAttractionBook(dto);
 	}
 
 	public int getAttractionBookCapacity(BookUserDTO dto) {
 		return dao.getAttractionBookCapacity(dto);
+	}
+
+	public List<BookUserDTO> getAttractionBookList() {
+		return dao.getAttractionBookList();
 	}
 
 }

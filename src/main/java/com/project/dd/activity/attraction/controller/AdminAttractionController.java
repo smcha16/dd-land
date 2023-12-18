@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
+import com.project.dd.activity.attraction.domain.BookUserDTO;
 import com.project.dd.activity.attraction.service.AttractionService;
 import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService;
 
@@ -162,6 +163,18 @@ public class AdminAttractionController {
 		} else {
 			return "redirect:/admin/activity/attraction/view.do";
 		}
+	}
+	
+	@GetMapping(value = "/reservation/view.do")
+	public String reservationView(Model model) {
+
+		//전체 어트랙션 예약 내역 가져오기
+		List<BookUserDTO> list = service.getAttractionBookList();
+		
+		model.addAttribute("list", list);
+		
+		return "admin/activity/attraction/reservationView";
+		
 	}
 	
 	

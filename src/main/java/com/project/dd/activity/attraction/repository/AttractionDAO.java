@@ -55,4 +55,6 @@ public interface AttractionDAO {
 
 	int getAttractionBookCapacity(BookUserDTO dto);
 
+	List<BookUserDTO> getAttractionBookList();
+
 }
