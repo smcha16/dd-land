@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id="getAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		select * from vwAttractionOne where attraction_seq = #{attraction_seq}
+		select * from vwAttractionList where attraction_seq = #{attraction_seq}
 	</select>
 	
 	<select id="getAttractionImgList" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionImgDTO">
@@ -26,9 +26,13 @@
 	</select>
    
    <!-- admin 기능  -->
-   
+   <!-- 유효성 검사 -->
 	<select id="checkLocationDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
 		select count(*) from vwLocation where lat = #{lat} and lng = #{lng}
+	</select>
+
+	<select id="checkNameDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
+		select count(*) from tblAttraction where name = #{name}
 	</select>
    
 	<insert id="addAttraction" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
@@ -36,7 +40,7 @@
 		VALUES (seqtblAttraction.NEXTVAL, #{name}, #{info}, #{capacity}, '10:00 - 22:00', #{restriction})
 	</insert>
 	
-	<select id="getAttractionSeq" resultType="int">
+	<select id="getAttractionSeq" resultType="String">
 		select max(attraction_seq) as attraction_seq from tblAttraction
 	</select>
 	
@@ -69,9 +73,6 @@
 		delete from tblAttractionLocation where attraction_seq = #{attraction_seq}
 	</delete>
 	
-	<select id="checkNameDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
-		select count(*) from tblAttraction where name = #{name}
-	</select>
 	
 	<select id="getAttractionDefaultImgName" parameterType="String" resultType="String">
 		select img from tblAttractionImg where attraction_seq = #{attraction_seq}
@@ -107,5 +108,19 @@
 		insert into tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
 		values (seqtblAWCFinalWin.NEXTVAL, 0, #{attraction_seq})
 	</insert>
+	
+	<select id="checkAvailableCapacity" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO" resultType="int">
+		select nvl(sum(capacity), 0)as capacity  from tblBookUser 
+		where to_char(regdate, 'yyyy-mm-dd') = to_char(sysdate, 'yyyy-mm-dd') and attraction_seq = #{attraction_seq} and attraction_book_seq = #{attraction_book_seq}
+	</select>
+	
+	<insert id="addAttractionBook" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO">
+		INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
+		VALUES (seqtblBookUser.NEXTVAL, sysdate, #{capacity}, #{attraction_book_seq}, ?????, #{attraction_seq});
+	</insert>
+	
+	<select id="getAttractionBookCapacity" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO" resultType="int">
+		select capacity from tblAttractionBook where attraction_book_seq = #{attraction_book_seq}
+	</select>
 	
 </mapper>

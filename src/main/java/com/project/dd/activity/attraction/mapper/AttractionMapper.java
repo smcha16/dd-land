@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
+import com.project.dd.activity.attraction.domain.BookUserDTO;
 
 public interface AttractionMapper {
 
@@ -23,7 +24,7 @@ public interface AttractionMapper {
 
 	int addAttraction(AttractionDTO dto);
 
-	int getAttractionSeq();
+	String getAttractionSeq();
 
 	int addAttractionLocation(AttractionDTO dto);
 
@@ -51,10 +52,10 @@ public interface AttractionMapper {
 
 	List<AttractionImgDTO> getAllAttractionImgList();
 
-	int addAWC(AttractionDTO dto);
+	int checkAvailableCapacity(BookUserDTO dto);
 
-	int addAWCWin(AttractionDTO dto);
+	int addAttractionBook(BookUserDTO dto);
 
-	int addAWCFinalWin(AttractionDTO dto);
-	
+	int getAttractionBookCapacity(BookUserDTO dto);
+
 }

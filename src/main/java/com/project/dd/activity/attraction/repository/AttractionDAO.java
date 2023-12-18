@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
+import com.project.dd.activity.attraction.domain.BookUserDTO;
 
 public interface AttractionDAO {
 
@@ -32,7 +33,7 @@ public interface AttractionDAO {
 
 	int checkNameDuplication(AttractionDTO dto);
 
-	int getAttractionSeq();
+	String getAttractionSeq();
 
 	int addAttractionLocation(AttractionDTO dto);
 
@@ -48,10 +49,10 @@ public interface AttractionDAO {
 
 	List<AttractionImgDTO> getAllAttractionImgList();
 
-	int addAWC(AttractionDTO dto);
-	
-	int addAWCWin(AttractionDTO dto);
-	
-	int addAWCFinalWin(AttractionDTO dto);
-	
+	int checkAvailableCapacity(BookUserDTO dto);
+
+	int addAttractionBook(BookUserDTO dto);
+
+	int getAttractionBookCapacity(BookUserDTO dto);
+
 }

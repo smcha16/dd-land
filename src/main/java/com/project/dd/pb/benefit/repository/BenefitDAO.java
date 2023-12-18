@@ -19,6 +19,8 @@ public interface BenefitDAO {
 	String getName(String seq);
 
 	List<BenefitDTO> benefitInfo(String seq);
+
+	int addBenefit(BenefitDTO benefitDTO);
 	
 
 }

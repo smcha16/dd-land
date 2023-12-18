@@ -1,6 +1,7 @@
 package com.project.dd.mypage.inquiry.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -17,9 +18,21 @@ public class MypageInquiryDAOImpl implements MypageInquiryDAO{
 	private MypageInquiryMapper mapper;
 	
 	@Override
-	public List<InquiryDTO> list() {
+	public List<InquiryDTO> list(Map<String, String> map) {
 		
-		return mapper.list();
+		return mapper.list(map);
 	}
-
+	
+	@Override
+	public int getTotalCount() {
+		
+		return mapper.getTotalCount();
+	}
+	
+	@Override
+	public int delete(String selectedInquiry) {
+		
+		return mapper.delete(selectedInquiry);
+	}
+	
 }

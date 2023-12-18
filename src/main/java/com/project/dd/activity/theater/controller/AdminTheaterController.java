@@ -37,7 +37,7 @@ public class AdminTheaterController {
 		//영화관 목록 전달
 		model.addAttribute("list", list);
 		
-		return "view";
+		return "admin/activity/theater/view";
 	}
 	
 	@GetMapping(value = "/add.do")
@@ -48,6 +48,9 @@ public class AdminTheaterController {
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, TheaterDTO dto) {
 
+		//tblTheater 추가
+		//tblTheaterLocation 추가
+		
 		int result = service.addTheater(dto);
 		
 		if (result > 0) {
@@ -71,7 +74,31 @@ public class AdminTheaterController {
 	@PostMapping(value = "/editok.do")
 	public String editok(Model model, TheaterDTO dto) {
 
-		return "editok";
+		//서버측 유효성 검사 생략 > 관리자 페이지니까 악의성 없다고 간주
+		//- tblTheater 수정
+		//- tblTheaterLocation 수정
+		
+		int result = service.editTheater(dto);
+		
+		if (result > 0) {
+			return "redirect:/admin/activity/theater/view.do";
+		} else {
+			return "redirect:/admin/activity/theater/edit.do";
+		}
+	}
+	
+	@PostMapping(value = "/del.do")
+	public String del(Model model, String[] theater_seq) {
+
+		//영화관 삭제 > "(운영종료)" 문구 UPDATE로 구현
+		// - tblTheater > UPDATE
+		// - tblTheaterLocation > DELETE
+		
+		int result = service.delTheater(theater_seq);
+		
+		return "redirect:/admin/activity/theater/view.do";
+	
+	
 	}
 
 }

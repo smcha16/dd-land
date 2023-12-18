@@ -16,4 +16,6 @@ public interface RestaurantDAO {
 
 	int getTotalCount();
 
+	List<RestaurantImageDTO> getImgList();
+
 }

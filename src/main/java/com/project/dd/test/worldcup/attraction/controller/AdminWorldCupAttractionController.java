@@ -16,21 +16,23 @@ import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService
 public class AdminWorldCupAttractionController {
 
 	@Autowired
-	private WorldCupAttractionService attractionService;
+	private WorldCupAttractionService awcService;
 
 	@GetMapping(value = "/admin/test/worldcup/attraction/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model,
 			@RequestParam(defaultValue = "n") String close, @RequestParam(defaultValue = "Y") String isTest) {
 
-		Map<String, String> map = attractionService.paging(page); // 페이징
+		Map<String, String> map = awcService.paging(page); // 페이징
 
 		model.addAttribute("currentPage", page); // 페이징
 		model.addAttribute("map", map); // 페이징
-		model.addAttribute("listAttraction", attractionService.getAllAttraction(map));
-        //model.addAttribute("listAWCWin", attractionService.getAllAWCWin());
-        //model.addAttribute("listAWCFinalWin", attractionService.getAllAWCFinalWin());
+		model.addAttribute("listAttraction", awcService.getAllAttraction(map));
+		model.addAttribute("awcFinalWinTotalCount", awcService.getAWCFinalWinTotalCount());
 
-		// System.out.println(attractionService.getAllAttraction(map));
+	    //model.addAttribute("listAWCWin", awcService.getAllAWCWin());
+        //model.addAttribute("listAWCFinalWin", awcService.getAllAWCFinalWin());
+
+		// System.out.println(awcService.getAllAttraction(map));
 
 		return "admin/test/worldcup/attraction/view";
 	}
@@ -43,7 +45,7 @@ public class AdminWorldCupAttractionController {
 	    map.put("isTest", isTest);
 	    map.put("attractionSeq", attractionSeq);
 
-	    attractionService.updateAttractionStatus(map);
+	    awcService.updateAttractionStatus(map);
 	    
 	    return "redirect:/admin/test/worldcup/attraction/view.do"; 
 	}

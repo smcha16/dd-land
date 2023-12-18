@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
+import com.project.dd.activity.attraction.domain.BookUserDTO;
 import com.project.dd.activity.attraction.repository.AttractionDAO;
 
 @Service
@@ -116,8 +117,8 @@ public class AttractionService {
 		result = dao.addAttraction(dto);
 		
 		//방금 등록한 Attraction seq 가져오기
-		int seq = dao.getAttractionSeq();
-		dto.setAttraction_seq(seq + "");
+		String seq = dao.getAttractionSeq();
+		dto.setAttraction_seq(seq);
 		
 		//2. tblAttractionLocation 추가
 		result = dao.addAttractionLocation(dto);
@@ -235,11 +236,11 @@ public class AttractionService {
 		//6. 기존 첨부 O + 수정 후 첨부 O + 기존 파일 유지: 기존 AttractionImg 유지 및 첨부 파일 추가
 		//7. 기존 첨부 O + 수정 후 첨부 O + 기존 파일 일부/전체 삭제: 기존 파일 삭제 및 첨부 파일 추가
 		
-		System.out.println(dto.toString());
-		System.out.println(imgs[0].isEmpty());
-		System.out.println(imgs.length);
-		System.out.println(Arrays.toString(deleteImgSeq));
-		System.out.println(deleteImgSeq.length);
+//		System.out.println(dto.toString());
+//		System.out.println(imgs[0].isEmpty());
+//		System.out.println(imgs.length);
+//		System.out.println(Arrays.toString(deleteImgSeq));
+//		System.out.println(deleteImgSeq.length);
 		
 		String seq = dto.getAttraction_seq();
 		int result = 0;
@@ -252,7 +253,7 @@ public class AttractionService {
 		result = dao.editAttraction(dto);
 		result = dao.editAttractionLocation(dto);
 		
-		System.out.println(dto.getImg());
+//		System.out.println(dto.getImg());
 
 		//기존 첨부 O vs X 판단: dto.getImg().equalsIgnoreCase("attraction.png") > Case 1, Case 2
 		if (dto.getImg() != null && dto.getImg().equalsIgnoreCase("attraction.png")) {
@@ -379,7 +380,7 @@ public class AttractionService {
 		return result;
 	}
 
-	public int getAttractionSeq() {
+	public String getAttractionSeq() {
 		return dao.getAttractionSeq();
 	}
 
@@ -387,25 +388,16 @@ public class AttractionService {
 		return dao.getAllAttractionImgList();
 	}
 
-	public int addAWC(AttractionDTO dto, String seq) {
-
-		dto.setAttraction_seq(seq);
-		
-		return dao.addAWC(dto);
+	public int checkAvailableCapacity(BookUserDTO dto) {
+		return dao.checkAvailableCapacity(dto);
 	}
 
-	public int addAWCWin(AttractionDTO dto, String seq) {
-
-		dto.setAttraction_seq(seq);
-		
-		return dao.addAWCWin(dto);
+	public int addAttractionBook(BookUserDTO dto) {
+		return dao.addAttractionBook(dto);
 	}
 
-	public int addAWCFinalWin(AttractionDTO dto, String seq) {
-
-		dto.setAttraction_seq(seq);
-		
-		return dao.addAWCFinalWin(dto);
+	public int getAttractionBookCapacity(BookUserDTO dto) {
+		return dao.getAttractionBookCapacity(dto);
 	}
-	
+
 }

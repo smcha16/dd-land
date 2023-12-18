@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
+import com.project.dd.activity.attraction.domain.BookUserDTO;
 import com.project.dd.activity.attraction.mapper.AttractionMapper;
 
 @Primary
@@ -80,7 +81,7 @@ public class AttractionDAOImpl implements AttractionDAO {
 	}
 
 	@Override
-	public int getAttractionSeq() {
+	public String getAttractionSeq() {
 		return mapper.getAttractionSeq();
 	}
 
@@ -120,18 +121,18 @@ public class AttractionDAOImpl implements AttractionDAO {
 	}
 
 	@Override
-	public int addAWC(AttractionDTO dto) {
-		return mapper.addAWC(dto);
+	public int checkAvailableCapacity(BookUserDTO dto) {
+		return mapper.checkAvailableCapacity(dto);
 	}
-	
+
 	@Override
-	public int addAWCWin(AttractionDTO dto) {
-		return mapper.addAWCWin(dto);
+	public int addAttractionBook(BookUserDTO dto) {
+		return mapper.addAttractionBook(dto);
 	}
-	
+
 	@Override
-	public int addAWCFinalWin(AttractionDTO dto) {
-		return mapper.addAWCFinalWin(dto);
+	public int getAttractionBookCapacity(BookUserDTO dto) {
+		return mapper.getAttractionBookCapacity(dto);
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.project.dd.activity.movie.domain.MovieDTO;
-import com.project.dd.activity.movie.domain.MoviePlayDTO;
+import com.project.dd.activity.movieplay.domain.MoviePlayDTO;
 
 public interface MovieMapper {
 

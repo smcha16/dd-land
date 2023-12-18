@@ -12,12 +12,12 @@ import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
 public class RestCourseController {
 
 	@Autowired
-	private WorldCupCourseService courseService;
+	private WorldCupCourseService cwcService;
 
 	@PostMapping(value = "/admin/test/worldcup/course/name", produces = "application/json")
-	public int checkName(@RequestBody CourseDTO dto) {
+	public int checkCourseName(@RequestBody CourseDTO dto) {
 		
-		return courseService.checkNameDuplication(dto);
+		return cwcService.checkCourseNameDuplication(dto);
 	}
-
+	
 }

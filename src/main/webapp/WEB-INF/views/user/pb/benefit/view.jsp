@@ -219,7 +219,7 @@
 						<li id="sel01" class="two on"><a href="#tab01" id="selTab01">일반혜택</a></li>
 						<li id="sel02" class="two"><a href="#tab02" id="selTab02">카드/통신사혜택</a></li>
 					</ul>
-		
+				
 					<c:forEach items="${list}" var="dto">
 						<div class="item" id="tab00" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
@@ -264,33 +264,33 @@
 
 
 <script>
-document.getElementById("close").addEventListener("click", function() {
-    toggleLists();
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("close").addEventListener("click", function () {
+        toggleLists();
+    });
+
+    function toggleLists() {
+        var normalListElements = document.querySelectorAll('.item[data-category="normal"]');
+        var cardListElements = document.querySelectorAll('.item[data-category="card"]');
+
+        normalListElements.forEach(function (normalItem) {
+            if (normalItem.style.display === 'none') {
+                normalItem.style.display = 'block';
+            } else {
+                normalItem.style.display = 'none';
+            }
+        });
+
+        cardListElements.forEach(function (cardItem) {
+            if (cardItem.style.display === 'none') {
+                cardItem.style.display = 'block';
+            } else {
+                cardItem.style.display = 'none';
+            }
+        });
+    }
 });
-
-function toggleLists() {
-    var normalListElements = document.querySelectorAll('.item[data-category="normal"]');
-    var cardListElements = document.querySelectorAll('.item[data-category="card"]');
-
-    normalListElements.forEach(function(normalItem) {
-        if (normalItem.style.display === 'none') {
-            normalItem.style.display = 'block';
-        } else {
-            normalItem.style.display = 'none';
-        }
-    });
-
-    cardListElements.forEach(function(cardItem) {
-        if (cardItem.style.display === 'none') {
-            cardItem.style.display = 'block';
-        } else {
-            cardItem.style.display = 'none';
-        }
-    });
-}
-
-
-
 
 
 

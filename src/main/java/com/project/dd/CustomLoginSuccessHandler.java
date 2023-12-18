@@ -7,9 +7,12 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import com.project.dd.login.session.SessionConst;
 
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 
@@ -24,15 +27,17 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 			
 		});
 		
-		if (roleNames.contains("2")) {
+		if (roleNames.contains("ROLE_2")) {
 			
-			response.sendRedirect("/dd/admin.do");
+			response.sendRedirect("/dd/admin/index.do");
 			
-		} else if (roleNames.contains("1")) {
+		} else if (roleNames.contains("ROLE_1")) {
+			
 			
 			response.sendRedirect("/dd/index.do");
 			
 		} else {
+			
 			
 			response.sendRedirect("/dd/index.do");
 			

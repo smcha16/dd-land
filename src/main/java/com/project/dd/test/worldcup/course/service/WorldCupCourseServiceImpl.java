@@ -1,10 +1,13 @@
 package com.project.dd.test.worldcup.course.service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
-import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 import com.project.dd.test.worldcup.course.repository.WorldCupCourseDAO;
 
 @Service
@@ -22,9 +24,20 @@ import com.project.dd.test.worldcup.course.repository.WorldCupCourseDAO;
 public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 
 	@Autowired
-	private WorldCupCourseDAO courseDAO;
+	private WorldCupCourseDAO dao;
 
-	public Map<String, String> paging(int page) { // 페이징 메서드
+	@Override
+	public int getTotalCount() {
+		return dao.getTotalCount();
+	}
+	
+	@Override
+	public int getTestCount() {
+		return dao.getTestCount();
+	}
+	
+	// 페이징 메서드
+	public Map<String, String> paging(int page) { 
 		int pageSize = 10; // 조회할 글 개수
 
 		int startIndex = (page - 1) * pageSize + 1;
@@ -35,7 +48,7 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 
-		int totalPosts = courseDAO.getTotalCount();
+		int totalPosts = getTotalCount();
 		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
 
 		map.put("totalPosts", String.format("%d", totalPosts));
@@ -46,12 +59,12 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 
 	@Override
 	public List<CourseDTO> getAllCourse(Map<String, String> map) {
-		return courseDAO.getAllCourse(map);
+		return dao.getAllCourse(map);
 	}
 
 	@Override
 	public void updateCourseStatus(Map<String, String> map) {
-		courseDAO.updateCourseStatus(map);
+		dao.updateCourseStatus(map);
 	}
 	
 	@Override
@@ -62,7 +75,6 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 			dto.setImg("course.png");
 			
 		} else {
-			
 			try {
 				
 				UUID uuid = UUID.randomUUID();
@@ -79,12 +91,12 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 			
 		}
 		
-		return courseDAO.addCourse(dto);
+		return dao.addCourse(dto);
 	}
 	
 	@Override
 	public String getCourseSeq() {
-		return courseDAO.getCourseSeq();
+		return dao.getCourseSeq();
 	}
 	
 	@Override
@@ -92,7 +104,7 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 
         dto.setCourse_seq(courseSeq);
         
-		return courseDAO.addCWC(dto);
+		return dao.addCWC(dto);
 	}
 	
 	@Override
@@ -100,7 +112,7 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 
         dto.setCourse_seq(courseSeq);
         
-		return courseDAO.addCWCWin(dto);
+		return dao.addCWCWin(dto);
 	}
 	
 	@Override
@@ -108,13 +120,171 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 
         dto.setCourse_seq(courseSeq);
         
-		return courseDAO.addCWCFinalWin(dto);
+		return dao.addCWCFinalWin(dto);
 	}
 	
 	@Override
-	public int checkNameDuplication(CourseDTO dto) {
+	public int checkCourseNameDuplication(CourseDTO dto) {
 		
-		return courseDAO.checkNameDuplication(dto);
+		return dao.checkCourseNameDuplication(dto);
+	}
+	
+	@Override
+	public int getCWCFinalWinTotalCount() {
+		
+		return dao.getCWCFinalWinTotalCount();
 	}
 
+	@Override
+	public CourseDTO getCourse(String courseSeq) {
+		
+		return dao.getCourse(courseSeq);
+	}
+
+	@Override
+	public int editCourse(CourseDTO dto, MultipartFile image, HttpServletRequest req) {
+		
+		if (image == null) {
+			
+			String imgFileName = dao.getCourseImgFileName(dto.getCourse_seq());
+			
+			dto.setImg(imgFileName);
+			
+		} else if (image.isEmpty()) {
+			
+			dto.setImg("course.png");
+		} else {
+			try {
+				
+				UUID uuid = UUID.randomUUID();
+				
+				String filename = uuid + "_" + image.getOriginalFilename();
+				
+				image.transferTo(new File(req.getRealPath("/resources/files/test/worldcup/course") + "\\" + filename));
+				
+				dto.setImg(filename);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return dao.editCourse(dto);
+	}
+	
+	public int delCourse(String[] course_seq) {
+		
+		int result = 0;
+		
+		for (String seq : course_seq) {
+			
+			result += dao.delCourse(seq);
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public int delCWC(String[] course_seq) {
+		
+		int result = 0;
+		
+		for (String seq : course_seq) {
+			
+			result += dao.delCWC(seq);
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int delCWCWin(String[] course_seq) {
+		
+		int result = 0;
+		
+		for (String seq : course_seq) {
+			
+			result += dao.delCWCWin(seq);
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public int delCWCFinalWin(String[] course_seq) {
+		int result = 0;
+		
+		for (String seq : course_seq) {
+			
+			result += dao.delCWCFinalWin(seq);
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public List<CourseDTO> getCourseList() {
+		return dao.getCourseList();
+	}
+	
+	@Override
+	public List<CourseDTO> getRandomTwoCourses(List<CourseDTO> remainingCourses) {
+		ArrayList<CourseDTO> selectedTwoCourses = new ArrayList<>();
+
+		Random random = new Random();
+
+		// 어트랙션 리스트가 있고, 크기가 1보다 큰 경우
+		if (remainingCourses != null && remainingCourses.size() > 1) {
+			int index1 = random.nextInt(remainingCourses.size());
+			int index2;
+
+			// index1과 다른 index2 선택 (중복 회피)
+			do {
+				index2 = random.nextInt(remainingCourses.size());
+			} while (index1 == index2);
+
+			// 두 개의 어트랙션을 리스트에 추가
+			selectedTwoCourses.add(remainingCourses.get(index1));
+			selectedTwoCourses.add(remainingCourses.get(index2));
+		} else if (remainingCourses != null && remainingCourses.size() == 1) {
+			// 어트랙션이 하나만 남았을 경우
+			selectedTwoCourses.add(remainingCourses.get(0));
+		}
+
+		return selectedTwoCourses;
+	}
+	
+	@Override
+    public List<CourseDTO> getRemainingCourses(List<String> selectedCourses) {
+        List<CourseDTO> allCourses = getCourseList();
+
+        if (selectedCourses == null) {
+            return allCourses;
+        }
+
+        return allCourses.stream()
+                .filter(course -> !selectedCourses.contains(course.getCourse_seq()))
+                .collect(Collectors.toList());
+    }
+	
+	@Override
+	public void updateCWCMatchCount(String courseSeq) {
+		dao.updateCWCMatchCount(courseSeq);
+	}
+	
+	@Override
+	public void updateCWCWinCount(String courseSeq) {
+		dao.updateCWCWinCount(courseSeq);
+	}
+	
+	@Override
+	public void updateCWCFinalWinCount(String courseSeq) {
+		dao.updateCWCFinalWinCount(courseSeq);
+	}
+	
+	@Override
+	public List<CourseDTO> getCourseNameList() {
+		return dao.getCourseNameList();
+	}
+	
 }

@@ -5,7 +5,16 @@
 <mapper namespace="com.project.dd.mypage.modify.mapper.MypageModifyMapper">
 
 	<select id="list" parameterType="String" resultType="com.project.dd.mypage.modify.domain.ModifyDTO">
-		select * from tblUser
+		select * from tblUser where email = #{email}
 	</select>
+	
+	<update id="edit" parameterType="com.project.dd.mypage.modify.domain.ModifyDTO">
+    UPDATE tblUser
+    SET name = #{name},
+        birth = #{birth},
+        tel = #{tel},
+        address = #{address}
+    WHERE email = #{email}
+	</update>
 	
 </mapper>
