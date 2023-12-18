@@ -71,14 +71,6 @@
 		select sum(awc_final_win_count) as total_awc_final_win_count from tblAWCFinalWin
 	</select>
 	
-	<!-- 
-	<update id="updateAttractionStatus" parameterType="String">
-	    UPDATE tblAWC
-	    SET isTest = #{isTest}
-	    WHERE attractionSeq = #{attractionSeq}
-	</update>
-	-->
-	
 	<insert id="addAWC" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		insert into tblAWC (awc_seq, is_test, attraction_seq)
 		values (seqtblAWC.NEXTVAL, 'Y', #{attraction_seq})

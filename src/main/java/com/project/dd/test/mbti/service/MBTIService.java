@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.test.mbti.domain.MBTIDTO;
-import com.project.dd.test.worldcup.course.domain.CourseDTO;
 
 @Service
 public interface MBTIService {
