@@ -381,7 +381,7 @@
 	            'finalWinCourseSeq': finalWinCourseSeq
 	        },
 	        success: function(data) {
-	            console.log('Final update completed:', data);
+	            // console.log('최종 우승 업데이트 완료: ', data);
 	        },
 	        beforeSend: function(xhr) {
 	            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);

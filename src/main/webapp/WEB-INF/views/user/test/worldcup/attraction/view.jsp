@@ -377,9 +377,8 @@
 		// 최종 선택 어트랙션
 		resultContainer.append(imgContainer);
 
-		// 클릭 이벤트 처리
+		// 클릭 시 어트랙션 상세 페이지로 이동
 		resultContainer.click(function() {
-			// 어트랙션 상세 페이지로 이동
 			window.location.href = '/dd/user/activity/attraction/detail.do?seq=' + selectedAttraction.attraction_seq;
 		});
 
@@ -395,7 +394,7 @@
 	            'finalWinAttractionSeq': finalWinAttractionSeq
 	        },
 	        success: function(data) {
-	            console.log('Final update completed:', data);
+	        	// console.log('최종 우승 업데이트 완료: ', data);
 	        },
 	        beforeSend: function(xhr) {
 	            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
