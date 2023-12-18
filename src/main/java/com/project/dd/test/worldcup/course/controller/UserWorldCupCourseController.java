@@ -11,11 +11,12 @@ import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
 public class UserWorldCupCourseController {
 
     @Autowired
-    private WorldCupCourseService courseService;
+    private WorldCupCourseService cwcService;
     
 	@GetMapping(value = "/user/test/worldcup/course/view.do")
 	public String view(Model model) {
 
 		return "user/test/worldcup/course/view";
 	}
+	
 }

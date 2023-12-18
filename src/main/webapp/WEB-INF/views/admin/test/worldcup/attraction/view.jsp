@@ -85,10 +85,10 @@ th {
 }
 
 .table th:nth-child(1) { width: 10%; }
-.table th:nth-child(2) { width: 25%; }
+.table th:nth-child(2) { width: 30%; }
 .table th:nth-child(3) { width: 25%; }
 .table th:nth-child(4) { width: 25%; }
-.table th:nth-child(5) { width: 15%; }
+.table th:nth-child(5) { width: 10%; }
 
 .table td i {
 	color: #0d6efd;
@@ -111,13 +111,35 @@ th {
 .form-check {
 	min-height: 0 !important;
 }
+
+.hidden-seq {
+	display: none;
+}
+
+/* 모달 CSS */
+#modal table.m-desc {
+	width: 100%;
+	font-size: 14px;
+}
+
+#modal table tr > th {
+	width: 120px;
+	text-align: left;
+	font-weight: bold;
+	background: #FFF !important;
+	padding: 10px;
+}
+
+#modal table tr > td {
+	padding: 10px;
+}
 </style>
 
 <!-- ======= Main ======= -->
 <main id="main" class="main">
 
 	<div class="pagetitle">
-		<h1>어트랙션 월드컵</h1>
+		<h1>어트랙션 월드컵 관리</h1>
 	</div>
 
 	<section class="section">
@@ -135,6 +157,40 @@ th {
 									<i class="bi bi-search"></i>
 								</button>
 							</form>
+							
+							<!-- 어트랙션 월드컵 상세 모달 -->
+							<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+							    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+							        <div class="modal-content">
+							            <div class="modal-header">
+							                <h5 id="modal-name" class="modal-title"></h5>
+							                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							            </div>
+						                
+							            <div class="modal-body">
+							            	<table class="m-desc">
+							            		<colgroup>
+							            			<col style="width: 100px">
+							            		</colgroup>
+							            		<tbody>
+							            			<tr>
+							            				<th>최종우승횟수</th>
+							            				<td class="m-awc_final_win_count">회</td>
+							            			</tr>
+							            			<tr>
+							            				<th>승리횟수</th>
+							            				<td class="m-awc_win_count">회</td>
+							            			</tr>
+							            			<tr>
+							            				<th>1:1 대결수</th>
+							            				<td class="m-awc_match_count">회</td>
+							            			</tr>
+							            		</tbody>
+							            	</table>
+							            </div>
+							        </div>
+							    </div>
+							</div>
 						</div>
 
 						<div class="card">
@@ -142,8 +198,7 @@ th {
 
 								<nav class="d-flex justify-content-end">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a
-											href="/dd/admin/activity/attraction/view.do">어트랙션 관리</a></li>
+										<li class="breadcrumb-item"><a href="/dd/admin/activity/attraction/view.do">어트랙션 관리</a></li>
 									</ol>
 								</nav>
 
@@ -163,16 +218,16 @@ th {
 											<tr>
 												<!-- <td><input type="checkbox"></td> -->
 												<td>${dto.attraction_seq}</td>
-												<td>${dto.name}</td>
+												<td><a onclick="showModal('${dto.attraction_seq}', '${dto.name}', '${dto.awc_final_win_count}', '${dto.awc_win_count}', '${dto.awc_match_count}')"><c:out value="${dto.name}" /></a></td>
 												<td>
 												    <div class="progress" style="height: 20px;">
 												        <div class="progress-bar" role="progressbar"
-												            style="width: ${String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 5)) * 100)}%;"
-												            aria-valuenow="${String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 5)) * 100)}"
+												            style="width: ${dto.awc_final_win_count != 0 ? String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 5)) * 100) : '0'}%;"
+												            aria-valuenow="${dto.awc_final_win_count != 0 ? String.format('%.2f', (dto.awc_final_win_count / (awcFinalWinTotalCount / 5)) * 100) : '0'}"
 												            aria-valuemin="0" aria-valuemax="100"
 												            data-bs-toggle="tooltip" data-bs-placement="top"
 												            title="${dto.awc_final_win_count}/${awcFinalWinTotalCount}">
-												            ${String.format('%.2f', (dto.awc_final_win_count / awcFinalWinTotalCount) * 100)}%
+												            ${dto.awc_final_win_count != 0 ? String.format('%.2f', (dto.awc_final_win_count / awcFinalWinTotalCount) * 100) : '0'}%
 												        </div>
 												    </div>
 												</td>
@@ -180,12 +235,12 @@ th {
 										        <td>
 												   <div class="progress" style="height: 20px;">
 													    <div class="progress-bar" role="progressbar"
-													        style="width: ${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}%;"
-													        aria-valuenow="${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}"
+													        style="width: ${dto.awc_win_count != 0 && dto.awc_match_count != 0 ? String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100) : '0'}%;"
+													        aria-valuenow="${dto.awc_win_count != 0 && dto.awc_match_count != 0 ? String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100) : '0'}"
 													        aria-valuemin="0" aria-valuemax="100"
 													        data-bs-toggle="tooltip" data-bs-placement="top"
 													        title="${dto.awc_win_count}/${dto.awc_match_count}">
-													        ${String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100)}%
+													        ${dto.awc_win_count != 0 && dto.awc_match_count != 0 ? String.format('%.2f', (dto.awc_win_count / dto.awc_match_count) * 100) : '0'}%
 													    </div>
 													</div>
 												</td>
@@ -204,6 +259,7 @@ th {
 														</div>
 													</div>
 												</td>
+												<td class="hidden-seq">${dto.attraction_seq}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -234,76 +290,51 @@ th {
 
 <script>
 	// 문서가 완전히 로드 된 뒤에 실행
-	$(document).ready(
-			function() {
-				// 체크박스 클릭 이벤트
-				$(document).on(
-						'change',
-						'.form-check-input',
-						function() {
-							// 테스트 채택
-							var isTest = $(this).is(':checked') ? 'Y' : 'N';
-							//console.log(isTest);
+	$(document).ready(function() {
+		// 체크박스 클릭 이벤트
+		$(document).on('change', '.form-check-input', function() {
+			// 테스트 채택
+			var isTest = $(this).is(':checked') ? 'Y' : 'N';
 
-							// 선택한 어트랙션 일련번호
-							var attractionSeq = $(this).closest('tr').find('td:nth-child(1)').text();
-							//console.log(attractionSeq);
+			// 선택한 어트랙션 일련번호
+			var attractionSeq = $(this).closest('tr').find('td:nth-child(6)').text();
+			
+			// CSRF token
+			var csrfHeaderName = "${_csrf.headerName}";
+			var csrfTokenValue = "${_csrf.token}";
 
-							// CSRF token
-							var csrfHeaderName = "${_csrf.headerName}";
-							var csrfTokenValue = "${_csrf.token}";
-							//console.log(csrfHeaderName);
-							//console.log(csrfTokenValue);
-
-							// 데이터베이스 업데이트
-							$.ajax({
-								type : 'POST',
-								url : '/dd/admin/test/worldcup/attraction/view.do',
-								data : {
-									attractionSeq : attractionSeq,
-									isTest : isTest
-								},
-								beforeSend : function(xhr) {
-									xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-								},
-								/*
-								success: function(response) {
-									// console.log(response); // 응답 처리
-								},
-								 */
-								error : function(a, b, c) {
-									console.error(a, b, c);
-								}
-							});
-						});
+			// 데이터베이스 업데이트
+			$.ajax({
+				type : 'POST',
+				url : '/dd/admin/test/worldcup/attraction/view.do',
+				data : {
+					attractionSeq : attractionSeq,
+					isTest : isTest
+				},
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				/*
+				success: function(response) {
+					// console.log(response); // 응답 처리
+				},
+				 */
+				error : function(a, b, c) {
+					console.error(a, b, c);
+				}
 			});
+		});
+	});
+
+	// 어트랙션 월드컵 상세 모달
+	function showModal(seq, name, awc_final_win_count, awc_win_count, awc_match_count) {
+	    
+		$('#modal-name').text(name);
+
+	    $('.m-awc_final_win_count').text(awc_final_win_count);
+	    $('.m-awc_win_count').text(awc_win_count);
+	    $('.m-awc_match_count').text(awc_match_count);
+	    
+	    $('#modal').modal('show');
+	}
 </script>
-
-
-<!--
-<script>
-    jQuery(document).ready(function ($) {
-        // 각 행에 대해 승률 계산 및 동적으로 추가
-        $('.table tbody tr').each(function () {
-            var winCountText = $(this).find('td:nth-child(4)').text().trim();
-            var matchCountText = $(this).find('td:nth-child(5)').text().trim();
-
-            // 정규식을 사용하여 숫자 확인
-            var winCount = /^\d+$/.test(winCountText) ? parseFloat(winCountText) : NaN;
-            var matchCount = /^\d+$/.test(matchCountText) ? parseFloat(matchCountText) : NaN;
-
-            // 숫자가 아닌 경우에 대비하여 체크
-            if (!isNaN(winCount) && !isNaN(matchCount)) {
-                // 승률 계산 (승리횟수/전체1:1대결수)
-                var winRate = (winCount / matchCount * 100).toFixed(2);
-                console.log(winRate);
-
-                // 계산된 승률을 해당 행에 추가
-                $(this).find('td:nth-child(6)').text(winRate + '%');
-            } else {
-                console.log('Invalid winCount or matchCount:', winCountText, matchCountText);
-            }
-        });
-    });
-</script>
--->
