@@ -57,9 +57,25 @@
 	background-repeat: no-repeat;
 	border-radius: 10px 10px 0 0;
 }
+
+.stats-counter {
+	background-image: url('/dd/resources/files/test/mbti/mbti_title.png');
+}
+
+#overlay-div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 458px;
+	background-color: black;
+	opacity: 0.45;
+	z-index: 0;
+}
 </style>
 
 <section id="stats-counter" class="stats-counter">
+	<div id="overlay-div"></div>
 	<div id="pagetitle" class="container" data-aos="zoom-out">
 		<div class="gy-4" style="justify-content: center; width: 100%;">
 
@@ -92,18 +108,3 @@
 		</div>
 	</div>
 </section>
-
-<script>
-	var itemElements = document.querySelectorAll('.item');
-	itemElements.forEach(function(item) {
-		item.addEventListener('mouseover', function() {
-			// 마우스 오버 시 hidden-div를 보이게 변경
-			item.querySelector('.hidden-div').style.display = 'block';
-		});
-
-		item.addEventListener('mouseout', function() {
-			// 마우스 아웃 시 hidden-div를 다시 숨김
-			item.querySelector('.hidden-div').style.display = 'none';
-		});
-	});
-</script>

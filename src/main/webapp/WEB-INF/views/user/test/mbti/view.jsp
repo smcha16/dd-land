@@ -4,6 +4,13 @@
 <!-- list (1) Template -->
 <!-- user > test > mbti > view.jsp -->
 <style>
+#title {
+	font-size: 48px;
+	display: block;
+	color: #fff;
+	font-weight: 700;
+}
+
 #title+p {
 	text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
 	padding: 5px 20px;
@@ -87,26 +94,38 @@
 	border-radius: 10px 10px 0 0;
 	z-index: 1;
 }
+
+.stats-counter {
+	background-image: url('/dd/resources/files/test/mbti/mbti_title.png');
+}
+
+#overlay-div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 458px;
+	background-color: black;
+	opacity: 0.45;
+	z-index: 0;
+}
 </style>
 
-<!-- ======= Stats Counter Section ======= -->
 <section id="stats-counter" class="stats-counter">
+	<div id="overlay-div"></div>
 	<div id="pagetitle" class="container" data-aos="zoom-out">
 		<div class="gy-4" style="justify-content: center; width: 100%;">
 
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
-					<div id="title"
-						style="font-size: 48px; display: block; color: #fff; font-weight: 700;">MBTI</div>
-					<p>설명(나에게 딱 맞는 어트랙션을 찾아보세요!)</p>
+					<div id="title">MBTI</div>
+					<p>내 성격 유형에 맞는 어트랙션과 코스를 찾아보세요!</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-<!-- End Stats Counter Section -->
 
-<!-- ======= Menu Section ======= -->
 <section id="menu" class="menu">
 	<div class="container" data-aos="fade-up">
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
@@ -121,7 +140,6 @@
 					</c:forEach>
 				</div>
 			</div>
-			<!-- End Starter Menu Content -->
 		</div>
 	</div>
 	
@@ -141,10 +159,7 @@
 			</c:forEach>
 		</ul>
 	</nav>
-	
 </section>
-
-<!-- End Menu Section -->
 
 <script>
 	var itemElements = document.querySelectorAll('.item');

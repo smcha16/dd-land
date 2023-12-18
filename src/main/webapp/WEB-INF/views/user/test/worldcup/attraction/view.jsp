@@ -4,6 +4,13 @@
 
 <!-- user > test > worldcup > attraction > view.jsp -->
 <style>
+#title {
+	font-size: 48px;
+	display: block;
+	color: #fff;
+	font-weight: 700;
+}
+
 #title+p {
 	text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
 	padding: 5px 20px;
@@ -127,14 +134,30 @@
 	color: white;
 	text-shadow: 0px 1px 5px black;
 }
+
+.stats-counter {
+	background-image: url('/dd/resources/files/test/worldcup/attraction/attraction_worldcup_title.png');
+}
+
+#overlay-div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 458px;
+	background-color: black;
+	opacity: 0.45;
+	z-index: 0;
+}
 </style>
 
 <section id="stats-counter" class="stats-counter">
+	<div id="overlay-div"></div>
     <div id="pagetitle" class="container" data-aos="zoom-out">
         <div class="gy-4" style="justify-content: center; width: 100%;">
             <div class="col-lg-3 col-md-6" style="width: 100%;">
                 <div class="stats-item text-center w-100 h-100">
-                    <div id="title" style="font-size: 48px; display: block; color: #fff; font-weight: 700;">
+                    <div id="title">
                         어트랙션 월드컵
                     </div>
                     <p>나에게 딱 맞는 어트랙션을 찾아보세요!</p>
@@ -157,7 +180,7 @@
 						    <div class="item" id="item${loop.index + 1}" onclick="selectAttraction('${attraction.attraction_seq}')">
 						        <div style="display:none" data-attraction-seq="${attraction.attraction_seq}"></div>
 						        <div class="img-container" style="background-image: url('/dd/resources/files/activity/attraction/${attraction.img}');"></div>
-						        <h3>${attraction.name}</h3>
+						        <div class="test-name">${attraction.name}</div>
 						    </div>
 						</c:forEach>
 					</div>
