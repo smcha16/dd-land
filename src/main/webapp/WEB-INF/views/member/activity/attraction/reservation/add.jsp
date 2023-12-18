@@ -236,10 +236,9 @@
 		let countTime = $('.time-btn[data-type="y"]').length;
 		console.log('countTime: ' + countTime);
 		
-		if (!$('input[name="capacity"]').val().trim()
-				|| countTime != 1) {
-			
-				alert('필수 항목을 입력해주세요.');
+		if (!$('input[name="capacity"]').val().trim() {
+			/* 	|| countTime != 1) { */
+			alert('필수 항목을 입력해주세요.');
 		} else {
 			$('form').submit();
 		}
