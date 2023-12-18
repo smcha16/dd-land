@@ -32,7 +32,10 @@ public class UserReviewController {
 		
 		session.setAttribute("read", "n");
 		
-		Map<String, String> map = service.paging(solting, page);
+		String searchStatus = "n";
+		String word = null;
+		
+		Map<String, String> map = service.paging(solting, searchStatus, word, page);
 
 		map.put("order", order);
 		
