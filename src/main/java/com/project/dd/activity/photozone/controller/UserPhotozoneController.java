@@ -24,7 +24,9 @@ public class UserPhotozoneController {
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 
-		Map<String, String> map = service.paging(page);  //페이징
+		//페이징
+		String solting = "user";
+		Map<String, String> map = service.paging(page, solting);
 		
 		List<PhotoZoneDTO> list = service.getPhotozoneList(map);
 		

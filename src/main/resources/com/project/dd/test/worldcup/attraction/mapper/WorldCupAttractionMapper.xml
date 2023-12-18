@@ -5,10 +5,10 @@
 <mapper namespace="com.project.dd.test.worldcup.attraction.mapper.WorldCupAttractionMapper">
 
 	<select id="getTotalCount" resultType="int">
-		select count(*)
-	    from tblAWC awc
-	    join vwAttractionList al
-	    	ON awc.attraction_seq = al.attraction_seq
+		select count(*) from tblAWC awc
+		join vwAttractionList al on awc.attraction_seq = al.attraction_seq
+		join tblAWCWin w on w.attraction_seq = al.attraction_seq
+		join tblAWCFinalWin fw on fw.attraction_seq = al.attraction_seq
 	</select>
    
 	<!--

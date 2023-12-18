@@ -26,9 +26,13 @@
 	</select>
    
    <!-- admin 기능  -->
-   
+   <!-- 유효성 검사 -->
 	<select id="checkLocationDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
 		select count(*) from vwLocation where lat = #{lat} and lng = #{lng}
+	</select>
+
+	<select id="checkNameDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
+		select count(*) from tblAttraction where name = #{name}
 	</select>
    
 	<insert id="addAttraction" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
@@ -36,7 +40,7 @@
 		VALUES (seqtblAttraction.NEXTVAL, #{name}, #{info}, #{capacity}, '10:00 - 22:00', #{restriction})
 	</insert>
 	
-	<select id="getAttractionSeq" resultType="int">
+	<select id="getAttractionSeq" resultType="String">
 		select max(attraction_seq) as attraction_seq from tblAttraction
 	</select>
 	
@@ -69,9 +73,6 @@
 		delete from tblAttractionLocation where attraction_seq = #{attraction_seq}
 	</delete>
 	
-	<select id="checkNameDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
-		select count(*) from tblAttraction where name = #{name}
-	</select>
 	
 	<select id="getAttractionDefaultImgName" parameterType="String" resultType="String">
 		select img from tblAttractionImg where attraction_seq = #{attraction_seq}
@@ -92,20 +93,5 @@
 	<select id="getAllAttractionImgList" resultType="com.project.dd.activity.attraction.domain.AttractionImgDTO">
 		select * from tblAttractionImg
 	</select>
-	
-	<insert id="addAWC" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		insert into tblAWC (awc_seq, is_test, attraction_seq)
-		values (seqtblAWC.NEXTVAL, 'Y', #{attraction_seq})
-	</insert>
-	
-	<insert id="addAWCWin" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		insert into tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
-		values (seqtblAWCWin.NEXTVAL, 0, 0, #{attraction_seq})
-	</insert>
-	
-	<insert id="addAWCFinalWin" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		insert into tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-		values (seqtblAWCFinalWin.NEXTVAL, 0, #{attraction_seq})
-	</insert>
 	
 </mapper>

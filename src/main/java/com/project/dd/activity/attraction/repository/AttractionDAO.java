@@ -32,7 +32,7 @@ public interface AttractionDAO {
 
 	int checkNameDuplication(AttractionDTO dto);
 
-	int getAttractionSeq();
+	String getAttractionSeq();
 
 	int addAttractionLocation(AttractionDTO dto);
 

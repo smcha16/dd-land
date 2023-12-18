@@ -1,6 +1,5 @@
 package com.project.dd.activity.attraction.controller;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -41,12 +40,18 @@ public class AdminAttractionController {
 		//Attraction 목록(운영종료 제외)
 		List<AttractionDTO> list = service.getAttractionList(map);
 		
+		//모달용 AttractionImg 목록
+		List<AttractionImgDTO> ilist = service.getAllAttractionImgList();
+		
 		//페이징 전달
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
 		
 		//어트 목록 전달
 		model.addAttribute("list", list);
+		
+		//모달용 AttractionImg 목록 전달
+		model.addAttribute("ilist", ilist);
 		
 		return "admin/activity/attraction/view";
 	}
@@ -94,8 +99,6 @@ public class AdminAttractionController {
 		//List<AttractionImgDTO> 가져오기
 		List<AttractionImgDTO> ilist = service.getAttractionImgList(seq);
 		
-		//ilist > AttractionDTO에 담기
-		dto.setImgList(ilist);
 		
 		//UUID 제거(DB에 먼저 넣은 더미 데이터, 구현된 페이지에서 직접 추가한 데이터 > UUID 유무 상이)
 		// - 따라서 1. DB에 먼저 넣은 더미 데이터도 UUID를 추가하거나
@@ -108,10 +111,12 @@ public class AdminAttractionController {
 				
 				//UUID 제거
 				String originalFileName = idto.getImg().substring(idto.getImg().indexOf("_") + 1);
-				dto.setImg(originalFileName);
+				idto.setImg(originalFileName);
 			}
 			
 		}
+		//ilist > AttractionDTO에 담기
+		dto.setImgList(ilist);
 		
 		model.addAttribute("dto", dto);
 		
@@ -121,7 +126,7 @@ public class AdminAttractionController {
 	@PostMapping(value = "/editok.do")
 	public String editok(Model model, AttractionDTO dto, MultipartFile[] imgs, HttpServletRequest req, String[] deleteImgSeq) {
 
-		System.out.println(Arrays.toString(deleteImgSeq));
+//		System.out.println(Arrays.toString(deleteImgSeq));
 		
 		//img
 		AttractionDTO temp = service.getAttraction(dto.getAttraction_seq());
@@ -130,13 +135,11 @@ public class AdminAttractionController {
 
 		int result = service.editAttraction(dto, imgs, req, deleteImgSeq);
 		
-//		if (result > 0) {
-//			return "redirect:/admin/activity/attraction/view.do";
-//		} else {
-//			return "redirect:/admin/activity/attraction/edit.do";
-//		}
-		
-		return "redirect:/admin/activity/attraction/view.do";
+		if (result > 0) {
+			return "redirect:/admin/activity/attraction/view.do";
+		} else {
+			return "redirect:/admin/activity/attraction/edit.do";
+		}
 		
 	}
 	

@@ -98,6 +98,11 @@
 	         		</a>
 	       		</li>
 	       		<li>
+	         		<a href="/dd/admin/test/worldcup/course/list.do">
+	           			<i class="bi bi-circle"></i><span>코스</span>
+	         		</a>
+	       		</li>
+	       		<li>
 	         		<a href="/dd/admin/test/worldcup/course/view.do">
 	           			<i class="bi bi-circle"></i><span>코스 월드컵</span>
 	         		</a>

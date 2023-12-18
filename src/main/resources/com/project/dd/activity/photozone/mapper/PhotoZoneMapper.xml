@@ -5,6 +5,11 @@
 <mapper namespace="com.project.dd.activity.photozone.mapper.PhotoZoneMapper">
 	
 	<!-- id == 인터페이스의 추상메서드의 이름 -->
+	<!-- 페이징 -->
+	<select id="getTotalCount" resultType="int">
+      select count(*) from vwPhotozoneList
+   </select>
+
 	<select id="getPhotozoneList" parameterType="map" resultType="com.project.dd.activity.photozone.domain.PhotoZoneDTO">
 		select *
       from (select n.*, rownum as rnum from (
@@ -16,16 +21,76 @@
 	</select>
 	
 	<select id="getPhotozone" parameterType="String" resultType="com.project.dd.activity.photozone.domain.PhotoZoneDTO">
-		select * from vwPhotozoneOne where photozone_seq = #{photozone_seq}
+		select * from vwPhotozoneList where photozone_seq = #{photozone_seq}
 	</select>
 	
 	<select id="getPhotozoneImgList" parameterType="String" resultType="com.project.dd.activity.photozone.domain.PhotoZoneImgDTO">
 		select * from tblPhotozoneImg where photozone_seq = #{photozone_seq}
 	</select>
 	
-	<!-- 페이징 -->
-	<select id="getTotalCount" resultType="int">
-      select count(*) from vwPhotozoneList
-   </select>
+	<select id="getAllPhotozoneImgList" resultType="com.project.dd.activity.photozone.domain.PhotoZoneImgDTO">
+		select * from tblPhotozoneImg
+	</select>
+	
+	<!-- 유효성 검사 -->
+	<select id="checkLocationDuplication" parameterType="com.project.dd.activity.photozone.domain.PhotoZoneDTO" resultType="int">
+		select count(*) from vwLocation where lat = #{lat} and lng = #{lng}
+	</select>
+
+	<select id="checkNameDuplication" parameterType="com.project.dd.activity.photozone.domain.PhotoZoneDTO" resultType="int">
+		select count(*) from tblPhotozone where name = #{name}
+	</select>
+	<!-- 유효성 검사 끝 -->
+	
+	<insert id="addPhotozone" parameterType="com.project.dd.activity.photozone.domain.PhotoZoneDTO">
+		INSERT INTO tblPhotoZone (photozone_seq, name, time, info)
+		VALUES (seqtblPhotoZone.NEXTVAL, #{name}, '10:00 - 22:00', #{info})
+	</insert>
+	
+	<select id="getPhotozoneSeq" resultType="String">
+		select max(photozone_seq) as photozone_seq from tblPhotozone
+	</select>
+	
+	<insert id="addPhotozoneLocation" parameterType="com.project.dd.activity.photozone.domain.PhotoZoneDTO">
+		INSERT INTO tblPhotoZoneLocation (photozone_location_seq, lat, lng, photozone_seq) VALUES (seqPhotoZoneLocation.nextVal, #{lat}, #{lng}, #{photozone_seq})	
+	</insert>
+	
+	<insert id="addPhotozoneImg" parameterType="com.project.dd.activity.photozone.domain.PhotoZoneImgDTO">
+		INSERT INTO tblPhotoZoneImg (photozone_img_seq, img, photozone_seq)
+		VALUES (seqtblPhotoZoneImg.NEXTVAL, #{img}, #{photozone_seq})
+	</insert>
+	
+	<update id="editPhotozone" parameterType="com.project.dd.activity.photozone.domain.PhotoZoneDTO">
+		update tblPhotozone set name = #{name}, info = #{info} where photozone_seq = #{photozone_seq}
+	</update>
+	
+	<update id="editPhotozoneLocation" parameterType="com.project.dd.activity.photozone.domain.PhotoZoneDTO">
+		update tblPhotozoneLocation set lat = #{lat}, lng = #{lng} where photozone_seq = #{photozone_seq}
+	</update>
+	
+	<delete id="delPhotozoneImg" parameterType="String">
+		delete from tblPhotozoneImg where photozone_seq = #{photozone_seq}
+	</delete>
+	
+	<select id="countPhotozoneImg" parameterType="String" resultType="int">
+		select count(*) from tblPhotozoneImg where photozone_seq = #{photozone_seq}
+	</select>
+	
+	<delete id="delPhotozoneImgByImgSeq" parameterType="String">
+		delete from tblPhotozoneImg where photozone_img_seq = #{photozone_img_seq}
+	</delete>
+	
+	<select id="countPhotozoneLocation" parameterType="String" resultType="int">
+		select count(*) from tblPhotozoneLocation where photozone_seq = #{photozone_seq}
+	</select>
+	
+	<delete id="delPhotozoneLocation" parameterType="String">
+		delete from tblPhotozoneLocation where photozone_seq = #{photozone_seq}
+	</delete>
+	
+	<delete id="delPhotozone" parameterType="String">
+		delete from tblPhotozone where photozone_seq = #{photozone_seq}
+	</delete>
+	
 	
 </mapper>

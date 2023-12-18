@@ -1,4 +1,4 @@
-package com.project.dd.activity.movie.controller;
+package com.project.dd.activity.moveplay.controller;
 
 import java.util.List;
 
@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.dd.activity.moveplay.domain.MoviePlayDTO;
 import com.project.dd.activity.movie.domain.MovieDTO;
-import com.project.dd.activity.movie.domain.MoviePlayDTO;
 import com.project.dd.activity.movie.service.MovieService;
 
 @Controller
 @RequestMapping(value = "/user/activity/movie")
-public class UserMovieController {
+public class UserMoviePlayController {
 	
 	@Autowired
 	private MovieService service;
@@ -51,3 +51,4 @@ public class UserMovieController {
 	}
 
 }
+

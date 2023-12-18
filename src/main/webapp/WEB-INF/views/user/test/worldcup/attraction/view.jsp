@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!-- list (1) Template -->
 <!-- user > test > view.jsp -->
@@ -86,19 +87,18 @@
 
 <!-- ======= Stats Counter Section ======= -->
 <section id="stats-counter" class="stats-counter">
-	<div id="pagetitle" class="container" data-aos="zoom-out">
-		<div class="gy-4" style="justify-content: center; width: 100%;">
-
-			<div class="col-lg-3 col-md-6" style="width: 100%;">
-				<div class="stats-item text-center w-100 h-100">
-					<div id="title"
-						style="font-size: 48px; display: block; color: #fff; font-weight: 700;">어트랙션
-						월드컵</div>
-					<p>설명(나에게 딱 맞는 어트랙션을 찾아보세요!)</p>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div id="pagetitle" class="container" data-aos="zoom-out">
+        <div class="gy-4" style="justify-content: center; width: 100%;">
+            <div class="col-lg-3 col-md-6" style="width: 100%;">
+                <div class="stats-item text-center w-100 h-100">
+                    <div id="title" style="font-size: 48px; display: block; color: #fff; font-weight: 700;">
+                        어트랙션 월드컵
+                    </div>
+                    <p>설명(나에게 딱 맞는 어트랙션을 찾아보세요!)</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- End Stats Counter Section -->
 
@@ -125,7 +125,8 @@
 </section>
 <script>
 	let selectedTwoAttractions;
-
+	let remainingAttractions;
+	
 	// CSRF token
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
@@ -187,6 +188,7 @@
 
 				// 전역 변수에 할당
 				selectedTwoAttractions = data.selectedTwoAttractions;
+				remainingAttractions = data.remainingAttractions;
 
 				// 어트랙션 정보에 따라 화면 갱신
 				if (selectedTwoAttractions.length > 1) {
@@ -223,7 +225,7 @@
 				const item = $('<div class="item" id="' + itemId + '" onclick="selectAttraction(' + attraction.attraction_seq + ')">')
 					.append('<div style="display:none" data-attraction-seq=' + attraction.attraction_seq + '></div>')
 					.append('<div class="img-container" style="background-image: url(\'' + imgUrl + '\');"></div>')
-					.append('<h3>' + attraction.name + '</h3>');
+					.append('<h3>' + attraction.name + '</h3>')
 				$('#worldcup-container').append(item);
 			}
 		} else {
