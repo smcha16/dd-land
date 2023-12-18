@@ -48,7 +48,6 @@ body {
 	justify-content: center;
 	padding-bottom: 30px;
 }
-
 .section-image>img {
 	border-radius: 15px;
 }
@@ -222,6 +221,7 @@ p {
 	margin-bottom: 1rem;
 	color: darkgray;
 }
+
 </style>
 
 <!-- ======= Title & Image Section ======= -->
@@ -232,7 +232,7 @@ p {
 		</div>
 		<div style="text-align: center;">
 			<img src="/dd/resources/files/guide/convenient/${dto.img }"
-				alt="Image">
+				alt="Image" style="width: 700px; height:350px; border-radius:15px;">
 		</div>
 	</div>
 </section>

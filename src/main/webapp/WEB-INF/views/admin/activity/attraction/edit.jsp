@@ -396,5 +396,4 @@
 		$(event.target).parent().remove();
 	}
 	
-	
 </script>

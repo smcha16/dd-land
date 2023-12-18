@@ -46,12 +46,6 @@ public interface WorldCupCourseDAO {
 
 	List<CourseDTO> getCourseList();
 	
-    // 선택되지 않은 코스 가져오기
-    //List<CourseDTO> getRemainingCourses(List<String> selectedCourses);
-
-    // 리스트에서 두 개의 랜덤 코스 가져오기
-    //List<CourseDTO> getRandomTwoCourses(List<CourseDTO> courses);
-
 	void updateCWCMatchCount(String courseSeq);
 
 	void updateCWCWinCount(String courseSeq);

@@ -25,7 +25,7 @@ public interface AttractionMapper {
 	int addAttraction(AttractionDTO dto);
 
 	String getAttractionSeq();
-
+	
 	int addAttractionLocation(AttractionDTO dto);
 
 	int addAttractionImg(AttractionImgDTO idto);

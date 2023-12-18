@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.google.gson.JsonArray;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
 import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
 
