@@ -9,7 +9,7 @@ public interface InquiryDAO {
 
 	int addInquiry(InquiryDTO dto);
 
-	int getTotalCount();
+	int getTotalCount(Map<String, String> map);
 
 	List<InquiryDTO> getInquiryList(Map<String, String> map);
 

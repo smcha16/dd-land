@@ -24,9 +24,11 @@ public class AdminInquiryController {
 	/* 목록 */
 	
 	@GetMapping(value = "/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 		
-		Map<String, String> map = service.paging(page);
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
+		
+		Map<String, String> map = service.paging(searchStatus, word, page);
 		
 		List<InquiryDTO> list = service.getInquiryList(map);
 		
