@@ -141,6 +141,7 @@
 		let name;
 		let ws;
 		const url = 'ws://43.200.60.152:8090/dd/chatserver.do';
+		/* cmd -> ipconfig해서 나오는 ip주소를 url에 적어야 다른 컴퓨터에서 이 주소를 ip를 입력한 주소를 통해 들어올 수 있다. */
 		
 		function connect(name) {
 			
