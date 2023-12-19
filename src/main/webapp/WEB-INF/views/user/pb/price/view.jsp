@@ -250,7 +250,7 @@
 							<li>(출생 및 인종 무관)</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href=/dd/member/ticket/group-reservation/view.do" class="btn-buy">Buy Now</a>
+							<a href="/dd/member/ticket/group-reservation/view.do" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
