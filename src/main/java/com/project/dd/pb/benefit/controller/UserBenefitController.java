@@ -30,6 +30,7 @@ public class UserBenefitController {
 		List<BenefitDTO> normalList = service.normalList(); // 일반혜택
 		List<BenefitDTO> cardList = service.cardList(); // 카드/통신사 혜택
 		List<BenefitDTO> list = service.List();
+		
 
 		model.addAttribute("normalList", normalList);
 		model.addAttribute("cardList", cardList);

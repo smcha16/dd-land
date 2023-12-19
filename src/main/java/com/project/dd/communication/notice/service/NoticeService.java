@@ -26,19 +26,24 @@ public class NoticeService {
 	
 	/* 페이징 */
 
-	public Map<String, String> paging(int page) {
+	public Map<String, String> paging(String solting, String searchStatus, String category, String word, int page) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("solting", solting);
+		map.put("searchStatus", searchStatus);
+		map.put("category", category);
+		map.put("word", word);
 		
 		int pageSize = 10;
 		
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
-		
-		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 		
-		int totalPosts = dao.getTotalCount();
+		int totalPosts = dao.getTotalCount(map);
 		int totalPages = (int)Math.ceil((double)totalPosts / pageSize);
 		
 		map.put("totalPosts", String.format("%d", totalPosts));
@@ -53,18 +58,6 @@ public class NoticeService {
 	public List<NoticeDTO> getNoticeList(Map<String, String> map) {
 		
 		List<NoticeDTO> list = dao.getNoticeList(map);
-
-		for (NoticeDTO dto : list) {
-			
-			// 등록일
-			
-			String regdate = dto.getRegdate();
-			
-			regdate = regdate.substring(0, 10);
-			
-			dto.setRegdate(regdate);
-			
-		}
 		
 		return list;
 		
@@ -75,14 +68,6 @@ public class NoticeService {
 	public NoticeDTO getNotice(String seq) {
 		
 		NoticeDTO dto = dao.getNotice(seq);
-		
-		// 등록일
-
-		String regdate = dto.getRegdate();
-		
-		regdate = regdate.substring(0, 10);
-		
-		dto.setRegdate(regdate);
 		
 		return dto;
 		

@@ -11,12 +11,15 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
+import com.project.dd.activity.attraction.domain.BookUserDTO;
 import com.project.dd.activity.attraction.repository.AttractionDAO;
+import com.project.dd.login.domain.CustomUser;
 
 @Service
 public class AttractionService {
@@ -24,7 +27,7 @@ public class AttractionService {
 	@Autowired
 	AttractionDAO dao;
 
-	public Map<String, String> paging(int page, String solting) {
+	public Map<String, String> paging(String searchStatus, String word, int page, String solting) {
 		
 		int pageSize = 0;
 		
@@ -35,20 +38,25 @@ public class AttractionService {
 		} else if (solting.equalsIgnoreCase("admin")) {
 			pageSize = 10;  //나타났으면 하는 개수(admin)
 		}
-		
+
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
 		
 		Map<String, String> map = new HashMap<String, String>();
+
+		//검색 관련 추가
+		map.put("searchStatus", searchStatus);
+		map.put("word", word);
 		
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 		
-		int totalPosts = dao.getTotalCount();
+		int totalPosts = dao.getTotalCount(map);
 		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
 		
 		map.put("totalPosts", String.format("%d", totalPosts));
 		map.put("totalPages", String.format("%d", totalPages));
+		
 		
 		return map;
 		
@@ -116,8 +124,8 @@ public class AttractionService {
 		result = dao.addAttraction(dto);
 		
 		//방금 등록한 Attraction seq 가져오기
-		int seq = dao.getAttractionSeq();
-		dto.setAttraction_seq(seq + "");
+		String seq = dao.getAttractionSeq();
+		dto.setAttraction_seq(seq);
 		
 		//2. tblAttractionLocation 추가
 		result = dao.addAttractionLocation(dto);
@@ -235,11 +243,11 @@ public class AttractionService {
 		//6. 기존 첨부 O + 수정 후 첨부 O + 기존 파일 유지: 기존 AttractionImg 유지 및 첨부 파일 추가
 		//7. 기존 첨부 O + 수정 후 첨부 O + 기존 파일 일부/전체 삭제: 기존 파일 삭제 및 첨부 파일 추가
 		
-		System.out.println(dto.toString());
-		System.out.println(imgs[0].isEmpty());
-		System.out.println(imgs.length);
-		System.out.println(Arrays.toString(deleteImgSeq));
-		System.out.println(deleteImgSeq.length);
+//		System.out.println(dto.toString());
+//		System.out.println(imgs[0].isEmpty());
+//		System.out.println(imgs.length);
+//		System.out.println(Arrays.toString(deleteImgSeq));
+//		System.out.println(deleteImgSeq.length);
 		
 		String seq = dto.getAttraction_seq();
 		int result = 0;
@@ -252,7 +260,7 @@ public class AttractionService {
 		result = dao.editAttraction(dto);
 		result = dao.editAttractionLocation(dto);
 		
-		System.out.println(dto.getImg());
+//		System.out.println(dto.getImg());
 
 		//기존 첨부 O vs X 판단: dto.getImg().equalsIgnoreCase("attraction.png") > Case 1, Case 2
 		if (dto.getImg() != null && dto.getImg().equalsIgnoreCase("attraction.png")) {
@@ -379,12 +387,29 @@ public class AttractionService {
 		return result;
 	}
 
-	public int getAttractionSeq() {
+	public String getAttractionSeq() {
 		return dao.getAttractionSeq();
 	}
 
 	public List<AttractionImgDTO> getAllAttractionImgList() {
 		return dao.getAllAttractionImgList();
+	}
+
+	public int checkAvailableCapacity(BookUserDTO dto) {
+		return dao.checkAvailableCapacity(dto);
+	}
+
+	public int addAttractionBook(BookUserDTO dto) {
+		
+		return dao.addAttractionBook(dto);
+	}
+
+	public int getAttractionBookCapacity(BookUserDTO dto) {
+		return dao.getAttractionBookCapacity(dto);
+	}
+
+	public List<BookUserDTO> getAttractionBookList() {
+		return dao.getAttractionBookList();
 	}
 
 }

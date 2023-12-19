@@ -26,14 +26,6 @@
 		select * from tblMovie where movie_seq = #{movie_seq}
 	</select>
 	
-	<select id="getMoviePlayList" parameterType="String" resultType="com.project.dd.activity.movie.domain.MoviePlayDTO">
-		select * from vwMoviePlayList where movie_seq = #{movie_seq}
-	</select>
-	
-	<select id="getMoviePlay" parameterType="String" resultType="com.project.dd.activity.movie.domain.MoviePlayDTO">
-		select * from vwMoviePlayOne where movie_seq = #{movie_seq}
-	</select>
-	
 	<!-- Admin -->
 	
 	<insert id="addMovie" parameterType="com.project.dd.activity.movie.domain.MovieDTO">

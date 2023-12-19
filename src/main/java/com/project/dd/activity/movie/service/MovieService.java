@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.activity.movie.domain.MovieDTO;
-import com.project.dd.activity.movie.domain.MoviePlayDTO;
 import com.project.dd.activity.movie.repository.MovieDAO;
+import com.project.dd.activity.movieplay.domain.MoviePlayDTO;
 
 @Service
 public class MovieService {

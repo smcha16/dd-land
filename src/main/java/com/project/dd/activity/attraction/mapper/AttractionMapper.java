@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
+import com.project.dd.activity.attraction.domain.BookUserDTO;
 
 public interface AttractionMapper {
 
@@ -17,14 +18,14 @@ public interface AttractionMapper {
 	//어트랙션 이미지 List
 	List<AttractionImgDTO> getAttractionImgList(String seq);
 
-	int getTotalCount();
+	int getTotalCount(Map<String, String> map);
 
 	int checkLocationDuplication(AttractionDTO dto);
 
 	int addAttraction(AttractionDTO dto);
 
-	int getAttractionSeq();
-
+	String getAttractionSeq();
+	
 	int addAttractionLocation(AttractionDTO dto);
 
 	int addAttractionImg(AttractionImgDTO idto);
@@ -50,5 +51,13 @@ public interface AttractionMapper {
 	int delAttractionImgByImgSeq(String imgseq);
 
 	List<AttractionImgDTO> getAllAttractionImgList();
+
+	int checkAvailableCapacity(BookUserDTO dto);
+
+	int addAttractionBook(BookUserDTO dto);
+
+	int getAttractionBookCapacity(BookUserDTO dto);
+
+	List<BookUserDTO> getAttractionBookList();
 
 }

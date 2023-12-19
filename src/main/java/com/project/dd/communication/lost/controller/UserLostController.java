@@ -23,9 +23,11 @@ public class UserLostController {
 	/* 목록 */
 	
 	@GetMapping(value = "/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(String category, String word, String start, String end, @RequestParam(defaultValue = "1") int page, Model model) {
 		
-		Map<String, String> map = service.paging(page);
+		String searchStatus = (word == null || word.equals("")) && ((start == null && end == null) || (start.equals("") && end.equals(""))) ? "n" : "y";
+		
+		Map<String, String> map = service.paging(searchStatus, category, word, start, end, page);
 		
 		List<LostPropertyDTO> list = service.getLostPropertyList(map);
 		

@@ -26,19 +26,25 @@ public class LostPropertyService {
 	
 	/* 페이징 */
 
-	public Map<String, String> paging(int page) {
+	public Map<String, String> paging(String searchStatus, String category, String word, String start, String end, int page) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+
+		map.put("searchStatus", searchStatus);
+		map.put("category", category);
+		map.put("word", word);
+		map.put("start", start);
+		map.put("end", end);
 
 		int pageSize = 10;
 		
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
-		
-		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 		
-		int totalPosts = dao.getTotalCount();
+		int totalPosts = dao.getTotalCount(map);
 		int totalPages = (int)Math.ceil((double)totalPosts / pageSize);
 		
 		map.put("totalPosts", String.format("%d", totalPosts));
@@ -53,18 +59,6 @@ public class LostPropertyService {
 	public List<LostPropertyDTO> getLostPropertyList(Map<String, String> map) {
 		
 		List<LostPropertyDTO> list = dao.getLostPropertyList(map);
-
-		for (LostPropertyDTO dto : list) {
-			
-			// 습득일
-			
-			String lostDate = dto.getLost_property_date();
-			
-			lostDate = lostDate.substring(0, 10);
-			
-			dto.setLost_property_date(lostDate);
-			
-		}
 		
 		return list;
 		
@@ -137,14 +131,6 @@ public class LostPropertyService {
 	public LostPropertyDTO getLostProperty(String seq) {
 		
 		LostPropertyDTO dto = dao.getLostProperty(seq);
-		
-		// 습득일
-
-		String lostDate = dto.getLost_property_date();
-		
-		lostDate = lostDate.substring(0, 10);
-		
-		dto.setLost_property_date(lostDate);
 		
 		return dto;
 

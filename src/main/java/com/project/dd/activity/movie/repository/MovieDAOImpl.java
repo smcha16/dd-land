@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import com.project.dd.activity.movie.domain.MovieDTO;
-import com.project.dd.activity.movie.domain.MoviePlayDTO;
 import com.project.dd.activity.movie.mapper.MovieMapper;
+import com.project.dd.activity.movieplay.domain.MoviePlayDTO;
 
 @Primary
 @Repository

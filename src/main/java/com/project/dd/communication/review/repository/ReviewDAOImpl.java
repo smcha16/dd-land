@@ -20,9 +20,9 @@ public class ReviewDAOImpl implements ReviewDAO {
 	/* 총 개수 */
 
 	@Override
-	public int getTotalCount() {
+	public int getTotalCount(Map<String, String> map) {
 		
-		return mapper.getTotalCount();
+		return mapper.getTotalCount(map);
 		
 	}
 	
@@ -50,6 +50,42 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public void updateReadCount(String seq) {
 
 		mapper.updateReadCount(seq);
+		
+	}
+	
+	/* 파일 수정 */
+	
+	@Override
+	public void editFile(String seq) {
+
+		mapper.editFile(seq);
+		
+	}
+	
+	/* 수정 */
+
+	@Override
+	public int editReview(ReviewDTO dto) {
+		
+		return mapper.editReview(dto);
+		
+	}
+	
+	/* 파일 삭제 */
+	
+	@Override
+	public void deleteFile(String seq) {
+
+		mapper.deleteFile(seq);
+		
+	}
+	
+	/* 삭제 */
+
+	@Override
+	public void deleteReview(String seq) {
+		
+		mapper.deleteReview(seq);
 		
 	}
 

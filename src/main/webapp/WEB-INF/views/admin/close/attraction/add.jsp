@@ -140,12 +140,27 @@ width: 100%;
 			              	</div>
 						
 							<div class="row mb-3">
+                				<label for="inputDate" class="col-sm-2 col-form-label">운휴 시작일</label>
+                				<div class="col-sm-10">
+                  					<input type="date" name="start_date" class="form-control" id="start" required>
+                  					<form:errors path="start_date" cssClass="text-danger" />
+               					</div>
+              				</div>
+              				<div class="row mb-3">
+                				<label for="inputDate" class="col-sm-2 col-form-label">운휴 종료일</label>
+                				<div class="col-sm-10">
+                  					<input type="date" name="end_date" class="form-control" id="end" required>
+                  					<form:errors path="end_date" cssClass="text-danger" />
+               					</div>
+              				</div>
+						
+							<!-- <div class="row mb-3">
                 				<label for="inputDate" class="col-sm-2 col-form-label">날짜</label>
                 				<div class="col-sm-10">
                   					운휴 시작일 <input type="date" name="start_date" id="start" required>
                   					운휴 종료일 <input type="date" name="end_date" id="end" required>
                					</div>
-              				</div>
+              				</div> -->
 
 							<!-- 토큰 -->
               				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">

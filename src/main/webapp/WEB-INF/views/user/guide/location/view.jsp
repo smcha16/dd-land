@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+
 <style>
 	#title+p {
 		text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
@@ -112,6 +115,19 @@ p {
 	margin-bottom: 1rem;
 	color: darkgray;
 }
+button#comeback {
+		border: 0;
+		border-radius: 50px;
+		width: 50px;
+		background-color: #FFF;
+		color: #000;
+		position: absolute;
+		z-index: 100;		
+		padding: 10px;
+	    right: 10px;
+	    bottom: 10px;
+}
+
 </style>
     <!-- ======= Stats Counter Section ======= -->
     <section id="stats-counter" class="stats-counter">
@@ -138,10 +154,9 @@ p {
 		<div class="label">위치 정보</div>
 		<p>* 스크롤과 드래그로 지도를 움직일 수 있습니다. *</p>
 		<div class="value location">
-			<div id="map" style="width: 950px; height: 435px;"></div>
-		</div>
-		<div>
-			<button onclick="setBounds()" id="comeback">원래대로 돌아가기</button>
+			<div id="map" style="width: 950px; height: 435px;">
+				<button onclick="setBounds()" id="comeback"><i class="fa-solid fa-rotate-left"></i></button>
+			</div>
 		</div>
 	</div>
 </section>

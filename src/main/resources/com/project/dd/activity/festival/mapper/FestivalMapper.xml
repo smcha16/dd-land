@@ -16,10 +16,101 @@
 	</select>
 	
 	<select id="getFestival" parameterType="String" resultType="com.project.dd.activity.festival.domain.FestivalDTO">
-		select * from vwFestivalOne where festival_seq = #{festival_seq}
+		select a.festival_seq, a.name, a.time, a.info,to_char(a.start_date, 'yyyy-mm-dd') as start_date, to_char(a.end_date, 'yyyy-mm-dd') as end_date,
+		(select img from tblFestivalImg where festival_seq = a.festival_seq) as img,
+		(select festival_location_seq from tblFestivalLocation where festival_seq = a.festival_seq) as festival_location_seq,
+		(select lat from tblFestivalLocation where festival_seq = a.festival_seq) as lat,
+		(select lng from tblFestivalLocation where festival_seq = a.festival_seq) as lng
+		from tblFestival a
+		where festival_seq = #{festival_seq}
 	</select>
 	
 	<select id="getFestivalImgList" parameterType="String" resultType="com.project.dd.activity.festival.domain.FestivalImgDTO">
 		select * from tblFestivalImg where festival_seq = #{festival_seq}
 	</select>
+	
+	<!-- admin -->
+	<select id="getFestivalListAll" parameterType="map" resultType="com.project.dd.activity.festival.domain.FestivalDTO">
+		select *
+		from (select n.*, rownum as rnum from(
+	
+			select a.festival_seq, a.name, a.time, a.info,to_char(a.start_date, 'yyyy-mm-dd') as start_date, to_char(a.end_date, 'yyyy-mm-dd') as end_date,
+			(select img from tblFestivalImg where festival_seq = a.festival_seq) as img,
+			(select festival_location_seq from tblFestivalLocation where festival_seq = a.festival_seq) as festival_location_seq,
+			(select lat from tblFestivalLocation where festival_seq = a.festival_seq) as lat,
+			(select lng from tblFestivalLocation where festival_seq = a.festival_seq) as lng
+			from tblFestival a
+			order by festival_seq desc
+			
+		) n) where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<!-- 페이징 -->
+	<select id="getTotalCount"  parameterType="String" resultType="int">
+      <if test="solting == 'admin'">
+      	select count(*) from tblFestival
+      </if>
+      <if test="solting == 'user'">
+      </if>
+	</select>
+	
+	<select id="getAllFestivalImgList" resultType="com.project.dd.activity.festival.domain.FestivalImgDTO">
+		select * from tblFestivalImg
+	</select>
+
+	<insert id="addFestival" parameterType="com.project.dd.activity.festival.domain.FestivalDTO">
+		INSERT INTO tblFestival (festival_seq, name, time, info, start_date, end_date)
+		VALUES (seqtblFestival.NEXTVAL, #{name}, #{time}, #{info}, TO_DATE(#{start_date}, 'YYYY-MM-DD'), TO_DATE(#{end_date}, 'YYYY-MM-DD'))
+	</insert>
+	
+	<select id="getFestivalSeq" resultType="String">
+		select max(festival_seq) as festival_seq from tblFestival
+	</select>
+	
+	<insert id="addFestivalLocation" parameterType="com.project.dd.activity.festival.domain.FestivalDTO">
+		INSERT INTO tblFestivalLocation (festival_location_seq, lat, lng, festival_seq) VALUES (seqFestivalLocation.nextVal, #{lat}, #{lng}, #{festival_seq})
+	</insert>
+	
+	<insert id="addFestivalImg" parameterType="com.project.dd.activity.festival.domain.FestivalImgDTO">
+		INSERT INTO tblFestivalImg (festival_img_seq, img, festival_seq)
+		VALUES (seqtblFestivalImg.NEXTVAL, #{img}, #{festival_seq})
+	</insert>
+	
+	<select id="countFestivalImg" parameterType="String" resultType="int">
+		select count(*) from tblFestivalImg where festival_seq = #{festival_seq}
+	</select>
+	
+	<delete id="delFestivalImg" parameterType="String">
+		delete from tblFestivalImg where festival_seq = #{festival_seq}
+	</delete>
+	
+	<select id="countFestivalLocation" parameterType="String" resultType="int">
+		select count(*) from tblFestivalLocation where festival_seq = #{festival_seq}
+	</select>
+	
+	<delete id="delFestivalLocation" parameterType="String">
+		delete from tblFestivalLocation where festival_seq = #{festival_seq}
+	</delete>
+	
+	<delete id="delFestival" parameterType="String">
+		delete from tblFestival where festival_seq = #{festival_seq}
+	</delete>
+	
+	<update id="editFestival" parameterType="com.project.dd.activity.festival.domain.FestivalDTO">
+		update tblFestival set name = #{name}, time = #{time}, info = #{info}, start_date = TO_DATE(#{start_date}, 'YYYY-MM-DD'), end_date = TO_DATE(#{end_date}, 'YYYY-MM-DD') where festival_seq = #{festival_seq}
+	</update>
+	
+	<update id="editFestivalLocation" parameterType="com.project.dd.activity.festival.domain.FestivalDTO">
+		update tblFestivalLocation set lat = #{lat}, lng = #{lng} where festival_seq = #{festival_seq}
+	</update>
+	
+	<delete id="delFestivalImgByImgSeq" parameterType="String">
+		delete from tblFestivalImg where festival_img_seq = #{festival_img_seq}
+	</delete>
+	
+	<!-- 유효성 검사 -->
+	<select id="checkLocationDuplication" parameterType="com.project.dd.activity.festival.domain.FestivalDTO" resultType="int">
+		select count(*) from vwLocation where lat = #{lat} and lng = #{lng}
+	</select>
+	
 </mapper>

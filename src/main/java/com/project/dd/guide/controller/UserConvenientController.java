@@ -27,9 +27,13 @@ public class UserConvenientController {
 	private GuideMapService guideMapService;   //GuideMapService 객체 생성
 	
 	@GetMapping(value = "/convenient/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(String category, String word, @RequestParam(defaultValue = "1") int page, Model model) {
 		
-		Map<String, String> map = convenientService.paging(page);  //페이징
+		String solting = "admin";
+		
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
+		
+		Map<String, String> map = convenientService.paging(solting, searchStatus, category, word, page);  //페이징
 		
 		List<ConvenientDTO> list = convenientService.list(map);   //편의시설 list불러오는 것을 service에게 위임
 		
@@ -82,6 +86,5 @@ public class UserConvenientController {
 		return "user/guide/guide-map/view";
 	}
 
-	
 	
 }

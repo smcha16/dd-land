@@ -4,7 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <style>
-	#login {
+	#login, #mypage{
   		color: #fff; /* 글자 색상을 흰색으로 설정 */
   		background: var(--color-primary); /* 배경색을 프라이머리 컬러로 설정 */
   		border: 1px solid var(--color-primary); /* 테두리 색상을 흰색으로 설정 */
@@ -17,6 +17,10 @@
 	
 	span {
 		cursor: pointer;
+		color: black;
+	}
+	.header{
+		box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
 	}
 </style>
   <!-- ======= Header ======= -->
@@ -84,29 +88,27 @@
               <li><a href="/dd/user/communication/review/view.do">리뷰</a></li>
             </ul>
           </li>
-          <li><a href="/dd/user/search/view.do"><span>검색</span></a></li>
           <li class="dropdown"><a><span>예매</span></a>
           	<ul>
               <li><a href="/dd/member/ticket/personal-reservation/view.do">개인 예매</a></li>
               <li><a href="/dd/member/ticket/group-reservation/view.do">단체 예매</a></li>
             </ul>
           </li>
+          	<li class="dropdown"><a href="/dd/user/chat/view.do"><span>OpenChat</span></a></li>
         </ul>
       </nav><!-- .navbar -->
 	  <div>
 	  	<sec:authorize access="isAnonymous()">
-      	<a class="btn-book-a-table" id="login" href="/dd/user/login/view.do">로그인</a>
-      	<a class="btn-book-a-table" id="join" href="#">회원가입</a>
+      	<a class="btn-book-a-table" id="login" href="/dd/member/mypage/view.do">LogIn</a>
+      	<a class="btn-book-a-table" id="join" href="/dd/user/register/view.do">Join</a>
       	</sec:authorize>
       	<sec:authorize access="isAuthenticated()">
       	<form method="post" action="/dd/logout.do">
-      		<button class="btn-book-a-table" type="submit">로그아웃</button>
+      		<a class="btn-book-a-table" id="mypage" href="/dd/user/login/view.do">MyPage</a>
+      		<button class="btn-book-a-table" type="submit">LogOut</button>
       		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
       	</form>
       	</sec:authorize>
-      	
-      	<a class="btn-book-a-table" id="admin" href="/dd/admin/index.do">관리자페이지(임시)</a>
-      	<a class="btn-book-a-table" id="mypage" href="/dd/member/mypage/view.do">마이페이지(임시)</a>
       </div>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
@@ -114,19 +116,9 @@
     </div>
   </header><!-- End Header -->
   
-	<!--
-	<script>
-	document.addEventListener('DOMContentLoaded', function() {
-	    var dropdownLinks = document.querySelectorAll('.navbar li.dropdown');
 	
-	    dropdownLinks.forEach(function(link) {
-	        link.addEventListener('click', function(event) {
-	            // 클릭 이벤트에서 부모 li 요소까지 올라가며 링크로 이동하지 않도록 막기
-	            event.stopPropagation();
-	        });
-	    });
-	});
-	</script>
-	-->
+	
+  
+  
   
   

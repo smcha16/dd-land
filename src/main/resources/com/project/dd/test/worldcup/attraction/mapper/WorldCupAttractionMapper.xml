@@ -5,10 +5,21 @@
 <mapper namespace="com.project.dd.test.worldcup.attraction.mapper.WorldCupAttractionMapper">
 
 	<select id="getTotalCount" resultType="int">
-		select count(*)
-	    from tblAWC awc
-	    join vwAttractionList al
-	    	ON awc.attraction_seq = al.attraction_seq
+		select count(*) from tblAWC awc
+		join vwAttractionList al on awc.attraction_seq = al.attraction_seq
+		join tblAWCWin w on w.attraction_seq = al.attraction_seq
+		join tblAWCFinalWin fw on fw.attraction_seq = al.attraction_seq
+		<if test="solting == 'admin' and searchStatus == 'y'.toString()">
+		where name like '%' || #{word} || '%' or info like '%' || #{word} || '%' or restriction like '%' || #{word} || '%'
+		</if>
+	</select>
+   
+	<select id="getTestCount" resultType="int">
+		select count(*) from tblAWC awc
+		join vwAttractionList al on awc.attraction_seq = al.attraction_seq
+		join tblAWCWin w on w.attraction_seq = al.attraction_seq
+		join tblAWCFinalWin fw on fw.attraction_seq = al.attraction_seq
+		where awc.is_test = 'Y'
 	</select>
    
 	<!--
@@ -29,7 +40,10 @@
 		        JOIN vwAttractionList al ON awc.attraction_seq = al.attraction_seq
 		        JOIN tblAWCWin w ON w.attraction_seq = al.attraction_seq
 		        JOIN tblAWCFinalWin fw ON fw.attraction_seq = al.attraction_seq
-		    ) n
+		        order by al.attraction_seq desc) n
+			<if test="solting == 'admin' and searchStatus == 'y'.toString()">
+			where name like '%' || #{word} || '%' or info like '%' || #{word} || '%' or restriction like '%' || #{word} || '%'
+			</if>
 		) where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
@@ -46,40 +60,6 @@
 		join tblAWCFinalWin fw on fw.attraction_seq = al.attraction_seq
 		where awc.is_test = 'Y'
 	</select>
-	
-	<select id="getRunAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
-    	select
-	        al.*
-	    from tblAWC awc
-	    join vwAttractionList al
-	    	on awc.attraction_seq = al.attraction_seq
-	    where al.close = #{close} and awc.is_test = 'Y'
-	</select>
-	
-	<!--
-        모든 어트랙션 월드컵 정보를 조회하는 쿼리입니다.
-        - isTest 파라미터로 테스트 여부를 전달받습니다.
-        - 결과 타입은 WorldCupAttractionDTO 리스트입니다.
-    -->
-	<select id="getAllAWC" parameterType="String" resultType="com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO">
-		select * from tblAWC where is_test = #{isTest}
-	</select>
-	
-	<!--
-        모든 어트랙션 월드컵 승리 정보를 조회하는 쿼리입니다.
-        - 결과 타입은 WorldCupAttractionDTO 리스트입니다.
-    -->
-	<select id="getAllAWCWin" resultType="com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionWinDTO">
-		select * from tblAWCWin
-	</select>
-	
-	<!--
-        모든 어트랙션 월드컵 최종 승리 정보를 조회하는 쿼리입니다.
-        - 결과 타입은 WorldCupAttractionDTO 리스트입니다.
-    -->
-	<select id="getAllAWCFinalWin" resultType="com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionFinalWinDTO">
-		select * from tblAWCFinalWin
-	</select>
 		
 	<update id="updateAttractionStatus" parameterType="map">
 	    update tblAWC
@@ -90,14 +70,6 @@
 	<select id="getAWCFinalWinTotalCount" resultType="int">
 		select sum(awc_final_win_count) as total_awc_final_win_count from tblAWCFinalWin
 	</select>
-	
-	<!-- 
-	<update id="updateAttractionStatus" parameterType="String">
-	    UPDATE tblAWC
-	    SET isTest = #{isTest}
-	    WHERE attractionSeq = #{attractionSeq}
-	</update>
-	-->
 	
 	<insert id="addAWC" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		insert into tblAWC (awc_seq, is_test, attraction_seq)
@@ -134,5 +106,40 @@
 		set awc_final_win_count = awc_final_win_count + 1
 		where attraction_seq = #{attractionSeq}
 	</update>
+	
+	<select id="getAttractionNameList" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		select attraction_seq, name from tblAttraction order by attraction_seq
+	</select>
+	
+	<select id="getTopThreeAttraction" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		select
+		    t.*,
+		    to_char(t.win_rate * 100, '999.99') as win_rate_per,
+		    to_char(t.final_win_rate * 100, '999.99') as final_win_rate_per
+		from (
+			select
+		        al.attraction_seq,
+		        al.name,
+		        al.info,
+		        al.img,
+		        w.awc_match_count as match_count,
+		        w.awc_win_count as win_count,
+		        fw.awc_final_win_count as final_win_count,
+		        (w.awc_win_count / w.awc_match_count) as win_rate,
+		        (fw.awc_final_win_count / total_final_win_count) as final_win_rate,
+		        ROWNUM as rnum
+		    from vwAttractionList al
+		        join tblAWC awc on awc.attraction_seq = al.attraction_seq
+		        join tblAWCWin w on w.attraction_seq = al.attraction_seq
+		        join tblAWCFinalWin fw on fw.attraction_seq = al.attraction_seq
+		        cross join (
+		            select SUM(awc_final_win_count) as total_final_win_count
+		            from tblAWCFinalWin
+		        )
+		    where awc.is_test = 'Y'
+		    order by win_rate desc, final_win_rate desc
+		) t
+		where t.rnum &lt;= 3
+	</select>
 	
 </mapper>

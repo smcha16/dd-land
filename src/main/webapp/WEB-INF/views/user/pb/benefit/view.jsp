@@ -182,7 +182,7 @@
 /* list photo 변경 */
 .stats-counter {
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url("assets/img/barcelona-3960566_1280.jpg") center center;
+		url("/dd/resources/main/img/events-1.jpg") center center;
 	background-size: cover;
 	padding: 100px 0;
 	background-attachment: fixed;
@@ -206,6 +206,7 @@
 		</div>
 	</div>
 </section>
+
 <!-- End Stats Counter Section -->
 <!-- ======= Menu Section ======= -->
 <section id="menu" class="menu">
@@ -213,14 +214,14 @@
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="300">
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div class="munti-content-container">
-
+<!-- 
 					<ul class="tab tab_red" style="width: 300px;">
 						<li id="sel00" class="two"><a href="#tab00" id="selTab00">전체</a></li>
 						<li id="sel01" class="two on"><a href="#tab01" id="selTab01">일반혜택</a></li>
 						<li id="sel02" class="two"><a href="#tab02" id="selTab02">카드/통신사혜택</a></li>
-					</ul>
+					</ul> -->
 				
-					<c:forEach items="${list}" var="dto">
+					<%-- <c:forEach items="${list}" var="dto">
 						<div class="item" id="tab00" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
@@ -229,8 +230,8 @@
 							<div class="hidden-div">설명</div>
 						</div>
 					</c:forEach>
-					
-					<c:forEach items="${normalList}" var="dto">
+					 --%>
+					 <c:forEach items="${normalList}" var="dto">
 						<div class="item" id="tab01" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
@@ -238,18 +239,18 @@
 							<div>${dto.start_date}~${dto.end_date}</div>
 							<div class="hidden-div">설명</div>
 						</div>
-					</c:forEach>
+					</c:forEach> 
 			
 		
-					<c:forEach items="${cardList}" var="dto">
-						<div class="item" id="tab02" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
+					 <c:forEach items="${cardList}" var="dto">
+						<div class="item hidden" id="tab02" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
 							<div>${dto.name}</div>
 							<div>${dto.start_date}~${dto.end_date}</div>
 							<div class="hidden-div">설명</div>
 						</div>
-					</c:forEach>
+					</c:forEach> 
 
 
 				</div>
@@ -265,104 +266,25 @@
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("close").addEventListener("click", function () {
-        toggleLists();
-    });
 
-    function toggleLists() {
-        var normalListElements = document.querySelectorAll('.item[data-category="normal"]');
-        var cardListElements = document.querySelectorAll('.item[data-category="card"]');
 
-        normalListElements.forEach(function (normalItem) {
-            if (normalItem.style.display === 'none') {
-                normalItem.style.display = 'block';
-            } else {
-                normalItem.style.display = 'none';
-            }
-        });
 
-        cardListElements.forEach(function (cardItem) {
-            if (cardItem.style.display === 'none') {
-                cardItem.style.display = 'block';
-            } else {
-                cardItem.style.display = 'none';
-            }
-        });
+var checkbox = document.getElementById('close');
+var normalListTab = document.getElementById('tab01');
+var cardListTab = document.getElementById('tab02');
+
+checkbox.addEventListener('change', function() {
+    if (checkbox.checked) {
+        normalListTab.style.display = 'none';
+        cardListTab.style.display = 'block';
+    } else {
+        normalListTab.style.display = 'block';
+        cardListTab.style.display = 'none';
     }
 });
 
-
-
-/* 
-
-	var itemElements = document.querySelectorAll('.item');
-
-	itemElements.forEach(function(item) {
-		
-		item.addEventListener('mouseover', function() {
-			
-			
-			
-			// 마우스 오버 시 hidden-div를 보이게 변경
-			item.querySelector('.hidden-div').style.display = 'block';
-		});
-
-		item.addEventListener('mouseout', function() {
-			
-			
-			// 마우스 아웃 시 hidden-div를 다시 숨김
-			item.querySelector('.hidden-div').style.display = 'none';
-			
-			
-        });
-    
-	});
-	
-	 */
 	
 	
 	
-	
-	
-	
-	showTab("tab01");
-
-    document.getElementById("selTab00").addEventListener("click", function() {
-        event.preventDefault();
-        showTab("tab00");
-
-        document.getElementById("sel00").classList.add("on");
-        document.getElementById("sel01").classList.remove("on");
-        document.getElementById("sel02").classList.remove("on");
-    });
-
-    document.getElementById("selTab01").addEventListener("click", function() {
-        event.preventDefault();
-        showTab("tab01");
-
-        document.getElementById("sel01").classList.add("on");
-        document.getElementById("sel02").classList.remove("on");
-        document.getElementById("sel00").classList.remove("on");
-    });
-
-    document.getElementById("selTab02").addEventListener("click", function() {
-        event.preventDefault();
-        showTab("tab02");
-
-        document.getElementById("sel02").classList.add("on");
-        document.getElementById("sel01").classList.remove("on");
-        document.getElementById("sel00").classList.remove("on");
-    });
-
-    function showTab(tabId) {
-        // 모든 탭 숨기기
-        document.getElementById("tab00").style.display = "none";
-        document.getElementById("tab01").style.display = "none";
-        document.getElementById("tab02").style.display = "none";
-
-        // 선택한 탭 보이기
-        document.getElementById(tabId).style.display = "block";
-    } 
 	
 </script>

@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
-import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO;
 import com.project.dd.test.worldcup.attraction.repository.WorldCupAttractionDAO;
 
 @Service
@@ -20,20 +19,36 @@ import com.project.dd.test.worldcup.attraction.repository.WorldCupAttractionDAO;
 public class WorldCupAttractionServiceImpl implements WorldCupAttractionService {
 
 	@Autowired
-	private WorldCupAttractionDAO attractionDAO;
+	private WorldCupAttractionDAO dao;
 
-	public Map<String, String> paging(int page) { // 페이징 메서드
+	@Override
+	public int getTotalCount() {
+		return dao.getTotalCount();
+	}
+
+	@Override
+	public int getTestCount() {
+		return dao.getTestCount();
+	}
+
+	// 페이징 메서드
+	@Override
+	public Map<String, String> paging(String solting, String searchStatus, String word, int page) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("solting", solting);
+		map.put("searchStatus", searchStatus);
+		map.put("word", word);
+		
 		int pageSize = 10; // 조회할 글 개수
-
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
-
-		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 
-		int totalPosts = attractionDAO.getTotalCount();
+		int totalPosts = getTotalCount();
 		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
 
 		map.put("totalPosts", String.format("%d", totalPosts));
@@ -44,42 +59,22 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 	
 	@Override
 	public List<AttractionDTO> getAllAttraction(Map<String, String> map) {
-		return attractionDAO.getAllAttraction(map);
+		return dao.getAllAttraction(map);
 	}
 
 	@Override
 	public List<AttractionDTO> getAttractionList() {
-		return attractionDAO.getAttractionList();
-	}
-	
-	@Override
-	public List<AttractionDTO> getRunAttraction(String close) {
-		return attractionDAO.getRunAttraction(close);
+		return dao.getAttractionList();
 	}
 
-	@Override
-	public List<WorldCupAttractionDTO> getAllAWC(String isTest) {
-		return attractionDAO.getAllAWC(isTest);
-	}
-
-	@Override
-	public List<WorldCupAttractionDTO> getAllAWCWin() {
-		return attractionDAO.getAllAWCWin();
-	}
-
-	@Override
-	public List<WorldCupAttractionDTO> getAllAWCFinalWin() {
-		return attractionDAO.getAllAWCFinalWin();
-	}
-	
 	@Override
 	public void updateAttractionStatus(Map<String, String> map) {
-		attractionDAO.updateAttractionStatus(map);
+		dao.updateAttractionStatus(map);
 	}
 
 	@Override
 	public int getAWCFinalWinTotalCount() {
-		return attractionDAO.getAWCFinalWinTotalCount();
+		return dao.getAWCFinalWinTotalCount();
 	}
 
 	@Override
@@ -127,7 +122,7 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 
 		dto.setAttraction_seq(seq);
 		
-		return attractionDAO.addAWC(dto);
+		return dao.addAWC(dto);
 	}
 
 	@Override
@@ -135,7 +130,7 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 
 		dto.setAttraction_seq(seq);
 		
-		return attractionDAO.addAWCWin(dto);
+		return dao.addAWCWin(dto);
 	}
 
 	@Override
@@ -143,22 +138,32 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 
 		dto.setAttraction_seq(seq);
 		
-		return attractionDAO.addAWCFinalWin(dto);
+		return dao.addAWCFinalWin(dto);
 	}
 	
 	@Override
 	public void updateAWCMatchCount(String attractionSeq) {
-		attractionDAO.updateAWCMatchCount(attractionSeq);
+		dao.updateAWCMatchCount(attractionSeq);
 	}
 	
 	@Override
 	public void updateAWCWinCount(String attractionSeq) {
-		attractionDAO.updateAWCWinCount(attractionSeq);
+		dao.updateAWCWinCount(attractionSeq);
 	}
 	
 	@Override
 	public void updateAWCFinalWinCount(String attractionSeq) {
-		attractionDAO.updateAWCFinalWinCount(attractionSeq);
+		dao.updateAWCFinalWinCount(attractionSeq);
+	}
+	
+	@Override
+	public List<AttractionDTO> getAttractionNameList() {
+		return dao.getAttractionNameList();
+	}
+	
+	@Override
+	public List<AttractionDTO> getTopThreeAttraction() {
+		return dao.getTopThreeAttraction();
 	}
 	
 }

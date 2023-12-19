@@ -59,6 +59,11 @@
 	         		</a>
 	       		</li>
 	       		<li>
+	         		<a href="/dd/admin/activity/attraction/reservation/view.do">
+	           			<i class="bi bi-circle"></i><span>어트랙션 예약</span>
+	         		</a>
+	       		</li>
+	       		<li>
 	         		<a href="/dd/admin/activity/festival/view.do">
 	           			<i class="bi bi-circle"></i><span>페스티벌</span>
 	         		</a>
@@ -95,6 +100,11 @@
 	       		<li>
 	         		<a href="/dd/admin/test/worldcup/attraction/view.do">
 	           			<i class="bi bi-circle"></i><span>어트랙션 월드컵</span>
+	         		</a>
+	       		</li>
+	       		<li>
+	         		<a href="/dd/admin/test/worldcup/course/list.do">
+	           			<i class="bi bi-circle"></i><span>코스</span>
 	         		</a>
 	       		</li>
 	       		<li>

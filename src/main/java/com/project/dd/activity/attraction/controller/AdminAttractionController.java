@@ -1,6 +1,5 @@
 package com.project.dd.activity.attraction.controller;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
+import com.project.dd.activity.attraction.domain.BookUserDTO;
 import com.project.dd.activity.attraction.service.AttractionService;
 import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService;
 
@@ -32,14 +32,19 @@ public class AdminAttractionController {
     private WorldCupAttractionService awcService;
 	
 	@GetMapping(value = "/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
+		
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
 		
 		//페이징
 		String solting = "admin";
-		Map<String, String> map = service.paging(page, solting);
+		Map<String, String> map = service.paging(searchStatus, word, page, solting);
 		
 		//Attraction 목록(운영종료 제외)
 		List<AttractionDTO> list = service.getAttractionList(map);
+		
+		//모달용 AttractionImg 목록
+		List<AttractionImgDTO> ilist = service.getAllAttractionImgList();
 		
 		//페이징 전달
 		model.addAttribute("currentPage", page);
@@ -47,6 +52,9 @@ public class AdminAttractionController {
 		
 		//어트 목록 전달
 		model.addAttribute("list", list);
+		
+		//모달용 AttractionImg 목록 전달
+		model.addAttribute("ilist", ilist);
 		
 		return "admin/activity/attraction/view";
 	}
@@ -73,7 +81,7 @@ public class AdminAttractionController {
 		if (result > 0) {
 			
 			//어트랙션 월드컵 관련 insert
-			String seq = service.getAttractionSeq() + "";
+			String seq = service.getAttractionSeq();
 			
 			awcService.addAWC(dto, seq);
 			awcService.addAWCWin(dto, seq);
@@ -94,8 +102,6 @@ public class AdminAttractionController {
 		//List<AttractionImgDTO> 가져오기
 		List<AttractionImgDTO> ilist = service.getAttractionImgList(seq);
 		
-		//ilist > AttractionDTO에 담기
-		dto.setImgList(ilist);
 		
 		//UUID 제거(DB에 먼저 넣은 더미 데이터, 구현된 페이지에서 직접 추가한 데이터 > UUID 유무 상이)
 		// - 따라서 1. DB에 먼저 넣은 더미 데이터도 UUID를 추가하거나
@@ -108,10 +114,12 @@ public class AdminAttractionController {
 				
 				//UUID 제거
 				String originalFileName = idto.getImg().substring(idto.getImg().indexOf("_") + 1);
-				dto.setImg(originalFileName);
+				idto.setImg(originalFileName);
 			}
 			
 		}
+		//ilist > AttractionDTO에 담기
+		dto.setImgList(ilist);
 		
 		model.addAttribute("dto", dto);
 		
@@ -121,7 +129,7 @@ public class AdminAttractionController {
 	@PostMapping(value = "/editok.do")
 	public String editok(Model model, AttractionDTO dto, MultipartFile[] imgs, HttpServletRequest req, String[] deleteImgSeq) {
 
-		System.out.println(Arrays.toString(deleteImgSeq));
+//		System.out.println(Arrays.toString(deleteImgSeq));
 		
 		//img
 		AttractionDTO temp = service.getAttraction(dto.getAttraction_seq());
@@ -130,13 +138,11 @@ public class AdminAttractionController {
 
 		int result = service.editAttraction(dto, imgs, req, deleteImgSeq);
 		
-//		if (result > 0) {
-//			return "redirect:/admin/activity/attraction/view.do";
-//		} else {
-//			return "redirect:/admin/activity/attraction/edit.do";
-//		}
-		
-		return "redirect:/admin/activity/attraction/view.do";
+		if (result > 0) {
+			return "redirect:/admin/activity/attraction/view.do";
+		} else {
+			return "redirect:/admin/activity/attraction/edit.do";
+		}
 		
 	}
 	
@@ -159,6 +165,18 @@ public class AdminAttractionController {
 		} else {
 			return "redirect:/admin/activity/attraction/view.do";
 		}
+	}
+	
+	@GetMapping(value = "/reservation/view.do")
+	public String reservationView(Model model) {
+
+		//전체 어트랙션 예약 내역 가져오기
+		List<BookUserDTO> list = service.getAttractionBookList();
+		
+		model.addAttribute("list", list);
+		
+		return "admin/activity/attraction/reservationView";
+		
 	}
 	
 	

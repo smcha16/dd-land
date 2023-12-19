@@ -7,7 +7,7 @@ import com.project.dd.communication.notice.domain.NoticeDTO;
 
 public interface NoticeDAO {
 
-	int getTotalCount();
+	int getTotalCount(Map<String, String> map);
 
 	List<NoticeDTO> getNoticeList(Map<String, String> map);
 

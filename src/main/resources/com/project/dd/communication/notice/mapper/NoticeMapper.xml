@@ -3,32 +3,64 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.dd.communication.notice.mapper.NoticeMapper">
-	<select id="getTotalCount" resultType="int">
-		select count(*) from tblNotice
+	
+	<!-- 총 개수 -->
+
+	<select id="getTotalCount" parameterType="map" resultType="int">
+	    select count(*)
+	    from tblNotice
+	    <if test="solting == 'user' and searchStatus == 'y'.toString()">
+	        where ${category} like '%' || #{word} || '%'
+	    </if>
+	    <if test="solting == 'admin' and searchStatus == 'y'.toString()">
+	        where subject like '%' || #{word} || '%' or content like '%' || #{word} || '%'
+	    </if>
 	</select>
+	
+	<!-- 목록 -->
 	
 	<select id="getNoticeList" parameterType="map" resultType="com.project.dd.communication.notice.domain.NoticeDTO">
 		select *
-		from (select n.*, rownum as rnum from (select * from tblNotice order by fix desc, regdate desc, notice_seq desc) n)
+		from (select n.*, rownum as rnum
+			  from (select *
+			  		from tblNotice
+			  		order by fix desc, regdate desc, notice_seq desc) n
+			  <if test="solting == 'user' and searchStatus == 'y'.toString()">
+				  where ${category} like '%' || #{word} || '%'
+			  </if>
+			  <if test="solting == 'admin' and searchStatus == 'y'.toString()">
+		          where subject like '%' || #{word} || '%' or content like '%' || #{word} || '%'
+		      </if>
+			  )
 		where rnum between #{startIndex} and #{endIndex}
 	</select>
+	
+	<!-- 상세 -->
 	
 	<select id="getNotice" parameterType="String" resultType="com.project.dd.communication.notice.domain.NoticeDTO">
 		select * from tblNotice where notice_seq = #{seq}
 	</select>
+	
+	<!-- 추가 -->
 	
 	<insert id="addNotice" parameterType="com.project.dd.communication.notice.domain.NoticeDTO">
 		insert into tblNotice (notice_seq, subject, content, regdate, attach, fix)
 		values (seqtblNotice.nextVal, #{subject}, #{content}, default, #{attach, jdbcType=VARCHAR}, #{fix})
 	</insert>
 	
+	<!-- 기존 파일명 -->
+	
 	<select id="getFileName" parameterType="String" resultType="String">
 		select attach from tblNotice where notice_seq = #{seq}
 	</select>
 	
+	<!-- 수정 -->
+	
 	<update id="editNotice" parameterType="com.project.dd.communication.notice.domain.NoticeDTO">
 		update tblNotice set subject = #{subject}, content = #{content}, attach = #{attach, jdbcType=VARCHAR}, fix = #{fix} where notice_seq = #{notice_seq}
 	</update>
+	
+	<!-- 삭제 -->
 	
 	<delete id="deleteNotice" parameterType="String">
 		delete from tblNotice where notice_seq = #{seq}
