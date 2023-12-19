@@ -20,6 +20,22 @@ public interface ItemDAO {
 
 	List<ItemImgDTO> getImgList();
 
-	int getTotalCounts();
+	int getTotalCounts(Map<String, String> map);
+	
+	ItemDTO checkCart(ItemDTO dto);
+
+	int addCart(ItemDTO dto);
+
+	int editCart(ItemDTO dto);
+
+	String getSeq();
+
+	int addUserCart(ItemDTO dto);
+
+	int delItem(String seq);
+
+	String[] getItemSeqs(String seq);
+
+	void delUserCart(String cart_seq);
 
 }
