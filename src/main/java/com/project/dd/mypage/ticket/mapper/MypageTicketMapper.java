@@ -11,8 +11,13 @@ public interface MypageTicketMapper {
 
 	int delete(String selectedTickets);
 
-	int getTotalCount();
+	int getTotalCount(String email);
 
 	List<TicketDTO> plist(Map<String, String> map);
+
+	int count(String user_book_seq, String email);
+
+	int pGetTotalCount(String email);
+
 
 }

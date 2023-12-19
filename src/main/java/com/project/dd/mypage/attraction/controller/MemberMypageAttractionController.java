@@ -26,17 +26,15 @@ public class MemberMypageAttractionController {
 	@GetMapping(value = "/view.do")
 	public String view(Model model, Authentication auth, @RequestParam(defaultValue = "1") int page) {
 
-		Map<String, String> map = service.paging(page);  //페이징
-		
 		String email = ((CustomUser) auth.getPrincipal()).getDto().getEmail();
+		
+		Map<String, String> map = service.paging(page, email);  //페이징
 		
 		map.put("email", email);
 		
 		List<AttractionDTO> list = service.list(map);
-		List<AttractionDTO> plist = service.plist(map);
 
 		model.addAttribute("list", list);
-		model.addAttribute("plist", plist);
 		model.addAttribute("email", email);
 		model.addAttribute("currentPage", page);  //페이징
 	    model.addAttribute("map", map);  //페이징
@@ -44,8 +42,27 @@ public class MemberMypageAttractionController {
 		return "mypage/attraction/view";
 	}
 	
+	@GetMapping(value = "/pview.do")
+	public String pview(Model model, Authentication auth, @RequestParam(defaultValue = "1") int page) {
+
+		String email = ((CustomUser) auth.getPrincipal()).getDto().getEmail();
+		
+		Map<String, String> map = service.pPaging(page, email);  //페이징
+		
+		map.put("email", email);
+		
+		List<AttractionDTO> plist = service.plist(map);
+
+		model.addAttribute("plist", plist);
+		model.addAttribute("email", email);
+		model.addAttribute("currentPage", page);  //페이징
+	    model.addAttribute("map", map);  //페이징
+
+		return "mypage/attraction/pview";
+	}
+	
 	@PostMapping(value = "/delete.do")
-	public String delete(Model model, String selectedAttraction) {
+	public String delete(Model model, String[] selectedAttraction) {
 
 		int result = service.delete(selectedAttraction);
 

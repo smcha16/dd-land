@@ -99,12 +99,12 @@
       </nav><!-- .navbar -->
 	  <div>
 	  	<sec:authorize access="isAnonymous()">
-      	<a class="btn-book-a-table" id="login" href="/dd/member/mypage/view.do">LogIn</a>
+      	<a class="btn-book-a-table" id="login" href="/dd/user/login/view.do">LogIn</a>
       	<a class="btn-book-a-table" id="join" href="/dd/user/register/view.do">Join</a>
       	</sec:authorize>
       	<sec:authorize access="isAuthenticated()">
       	<form method="post" action="/dd/logout.do">
-      		<a class="btn-book-a-table" id="mypage" href="/dd/user/login/view.do">MyPage</a>
+      		<a class="btn-book-a-table" id="mypage" href="/dd/member/mypage/view.do">MyPage</a>
       		<button class="btn-book-a-table" type="submit">LogOut</button>
       		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
       	</form>

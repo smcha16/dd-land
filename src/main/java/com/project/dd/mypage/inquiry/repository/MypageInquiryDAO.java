@@ -11,6 +11,6 @@ public interface MypageInquiryDAO {
 
 	int getTotalCount();
 
-	int delete(String selectedInquiry);
+	int delete(String seq);
 
 }

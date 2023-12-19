@@ -74,7 +74,7 @@
 	      height: 70%;
 	      padding: 20px;
 	      background-color: black;
-	      /* opacity: 0.65; /* 투명도 조절 */ */
+	      /* opacity: 0.65; /* 투명도 조절 */ 
 	      border-radius: 10px 10px 0 0;
 	      z-index: 1; /* 다른 요소들보다 위에 위치하도록 설정 */
 	}
@@ -149,7 +149,7 @@ button#comeback {
     <!-- End Stats Counter Section -->
 
 <!-- 위치 정보 -->
-<section>
+<section style="padding-bottom : 30px;">
 	<div class="location">
 		<div class="label">위치 정보</div>
 		<p>* 스크롤과 드래그로 지도를 움직일 수 있습니다. *</p>
@@ -172,8 +172,11 @@ button#comeback {
             <div class="munti-content-container">
               <div class="item">
                 <div style="background-image: url('/dd/resources/files/guide/location/plane.jpg');"></div>
-                <div>비행기 또는 배 이용시</div>
-               <!--  <div class="hidden-div" style="color:black;">설명쓰기</div> -->
+                <div>비행기 이용시</div>
+              </div>
+              <div class="item">
+                <div style="background-image: url('/dd/resources/files/guide/location/ship.jpg');"></div>
+                <div>배 이용시</div>
               </div>
             </div>
         </div><!-- End Starter Menu Content -->

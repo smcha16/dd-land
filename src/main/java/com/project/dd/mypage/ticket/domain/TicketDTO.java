@@ -13,5 +13,6 @@ public class TicketDTO {
 	private String ea;
 	private String total_price;
 	private String user_book_seq;
+	private String reviewCount;
 	
 }

@@ -9,10 +9,14 @@ public interface MypageTicketDAO {
 
 	List<TicketDTO> list(Map<String, String> map);
 
-	int delete(String selectedTickets);
+	int delete(String seq);
 
-	int getTotalCount();
+	int getTotalCount(String email);
 
 	List<TicketDTO> plist(Map<String, String> map);
+
+	int pGetTotalCount(String email);
+
+
 
 }

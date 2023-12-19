@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import com.project.dd.mypage.review.domain.ReviewDTO;
+import com.project.dd.mypage.review.domain.ReviewImgDTO;
 import com.project.dd.mypage.review.mapper.MypageReviewMapper;
 
 @Primary
@@ -30,15 +31,15 @@ public class MypageReviewDAOImpl implements MypageReviewDAO{
 	}
 	
 	@Override
-	public int delete(String selectedReview) {
+	public int delete(String seq) {
 		
-		return mapper.delete(selectedReview);
+		return mapper.delete(seq);
 	}
 	
 	@Override
-	public int imgDelete(String selectedReview) {
+	public int imgDelete(String seq) {
 		
-		return mapper.imgDelete(selectedReview);
+		return mapper.imgDelete(seq);
 	}
 	
 	@Override
@@ -57,6 +58,18 @@ public class MypageReviewDAOImpl implements MypageReviewDAO{
 	public int edit(ReviewDTO dto) {
 		
 		return mapper.edit(dto);
+	}
+	
+	@Override
+	public int getReviewSeq() {
+		
+		return mapper.getReviewSeq();
+	}
+	
+	@Override
+	public int addReviewImg(ReviewImgDTO idto) {
+		
+		return mapper.addReviewImg(idto);
 	}
 
 }
