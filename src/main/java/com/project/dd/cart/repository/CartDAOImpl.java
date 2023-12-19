@@ -21,4 +21,9 @@ public class CartDAOImpl implements CartDAO {
 		return mapper.getUserList(user_seq);
 	}
 	
+	@Override
+	public int delCart(String seq) {
+		return mapper.delCart(seq);
+	}
+	
 }

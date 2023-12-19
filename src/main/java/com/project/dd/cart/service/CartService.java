@@ -18,4 +18,14 @@ public class CartService {
 		return dao.getUserList(user_seq);
 	}
 
+	public int delCart(String[] cart_seq) {
+		int result = 0;
+		
+		for (String seq : cart_seq) {
+			result += dao.delCart(seq);
+		}
+		
+		return result;
+	}
+
 }
