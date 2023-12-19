@@ -121,6 +121,12 @@
 		right: 20px;
 	}
 	
+	.table th:nth-child(1) { width: 10%; }
+.table th:nth-child(2) { width: 20%; }
+.table th:nth-child(3) { width: 30%; }
+.table th:nth-child(4) { width: 30%; }
+.table th:nth-child(5) { width: 10%; }
+	
 	/* 모달 CSS */
 	#modal table.m-desc {
 		width: 100%;
@@ -159,12 +165,9 @@
 					<div class="col-12">
 
               			<div id="search" class="header">
-                  			<form class="search-form d-flex align-items-center" method="POST" action="#">
-                    			<input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                  			<form class="search-form d-flex align-items-center" method="GET" action="/dd/admin/shop/restaurant/view.do">
+                    			<input type="text" name="word" placeholder="이름 검색" title="Enter search keyword" autocomplete="off">
                     			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                    			
-                    			<!-- 토큰 -->
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                   			</form>
               			</div>
 
@@ -198,12 +201,6 @@
 		                        					<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
 		                        					<td><a onclick="showModal('${dto.restaurant_seq}', `${dto.name}`,`${dto.menu}`,'${dto.capacity}', `${dto.time}`,`${dto.tel}`)"><c:out value="${dto.name}" /></a></td>
 		                        					<td>${dto.capacity}</td>
-		                        					<%-- <c:if test="${dto.img == 'attraction.png'}">
-		                        						<td></td>
-		                        					</c:if>
-		                        					<c:if test="${dto.img != 'attraction.png'}">
-		                        						<td><i class="bi bi-image"></i></td>
-		                        					</c:if> --%>
 		                        					<td><a onclick="showLocationModal(`${dto.name}`, '${dto.lat}', '${dto.lng}')"><i class="bi bi-geo-alt"></i></a></td>
 		                      					</tr>
 	                      					</c:forEach>
@@ -298,7 +295,6 @@
 
 </main>
 
-<!-- admin > activity > attraction > view JavaScript -->
 <!-- Kakao Map Open API -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c089ee6f3d885cfbe52b2f15d8f3f531"></script>
 
@@ -333,10 +329,10 @@
 		let checkedCount = $('input[type="checkbox"]:checked').length;
 		
 		if (checkedCount == 0) {
-			alert('1개 이상의 어트랙션을 선택 후, 삭제 버튼을 눌러주세요.');
+			alert('1개 이상의 레스토랑을 선택 후, 삭제 버튼을 눌러주세요.');
 		} else {
 			
-			if (confirm('선택한 어트랙션을 삭제하시겠습니까?')) {
+			if (confirm('선택한 레스토랑을 삭제하시겠습니까?')) {
 				
 				$('#del-form').submit();
 
