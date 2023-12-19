@@ -34,13 +34,43 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 	}
 	
 	@Override
-	public int getTotalCount() {
-		return mapper.getTotalCount();
+	public int getTotalCount(Map<String, String> map) {
+		return mapper.getTotalCount(map);
 	}
 	
 	@Override
 	public List<RestaurantImageDTO> getImgList() {
 		return mapper.getImgList();
+	}
+	
+	@Override
+	public int checkNameDuplication(RestaurantDTO dto) {
+		return mapper.checkNameDuplication(dto);
+	}
+	
+	@Override
+	public int addRestaurant(RestaurantDTO dto) {
+		return mapper.addRestaurant(dto);
+	}
+	
+	@Override
+	public String getSeq() {
+		return mapper.getSeq();
+	}
+	
+	@Override
+	public void addRestaurantLocation(RestaurantDTO dto) {
+		mapper.addRestaurantLocation(dto);
+	}
+	
+	@Override
+	public void addRestaurantImg(RestaurantDTO dto) {
+		mapper.addRestaurantImg(dto);
+	}
+	
+	@Override
+	public int delRestaurant(String seq) {
+		return mapper.delRestaurant(seq);
 	}
 
 }

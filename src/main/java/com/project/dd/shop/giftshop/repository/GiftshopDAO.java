@@ -14,8 +14,12 @@ public interface GiftshopDAO {
 
 	List<GiftshopImageDTO> shopImg(String seq);
 
-	int getTotalCount();
+	int getTotalCount(Map<String, String> map);
 
 	List<GiftshopImageDTO> getImgList();
+
+	void delItems(String seq);
+
+	int delGiftshop(String seq);
 
 }
