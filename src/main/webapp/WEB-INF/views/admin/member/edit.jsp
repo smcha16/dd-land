@@ -106,7 +106,7 @@
               				
               				
               				
-              				<input type="hidden" name = "user_seq" value="${user_seq }">
+              				<input type="hidden" name = "user_seq" value="${dto.user_seq }">
               				<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}">
 							

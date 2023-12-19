@@ -135,6 +135,7 @@ public class AdminMemberController {
 			model.addAttribute("dto", memberDTO);
 			return "admin/member/edit";
 		}
+		System.out.println(user_seq);
 		memberDTO.setUser_seq(user_seq);
 		System.out.println(memberDTO.toString());
 		// 회원 정보 수정 서비스 호출
