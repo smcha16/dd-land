@@ -18,12 +18,15 @@ import com.project.dd.activity.movieplay.domain.MoviePlayDTO;
 public class UserMoviePlayController {
 	
 	@Autowired
-	private MovieService service;
+	private MovieService msservice;
+	
+	@Autowired
+	private MovieService mservice;
 	
 	@GetMapping(value = "/view.do")
 	public String view(Model model, @RequestParam(defaultValue = "sysdate") String date) {
 
-		List<MovieDTO> list = service.getMovieList(date);
+		List<MovieDTO> list = mservice.getMovieList(date);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("date", date);
@@ -34,15 +37,15 @@ public class UserMoviePlayController {
 	@GetMapping(value = "/detail.do")
 	public String detail(Model model, String seq) {
 
-		MovieDTO dto = service.getMovie(seq);
+		MovieDTO dto = mservice.getMovie(seq);
 		
-		List<MoviePlayDTO> plist = service.getMoviePlayList(seq);
+		List<MoviePlayDTO> plist = msservice.getMoviePlayList(seq);
 		
 		//dto에 plist 담기
 		dto.setMoviePlayList(plist);
 		
 		//해당 영화의 상영 일정 가져오기
-		List<MoviePlayDTO> moviePlayList = service.getMoviePlay(seq);
+		List<MoviePlayDTO> moviePlayList = msservice.getMoviePlay(seq);
 		
 		model.addAttribute("dto", dto);
 		model.addAttribute("moviePlayList", moviePlayList);

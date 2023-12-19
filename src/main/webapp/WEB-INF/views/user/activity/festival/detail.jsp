@@ -55,11 +55,11 @@
 	}
 	
 	section:nth-of-type(2) {
-		background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/activity/attraction/barcelona-3960566_1280.jpg") center center;
+		background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/activity/festival_detail_background.jpg") center center;
 		/* background-color: transparent;
 		background-repeat: no-repeat; */
 		background-size: cover;
-		padding: 0;
+		padding: 20px;
 	}
 	
 	section:last-of-type {
@@ -118,6 +118,7 @@
 	.value {
 		margin: 10px 10px;
 		font-size: 1.2rem;
+		text-align: center;
 	}
 	
 	.value.location {
@@ -268,7 +269,7 @@
 
 <!-- 목록보기 버튼 -->
 <div id="button">
-	<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/activity/photozone/view.do';"><i class="bi bi-list"></i>목록</button>
+	<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/activity/festival/view.do';"><i class="bi bi-list"></i>목록</button>
 </div>
 
 <!-- view2 Template 전용 JavaScript -->
