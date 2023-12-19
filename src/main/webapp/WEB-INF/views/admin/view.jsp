@@ -6,7 +6,7 @@
 	
 		<section id="reveal">
 			<div class="reveal-container" data-aos="fade-in">
-				<p><span class="typed" data-typed-items="짱이다"></span></p>
+				<p><span class="typed" data-typed-items="안녕하세요 관리자님! 오늘도 즐거운 DD Land를 만들러가볼까요?"></span></p>
 			</div>
 		</section>
 
