@@ -166,7 +166,7 @@
 	}
 	
 	/* slick slider */
-	.image-slider {
+	/* .image-slider {
       width: 700px;
       height: 350px;
       margin: 0 auto;
@@ -184,7 +184,25 @@
 		max-height: 100%;
 		border-radius: 15px;
 		object-fit: cover;
-	}
+	} */
+	
+	 .image-slider {
+    width: 100%;
+  }
+
+  .image-slider div {
+    width: auto; /* 이미지 크기에 맞게 조절 */
+    max-width: 100%; /* 부모 요소 너비를 초과하지 않도록 설정 */
+    text-align: center; /* 가운데 정렬 */
+    transform: translateX(0); /* 레이아웃 초기화 */
+  }
+
+  .image-slider img {
+    width: 100%; /* 이미지가 부모 요소에 꽉 차도록 설정 */
+    height: auto; /* 비율 유지 */
+    border-radius: 15px;
+  }
+  
 	
 	/* Slick Button Style */
 	.slick-prev, .slick-next {
@@ -208,6 +226,7 @@
 		display: flex;
 		justify-content: center;
 		margin-bottom: 50px;
+		margin-top: 50px;
 	}
 	#back-button {
 		background-color: #CE1212;
@@ -236,11 +255,11 @@
 <section>
 	<div class="container" data-aos="zoom-out">
 		<div class="section-header">
+			 <c:forEach items="${benefitInfoList}" var="dto"> 
 			<h2>${dto.name}</h2>
 		</div>
 		<!-- Slick Slider -->
 		<div class="image-slider">
-			 <c:forEach items="${benefitInfoList}" var="dto"> 
 				<div>
 					<img src="/dd/resources/files/benefit/${dto.img}" alt="Image">
 				</div>
@@ -266,14 +285,16 @@
 		<div class="close-item">
 			<div class="label">할인혜택</div>
 			<div class="value">
-				<%-- <c:if test="${dto.close == 'n'}"> --%>
+				<%--  <c:if test="${dto.close== 'n'}">  --%>
+				<c:forEach items="${benefitInfoList}" var="dto"> 
 					<img src="/dd/resources/files/activity/calendar_icon.png" alt="Image" class="icon" />
-					정상 운영
-			<%-- 	</c:if>
-				<c:if test="${dto.close == 'y'}"> --%>
+					${dto.discount_rate}% 혜택 적용
+				</c:forEach>
+				<%-- </c:if> --%>
+				<c:if test="${dto.close == 'y'}"> 
 					<img src="/dd/resources/files/activity/close_icon.png" alt="Image" class="icon" />
 					금일 운휴
-				<%-- </c:if> --%>
+				 </c:if> 
 			</div>
 		</div>
 	</div>
@@ -403,9 +424,6 @@
 
 		</div>
 
-	</section>
-
-	<!-- </div> -->
 <!--  단체 -->
 	<section id="pricing" class="pricing">
 		<div class="container" data-aos="fade-up">
@@ -534,6 +552,11 @@
 		</div>
 
 	</section>
+
+	</section>
+
+	<!-- </div> -->
+
 </section>
 
 
@@ -612,3 +635,96 @@
 	<script src="/dd/resources/price/js/main.js"></script>
 
 <!-- 끝 -->
+
+
+
+<script>
+  $(document).ready(function () {
+    $('.image-slider').slick({
+      variableWidth: true,
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 5000,
+      pauseOnHover: true,
+      arrows: true,
+      prevArrow: "<button type='button' class='slick-prev'>&#10094;</button>",
+      nextArrow: "<button type='button' class='slick-next'>&#10095;</button>",
+      draggable: true
+    });
+
+    // 이미지가 로드될 때마다 실행되는 이벤트
+    $('.image-slider img').on('load', function () {
+      adjustBoxSize();
+    });
+
+    // 윈도우 크기가 변경될 때마다 실행되는 이벤트
+    $(window).resize(function () {
+      adjustBoxSize();
+    });
+
+    // 이미지 크기에 맞게 상자 크기 조절 함수
+    function adjustBoxSize() {
+      $('.image-slider div').each(function () {
+        var imgWidth = $(this).find('img').width();
+        var parentWidth = $(this).width();
+        var margin = (parentWidth - imgWidth) / 2;
+        $(this).css('padding-left', margin + 'px');
+        $(this).css('padding-right', margin + 'px');
+      });
+    }
+  });
+</script>
+
+<script>
+  $(document).ready(function () {
+    $('.image-slider img').on('load', function () {
+      adjustBoxSize();
+    });
+
+    // 이미지 크기에 맞게 상자 크기 조절 함수
+    function adjustBoxSize() {
+      $('.image-slider div').each(function () {
+        var imgWidth = $(this).find('img').width();
+        var parentWidth = $(this).width();
+        var margin = (parentWidth - imgWidth) / 2;
+        $(this).css('padding-left', margin + 'px');
+        $(this).css('padding-right', margin + 'px');
+      });
+    }
+  });
+</script>
+
+<script>
+  $(document).ready(function () {
+    $('.image-slider img').on('load', function () {
+      adjustBoxSize();
+    });
+
+    // 이미지 크기에 맞게 상자 크기 조절 함수
+    function adjustBoxSize() {
+      $('.image-slider div').each(function () {
+        var img = $(this).find('img');
+        var imgWidth = img.width();
+        var imgHeight = img.height(); // 이미지의 실제 높이도 고려
+        var parentWidth = $(this).width();
+        var parentHeight = $(this).height(); // 부모 요소의 높이도 고려
+        var marginX = (parentWidth - imgWidth) / 2;
+        var marginY = (parentHeight - imgHeight) / 2;
+
+        // 이미지 크기가 부모 요소보다 큰 경우에만 조절
+        if (imgWidth > parentWidth || imgHeight > parentHeight) {
+          img.css('max-width', '100%');
+          img.css('max-height', '100%');
+          img.css('width', 'auto');
+          img.css('height', 'auto');
+        }
+
+        // 이미지를 중앙에 정렬
+        $(this).css('padding-left', marginX + 'px');
+        $(this).css('padding-right', marginX + 'px');
+        $(this).css('padding-top', marginY + 'px');
+        $(this).css('padding-bottom', marginY + 'px');
+      });
+    }
+  });
+</script>

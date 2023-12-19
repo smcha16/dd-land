@@ -1,36 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="com.project.dd.shop.item.mapper.ItemMapper">
+<mapper namespace="com.project.dd.shop.item.mapper.ItemMapper">
 
-	<select id="getList" parameterType="map" resultType="com.project.dd.shop.item.domain.ItemDTO">
+	<select id="getTotalCounts" parameterType="map" resultType="int">
+		select count(n.item_seq) from (select * from vwItem
+		<if test="searchStatus == 'y'.toString()">
+	        where name like '%' || #{word} || '%' or shop_name like '%' || #{word} || '%'
+	    </if>
+		) n
+	</select>
+
+	<select id="getList" parameterType="map"
+		resultType="com.project.dd.shop.item.domain.ItemDTO">
 		select *
-      from (select n.*, rownum as rnum from (select i.*, (select name as shop_name from tblshop where shop_seq = i.shop_seq),
-    (
-        SELECT
-            img
-        FROM
-            tblitemimg
-        WHERE
-                item_seq = i.item_seq
-            AND ROWNUM = 1
-    )             AS img from tblItem i where shop_seq = #{seq} and  name not like '%종료%' order by item_seq DESC) n)
-      where rnum between #{startIndex} and #{endIndex}
+		from (select n.*, rownum as rnum from (select * from vwItem where shop_seq = #{seq} and price != 0) n)
+		where rnum between #{startIndex} and #{endIndex}
 	</select>
-	
-	<select id="getFullList" parameterType="map" resultType="com.project.dd.shop.item.domain.ItemDTO">
-	select *
-      from (select n.*, rownum as rnum from (select i.*, (select name as shop_name from tblshop where shop_seq = i.shop_seq) as shop_name,
-    (
-        SELECT
-            img
-        FROM
-            tblitemimg
-        WHERE
-                item_seq = i.item_seq
-            AND ROWNUM = 1
-    )             AS img from tblItem i where name not like '%종료%' order by item_seq DESC) n)
-      where rnum between #{startIndex} and #{endIndex}
+
+	<select id="getFullList" parameterType="map"
+		resultType="com.project.dd.shop.item.domain.ItemDTO">
+		select *
+		from (select n.*, rownum as rnum from (select * from vwItem
+		<if test="searchStatus == 'y'.toString()">
+	        where name like '%' || #{word} || '%' or shop_name like '%' || #{word} || '%'
+	    </if>
+		) n)
+		where rnum between #{startIndex} and #{endIndex}
 	</select>
+
+	<select id="checkCart"
+		parameterType="com.project.dd.shop.item.domain.ItemDTO"
+		resultType="com.project.dd.shop.item.domain.ItemDTO">
+		select u.cart_seq, ea from tblusercart u inner join tblcart
+		c on u.cart_seq = c.cart_seq where user_seq = #{user_seq} and item_seq
+		= #{item_seq}
+	</select>
+
+	<insert id="addCart"
+		parameterType="com.project.dd.shop.item.domain.ItemDTO">
+		insert into tblCart values (seqtblcart.nextVal, #{ea},
+		#{item_seq})
+	</insert>
+
+	<update id="editCart"
+		parameterType="com.project.dd.shop.item.domain.ItemDTO">
+		update tblcart set ea = #{ea} where cart_seq =
+		#{cart_seq}
+	</update>
+
+	<insert id="addUserCart"
+		parameterType="com.project.dd.shop.item.domain.ItemDTO">
+		insert into tblUserCart values (seqtblusercart.nextVal,
+		#{user_seq}, #{cart_seq})
+	</insert>
+
+	<update id="delItem" parameterType="String">
+		update tblItem set price = 0
+		where item_seq = #{seq}
+	</update>
 
 </mapper>

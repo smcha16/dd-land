@@ -34,13 +34,23 @@ public class GiftshopDAOImpl implements GiftshopDAO {
 	}
 	
 	@Override
-	public int getTotalCount() {
-		return mapper.getTotalCount();
+	public int getTotalCount(Map<String, String> map) {
+		return mapper.getTotalCount(map);
 	}
 	
 	@Override
 	public List<GiftshopImageDTO> getImgList() {
 		return mapper.getImgList();
+	}
+	
+	@Override
+	public void delItems(String seq) {
+		mapper.delItems(seq);
+	}
+	
+	@Override
+	public int delGiftshop(String seq) {
+		return mapper.delGiftshop(seq);
 	}
 	
 }
