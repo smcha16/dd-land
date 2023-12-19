@@ -95,6 +95,7 @@ a {text-decoration: none; cursor: pointer;color: #666}
     text-align: center;
 }
 
+
 .hidden-div {
 	display: none;
 	color: white;
@@ -131,6 +132,13 @@ a {text-decoration: none; cursor: pointer;color: #666}
 	appearance: none;
 	font-weight: bold;
 	box-shadow: 1px 6px 11px #000;
+}
+
+.centered-date {
+    font-size: 1.3rem;
+    /* font-weight: bold; */
+    text-align: center;
+    margin-top: 10px; /* Adjust the margin as needed */
 }
 
 .btn input::before, .btn input::after {
@@ -214,6 +222,8 @@ a {text-decoration: none; cursor: pointer;color: #666}
        background-size: cover;
        background-attachment: fixed;
     }
+    
+    
 
 #webtong_tab_type04 { display:table; width:100%; table-layout:fixed; border-left:1px solid #e7e7e7;position:relative;background-color: #f1f1f1}
 #webtong_tab_type04 li { display:table-cell; height:50px}
@@ -272,7 +282,7 @@ a {text-decoration: none; cursor: pointer;color: #666}
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
 							<div>${dto.name}</div>
-							<div>${dto.start_date}~${dto.end_date}</div>
+							<div class="centered-date">${dto.start_date}~${dto.end_date}</div>
 							<div class="hidden-div">설명</div>
 						</div>
 					</c:forEach>
@@ -290,7 +300,7 @@ a {text-decoration: none; cursor: pointer;color: #666}
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
 							<div>${dto.name}</div>
-							<div>${dto.start_date}~${dto.end_date}</div>
+							 <div class="centered-date">${dto.start_date}~${dto.end_date}</div>
 							<div class="hidden-div">설명</div>
 						</div>
 					</c:forEach>
