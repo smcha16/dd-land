@@ -43,7 +43,7 @@ public class RestaurantService {
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 
-		int totalPosts = dao.getTotalCount();
+		int totalPosts = dao.getTotalCount(map);
 		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
 
 		map.put("totalPosts", String.format("%d", totalPosts));
@@ -52,26 +52,21 @@ public class RestaurantService {
 		return map;
 	}
 
-	public Map<String, String> paging(int page, String solting) {
-		int pageSize = 0;
-
-		// user or admin 노출 목록 개수 설정
-		if (solting.equalsIgnoreCase("user")) {
-			pageSize = 9; // 나타났으면 하는 개수(user)
-
-		} else if (solting.equalsIgnoreCase("admin")) {
-			pageSize = 10; // 나타났으면 하는 개수(admin)
-		}
+	public Map<String, String> paging(int page, String word, String searchStatus, String solting) {
+		int pageSize = 10;
 
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
 
 		Map<String, String> map = new HashMap<String, String>();
 
+		map.put("searchStatus", searchStatus);
+		map.put("word", word);
+		
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 
-		int totalPosts = dao.getTotalCount();
+		int totalPosts = dao.getTotalCount(map);
 		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
 
 		map.put("totalPosts", String.format("%d", totalPosts));

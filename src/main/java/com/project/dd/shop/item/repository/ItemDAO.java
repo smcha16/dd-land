@@ -20,7 +20,7 @@ public interface ItemDAO {
 
 	List<ItemImgDTO> getImgList();
 
-	int getTotalCounts();
+	int getTotalCounts(Map<String, String> map);
 	
 	ItemDTO checkCart(ItemDTO dto);
 

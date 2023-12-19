@@ -14,7 +14,7 @@ public interface RestaurantDAO {
 
 	List<RestaurantImageDTO> restaurantImg(String seq);
 
-	int getTotalCount();
+	int getTotalCount(Map<String, String> map);
 
 	List<RestaurantImageDTO> getImgList();
 

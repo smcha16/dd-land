@@ -20,8 +20,7 @@ public interface ShopMapper {
 	@Select("select * from tblshopimg where shop_seq = #{seq}")
 	public List<GiftshopImageDTO> image(@Param("seq") String seq);
 	
-	@Select("select count(*) from vwGiftshop where lat != '0'")
-	public int getTotalCount();
+	public int getTotalCount(Map<String, String> map);
 
 	@Select("select * from tblShopImg")
 	public List<GiftshopImageDTO> getImgList();

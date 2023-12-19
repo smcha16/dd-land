@@ -49,8 +49,8 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 	
 	@Override
-	public int getTotalCounts() {
-		return mapper.getTotalCounts();
+	public int getTotalCounts(Map<String, String> map) {
+		return mapper.getTotalCounts(map);
 	}
 	
 	@Override

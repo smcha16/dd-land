@@ -19,8 +19,7 @@ public interface RestaurantMapper {
 	@Select("select * from tblRestaurantImg where restaurant_seq = #{seq}")
 	List<RestaurantImageDTO> image(@Param("seq") String seq);
 
-	@Select("select count(*) from vwRestaurant where lat != '0'")
-	int getTotalCount();
+	int getTotalCount(Map<String, String> map);
 
 	@Select("select * from tblRestaurantImg")
 	List<RestaurantImageDTO> getImgList();

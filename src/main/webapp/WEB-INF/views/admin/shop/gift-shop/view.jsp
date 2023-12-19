@@ -121,6 +121,11 @@
 		right: 20px;
 	}
 	
+	.table th:nth-child(1) { width: 10%; }
+.table th:nth-child(2) { width: 20%; }
+.table th:nth-child(3) { width: 55%; }
+.table th:nth-child(4) { width: 15%; }
+	
 	/* 모달 CSS */
 	#modal table.m-desc {
 		width: 100%;
@@ -159,12 +164,9 @@
 					<div class="col-12">
 
               			<div id="search" class="header">
-                  			<form class="search-form d-flex align-items-center" method="POST" action="#">
-                    			<input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                  			<form class="search-form d-flex align-items-center" method="GET" action="/dd/admin/shop/gift-shop/view.do">
+                    			<input type="text" name="word" placeholder="이름 검색" title="Enter search keyword" autocomplete="off">
                     			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                    			
-                    			<!-- 토큰 -->
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                   			</form>
               			</div>
 

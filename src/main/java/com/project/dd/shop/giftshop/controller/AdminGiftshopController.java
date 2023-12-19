@@ -21,10 +21,12 @@ public class AdminGiftshopController {
 	private GiftshopService service;
 
 	@GetMapping(value = "/admin/shop/gift-shop/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(@RequestParam(defaultValue = "1") int page, String word, Model model) {
 
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
+		
 		String solting = "admin";
-		Map<String, String> map = service.paging(page, solting);
+		Map<String, String> map = service.paging(page, word, searchStatus, solting);
 
 		List<ShopDTO> list = service.getList(map);
 

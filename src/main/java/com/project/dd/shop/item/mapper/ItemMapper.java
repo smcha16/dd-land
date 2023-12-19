@@ -28,8 +28,7 @@ public interface ItemMapper {
 	@Select("select * from tblItemImg")
 	List<ItemImgDTO> getImgList();
 
-	@Select("select count(*) from tblitem where price != 0")
-	int getTotalCounts();
+	int getTotalCounts(Map<String, String> map);
 
 	ItemDTO checkCart(ItemDTO dto);
 	

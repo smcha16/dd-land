@@ -3,30 +3,54 @@
 <mapper
 	namespace="com.project.dd.shop.restaurant.mapper.RestaurantMapper">
 
-	<select id="list" parameterType="map" resultType="com.project.dd.shop.restaurant.domain.RestaurantDTO">
-		select *
-      from (select n.*, rownum as rnum from (select * from vwRestaurant where lat != 0 order by restaurant_seq DESC) n)
-      where rnum between #{startIndex} and #{endIndex}
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(*) from vwRestaurant where lat != '0'
+		<if test="searchStatus == 'y'.toString()">
+			and name like '%' || #{word} || '%'
+		</if>
 	</select>
-	
-	<select id="checkNameDuplication" parameterType="com.project.dd.shop.restaurant.domain.RestaurantDTO" resultType="int">
+
+	<select id="list" parameterType="map"
+		resultType="com.project.dd.shop.restaurant.domain.RestaurantDTO">
+		select *
+		from (select n.*, rownum as rnum from (select * from vwRestaurant where
+		lat != 0
+		<if test="searchStatus == 'y'.toString()">
+			and name like '%' || #{word} || '%'
+		</if>
+		order by restaurant_seq DESC) n)
+		where rnum between #{startIndex} and #{endIndex}
+	</select>
+
+	<select id="checkNameDuplication"
+		parameterType="com.project.dd.shop.restaurant.domain.RestaurantDTO"
+		resultType="int">
 		select count(*) from tblRestaurant where name = #{name}
 	</select>
 
-	<insert id="addRestaurant" parameterType="com.project.dd.shop.restaurant.domain.RestaurantDTO">
-		insert into tblRestaurant values (seqtblrestaurant.nextVal, #{name}, #{menu}, #{time}, #{capacity}, #{tel})
+	<insert id="addRestaurant"
+		parameterType="com.project.dd.shop.restaurant.domain.RestaurantDTO">
+		insert into tblRestaurant values
+		(seqtblrestaurant.nextVal, #{name}, #{menu}, #{time}, #{capacity},
+		#{tel})
 	</insert>
-	
-	<insert id="addRestaurantLocation" parameterType="com.project.dd.shop.restaurant.domain.RestaurantDTO">
-		insert into tblRestaurantLocation values (seqrestaurantlocation.nextVal, #{lat}, #{lng}, #{restaurant_seq})
+
+	<insert id="addRestaurantLocation"
+		parameterType="com.project.dd.shop.restaurant.domain.RestaurantDTO">
+		insert into tblRestaurantLocation values
+		(seqrestaurantlocation.nextVal, #{lat}, #{lng}, #{restaurant_seq})
 	</insert>
-	
-	<insert id="addRestaurantImg" parameterType="com.project.dd.shop.restaurant.domain.RestaurantDTO">
-		insert into tblRestaurantImg values (seqtblrestaurantImg.nextVal, #{img}, #{restaurant_seq})
+
+	<insert id="addRestaurantImg"
+		parameterType="com.project.dd.shop.restaurant.domain.RestaurantDTO">
+		insert into tblRestaurantImg values
+		(seqtblrestaurantImg.nextVal, #{img}, #{restaurant_seq})
 	</insert>
-	
+
 	<update id="delRestaurant" parameterType="String">
-		update tblRestaurantLocation SET lat = 0, lng = 0 where restaurant_seq = #{seq}
+		update
+		tblRestaurantLocation SET lat = 0, lng = 0 where restaurant_seq =
+		#{seq}
 	</update>
 
 </mapper>
