@@ -36,6 +36,18 @@ public class AdminMemberDAOImpl implements AdminMemberDAO{
 	}
 
 
+	@Override
+	public int del(String user_seq) {
+		return mapper.del(user_seq);
+	}
+
+
+	@Override
+	public int edit(MemberDTO memberDTO) {
+		return mapper.edit(memberDTO);
+	}
+
+
 	
 	
 	

@@ -15,5 +15,11 @@ public interface AdminMemberDAO {
 
 	List<MemberDTO> getMemberList(Map<String, String> map);
 
+
+	int del(String user_seq);
+
+
+	int edit(MemberDTO memberDTO);
+
 }
 

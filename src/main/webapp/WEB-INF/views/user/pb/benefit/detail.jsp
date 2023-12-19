@@ -256,7 +256,7 @@
 
 <!-- 어트랙션 예약 버튼 -->
 <div id="reservation-btn">
-	<button type="button" onclick="location.href='/reservation.do?seq=${dto.attraction_seq}'">티켓 예매하기 <i class="bi bi-hand-index-thumb-fill"></i></button>
+	<button type="button" onclick="location.href='/dd/member/ticket/personal-reservation/view.do?seq=${dto.benefit_seq}'">티켓 예매하기 <i class="bi bi-hand-index-thumb-fill"></i></button>
 </div>
 
 <!-- ======= 상세정보 Section ======= -->
@@ -540,7 +540,7 @@
 
 <!-- 목록보기 버튼 -->
 <div id="button">
-	<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/activity/attraction/view.do';"><i class="bi bi-list"></i>목록</button>
+	<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/pb/benefit/view.do';"><i class="bi bi-list"></i>목록</button>
 </div>
 
 <!-- view2 Template 전용 JavaScript -->

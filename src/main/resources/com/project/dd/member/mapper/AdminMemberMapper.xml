@@ -5,7 +5,7 @@
 
 	<select id="search"
 		resultType="com.project.dd.register.domain.MemberDTO">
-		SELECT * FROM TBLUSER
+		SELECT user_seq, name, email, pw, tel, address, TO_CHAR(birth,'YYYY-MM-DD') AS birth, lv, ing from TBLUSER
 		WHERE
 		<if test='_parameter != null and _parameter != ""'>
 			UPPER(name) LIKE UPPER('%'||#{searchKeyword}||'%') OR

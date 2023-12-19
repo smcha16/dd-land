@@ -98,7 +98,7 @@
 							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="#" class="btn-buy">Buy Now</a>
+							<a href="/dd/member/ticket/personal-reservation/view.do" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -123,7 +123,7 @@
 							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="#" class="btn-buy">Buy Now</a>
+							<a href="/dd/member/ticket/personal-reservation/view.do" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -148,7 +148,7 @@
 							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="#" class="btn-buy">Buy Now</a>
+							<a href="/dd/member/ticket/personal-reservation/view.do" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -173,7 +173,7 @@
 							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="#" class="btn-buy">Buy Now</a>
+							<a href="/dd/member/ticket/personal-reservation/view.do" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -223,7 +223,7 @@
 							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="#" class="btn-buy">Buy Now</a>
+							<a href="/dd/member/ticket/group-reservation/view.do" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -248,7 +248,7 @@
 							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="#" class="btn-buy">Buy Now</a>
+							<a href=/dd/member/ticket/group-reservation/view.do" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -273,7 +273,7 @@
 							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="#" class="btn-buy">Buy Now</a>
+							<a href="/dd/member/ticket/group-reservation/view.do" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -298,7 +298,7 @@
 							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="#" class="btn-buy">Buy Now</a>
+							<a href="/dd/member/ticket/group-reservation/view.do" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>

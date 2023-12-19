@@ -49,4 +49,12 @@ Map<String, String> map = new HashMap<String, String>();
 		return dao.getMemberList(map);
 	}
 
+	public int del(String user_seq) {
+		return dao.del(user_seq);
+	}
+
+	public int edit(MemberDTO memberDTO) {
+		return dao.edit(memberDTO);
+	}
+
 }

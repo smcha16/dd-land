@@ -182,7 +182,7 @@
 /* list photo 변경 */
 .stats-counter {
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url("/dd/resources/benefit/benefit_background.png") center center;
+		url("/dd/resources/main/events-1.jpg") center center;
 	background-size: cover;
 	padding: 100px 0;
 	background-attachment: fixed;
@@ -206,6 +206,7 @@
 		</div>
 	</div>
 </section>
+
 <!-- End Stats Counter Section -->
 <!-- ======= Menu Section ======= -->
 <section id="menu" class="menu">
@@ -230,7 +231,7 @@
 						</div>
 					</c:forEach>
 					 --%>
-					<c:forEach items="${normalList}" var="dto">
+					 <c:forEach items="${normalList}" var="dto">
 						<div class="item" id="tab01" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
@@ -238,10 +239,10 @@
 							<div>${dto.start_date}~${dto.end_date}</div>
 							<div class="hidden-div">설명</div>
 						</div>
-					</c:forEach>
+					</c:forEach> 
 			
 		
-					<c:forEach items="${cardList}" var="dto">
+					 <c:forEach items="${cardList}" var="dto">
 						<div class="item hidden" id="tab02" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
 								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
@@ -249,7 +250,7 @@
 							<div>${dto.start_date}~${dto.end_date}</div>
 							<div class="hidden-div">설명</div>
 						</div>
-					</c:forEach>
+					</c:forEach> 
 
 
 				</div>
@@ -265,110 +266,25 @@
 
 <script>
 
-var itemElements = document.querySelectorAll('.item');
-var tabs = ["tab00", "tab01", "tab02"];
 
-function showTab(tabId) {
-    // 모든 탭 숨기기
-    tabs.forEach(function (tab) {
-        var tabElement = document.getElementById(tab);
-        if (tabElement) {
-            tabElement.style.display = "none";
-        }
-    });
 
-    // 선택한 탭 보이기
-    var selectedTab = document.getElementById(tabId);
-    if (selectedTab) {
-        selectedTab.style.display = "block";
+
+var checkbox = document.getElementById('close');
+var normalListTab = document.getElementById('tab01');
+var cardListTab = document.getElementById('tab02');
+
+checkbox.addEventListener('change', function() {
+    if (checkbox.checked) {
+        normalListTab.style.display = 'none';
+        cardListTab.style.display = 'block';
+    } else {
+        normalListTab.style.display = 'block';
+        cardListTab.style.display = 'none';
     }
-
-    // 해당 탭에 속하는 항목들의 hidden 클래스를 초기화
-    itemElements.forEach(function (item) {
-        var tabClass = item.getAttribute('data-category');
-        if (tabClass === tabId) {
-            item.classList.remove('hidden');
-        } else {
-            item.classList.add('hidden');
-        }
-    });
-}
-
-itemElements.forEach(function (item) {
-    item.addEventListener('mouseover', function () {
-        // 마우스 오버 시 hidden-div를 보이게 변경
-        item.querySelector('.hidden-div').style.display = 'block';
-    });
-
-    item.addEventListener('mouseout', function () {
-        // 마우스 아웃 시 hidden-div를 다시 숨김
-        item.querySelector('.hidden-div').style.display = 'none';
-    });
 });
 
-$('#close').change(function () {
-    console.log("Change event triggered");
-
-    itemElements.forEach(function (item) {
-        console.log("Item display:", item.style.display);
-
-        if (item.classList.contains('hidden')) {
-            console.log("Removing hidden class");
-            item.classList.remove('hidden');
-        } else {
-            console.log("Adding hidden class");
-            item.classList.add('hidden');
-        }
-    });
-});
-
-</script>
-
-</script>
-<script>
-
-
 	
 	
 	
-	
-	showTab("tab01");
-
-    document.getElementById("selTab00").addEventListener("click", function() {
-        event.preventDefault();
-        showTab("tab00");
-
-        document.getElementById("sel00").classList.add("on");
-        document.getElementById("sel01").classList.remove("on");
-        document.getElementById("sel02").classList.remove("on");
-    });
-
-    document.getElementById("selTab01").addEventListener("click", function() {
-        event.preventDefault();
-        showTab("tab01");
-
-        document.getElementById("sel01").classList.add("on");
-        document.getElementById("sel02").classList.remove("on");
-        document.getElementById("sel00").classList.remove("on");
-    });
-
-    document.getElementById("selTab02").addEventListener("click", function() {
-        event.preventDefault();
-        showTab("tab02");
-
-        document.getElementById("sel02").classList.add("on");
-        document.getElementById("sel01").classList.remove("on");
-        document.getElementById("sel00").classList.remove("on");
-    });
-
-    function showTab(tabId) {
-        // 모든 탭 숨기기
-        document.getElementById("tab00").style.display = "none";
-        document.getElementById("tab01").style.display = "none";
-        document.getElementById("tab02").style.display = "none";
-
-        // 선택한 탭 보이기
-        document.getElementById(tabId).style.display = "block";
-    } 
 	
 </script>
