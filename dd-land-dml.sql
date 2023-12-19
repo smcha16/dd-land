@@ -2750,6 +2750,18 @@ VALUES (seqtblBookUser.NEXTVAL, TO_DATE('2023-12-10', 'YYYY-MM-DD'), 5, 9, 3, 9)
 INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
 VALUES (seqtblBookUser.NEXTVAL, TO_DATE('2023-12-13', 'YYYY-MM-DD'), 5, 9, 3, 9);
 
+INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
+VALUES (seqtblBookUser.NEXTVAL, TO_DATE('2023-12-21', 'YYYY-MM-DD'), 2, 4, 3, 1);
+
+INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
+VALUES (seqtblBookUser.NEXTVAL, TO_DATE('2023-12-22', 'YYYY-MM-DD'), 1, 3, 3, 2);
+
+INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
+VALUES (seqtblBookUser.NEXTVAL, TO_DATE('2023-12-27', 'YYYY-MM-DD'), 3, 2, 3, 3);
+
+INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
+VALUES (seqtblBookUser.NEXTVAL, TO_DATE('2023-12-27', 'YYYY-MM-DD'), 5, 1, 3, 4);
+
 /* 코스 */
 INSERT INTO tblCourse (course_seq, name, img)
 VALUES (seqtblCourse.NEXTVAL, '고양이의 보은 코스', '고양이의 보은 코스.png');
@@ -2800,7 +2812,7 @@ VALUES (seqtblCWC.NEXTVAL, 'Y', 7);
 INSERT INTO tblCWC (cwc_seq, is_test, course_seq)
 VALUES (seqtblCWC.NEXTVAL, 'Y', 8);
 
--- 코스월드컵승리
+/* 코스월드컵승리 */
 INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
 VALUES (seqtblCWCWin.NEXTVAL, 520, 350, 1);
 
@@ -2825,7 +2837,7 @@ VALUES (seqtblCWCWin.NEXTVAL, 515, 210, 7);
 INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
 VALUES (seqtblCWCWin.NEXTVAL, 530, 160, 8);
 
--- 코스월드컵최종승리
+/* 코스월드컵최종승리 */
 INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
 VALUES (seqtblCWCFinalWin.NEXTVAL, 90, 1);
 
@@ -2898,26 +2910,6 @@ VALUES (seqtblMBTI.NEXTVAL, '놀이기구 제일 잘 타는(줄 아는) 사람',
 
 INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '오늘 타려고 계획했던 건 다 타야 하는 사람', 'ENTJ', 'ENTJ.png', '4', '16');
-
-/* 칭찬/불편/건의 */
-INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
-VALUES (seqtblVOC.NEXTVAL, '불편', '서비스1', '불편사항 1', '불편한 사항 내용 1', DEFAULT,'attach1.jpg', TO_DATE('2023-11-02', 'YYYY-MM-DD'), '답변 내용 1', 1);
-
-INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
-VALUES (seqtblVOC.NEXTVAL, '건의', '서비스2', '건의사항 2', '건의 내용 2', DEFAULT, NULL, TO_DATE('2023-11-10', 'YYYY-MM-DD'), '답변 내용 2', 2);
-
-INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
-VALUES (seqtblVOC.NEXTVAL, '불편', '서비스3', '불편사항 3', '불편한 사항 내용 3', DEFAULT, 'attach3.jpg', TO_DATE('2023-11-20', 'YYYY-MM-DD'), '답변 내용 3', 3);
-
-/* 이용문의 */
-INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '문의유형1', '문의 제목 1', '문의 내용 1', DEFAULT,'attach1.pdf', '답변 내용 1', 1);
-
-INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '문의유형2', '문의 제목 2', '문의 내용 2', DEFAULT, NULL, '답변 내용 2', 2);
-
-INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '문의유형3', '문의 제목 3', '문의 내용 3', DEFAULT, 'attach3.doc', '답변 내용 3', 3);
 
 /* FAQ */
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '스튜디오를 나갔다가 다시 들어올 수 있나요?', 'DD Studio에서는 스튜디오 입장 후 퇴장하시면 원칙적으로 재입장이 불가능합니다.');
@@ -3140,6 +3132,12 @@ VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-06', 'YYYY-MM-DD'), TO_DATE('
 
 INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
 VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-06', 'YYYY-MM-DD'), TO_DATE('2023-12-14', 'YYYY-MM-DD'), 6, 51000, 8, 6);
+
+INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-20', 'YYYY-MM-DD'), TO_DATE('2023-12-29', 'YYYY-MM-DD'), 1, 10000, 2, 3);
+
+INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-19', 'YYYY-MM-DD'), TO_DATE('2023-12-27', 'YYYY-MM-DD'), 2, 20000, 1, 4);
 /* 회원/예매 */
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
 VALUES (seqtblUserBook.NEXTVAL, 1, 1);
@@ -3166,30 +3164,10 @@ INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
 VALUES (seqtblUserBook.NEXTVAL, 3, 6);
 
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
-VALUES (seqtblUserBook.NEXTVAL, 3, 21);
+VALUES (seqtblUserBook.NEXTVAL, 3, 9);
 
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
-VALUES (seqtblUserBook.NEXTVAL, 3, 22);
-
-/* 리뷰 */
-INSERT INTO tblReview (review_seq, subject, content, readcount, user_book_seq)
-VALUES (seqtblReview.NEXTVAL, '좋은 서비스', '서비스가 매우 만족스러웠습니다.', 10, 1);
-
-INSERT INTO tblReview (review_seq, subject, content, readcount, user_book_seq)
-VALUES (seqtblReview.NEXTVAL, '관람 후기', '영화가 정말 재밌었습니다.', 15, 2);
-
-INSERT INTO tblReview (review_seq, subject, content, readcount, user_book_seq)
-VALUES (seqtblReview.NEXTVAL, '추천해요', '아이템이 너무 귀여워서 추천합니다.', 8, 3);
-
-/* 리뷰이미지 */
-INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
-VALUES (seqtblReviewImg.NEXTVAL, 'reviewimg1.png', 1);
-
-INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
-VALUES (seqtblReviewImg.NEXTVAL, 'reviewimg2.png', 2);
-
-INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
-VALUES (seqtblReviewImg.NEXTVAL, 'reviewimg3.png', 3);
+VALUES (seqtblUserBook.NEXTVAL, 3, 10);
 
 /* 아이템 */
 insert into tblitem values (seqtblitem.nextval, 'White 드레스', '하얀 공주님 드레스', '200000', '1');
@@ -3255,7 +3233,16 @@ INSERT INTO tblBuy (buy_seq, buy_date, ea, price, item_seq)
 VALUES (seqtblBuy.NEXTVAL, TO_DATE('2023-11-10', 'YYYY-MM-DD'), 1,  234234, 2);
 
 INSERT INTO tblBuy (buy_seq, buy_date, ea, price, item_seq)
-VALUES (seqtblBuy.NEXTVAL, TO_DATE('2023-11-15', 'YYYY-MM-DD'), 3, 234324, 3);
+VALUES (seqtblBuy.NEXTVAL, TO_DATE('2023-11-15', 'YYYY-MM-DD'), 1, 234324, 3);
+
+INSERT INTO tblBuy (buy_seq, buy_date, ea, price, item_seq)
+VALUES (seqtblBuy.NEXTVAL, TO_DATE('2023-11-21', 'YYYY-MM-DD'), 2, 56000, 8);
+
+INSERT INTO tblBuy (buy_seq, buy_date, ea, price, item_seq)
+VALUES (seqtblBuy.NEXTVAL, TO_DATE('2023-12-03', 'YYYY-MM-DD'), 3, 19000, 10);
+
+INSERT INTO tblBuy (buy_seq, buy_date, ea, price, item_seq)
+VALUES (seqtblBuy.NEXTVAL, TO_DATE('2023-12-15', 'YYYY-MM-DD'), 5, 35000, 9);
 
 /* 회원/구매 */
 INSERT INTO tblUserBuy (user_buy_seq, user_seq, buy_seq)
@@ -3266,6 +3253,15 @@ VALUES (seqtblUserBuy.NEXTVAL, 2, 2);
 
 INSERT INTO tblUserBuy (user_buy_seq, user_seq, buy_seq)
 VALUES (seqtblUserBuy.NEXTVAL, 3, 3);
+
+INSERT INTO tblUserBuy (user_buy_seq, user_seq, buy_seq)
+VALUES (seqtblUserBuy.NEXTVAL, 3, 4);
+
+INSERT INTO tblUserBuy (user_buy_seq, user_seq, buy_seq)
+VALUES (seqtblUserBuy.NEXTVAL, 3, 5);
+
+INSERT INTO tblUserBuy (user_buy_seq, user_seq, buy_seq)
+VALUES (seqtblUserBuy.NEXTVAL, 3, 6);
 
 /* 위치 */
 --어트랙션 위치
