@@ -837,7 +837,7 @@ SELECT
     S.name as shopName,
     I.name as itemName,
     B.ea,
-    I.price,
+    B.price,
     B.buy_seq,
     To_char(B.buy_date, 'yyyy-mm-dd') as buy_date,
     UB.user_buy_seq
