@@ -22,11 +22,13 @@ public class UserAttractionController {
 	private AttractionService service;
 	
 	@GetMapping(value = "/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
+		
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
 		
 		//페이징
 		String solting = "user";
-		Map<String, String> map = service.paging(page, solting);
+		Map<String, String> map = service.paging(searchStatus, word, page, solting);
 		
 		//Attraction 목록(금일 기준 운영 & 운영종료 제외)
 		List<AttractionDTO> list = service.getAttractionList(map);
