@@ -30,3 +30,7 @@ select * from tblreview;
 select * from tblreviewimg;
 
 select max(review_seq) as review_seq from tblReview;
+
+select * from tblbuy;
+select * from tblitem;
+select * from tbluser;

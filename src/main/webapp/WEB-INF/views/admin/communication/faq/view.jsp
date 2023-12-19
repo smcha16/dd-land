@@ -107,7 +107,7 @@
 
               			<div id="search" class="header">
                   			<form method="GET" action="/dd/admin/communication/faq/view.do" class="search-form d-flex align-items-center">
-                    			<input type="text" name="word" id="search-field" placeholder="제목을 입력하세요." autocomplete="off">
+                    			<input type="text" name="word" id="search-field" placeholder="질문을 입력하세요." autocomplete="off">
                     			<button type="submit"><i class="bi bi-search"></i></button>
                   			</form>
               			</div>

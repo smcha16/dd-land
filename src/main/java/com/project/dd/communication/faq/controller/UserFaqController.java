@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.dd.communication.faq.domain.FaqDTO;
 import com.project.dd.communication.faq.service.FaqService;
 
+/**
+ * 사용자용 FAQ 컨트롤러 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Controller
 @RequestMapping("/user/communication/faq")
 public class UserFaqController {
@@ -20,8 +25,15 @@ public class UserFaqController {
 	@Autowired
 	private FaqService service;
 	
-	/* 목록 */
-	
+	/**
+	 * FAQ 목록을 보여주는 메서드입니다.
+	 *
+	 * @param type FAQ 유형
+	 * @param word 검색어
+	 * @param page 페이지 번호
+	 * @param model Spring의 Model 객체
+	 * @return FAQ 목록을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "이용정보") String type, String word, @RequestParam(defaultValue = "1") int page, Model model) {
 

@@ -280,6 +280,7 @@ div#reservation-btn>button {
 		<input type="hidden" name="item_seq" value="${dto.item_seq }">
 		<input type="hidden" name="name" value="${dto.name }">
 		<input type="hidden" name="price" value="${dto.price }">
+		<input type="hidden" name="selectedItem" value="1">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		</form>
 	</div>

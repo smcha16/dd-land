@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.dd.purchase.domain.PurchaseDTO;
 import com.project.dd.purchase.mapper.PurchaseMapper;
+import com.project.dd.shop.item.domain.ItemDTO;
 
 @Repository
 @Primary
@@ -29,6 +30,11 @@ public class PurchaseDAOImpl implements PurchaseDAO {
 	@Override
 	public int addUserBuy(Map<String, String> map) {
 		return mapper.addUserBuy(map);
+	}
+	
+	@Override
+	public ItemDTO getCart(String seq) {
+		return mapper.getCart(seq);
 	}
 	
 }

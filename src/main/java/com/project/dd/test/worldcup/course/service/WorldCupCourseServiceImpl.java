@@ -19,6 +19,28 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
 import com.project.dd.test.worldcup.course.repository.WorldCupCourseDAO;
 
+/**
+ * 월드컵 코스와 관련된 비즈니스 로직을 처리하는 서비스 클래스입니다.
+ *
+ * 1. 코스의 총 개수 조회
+ * 2. 코스 테스트 횟수 조회
+ * 3. 코스 리스트 조회 (페이징 포함)
+ * 4. 코스의 테스트 상태 업데이트
+ * 5. 월드컵 최종 우승 코스의 총 개수 조회
+ * 6. 남은 코스 중에서 랜덤으로 두 개 선택
+ * 7. 코스 추가 및 관련 통계 업데이트
+ * 8. 코스 경기 횟수 업데이트
+ * 9. 코스 승리 횟수 업데이트
+ * 10. 코스 최종 우승 횟수 업데이트
+ * 11. 코스명 중복 체크
+ * 12. 코스 상세 정보 조회
+ * 13. 코스 수정
+ * 14. 코스 삭제
+ * 15. 코스 목록 조회
+ * 16. 코스명 목록 조회
+ * 
+ * @author 이승원
+ */
 @Service
 @Primary
 public class WorldCupCourseServiceImpl implements WorldCupCourseService {
@@ -26,17 +48,36 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 	@Autowired
 	private WorldCupCourseDAO dao;
 
+	/**
+	 * 전체 코스의 개수를 조회합니다.
+	 *
+	 * @return 전체 코스 개수
+	 */
 	@Override
 	public int getTotalCount() {
 		return dao.getTotalCount();
 	}
 	
+	/**
+	 * 코스 테스트 횟수를 조회합니다.
+	 *
+	 * @return 코스 테스트 횟수
+	 */
 	@Override
 	public int getTestCount() {
 		return dao.getTestCount();
 	}
 	
-	// 페이징 메서드
+	/**
+	 * 코스의 페이징 처리를 위한 맵을 생성합니다.
+	 *
+	 * @param solting       정렬 기준
+	 * @param searchStatus  검색 상태
+	 * @param word          검색어
+	 * @param page          현재 페이지 번호
+	 * @return 페이징 처리를 위한 맵
+	 */
+	@Override
 	public Map<String, String> paging(String solting, String searchStatus, String word, int page) {
 		
 		Map<String, String> map = new HashMap<String, String>();
@@ -61,16 +102,33 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 		return map;
 	}
 
+	/**
+	 * 전체 코스 목록을 조회합니다.
+	 *
+	 * @param map 페이징 및 검색 정보를 담고 있는 맵
+	 * @return 전체 코스 목록
+	 */
 	@Override
 	public List<CourseDTO> getAllCourse(Map<String, String> map) {
 		return dao.getAllCourse(map);
 	}
 
+	/**
+	 * 코스의 테스트 상태를 업데이트합니다.
+	 *
+	 * @param map 테스트 상태를 업데이트하기 위한 맵
+	 */
 	@Override
 	public void updateCourseStatus(Map<String, String> map) {
 		dao.updateCourseStatus(map);
 	}
 	
+	/**
+	 * 코스의 상세 정보를 조회합니다.
+	 *
+	 * @param courseSeq 조회할 코스의 일련번호
+	 * @return          코스의 상세 정보
+	 */
 	@Override
 	public int addCourse(CourseDTO dto, MultipartFile image, HttpServletRequest req) {
 		

@@ -17,6 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.dd.communication.lost.domain.LostPropertyDTO;
 import com.project.dd.communication.lost.service.LostPropertyService;
 
+/**
+ * 관리자용 분실물 컨트롤러 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Controller
 @RequestMapping("/admin/communication/lost-property")
 public class AdminLostController {
@@ -24,8 +29,17 @@ public class AdminLostController {
 	@Autowired
 	private LostPropertyService service;
 	
-	/* 목록 */
-	
+	/**
+	 * 분실물 목록을 보여주는 메서드입니다.
+	 *
+	 * @param category 분실물 카테고리
+	 * @param word 검색어
+	 * @param start 검색 시작일
+	 * @param end 검색 종료일
+	 * @param page 페이지 번호
+	 * @param model Spring의 Model 객체
+	 * @return 분실물 목록을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(String category, String word, String start, String end, @RequestParam(defaultValue = "1") int page, Model model) {
 		
@@ -43,8 +57,11 @@ public class AdminLostController {
 
 	}
 	
-	/* 추가 */
-	
+	/**
+	 * 분실물을 추가하는 폼을 보여주는 메서드입니다.
+	 *
+	 * @return 분실물 추가하는 폼을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/add.do")
 	public String add() {
 
@@ -52,6 +69,14 @@ public class AdminLostController {
 
 	}
 	
+	/**
+	 * 분실물을 추가하는 메서드입니다.
+	 *
+	 * @param dto 추가할 분실물의 DTO 객체
+	 * @param req HttpServletRequest 객체
+	 * @param doc 첨부 파일
+	 * @return 분실물 목록을 보여주는 뷰로의 리다이렉트 경로 또는 분실물 추가 폼의 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/addok.do")
 	public String addOk(LostPropertyDTO dto, HttpServletRequest req, MultipartFile doc) {
 		
@@ -71,8 +96,13 @@ public class AdminLostController {
 
 	}
 	
-	/* 수정 */
-	
+	/**
+	 * 분실물을 수정하는 폼을 보여주는 메서드입니다.
+	 *
+	 * @param seq 수정할 분실물의 일련번호
+	 * @param model Spring의 Model 객체
+	 * @return 분실물 수정 폼을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/edit.do")
 	public String edit(String seq, Model model) {
 		
@@ -84,6 +114,14 @@ public class AdminLostController {
 
 	}
 	
+	/**
+	 * 분실물을 수정하는 메서드입니다.
+	 *
+	 * @param dto 수정할 분실물의 DTO 객체
+	 * @param req HttpServletRequest 객체
+	 * @param doc 첨부 파일
+	 * @return 분실물 목록을 보여주는 뷰로의 리다이렉트 경로 또는 분실물 수정 폼의 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/editok.do")
 	public String editOk(LostPropertyDTO dto, HttpServletRequest req, MultipartFile doc) {
 		
@@ -103,8 +141,12 @@ public class AdminLostController {
 
 	}
 	
-	/* 삭제 */
-	
+	/**
+	 * 여러 개의 분실물을 삭제하는 메서드입니다.
+	 *
+	 * @param seqList 삭제할 분실물의 일련번호 배열
+	 * @return 분실물 목록을 보여주는 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/del.do")
 	public String del(String[] seqList) {
 
