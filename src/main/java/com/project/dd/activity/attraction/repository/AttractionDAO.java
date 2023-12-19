@@ -15,7 +15,7 @@ public interface AttractionDAO {
 
 	List<AttractionImgDTO> getAttractionImgList(String seq);
 
-	int getTotalCount();
+	int getTotalCount(Map<String, String> map);
 
 	int checkLocationDuplication(AttractionDTO dto);
 
