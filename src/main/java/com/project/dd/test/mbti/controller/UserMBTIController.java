@@ -21,7 +21,7 @@ import com.project.dd.test.mbti.service.MBTIService;
  * @author 이승원
  */
 @Controller
-@RequestMapping("/admin/test/mbti")
+@RequestMapping("/user/test/mbti")
 public class UserMBTIController {
 
 	@Autowired

@@ -31,7 +31,7 @@ import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
  * @author 이승원
  */
 @Controller
-@RequestMapping("/admin/test/worldcup/course")
+@RequestMapping("/user/test/worldcup/course")
 public class UserWorldCupCourseController {
 
     @Autowired

@@ -31,7 +31,7 @@ import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService
  * @author 이승원
  */
 @Controller
-@RequestMapping("/admin/test/worldcup/attraction")
+@RequestMapping("/user/test/worldcup/attraction")
 public class UserWorldCupAttractionController {
 
 	@Autowired
