@@ -2088,22 +2088,22 @@ VALUES (seqtblTheaterClose.NEXTVAL, TO_DATE('2023-11-22', 'YYYY-MM-DD'), TO_DATE
 
 /* 영화 */
 INSERT INTO tblMovie (movie_seq, name, story, runningtime, img, preview)
-VALUES (seqtblMovie.NEXTVAL, '천공의 성 라퓨타', '줄거리', 120, '천공의성라퓨타_poster.jpg', 'preview1.mp4');
+VALUES (seqtblMovie.NEXTVAL, '천공의 성 라퓨타', '조용한 밤하늘을 가로지르는 한 척의 비행선이 해적의 습격을 받는다. 그 때, 비행선에 타고 있던 한 소녀가 떨어진 목걸이를 목에 걸고, 해적에게 잡히지 않게 피하다가 비행선에서 떨어지게 된다. 한편 마을의 광산에서 일하는 소년 파즈는 갑자기 말썽을 일으키는 기계를 수습하다가 하늘에서 한 소녀가 푸른 빛과 함께 천천히 떨어지는 것을 목격한다. 깨어난 소녀는 파즈와 곧 친해지고, 천공의 섬 라퓨타에 대한 이야기를 시작한다.', 120, '천공의성라퓨타_poster.jpg', 'preview1.mp4');
 
 INSERT INTO tblMovie (movie_seq, name, story, runningtime, img, preview)
-VALUES (seqtblMovie.NEXTVAL, '마녀배달부 키키', '줄거리',  105, '마녀배달부키키_poster.jpg', 'preview2.mp4');
+VALUES (seqtblMovie.NEXTVAL, '마녀배달부 키키', '13살 소녀 키키는 뛰어난 마녀가 되기 위해 마을 전통에 따라 1년간의 홀로서기를 하러 집을 나선다. 바다가 보이는 항구 도시에 도착한 키키는 생계를 유지할 방법을 찾던 중 우연한 기회로 빵집에서 일자리를 얻는다. 빗자루를 타고 다니는 배달부로 일을 시작한 키키는 다양한 사람들과 사건을 마주하며 인간 세계에 적응하는 한편, 자신의 존재에 물음을 던지며 한층 성장해 나아간다.',  105, '마녀배달부키키_poster.jpg', 'preview2.mp4');
 
 INSERT INTO tblMovie (movie_seq, name, story, runningtime, img, preview)
-VALUES (seqtblMovie.NEXTVAL, '하울의 움직이는 성', '줄거리',  130, '하울의움직이는성_poster.jpg', 'preview3.mp4');
+VALUES (seqtblMovie.NEXTVAL, '하울의 움직이는 성', '자신의 아름다움을 모른 채 평범하게 살던 한 소녀는 마녀의 질투로 저주에 걸려 할머니가 되고 만다. 소녀는 마녀의 저주를 풀기 위해 마법사 하울을 찾아 떠나고 마침내 어딘가는 조금 이상해 보이는 하울의 움직이는 성에 들어가게 된다. 그리고 청소부 할머니로 위장한 소녀는 하울과 악마 캘시퍼 그리고 하울의 제자와 오묘한 동거를 시작한다.',  130, '하울의움직이는성_poster.jpg', 'preview3.mp4');
 
 INSERT INTO tblMovie (movie_seq, name, story, runningtime, img, preview)
-VALUES (seqtblMovie.NEXTVAL, '벼랑위의 포뇨', '줄거리',  120, '벼랑위의포뇨_poster.jpg', 'preview1.mp4');
+VALUES (seqtblMovie.NEXTVAL, '벼랑위의 포뇨', '소스케는 우연히 유리병에 갇힌 물고기 포뇨를 발견하고 빠져나올 수 있게 도와준다. 그리고 포뇨는 다시 한번 소스케를 만나기 위해 육지로 탈출하고 인간 소녀의 모습으로 소스케 앞에 나타난다. 하지만 포뇨가 사라졌다는 것을 알게 된 포뇨의 아빠 후지모토는 포뇨를 찾기 위해 육지로 향한다.',  120, '벼랑위의포뇨_poster.jpg', 'preview1.mp4');
 
 INSERT INTO tblMovie (movie_seq, name, story, runningtime, img, preview)
-VALUES (seqtblMovie.NEXTVAL, '고양이의 보은', '줄거리',  105, '고양이의보은_poster.jpg', 'preview2.mp4');
+VALUES (seqtblMovie.NEXTVAL, '고양이의 보은', '평범한 여고생 하루는 지루한 일상을 보내던 중 우연히 한 고양이를 구해주게 된다. 그런데 이 고양이는 보통 고양이가 아니었다. 바로 고양이 왕국의 룬 왕자였던 것이다. 한편, 하루는 룬 왕자를 구해준 보답으로 룬 왕자와 결혼해 달라는 고양이들의 요청을 받게 된다.',  105, '고양이의보은_poster.jpg', 'preview2.mp4');
 
 INSERT INTO tblMovie (movie_seq, name, story, runningtime, img, preview)
-VALUES (seqtblMovie.NEXTVAL, '이웃집 토토로', '줄거리',  130, '이웃집토토로_poster.jpg', 'preview3.mp4');
+VALUES (seqtblMovie.NEXTVAL, '이웃집 토토로', '사츠키와 메이는 어머니의 병으로 인해 아버지와 도시에서 시골로 이사를 오게 된다. 언니인 사츠키가 학교에 간 사이, 혼자 숲속에서 놀던 메이는 우연히 도토리를 지고 가던 토토로를 발견해 따라간다. 이후 사츠키와 메이는 토토로와 함께 숲속에서 즐거운 시간을 보낸다. 시간이 지난 어느 날, 병원에서 위급한 소식이 들려 오자 아버지는 급히 버스를 타고 어머니 병원으로 향하는 한편, 자신도 엄마한테 가겠다고 떼쓰던 메이가 행방불명된다.',  130, '이웃집토토로_poster.jpg', 'preview3.mp4');
 
 /* 영화상영 */
 INSERT INTO tblMoviePlay (movie_play_seq, movie_seq, time, start_date, end_date, theater_seq)
