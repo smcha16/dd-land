@@ -2812,7 +2812,7 @@ VALUES (seqtblCWC.NEXTVAL, 'Y', 7);
 INSERT INTO tblCWC (cwc_seq, is_test, course_seq)
 VALUES (seqtblCWC.NEXTVAL, 'Y', 8);
 
--- 코스월드컵승리
+/* 코스월드컵승리 */
 INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
 VALUES (seqtblCWCWin.NEXTVAL, 520, 350, 1);
 
@@ -2837,7 +2837,7 @@ VALUES (seqtblCWCWin.NEXTVAL, 515, 210, 7);
 INSERT INTO tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
 VALUES (seqtblCWCWin.NEXTVAL, 530, 160, 8);
 
--- 코스월드컵최종승리
+/* 코스월드컵최종승리 */
 INSERT INTO tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
 VALUES (seqtblCWCFinalWin.NEXTVAL, 90, 1);
 

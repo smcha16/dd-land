@@ -526,7 +526,7 @@ h3 {
 
 
 
-
+<%-- 
 <div class="form-buttons">
 
 	
@@ -593,7 +593,7 @@ h3 {
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}">
 	</form>
-</div>
+</div> --%>
 
 <script>
 	function submit() {
