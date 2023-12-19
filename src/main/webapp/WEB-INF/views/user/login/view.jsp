@@ -589,7 +589,7 @@ h3 {
 	<form method="POST" action="/dd/login">
 		<input type="hidden" name="username" value="kim@kakao.com"> <input
 			type="hidden" name="password" value="kim1111!">
-		<button type="submit" class="login button user">김형우도도리</button>
+		<button type="submit" class="login button user">김형우</button>
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}">
 	</form>

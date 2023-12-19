@@ -138,6 +138,71 @@ button:hover {
 #content{
 height: 200px;
 }
+
+#cancelBtn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #fff;
+    background-color: #007bff;
+    margin-top: 80px;
+}
+
+#cancelBtn:hover {
+    background-color: #0056b3;
+}
+
+#add-form {
+  width: 100%;
+  padding: 35px 40px 40px;
+  border-collapse: separate;
+  border-radius: 10px;
+  margin: 50px auto 0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+#add-form th,
+#add-form td {
+  height: 70px;
+  color: #555;
+}
+#add-form th {
+  width: 20%;
+  font-size: 1.1rem;
+}
+#add-form .required::after {
+  content: " *";
+  color: #f00;
+}
+#add-form select,
+#add-form input,
+#add-form textarea {
+  border: 1px solid #ccc;
+}
+#add-form tr:nth-child(7) td > div {
+  height: 170px;
+  padding: 20px 30px;
+  overflow-y: scroll;
+  overflow: auto;
+}
+#add-form tr:nth-child(7) td > div > div {
+  text-align: right;
+}
+#add-form tr:nth-child(7) td > div > div > label {
+  font-weight: bold;
+  margin: 10px 10px 0;
+}
+#agree {
+  margin-top: 14px;
+}
+.message {
+  font-size: 14px;
+  color: #f00;
+  padding: 10px 5px;
+}
 </style>
 
 <!-- ======= Main ======= -->
@@ -165,15 +230,31 @@ height: 200px;
 								</nav>
 
 								<form action="/dd/member/mypage/review/editok.do" method="post">
-									<div class="form-group">
-										<label for="title">제목:</label> 
-										<input type="text" id="subject" name="subject" value="${dto.subject}" required>
-									</div>
-									<div class="form-group">
-										<label for="content">내용:</label>
-										<textarea id="content" name="content" required>${dto.content}</textarea>
-									</div>
-									<button type="submit">작성</button>
+									<table id="add-form">
+
+										<tr>
+											<th class="required">제목</th>
+											<td><input type="text" name="subject" value="${dto.subject}"
+												class="form-control" required
+												oninvalid="this.setCustomValidity('제목을 입력해주세요.')"> <span
+												id="subject-message" class="message" style="display: none;"></span>
+											</td>
+										</tr>
+										<tr>
+											<th class="required">내용</th>
+											<td><textarea name="content" class="form-control"
+													rows="15" required oninvalid="this.setCustomValidity('내용을 입력해주세요.')">${dto.content}</textarea>
+												<span id="content-message" class="message"
+												style="display: none;"></span></td>
+										</tr>
+										<tr>
+											<th>첨부파일</th>
+											<td><input type="file" name="imgs" class="form-control" multiple></td>
+										</tr>
+
+									</table>
+									
+									<button type="submit" id="cancelBtn">작성</button>
 									
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}">

@@ -116,29 +116,15 @@ th {
 	background-color: #012970;
 	border-color: #012970;
 }
-#cancelBtn {
-    display: block;
-    margin: 20px auto 0;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    color: #fff;
-    background-color: #007bff;
-    margin-top: 80px;
-}
 
-#cancelBtn:hover {
-    background-color: #0056b3;
-}
 </style>
 
 <!-- ======= Main ======= -->
 <main id="main" class="main">
 
+
 	<div class="pagetitle">
-		<h1>어트랙션 예약 내역</h1>
+		<h1>이전 어트랙션 예약 내역</h1>
 	</div>
 
 	<section class="section">
@@ -151,7 +137,6 @@ th {
 							<div class="card-body">
 
 
-
 								<nav class="d-flex justify-content-end">
 									<ol class="breadcrumb">
 										<!-- <li class="breadcrumb-item"><a href="index.html">추가</a></li>
@@ -160,35 +145,27 @@ th {
 									</ol>
 								</nav>
 
-								<form action="/dd/member/mypage/attraction/delete.do"
-									method="post" id="cancelForm">
-									<table class="table">
-										<thead>
+
+								<table class="table">
+									<thead>
+										<tr>
+											<th>어트랙션</th>
+											<th>예약날짜</th>
+											<th>예약시간</th>
+											<th>예약인원</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${plist}" var="dto">
 											<tr>
-												<th></th>
-												<th>어트랙션</th>
-												<th>예약날짜</th>
-												<th>예약시간</th>
-												<th>예약인원</th>
+												<td>${dto.name}</td>
+												<td>${dto.regdate}</td>
+												<td>${dto.book_time}</td>
+												<td>${dto.capacity}</td>
 											</tr>
-										</thead>
-										<tbody>
-											<c:forEach items="${list}" var="dto">
-												<tr>
-													<td><input type="checkbox" name="selectedAttraction"
-														value="${dto.book_user_seq}"></td>
-													<td>${dto.name}</td>
-													<td>${dto.regdate}</td>
-													<td>${dto.book_time}</td>
-													<td>${dto.capacity}</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-									<button type="button" id="cancelBtn" onclick="deleteBook()">예약취소</button>
-									<input type="hidden" name="${_csrf.parameterName}"
-										value="${_csrf.token}">
-								</form>
+										</c:forEach>
+									</tbody>
+								</table>
 
 							</div>
 
@@ -208,7 +185,7 @@ th {
 						</c:when>
 						<c:otherwise>
 							<li class="page-item"><a class="page-link"
-								href="/dd/member/mypage/attraction/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+								href="/dd/member/mypage/attraction/pview.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -219,20 +196,10 @@ th {
 </main>
 
 <script>
-function deleteBook() {
-	// 선택된 체크박스가 있다면
-	if ($("input[name='selectedAttraction']:checked").length > 0) {
-
-		var result = confirm("정말 예약을 취소하시겠습니까?");
-		if (result) {
-
-			// 삭제 form 설정 및 제출
-			$('#cancelForm').attr('action',
-					'/dd/member/mypage/attraction/delete.do');
-			$('#cancelForm').submit();
+	$('#delete-button').click(function(e) {
+		var result = confirm("정말 예매를 취소하시겠습니까?");
+		if (!result) {
+			e.preventDefault(); // 확인을 누르지 않으면 기본 동작(폼 제출)을 막음
 		}
-	} else{
-		alert("취소할 어트랙션을 선택해주세요.");
-	}
-}
+	});
 </script>

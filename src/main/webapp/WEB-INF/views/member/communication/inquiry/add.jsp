@@ -120,14 +120,14 @@
 			<tr>
 				<th class="required">제목</th>
 				<td>
-					<input type="text" name="subject" class="form-control" required oninvalid="this.setCustomValidity(' ')">
+					<input type="text" name="subject" class="form-control" required oninvalid="this.setCustomValidity('제목을 입력해주세요.')">
 					<span id="subject-message" class="message" style="display: none;"></span>
 				</td>
 			</tr>
 			<tr>
 				<th class="required">내용</th>
 				<td>
-					<textarea name="content" class="form-control" rows="15" required oninvalid="this.setCustomValidity(' ')"></textarea>
+					<textarea name="content" class="form-control" rows="15" required oninvalid="this.setCustomValidity('내용을 입력해주세요.')"></textarea>
 					<span id="content-message" class="message" style="display: none;"></span>
 				</td>
 			</tr>

@@ -101,6 +101,7 @@ th {
 	justify-content: center;
 	margin-top: 40px;
 }
+
 /* 수정 */
 .containers {
 	width: 80%;
@@ -122,22 +123,19 @@ th {
 	margin-bottom: 5px;
 }
 
-.form-group input[type="text"], .form-group input[type="password"] {
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="tel"],
+.form-group input[type="file"],
+.form-group input[type="email"] {
 	width: 100%;
-	padding: 10px;
+	padding: 12px;
 	border: 1px solid #ccc;
-	border-radius: 3px;
+	border-radius: 5px;
 }
 
 .form-group input[type="password"] {
 	margin-bottom: 10px;
-}
-
-.form-group input[type="tel"] {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 3px;
 }
 
 .address-group {
@@ -148,9 +146,9 @@ th {
 
 .address-group input[type="text"] {
 	flex: 1;
-	padding: 10px;
+	padding: 12px;
 	border: 1px solid #ccc;
-	border-radius: 3px;
+	border-radius: 5px;
 }
 
 .btn-container {
@@ -159,17 +157,41 @@ th {
 }
 
 .btn {
-	padding: 10px 20px;
+	padding: 12px 24px;
 	background-color: #0074cc;
 	color: #fff;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 .btn.cancel {
 	background-color: #ccc;
 }
+
+.btn:hover {
+	background-color: #005ba5;
+}
+
+.buttonCheck {
+	padding: 8px 16px;
+	background-color: #ccc;
+	color: #333;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+	margin-top: 10px; /* 여유 공간 조절 */
+}
+
+.buttonCheck:hover {
+	background-color: #999;
+}
+
 </style>
 
 <!-- ======= Main ======= -->
@@ -218,7 +240,7 @@ th {
 											<label for="post-code">우편번호</label> <input type="text"
 												name="post-code" id="post-code" class="middle-flat"
 												placeholder="우편번호" required>
-											<button type="button" class="button check"
+											<button type="button" class="buttonCheck"
 												onclick="execDaumPostcode()">우편번호 검색</button>
 										</div>
 										<div class="form-group">

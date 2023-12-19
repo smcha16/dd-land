@@ -102,49 +102,54 @@ th {
 	margin-top: 40px;
 }
 
-  form {
-            max-width: 400px;
-            margin: 20px auto;
-        }
+  form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+}
 
-        label,
-        input {
-            display: block;
-            margin-bottom: 10px;
-        }
+form input[type="text"],
+form input[type="password"],
+form textarea,
+form select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
 
-        input[type="text"],
-        input[type="password"] {
-            width: calc(100% - 20px);
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
+/* 선택 필드 디자인 */
+form select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    padding-right: 30px;
+}
 
-        input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: #e74c3c;
-            color: #fff;
-            cursor: pointer;
-        }
+/* 입력 버튼 스타일 */
+form input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: tomato;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 80px;
+}
 
-        input[type="submit"]:hover {
-            background-color: #c0392b;
-        }
-        
-        
-        input,
-        textarea {
-            display: block;
-            margin-bottom: 20px;
-            width: calc(100% - 20px); /* 입력 필드 너비 조정 */
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
+form input[type="submit"]:hover {
+    background-color: #005aa3;
+}
 </style>
 
 <!-- ======= Main ======= -->
