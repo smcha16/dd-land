@@ -9,6 +9,32 @@
 
 <!-- list 3 전용 style tag -->
 <style>
+
+*, *:before, *:after {-webkit-box-sizing: inherit;-moz-box-sizing: inherit;box-sizing: inherit}
+html {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;-ms-text-size-adjust:none; -webkit-text-size-adjust:none;height:100%}
+body {height: 100%; font-family: 'Noto Sans KR', sans-serif; font-size: 16px; color: #454545;line-height: 1.5;background-color:#fff}
+h1, h2, h3, h4, h5, h6 {font-weight:600}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite,
+code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd,
+ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+details, embed, figure,  figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, hr {margin:0; padding:0;border:0}
+ul li, ol li {list-style: none}
+em, address {font-style:normal}
+a {text-decoration: none; cursor: pointer;color: #666}
+
+
+
+#title+p {
+		text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
+		padding: 5px 20px;
+		color: #222222;
+		font-size: 17px;
+		background-color: rgba(255, 255, 255, 0.6);
+		display: inline-block;
+		border-radius: 50px;
+	}
+	
+	
 #pagetitle {
 	margin-top: 70px;
 }
@@ -181,11 +207,24 @@
 
 /* list photo 변경 */
 .stats-counter {
-	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url("assets/img/barcelona-3960566_1280.jpg") center center;
-	background-size: cover;
-	padding: 100px 0;
-	background-attachment: fixed;
+       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/benefit/benefit.jpg") center center;
+       background-size: cover;
+       background-attachment: fixed;
+    }
+
+#webtong_tab_type04 { display:table; width:100%; table-layout:fixed; border-left:1px solid #e7e7e7;position:relative;background-color: #f1f1f1}
+#webtong_tab_type04 li { display:table-cell; height:50px}
+#webtong_tab_type04 li a { display:block;position:relative;height:50px;border-top:1px solid #e7e7e7;border-bottom:1px solid #e7e7e7;line-height:50px;text-align:center;background-color: #fff}
+#webtong_tab_type04 li a:after { content:''; display:block; position:absolute; top:0; right:0; bottom:0; width:1px; background:#e6e3df}
+#webtong_tab_type04 li a:before, .webtong_tab_type04 li a:before{ content: '';display: block;position: absolute;left: 0;top: 0;height: 3px;width: 0;background-color: #fd7c82}
+#webtong_tab_type04 li.on a:before, .webtong_tab_type04 li:hover a:before{ width: 100%}
+#webtong_tab_type04 li.on a, .webtong_tab_type04 li:hover a {color: #fd7c82;font-weight: 600}
+
+@media screen and (max-width: 780px) {
+	#webtong_tab_type04 li {float: left;width: 33.33333%}
+	#webtong_tab_type04 li:nth-child(n+4) {margin-top: -1px}
+	#webtong_tab_type04:before {content: '';background-color: #e7e7e7;width: 1px;bottom: 0;right: 0;top: 0;position: absolute}
+	#webtong_tab_type04:after {content: '';background-color: #e7e7e7;height: 1px;bottom: 0;right: 0;position: absolute;left: 0}
 }
 </style>
 
@@ -198,9 +237,9 @@
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
 					<div id="title">혜택</div>
-					<span class="btn btn-1"> <input type="checkbox" id="close"
+					<!-- <span class="btn btn-1"> <input type="checkbox" id="close"
 						value="close"> <label for="close"></label>
-					</span>
+					</span> -->
 				</div>
 			</div>
 		</div>
@@ -214,21 +253,16 @@
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div class="munti-content-container">
 
-					<ul class="tab tab_red" style="width: 300px;">
-						<li id="sel00" class="two"><a href="#tab00" id="selTab00">전체</a></li>
+					<ul class="tab tab_red" style="width: 1085px; margin-left:60px;"  id="webtong_tab_type04">
 						<li id="sel01" class="two on"><a href="#tab01" id="selTab01">일반혜택</a></li>
 						<li id="sel02" class="two"><a href="#tab02" id="selTab02">카드/통신사혜택</a></li>
 					</ul>
-				
-					<c:forEach items="${list}" var="dto">
-						<div class="item" id="tab00" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
-							<div
-								style="background-image: url('/dd/resources/files/benefit/${dto.img}');"></div>
-							<div>${dto.name}</div>
-							<div>${dto.start_date}~${dto.end_date}</div>
-							<div class="hidden-div">설명</div>
-						</div>
-					</c:forEach>
+					
+					
+					<div id="tab01" style="display: none;">
+				<div id="main_box" style="margin-top:20px;">
+					<div
+						style="display: flex; flex-wrap: wrap; align-items: center; margin-left: 10px; justify-content: center;">
 					
 					<c:forEach items="${normalList}" var="dto">
 						<div class="item" id="tab01" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
@@ -239,8 +273,15 @@
 							<div class="hidden-div">설명</div>
 						</div>
 					</c:forEach>
+					</div>
+				</div>
+			</div>
 			
-		
+		<div id="tab02" style="display: none;">
+				<div id="main_box" style="margin-top:20px;">
+					<div
+						style="display: flex; flex-wrap: wrap; align-items: center; margin-left: 10px; justify-content: center;">
+					
 					<c:forEach items="${cardList}" var="dto">
 						<div class="item" id="tab02" data-category="${dto.type}"  onclick="location.href= '/dd/user/pb/benefit/detail.do?seq=' + ${dto.benefit_seq};">
 							<div
@@ -250,6 +291,9 @@
 							<div class="hidden-div">설명</div>
 						</div>
 					</c:forEach>
+					</div>
+				</div>
+			</div>
 
 
 				</div>
@@ -265,7 +309,7 @@
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+/* document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("close").addEventListener("click", function () {
         toggleLists();
     });
@@ -290,7 +334,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-});
+}); */
 
 
 
@@ -328,14 +372,14 @@ document.addEventListener("DOMContentLoaded", function () {
 	
 	showTab("tab01");
 
-    document.getElementById("selTab00").addEventListener("click", function() {
+    /* document.getElementById("selTab00").addEventListener("click", function() {
         event.preventDefault();
         showTab("tab00");
 
-        document.getElementById("sel00").classList.add("on");
+        //document.getElementById("sel00").classList.add("on");
         document.getElementById("sel01").classList.remove("on");
         document.getElementById("sel02").classList.remove("on");
-    });
+    }); */
 
     document.getElementById("selTab01").addEventListener("click", function() {
         event.preventDefault();
@@ -343,7 +387,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById("sel01").classList.add("on");
         document.getElementById("sel02").classList.remove("on");
-        document.getElementById("sel00").classList.remove("on");
+        //document.getElementById("sel00").classList.remove("on");
     });
 
     document.getElementById("selTab02").addEventListener("click", function() {
@@ -352,12 +396,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById("sel02").classList.add("on");
         document.getElementById("sel01").classList.remove("on");
-        document.getElementById("sel00").classList.remove("on");
+        //document.getElementById("sel00").classList.remove("on");
     });
 
     function showTab(tabId) {
         // 모든 탭 숨기기
-        document.getElementById("tab00").style.display = "none";
+       // document.getElementById("tab00").style.display = "none";
         document.getElementById("tab01").style.display = "none";
         document.getElementById("tab02").style.display = "none";
 
