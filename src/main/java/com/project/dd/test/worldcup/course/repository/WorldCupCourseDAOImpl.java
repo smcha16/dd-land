@@ -3,16 +3,11 @@ package com.project.dd.test.worldcup.course.repository;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
-import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 import com.project.dd.test.worldcup.course.mapper.WorldCupCourseMapper;
 
 @Repository
@@ -25,6 +20,11 @@ public class WorldCupCourseDAOImpl implements WorldCupCourseDAO {
 	@Override
 	public int getTotalCount() {
 		return mapper.getTotalCount();
+	}
+	
+	@Override
+	public int getTestCount() {
+		return mapper.getTestCount();
 	}
 
 	@Override
@@ -63,8 +63,8 @@ public class WorldCupCourseDAOImpl implements WorldCupCourseDAO {
 	}
 	
 	@Override
-	public int checkNameDuplication(CourseDTO dto) {
-		return mapper.checkNameDuplication(dto);
+	public int checkCourseNameDuplication(CourseDTO dto) {
+		return mapper.checkCourseNameDuplication(dto);
 	}
 	
 	@Override
@@ -107,4 +107,29 @@ public class WorldCupCourseDAOImpl implements WorldCupCourseDAO {
 		return mapper.delCWCFinalWin(seq);
 	}
 
+	@Override
+	public List<CourseDTO> getCourseList() {
+		return mapper.getCourseList();
+	}
+	
+	@Override
+	public void updateCWCMatchCount(String courseSeq) {
+		mapper.updateCWCMatchCount(courseSeq);
+	}
+	
+	@Override
+	public void updateCWCWinCount(String courseSeq) {
+		mapper.updateCWCWinCount(courseSeq);
+	}
+	
+	@Override
+	public void updateCWCFinalWinCount(String courseSeq) {
+		mapper.updateCWCFinalWinCount(courseSeq);
+	}
+	
+	@Override
+	public List<CourseDTO> getCourseNameList() {
+		return mapper.getCourseNameList();
+	}
+	
 }

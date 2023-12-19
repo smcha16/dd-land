@@ -24,11 +24,13 @@ public class AdminFaqController {
 	/* 목록 */
 	
 	@GetMapping(value = "/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 		
 		String type = "없음";
+		
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
 
-		Map<String, String> map = service.paging(type, page);
+		Map<String, String> map = service.paging(type, searchStatus, word, page);
 		
 		List<FaqDTO> list = service.getFaqList(map);
 

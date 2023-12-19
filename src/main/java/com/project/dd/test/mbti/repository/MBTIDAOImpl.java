@@ -34,4 +34,29 @@ public class MBTIDAOImpl implements MBTIDAO {
 		return mapper.getMBTI(seq);
 	}
 	
+	@Override
+	public int addMBTI(MBTIDTO dto) {
+		return mapper.addMBTI(dto);
+	}
+	
+	@Override
+	public int checkMBTINameDuplication(MBTIDTO dto) {
+		return mapper.checkMBTINameDuplication(dto);
+	}
+	
+	@Override
+	public int editMBTI(MBTIDTO dto) {
+		return mapper.editMBTI(dto);
+	}
+	
+	@Override
+	public String getMBTIImgFileName(String mbtiSeq) {
+		return mapper.getMBTIImgFileName(mbtiSeq);
+	}
+
+	@Override
+	public int delMBTI(String seq) {
+		return mapper.delMBTI(seq);
+	}
+	
 }

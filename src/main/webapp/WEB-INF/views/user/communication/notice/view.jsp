@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
@@ -106,7 +107,7 @@
 					
 					<div style="width: 400px; height: 40px; position: relative;">
 					
-						<form method="GET" action="#" id="search-form">
+						<form method="GET" action="/dd/user/communication/notice/view.do" id="search-form">
 							<select name="category" id="category" class="select">
 								<option value="subject">제목</option>
 								<option value="content">내용</option>
@@ -118,6 +119,7 @@
 		                </form>
 		                
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -147,7 +149,7 @@
 					</c:if>
 					
 		            <td><a href="/dd/user/communication/notice/detail.do?seq=${dto.notice_seq}"><c:out value="${dto.subject}" /></a></td>
-		            <td>${dto.regdate}</td>
+		            <td>${fn:substring(dto.regdate, 0, 10)}</td>
 		        </tr>
 			</c:forEach>
 		</tbody>
@@ -168,3 +170,16 @@
 	    </ul>
 	</nav>
 </main>
+
+<script>
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#category').val('${map.category}');
+		$('#search-field').val('${map.word}');
+	</c:if>
+
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/user/communication/notice/view.do';
+	    }
+	});
+</script>

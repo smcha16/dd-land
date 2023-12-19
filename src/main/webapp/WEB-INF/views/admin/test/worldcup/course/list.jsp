@@ -1,6 +1,6 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <style>
 #main h1 {
@@ -111,10 +111,6 @@ th {
 	min-height: 0 !important;
 }
 
-.hidden-course-seq {
-	display: none;
-}
-
 /* 모달 CSS */
 #modal table.m-desc {
 	width: 100%;
@@ -148,40 +144,44 @@ th {
 					<div class="col-12">
 
 						<div id="search" class="header">
-							<form class="search-form d-flex align-items-center" method="POST"
-								action="#">
-								<input type="text" name="query" placeholder="Search"
-									title="Enter search keyword">
-								<button type="submit" title="Search">
-									<i class="bi bi-search"></i>
-								</button>
-							</form>
-							
-							<!-- 코스 상세 모달 -->
-							<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
-							    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-							        <div class="modal-content">
-							            <div class="modal-header">
-							                <h5 id="modal-name" class="modal-title"></h5>
-							                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							            </div>
-						                
-							            <div class="modal-body">
-							            	<table class="m-desc">
-							            		<colgroup>
-							            			<col style="width: 100px">
-							            		</colgroup>
-							            		<tbody>
-							            			<tr>
-							            				<th>이미지</th>
-							            				<td class="m-img"></td>
-							            			</tr>
-							            		</tbody>
-							            	</table>
-							            </div>
-							        </div>
-							    </div>
-							</div>
+                  			<form method="GET" action="/dd/admin/test/worldcup/course/list.do" class="search-form d-flex align-items-center">
+                    			<input type="text" name="word" id="search-field" placeholder="제목 또는 내용을 입력하세요." autocomplete="off">
+                    			<button type="submit"><i class="bi bi-search"></i></button>
+                  			</form>
+              			</div>
+						
+						<!-- 코스 상세 모달 -->
+						<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+						    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <h5 id="modal-name" class="modal-title"></h5>
+						                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						            </div>
+					                
+						            <div class="modal-body">
+						            	<table class="m-desc">
+						            		<colgroup>
+						            			<col style="width: 100px">
+						            		</colgroup>
+						            		<tbody>
+						            			<tr>
+						            				<th>이미지
+						            				<td>
+								            			<div class="d-flex">
+									                    	<img id="modal-image" src="" alt="Image" style="max-width: 100%;">
+									                	</div>
+								                	</td>
+						            			</tr>
+						            			<tr>
+						            				<th></th>
+						            				<td class="m-img"></td>
+						            			</tr>
+						            		</tbody>
+						            	</table>
+						            </div>
+						        </div>
+						    </div>
 						</div>
 
 						<div class="card">
@@ -209,9 +209,9 @@ th {
 											<c:forEach items="${listCourse}" var="dto" varStatus="status">
 												<tr>
 													<td><input type="checkbox" name="course_seq" value="${dto.course_seq}"></td>
-													<td>${status.count}</td>
+													<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
 													<td><a onclick="showModal('${dto.course_seq}', '${dto.name}','${dto.img}')"><c:out value="${dto.name}" /></a></td>
-													<td>${dto.img}</td>
+													<td>${fn:contains(dto.img, '_') ? fn:substringAfter(dto.img, '_') : dto.img}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -225,8 +225,7 @@ th {
 													<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
 												</c:when>
 												<c:otherwise>
-													<li class="page-item"><a class="page-link"
-														href="/dd/admin/test/worldcup/course/list.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+													<li class="page-item"><a class="page-link" href="/dd/admin/test/worldcup/course/list.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
@@ -268,14 +267,30 @@ th {
 	    } else {
 	        alert('1개 이상의 코스를 선택 후, 삭제 버튼을 눌러주세요.');
 	    }
-	    
 	}
 
+	// 검색
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#search-field').val('${map.word}');
+	</c:if>
+	
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/admin/test/worldcup/course/list.do';
+	    }
+	});
+	
 	// 코스 상세 모달
 	function showModal(seq, name, img) {
 	    
 		$('#modal-name').text(name);
-	    $('.m-img').text(img);
+		$('#modal-image').attr('src', '/dd/resources/files/test/worldcup/course/' + img);
+		
+		var imgText = img;
+	    if (img.includes('_')) {
+	    	imgText = img.substring(img.indexOf('_') + 1);
+	    }
+	    $('.m-img').text(imgText);
 	    
 	    $('#modal').modal('show');
 	}

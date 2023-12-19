@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
+import com.project.dd.activity.attraction.domain.BookUserDTO;
 import com.project.dd.activity.attraction.service.AttractionService;
 import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService;
 
@@ -31,11 +32,13 @@ public class AdminAttractionController {
     private WorldCupAttractionService awcService;
 	
 	@GetMapping(value = "/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
+		
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
 		
 		//페이징
 		String solting = "admin";
-		Map<String, String> map = service.paging(page, solting);
+		Map<String, String> map = service.paging(searchStatus, word, page, solting);
 		
 		//Attraction 목록(운영종료 제외)
 		List<AttractionDTO> list = service.getAttractionList(map);
@@ -78,7 +81,7 @@ public class AdminAttractionController {
 		if (result > 0) {
 			
 			//어트랙션 월드컵 관련 insert
-			String seq = service.getAttractionSeq() + "";
+			String seq = service.getAttractionSeq();
 			
 			awcService.addAWC(dto, seq);
 			awcService.addAWCWin(dto, seq);
@@ -162,6 +165,18 @@ public class AdminAttractionController {
 		} else {
 			return "redirect:/admin/activity/attraction/view.do";
 		}
+	}
+	
+	@GetMapping(value = "/reservation/view.do")
+	public String reservationView(Model model) {
+
+		//전체 어트랙션 예약 내역 가져오기
+		List<BookUserDTO> list = service.getAttractionBookList();
+		
+		model.addAttribute("list", list);
+		
+		return "admin/activity/attraction/reservationView";
+		
 	}
 	
 	

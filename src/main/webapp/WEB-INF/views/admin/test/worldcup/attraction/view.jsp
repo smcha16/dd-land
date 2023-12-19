@@ -1,6 +1,6 @@
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <style>
 #main h1 {
@@ -149,48 +149,44 @@ th {
 					<div class="col-12">
 
 						<div id="search" class="header">
-							<form class="search-form d-flex align-items-center" method="POST"
-								action="#">
-								<input type="text" name="query" placeholder="Search"
-									title="Enter search keyword">
-								<button type="submit" title="Search">
-									<i class="bi bi-search"></i>
-								</button>
-							</form>
-							
-							<!-- 어트랙션 월드컵 상세 모달 -->
-							<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
-							    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-							        <div class="modal-content">
-							            <div class="modal-header">
-							                <h5 id="modal-name" class="modal-title"></h5>
-							                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							            </div>
-						                
-							            <div class="modal-body">
-							            	<table class="m-desc">
-							            		<colgroup>
-							            			<col style="width: 100px">
-							            		</colgroup>
-							            		<tbody>
-							            			<tr>
-							            				<th>최종우승횟수</th>
-							            				<td class="m-awc_final_win_count">회</td>
-							            			</tr>
-							            			<tr>
-							            				<th>승리횟수</th>
-							            				<td class="m-awc_win_count">회</td>
-							            			</tr>
-							            			<tr>
-							            				<th>1:1 대결수</th>
-							            				<td class="m-awc_match_count">회</td>
-							            			</tr>
-							            		</tbody>
-							            	</table>
-							            </div>
-							        </div>
-							    </div>
-							</div>
+                  			<form method="GET" action="/dd/admin/test/worldcup/attraction/view.do" class="search-form d-flex align-items-center">
+                    			<input type="text" name="word" id="search-field" placeholder="제목 또는 내용을 입력하세요." autocomplete="off">
+                    			<button type="submit"><i class="bi bi-search"></i></button>
+                  			</form>
+              			</div>
+						
+						<!-- 어트랙션 월드컵 상세 모달 -->
+						<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+						    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <h5 id="modal-name" class="modal-title"></h5>
+						                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						            </div>
+					                
+						            <div class="modal-body">
+						            	<table class="m-desc">
+						            		<colgroup>
+						            			<col style="width: 100px">
+						            		</colgroup>
+						            		<tbody>
+						            			<tr>
+						            				<th>최종우승횟수</th>
+						            				<td class="m-awc_final_win_count"></td>
+						            			</tr>
+						            			<tr>
+						            				<th>승리횟수</th>
+						            				<td class="m-awc_win_count"></td>
+						            			</tr>
+						            			<tr>
+						            				<th>1:1 대결수</th>
+						            				<td class="m-awc_match_count"></td>
+						            			</tr>
+						            		</tbody>
+						            	</table>
+						            </div>
+						        </div>
+						    </div>
 						</div>
 
 						<div class="card">
@@ -214,11 +210,11 @@ th {
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${listAttraction}" var="dto">
+										<c:forEach items="${listAttraction}" var="dto" varStatus="status">
 											<tr>
 												<!-- <td><input type="checkbox"></td> -->
-												<td>${dto.attraction_seq}</td>
-												<td><a onclick="showModal('${dto.attraction_seq}', '${dto.name}', '${dto.awc_final_win_count}', '${dto.awc_win_count}', '${dto.awc_match_count}')"><c:out value="${dto.name}" /></a></td>
+												<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
+												<td><a onclick="showModal('${dto.attraction_seq}', '${dto.name}', '${dto.awc_final_win_count}', '${dto.awc_win_count}', '${dto.awc_match_count}')"><c:out value="${fn:substring(dto.name, 0, 22)}${fn:length(dto.name) > 22 ? '...' : ''}" /></a></td>
 												<td>
 												    <div class="progress" style="height: 20px;">
 												        <div class="progress-bar" role="progressbar"
@@ -324,6 +320,17 @@ th {
 				}
 			});
 		});
+	});
+
+	// 검색
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#search-field').val('${map.word}');
+	</c:if>
+	
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/admin/test/worldcup/attraction/view.do';
+	    }
 	});
 
 	// 어트랙션 월드컵 상세 모달

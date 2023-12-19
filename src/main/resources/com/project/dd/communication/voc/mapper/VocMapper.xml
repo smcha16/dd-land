@@ -3,6 +3,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.dd.communication.voc.mapper.VocMapper">
+
+	<!-- 방문일 -->
+
 	<select id="getVisitDateList" parameterType="String" resultType="String">
 		select visit_date
 		from tblUser u
@@ -12,9 +15,46 @@
 				on ub.ticket_book_seq = tb.ticket_book_seq
 		where (email = #{email}) and (visit_date between sysdate - interval '1' month and sysdate)
 	</select>
+	
+	<!-- 추가 -->
 
 	<insert id="addVoc" parameterType="com.project.dd.communication.voc.domain.VocDTO">
 		insert into tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
 		values (seqtblVOC.nextVal, #{type}, #{service_type}, #{subject}, #{content}, default, #{attach, jdbcType=VARCHAR}, #{visit_date}, null, #{user_seq})
 	</insert>
+	
+	<!-- 총 개수 -->
+	
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(*)
+		from tblVOC v
+			inner join tblUser u
+			  	on v.user_seq = u.user_seq
+		<if test="searchStatus == 'y'.toString()">
+	        where name like '%' || #{word} || '%' or email like '%' || #{word} || '%'
+	    </if>
+	</select>
+	
+	<!-- 목록 -->
+	
+	<select id="getVocList" parameterType="map" resultType="com.project.dd.communication.voc.domain.VocDTO">
+		select *
+		from (select v.*, rownum as rnum
+			  from (select v.*, name, email, tel
+			  		from tblVOC v
+			  			inner join tblUser u
+			  				on v.user_seq = u.user_seq
+			  		order by regdate desc) v
+			  <if test="searchStatus == 'y'.toString()">
+		          where name like '%' || #{word} || '%' or email like '%' || #{word} || '%'
+		      </if>
+			  )
+		where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<!-- 답변 -->
+	
+	<update id="editAnswer" parameterType="com.project.dd.communication.voc.domain.VocDTO">
+		update tblVOC set answer = #{answer} where voc_seq = #{voc_seq}
+	</update>
 </mapper>

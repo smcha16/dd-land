@@ -141,7 +141,7 @@
                   						<input type="file" name="doc" class="form-control" disabled>
 	                  					<div style="height: 30px;">
 	                  						<div class="attached">
-	                  							<i class="bi bi-image"></i> <c:out value="${dto.img}" /> <span onclick="delAttached()">&times;</span>
+	                  							<i class="bi bi-image"></i> ${dto.img.substring(dto.img.lastIndexOf('_') + 1)} <span onclick="delAttached()">&times;</span>
 	                  						</div>
 	                  					</div>
                   					</c:if>
@@ -170,9 +170,18 @@
       		</div>
     	</div>
 	</section>
+	
 </main>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
 <script>
+	<!-- 습득일 -->
+
+	$(document).ready(function () {
+	    $('input[name="lost_property_date"]').attr('max', moment().format('YYYY-MM-DD'));
+	});
+
 	var property = $('input[name="name"]');
 	var loc = $('textarea[name="location"]');
 	

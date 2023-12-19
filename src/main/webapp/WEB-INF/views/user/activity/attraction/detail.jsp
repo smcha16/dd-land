@@ -51,7 +51,7 @@
 	
 	section:first-of-type {
 		padding-top: 140px;
-		padding-bottom: 20px;
+		padding-bottom: 0;
 	}
 	
 	section:nth-of-type(2) {
@@ -211,6 +211,27 @@
 		font-weight: bold;
 		font-size: 17px;
 	}
+	
+	/* 카카오맵 지도 주변 태그 CSS */
+	.location p {
+		margin-top: 10px;
+		margin-bottom: 1rem;
+		color: darkgray;
+	}
+	
+	button#comeback {
+		border: 0;
+		border-radius: 50px;
+		width: 50px;
+		background-color: #FFF;
+		color: #000;
+		position: absolute;
+		z-index: 100;		
+		padding: 10px;
+	    right: 10px;
+	    bottom: 10px;
+	}
+	
 </style>
 
 <!-- ======= Title & Image Section ======= -->
@@ -237,7 +258,7 @@
 
 <!-- 어트랙션 예약 버튼 -->
 <div id="reservation-btn">
-	<button type="button" onclick="location.href='/reservation.do?seq=${dto.attraction_seq}'">어트랙션 예약하기 <i class="bi bi-hand-index-thumb-fill"></i></button>
+	<button type="button" onclick="location.href='/dd/member/activity/attraction/reservation/add.do?seq=${dto.attraction_seq}'">어트랙션 예약하기 <i class="bi bi-hand-index-thumb-fill"></i></button>
 </div>
 
 <!-- ======= 상세정보 Section ======= -->
@@ -281,8 +302,11 @@
 <section>
 	<div class="location">
 		<div class="label">위치 정보</div>
+		<p>* 스크롤과 드래그로 지도를 움직일 수 있습니다. *</p>
 		<div class="value location">
-			<div id="map" style="width: 950px; height: 400px;"></div>
+			<div id="map" style="width: 950px; height: 400px;">
+				<button onclick="setBounds()" id="comeback"><i class="fa-solid fa-rotate-left"></i></button>
+			</div>
 		</div>
 	</div>
 </section>
@@ -303,12 +327,12 @@
 	/* 카카오 맵 */
 	const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 
-	const options = { //지도를 생성할 때 필요한 기본 옵션
-		center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
-		level : 10 //지도의 레벨(확대, 축소 정도)
-		/* draggable : false, // 이동 금지
-		disableDoubleClick : true, // 더블클릭 확대 금지
-		scrollwheel : false // 휠 확대/축소 금지 */
+	let options = { //지도를 생성할 때 필요한 기본 옵션
+		center: new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
+		level: 10, //지도의 레벨(확대, 축소 정도)
+		draggable: true, // 이동 금지
+		disableDoubleClick: false, // 더블클릭 확대 금지
+		scrollwheel: true // 휠 확대/축소 금지 */
 	};
 
 	const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
@@ -328,8 +352,63 @@
 
 	//마커 지도에 출력
 	m1.setMap(map);
+	
+	/* 지도 원래대로 돌아가기 버튼 */
+	// LatLngBounds 객체 초기화
+	const defaultBounds = new kakao.maps.LatLngBounds();
+
+	// 고정된 지도의 중심좌표와 레벨
+	const fixedCenter = new kakao.maps.LatLng(33.361488, 126.529212);
+	const fixedLevel = 10;
+
+	// 이전의 지도 영역을 기억하기 위한 변수
+	let previousBounds;
+
+	// 버튼 클릭 시 실행할 함수
+	function setBounds() {
+
+		// 이전 지도 영역을 고정된 좌표로 설정
+		previousBounds = new kakao.maps.LatLngBounds(
+			new kakao.maps.LatLng(fixedCenter.getLat(), fixedCenter.getLng()),
+			new kakao.maps.LatLng(fixedCenter.getLat(), fixedCenter.getLng())
+		);
 
 
+		// 이전의 레벨을 고정된 레벨로 설정
+		options = {
+		center: fixedCenter,
+		level: fixedLevel,
+		draggable: true,
+		disableDoubleClick: false,
+		scrollwheel: true
+		};
+		
+		map.setLevel(fixedLevel);
+		map.setCenter(fixedCenter);
+		
+		// 이전의 레벨과 중심좌표로 지도를 초기화
+		map.setOptions(options);
+	}
+
+	// 버튼 이벤트 등록
+	document.getElementById('comeback').addEventListener('click', setBounds);
+
+	// 드래그 이벤트 등록
+	kakao.maps.event.addListener(map, 'dragend', function () {
+		// 이전 지도 영역을 기억
+		previousBounds = map.getBounds();
+	});
+
+	// 지도 이벤트 등록
+	kakao.maps.event.addListener(map, 'bounds_changed', function () {
+		// 지도의 중심좌표를 확인하고, 원래대로 돌아갈 수 있는 경우에 버튼을 활성화
+		if (map.getLevel() !== fixedLevel || !previousBounds.equals(map.getBounds())) {
+			document.getElementById('comeback').disabled = false;
+		} else {
+			document.getElementById('comeback').disabled = true;
+		}
+	});
+	
 	/* Slick Slider */
 	$('.image-slider').slick({
 		variableWidth : true,
@@ -342,5 +421,5 @@
 		nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
 		draggable : true
 	});
+	
 </script>
-<!-- 끝 -->

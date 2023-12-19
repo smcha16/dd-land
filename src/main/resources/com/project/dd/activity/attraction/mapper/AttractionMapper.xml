@@ -8,12 +8,16 @@
 	<select id="getAttractionList" parameterType="map" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		select *
 		from (select n.*, rownum as rnum from
-				(select * from vwAttractionList) n)
+				(select * from vwAttractionList) n
+				<if test="searchStatus == 'y'.toString()">
+				  where name like '%' || #{word} || '%'
+			  	</if>
+				)
 		where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
 	<select id="getAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		select * from vwAttractionOne where attraction_seq = #{attraction_seq}
+		select * from vwAttractionList where attraction_seq = #{attraction_seq}
 	</select>
 	
 	<select id="getAttractionImgList" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionImgDTO">
@@ -21,8 +25,11 @@
 	</select>
 	
 	<!-- 페이징 -->
-	<select id="getTotalCount" resultType="int">
+	<select id="getTotalCount"  parameterType="map" resultType="int">
       select count(*) from vwAttractionList
+      <if test="searchStatus == 'y'.toString()">
+	        where name like '%' || #{word} || '%'
+	  </if>
 	</select>
    
    <!-- admin 기능  -->
@@ -92,6 +99,44 @@
 	
 	<select id="getAllAttractionImgList" resultType="com.project.dd.activity.attraction.domain.AttractionImgDTO">
 		select * from tblAttractionImg
+	</select>
+	
+	<insert id="addAWC" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		insert into tblAWC (awc_seq, is_test, attraction_seq)
+		values (seqtblAWC.NEXTVAL, 'Y', #{attraction_seq})
+	</insert>
+	
+	<insert id="addAWCWin" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		insert into tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
+		values (seqtblAWCWin.NEXTVAL, 0, 0, #{attraction_seq})
+	</insert>
+	
+	<insert id="addAWCFinalWin" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		insert into tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
+		values (seqtblAWCFinalWin.NEXTVAL, 0, #{attraction_seq})
+	</insert>
+	
+	<select id="checkAvailableCapacity" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO" resultType="int">
+		select nvl(sum(capacity), 0)as capacity  from tblBookUser 
+		where to_char(regdate, 'yyyy-mm-dd') = to_char(sysdate, 'yyyy-mm-dd') and attraction_seq = #{attraction_seq} and attraction_book_seq = #{attraction_book_seq}
+	</select>
+	
+	<insert id="addAttractionBook" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO">
+		INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
+		VALUES (seqtblBookUser.NEXTVAL, sysdate, #{capacity}, #{attraction_book_seq}, #{user_seq}, #{attraction_seq})
+	</insert>
+	
+	<select id="getAttractionBookCapacity" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO" resultType="int">
+		select capacity from tblAttractionBook where attraction_book_seq = #{attraction_book_seq}
+	</select>
+	
+	<select id="getAttractionBookList" resultType="com.project.dd.activity.attraction.domain.BookUserDTO">
+		select a.book_user_seq, to_char(a.regdate, 'yyyy-mm-dd') as regdate, a.capacity, a.attraction_book_seq, a.user_seq, a.attraction_seq,
+		(select name from tblAttraction where attraction_seq = a.attraction_seq) as attraction_name,
+		(select name from tblUser where user_seq = a.user_seq) as user_name,
+		(select email from tblUser where user_seq = a.user_seq) as email
+		from tblBookUser a
+		order by regdate desc
 	</select>
 	
 </mapper>

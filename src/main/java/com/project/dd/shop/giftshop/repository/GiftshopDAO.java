@@ -16,4 +16,6 @@ public interface GiftshopDAO {
 
 	int getTotalCount();
 
+	List<GiftshopImageDTO> getImgList();
+
 }

@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
-import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionDTO;
 import com.project.dd.test.worldcup.attraction.repository.WorldCupAttractionDAO;
 
 @Service
@@ -22,18 +21,34 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 	@Autowired
 	private WorldCupAttractionDAO dao;
 
-	public Map<String, String> paging(int page) { // 페이징 메서드
-		int pageSize = 10; // 조회할 글 개수
+	@Override
+	public int getTotalCount() {
+		return dao.getTotalCount();
+	}
 
+	@Override
+	public int getTestCount() {
+		return dao.getTestCount();
+	}
+
+	// 페이징 메서드
+	@Override
+	public Map<String, String> paging(String solting, String searchStatus, String word, int page) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("solting", solting);
+		map.put("searchStatus", searchStatus);
+		map.put("word", word);
+		
+		int pageSize = 10; // 조회할 글 개수
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
-
-		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 
-		int totalPosts = dao.getTotalCount();
+		int totalPosts = getTotalCount();
 		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
 
 		map.put("totalPosts", String.format("%d", totalPosts));
@@ -51,27 +66,7 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 	public List<AttractionDTO> getAttractionList() {
 		return dao.getAttractionList();
 	}
-	
-	@Override
-	public List<AttractionDTO> getRunAttraction(String close) {
-		return dao.getRunAttraction(close);
-	}
 
-	@Override
-	public List<WorldCupAttractionDTO> getAllAWC(String isTest) {
-		return dao.getAllAWC(isTest);
-	}
-
-	@Override
-	public List<WorldCupAttractionDTO> getAllAWCWin() {
-		return dao.getAllAWCWin();
-	}
-
-	@Override
-	public List<WorldCupAttractionDTO> getAllAWCFinalWin() {
-		return dao.getAllAWCFinalWin();
-	}
-	
 	@Override
 	public void updateAttractionStatus(Map<String, String> map) {
 		dao.updateAttractionStatus(map);
@@ -159,6 +154,16 @@ public class WorldCupAttractionServiceImpl implements WorldCupAttractionService 
 	@Override
 	public void updateAWCFinalWinCount(String attractionSeq) {
 		dao.updateAWCFinalWinCount(attractionSeq);
+	}
+	
+	@Override
+	public List<AttractionDTO> getAttractionNameList() {
+		return dao.getAttractionNameList();
+	}
+	
+	@Override
+	public List<AttractionDTO> getTopThreeAttraction() {
+		return dao.getTopThreeAttraction();
 	}
 	
 }

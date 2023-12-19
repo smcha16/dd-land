@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,17 +18,20 @@ import com.project.dd.test.worldcup.course.domain.CourseDTO;
 import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
 
 @Controller
+@RequestMapping("/admin/test/worldcup/course")
 public class AdminWorldCupCourseController {
 
 	@Autowired
 	private WorldCupCourseService cwcService;
 
-	@GetMapping(value = "/admin/test/worldcup/course/list.do")
-	public String list(@RequestParam(defaultValue = "1") int page, Model model,
-			@RequestParam(defaultValue = "Y") String isTest) {
+	@GetMapping(value = "/list.do")
+	public String list(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 
-		Map<String, String> map = cwcService.paging(page);
+		String solting = "admin";
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
 
+		Map<String, String> map = cwcService.paging(solting, searchStatus, word, page); // 페이징
+		
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
 		model.addAttribute("listCourse", cwcService.getAllCourse(map));
@@ -36,12 +40,14 @@ public class AdminWorldCupCourseController {
 
 	}
 	
-	@GetMapping(value = "/admin/test/worldcup/course/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model,
-			@RequestParam(defaultValue = "Y") String isTest) {
+	@GetMapping(value = "/view.do")
+	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 
-		Map<String, String> map = cwcService.paging(page);
+		String solting = "admin";
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
 
+		Map<String, String> map = cwcService.paging(solting, searchStatus, word, page); // 페이징
+		
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
 		model.addAttribute("listCourse", cwcService.getAllCourse(map));
@@ -50,8 +56,8 @@ public class AdminWorldCupCourseController {
 		return "admin/test/worldcup/course/view";
 
 	}
-
-	@PostMapping(value = "/admin/test/worldcup/course/view.do")
+	
+	@PostMapping(value = "/view.do")
 	public String updateCourseStatus(@RequestParam String courseSeq, @RequestParam String isTest, Model model) {
 		// System.out.println("seq:" + courseSeq + " check:" + isTest);
 
@@ -70,7 +76,7 @@ public class AdminWorldCupCourseController {
 		return "admin/test/worldcup/course/add";
 	}
 
-	@PostMapping(value = "/admin/test/worldcup/course/addok.do")
+	@PostMapping(value = "/addok.do")
 	public String addok(Model model, CourseDTO dto, MultipartFile image, HttpServletRequest req) {
 		// System.out.println("DTO: " + dto.toString());
 		// System.out.println("Image File Name: " + image.getOriginalFilename());
@@ -93,7 +99,7 @@ public class AdminWorldCupCourseController {
 		
 	}
 	
-	@GetMapping(value = "/admin/test/worldcup/course/edit.do")
+	@GetMapping(value = "/edit.do")
 	public String edit(Model model, String seq) {
 		
 		CourseDTO dto = cwcService.getCourse(seq);
@@ -110,7 +116,7 @@ public class AdminWorldCupCourseController {
 		return "admin/test/worldcup/course/edit";
 	}
 	
-	@PostMapping(value = "/admin/test/worldcup/course/editok.do")
+	@PostMapping(value = "/editok.do")
 	public String editok(Model model, CourseDTO dto, MultipartFile image, HttpServletRequest req) {
 
 		int result = cwcService.editCourse(dto, image, req);

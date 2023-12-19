@@ -4,25 +4,69 @@
 
 <mapper namespace="com.project.dd.test.mbti.mapper.MBTIMapper">
 
-	<!-- 페이징 -->
 	<select id="getTotalCount" resultType="int">
 		select count(*) from tblMBTI
+		<if test="solting == 'admin' and searchStatus == 'y'.toString()">
+		where name like '%' || #{word} || '%' or result like '%' || #{word} || '%'
+		</if>
 	</select>
 
 	<select id="getAllMBTI" parameterType="map" resultType="com.project.dd.test.mbti.domain.MBTIDTO">
-		select *
-		from (select n.*, rownum as rnum from
-				(select * from tblMBTI) n)
-		where rnum between #{startIndex} and #{endIndex}
+		select * from (
+			select n.*, rownum as rnum from (
+				select m.*,
+					a.name as attraction_name,
+					c.name as course_name
+				from tblMBTI m
+				join tblAttraction a on m.attraction_seq = a.attraction_seq
+				join tblCourse c on m.course_seq = c.course_seq
+				order by m.mbti_seq desc) n
+			<if test="solting == 'admin' and searchStatus == 'y'.toString()">
+			where name like '%' || #{word} || '%' or result like '%' || #{word} || '%'
+			</if>
+		) where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
 	<select id="getMBTI" parameterType="String" resultType="com.project.dd.test.mbti.domain.MBTIDTO">
-		select
-			m.*
-		from tblMbti m
-		join tblAttraction a
-			on m.attraction_seq = a.attraction_seq
-		where m.mbti_seq = #{mbti_seq}
+		select 
+		    m.mbti_seq,
+		    m.name,
+		    m.result,
+		    m.mbti_img,
+		    m.attraction_seq,
+		    m.course_seq,
+		    a.name AS attraction_name,
+		    MAX(ai.img) AS attraction_img,
+		    c.name AS course_name,
+		    c.img AS course_img
+		from tblMBTI m
+		join tblAttraction a on m.attraction_seq = a.attraction_seq
+		join tblAttractionImg ai on a.attraction_seq = ai.attraction_seq
+		join tblCourse c on m.course_seq = c.course_seq
+		where mbti_seq = #{mbti_seq}
+		group by m.mbti_seq, m.name, m.result, m.mbti_img, m.attraction_seq, m.course_seq, a.name, c.name, c.img
+		order by mbti_seq
 	</select>
+	
+	<insert id="addMBTI" parameterType="com.project.dd.test.mbti.domain.MBTIDTO">
+		insert into tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
+		values (seqtblMBTI.NEXTVAL, #{result}, #{name}, #{mbti_img}, #{course_seq}, #{attraction_seq})
+	</insert>
+	
+	<select id="checkMBTINameDuplication" parameterType="com.project.dd.test.mbti.domain.MBTIDTO" resultType="int">
+		select count(*) from tblMBTI where name = #{name}
+	</select>
+	
+	<update id="editMBTI" parameterType="com.project.dd.test.mbti.domain.MBTIDTO">
+		update tblMBTI set result = #{result}, name = #{name}, mbti_img = #{mbti_img}, attraction_seq = #{attraction_seq}, course_seq = #{course_seq} where mbti_seq = #{mbti_seq}
+	</update>
+	
+	<select id="getMBTIImgFileName" parameterType="String" resultType="String">
+		select mbti_img from tblMBTI where mbti_seq = #{mbti_seq}
+	</select>
+	
+	<delete id="delMBTI" parameterType="String">
+		delete tblMBTI where mbti_seq = #{mbti_seq}
+	</delete>
 
 </mapper>

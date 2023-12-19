@@ -43,7 +43,7 @@ input {
 }
 /*input 아이디박스*/
 .login-id-wrap {
-	margin: 0px 10px 8px 10px;
+	margin: 0px 8px 10px 8px;
 	padding: 10px;
 	border: solid 1px #dadada;
 	background: #fff;
@@ -56,7 +56,7 @@ input {
 }
 /*input 패스워드박스*/
 .login-pw-wrap {
-	margin: 0px 10px 8px 10px;
+	margin: 0px 8px 10px 8px;
 	padding: 10px;
 	border: solid 1px #dadada;
 	background: #fff;

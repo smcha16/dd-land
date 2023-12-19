@@ -27,9 +27,13 @@ public class AdminNoticeController {
 	/* 목록 */
 	
 	@GetMapping(value = "/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(String category, String word, @RequestParam(defaultValue = "1") int page, Model model) {
+		
+		String solting = "admin";
+		
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
 
-		Map<String, String> map = service.paging(page);
+		Map<String, String> map = service.paging(solting, searchStatus, category, word, page);
 
 		List<NoticeDTO> list = service.getNoticeList(map);
 

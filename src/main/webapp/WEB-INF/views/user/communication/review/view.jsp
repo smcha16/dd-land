@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
@@ -202,9 +203,15 @@
 				<div class="munti-content-container">
 					<c:forEach items="${list}" var="dto">
 						<div class="item" onclick="location.href='/dd/user/communication/review/detail.do?seq=${dto.review_seq}';">
-							<div style="background-image: url('/dd/resources/files/communication/review/${dto.img}');"></div>
-							<div><c:out value="${dto.subject}" /></div>
-							<div class="hidden-div"><c:out value="${dto.content}" /></div>
+							<div style="background-image: url('/dd/resources/files/communication/review/${dto.imgList[0].img}');"></div>
+							<div>
+								<c:out value="${fn:substring(dto.subject, 0, 13)}" />
+								${fn:length(dto.subject) > 13 ? '...' : ''}
+							</div>
+							<div class="hidden-div">
+								<c:out value="${fn:substring(dto.content, 0, 170)}" />
+                                ${fn:length(dto.content) > 170 ? '...' : ''}
+							</div>
 						</div>
 					</c:forEach>
 				</div>

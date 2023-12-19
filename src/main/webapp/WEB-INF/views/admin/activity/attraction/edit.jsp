@@ -180,7 +180,7 @@
 <!-- Kakao Map Open API -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c089ee6f3d885cfbe52b2f15d8f3f531"></script>
 
-<!-- Attraction add용 JavaScript -->
+<!-- Attraction edit용 JavaScript -->
 <script>
 
 	/* 페이지 로딩 시, 유효성 검사가 필요한 이름, 지도에 기본 data-type 부여 */
@@ -189,7 +189,7 @@
 	
 	/* 위치 수정 없을 시, 기본적으로 값 넘겨주기 */
 	$('#lat').val(${dto.lat});
-	$('#lng').val(${dto.lng})
+	$('#lng').val(${dto.lng});
 	
 
 	/* 필수 항목이 반드시 입력되어야만 submit 클릭 시 넘어가도록 */
@@ -395,6 +395,5 @@
 		allDeleteImgSeq += seq + ",";
 		$(event.target).parent().remove();
 	}
-	
 	
 </script>

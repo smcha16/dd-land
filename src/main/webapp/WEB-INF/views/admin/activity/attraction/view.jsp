@@ -86,14 +86,14 @@
 	}
 	
 	/* slick slider */
-	/* .image-slider {
-		width: 700px;
+	.image-slider {
+		width: 800px;
 		height: 350px;
-    } */
+    }
     
 	.image-slider div {
-		/* width: 700px;
-		height: 350px; */
+		width: 800px;
+		height: 350px;
 		overflow: hidden;
 	}
 	
@@ -143,6 +143,10 @@
 		padding: 10px;
 	}
 	
+	.modal-body {
+		padding: 0;
+	}
+	
 </style>
 
 <!-- ======= Main ======= -->
@@ -158,9 +162,10 @@
 				<div class="row">
 					<div class="col-12">
 
+						<!-- 검색 -->
               			<div id="search" class="header">
-                  			<form class="search-form d-flex align-items-center" method="POST" action="#">
-                    			<input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                  			<form method="GET" action="/dd/admin/activity/attraction/view.do" class="search-form d-flex align-items-center">
+                    			<input type="text" name="word" placeholder="어트랙션명을 입력하세요." autocomplete="off">
                     			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
                     			
                     			<!-- 토큰 -->
@@ -466,28 +471,26 @@
 	</c:forEach>
 	
 	/* 반응형 슬릭 이미지 조절 테스트 */
-	$('#modal').on('shown.bs.modal', function () {
-		if ($('.modal-content').css('width') == '800px') {
-			$('.slick-slide').css('width', '800px');
-		} else {
-			$('.slick-slide').css('width', '500px');
-		}
-		
-		setTimeout($('.image-slider').css('display', 'display'), 500);
-		
-	});
-
 	$(window).resize(function() {
 	
 		if ($('.modal-content').css('width') == '800px') {
-			$('.slick-slide').css('width', '800px');
+			$('.image-slider').css('width', '800px');
+			$('.image-slider div').css('width', '800px');
 		} else {
-			$('.slick-slide').css('width', '500px');
+			$('.image-slider').css('width', '500px');
+			$('.image-slider div').css('width', '500px');
 		}
 	});
 	
-	$(window).resize(function() {
-		$('.image-slider')[0].slick.refresh();
+	/* 검색 */
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#search-field').val('${map.word}');
+	</c:if>
+	
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/admin/activity/attraction/view.do';
+	    }
 	});
 	
 	

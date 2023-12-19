@@ -15,5 +15,8 @@ public class VocDTO {
 	private String visit_date;
 	private String answer;
 	private String user_seq;
+	
+	private String name;
+	private String email;
 
 }

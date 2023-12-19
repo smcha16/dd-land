@@ -1,5 +1,9 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<!-- Slick -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
 <style>
 	#main h1 {
@@ -60,32 +64,44 @@
   	.breadcrumb a:hover {
       	color: #0d6efd;
     }
-  	.table {
+  	table {
     	text-align: center;
   	}
-  	/* th:nth-child(1) {
-  		width: 6%;
-  	}
-	th:nth-child(2) {
-		width: 9%;
-	}
-	th:nth-child(3) {
-		width: 63%;
-	}
-	th:nth-child(4) {
-		width: 22%;
-	} */
   	th {
     	background-color: #f2f2f2 !important;
   	}
-  	.table td i {
+  	th:nth-child(1) {
+		width: 6%;
+	}
+	th:nth-child(2) {
+		width: 6%;
+	}
+	th:nth-child(3) {
+		width: 34%;
+	}
+	th:nth-child(4) {
+		width: 13%;
+	}
+	th:nth-child(5) {
+		width: 14%;
+	}
+	th:nth-child(6) {
+		width: 15%;
+	}
+	th:nth-child(7) {
+		width: 12%;
+	}
+	td {
+    	vertical-align: middle;
+	}
+  	td i {
 		color: #0d6efd;
 		margin-top: 7px;
 	}
-	.table td a {
+	td a {
 		color: #000;
 	}
-	.table td a:hover {
+	td a:hover {
 		font-weight: bold !important;
       	color: #0d6efd !important;
     }
@@ -93,6 +109,45 @@
    		justify-content: center;
    		margin-top: 40px;
   	}
+  	.modal-body {
+		padding: 0;
+	}
+	#modal-content {
+		padding: 16px;
+   		margin: 0 !important;
+	}
+	.modal-dialog-scrollable .modal-body {
+	    overflow-y: visible;
+	}
+   .image-slider {
+		width: 800px;
+		height: 350px;
+		margin-bottom: 16px;
+    }
+   .image-slider div {
+		width: 800px;
+		height: 350px;
+		overflow: hidden;
+	}
+   .image-slider img {
+		width: 100%;
+		max-height: 100%;
+		object-fit: cover;
+	}
+	.slick-prev, .slick-next {
+		border: 0;
+		background: transparent;
+		z-index: 100;
+		position: absolute;
+	}
+	.slick-prev {
+		top: 50%;
+		left: 20px;
+	}
+	.slick-next {
+		top: 50%;
+		right: 20px;
+	}
 </style>
 
 <main id="main" class="main">
@@ -108,8 +163,8 @@
 					<div class="col-12">
 
               			<div id="search" class="header">
-                  			<form method="GET" action="#" class="search-form d-flex align-items-center">
-                    			<input type="text" name="query" placeholder="Search">
+                  			<form method="GET" action="/dd/admin/communication/review/view.do" class="search-form d-flex align-items-center">
+                    			<input type="text" name="word" id="search-field" placeholder="작성자 이름 또는 이메일을 입력하세요." autocomplete="off">
                     			<button type="submit"><i class="bi bi-search"></i></button>
                   			</form>
               			</div>
@@ -123,6 +178,8 @@
                       					<li class="breadcrumb-item"><a href="javascript:void(0);" onclick="del();">삭제</a></li>
                     				</ol>
 								</nav>
+								
+								<!-- 테이블 -->
 								
 								<form method="POST" action="/dd/admin/communication/review/del.do" id="del-form">
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -144,9 +201,9 @@
 												<tr>
 													<td><input type="checkbox" name="seqList" value="${dto.review_seq}"></td>
 													<td>${map.totalPosts - numberStatus.index - map.startIndex + 1}</td>
-										            <td><a onclick="showModal(`${dto.subject}`, `${dto.content}`, '${dto.imgList}')"><c:out value="${dto.subject}" /></a></td>
-										            <td>${dto.visit_date}</td>
-										            <td>${dto.regdate}</td>
+										            <td><a onclick="showModal('${dto.review_seq}', `${dto.subject}`, `${dto.content}`)"><c:out value="${dto.subject}" /></a></td>
+										            <td>${fn:substring(dto.visit_date, 0, 10)}</td>
+										            <td>${fn:substring(dto.regdate, 0, 10)}</td>
 										            <td>${dto.name}(${dto.email})</td>
 										            <td>${dto.readcount}</td>
 										        </tr>
@@ -165,15 +222,13 @@
 								                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								            </div>
 								            <div class="modal-body">
-								            	<div class="mt-3" id="modal-content" style="margin-bottom: 30px;"></div>
-								                <div class="d-flex align-items-center justify-content-center">
-								                    <img id="modal-image" src="" alt="Image" style="max-width: 100%;">
-								                </div>
+								            	<div class="mt-3" id="modal-content"></div>
+								                <div class="image-slider"></div>
 								            </div>
 								        </div>
 								    </div>
 								</div>
-								
+																
 								<!-- 페이징 -->
 								
                  				<ul class="pagination justify-content-center">
@@ -188,16 +243,33 @@
 										</c:choose>
 									</c:forEach>
 								</ul>
+								
                				</div>
              			</div>
+             			
            			</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	
 </main>
 
+<script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 <script>
+	<!-- 검색 -->
+	
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#search-field').val('${map.word}');
+	</c:if>
+	
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/admin/communication/voc/view.do';
+	    }
+	});
+
 	<!-- 수정 -->
 	
 	function edit() {
@@ -226,16 +298,57 @@
 	
 	<!-- 모달 -->
 	
-	function showModal(subject, content, image) {
-	    $('#modal-subject').text(subject);
-	    $('#modal-content').text(content);
-	    
-	    if (image) {
-	        $('#modal-image').attr('src', '/dd/resources/files/communication/review/' + image);
-	    } else {
-	    	$('#modal-image').hide();
-	    }
+	const imgList = ${imgList};
+	
+	function showModal(seq, subject, content) {
+        $('#modal-subject').text(subject);
+        $('#modal-content').text(content);
 
-	    $('#modal').modal('show');
-	}
+        $('.image-slider').empty();
+
+        for (var i = 0; i < imgList.length; i++) {
+        	if (imgList[i].review_seq == seq) {
+				var imgSrc = "/dd/resources/files/communication/review/" + imgList[i].img;
+
+				$('.image-slider').append(`
+						<div>
+							<img src="\${imgSrc}" alt="Image" class="modal-image">
+						</div>
+				`);
+        	}
+        }
+        
+        if ($('.image-slider').children().length === 0) {
+            $('.image-slider').hide();
+        }
+        
+        $('.image-slider').slick({
+			variableWidth : true,
+			infinite : true,
+			autoplay : true,
+			autoplaySpeed : 5000,
+			pauseOnHover : true,
+			arrows : true,
+			prevArrow : "<button type='button' class='slick-prev'>&#10094;</button>",
+			nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
+			draggable : true
+		});
+
+        $("#modal").modal("show");
+    }
+
+	$(window).resize(function() {
+	   
+		if ($('.modal-content').css('width') == '800px') {
+			$('.image-slider').css('width', '800px');
+			$('.image-slider div').css('width', '800px');
+		} else {
+			$('.image-slider').css('width', '500px');
+			$('.image-slider div').css('width', '500px');
+		}
+	});
+
+	$('#modal').on('hidden.bs.modal', function () {
+		$('.image-slider').slick('unslick');
+	});
 </script>

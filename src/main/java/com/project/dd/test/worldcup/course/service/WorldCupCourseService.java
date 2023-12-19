@@ -7,29 +7,31 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
-import com.project.dd.test.worldcup.course.domain.WorldCupCourseDTO;
 
 public interface WorldCupCourseService {
 
-	Map<String, String> paging(int page);
-
+	int getTotalCount();
+	
+	int getTestCount();
+	
+	Map<String, String> paging(String solting, String searchStatus, String word, int page);
+	
 	List <CourseDTO> getAllCourse(Map<String, String> map);
 
 	void updateCourseStatus(Map<String, String> map);
 
 	int addCourse(CourseDTO dto, MultipartFile image, HttpServletRequest req);
 
-	int checkNameDuplication(CourseDTO dto);
+	int checkCourseNameDuplication(CourseDTO dto);
 	
 	String getCourseSeq();
 
-	int addCWC(CourseDTO dto, String courseSeq);
+	int addCWC(CourseDTO dto, String seq);
 
-	int addCWCWin(CourseDTO dto, String courseSeq);
+	int addCWCWin(CourseDTO dto, String seq);
 	
-	int addCWCFinalWin(CourseDTO dto, String courseSeq);
+	int addCWCFinalWin(CourseDTO dto, String seq);
 
 	int getCWCFinalWinTotalCount();
 
@@ -44,5 +46,19 @@ public interface WorldCupCourseService {
 	int delCWCWin(String[] course_seq);
 
 	int delCWCFinalWin(String[] course_seq);
+
+	List<CourseDTO> getCourseList();
+
+	List<CourseDTO> getRandomTwoCourses(List<CourseDTO> remainingCourses);
+	
+	List<CourseDTO> getRemainingCourses(List<String> selectedCourses);
+
+	void updateCWCMatchCount(String seq);
+
+	void updateCWCWinCount(String seq);
+
+	void updateCWCFinalWinCount(String seq);
+
+	List<CourseDTO> getCourseNameList();
 
 }
