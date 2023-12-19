@@ -8,12 +8,20 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.project.dd.login.domain.CustomUser;
 import com.project.dd.login.domain.LoginDTO;
 import com.project.dd.login.mapper.LoginMapper;
-
+/**
+ * 사용자 정의 UserDetailsService. 클래스입니다.
+ *  
+ */
 public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private LoginMapper mapper;
-	
+	/**
+	 * 입력받은 username에 해당하는 사용자 정보를 조회하고, UserDetails 객체로 변환하여 반환.
+	 * @param username 사용자 아이디
+	 * @return UserDetails 객체
+	 * @throws UsernameNotFoundException 사용자가 존재하지 않는 경우 예외 발생
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 

@@ -618,8 +618,8 @@
 	});
 </script>
 
-<script
-		src="/dd/resources/price/vendor/purecounter/purecounter_vanilla.js"></script>
+<!-- <script
+		src="/dd/resources/price/vendor/purecounter/purecounter_vanilla.js"></script> -->
 	<script src="/dd/resources/price/vendor/aos/aos.js"></script>
 	<script
 		src="/dd/resources/price/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -676,26 +676,59 @@
 </script>
 
 <script>
-  $(document).ready(function () {
-    $('.image-slider img').on('load', function () {
-      adjustBoxSize();
-    });
-
-    // 이미지 크기에 맞게 상자 크기 조절 함수
-    function adjustBoxSize() {
-      $('.image-slider div').each(function () {
-        var imgWidth = $(this).find('img').width();
-        var parentWidth = $(this).width();
-        var margin = (parentWidth - imgWidth) / 2;
-        $(this).css('padding-left', margin + 'px');
-        $(this).css('padding-right', margin + 'px');
-      });
-    }
+$(document).ready(function () {
+  $('.image-slider').slick({
+    variableWidth: true,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
+    arrows: true,
+    prevArrow: "<button type='button' class='slick-prev'>&#10094;</button>",
+    nextArrow: "<button type='button' class='slick-next'>&#10095;</button>",
+    draggable: true
   });
+
+  // 이미지가 로드될 때마다 실행되는 이벤트
+  $('.image-slider img').on('load', function () {
+    adjustBoxSize();
+  });
+
+  // 윈도우 크기가 변경될 때마다 실행되는 이벤트
+  $(window).resize(function () {
+    adjustBoxSize();
+  });
+
+  // 이미지 크기에 맞게 상자 크기 조절 함수
+  function adjustBoxSize() {
+    $('.image-slider div').each(function () {
+      var img = $(this).find('img');
+      var imgWidth = img.width();
+      var imgHeight = img.height(); // 이미지의 실제 높이도 고려
+      var parentWidth = $(this).width();
+      var parentHeight = $(this).height(); // 부모 요소의 높이도 고려
+      var marginX = (parentWidth - imgWidth) / 2;
+      var marginY = (parentHeight - imgHeight) / 2;
+
+      // 이미지 크기가 500x500 이상인 경우에만 조절
+      if (imgWidth > 500 || imgHeight > 500) {
+        img.css('max-width', '500px');
+        img.css('max-height', '500px');
+      }
+
+      // 이미지를 중앙에 정렬
+      $(this).css('padding-left', marginX + 'px');
+      $(this).css('padding-right', marginX + 'px');
+      $(this).css('padding-top', marginY + 'px');
+      $(this).css('padding-bottom', marginY + 'px');
+    });
+  }
+});
+
 </script>
 
 <script>
-  $(document).ready(function () {
+ /*  $(document).ready(function () {
     $('.image-slider img').on('load', function () {
       adjustBoxSize();
     });
@@ -726,5 +759,5 @@
         $(this).css('padding-bottom', marginY + 'px');
       });
     }
-  });
+  }); */
 </script>
