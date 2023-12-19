@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <style>
 	#header {
@@ -34,6 +35,14 @@
     .d-md-block {
     	margin-right: 0;
     }
+    .logout {
+   	    position: absolute;
+	    width: 120px;
+	    height: 50px;
+	    left: 20px;
+	    background-color: transparent;
+	    border: 0;
+    }
 </style>
 
 <!-- ======= Header ======= -->
@@ -48,17 +57,21 @@
     <div class="profile-section">
 
 		<a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-			<img id="user" src="/dd/resources/admin/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+			<!-- <img id="user" src="/dd/resources/admin/img/profile-img.jpg" alt="Profile" class="rounded-circle"> -->
 	        <span class="d-none d-md-block dropdown-toggle ps-2">관리자</span>
 	    </a>
 	
 	    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-	
+			
 			<li class="dropdown-header">
-				<a class="dropdown-item d-flex align-items-center" href="index.do">
-					<i class="bi bi-box-arrow-right"></i>
-		            <span>로그아웃</span>
-				</a>
+				<sec:authorize access="isAuthenticated()">
+		      	<form method="post" action="/dd/logout.do">
+					<a class="dropdown-item d-flex align-items-center" href="index.do">
+			            <button class="logout" type="submit"><i class="bi bi-box-arrow-right"></i>LogOut</button>
+					</a>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+				</form>
+      			</sec:authorize>
 			</li>
 	
 		</ul>

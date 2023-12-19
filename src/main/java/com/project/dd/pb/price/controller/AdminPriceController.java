@@ -76,7 +76,7 @@ public class AdminPriceController {
 	public String edit(@Valid PriceDTO priceDTO, BindingResult bindingResult,Model model) {
 		if (bindingResult.hasErrors()) {
 			
-			return "admin/pb/price/edit";
+			return "admin/pb/price/edit";	
 
 		}
 
