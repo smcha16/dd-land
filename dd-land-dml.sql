@@ -2197,94 +2197,94 @@ VALUES (seqtblFestivalImg.NEXTVAL, 'Ghibli-festival-sample3.png', 3);
 SELECT * FROM tblAttraction;
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '지브리특급', '지브리특급특급특급', 120, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '지브리특급', '지브리 특급을 타고 지브리의 세계로~!! 우리 함께 지브리를 만나러 가요!', 120, '09:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '포뇨의 비행', '포뇨가 비행하고 싶어요 날아가고 싶어요 날아갈래요 날아라 날아', 30, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '포뇨의 비행', '포뇨는 비행하고싶어요. 포뇨와 함께 비행하며 바다를 떠나 하늘을 여행해볼까요?', 30, '09:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '천공의 성', '천공의 성으로 가고 싶어요 천공의 성으로 보내주세요', 65, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '천공의 성', '천공의 성까지 가려면 얼마나 걸릴까요? 천공의 성에서 맛있는 만찬을 즐겨요!', 65, '09:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '고양이 스핀', '소개 테스트', 80, '10:00 - 22:00', '제한 없음');
+VALUES (seqtblAttraction.NEXTVAL, '고양이 스핀', '고양이는 돌고 돈다! 고양이와 함께 돌고 돌며 빙글 빙글 세계를 경험해봐요!', 80, '09:00 - 22:00', '제한 없음');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '센과 치히로의 동굴 탐험', '소개 테스트', 60, '10:00 - 22:00', '제한 없음');
+VALUES (seqtblAttraction.NEXTVAL, '센과 치히로의 동굴 탐험', '이 지하 동굴의 끝에는 뭐가 있을까요? 호기심을 한 가득 안고 센과 치히로와 함께 동굴 탐험을 떠나요!', 60, '09:00 - 22:00', '제한 없음');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '모노노케히메의 늑대 체험', '소개 테스트', 70, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '모노노케히메의 늑대 체험', '늑대를 만나 볼 수 있는 곳! 와아!! 늑대다!', 70, '09:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '우리는 빙글빙글', '소개 테스트', 80, '10:00 - 22:00', '제한 없음');
+VALUES (seqtblAttraction.NEXTVAL, '우리는 빙글빙글', '우리는 모두 빙글빙글 돌아요. 빙글빙글 돌아도 정신만 바짝 차리면 된답니다!', 80, '09:00 - 22:00', '제한 없음');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '추억의 마니', '소개 테스트', 70, '10:00 - 22:00', '제한 없음');
+VALUES (seqtblAttraction.NEXTVAL, '추억의 마니', '마니야 보고싶었어! 추억의 마니를 만나러 바로 이 곳으로 오세요!', 70, '09:00 - 22:00', '제한 없음');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '즐거움은 방울방울', '소개 테스트', 50, '10:00 - 22:00', '제한 없음');
+VALUES (seqtblAttraction.NEXTVAL, '즐거움은 방울방울', '즐거움은 늘 방울방울 떠올라요. DD 랜드에서의 즐거움은 터지지 않는 비눗방울과 같죠!', 50, '09:00 - 22:00', '제한 없음');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '마녀 배달부 디디', '소개 테스트', 70, '10:00 - 22:00', '제한 없음');
+VALUES (seqtblAttraction.NEXTVAL, '마녀 배달부 디디', '디디에게 배달 업무를 배우며 마녀 배달부의 일상속으로!', 70, '09:00 - 22:00', '제한 없음');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '빗자루 여행', '소개 테스트', 55, '10:00 - 22:00', '120cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '빗자루 여행', '빗자루 타고 하늘을 날아봤나요? 그렇다면 바로 지금! 빗자루 여행에서 만나요. 우리 함께 하늘로 가볼까요?', 55, '09:00 - 22:00', '120cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '너구리 대작전', '소개 테스트', 75, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '너구리 대작전', '으악! 너구리다! 너구리 대작전. 과연 무슨 작전일까요?', 75, '09:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '지트란티스', '소개 테스트', 85, '10:00 - 22:00', '140cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '지트란티스', '스릴을 원한다면 바로 찾아와야 하는 곳. 지트란티스!', 85, '09:00 - 22:00', '140cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '토토로스윙', '소개 테스트', 80, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '토토로스윙', '토토로와 함께 스윙하러 가볼까요?', 80, '09:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '토토로스핀', '소개 테스트', 80, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '토토로스핀', '토토로와 함께 스핀하러 가볼까요?', 80, '09:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '거북이 그네', '소개 테스트', 55, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '거북이 그네', '거북이 그네다! 거북이가 태워주는 그네는 어떨까요?', 55, '09:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '지브리왕국의 해적선', '소개 테스트', 120, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '지브리왕국의 해적선', '나는 지브리 왕국의 해적이다! 해적선의 선장은 누구일지! 지브리의 잭 스패로우를 찾아서 떠나요.', 120, '09:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '후룸라이드', '소개 테스트', 65, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '후룸라이드', '후룸라이드 타며 슈슝~', 65, '09:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '회전목마', '소개 테스트', 75, '10:00 - 22:00', '제한 없음');
+VALUES (seqtblAttraction.NEXTVAL, '회전목마', '빙글빙글 돌며 환상의 시간을 보내보세요! 빙글빙글 돌다보면 언젠가 내가 찾던 것들이 눈에 보이기 시작할거에요! 바로 그 순간을 위해 회전목마는 오늘도 돌아간답니다.', 75, '09:00 - 22:00', '제한 없음');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '후렌치레볼루션', '소개 테스트', 80, '10:00 - 22:00', '140cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '후렌치레볼루션', '후렌치레볼루션은 DD랜드의 인기 어트랙션 중 하나에요. 시간이 흘러도 끊임없는 인기! 비결이 뭘까요?', 80, '09:00 - 22:00', '140cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '황야의 무법자', '소개 테스트', 80, '10:00 - 22:00', '제한 없음');
+VALUES (seqtblAttraction.NEXTVAL, '황야의 무법자', '비켜라! 황야의 무법자 나간다!', 80, '09:00 - 22:00', '제한 없음');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '뛰뛰빵빵', '소개 테스트', 60, '10:00 - 22:00', '제한 없음');
+VALUES (seqtblAttraction.NEXTVAL, '뛰뛰빵빵', '뛰뛰빵빵! 지나갑니다! 조심하세요!', 60, '09:00 - 22:00', '제한 없음');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '환타지드림', '소개 테스트', 55, '10:00 - 22:00', '제한 없음');
+VALUES (seqtblAttraction.NEXTVAL, '환타지드림', '이곳은! 내가 바라던 모든 것이 있잖아?! 환타지 드림을 만나러 가요!', 55, '09:00 - 22:00', '제한 없음');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '코쿠리코 언덕에서', '소개 테스트', 80, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '코쿠리코 언덕에서', '코쿠리코 언덕에서 우리가 만난 날을 기억하나요?', 80, '09:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '마루 밑 아리에티를 찾아서', '소개 테스트', 30, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '마루 밑 아리에티를 찾아서', '아리에티가 어디있다고? 마루 밑?! 아리에티를 찾아서 지금 당장 떠나요!', 30, '09:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '니모 이야기', '소개 테스트', 75, '10:00 - 22:00', '제한 없음');
+VALUES (seqtblAttraction.NEXTVAL, '니모 이야기', '니모야, 너의 이야기를 들려줄래? 니모의 이야기를 들으며 여행을 떠나보아요.', 75, '09:00 - 22:00', '제한 없음');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '벼랑 기차', '소개 테스트', 75, '10:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '벼랑 기차', '극한의 공포! 벼랑 끝에서의 아찔함을 느끼고 싶다면 바로 지금! 벼랑 기차로 오세요.', 75, '09:00 - 22:00', '130cm 미만 탑승 불가, 임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '지브리의 보은', '소개 테스트', 90, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '지브리의 보은', '지브리의 보은은 정말 놀라워요!', 90, '09:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '이웃집 탐방기', '소개 테스트', 100, '10:00 - 22:00', '임산부 및 노약자 탑승 불가');
+VALUES (seqtblAttraction.NEXTVAL, '이웃집 탐방기', '나의 이웃에는 어떤 분들이 살고 있을까요? 이웃집 탐방하러 Go Go!', 100, '09:00 - 22:00', '임산부 및 노약자 탑승 불가');
 
 INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
-VALUES (seqtblAttraction.NEXTVAL, '귀를 기울이면', '소개 테스트', 120, '10:00 - 22:00', '제한 없음');
+VALUES (seqtblAttraction.NEXTVAL, '귀를 기울이면', '귀를 기울이면? 신나는 음악소리가 들려요! 여러 사람들의 목소리도 들리구요! 과연 무슨 일이 벌어질까요?', 120, '09:00 - 22:00', '제한 없음');
 
 
 /* 어트/운휴 */
