@@ -55,6 +55,14 @@
 		#header.fixed-top {
 		    height: 90px;
 		}
+		.stats-counter {
+			background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+				url("/dd/resources/files/pb/price.jpg")
+				center center;
+			background-size: cover;
+			padding: 222px 0 100px;
+			background-attachment: fixed;
+		}
 	</style>
 </head>
 
