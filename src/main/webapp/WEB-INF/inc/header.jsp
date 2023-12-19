@@ -20,7 +20,7 @@
 		color: black;
 	}
 	.header{
-		box-shadow: 2px 2px 3px 2px #CCC;
+		box-shadow: 2px 2px 3px 2px #cccccc4a;
 	}
 </style>
   <!-- ======= Header ======= -->
