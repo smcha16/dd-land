@@ -40,6 +40,22 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  
+	<style>
+		.section-title p {
+			width: 100%;
+			margin-bottom: 10px;
+		}
+		.section-title h3 {
+			margin: 15px 0 30px;
+		}
+		.section-title h3:last-child {
+			margin-top: 0 !important;
+		}
+		#header.fixed-top {
+		    height: 90px;
+		}
+	</style>
 </head>
 
 <body>
@@ -69,9 +85,7 @@
 
 			<div class="section-title">
 				<h3>개인</h3>
-				<p> 어드벤처&매직아일랜드 입장 및 놀이시설 이용 (게임시설 등 유료시설 제외),
-					민속박물관 관람 (입장마감 18시),
-					어드벤처&매직아일랜드와 민속박물관은 미이용에 따른 분리 환불 불가능</p>
+				<p> 어드벤처 & 매직아일랜드 입장 및 놀이시설 이용 (게임시설 등 유료시설 제외)<br>
 			</div>
 
 			<div class="row">
@@ -91,11 +105,9 @@
 						</c:forEach>
 
 						<ul>
-							<li>만 13세 이상 ~</li>
-							<li> 만 18세</li>
+							<li>만 13세 ~ 만 18세</li>
 							<li>청소년 요금 적용</li>
 							<li>(학교 및 학년 무관)</li>
-							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
 							<a href="#" class="btn-buy">Buy Now</a>
@@ -116,11 +128,9 @@
 							</c:if>
 						</c:forEach>
 						<ul>
-							<li>만 19세 이상 ~</li>
-							<li> 만 64세</li>
+							<li>만 19세 ~ 만 64세</li>
 							<li>성인 요금 적용</li>
 							<li>(출생 및 인종 무관)</li>
-							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
 							<a href="#" class="btn-buy">Buy Now</a>
@@ -141,11 +151,9 @@
 							</c:if>
 						</c:forEach>
 						<ul>
-							<li>만 13세 이상 ~</li>
-							<li> 만 18세</li>
+							<li>만 13세 ~ 만 18세</li>
 							<li>청소년 요금 적용</li>
 							<li>(학교 및 학년 무관)</li>
-							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
 							<a href="#" class="btn-buy">Buy Now</a>
@@ -166,11 +174,9 @@
 						</c:if>
 						</c:forEach>
 						<ul>
-							<li>만 19세 이상 ~</li>
-							<li> 만 64세</li>
+							<li>만 19세 ~ 만 64세</li>
 							<li>성인 요금 적용</li>
 							<li>(출생 및 인종 무관)</li>
-							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
 							<a href="#" class="btn-buy">Buy Now</a>
@@ -195,7 +201,7 @@
 
 			<div class="section-title">
 				<h3>단체</h3>
-				<p>어드벤처&매직아일랜드 입장 및 놀이시설 이용 (게임시설 등 유료시설 제외),
+				<p>어드벤처 & 매직아일랜드 입장 및 놀이시설 이용 (게임시설 등 유료시설 제외)<br>
 	 상기 이용권은 일반 할인 혜택 적용이 불가하며 특수한 경우에 한하여 할인 혜택 적용이 가능합니다. (장애인 우대, 대관행사 등)</p>
 			</div>
 
@@ -216,11 +222,9 @@
 						</c:forEach>
 
 						<ul>
-							<li>만 13세 이상 ~</li>
-							<li> 만 18세</li>
+							<li>만 13세 ~ 만 18세</li>
 							<li>청소년 요금 적용</li>
 							<li>(학교 및 학년 무관)</li>
-							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
 							<a href="#" class="btn-buy">Buy Now</a>
@@ -241,11 +245,9 @@
 							</c:if>
 						</c:forEach>
 						<ul>
-							<li>만 19세 이상 ~</li>
-							<li> 만 64세</li>
+							<li>만 19세 ~ 만 64세</li>
 							<li>성인 요금 적용</li>
 							<li>(출생 및 인종 무관)</li>
-							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
 							<a href="#" class="btn-buy">Buy Now</a>
@@ -266,11 +268,9 @@
 							</c:if>
 						</c:forEach>
 						<ul>
-							<li>만 13세 이상 ~</li>
-							<li> 만 18세</li>
+							<li>만 13세 ~ 만 18세</li>
 							<li>청소년 요금 적용</li>
 							<li>(학교 및 학년 무관)</li>
-							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
 							<a href="#" class="btn-buy">Buy Now</a>
@@ -291,11 +291,9 @@
 						</c:if>
 						</c:forEach>
 						<ul>
-							<li>만 19세 이상 ~</li>
-							<li> 만 64세</li>
+							<li>만 19세 ~ 만 64세</li>
 							<li>성인 요금 적용</li>
 							<li>(출생 및 인종 무관)</li>
-							<li class="na">Massa ultricies mi</li>
 						</ul>
 						<div class="btn-wrap">
 							<a href="#" class="btn-buy">Buy Now</a>
