@@ -11,6 +11,6 @@ public interface MypageInquiryMapper {
 
 	int getTotalCount();
 
-	int delete(String selectedInquiry);
+	int delete(String seq);
 
 }

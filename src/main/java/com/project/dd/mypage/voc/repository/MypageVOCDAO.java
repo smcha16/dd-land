@@ -11,6 +11,6 @@ public interface MypageVOCDAO {
 
 	int getTotalCount();
 
-	int delete(String selectedVOC);
+	int delete(String seq);
 
 }

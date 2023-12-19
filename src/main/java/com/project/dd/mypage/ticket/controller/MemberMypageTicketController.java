@@ -24,19 +24,19 @@ public class MemberMypageTicketController {
 	private MypageTicketService service;
 
 	@GetMapping(value = "/view.do")
-	public String view(Model model, Authentication auth, @RequestParam(defaultValue = "1") int page) {
+	public String view(Model model, TicketDTO dto, Authentication auth, @RequestParam(defaultValue = "1") int page) {
 
-		Map<String, String> map = service.paging(page);  //페이징
-		
 		String email = ((CustomUser) auth.getPrincipal()).getDto().getEmail();
 		
+		Map<String, String> map = service.paging(page, email);  //페이징
+		
 		map.put("email", email);
+		map.put("user_book_seq", dto.getUser_book_seq());
 
 		List<TicketDTO> list = service.list(map);
-		List<TicketDTO> plist = service.plist(map);
 
+		
 		model.addAttribute("list", list);
-		model.addAttribute("plist", plist);
 		model.addAttribute("email", email);
 		model.addAttribute("currentPage", page);  //페이징
 	    model.addAttribute("map", map);  //페이징
@@ -44,9 +44,30 @@ public class MemberMypageTicketController {
 		return "mypage/ticket/view";
 	}
 	
+	@GetMapping(value = "/pview.do")
+	public String pview(Model model, TicketDTO dto, Authentication auth, @RequestParam(defaultValue = "1") int page) {
+
+		String email = ((CustomUser) auth.getPrincipal()).getDto().getEmail();
+		
+		Map<String, String> map = service.pPaging(page, email);  //페이징
+		
+		map.put("email", email);
+		map.put("user_book_seq", dto.getUser_book_seq());
+
+		List<TicketDTO> plist = service.plist(map);
+
+		
+		model.addAttribute("plist", plist);
+		model.addAttribute("email", email);
+		model.addAttribute("currentPage", page);  //페이징
+	    model.addAttribute("map", map);  //페이징
+
+		return "mypage/ticket/pview";
+	}
+	
 
 	@PostMapping(value = "/delete.do")
-	public String delete(Model model, String selectedTickets) {
+	public String delete(Model model, String[] selectedTickets) {
 
 		int result = service.delete(selectedTickets);
 

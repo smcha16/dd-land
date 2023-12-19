@@ -9,10 +9,12 @@ public interface MypageAttractionDAO {
 
 	List<AttractionDTO> list(Map<String, String> map);
 
-	int delete(String selectedAttraction);
-	
-	int getTotalCount();
+	int getTotalCount(String email);
 
 	List<AttractionDTO> plist(Map<String, String> map);
+
+	int delete(String seq);
+
+	int pGetTotalCount(String email);
 
 }

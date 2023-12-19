@@ -23,7 +23,7 @@ public class MypageBuyService {
 
 	public Map<String, String> paging(int page) {
 		
-		  int pageSize = 9;  //나타났으면 하는 개수
+		  int pageSize = 12;  //나타났으면 하는 개수
 	      
 	      int startIndex = (page - 1) * pageSize + 1;
 	      int endIndex = startIndex + pageSize - 1;
@@ -42,9 +42,18 @@ public class MypageBuyService {
 	      return map;
 	}
 
-	public int delete(String selectedItem) {
+	public int delete(String[] selectedItem) {
 		
-		return dao.delete(selectedItem);
+		int totalDeleted = 0;
+
+		for (String seq : selectedItem) {
+
+			int deleted = dao.delete(seq);
+			totalDeleted += deleted;
+
+		}
+
+		return totalDeleted;
 	}
 
 }

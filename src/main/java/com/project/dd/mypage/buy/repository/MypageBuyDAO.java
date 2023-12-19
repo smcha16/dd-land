@@ -11,6 +11,6 @@ public interface MypageBuyDAO {
 
 	int getTotalCount();
 
-	int delete(String selectedItem);
+	int delete(String seq);
 
 }
