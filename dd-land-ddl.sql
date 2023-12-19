@@ -940,6 +940,19 @@ SELECT
 FROM
     tblshop s;
 
+create or replace View vwItem
+    as
+    select i.*, (select name as shop_name from tblshop where shop_seq = i.shop_seq) as shop_name,
+    (
+        SELECT
+            img
+        FROM
+            tblitemimg
+        WHERE
+                item_seq = i.item_seq
+            AND ROWNUM = 1
+    )             AS img from tblItem i where price != 0 order by item_seq DESC;
+
 -- 어트랙션 리스트 (seq, name, img)
 CREATE OR REPLACE VIEW vwAttractionList
 AS
