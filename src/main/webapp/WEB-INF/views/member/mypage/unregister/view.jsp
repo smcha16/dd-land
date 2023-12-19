@@ -176,7 +176,7 @@ form input[type="submit"]:hover {
 									</ol>
 								</nav>
 
-								<form action="/dd/member/mypage/unregister/unregister.do" method="POST">
+								<form id="deleteForm" action="/dd/member/mypage/unregister/unregister.do" method="POST">
 						            <label for="email">이메일:</label>
 						            <input type="text" id="email" name="email" required>
 						            
@@ -193,7 +193,7 @@ form input[type="submit"]:hover {
 						            <label for="otherReason" style="margin-top: 30px;">기타 사유:</label>
 						            <textarea id="otherReason" name="otherReason" rows="4"></textarea>
 						            
-						            <input type="submit" value="회원 탈퇴">
+						            <input type="submit" value="회원 탈퇴" onclick="confirmDelete()">
 						            <input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}">
 						        </form>
@@ -210,3 +210,20 @@ form input[type="submit"]:hover {
 	</section>
 
 </main>
+
+<script>
+    function confirmDelete() {
+        var result = confirm("정말 회원 탈퇴를 진행하시겠습니까?");
+        if (result) {
+            // '확인'을 클릭한 경우
+            document.getElementById("deleteForm").submit(); // 실제 탈퇴 작업 수행
+        } else {
+            // '취소'를 클릭한 경우
+            // 아무 작업도 수행하지 않거나 필요한 작업을 추가하세요.
+        }
+    }
+    
+    <c:if test="${invalidEmail}">
+    alert("이메일이 일치하지 않습니다.");
+	</c:if>
+</script>

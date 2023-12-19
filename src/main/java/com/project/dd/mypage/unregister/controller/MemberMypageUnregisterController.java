@@ -55,7 +55,8 @@ public class MemberMypageUnregisterController {
         } else {
             // 사용자가 확인되지 않음
             model.addAttribute("error", "이메일이 일치하지 않습니다.");
-            return "redirect:/member/mypage/unregister/failure.do";// 실패 페이지로 이동
+            model.addAttribute("invalidEmail", true);
+            return "mypage/unregister/view";
         }
 	}
 

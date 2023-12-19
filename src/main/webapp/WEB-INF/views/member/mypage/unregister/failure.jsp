@@ -94,24 +94,9 @@
 				<div class="row">
 					<div class="col-12">
 
-              			<div id="search" class="header">
-                  			<form class="search-form d-flex align-items-center" method="POST" action="#">
-                    			<input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                    			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                  			</form>
-              			</div>
-
 						<div class="card">
                 			<div class="card-body">
 
-                  				<nav class="d-flex justify-content-end">
-                    				<ol class="breadcrumb">
-                      					<!-- <li class="breadcrumb-item"><a href="index.html">추가</a></li>
-                      					<li class="breadcrumb-item"><a href="#">수정</a></li>
-                      					<li class="breadcrumb-item active"><a href="#">삭제</a></li> -->
-                    				</ol>
-								</nav>
-								
 								<p>${error}</p> <!-- 에러 메시지 출력 -->
                   
                 				</div>
