@@ -35,8 +35,8 @@ public class AttractionDAOImpl implements AttractionDAO {
 	}
 
 	@Override
-	public int getTotalCount() {
-		return mapper.getTotalCount();
+	public int getTotalCount(Map<String, String> map) {
+		return mapper.getTotalCount(map);
 	}
 
 	@Override

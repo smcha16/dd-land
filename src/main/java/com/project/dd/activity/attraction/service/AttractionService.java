@@ -27,7 +27,7 @@ public class AttractionService {
 	@Autowired
 	AttractionDAO dao;
 
-	public Map<String, String> paging(int page, String solting) {
+	public Map<String, String> paging(String searchStatus, String word, int page, String solting) {
 		
 		int pageSize = 0;
 		
@@ -38,20 +38,25 @@ public class AttractionService {
 		} else if (solting.equalsIgnoreCase("admin")) {
 			pageSize = 10;  //나타났으면 하는 개수(admin)
 		}
-		
+
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
 		
 		Map<String, String> map = new HashMap<String, String>();
+
+		//검색 관련 추가
+		map.put("searchStatus", searchStatus);
+		map.put("word", word);
 		
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 		
-		int totalPosts = dao.getTotalCount();
+		int totalPosts = dao.getTotalCount(map);
 		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
 		
 		map.put("totalPosts", String.format("%d", totalPosts));
 		map.put("totalPages", String.format("%d", totalPages));
+		
 		
 		return map;
 		
