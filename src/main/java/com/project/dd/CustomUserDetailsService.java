@@ -17,13 +17,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		//DB 상에서 회원 정보를 인증 객체에 대입
-		//username == 아이디
+		// DB 상에서 회원 정보를 인증 객체에 대입
+		// username == 아이디
+		
 		LoginDTO dto = mapper.read(username);
 		
-		//MemberDTO > 시큐리티에서 사용(변환) > CustomUser
+		// MemberDTO > 시큐리티에서 사용(변환) > CustomUser
 		
 		return dto != null ? new CustomUser(dto) : null;
+		
 	}
 	
 }

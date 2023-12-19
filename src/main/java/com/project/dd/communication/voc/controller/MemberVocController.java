@@ -17,6 +17,11 @@ import com.project.dd.communication.voc.domain.VocDTO;
 import com.project.dd.communication.voc.service.VocService;
 import com.project.dd.login.domain.CustomUser;
 
+/**
+ * 회원용 칭찬/불편/건의 컨트롤러 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Controller
 @RequestMapping("/member/communication/voc")
 public class MemberVocController {
@@ -24,8 +29,13 @@ public class MemberVocController {
 	@Autowired
 	private VocService service;
 	
-	/* 추가 */
-	
+	/**
+	 * 칭찬/불편/건의를 추가하는 폼을 보여주는 메서드입니다.
+	 *
+	 * @param auth 인증 정보를 담은 Authentication 객체
+	 * @param model Spring의 Model 객체
+	 * @return 칭찬/불편/건의 추가 폼을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/add.do")
 	public String add(Authentication auth, Model model) {
 
@@ -44,6 +54,15 @@ public class MemberVocController {
 
 	}
 	
+	/**
+	 * 칭찬/불편/건의를 추가하는 메서드입니다.
+	 *
+	 * @param auth 인증 정보를 담은 Authentication 객체
+	 * @param dto 추가할 칭찬/불편/건의의 DTO 객체
+	 * @param req HttpServletRequest 객체
+	 * @param doc 첨부 파일
+	 * @return 칭찬/불편/건의 목록을 보여주는 뷰로의 리다이렉트 경로 또는 칭찬/불편/건의 추가 폼의 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/addok.do")
 	public String addOk(Authentication auth, VocDTO dto, HttpServletRequest req, MultipartFile doc) {
 		

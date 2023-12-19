@@ -11,13 +11,14 @@ public class ChatController {
 	public String view(Model model) {
 
 		return "user/chat/view";
+		
 	}
 
-	
 	@GetMapping(value = "/user/chat/chat.do")
 	public String chat(Model model) {
 
 		return "user/chat/chat";
+		
 	}
 	
 }

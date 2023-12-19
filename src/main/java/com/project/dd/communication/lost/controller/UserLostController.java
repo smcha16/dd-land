@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.dd.communication.lost.domain.LostPropertyDTO;
 import com.project.dd.communication.lost.service.LostPropertyService;
 
+/**
+ * 사용자용 분실물 컨트롤러 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Controller
 @RequestMapping("/user/communication/lost-property")
 public class UserLostController {
@@ -20,8 +25,17 @@ public class UserLostController {
 	@Autowired
 	private LostPropertyService service;
 	
-	/* 목록 */
-	
+	/**
+	 * 분실물 목록을 보여주는 메서드입니다.
+	 *
+	 * @param category 분실물 카테고리
+	 * @param word 검색어
+	 * @param start 검색 시작일
+	 * @param end 검색 종료일
+	 * @param page 페이지 번호
+	 * @param model Spring의 Model 객체
+	 * @return 분실물 목록을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(String category, String word, String start, String end, @RequestParam(defaultValue = "1") int page, Model model) {
 		

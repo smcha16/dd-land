@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.dd.communication.voc.domain.VocDTO;
 import com.project.dd.communication.voc.service.VocService;
 
+/**
+ * 관리자용 칭찬/불편/건의 컨트롤러 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Controller
 @RequestMapping("/admin/communication/voc")
 public class AdminVocController {
@@ -21,8 +26,14 @@ public class AdminVocController {
 	@Autowired
 	private VocService service;
 	
-/* 목록 */
-	
+	/**
+	 * 칭찬/불편/건의 목록을 보여주는 메서드입니다.
+	 *
+	 * @param word 검색어
+	 * @param page 페이지 번호
+	 * @param model Spring의 Model 객체
+	 * @return 칭찬/불편/건의 목록을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 		
@@ -40,8 +51,12 @@ public class AdminVocController {
 
 	}
 	
-	/* 답변 */
-	
+	/**
+	 * 칭찬/불편/건의에 답변을 등록하는 메서드입니다.
+	 *
+	 * @param dto 답변할 칭찬/불편/건의의 DTO 객체
+	 * @return 칭찬/불편/건의 목록을 보여주는 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/answer.do")
 	public String answer(VocDTO dto) {
 		
