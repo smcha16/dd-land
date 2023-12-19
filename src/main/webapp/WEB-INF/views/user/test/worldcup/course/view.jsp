@@ -155,25 +155,49 @@
 }
 
 .stats-counter {
-	background-image: url('/dd/resources/files/test/worldcup/course/course_worldcup_title.png');
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/test/worldcup/course/course_worldcup_title.png") center center;
 	background-size: cover;
 	background-attachment: fixed;
 }
 
-#overlay-div {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 458px;
-	background-color: black;
-	opacity: 0.45;
-	z-index: 0;
+@media screen and (max-width: 600px) {
+    .item {
+        width: 90%;
+        min-width: auto;
+        height: auto;
+        font-size: 18px;
+    }
+
+    .item>div:nth-child(2) {
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    #result-message {
+        font-size: 14px;
+    }
+
+	.test-name {
+		font-size: 18px !important;
+	}
+	
+    #worldcup-container {
+        padding-bottom: 10px;
+    }
+
+    #remaining-attractions-count {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .vs {
+        font-size: 30px;
+        transform: translateY(245%);
+    }
 }
 </style>
 
 <section id="stats-counter" class="stats-counter">
-	<div id="overlay-div"></div>
     <div id="pagetitle" class="container" data-aos="zoom-out">
         <div class="gy-4" style="justify-content: center; width: 100%;">
             <div class="col-lg-3 col-md-6" style="width: 100%;">
