@@ -43,7 +43,7 @@ input {
 }
 /*input 아이디박스*/
 .login-id-wrap {
-	margin: 0px 10px 8px 10px;
+	margin: 0px 8px 10px 8px;
 	padding: 10px;
 	border: solid 1px #dadada;
 	background: #fff;
@@ -56,7 +56,7 @@ input {
 }
 /*input 패스워드박스*/
 .login-pw-wrap {
-	margin: 0px 10px 8px 10px;
+	margin: 0px 8px 10px 8px;
 	padding: 10px;
 	border: solid 1px #dadada;
 	background: #fff;
@@ -423,8 +423,7 @@ h3 {
 
 
 
-
-
+<title>로그인</title>
 <div class="main">
 	<!--웹페이지 상단-->
 	<header>
@@ -494,16 +493,16 @@ h3 {
 
 		<div id="find-signup-wrap-ko">
 			<span class="find-id"> <a
-				href="https://nid.naver.com/user2/help/idInquiry?lang=ko_KR"
-				target="_blank" title="QR코드 로그인">아이디 찾기</a>
+				href="/dd/user/login/findid.do"
+				target="_self" title="QR코드 로그인">아이디 찾기</a>
 			</span> <span class="find-pw"> <a
-				href="https://nid.naver.com/user2/help/pwInquiry?lang=ko_KR"
-				target="_blank" title="일회용번호 로그인">비밀번호 찾기</a>
+				href="/dd/user/login/changepw.do"
+				target="_self" title="일회용번호 로그인">비밀번호 찾기</a>
 			</span> <span class="sign-up"> <a href="/dd/user/register/view.do"
 				target="_self" title="일회용번호 로그인">회원가입</a>
-			</span>
+			</span>	
 		</div>
-
+<!-- 
 		<div id="find-signup-wrap-en" style="display: none;">
 
 			<span class="find-id-en"> <span>Forgot your</span> <a
@@ -517,7 +516,7 @@ h3 {
 				target="_blank" title="일회용번호 로그인">Sign up</a>
 			</span>
 		</div>
-
+ -->
 
 	</section>
 
@@ -590,7 +589,7 @@ h3 {
 	<form method="POST" action="/dd/login">
 		<input type="hidden" name="username" value="kim@kakao.com"> <input
 			type="hidden" name="password" value="kim1111!">
-		<button type="submit" class="login button user">김형우도도리</button>
+		<button type="submit" class="login button user">김형우</button>
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}">
 	</form>

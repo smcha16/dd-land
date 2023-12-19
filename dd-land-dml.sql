@@ -3165,12 +3165,6 @@ VALUES (seqtblUserBook.NEXTVAL, 3, 5);
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
 VALUES (seqtblUserBook.NEXTVAL, 3, 6);
 
-INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
-VALUES (seqtblUserBook.NEXTVAL, 3, 21);
-
-INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
-VALUES (seqtblUserBook.NEXTVAL, 3, 22);
-
 /* 리뷰 */
 INSERT INTO tblReview (review_seq, subject, content, readcount, user_book_seq)
 VALUES (seqtblReview.NEXTVAL, '좋은 서비스', '서비스가 매우 만족스러웠습니다.', 10, 1);

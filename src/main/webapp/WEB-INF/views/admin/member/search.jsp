@@ -117,6 +117,8 @@ th {
 
 								<nav class="d-flex justify-content-end">
 									<ol class="breadcrumb">
+									<li class="breadcrumb-item active">
+										<a href="/dd/admin/member/view.do" onclick="/dd/admin/member/view.do">목록</a></li>
 										<li class="breadcrumb-item">
 										<a href="javascript:void(0);" onclick="edit();" >수정</a></li>
 										<li class="breadcrumb-item active">

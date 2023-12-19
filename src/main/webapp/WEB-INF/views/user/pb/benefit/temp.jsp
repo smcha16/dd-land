@@ -40,51 +40,25 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  
-	<style>
-		.section-title p {
-			width: 100%;
-			margin-bottom: 10px;
-		}
-		.section-title h3 {
-			margin: 15px 0 30px;
-		}
-		.section-title h3:last-child {
-			margin-top: 0 !important;
-		}
-		#header.fixed-top {
-		    height: 90px;
-		}
-		.stats-counter {
-			background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-				url("/dd/resources/files/pb/price.jpg")
-				center center;
-			background-size: cover;
-			padding: 222px 0 100px;
-			background-attachment: fixed;
-		}
-	</style>
 </head>
 
 <body>
-<!--   처음 사진부분 -->
-<section id="stats-counter" class="stats-counter">
-      <div id="pagetitle" class="container" data-aos="zoom-out">
-        <div class="gy-4" style="justify-content: center; width: 100%;">
+	<!--   처음 사진부분 -->
+	<section id="stats-counter" class="stats-counter">
+		<div id="pagetitle" class="container" data-aos="zoom-out">
+			<div class="gy-4" style="justify-content: center; width: 100%;">
 
-          <div class="col-lg-3 col-md-6" style="width: 100%;">
-            <div class="stats-item text-center w-100 h-100">
-              <div id="title" style="font-size: 48px;
-              display: block;
-              color: #fff;
-              font-weight: 700;">티 켓 요 금</div>
-              <p>다양한 옵션으로 즐거운 시간을 즐기세요!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
+				<div class="col-lg-3 col-md-6" style="width: 100%;">
+					<div class="stats-item text-center w-100 h-100">
+						<div id="title"
+							style="font-size: 48px; display: block; color: #fff; font-weight: 700;">${name}</div>
+						<p>다양한 옵션으로 즐거운 시간을 즐기세요!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 
 
 	<!-- ======= Pricing Section 개인요금 ======= -->
@@ -93,7 +67,8 @@
 
 			<div class="section-title">
 				<h3>개인</h3>
-				<p> 어드벤처 & 매직아일랜드 입장 및 놀이시설 이용 (게임시설 등 유료시설 제외)<br>
+				<p>어드벤처&매직아일랜드 입장 및 놀이시설 이용 (게임시설 등 유료시설 제외), 민속박물관 관람 (입장마감
+					18시), 어드벤처&매직아일랜드와 민속박물관은 미이용에 따른 분리 환불 불가능</p>
 			</div>
 
 			<div class="row">
@@ -103,22 +78,25 @@
 					<div class="box">
 						<h3>청소년</h3>
 						<span class="advanced">1DAY</span>
-						<c:forEach items="${personTypeList}" var="dto">
-							<c:if test="${dto.ticket_type eq '1Day' && dto.age eq '청소년'}">
-								<div></div>
-								<h4>
-									<sup>$</sup>${dto.price}
-								</h4>
-							</c:if>
-						</c:forEach>
-
+						<div></div>
+						<%-- <c:forEach items="${discountList1Day1}" var="discount"> --%>
+						<h4>
+							<sup>₩</sup> ${discountList1Day2}
+						</h4>
+						<%-- </c:forEach> --%>
 						<ul>
-							<li>만 13세 ~ 만 18세</li>
+							<c:forEach items="${list}" var="dto">
+								<c:if test="${dto.ticket_type eq '1Day' && dto.age eq '청소년'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 13세 이상 ~</li>
+							<li>만 18세</li>
 							<li>청소년 요금 적용</li>
 							<li>(학교 및 학년 무관)</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="/dd/member/ticket/personal-reservation/view.do" class="btn-buy">Buy Now</a>
+							<a href="#" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -128,20 +106,23 @@
 					<div class="box">
 						<h3>성인</h3>
 						<span class="advanced">1DAY</span>
-						<c:forEach items="${personTypeList}" var="dto">
-							<c:if test="${dto.ticket_type eq '1Day' && dto.age eq '성인'}">
-								<h4>
-									<sup>$</sup>${dto.price}
-								</h4>
-							</c:if>
-						</c:forEach>
+						<h4>
+							<sup>₩</sup>${discountList1Day1}
+						</h4>
+
 						<ul>
-							<li>만 19세 ~ 만 64세</li>
+							<c:forEach items="${list}" var="dto">
+								<c:if test="${dto.ticket_type eq '1Day' && dto.age eq '성인'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 19세 이상 ~</li>
+							<li>만 64세</li>
 							<li>성인 요금 적용</li>
 							<li>(출생 및 인종 무관)</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="/dd/member/ticket/personal-reservation/view.do" class="btn-buy">Buy Now</a>
+							<a href="#" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -151,20 +132,25 @@
 					<div class="box">
 						<h3>청소년</h3>
 						<span class="advanced">After4</span>
-						<c:forEach items="${personTypeList}" var="dto">
-							<c:if test="${dto.ticket_type eq 'After4' && dto.age eq '청소년'}">
-								<h4>
-									<sup>$</sup>${dto.price }<span>
-								</h4>
-							</c:if>
-						</c:forEach>
+
+
+						<h4>
+							<sup>₩</sup> ${discountListAfter42 }
+						</h4>
+
 						<ul>
-							<li>만 13세 ~ 만 18세</li>
+							<c:forEach items="${list}" var="dto">
+								<c:if test="${dto.ticket_type eq 'After4' && dto.age eq '청소년'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 13세 이상 ~</li>
+							<li>만 18세</li>
 							<li>청소년 요금 적용</li>
 							<li>(학교 및 학년 무관)</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="/dd/member/ticket/personal-reservation/view.do" class="btn-buy">Buy Now</a>
+							<a href="#" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -174,20 +160,25 @@
 					<div class="box">
 						<span class="advanced">After4</span>
 						<h3>성인</h3>
-						<c:forEach items="${personTypeList}" var="dto">
-							<c:if test="${dto.ticket_type eq 'After4' && dto.age eq '성인'}">
+
 						<h4>
-							<sup>$</sup>${dto.price }<span>
+							<sup>₩</sup> ${discountListAfter41}
+
 						</h4>
-						</c:if>
-						</c:forEach>
+
 						<ul>
-							<li>만 19세 ~ 만 64세</li>
+							<c:forEach items="${list}" var="dto">
+								<c:if test="${dto.ticket_type eq 'After4' && dto.age eq '성인'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 19세 이상 ~</li>
+							<li>만 64세</li>
 							<li>성인 요금 적용</li>
 							<li>(출생 및 인종 무관)</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="/dd/member/ticket/personal-reservation/view.do" class="btn-buy">Buy Now</a>
+							<a href="#" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -203,14 +194,14 @@
 	<!-- End Pricing Section -->
 
 
-<!-- ======= Pricing Section 단체요금 ======= -->
+	<!-- ======= Pricing Section 단체요금 ======= -->
 	<section id="pricing" class="pricing">
 		<div class="container" data-aos="fade-up">
 
 			<div class="section-title">
 				<h3>단체</h3>
-				<p>어드벤처 & 매직아일랜드 입장 및 놀이시설 이용 (게임시설 등 유료시설 제외)<br>
-	 상기 이용권은 일반 할인 혜택 적용이 불가하며 특수한 경우에 한하여 할인 혜택 적용이 가능합니다. (장애인 우대, 대관행사 등)</p>
+				<p>어드벤처&매직아일랜드 입장 및 놀이시설 이용 (게임시설 등 유료시설 제외), 상기 이용권은 일반 할인 혜택
+					적용이 불가하며 특수한 경우에 한하여 할인 혜택 적용이 가능합니다. (장애인 우대, 대관행사 등)</p>
 			</div>
 
 			<div class="row">
@@ -220,22 +211,25 @@
 					<div class="box">
 						<h3>청소년</h3>
 						<span class="advanced">1DAY</span>
-						<c:forEach items="${groupTypeList}" var="dto">
-							<c:if test="${dto.ticket_type eq '1Day' && dto.age eq '청소년'}">
-								<div></div>
-								<h4>
-									<sup>$</sup>${dto.price}
-								</h4>
-							</c:if>
-						</c:forEach>
+
+						<div></div>
+						<h4>
+							<sup>₩</sup> ${groupDiscount1Day2}
+						</h4>
 
 						<ul>
-							<li>만 13세 ~ 만 18세</li>
+							<c:forEach items="${groupList}" var="dto">
+								<c:if test="${dto.ticket_type eq '1Day' && dto.age eq '청소년'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 13세 이상 ~</li>
+							<li>만 18세</li>
 							<li>청소년 요금 적용</li>
 							<li>(학교 및 학년 무관)</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="/dd/member/ticket/group-reservation/view.do" class="btn-buy">Buy Now</a>
+							<a href="#" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -245,20 +239,23 @@
 					<div class="box">
 						<h3>성인</h3>
 						<span class="advanced">1DAY</span>
-						<c:forEach items="${groupTypeList}" var="dto">
-							<c:if test="${dto.ticket_type eq '1Day' && dto.age eq '성인'}">
-								<h4>
-									<sup>$</sup>${dto.price}
-								</h4>
-							</c:if>
-						</c:forEach>
+
+						<h4>
+							<sup>₩</sup> ${groupDiscount1Day1}
+						</h4>
 						<ul>
-							<li>만 19세 ~ 만 64세</li>
+						<c:forEach items="${groupList}" var="dto">
+								<c:if test="${dto.ticket_type eq '1Day' && dto.age eq '성인'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 19세 이상 ~</li>
+							<li>만 64세</li>
 							<li>성인 요금 적용</li>
 							<li>(출생 및 인종 무관)</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="/dd/member/ticket/group-reservation/view.do" class="btn-buy">Buy Now</a>
+							<a href="#" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -268,20 +265,24 @@
 					<div class="box">
 						<h3>청소년</h3>
 						<span class="advanced">After4</span>
-						<c:forEach items="${groupTypeList}" var="dto">
-							<c:if test="${dto.ticket_type eq 'After4' && dto.age eq '청소년'}">
-								<h4>
-									<sup>$</sup>${dto.price }<span>
-								</h4>
-							</c:if>
-						</c:forEach>
+
+						<h4>
+							<sup>₩</sup> ${groupDiscountAfter42}
+						</h4>
+
 						<ul>
-							<li>만 13세 ~ 만 18세</li>
+						<c:forEach items="${groupList}" var="dto">
+								<c:if test="${dto.ticket_type eq 'After4' && dto.age eq '청소년'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 13세 이상 ~</li>
+							<li>만 18세</li>
 							<li>청소년 요금 적용</li>
 							<li>(학교 및 학년 무관)</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="/dd/member/ticket/group-reservation/view.do" class="btn-buy">Buy Now</a>
+							<a href="#" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
@@ -291,20 +292,24 @@
 					<div class="box">
 						<span class="advanced">After4</span>
 						<h3>성인</h3>
-						<c:forEach items="${groupTypeList}" var="dto">
-							<c:if test="${dto.ticket_type eq 'After4' && dto.age eq '성인'}">
+
 						<h4>
-							<sup>$</sup>${dto.price }<span>
+							<sup>₩</sup> ${groupDiscountAfter41}
 						</h4>
-						</c:if>
-						</c:forEach>
+
 						<ul>
-							<li>만 19세 ~ 만 64세</li>
+						<c:forEach items="${groupList}" var="dto">
+								<c:if test="${dto.ticket_type eq 'After4' && dto.age eq '성인'}">
+									<li class="na">정상가 ₩ ${dto.price}</li>
+								</c:if>
+							</c:forEach>
+							<li>만 19세 이상 ~</li>
+							<li>만 64세</li>
 							<li>성인 요금 적용</li>
 							<li>(출생 및 인종 무관)</li>
 						</ul>
 						<div class="btn-wrap">
-							<a href="/dd/member/ticket/group-reservation/view.do" class="btn-buy">Buy Now</a>
+							<a href="#" class="btn-buy">Buy Now</a>
 						</div>
 					</div>
 				</div>
