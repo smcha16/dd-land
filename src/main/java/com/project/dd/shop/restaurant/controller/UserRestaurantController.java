@@ -1,5 +1,6 @@
 package com.project.dd.shop.restaurant.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.dd.shop.restaurant.domain.RestaurantDTO;
 import com.project.dd.shop.restaurant.service.RestaurantService;
 
 @Controller
@@ -23,9 +25,14 @@ public class UserRestaurantController {
 		
 		Map<String, String> map = restaurantService.paging(page);  //페이징
 		
-		model.addAttribute("list", restaurantService.getList(map));
+		List<RestaurantDTO> list = restaurantService.getList(map);
+		
+		int closeCount = restaurantService.getRestaurantCloseCount(list);
+		
+		model.addAttribute("list", list);
 		model.addAttribute("currentPage", page);  //페이징
 	    model.addAttribute("map", map);  //페이징
+	    model.addAttribute("closeCount", closeCount);
 
 		return "user/shop/restaurant/view";
 	}

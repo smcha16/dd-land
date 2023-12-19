@@ -19,10 +19,22 @@ public interface RestaurantMapper {
 	@Select("select * from tblRestaurantImg where restaurant_seq = #{seq}")
 	List<RestaurantImageDTO> image(@Param("seq") String seq);
 
-	@Select("select count(*) from vwRestaurant where lat != '0'")
-	int getTotalCount();
+	int getTotalCount(Map<String, String> map);
 
 	@Select("select * from tblRestaurantImg")
 	List<RestaurantImageDTO> getImgList();
+	
+	int checkNameDuplication(RestaurantDTO dto);
+
+	int addRestaurant(RestaurantDTO dto);
+
+	@Select("select max(restaurant_seq) as restaurant_seq from tblRestaurant")
+	String getSeq();
+
+	void addRestaurantLocation(RestaurantDTO dto);
+
+	void addRestaurantImg(RestaurantDTO dto);
+
+	int delRestaurant(String seq);
 
 }
