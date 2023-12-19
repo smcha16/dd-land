@@ -101,6 +101,19 @@ th {
 	justify-content: center;
 	margin-top: 40px;
 }
+
+.card-body form button.btn-book-a-table {
+    display: block;
+    width: 200px; /* 버튼 가로폭 설정 */
+    padding: 10px 20px; /* 버튼 내 여백 설정 */
+    font-size: 1.2rem; /* 폰트 사이즈 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+    background-color: #005aa3; /* 배경색 설정 */
+    color: #fff; /* 텍스트 색상 설정 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 버튼 모서리 둥글게 설정 */
+    cursor: pointer; /* 커서 모양 설정 */
+}
 </style>
 
 <!-- ======= Main ======= -->

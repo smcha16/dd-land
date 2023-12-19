@@ -2919,7 +2919,10 @@ INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, atta
 VALUES (seqtblVOC.NEXTVAL, '건의', '서비스2', '건의사항 2', '건의 내용 2', DEFAULT, NULL, TO_DATE('2023-11-10', 'YYYY-MM-DD'), '답변 내용 2', 2);
 
 INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
-VALUES (seqtblVOC.NEXTVAL, '불편', '서비스3', '불편사항 3', '불편한 사항 내용 3', DEFAULT, 'attach3.jpg', TO_DATE('2023-11-20', 'YYYY-MM-DD'), '답변 내용 3', 3);
+VALUES (seqtblVOC.NEXTVAL, '불편', '기타', '화장실이 불편합니다', '화장실 비데가 고장나서 이용에 불편을 겪었습니다.', DEFAULT, 'null', TO_DATE('2023-11-20', 'YYYY-MM-DD'), null, 3);
+
+INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
+VALUES (seqtblVOC.NEXTVAL, '칭찬', '어트랙션', '토토로스윙에 근무하시는 직원분을 칭찬합니다,', '토토로 스윙에 근무하시는 직원분이 갑작스럽게 발생한 사고에 대해 침착하게 대응해주시고 해결해주셔서 덕분에 안전하게 탔습니다!', DEFAULT, 'null', TO_DATE('2023-12-15', 'YYYY-MM-DD'), '고객님의 소중한 칭찬 감사합니다! 앞으로도 더욱 열심히 하는 DD랜드가 되겠습니다!', 3);
 
 /* 이용문의 */
 INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
@@ -2929,13 +2932,10 @@ INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, an
 VALUES (seqtblInquiry.NEXTVAL, '문의유형2', '문의 제목 2', '문의 내용 2', DEFAULT, NULL, '답변 내용 2', 2);
 
 INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '문의유형3', '문의 제목 3', '문의 내용 3', DEFAULT, 'attach3.doc', '답변 내용 3', 3);
+VALUES (seqtblInquiry.NEXTVAL, '어트랙션', '후룸라이드 운영시간 문의', '12월 27일에 후룸라이드 운영하는지 궁금하여 문의 드립니다!', DEFAULT, null, null, 3);
 
 INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '문의유형3', '문의 제목 3', '문의 내용 3', DEFAULT, 'attach3.doc', null, 3);
-
-INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '문의유형3', '문의 제목 3', '문의 내용 3', DEFAULT, 'attach3.doc', '답변 내용 3', 3);
+VALUES (seqtblInquiry.NEXTVAL, '예매', '예매 환불문의 드립니다', '12월 26일에 예매한 티켓을 취소했는데 결제 금액이 환불되지 않아 문의드립니다. 신속히 처리 부탁드립니다', DEFAULT, null, '죄송합니다 고객님. 12월 26일에 취소하신 예매 내역 건은 확인되었으며 환불 기간은 카드사 영업일에 따라 3~7일이 소요될 수 있습니다. 양해부탁드립니다. 감사합니다.', 3);
 
 /* FAQ */
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '스튜디오를 나갔다가 다시 들어올 수 있나요?', 'DD Studio에서는 스튜디오 입장 후 퇴장하시면 원칙적으로 재입장이 불가능합니다.');
