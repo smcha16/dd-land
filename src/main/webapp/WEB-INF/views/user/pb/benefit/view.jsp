@@ -56,14 +56,17 @@
 }
 
 .item>div:nth-child(2) {
-	height: 30%;
-	display: flex;
-	flex-direction: column;
-	padding: 20px;
-	font-size: 1.3rem;
-	font-weight: bold;
-	background: transparent;
-	border-radius: 0 0 10px 10px;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    background: transparent;
+    border-radius: 0 0 10px 10px;
+    
+    /* 텍스트 가운데 정렬 스타일 추가 */
+    text-align: center;
 }
 
 .hidden-div {
