@@ -140,7 +140,7 @@
 	
 		let name;
 		let ws;
-		const url = 'ws://localhost:8100/dd/chatserver.do';
+		const url = 'ws://localhost:8090/dd/chatserver.do';
 		
 		function connect(name) {
 			

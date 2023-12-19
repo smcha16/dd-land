@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.dd.purchase.domain.PurchaseDTO;
 import com.project.dd.purchase.repository.PurchaseDAO;
+import com.project.dd.shop.item.domain.ItemDTO;
 
 @Service
 public class PurchaseService {
@@ -24,6 +25,10 @@ public class PurchaseService {
 
 	public int addUserBuy(Map<String, String> map) {
 		return dao.addUserBuy(map);
+	}
+
+	public ItemDTO getCartList(String seq) {
+		return dao.getCart(seq);
 	}
 	
 }

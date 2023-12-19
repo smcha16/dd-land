@@ -8,4 +8,6 @@ public interface CartMapper {
 
 	List<CartDTO> getUserList(String user_seq);
 
+	int delCart(String seq);
+
 }

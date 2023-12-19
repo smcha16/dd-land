@@ -8,4 +8,6 @@ public interface CartDAO {
 
 	List<CartDTO> getUserList(String user_seq);
 
+	int delCart(String seq);
+
 }
