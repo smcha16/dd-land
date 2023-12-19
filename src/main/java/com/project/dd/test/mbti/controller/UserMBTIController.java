@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.test.mbti.domain.MBTIDTO;
@@ -20,6 +21,7 @@ import com.project.dd.test.mbti.service.MBTIService;
  * @author 이승원
  */
 @Controller
+@RequestMapping("/admin/test/mbti")
 public class UserMBTIController {
 
 	@Autowired
@@ -33,7 +35,7 @@ public class UserMBTIController {
 	 * @param model 화면에 전달할 데이터를 담는 모델 객체
 	 * @return MBTI 테스트 목록 조회 화면
 	 */
-	@GetMapping(value = "/user/test/mbti/view.do")
+	@GetMapping(value = "/view.do")
 	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 
 		String solting = "admin";
@@ -55,7 +57,7 @@ public class UserMBTIController {
 	 * @param mbti_seq 조회할 MBTI 테스트의 일련번호
 	 * @return MBTI 테스트 상세 정보 조회 화면
 	 */
-	@GetMapping(value = "/user/test/mbti/detail.do")
+	@GetMapping(value = "/detail.do")
 	public String detail(Model model, @RequestParam String mbti_seq) {	
 		
 		// MBTI

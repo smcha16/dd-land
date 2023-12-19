@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.activity.attraction.domain.AttractionDTO;
@@ -30,6 +31,7 @@ import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService
  * @author 이승원
  */
 @Controller
+@RequestMapping("/admin/test/worldcup/attraction")
 public class UserWorldCupAttractionController {
 
 	@Autowired
@@ -42,7 +44,7 @@ public class UserWorldCupAttractionController {
      * @param session 현재 세션 객체
      * @return        월드컵 어트랙션 목록 조회 화면
      */
-	@GetMapping(value = "/user/test/worldcup/attraction/view.do")
+	@GetMapping(value = "/view.do")
 	public String view(Model model, HttpSession session) {
 
 		// 어트랙션 리스트 가져오기
@@ -67,7 +69,7 @@ public class UserWorldCupAttractionController {
      * @param session 현재 세션 객체
      * @return        월드컵 어트랙션 목록 조회 화면으로 리다이렉트
      */
-	@GetMapping(value = "/user/test/worldcup/attraction/initialization.do")
+	@GetMapping(value = "/initialization.do")
 	public String initialization(Model model, HttpSession session) {
 		// 세션 초기화
 		List<String> selectedAttractions = new ArrayList<>();
@@ -85,7 +87,7 @@ public class UserWorldCupAttractionController {
      * @param session           현재 세션 객체
      * @return                  업데이트된 테스트 결과와 선택 가능한 어트랙션 목록을 응답
      */
-	@PostMapping("/user/test/worldcup/attraction/view.do")
+	@PostMapping("/view.do")
 	public ResponseEntity<Map<String, Object>> attractionSelection(@RequestParam String winAttractionSeq,
 			@RequestParam String lostAttractionSeq, Model model, HttpSession session) {
 
@@ -124,7 +126,7 @@ public class UserWorldCupAttractionController {
      * @param finalWinAttractionSeq 최종 우승 어트랙션의 일련번호
      * @return                       업데이트 완료 메시지와 함께 HTTP status OK 응답
      */
-	@PostMapping("/user/test/worldcup/attraction/final.do")
+	@PostMapping("/final.do")
 	public ResponseEntity<String> finalUpdate(@RequestParam String finalWinAttractionSeq) {
 		// 최종 우승 어트랙션 업데이트
 		awcService.updateAWCFinalWinCount(finalWinAttractionSeq);

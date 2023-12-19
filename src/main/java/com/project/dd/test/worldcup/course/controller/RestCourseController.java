@@ -3,6 +3,7 @@ package com.project.dd.test.worldcup.course.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
@@ -17,6 +18,7 @@ import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
  * @author 이승원
  */
 @RestController
+@RequestMapping("/admin/test/worldcup/course")
 public class RestCourseController {
 
 	@Autowired
@@ -28,7 +30,7 @@ public class RestCourseController {
      * @param dto 코스 정보를 담은 DTO
      * @return    코스 이름 중복 여부를 나타내는 정수 값
      */
-	@PostMapping(value = "/admin/test/worldcup/course/name", produces = "application/json")
+	@PostMapping(value = "/name", produces = "application/json")
 	public int checkCourseName(@RequestBody CourseDTO dto) {
 		
 		return cwcService.checkCourseNameDuplication(dto);

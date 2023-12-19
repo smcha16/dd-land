@@ -114,7 +114,7 @@ public class AdminWorldCupCourseController {
      * @param model 화면에 전달할 데이터를 담는 모델 객체
      * @return      월드컵 코스 추가 화면
      */
-	@GetMapping(value = "/admin/test/worldcup/course/add.do")
+	@GetMapping(value = "/add.do")
 	public String add(Model model) {
 
 		return "admin/test/worldcup/course/add";
@@ -205,7 +205,7 @@ public class AdminWorldCupCourseController {
      * @param course_seq 삭제할 코스의 일련번호 배열
      * @return           코스 목록 조회 화면으로 리다이렉트
      */
-	@PostMapping(value = "/admin/test/worldcup/course/del.do")
+	@PostMapping(value = "/del.do")
 	public String del(Model model, String[] course_seq) {
 
 		cwcService.delCWC(course_seq);

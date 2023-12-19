@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.test.worldcup.course.domain.CourseDTO;
@@ -30,6 +31,7 @@ import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
  * @author 이승원
  */
 @Controller
+@RequestMapping("/admin/test/worldcup/course")
 public class UserWorldCupCourseController {
 
     @Autowired
@@ -42,7 +44,7 @@ public class UserWorldCupCourseController {
      * @param session 현재 HTTP 세션 객체
      * @return        코스 테스트 화면
      */
-    @GetMapping(value = "/user/test/worldcup/course/view.do")
+    @GetMapping(value = "/view.do")
 	public String view(Model model, HttpSession session) {
 
 		// 코스 리스트 가져오기
@@ -67,7 +69,7 @@ public class UserWorldCupCourseController {
      * @param session 현재 HTTP 세션 객체
      * @return        코스 테스트 화면으로 리다이렉트
      */
-	@GetMapping(value = "/user/test/worldcup/course/initialization.do")
+	@GetMapping(value = "/initialization.do")
 	public String initialization(Model model, HttpSession session) {
 		// 세션 초기화
 		List<String> selectedCourses = new ArrayList<>();
@@ -85,7 +87,7 @@ public class UserWorldCupCourseController {
      * @param session        현재 HTTP 세션 객체
      * @return               다음 라운드의 코스 선택 화면으로 JSON 형식으로 응답
      */
-	@PostMapping("/user/test/worldcup/course/view.do")
+	@PostMapping("/view.do")
 	public ResponseEntity<Map<String, Object>> courseSelection(@RequestParam String winCourseSeq,
 			@RequestParam String lostCourseSeq, Model model, HttpSession session) {
 
@@ -123,7 +125,7 @@ public class UserWorldCupCourseController {
      * @param finalWinCourseSeq 최종 우승 코스의 일련번호
      * @return                  업데이트 완료 메시지와 함께 HTTP status OK로 응답
      */
-	@PostMapping("/user/test/worldcup/course/final.do")
+	@PostMapping("/final.do")
 	public ResponseEntity<String> finalUpdate(@RequestParam String finalWinCourseSeq) {
 		// 최종 우승 코스 업데이트
 		cwcService.updateCWCFinalWinCount(finalWinCourseSeq);

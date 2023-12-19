@@ -3,6 +3,7 @@ package com.project.dd.test.mbti.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.dd.test.mbti.domain.MBTIDTO;
@@ -16,6 +17,7 @@ import com.project.dd.test.mbti.service.MBTIService;
  * @author 이승원
  */
 @RestController
+@RequestMapping("/admin/test/mbti")
 public class RestMBTIController {
 
     @Autowired
@@ -27,7 +29,7 @@ public class RestMBTIController {
 	 * @param dto MBTI 테스트 정보를 담고 있는 DTO 
      * @return    MBTI 이름 중복 여부를 나타내는 정수 값
 	 */
-	@PostMapping(value = "/admin/test/mbti/name", produces = "application/json")
+	@PostMapping(value = "/name", produces = "application/json")
 	public int checkMBTIName(@RequestBody MBTIDTO dto) {
 		
 		return mbtiService.checkMBTINameDuplication(dto);
