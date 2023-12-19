@@ -248,9 +248,15 @@
 						</c:if>
 					</c:forEach>
 				</div>
+				<c:if test="${closeCount == 0}">
+					<div id="close-img">
+						<img src="/dd/resources/files/giftshop/기프트샵운휴.png" style="width: 500px; border-radius: 7px;">
+					</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
+	
 	
 	<nav id="page-bar" aria-label="Page navigation example">
        <ul class="pagination justify-content-center">

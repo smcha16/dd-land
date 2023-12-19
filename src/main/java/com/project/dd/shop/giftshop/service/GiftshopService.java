@@ -89,4 +89,16 @@ public class GiftshopService {
 		return result;
 	}
 
+	public int getShopCloseCount(List<ShopDTO> list) {
+		int totalCount = 0;
+		
+		for (ShopDTO dto : list) {
+			if (dto.getClose().equalsIgnoreCase("y")) {
+				totalCount++;
+			}
+		}
+
+		return totalCount;
+	}
+
 }

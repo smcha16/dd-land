@@ -118,4 +118,16 @@ public class RestaurantService {
 		return result;
 	}
 
+	public int getRestaurantCloseCount(List<RestaurantDTO> list) {
+		int closeCount = 0;
+		
+		for (RestaurantDTO dto : list) {
+			if (dto.getClose().equalsIgnoreCase("y")) {
+				closeCount++;
+			}
+		}
+		
+		return closeCount;
+	}
+
 }

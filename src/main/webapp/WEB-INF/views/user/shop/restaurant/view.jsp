@@ -247,6 +247,11 @@
 						</c:if>
 					</c:forEach>
 				</div>
+				<c:if test="${closeCount == 0}">
+					<div id="close-img">
+						<img src="/dd/resources/files/restaurant/레스토랑운휴.png" style="width: 500px; border-radius: 7px;">
+					</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
