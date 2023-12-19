@@ -43,7 +43,7 @@ public class MemberMypageInquiryController {
 	}
 	
 	@PostMapping(value = "/delete.do")
-	public String delete(Model model, String selectedInquiry) {
+	public String delete(Model model, String[] selectedInquiry) {
 
 		int result = service.delete(selectedInquiry);
 

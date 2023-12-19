@@ -93,9 +93,9 @@ div.header {
 	text-align: center;
 }
 
-th {
+/* th {
 	background-color: #f2f2f2 !important;
-}
+} */
 
 .pagination {
 	justify-content: center;
@@ -115,12 +115,12 @@ label {
 	margin-bottom: 5px; /* 라벨 마진 조정 */
 }
 
-input[type="text"], textarea {
+/* input[type="text"], textarea {
 	width: calc(100% - 12px); /* 입력 필드 너비 조정 */
 	padding: 8px;
 	border: 1px solid #ccc; /* 테두리 스타일 설정 */
 	border-radius: 4px; /* 테두리 둥글게 */
-}
+} */
 
 button {
 	padding: 10px 20px; /* 버튼 패딩 설정 */
@@ -135,8 +135,73 @@ button:hover {
 	background-color: #0056b3; /* 호버 시 배경색 변경 */
 }
 
-#content{
-height: 200px;
+#content {
+	height: 200px;
+}
+
+#add-form {
+  width: 100%;
+  padding: 35px 40px 40px;
+  border-collapse: separate;
+  border-radius: 10px;
+  margin: 50px auto 0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+#add-form th,
+#add-form td {
+  height: 70px;
+  color: #555;
+}
+#add-form th {
+  width: 20%;
+  font-size: 1.1rem;
+}
+#add-form .required::after {
+  content: " *";
+  color: #f00;
+}
+#add-form select,
+#add-form input,
+#add-form textarea {
+  border: 1px solid #ccc;
+}
+#add-form tr:nth-child(7) td > div {
+  height: 170px;
+  padding: 20px 30px;
+  overflow-y: scroll;
+  overflow: auto;
+}
+#add-form tr:nth-child(7) td > div > div {
+  text-align: right;
+}
+#add-form tr:nth-child(7) td > div > div > label {
+  font-weight: bold;
+  margin: 10px 10px 0;
+}
+#agree {
+  margin-top: 14px;
+}
+.message {
+  font-size: 14px;
+  color: #f00;
+  padding: 10px 5px;
+}
+
+#cancelBtn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #fff;
+    background-color: #007bff;
+    margin-top: 80px;
+}
+
+#cancelBtn:hover {
+    background-color: #0056b3;
 }
 </style>
 
@@ -164,22 +229,41 @@ height: 200px;
 									</ol>
 								</nav>
 
-								<form action="/dd/member/mypage/review/addok.do" method="post">
-									<div class="form-group">
-										<label for="title">제목:</label> 
-										<input type="text" id="subject" name="subject" required>
-									</div>
-									<div class="form-group">
-										<label for="content">내용:</label>
-										<textarea id="content" name="content" required></textarea>
-									</div>
-									<button type="submit">작성</button>
-									
+								<form action="/dd/member/mypage/review/addok.do" method="post"
+									enctype="multipart/form-data">
+
+									<table id="add-form">
+
+										<tr>
+											<th class="required">제목</th>
+											<td><input type="text" name="subject"
+												class="form-control" required
+												oninvalid="this.setCustomValidity('제목을 입력해주세요.')"> <span
+												id="subject-message" class="message" style="display: none;"></span>
+											</td>
+										</tr>
+										<tr>
+											<th class="required">내용</th>
+											<td><textarea name="content" class="form-control"
+													rows="15" required oninvalid="this.setCustomValidity('내용을 입력해주세요.')"></textarea>
+												<span id="content-message" class="message"
+												style="display: none;"></span></td>
+										</tr>
+										<tr>
+											<th>첨부파일</th>
+											<td><input type="file" name="imgs" class="form-control" multiple></td>
+										</tr>
+
+									</table>
+
+									<button type="submit" id="cancelBtn">작성</button>
+
 									<input type="hidden" name="${_csrf.parameterName}"
-										value="${_csrf.token}">
-									<input type="hidden" name="user_book_seq"
-										value="${user_book_seq}">
+										value="${_csrf.token}"> <input type="hidden"
+										name="user_book_seq" value="${user_book_seq}">
 								</form>
+
+
 
 
 							</div>

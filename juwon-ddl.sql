@@ -86,7 +86,7 @@ SELECT
     v.content,
     To_char(v.regdate, 'yyyy-mm-dd') as regdate,
     v.attach,
-    v.visit_date,
+    To_char(v.visit_date, 'yyyy-mm-dd') as visit_date,
     v.answer
 from tblUser U
 join tblVOC v on U.user_seq = v.user_seq;
