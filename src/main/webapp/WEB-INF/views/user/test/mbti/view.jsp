@@ -117,7 +117,7 @@
 		<div class="gy-4" style="justify-content: center; width: 100%;">
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
-					<div id="title">MBTI</div>
+					<div id="title">MBTI 추천</div>
 					<p>내 성격 유형에 맞는 어트랙션과 코스를 찾아보세요!</p>
 				</div>
 			</div>
