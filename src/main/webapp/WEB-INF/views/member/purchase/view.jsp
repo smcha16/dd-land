@@ -235,7 +235,7 @@ b {
 			<div id="condition">
 				<h3>선택 상품 확인</h3>
 			</div>
-			<c:if test="${not empty list}">
+			<c:if test="${not empty list and empty dto}">
 				<div class="payWrap">
 					<div class="amountWrap">
 						<div class="totalOrder">
@@ -244,16 +244,14 @@ b {
 										상품 확인</span></li>
 
 								<c:forEach items="${list}" var="dto">
-									<li class="line">${dto.name}x${dto.ea}<span class="price"><b>${dto.ea * dto.price}
+									<li class="line">${dto.name} x ${dto.ea}<span class="price"><b>${dto.ea * dto.price}
 												원</b></span>
 									</li>
-									<input type="hidden" name="user_cart_seq"
-										value="${dto.user_cart_seq}">
 									<input type="hidden" name="item_seq" value="${dto.item_seq}">
 									<input type="hidden" name="ea" value="${dto.ea}">
-									<input type="hidden" name="price" value="${dto.price}">
-									<input type="hidden" name="total_price"
+									<input type="hidden" name="price"
 										value="${dto.ea * dto.price}">
+									<input type="hidden" name="cart_seq" value="${dto.cart_seq }">
 								</c:forEach>
 								<li class="total line">총 주문금액 <span class="price"> <b
 										class="total-price">${totalPrice} 원</b>
@@ -271,20 +269,19 @@ b {
 					</div>
 				</div>
 			</c:if>
-			<c:if test="${empty list}">
+			<c:if test="${empty list and not empty dto}">
 				<div class="payWrap">
 					<div class="amountWrap">
 						<div class="totalOrder">
 							<ul id="order-list">
 								<li class="tit_order fs18 txtColorType03 line"><span>선택
 										상품 확인</span></li>
-								<li class="line">${dto.name}x${dto.ea}<span class="price"><b>${dto.ea * dto.price}
+								<li class="line">${dto.name} x ${dto.ea}<span class="price"><b>${dto.ea * dto.price}
 											원</b></span>
 								</li>
 								<input type="hidden" name="item_seq" value="${dto.item_seq}">
 								<input type="hidden" name="ea" value="${dto.ea}">
-								<input type="hidden" name="buy_option" value="${totalPrice}">
-								<input type="hidden" name="price" value="${totalPrice}">
+								<input type="hidden" name="price" value="${dto.ea * dto.price}">
 								<li class="total line">총 주문금액 <span class="price"> <b
 										class="total-price">${totalPrice} 원</b>
 								</span>
