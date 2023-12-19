@@ -101,7 +101,7 @@ label {
               				
               				<!-- 어트랙션 선택 -->
 							<div class="row mb-3">
-							    <label for="attraction" class="col-sm-2 col-form-label required">어트랙션 선택</label>
+							    <label for="attraction" class="col-sm-2 col-form-label required">어트랙션</label>
 							    <div class="col-sm-10">
 							        <select id="attraction" name="attraction_seq" class="form-control" required>
 							            <option value="${dto.attraction_seq}">${dto.attraction_name}</option>
@@ -114,7 +114,7 @@ label {
 							
 							<!-- 코스 선택 -->
 							<div class="row mb-3">
-							    <label for="course" class="col-sm-2 col-form-label required">코스 선택</label>
+							    <label for="course" class="col-sm-2 col-form-label required">코스</label>
 							    <div class="col-sm-10">
 							        <select id="course" name="course_seq" class="form-control" required>
 							            <option value="${dto.course_seq}">${dto.course_name}</option>
