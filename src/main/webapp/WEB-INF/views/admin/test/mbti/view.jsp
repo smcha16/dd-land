@@ -135,7 +135,7 @@ th:nth-child(6) { width: 22%; }
 <main id="main" class="main">
 
 	<div class="pagetitle">
-		<h1>MBTI별 추천 관리</h1>
+		<h1>MBTI 추천 관리</h1>
 	</div>
 
 	<section class="section">
