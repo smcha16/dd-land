@@ -186,24 +186,33 @@
 /* list photo 변경 */
 .stats-counter {
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url("/dd/resources/files/restaurant/main-restaurant.jpg") center center;
+		url("/dd/resources/files/restaurant/main-restaurant.jpg") center
+		center;
 	background-size: cover;
 	padding: 100px 0;
 	background-attachment: fixed;
 }
 
 #page-bar {
-      margin-top: 50px;
-   }
-   .page-link {
-      color: #CE1212;
-   }
-   .active > .page-link, .page-link.active {
-      z-index: 3;
-       color: var(--bs-pagination-active-color);
-       background-color: #CE1212;
-       border-color: #CE1212;
-   }
+	margin-top: 50px;
+}
+
+.page-link {
+	color: #CE1212;
+}
+
+.active>.page-link, .page-link.active {
+	z-index: 3;
+	color: var(- -bs-pagination-active-color);
+	background-color: #CE1212;
+	border-color: #CE1212;
+}
+
+/* 운휴/운영 버튼 토글 */
+#close-img {
+	display: none;
+	justify-content: center;
+}
 </style>
 
 <!-- list3 Main Content -->
@@ -233,14 +242,16 @@
 					<c:forEach items="${list}" var="dto">
 						<c:if test="${dto.close == 'y'}">
 							<div class="item hidden" onclick="detail(${dto.restaurant_seq});">
-								<div style="background-image: url('/dd/resources/files/restaurant/${dto.img}');"></div>
+								<div
+									style="background-image: url('/dd/resources/files/restaurant/${dto.img}');"></div>
 								<div>${dto.name }</div>
 								<div class="hidden-div">${dto.menu }</div>
 							</div>
 						</c:if>
 						<c:if test="${dto.close == 'n'}">
 							<div class="item" onclick="detail(${dto.restaurant_seq});">
-								<div style="background-image: url('/dd/resources/files/restaurant/${dto.img}');"></div>
+								<div
+									style="background-image: url('/dd/resources/files/restaurant/${dto.img}');"></div>
 								<div>${dto.name }</div>
 								<div class="hidden-div">${dto.menu }</div>
 							</div>
@@ -249,27 +260,29 @@
 				</div>
 				<c:if test="${closeCount == 0}">
 					<div id="close-img">
-						<img src="/dd/resources/files/restaurant/레스토랑운휴.png" style="width: 500px; border-radius: 7px;">
+						<img src="/dd/resources/files/restaurant/레스토랑운휴.png"
+							style="width: 500px; border-radius: 7px;">
 					</div>
 				</c:if>
 			</div>
 		</div>
 	</div>
-	
+
 	<nav id="page-bar" aria-label="Page navigation example">
-       <ul class="pagination justify-content-center">
-           <c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
-               <c:choose>
-                   <c:when test="${pageStatus.index == currentPage}">
-                       <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
-                   </c:when>
-                   <c:otherwise>
-                       <li class="page-item"><a class="page-link" href="/dd/user/shop/restaurant/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
-                   </c:otherwise>
-               </c:choose>
-           </c:forEach>
-       </ul>
-   </nav>
+		<ul class="pagination justify-content-center">
+			<c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
+				<c:choose>
+					<c:when test="${pageStatus.index == currentPage}">
+						<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item"><a class="page-link"
+							href="/dd/user/shop/restaurant/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		</ul>
+	</nav>
 </section>
 <!-- End Menu Section -->
 
@@ -293,6 +306,15 @@
 	
 	$('#close').change(function() {
 	    console.log("Change event triggered");
+	    
+	    /* 운휴 이미지 토글 */
+		if ($('#close-img').css('display') == 'none') {
+			$('#close-img').css('display', 'flex');
+			$('#page-bar').css('display', 'none');
+		} else {
+			$('#close-img').css('display', 'none')
+			$('#page-bar').css('display', 'block');
+		}
 	    
 	    itemElements.forEach(function(item) {
 	        console.log("Item display:", item.style.display);
