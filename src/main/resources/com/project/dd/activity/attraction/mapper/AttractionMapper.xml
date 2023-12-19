@@ -8,7 +8,11 @@
 	<select id="getAttractionList" parameterType="map" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		select *
 		from (select n.*, rownum as rnum from
-				(select * from vwAttractionList) n)
+				(select * from vwAttractionList) n
+				<if test="searchStatus == 'y'.toString()">
+				  where name like '%' || #{word} || '%'
+			  	</if>
+				)
 		where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
@@ -21,8 +25,11 @@
 	</select>
 	
 	<!-- 페이징 -->
-	<select id="getTotalCount" resultType="int">
+	<select id="getTotalCount"  parameterType="map" resultType="int">
       select count(*) from vwAttractionList
+      <if test="searchStatus == 'y'.toString()">
+	        where name like '%' || #{word} || '%'
+	  </if>
 	</select>
    
    <!-- admin 기능  -->
