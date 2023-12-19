@@ -5,6 +5,18 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
 <style>
+#pagetitle {
+	margin-top: 70px;
+}
+
+#title {
+	font-size: 48px;
+	display: block;
+	color: #fff;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+
 	#main h1 {
 		font-size: 2rem !important;
    		margin-top: 45px !important;
@@ -20,10 +32,14 @@
     	margin-top: 15px;
   	}
   	.col-lg-8 {
-    	width: 100%;
+    	width: 70%;
+    	margin: auto;
+  	}
+  	.card {
+  		border: none;
   	}
   	.card-body {
-    	min-height: 600px;
+    	min-height: 200px;
   	}
   	div.header {
     	height: 60px;
@@ -67,7 +83,7 @@
     	text-align: center;
   	}
   	th {
-    	background-color: #f2f2f2 !important;
+    	background-color: mistyrose !important;
   	}
   	.pagination {
 		justify-content: center;
@@ -121,6 +137,51 @@
 		right: 20px;
 	}
 	
+	.table {
+		text-align: center;
+		margin: 0 auto;
+	}
+	.table thead tr {
+		background-color: #EEE;
+	}
+	.table th, .table td {
+		height: 60px;
+		text-align: center;
+		color: #444;
+		padding: 20px;
+		border-bottom: 1px solid #E1E1E1;
+	}
+	.table th {
+		font-size: 1.12rem;
+		font-weight: bold;
+	}
+	.table th:nth-child(1) {
+		width: 10%;
+	}
+	.table th:nth-child(2) {
+		width: 45%;
+	}
+	.table th:nth-child(3) {
+		width: 30%;
+	}
+	.table th:nth-child(4) {
+		width: 15%;
+	}
+	.table td {
+		font-size: 1.05rem;
+	}
+	.table td a {
+		color: #444;
+	}
+	.table td a:hover {
+		font-weight: bold;
+		color: #CE1212;
+	}
+	.table td i {
+		color: #CE1212;
+		margin-top: 7px;
+	}
+	
 	/* 모달 CSS */
 	#modal table.m-desc {
 		width: 100%;
@@ -143,16 +204,33 @@
 		padding: 10px;
 	}
 	
+	/* list photo 변경 */
+.stats-counter {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url("/dd/resources/files/purchase/main-cart.jpg") center
+		center;
+	background-size: cover;
+	padding: 100px 0;
+	background-attachment: fixed;
+}
+.buy {
+	padding: 0 0 60px 0;
+}
 </style>
 
-<!-- ======= Main ======= -->
-<main id="main" class="main">
+<section id="stats-counter" class="stats-counter">
+	<div id="pagetitle" class="container" data-aos="zoom-out">
+		<div class="gy-4" style="justify-content: center; width: 100%;">
+			<div class="col-lg-3 col-md-6" style="width: 100%;">
+				<div class="stats-item text-center w-100 h-100">
+					<div id="title">장바구니</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-    <div class="pagetitle">
-		<h1>장바구니</h1>
-    </div>
-
-	<section class="section">
+	<section class="section buy">
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="row">
@@ -173,7 +251,6 @@
 	                    				<thead>
 	                      					<tr>
 	                        					<th></th>
-	                        					<th>No</th>
 	                        					<th>상품명</th>
 	                        					<th>개별 가격</th>
 	                        					<th>개수</th>
@@ -184,7 +261,6 @@
 	                    					<c:forEach items="${list}" var="dto" varStatus="status">
 		                      					<tr>
 		                        					<td><input type="checkbox" name="cart_seq" value="${dto.cart_seq}"></td>
-		                        					<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
 		                        					<td><a onclick="showModal('${dto.item_seq}')"><c:out value="${dto.name}" /></a></td>
 		                        					<td>${dto.price } 원</td>
 		                        					<td>${dto.ea } 개</td>
@@ -196,35 +272,6 @@
                   					<!-- 토큰 -->
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                 				</form>
-                  					
-                				<!-- 어트랙션 상세 모달 -->
-								<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
-								    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-								        <div class="modal-content">
-								            <div class="modal-header">
-								                <h5 id="modal-name" class="modal-title"></h5>
-								                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								            </div>
-							                
-							                
-								            <div class="modal-body">
-									            <!-- 모달 이미지 슬라이드-->
-								                <div class="image-slider"></div>
-								                <!-- 설명 -->
-								            	<div class="m-info"></div>
-								            	<!-- 상세 -->
-								            	<table class="m-desc">
-								            		<colgroup>
-								            			<col style="width: 100px">
-								            			<col>
-								            		</colgroup>
-								            		<tbody>
-								            		</tbody>
-								            	</table>
-								            </div>
-								        </div>
-								    </div>
-								</div>
                				</div>
              			</div>
             		</div>
@@ -233,8 +280,6 @@
 
 		</div>
 	</section>
-
-</main>
 
 <!-- Slick Slider -->
 <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -251,7 +296,7 @@
 			alert('1개 이상의 상품을 선택 후, 구매 버튼을 눌러주세요.');
 		} else {
 
-			$('#del-form').action = action;
+			$('#del-form').attr('action', action);
 			
 			$('#del-form').submit();
 						
@@ -272,7 +317,7 @@
 			
 			if (confirm('선택한 상품을 삭제하시겠습니까?')) {
 				
-				$('#del-form').action = action;
+				$('#del-form').attr('action', action);
 				
 				$('#del-form').submit();
 

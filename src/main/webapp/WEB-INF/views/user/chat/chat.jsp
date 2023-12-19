@@ -140,7 +140,8 @@
 	
 		let name;
 		let ws;
-		const url = 'ws://localhost:8090/dd/chatserver.do';
+		const url = 'ws://43.200.60.152:8090/dd/chatserver.do';
+		/* cmd -> ipconfig해서 나오는 ip주소를 url에 적어야 다른 컴퓨터에서 이 주소를 ip를 입력한 주소를 통해 들어올 수 있다. */
 		
 		function connect(name) {
 			
@@ -309,8 +310,10 @@
 		});
 		
 		function scrollList() {
-			$('#list').scrollTop($('#list').outerHeight() + 300);
-			//큰 값을 주면 움직이긴 하나, 대화의 길이가 길어지면 해당 값 이후로는 스크롤바가 움직이지 않으므로 절대값이 아닌 상대값을 준다. > 대화창의 높이를 가져온다.
+			setTimeout(function() {
+				$('#list').scrollTop($('#list').outerHeight() + 300);
+				//큰 값을 주면 움직이긴 하나, 대화의 길이가 길어지면 해당 값 이후로는 스크롤바가 움직이지 않으므로 절대값이 아닌 상대값을 준다. > 대화창의 높이를 가져온다.				
+			}, 300);
 		}
 	
 	</script>

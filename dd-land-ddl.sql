@@ -468,12 +468,12 @@ CREATE TABLE tblNotice (
 /* 분실물센터 */
 CREATE TABLE tblLostProperty (
    lost_property_seq NUMBER PRIMARY KEY, /* 분실물번호 */
-   type VARCHAR2(500) NOT NULL, /* 분류 */
-   name VARCHAR2(500) NOT NULL, /* 습득물명 */
-   location VARCHAR2(500) NOT NULL, /* 습득장소 */
+   type VARCHAR2(50) NOT NULL, /* 분류 */
+   name VARCHAR2(50) NOT NULL, /* 습득물명 */
+   location VARCHAR2(30) NOT NULL, /* 습득장소 */
    lost_property_date DATE NOT NULL, /* 습득일 */
    img VARCHAR2(500), /* 분실물이미지 */
-   result VARCHAR2(500) NOT NULL /* 처리결과 */
+   result VARCHAR2(50) NOT NULL /* 처리결과 */
 );
 
 /* 티켓 */
