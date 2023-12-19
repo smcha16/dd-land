@@ -80,6 +80,9 @@
        background-size: cover;
        background-attachment: fixed;
     }
+    #total{
+    	margin-left: 556px;
+    }
 </style>
     <!-- ======= Stats Counter Section ======= -->
     <section id="stats-counter" class="stats-counter">
@@ -106,20 +109,42 @@
 
         <div class="tab-content" data-aos-delay="900">
 
-          <div class="tab-pane fade active show" id="menu-starters">
+			<div class="tab-pane fade active show" id="menu-starters">
 
-				<div>
-					<div class="group">
-						<label>대화명</label> <input type="text" name="name" id="name"
-							class="short">
+				<!-- <div id="total">
+					<div>
+						<div class="group">
+							<label>대화명</label> <input type="text" name="name" id="name"
+								class="short">
+						</div>
+					</div>
+
+					<div>
+						<button type="button" class="in">들어가기</button>
 					</div>
 				</div>
 
-				<div>
-					<button type="button" class="in">들어가기</button>
+				<div class="col-auto">
+					<label class="conversation">대화명</label>
+				</div> -->
+				<div id="total">
+				<div class="col-auto">
+					<label class="visually-hidden"></label>
+					<input type="text" class="name" id="name"
+						placeholder="닉네임을 입력하세요.">
 				</div>
- 
-			</div><!-- End Starter Menu Content -->
+				<div class="col-auto">
+					<button type="button" class="btn btn-primary mb-3 in" style="margin-left: 52px; margin-top: 20px;">
+					들어가기
+					</button>
+				</div>
+				</div>
+
+
+
+
+			</div>
+			<!-- End Starter Menu Content -->
       </div>
      </div>
     </section><!-- End Menu Section -->

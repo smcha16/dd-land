@@ -18,7 +18,7 @@ public interface AttractionMapper {
 	//어트랙션 이미지 List
 	List<AttractionImgDTO> getAttractionImgList(String seq);
 
-	int getTotalCount();
+	int getTotalCount(Map<String, String> map);
 
 	int checkLocationDuplication(AttractionDTO dto);
 
