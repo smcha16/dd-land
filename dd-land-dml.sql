@@ -2899,26 +2899,6 @@ VALUES (seqtblMBTI.NEXTVAL, '놀이기구 제일 잘 타는(줄 아는) 사람',
 INSERT INTO tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 VALUES (seqtblMBTI.NEXTVAL, '오늘 타려고 계획했던 건 다 타야 하는 사람', 'ENTJ', 'ENTJ.png', '4', '16');
 
-/* 칭찬/불편/건의 */
-INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
-VALUES (seqtblVOC.NEXTVAL, '불편', '서비스1', '불편사항 1', '불편한 사항 내용 1', DEFAULT,'attach1.jpg', TO_DATE('2023-11-02', 'YYYY-MM-DD'), '답변 내용 1', 1);
-
-INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
-VALUES (seqtblVOC.NEXTVAL, '건의', '서비스2', '건의사항 2', '건의 내용 2', DEFAULT, NULL, TO_DATE('2023-11-10', 'YYYY-MM-DD'), '답변 내용 2', 2);
-
-INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
-VALUES (seqtblVOC.NEXTVAL, '불편', '서비스3', '불편사항 3', '불편한 사항 내용 3', DEFAULT, 'attach3.jpg', TO_DATE('2023-11-20', 'YYYY-MM-DD'), '답변 내용 3', 3);
-
-/* 이용문의 */
-INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '문의유형1', '문의 제목 1', '문의 내용 1', DEFAULT,'attach1.pdf', '답변 내용 1', 1);
-
-INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '문의유형2', '문의 제목 2', '문의 내용 2', DEFAULT, NULL, '답변 내용 2', 2);
-
-INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '문의유형3', '문의 제목 3', '문의 내용 3', DEFAULT, 'attach3.doc', '답변 내용 3', 3);
-
 /* FAQ */
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '스튜디오를 나갔다가 다시 들어올 수 있나요?', 'DD Studio에서는 스튜디오 입장 후 퇴장하시면 원칙적으로 재입장이 불가능합니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
@@ -3170,26 +3150,6 @@ VALUES (seqtblUserBook.NEXTVAL, 3, 21);
 
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
 VALUES (seqtblUserBook.NEXTVAL, 3, 22);
-
-/* 리뷰 */
-INSERT INTO tblReview (review_seq, subject, content, readcount, user_book_seq)
-VALUES (seqtblReview.NEXTVAL, '좋은 서비스', '서비스가 매우 만족스러웠습니다.', 10, 1);
-
-INSERT INTO tblReview (review_seq, subject, content, readcount, user_book_seq)
-VALUES (seqtblReview.NEXTVAL, '관람 후기', '영화가 정말 재밌었습니다.', 15, 2);
-
-INSERT INTO tblReview (review_seq, subject, content, readcount, user_book_seq)
-VALUES (seqtblReview.NEXTVAL, '추천해요', '아이템이 너무 귀여워서 추천합니다.', 8, 3);
-
-/* 리뷰이미지 */
-INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
-VALUES (seqtblReviewImg.NEXTVAL, 'reviewimg1.png', 1);
-
-INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
-VALUES (seqtblReviewImg.NEXTVAL, 'reviewimg2.png', 2);
-
-INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
-VALUES (seqtblReviewImg.NEXTVAL, 'reviewimg3.png', 3);
 
 /* 아이템 */
 insert into tblitem values (seqtblitem.nextval, 'White 드레스', '하얀 공주님 드레스', '200000', '1');
