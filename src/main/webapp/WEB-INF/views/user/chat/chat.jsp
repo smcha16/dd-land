@@ -140,7 +140,7 @@
 	
 		let name;
 		let ws;
-		const url = 'ws://localhost:8090/dd/chatserver.do';
+		const url = 'ws://43.200.60.152:8090/dd/chatserver.do';
 		
 		function connect(name) {
 			
@@ -309,8 +309,10 @@
 		});
 		
 		function scrollList() {
-			$('#list').scrollTop($('#list').outerHeight() + 300);
-			//큰 값을 주면 움직이긴 하나, 대화의 길이가 길어지면 해당 값 이후로는 스크롤바가 움직이지 않으므로 절대값이 아닌 상대값을 준다. > 대화창의 높이를 가져온다.
+			setTimeout(function() {
+				$('#list').scrollTop($('#list').outerHeight() + 300);
+				//큰 값을 주면 움직이긴 하나, 대화의 길이가 길어지면 해당 값 이후로는 스크롤바가 움직이지 않으므로 절대값이 아닌 상대값을 준다. > 대화창의 높이를 가져온다.				
+			}, 300);
 		}
 	
 	</script>

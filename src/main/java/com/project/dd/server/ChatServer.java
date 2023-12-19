@@ -4,18 +4,25 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+//import javax.inject.Inject;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+//import javax.websocket.server.ServerEndpointConfig;
+import org.springframework.stereotype.Component;
+//import org.springframework.web.socket.server.standard.SpringConfigurator;
+
 
 import com.google.gson.Gson;
 import com.project.dd.server.domain.Message;
 
-@ServerEndpoint("/chatserver.do")
+//@Component
+@ServerEndpoint(value = "/chatserver.do")/* , configurator = com.project.dd.server.ServerEndpointConfig.class */
 public class ChatServer {
 	
 	//현재 채팅 서버에 접속 중인 클라이언트 목록
+	//@Inject
 	private static List<Session> sessionList = new ArrayList<Session>();
 	
 

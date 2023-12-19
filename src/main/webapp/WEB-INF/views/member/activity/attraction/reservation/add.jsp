@@ -234,11 +234,23 @@
 	let minutes = currentDate.getMinutes();
 	let seconds = currentDate.getSeconds();
 	
-	console.log($('button.time-btn').data('time'));
+	//console.log('hours: ' + hours);
 	
-	if ($('button.time-btn').data('time') < hours) {
-		$('button.time-btn').prop('disabled', true);
-	}
+	$(document).ready(function() {
+
+	    // 모든 button.time-btn에 대해 처리
+	    $('button.time-btn').each(function() {
+	        // data-time 속성 값 가져오기
+	        let dataTime = parseInt($(this).data('time'), 10);
+
+	        console.log(dataTime);
+	        console.log(dataTime < hours);
+	        
+	        if (dataTime <= hours) {
+	            $(this).prop('disabled', true);
+	        }
+	    });
+	});
 	
 	/* 필수 항목이 반드시 입력되어야만 submit 클릭 시 넘어가도록 */
 	function submit() {
@@ -260,6 +272,8 @@
     var csrfTokenValue = "${_csrf.token}";
 	
 	$('.time-btn').click(function() {
+		
+		console.log($(this).data('time'));
 		
 		//선택한 버튼만 CSS 변경 + 나머지 초기화
 		$('.time-btn').css('background-color', '#F0F0F0');
