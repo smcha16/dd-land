@@ -181,12 +181,12 @@
 						<div class="btn-container">
 							<div>
 								<c:forEach var="i" begin="10" end="15">
-									<button type="button" class="time-btn" value="${i-9}" >${i}:00</button>
+									<button type="button" class="time-btn" value="${i-9}" data-time="${i}" >${i}:00</button>
 								</c:forEach>
 							</div>
 							<div>
 								<c:forEach var="i" begin="16" end="21">
-									<button type="button" class="time-btn" value="${i-9}">${i}:00</button>
+									<button type="button" class="time-btn" value="${i-9}" data-time="${i}" >${i}:00</button>
 								</c:forEach>
 							</div>
 						</div>
@@ -229,6 +229,16 @@
 	
 	/* 화면 로딩 시, 현재 시간 확인 하여 이전 시간은 'disabled' 처리 */
 	let currentDate = new Date();
+	
+	let hours = currentDate.getHours();
+	let minutes = currentDate.getMinutes();
+	let seconds = currentDate.getSeconds();
+	
+	console.log($('button.time-btn').data('time'));
+	
+	if ($('button.time-btn').data('time') < hours) {
+		$('button.time-btn').prop('disabled', true);
+	}
 	
 	/* 필수 항목이 반드시 입력되어야만 submit 클릭 시 넘어가도록 */
 	function submit() {
