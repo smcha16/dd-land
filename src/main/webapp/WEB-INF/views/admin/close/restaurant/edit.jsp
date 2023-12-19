@@ -65,10 +65,17 @@
 							</div>
 
 							<div class="row mb-3">
-                				<label for="inputDate" class="col-sm-2 col-form-label">날짜</label>
+                				<label for="inputDate" class="col-sm-2 col-form-label">운휴 시작일</label>
                 				<div class="col-sm-10">
-                  					운휴 시작일 <input type="date" name="start_date" id="start_date" value="${dto.start_date}">
-                  					운휴 종료일 <input type="date" name="end_date" id="end_date"value="${dto.end_date}">
+                  					<input type="date" name="start_date" class="form-control" id="start_date" value="${dto.start_date}">
+                  					<form:errors path="start_date" cssClass="text-danger" />
+               					</div>
+              				</div>
+              				<div class="row mb-3">
+                				<label for="inputDate" class="col-sm-2 col-form-label">운휴 종료일</label>
+                				<div class="col-sm-10">
+                  					<input type="date" name="end_date" class="form-control" id="end_date" value="${dto.end_date}">
+                  					<form:errors path="end_date" cssClass="text-danger" />
                					</div>
               				</div>
 
