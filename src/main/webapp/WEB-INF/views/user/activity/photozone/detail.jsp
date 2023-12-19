@@ -55,11 +55,11 @@
 	}
 	
 	section:nth-of-type(2) {
-		background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/activity/attraction/barcelona-3960566_1280.jpg") center center;
+		background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/activity/photozone_detail_background.jpg") center center;
 		/* background-color: transparent;
 		background-repeat: no-repeat; */
 		background-size: cover;
-		padding: 0;
+		padding: 20px;
 	}
 	
 	section:last-of-type {
