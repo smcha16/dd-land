@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.dd.shop.restaurant.domain.RestaurantDTO;
 import com.project.dd.shop.restaurant.service.RestaurantService;
 
+/**
+ * 유저용 레스토랑 컨트롤러 클래스입니다.
+ * @author pega0
+ *
+ */
 @Controller
 @RequestMapping("/user/shop/restaurant")
 public class UserRestaurantController {
@@ -20,6 +25,13 @@ public class UserRestaurantController {
 	@Autowired
 	private RestaurantService restaurantService;
 	
+	/**
+     * 레스토랑 목록을 조회하는 메서드입니다.
+     *
+     * @param page  현재 페이지
+     * @param model Spring의 Model 객체
+     * @return 레스토랑 목록 뷰 페이지 경로
+     */
 	@GetMapping(value = "/view.do")
 	public String list(@RequestParam(defaultValue = "1") int page, Model model) {
 		
@@ -37,6 +49,13 @@ public class UserRestaurantController {
 		return "user/shop/restaurant/view";
 	}
 	
+	/**
+     * 레스토랑 상세 정보를 조회하는 메서드입니다.
+     *
+     * @param model Spring의 Model 객체
+     * @param seq   레스토랑 일련번호
+     * @return 레스토랑 상세 정보 뷰 페이지 경로
+     */
 	@GetMapping(value = "/detail.do")
 	public String detail(Model model, String seq) {
 

@@ -50,6 +50,7 @@ label {
 }
 </style>
 
+<!-- Main Start -->
 <main id="main" class="main">
 
 	<div class="pagetitle">
@@ -211,3 +212,4 @@ label {
         }
 	});
 </script>
+<!-- Main End -->

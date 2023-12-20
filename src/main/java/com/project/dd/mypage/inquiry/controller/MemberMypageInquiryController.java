@@ -23,6 +23,14 @@ public class MemberMypageInquiryController {
 	@Autowired
 	private MypageInquiryService service;
 	
+	/**
+	 * 문의 내역을 조회하는 메서드입니다.
+	 *
+	 * @param model        모델 객체
+	 * @param auth         현재 인증 정보
+	 * @param page         현재 페이지 번호
+	 * @return             문의 내역 페이지로 이동
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(Model model, Authentication auth, @RequestParam(defaultValue = "1") int page) {
 		
@@ -42,6 +50,13 @@ public class MemberMypageInquiryController {
 		return "mypage/inquiry/inquiry/view";
 	}
 	
+	/**
+	 * 선택된 문의를 삭제하는 메서드입니다.
+	 *
+	 * @param model              모델 객체
+	 * @param selectedInquiry    삭제할 문의 배열
+	 * @return                   문의 내역 페이지로 이동
+	 */
 	@PostMapping(value = "/delete.do")
 	public String delete(Model model, String[] selectedInquiry) {
 

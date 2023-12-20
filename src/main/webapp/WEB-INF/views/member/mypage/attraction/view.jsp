@@ -138,7 +138,7 @@ th {
 <main id="main" class="main">
 
 	<div class="pagetitle">
-		<h1>어트랙션 예약 내역</h1>
+		<h1>어트랙션 예약내역</h1>
 	</div>
 
 	<section class="section">

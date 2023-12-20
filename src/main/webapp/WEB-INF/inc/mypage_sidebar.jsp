@@ -58,6 +58,9 @@
          			<a href="/dd/member/mypage/buy/view.do">
            				<i class="bi bi-circle"></i><span>구매내역</span>
          			</a>
+         			<a href="/dd/member/mypage/buy/pview.do">
+           				<i class="bi bi-circle"></i><span>이전 구매내역</span>
+         			</a>
        			</li>
      		</ul>
    		</li>
