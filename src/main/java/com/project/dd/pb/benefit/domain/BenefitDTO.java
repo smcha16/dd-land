@@ -4,7 +4,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 import lombok.Data;
-
+/**
+ * 혜택 객체입니다.
+ * @author 김형우
+ *
+ */
 @Data
 public class BenefitDTO {
 	

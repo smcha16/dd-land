@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.dd.communication.faq.domain.FaqDTO;
 import com.project.dd.communication.faq.service.FaqService;
 
+/**
+ * 관리자용 FAQ 컨트롤러 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Controller
 @RequestMapping("/admin/communication/faq")
 public class AdminFaqController {
@@ -21,8 +26,14 @@ public class AdminFaqController {
 	@Autowired
 	private FaqService service;
 	
-	/* 목록 */
-	
+	/**
+	 * FAQ 목록을 보여주는 메서드입니다.
+	 *
+	 * @param word 검색어
+	 * @param page 페이지 번호
+	 * @param model Spring의 Model 객체
+	 * @return FAQ 목록을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 		
@@ -42,8 +53,11 @@ public class AdminFaqController {
 
 	}
 	
-	/* 추가 */
-	
+	/**
+	 * FAQ를 추가하는 폼을 보여주는 메서드입니다.
+	 *
+	 * @return FAQ 추가 폼을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/add.do")
 	public String add() {
 
@@ -51,6 +65,12 @@ public class AdminFaqController {
 
 	}
 	
+	/**
+	 * FAQ를 추가하는 메서드입니다.
+	 *
+	 * @param dto 추가할 FAQ의 DTO 객체
+	 * @return FAQ 목록을 보여주는 뷰로의 리다이렉트 경로 또는 FAQ 추가 폼의 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/addok.do")
 	public String addOk(FaqDTO dto) {
 
@@ -68,8 +88,13 @@ public class AdminFaqController {
 
 	}
 	
-	/* 수정 */
-	
+	/**
+	 * FAQ를 수정하는 폼을 보여주는 메서드입니다.
+	 *
+	 * @param seq 수정할 FAQ의 일련번호
+	 * @param model Spring의 Model 객체
+	 * @return FAQ 수정 폼을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/edit.do")
 	public String edit(String seq, Model model) {
 		
@@ -81,6 +106,12 @@ public class AdminFaqController {
 
 	}
 	
+	/**
+	 * FAQ를 수정하는 메서드입니다.
+	 *
+	 * @param dto 수정할 FAQ의 DTO 객체
+	 * @return FAQ 목록을 보여주는 뷰로의 리다이렉트 경로 또는 FAQ 수정 폼의 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/editok.do")
 	public String editOk(FaqDTO dto) {
 
@@ -97,9 +128,13 @@ public class AdminFaqController {
 	 	}
 
 	}
-	
-	/* 삭제 */
-	
+
+	/**
+	 * 여러 개의 FAQ를 삭제하는 메서드입니다.
+	 *
+	 * @param seqList 삭제할 FAQ의 일련번호 배열
+	 * @return FAQ 목록을 보여주는 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/del.do")
 	public String del(String[] seqList) {
 

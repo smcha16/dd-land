@@ -35,7 +35,7 @@
 	</definition>
 	
 	
-	<!-- Member -->  <!-- template 경로 변경하기 -->
+	<!-- Member -->
 	
 	<definition name="member/*/*" template="/WEB-INF/views/layout/main.jsp">
 		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
@@ -105,25 +105,18 @@
 		<put-attribute name="admin_sidebar" value="/WEB-INF/inc/admin_sidebar.jsp"></put-attribute>
 		<put-attribute name="admin_content" value="/WEB-INF/views/admin/{1}/{2}/{3}/{4}.jsp"></put-attribute>
 	</definition>
-	
 
-	<!-- etc -->
+
+	<!-- register -->
 	
-	<definition name="template.*" template="/WEB-INF/views/layout/main.jsp">
-		<put-attribute name="header" value="/WEB-INF/inc/header.jsp"></put-attribute>
-		<put-attribute name="content" value="/WEB-INF/views/template/{1}.jsp"></put-attribute>
+	<definition name="user/register/view" template="/WEB-INF/views/user/register/view.jsp"></definition>
+	<definition name="user/login/view" template="/WEB-INF/views/user/login/view.jsp"></definition>
+	<definition name="user/login/findid" template="/WEB-INF/views/user/login/findid.jsp"></definition>
+	<definition name="user/login/findpw" template="/WEB-INF/views/user/login/findpw.jsp"></definition>
+	<definition name="user/login/fail" template="/WEB-INF/views/user/login/fail.jsp"></definition>
+	<definition name="user/login/success" template="/WEB-INF/views/user/login/success.jsp">
 		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
 	</definition>
-	
-	<!-- register -->
-	<definition name="user/register/view" template="/WEB-INF/views/user/register/view.jsp"></definition>
-		<definition name="user/login/view" template="/WEB-INF/views/user/login/view.jsp"></definition>
-		<definition name="user/login/findid" template="/WEB-INF/views/user/login/findid.jsp"></definition>
-		<definition name="user/login/findpw" template="/WEB-INF/views/user/login/findpw.jsp"></definition>
-		<definition name="user/login/fail" template="/WEB-INF/views/user/login/fail.jsp"></definition>
-		<definition name="user/login/success" template="/WEB-INF/views/user/login/success.jsp">
-		<put-attribute name="footer" value="/WEB-INF/inc/footer.jsp"></put-attribute>
-		</definition>
-		<definition name="user/login/changepw" template="/WEB-INF/views/user/login/changepw.jsp"></definition>
+	<definition name="user/login/changepw" template="/WEB-INF/views/user/login/changepw.jsp"></definition>
 	
 </tiles-definitions>
