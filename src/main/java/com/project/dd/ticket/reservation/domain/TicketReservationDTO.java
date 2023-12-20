@@ -2,6 +2,11 @@ package com.project.dd.ticket.reservation.domain;
 
 import lombok.Data;
 
+/**
+ * 티켓 예약 세부정보를 담는 DTO 클래스입니다.
+ * @author pega0
+ *
+ */
 @Data
 public class TicketReservationDTO {
 	// Group
