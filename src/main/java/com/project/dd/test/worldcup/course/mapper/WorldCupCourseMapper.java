@@ -7,7 +7,6 @@ import com.project.dd.test.worldcup.course.domain.CourseDTO;
 
 public interface WorldCupCourseMapper {
 
-    // 페이징
 	int getTotalCount();
 
 	int getTestCount();

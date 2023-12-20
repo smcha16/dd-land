@@ -8,7 +8,6 @@ import com.project.dd.test.worldcup.attraction.domain.WorldCupAttractionRankDTO;
 
 public interface WorldCupAttractionDAO {
 
-    // 페이징
 	int getTotalCount();
 
 	int getTestCount();

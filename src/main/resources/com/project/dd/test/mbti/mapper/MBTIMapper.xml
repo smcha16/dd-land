@@ -4,6 +4,7 @@
 
 <mapper namespace="com.project.dd.test.mbti.mapper.MBTIMapper">
 
+	<!-- MBTI 전체 데이터의 개수 조회 쿼리 -->
 	<select id="getTotalCount" resultType="int">
 		select count(*) from tblMBTI
 		<if test="solting == 'admin' and searchStatus == 'y'.toString()">
@@ -11,6 +12,7 @@
 		</if>
 	</select>
 
+	<!-- 모든 MBTI 데이터 목록 조회 쿼리 -->
 	<select id="getAllMBTI" parameterType="map" resultType="com.project.dd.test.mbti.domain.MBTIDTO">
 		select * from (
 			select n.*, rownum as rnum from (
@@ -27,6 +29,7 @@
 		) where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
+	<!-- 특정 MBTI 데이터 조회 쿼리 -->
 	<select id="getMBTI" parameterType="String" resultType="com.project.dd.test.mbti.domain.MBTIDTO">
 		select 
 		    m.mbti_seq,
@@ -48,23 +51,28 @@
 		order by mbti_seq
 	</select>
 	
+	<!-- MBTI 데이터 추가 쿼리 -->
 	<insert id="addMBTI" parameterType="com.project.dd.test.mbti.domain.MBTIDTO">
 		insert into tblMBTI (mbti_seq, result, name, mbti_img, course_seq, attraction_seq)
 		values (seqtblMBTI.NEXTVAL, #{result}, #{name}, #{mbti_img}, #{course_seq}, #{attraction_seq})
 	</insert>
 	
+	<!-- MBTI 이름 중복 확인 쿼리 -->
 	<select id="checkMBTINameDuplication" parameterType="com.project.dd.test.mbti.domain.MBTIDTO" resultType="int">
 		select count(*) from tblMBTI where name = #{name}
 	</select>
 	
+	<!-- MBTI 데이터 수정 쿼리 -->
 	<update id="editMBTI" parameterType="com.project.dd.test.mbti.domain.MBTIDTO">
 		update tblMBTI set result = #{result}, name = #{name}, mbti_img = #{mbti_img}, attraction_seq = #{attraction_seq}, course_seq = #{course_seq} where mbti_seq = #{mbti_seq}
 	</update>
 	
+	<!-- 특정 MBTI 이미지 파일 이름 조회 쿼리 -->
 	<select id="getMBTIImgFileName" parameterType="String" resultType="String">
 		select mbti_img from tblMBTI where mbti_seq = #{mbti_seq}
 	</select>
 	
+	<!-- MBTI 데이터 삭제 쿼리 -->
 	<delete id="delMBTI" parameterType="String">
 		delete tblMBTI where mbti_seq = #{mbti_seq}
 	</delete>

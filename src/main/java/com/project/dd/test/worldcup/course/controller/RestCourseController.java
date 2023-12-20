@@ -12,7 +12,6 @@ import com.project.dd.test.worldcup.course.service.WorldCupCourseService;
 /**
  * 월드컵 코스와 관련된 RESTful API를 처리하는 컨트롤러입니다.
  * 
- * 주요 기능:
  * 1. 코스 이름 중복 확인
  * 
  * @author 이승원
