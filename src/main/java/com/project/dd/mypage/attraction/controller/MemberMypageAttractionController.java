@@ -16,6 +16,10 @@ import com.project.dd.login.domain.CustomUser;
 import com.project.dd.mypage.attraction.domain.AttractionDTO;
 import com.project.dd.mypage.attraction.service.MypageAttractionService;
 
+/**
+ * 회원 마이페이지 어트랙션 예약내역을 관리하는 컨트롤러입니다.
+ * 회원의 어트랙션 예약목록을 조회하고, 페이징하여 보여주며, 예약을 취소하는 기능을 제공합니다.
+ */
 @Controller
 @RequestMapping("/member/mypage/attraction")
 public class MemberMypageAttractionController {
@@ -23,6 +27,14 @@ public class MemberMypageAttractionController {
 	@Autowired
 	private MypageAttractionService service;
 
+	/**
+     * 회원의 어트랙션 예약을 조회하여 페이지로 이동합니다.
+     *
+     * @param model      Model 객체
+     * @param auth       Authentication 객체
+     * @param page       페이지 번호 (기본값: 1)
+     * @return           관심 목록을 보여주는 view 이름
+     */
 	@GetMapping(value = "/view.do")
 	public String view(Model model, Authentication auth, @RequestParam(defaultValue = "1") int page) {
 
@@ -42,6 +54,14 @@ public class MemberMypageAttractionController {
 		return "mypage/attraction/view";
 	}
 	
+	/**
+     * 회원의 이전 어트랙션 예약을 조회하여 페이지로 이동합니다.
+     *
+     * @param model      Model 객체
+     * @param auth       Authentication 객체
+     * @param page       페이지 번호 (기본값: 1)
+     * @return           다른 관심 목록을 보여주는 view 이름
+     */
 	@GetMapping(value = "/pview.do")
 	public String pview(Model model, Authentication auth, @RequestParam(defaultValue = "1") int page) {
 
@@ -61,6 +81,13 @@ public class MemberMypageAttractionController {
 		return "mypage/attraction/pview";
 	}
 	
+	/**
+     * 선택한 어트랙션 예약을 삭제합니다.
+     *
+     * @param model                Model 객체
+     * @param selectedAttraction   선택된 관심 목록 배열
+     * @return                     삭제 후 이동할 URL
+     */
 	@PostMapping(value = "/delete.do")
 	public String delete(Model model, String[] selectedAttraction) {
 

@@ -124,7 +124,7 @@ th {
 
 
 	<div class="pagetitle">
-		<h1>이전 어트랙션 예약 내역</h1>
+		<h1>이전 어트랙션 예약내역</h1>
 	</div>
 
 	<section class="section">
