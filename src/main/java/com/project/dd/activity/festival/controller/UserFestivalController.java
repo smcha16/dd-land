@@ -14,12 +14,27 @@ import com.project.dd.activity.festival.domain.FestivalImgDTO;
 import com.project.dd.activity.festival.mapper.FestivalMapper;
 import com.project.dd.activity.festival.service.FestivalService;
 
+/**
+ * 
+ * 페스티벌 조회(목록, 상세)를 담당하는 모든 회원 전용 컨트롤러 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @Controller
 @RequestMapping(value = "/user/activity/festival")
 public class UserFestivalController {
 	@Autowired
 	private FestivalService service;
 	
+	/**
+	 * 
+	 * 운영중인 페스티벌 목록을 불러오는 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param date 날짜
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(Model model, @RequestParam(defaultValue = "sysdate") String date) {
 
@@ -32,6 +47,14 @@ public class UserFestivalController {
 		return "user/activity/festival/view";
 	}
 
+	/**
+	 * 
+	 * 선택한 특정 페스티벌의 상세 내용을 불러오는 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param seq 페스티벌 번호
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/detail.do")
 	public String detail(Model model, String seq) {
 		
