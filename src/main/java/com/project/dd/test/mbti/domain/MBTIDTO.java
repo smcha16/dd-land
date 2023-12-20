@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class MBTIDTO {
 
+	// tblMBTI
 	private String mbti_seq; // MBTI 번호
 	private String result; // 결과명
 	private String name; // MBTI명
