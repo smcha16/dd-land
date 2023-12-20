@@ -13,6 +13,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 
 /**
+<<<<<<< HEAD
  * 사용자 정의 로그인 성공 핸들러.
  * 작성자: 김형우
  */
@@ -24,6 +25,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 	 * @param response HttpServletResponse 객체
 	 * @param authentication 인증 객체
 	 */
+
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 

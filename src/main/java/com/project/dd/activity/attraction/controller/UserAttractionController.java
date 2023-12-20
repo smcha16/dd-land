@@ -14,6 +14,13 @@ import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
 import com.project.dd.activity.attraction.service.AttractionService;
 
+/**
+ * 
+ * @author 박나래
+ * 
+ * 어트랙션 조회(목록, 상세)를 담당하는 모든 회원 전용 컨트롤러 클래스입니다.
+ *
+ */
 @Controller
 @RequestMapping(value = "/user/activity/attraction")
 public class UserAttractionController {
@@ -21,6 +28,15 @@ public class UserAttractionController {
 	@Autowired
 	private AttractionService service;
 	
+	/**
+	 * 
+	 * 운영중인 어트랙션 목록을 불러오는 메서드입니다.
+	 * 
+	 * @param word 검색어
+	 * @param page 페이지 번호
+	 * @param model 객체
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 		
@@ -47,6 +63,14 @@ public class UserAttractionController {
 		return "user/activity/attraction/view";
 	}
 
+	/**
+	 * 
+	 * 선택한 특정 어트랙션의 상세 내용을 불러오는 메서드입니다.
+	 * 
+	 * @param model 객체
+	 * @param seq 어트랙션 번호
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/detail.do")
 	public String detail(Model model, String seq) {
 		

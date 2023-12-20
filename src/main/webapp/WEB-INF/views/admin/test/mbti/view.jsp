@@ -113,7 +113,7 @@ th:nth-child(6) { width: 22%; }
 	min-height: 0 !important;
 }
 
-/* 모달 CSS */
+/* 모달 */
 #modal table.m-desc {
 	width: 100%;
 	font-size: 14px;
@@ -132,6 +132,7 @@ th:nth-child(6) { width: 22%; }
 }
 </style>
 
+<!-- Main Start -->
 <main id="main" class="main">
 
 	<div class="pagetitle">
@@ -316,3 +317,4 @@ th:nth-child(6) { width: 22%; }
 	    $('#modal').modal('show');
 	}
 </script>
+<!-- Main End -->

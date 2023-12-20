@@ -13,6 +13,13 @@ import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.activity.movie.service.MovieService;
 import com.project.dd.activity.movieplay.domain.MoviePlayDTO;
 
+/**
+ * 
+ * 영화 상영 조회(목록, 상세)를 담당하는 모든 회원 전용 컨트롤러 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @Controller
 @RequestMapping(value = "/user/activity/movie")
 public class UserMoviePlayController {
@@ -23,6 +30,14 @@ public class UserMoviePlayController {
 	@Autowired
 	private MovieService mservice;
 	
+	/**
+	 * 
+	 * 당일 상영하는 영화의 목록을 불러오는 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param date 날짜
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(Model model, @RequestParam(defaultValue = "sysdate") String date) {
 
@@ -34,6 +49,14 @@ public class UserMoviePlayController {
 		return "user/activity/movie/view";
 	}
 	
+	/**
+	 * 
+	 * 선택한 특정 영화의 상세 내용을 불러오는 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param seq 영화 번호
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/detail.do")
 	public String detail(Model model, String seq) {
 

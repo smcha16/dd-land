@@ -130,7 +130,7 @@ th {
 }
 </style>
 
-<!-- ======= Main ======= -->
+<!-- Main Start -->
 <main id="main" class="main">
 
 	<div class="pagetitle">
@@ -295,3 +295,4 @@ th {
 	    $('#modal').modal('show');
 	}
 </script>
+<!-- Main End -->

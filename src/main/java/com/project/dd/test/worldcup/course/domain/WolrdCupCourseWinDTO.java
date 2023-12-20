@@ -5,9 +5,10 @@ import lombok.Data;
 @Data
 public class WolrdCupCourseWinDTO {
 
-	private String cwc_win_seq;
-	private String cwc_match_count;
-	private String cwc_win_count;
-	private String course_seq;
+	// tblCWCWin
+	private String cwc_win_seq; // 코스월드컵승리번호
+	private String cwc_match_count; // 코스월드컵대결횟수
+	private String cwc_win_count; // 코스월드컵승리횟수
+	private String course_seq; // 코스번호
 	
 }

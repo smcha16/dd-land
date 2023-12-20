@@ -112,6 +112,7 @@
 }
 </style>
 
+<!-- Main Start -->
 <section id="stats-counter" class="stats-counter">
 	<div id="pagetitle" class="container" data-aos="zoom-out">
 		<div class="gy-4" style="justify-content: center; width: 100%;">
@@ -174,3 +175,4 @@
 		});
 	});
 </script>
+<!-- Main End -->

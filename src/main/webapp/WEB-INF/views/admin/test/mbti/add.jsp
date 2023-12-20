@@ -50,6 +50,7 @@ label {
 }
 </style>
 
+<!-- Main Start -->
 <main id="main" class="main">
 
 	<div class="pagetitle">
@@ -102,7 +103,7 @@ label {
 							    <label for="attraction" class="col-sm-2 col-form-label required">어트랙션</label>
 							    <div class="col-sm-10">
 							        <select id="attraction" name="attraction_seq" class="form-control" required>
-							            <option value="">-- 선택하세요 --</option>
+							            <option value="">어트랙션 선택</option>
 							            <c:forEach items="${attractionList}" var="attraction">
 							                <option value="${attraction.attraction_seq}">${attraction.name}</option>
 							            </c:forEach>
@@ -115,7 +116,7 @@ label {
 							    <label for="course" class="col-sm-2 col-form-label required">코스</label>
 							    <div class="col-sm-10">
 							        <select id="course" name="course_seq" class="form-control" required>
-							            <option value="">-- 선택하세요 --</option>
+							            <option value="">코스 선택</option>
 							            <c:forEach items="${courseList}" var="course">
 							                <option value="${course.course_seq}">${course.name}</option>
 							            </c:forEach>
@@ -211,3 +212,4 @@ label {
         }
 	});
 </script>
+<!-- Main End -->
