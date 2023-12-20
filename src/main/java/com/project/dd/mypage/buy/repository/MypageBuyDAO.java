@@ -9,8 +9,12 @@ public interface MypageBuyDAO {
 
 	List<BuyDTO> list(Map<String, String> map);
 
-	int getTotalCount();
+	int getTotalCount(String email);
 
 	int delete(String seq);
+
+	int pGetTotalCount(String email);
+
+	List<BuyDTO> plist(Map<String, String> map);
 
 }

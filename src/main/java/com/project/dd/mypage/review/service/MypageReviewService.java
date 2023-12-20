@@ -25,11 +25,23 @@ public class MypageReviewService {
 	@Autowired
 	private MypageReviewDAO dao;
 
+	/**
+     * 회원의 리뷰 목록을 가져오는 메서드입니다.
+     *
+     * @param map   페이지 정보를 담은 Map 객체
+     * @return      회원의 리뷰 목록
+     */
 	public List<ReviewDTO> list(Map<String, String> map) {
 
 		return dao.list(map);
 	}
 
+	/**
+     * 리뷰 페이징 처리를 위한 메서드입니다.
+     *
+     * @param page  현재 페이지 번호
+     * @return      페이징 정보를 담은 Map 객체
+     */
 	public Map<String, String> paging(int page) {
 
 		int pageSize = 9; // 나타났으면 하는 개수
@@ -51,6 +63,12 @@ public class MypageReviewService {
 		return map;
 	}
 
+	/**
+     * 리뷰를 삭제하는 메서드입니다.
+     *
+     * @param selectedReview    삭제할 리뷰의 ID 배열
+     * @return                  삭제된 리뷰의 수
+     */
 	public int delete(String[] selectedReview) {
 
 		int totalDeleted = 0;
@@ -65,6 +83,12 @@ public class MypageReviewService {
 		return totalDeleted;
 	}
 
+	 /**
+     * 리뷰 이미지를 삭제하는 메서드입니다.
+     *
+     * @param selectedReview    삭제할 리뷰의 ID 배열
+     * @return                  삭제된 리뷰 이미지의 수
+     */
 	public int imgDelete(String[] selectedReview) {
 
 		int totalDeleted = 0;
@@ -79,6 +103,14 @@ public class MypageReviewService {
 		return totalDeleted;
 	}
 
+	/**
+     * 리뷰를 추가하는 메서드입니다.
+     *
+     * @param dto               추가할 리뷰 정보를 담은 DTO 객체
+     * @param imgs              리뷰에 첨부할 이미지 파일 배열
+     * @param req               HTTP 요청 정보를 담은 HttpServletRequest 객체
+     * @return                  추가된 리뷰 및 이미지 수
+     */
 	public int add(ReviewDTO dto, MultipartFile[] imgs, HttpServletRequest req) {
 
 		int result = 0;
@@ -129,16 +161,34 @@ public class MypageReviewService {
 		return result;
 	}
 
+	/**
+     * 특정 리뷰의 상세 정보를 가져오는 메서드입니다.
+     *
+     * @param seq   조회할 리뷰의 ID
+     * @return      조회된 리뷰 정보를 담은 DTO 객체
+     */
 	public ReviewDTO get(String seq) {
 
 		return dao.get(seq);
 	}
 
+	 /**
+     * 리뷰를 수정하는 메서드입니다.
+     *
+     * @param dto   수정할 리뷰 정보를 담은 DTO 객체
+     * @return      수정 결과 (수정된 행의 수)
+     */
 	public int edit(ReviewDTO dto) {
 
 		return dao.edit(dto);
 	}
 
+	/**
+     * 리뷰 목록에서 이미지 정보를 가져오는 메서드입니다.
+     *
+     * @param list  리뷰 목록
+     * @return      리뷰 목록에 포함된 이미지 정보를 JSON 형태로 반환
+     */
 	public String getReviewImgList(List<ReviewDTO> list) {
 
 		List<ReviewImgDTO> iList = new ArrayList<ReviewImgDTO>();
