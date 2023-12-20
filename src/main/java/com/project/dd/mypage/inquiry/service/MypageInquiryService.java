@@ -16,11 +16,23 @@ public class MypageInquiryService {
 	@Autowired
 	private MypageInquiryDAO dao;
 
+	/**
+	 * 문의 목록을 가져오는 메서드입니다.
+	 *
+	 * @param map    페이징 처리를 위한 맵
+	 * @return       문의 목록
+	 */
 	public List<InquiryDTO> list(Map<String, String> map) {
 		
 		return dao.list(map);
 	}
 
+	/**
+	 * 문의 목록의 페이징을 처리하는 메서드입니다.
+	 *
+	 * @param page    현재 페이지 번호
+	 * @return        페이징 처리를 위한 맵
+	 */
 	public Map<String, String> paging(int page) {
 		
 		  int pageSize = 12;  //나타났으면 하는 개수
@@ -42,6 +54,12 @@ public class MypageInquiryService {
 	      return map;
 	}
 
+	/**
+	 * 선택된 문의를 삭제하는 메서드입니다.
+	 *
+	 * @param selectedInquiry    삭제할 문의 배열
+	 * @return                   삭제된 총 개수
+	 */
 	public int delete(String[] selectedInquiry) {
 		
 		int totalDeleted = 0;

@@ -23,6 +23,15 @@ public class MemberMypageTicketController {
 	@Autowired
 	private MypageTicketService service;
 
+	/**
+	 * 회원의 티켓 예매 내역을 조회하는 메서드입니다.
+	 *
+	 * @param model        데이터를 뷰에 전달하기 위한 Model 객체
+	 * @param dto          티켓 예매 정보를 담은 DTO 객체
+	 * @param auth         현재 사용자의 인증 정보를 담은 Authentication 객체
+	 * @param page         현재 페이지 번호
+	 * @return             회원의 티켓 예매 내역을 보여주는 뷰 페이지
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(Model model, TicketDTO dto, Authentication auth, @RequestParam(defaultValue = "1") int page) {
 
@@ -44,6 +53,15 @@ public class MemberMypageTicketController {
 		return "mypage/ticket/view";
 	}
 	
+	/**
+	 * 티켓 예매 내역의 페이징 처리된 뷰를 반환하는 메서드입니다.
+	 *
+	 * @param model        데이터를 뷰에 전달하기 위한 Model 객체
+	 * @param dto          티켓 예매 정보를 담은 DTO 객체
+	 * @param auth         현재 사용자의 인증 정보를 담은 Authentication 객체
+	 * @param page         현재 페이지 번호
+	 * @return             페이징 처리된 티켓 예매 내역을 보여주는 뷰 페이지
+	 */
 	@GetMapping(value = "/pview.do")
 	public String pview(Model model, TicketDTO dto, Authentication auth, @RequestParam(defaultValue = "1") int page) {
 
@@ -66,6 +84,13 @@ public class MemberMypageTicketController {
 	}
 	
 
+	/**
+	 * 선택한 티켓을 삭제하는 메서드입니다.
+	 *
+	 * @param model              데이터를 뷰에 전달하기 위한 Model 객체
+	 * @param selectedTickets    삭제할 티켓의 ID 목록
+	 * @return                   티켓 삭제 후 목록을 보여주는 페이지로 리다이렉트
+	 */
 	@PostMapping(value = "/delete.do")
 	public String delete(Model model, String[] selectedTickets) {
 

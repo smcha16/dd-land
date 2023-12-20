@@ -24,15 +24,27 @@ public class MypageBuyDAOImpl implements MypageBuyDAO{
 	}
 	
 	@Override
-	public int getTotalCount() {
+	public int getTotalCount(String email) {
 		
-		return mapper.getTotalCount();
+		return mapper.getTotalCount(email);
 	}
 	
 	@Override
 	public int delete(String seq) {
 		
 		return mapper.delete(seq);
+	}
+	
+	@Override
+	public int pGetTotalCount(String email) {
+		
+		return mapper.pGetTotalCount(email);
+	}
+	
+	@Override
+	public List<BuyDTO> plist(Map<String, String> map) {
+		
+		return mapper.plist(map);
 	}
 
 }

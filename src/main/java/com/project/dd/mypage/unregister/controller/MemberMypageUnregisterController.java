@@ -16,24 +16,49 @@ public class MemberMypageUnregisterController {
 	@Autowired
 	private UnregisterService service;
 	
+	/**
+	 * 회원 탈퇴 페이지를 보여주는 메서드입니다.
+	 *
+	 * @param model    데이터를 뷰에 전달하기 위한 Model 객체
+	 * @return         회원 탈퇴 페이지 뷰
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(Model model) {
 
 		return "mypage/unregister/view";
 	}
 	
+	/**
+	 * 회원 탈퇴 성공 페이지를 보여주는 메서드입니다.
+	 *
+	 * @param model    데이터를 뷰에 전달하기 위한 Model 객체
+	 * @return         회원 탈퇴 성공 페이지 뷰
+	 */
 	@GetMapping(value = "/success.do")
 	public String success(Model model) {
 
 		return "mypage/unregister/success";
 	}
 	
+	/**
+	 * 회원 탈퇴 실패 페이지를 보여주는 메서드입니다.
+	 *
+	 * @param model    데이터를 뷰에 전달하기 위한 Model 객체
+	 * @return         회원 탈퇴 실패 페이지 뷰
+	 */
 	@GetMapping(value = "/failure.do")
 	public String failure(Model model) {
 
 		return "mypage/unregister/failure";
 	}
 	
+	/**
+	 * 회원을 탈퇴시키는 메서드입니다.
+	 *
+	 * @param model    데이터를 뷰에 전달하기 위한 Model 객체
+	 * @param email    탈퇴하려는 회원의 이메일
+	 * @return         회원 탈퇴 결과에 따른 페이지 이동
+	 */
 	@PostMapping(value = "/unregister.do")
 	public String unregister(Model model, String email) {
 		

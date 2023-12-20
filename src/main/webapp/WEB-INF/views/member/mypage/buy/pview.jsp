@@ -136,7 +136,7 @@ th {
 <main id="main" class="main">
 
 	<div class="pagetitle">
-		<h1>구매내역</h1>
+		<h1>이전 구매내역</h1>
 	</div>
 
 	<section class="section">
@@ -160,7 +160,6 @@ th {
 								<table class="table">
 									<thead>
 										<tr>
-											<th></th>
 											<th>품명</th>
 											<th>개수</th>
 											<th>가격</th>
@@ -168,9 +167,8 @@ th {
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${list}" var="dto">
+										<c:forEach items="${plist}" var="dto">
 											<tr>
-												<td><input type="checkbox" name="selectedItem" value="${dto.user_buy_seq}"></td>
 												<td>${dto.itemName}</td>
 												<td>${dto.ea}</td>
 												<td>${dto.price}</td>
@@ -179,7 +177,6 @@ th {
 										</c:forEach>
 									</tbody>
 								</table>
-								<button type="button" id="cancelBtn" onclick="confirmCancel()">주문 취소</button>
 								<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}">
 								</form>
