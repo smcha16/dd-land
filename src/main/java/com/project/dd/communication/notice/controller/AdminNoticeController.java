@@ -17,6 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.dd.communication.notice.domain.NoticeDTO;
 import com.project.dd.communication.notice.service.NoticeService;
 
+/**
+ * 관리자용 공지사항 컨트롤러 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Controller
 @RequestMapping("/admin/communication/notice")
 public class AdminNoticeController {
@@ -24,8 +29,15 @@ public class AdminNoticeController {
 	@Autowired
 	private NoticeService service;
 	
-	/* 목록 */
-	
+	/**
+	 * 공지사항 목록을 보여주는 메서드입니다.
+	 *
+	 * @param category 공지사항 카테고리
+	 * @param word 검색어
+	 * @param page 페이지 번호
+	 * @param model Spring의 Model 객체
+	 * @return 공지사항 목록을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(String category, String word, @RequestParam(defaultValue = "1") int page, Model model) {
 		
@@ -45,8 +57,11 @@ public class AdminNoticeController {
 
 	}
 	
-	/* 추가 */
-	
+	/**
+	 * 공지사항을 추가하는 폼을 보여주는 메서드입니다.
+	 *
+	 * @return 공지사항 추가 폼을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/add.do")
 	public String add() {
 
@@ -54,6 +69,14 @@ public class AdminNoticeController {
 
 	}
 	
+	/**
+	 * 공지사항을 추가하는 메서드입니다.
+	 *
+	 * @param dto 추가할 공지사항의 DTO 객체
+	 * @param req HttpServletRequest 객체
+	 * @param doc 첨부 파일
+	 * @return 공지사항 목록을 보여주는 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/addok.do")
 	public String addOk(NoticeDTO dto, HttpServletRequest req, MultipartFile doc) {
 		
@@ -73,8 +96,13 @@ public class AdminNoticeController {
 
 	}
 	
-	/* 수정 */
-	
+	/**
+	 * 공지사항을 수정하는 폼을 보여주는 메서드입니다.
+	 *
+	 * @param seq 공지사항의 일련번호
+	 * @param model Spring의 Model 객체
+	 * @return 공지사항 수정 폼을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/edit.do")
 	public String edit(String seq, Model model) {
 		
@@ -86,6 +114,14 @@ public class AdminNoticeController {
 
 	}
 	
+	/**
+	 * 공지사항을 수정하는 메서드입니다.
+	 *
+	 * @param dto 수정할 공지사항의 DTO 객체
+	 * @param req HttpServletRequest 객체
+	 * @param doc 첨부 파일
+	 * @return 공지사항 목록을 보여주는 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/editok.do")
 	public String editOk(NoticeDTO dto, HttpServletRequest req, MultipartFile doc) {
 		
@@ -105,8 +141,12 @@ public class AdminNoticeController {
 
 	}
 	
-	/* 삭제 */
-	
+	/**
+	 * 여러 개의 공지사항을 삭제하는 메서드입니다.
+	 *
+	 * @param seqList 삭제할 공지사항의 일련번호 배열
+	 * @return 공지사항 목록을 보여주는 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/del.do")
 	public String del(String[] seqList) {
 

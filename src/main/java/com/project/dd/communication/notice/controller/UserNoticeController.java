@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.dd.communication.notice.domain.NoticeDTO;
 import com.project.dd.communication.notice.service.NoticeService;
 
+/**
+ * 사용자용 공지사항 컨트롤러 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Controller
 @RequestMapping("/user/communication/notice")
 public class UserNoticeController {
@@ -20,8 +25,15 @@ public class UserNoticeController {
 	@Autowired
 	private NoticeService service;
 	
-	/* 목록 */
-	
+	/**
+	 * 공지사항 목록을 보여주는 메서드입니다.
+	 *
+	 * @param category 공지사항 카테고리
+	 * @param word 검색어
+	 * @param page 페이지 번호
+	 * @param model Spring의 Model 객체
+	 * @return 공지사항 목록을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(String category, String word, @RequestParam(defaultValue = "1") int page, Model model) {
 		
@@ -41,8 +53,13 @@ public class UserNoticeController {
 
 	}
 	
-	/* 상세 */
-	
+	/**
+	 * 특정 공지사항의 상세 내용을 보여주는 메서드입니다.
+	 *
+	 * @param seq 공지사항의 일련번호
+	 * @param model Spring의 Model 객체
+	 * @return 특정 공지사항의 상세 내용을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/detail.do")
 	public String detail(String seq, Model model) {
 		

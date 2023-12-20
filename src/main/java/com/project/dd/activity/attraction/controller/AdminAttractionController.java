@@ -20,7 +20,13 @@ import com.project.dd.activity.attraction.domain.BookUserDTO;
 import com.project.dd.activity.attraction.service.AttractionService;
 import com.project.dd.test.worldcup.attraction.service.WorldCupAttractionService;
 
-
+/**
+ * 
+ * 어트랙션 관리(조회/추가/수정/삭제)를 담당하는 관리자 전용 컨트롤러 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @Controller
 @RequestMapping(value = "/admin/activity/attraction")
 public class AdminAttractionController {
@@ -31,6 +37,15 @@ public class AdminAttractionController {
     @Autowired
     private WorldCupAttractionService awcService;
 	
+    /**
+     * 
+     * 관리자용 어트랙션 목록을 조회할 수 있는 view 메서드입니다.
+     * 
+     * @param word 검색어(어트랙션명)
+     * @param page 페이지
+     * @param model 모델 객체
+     * @return jsp 파일명
+     */
 	@GetMapping(value = "/view.do")
 	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 		
@@ -59,11 +74,28 @@ public class AdminAttractionController {
 		return "admin/activity/attraction/view";
 	}
 	
+	/**
+	 * 
+	 * 어트랙션을 추가할 수 있는 add 메서드입니다. 
+	 * 
+	 * @param model 모델 객체
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/add.do")
 	public String add(Model model) {
 		return "admin/activity/attraction/add";
 	}
 
+	/**
+	 * 
+	 * 추가한 어트랙션을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 addok 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param dto 어트랙션 dto 객체
+	 * @param imgs 추가한 이미지 멀티파일 객체
+	 * @param req HttpServletRequest 객체
+	 * @return 이동할 페이지 주소
+	 */
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, AttractionDTO dto, MultipartFile[] imgs, HttpServletRequest req) {
 		
@@ -94,6 +126,14 @@ public class AdminAttractionController {
 		
 	}
 	
+	/**
+	 * 
+	 * 어트랙션을 수정할 수 있는 edit 메서드입니다. 
+	 * 
+	 * @param model 객체
+	 * @param seq 어트랙션 번호
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/edit.do")
 	public String edit(Model model, String seq) {
 		
@@ -126,6 +166,17 @@ public class AdminAttractionController {
 		return "admin/activity/attraction/edit";
 	}
 	
+	/**
+	 * 
+	 * 수정한 어트랙션을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 editok 메서드입니다.
+	 * 
+	 * @param model 객체
+	 * @param dto 어트랙션 dto 객체
+	 * @param imgs 추가 첨부한 멀티파일 객체
+	 * @param req HttpServletRequest 객체
+	 * @param deleteImgSeq 삭제할 이미지 번호 배열
+	 * @return 이동할 페이지 주소
+	 */
 	@PostMapping(value = "/editok.do")
 	public String editok(Model model, AttractionDTO dto, MultipartFile[] imgs, HttpServletRequest req, String[] deleteImgSeq) {
 
@@ -147,9 +198,14 @@ public class AdminAttractionController {
 	}
 	
 	
-	
-	
-	
+	/**
+	 * 
+	 * 삭제할 어트랙션을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 del 메서드입니다.
+	 * 
+	 * @param model 객체
+	 * @param attraction_seq 어트랙션번호
+	 * @return 이동할 페이지 주소
+	 */
 	@PostMapping(value = "/del.do")
 	public String del(Model model, String[] attraction_seq) {
 
@@ -167,6 +223,13 @@ public class AdminAttractionController {
 		}
 	}
 	
+	/**
+	 * 
+	 * 회원의 어트랙션 예약 내역을 전체 조회할 수 있는 메서드입니다.
+	 * 
+	 * @param model 객체
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/reservation/view.do")
 	public String reservationView(Model model) {
 

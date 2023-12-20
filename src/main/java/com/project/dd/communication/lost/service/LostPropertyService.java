@@ -18,14 +18,28 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.dd.communication.lost.domain.LostPropertyDTO;
 import com.project.dd.communication.lost.repository.LostPropertyDAO;
 
+/**
+ * 분실물 서비스 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Service
 public class LostPropertyService {
 	
 	@Autowired
 	private LostPropertyDAO dao;
-	
-	/* 페이징 */
 
+	/**
+	 * 페이징 처리를 위한 맵을 생성하는 메서드입니다.
+	 *
+	 * @param searchStatus 검색 상태
+	 * @param category 분실물 카테고리
+	 * @param word 검색어
+	 * @param start 검색 시작일
+	 * @param end 검색 종료일
+	 * @param page 페이지 번호
+	 * @return 페이징 정보를 담은 Map 객체
+	 */
 	public Map<String, String> paging(String searchStatus, String category, String word, String start, String end, int page) {
 		
 		Map<String, String> map = new HashMap<String, String>();
@@ -53,9 +67,13 @@ public class LostPropertyService {
 		return map;
 		
 	}
-	
-	/* 목록 */
 
+	/**
+	 * 분실물 목록을 가져오는 메서드입니다.
+	 *
+	 * @param map 페이징 정보를 포함한 Map 객체
+	 * @return 분실물 목록
+	 */
 	public List<LostPropertyDTO> getLostPropertyList(Map<String, String> map) {
 		
 		List<LostPropertyDTO> list = dao.getLostPropertyList(map);
@@ -64,8 +82,13 @@ public class LostPropertyService {
 		
 	}
 	
-	/* 파일 저장 */
-	
+	/**
+	 * 파일을 저장하는 메서드입니다.
+	 *
+	 * @param req HttpServletRequest 객체
+	 * @param doc 첨부 파일
+	 * @return 저장된 파일명
+	 */
 	public String saveFile(HttpServletRequest req, MultipartFile doc) {
 		
 		try {
@@ -100,8 +123,14 @@ public class LostPropertyService {
 		
 	}
 	
-	/* 파일 추가 */
-	
+	/**
+	 * 파일을 추가하는 메서드입니다.
+	 *
+	 * @param dto 추가할 분실물의 DTO 객체
+	 * @param req HttpServletRequest 객체
+	 * @param doc 첨부 파일
+	 * @return 파일이 추가된 DTO 객체
+	 */	
 	public LostPropertyDTO addFile(LostPropertyDTO dto, HttpServletRequest req, MultipartFile doc) {
 		
 		if (doc == null || doc.isEmpty()) {
@@ -117,17 +146,25 @@ public class LostPropertyService {
 		return dto;
 		
 	}
-	
-	/* 추가 */
 
+	/**
+	 * 분실물을 추가하는 메서드입니다.
+	 *
+	 * @param dto 추가할 분실물의 DTO 객체
+	 * @return 추가 결과 (1: 성공, 0: 실패)
+	 */
 	public int addLostProperty(LostPropertyDTO dto) {
 		
 		return dao.addLostProperty(dto);
 		
 	}
-	
-	/* 상세 */
 
+	/**
+	 * 특정 분실물의 상세 내용을 가져오는 메서드입니다.
+	 *
+	 * @param seq 조회할 분실물의 일련번호
+	 * @return 조회된 분실물의 DTO 객체
+	 */
 	public LostPropertyDTO getLostProperty(String seq) {
 		
 		LostPropertyDTO dto = dao.getLostProperty(seq);
@@ -136,8 +173,14 @@ public class LostPropertyService {
 
 	}
 	
-	/* 파일 수정 */
-	
+	/**
+	 * 파일을 수정하는 메서드입니다.
+	 *
+	 * @param dto 수정할 분실물의 DTO 객체
+	 * @param req HttpServletRequest 객체
+	 * @param doc 첨부 파일
+	 * @return 파일이 수정된 DTO 객체
+	 */
 	public LostPropertyDTO editFile(LostPropertyDTO dto, HttpServletRequest req, MultipartFile doc) {
 
 		if (doc == null) {
@@ -157,17 +200,24 @@ public class LostPropertyService {
 		return dto;
 		
 	}
-	
-	/* 수정 */
 
+	/**
+	 * 분실물을 수정하는 메서드입니다.
+	 *
+	 * @param dto 수정할 분실물의 DTO 객체
+	 * @return 수정 결과 (1: 성공, 0: 실패)
+	 */
 	public int editLostProperty(LostPropertyDTO dto) {
 
 		return dao.editLostProperty(dto);
 		
 	}
-	
-	/* 삭제 */
 
+	/**
+	 * 여러 개의 분실물을 삭제하는 메서드입니다.
+	 *
+	 * @param seqList 삭제할 분실물의 일련번호 배열
+	 */
 	public void deleteLostProperty(String[] seqList) {
 
 		for (String seq : seqList) {

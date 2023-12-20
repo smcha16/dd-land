@@ -118,11 +118,11 @@ th {
 										<li class="breadcrumb-item">
 										<a href="/dd/admin/pb/benefit/add.do" >추가</a></li>
 										<li class="breadcrumb-item active">
-										<a href="/dd/admin/pb/benefit/delete.do" onclick="submit();">삭제</a></li>
+										<a href="javascript:void(0);" onclick="del();">삭제</a></li>
 									</ol>
 									
 								</nav>
-
+		<form id="del-form" method="POST" action="/dd/admin/pb/benefit/del.do">
 								<table class="table">
 									<thead>
 										<tr>
@@ -138,7 +138,7 @@ th {
 									<tbody>
 										<c:forEach items="${list}" var="dto">
 											<tr>
-												<td><input type="checkbox" name="attraction_checkbox"onclick="handleCheckboxClick(this)" ></td> 
+												<td><input type="checkbox" name="benefit_seq"onclick="handleCheckboxClick(this)" value="${dto.benefit_seq}"></td> 
 												<td>${dto.benefit_seq }</td>
 												<td>${dto.name}</td>
 												<td>${dto.type}</td>
@@ -148,15 +148,21 @@ th {
 											</tr>
 										</c:forEach>
 								</table>
-
-								<ul class="pagination pagination-sm">
-									<li class="page-item active" aria-current="page"><span
-										class="page-link">1</span></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">4</a></li>
-									<li class="page-item"><a class="page-link" href="#">5</a></li>
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+</form>
+								<ul class="pagination justify-content-center">
+									<c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
+										<c:choose>
+										    <c:when test="${pageStatus.index == currentPage}">
+										        <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+										    </c:when>
+										    <c:otherwise>
+										        <li class="page-item"><a class="page-link" href="/dd/admin/pb/benefit/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+										    </c:otherwise>
+										</c:choose>
+									</c:forEach>
 								</ul>
+								
 							</div>
 
 						</div>
@@ -183,4 +189,26 @@ th {
 	        }
 	      });
 	    }
+	
+
+	/* 삭제 시, 체크 박스 1개 이상 선택 하여 seq 전달하기 */
+	/* 1. 체크박스 1개 2. 체크박스 1개 이상 */
+	function del() {
+		
+		/* 선택된 체크박수 개수 확인 */
+		let checkedCount = $('input[type="checkbox"]:checked').length;
+		
+		if (checkedCount == 0) {
+			alert('1명 이상의 혜택을 선택 후, 삭제 버튼을 눌러주세요.');
+		} else {
+			
+			if (confirm('선택한 혜택을 삭제하시겠습니까?')) {
+				
+				$('#del-form').submit();
+
+			}
+			
+		} 
+		
+	}//function
 </script>

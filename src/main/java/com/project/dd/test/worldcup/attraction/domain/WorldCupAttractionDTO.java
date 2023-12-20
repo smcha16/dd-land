@@ -5,8 +5,9 @@ import lombok.Data;
 @Data
 public class WorldCupAttractionDTO {
 
-	private String awc_seq;
-	private String is_test;
-	private String attraction_seq;
+	// tblAWC
+	private String awc_seq; // 어트랙션월드컵번호
+	private String is_test; // 테스트채택
+	private String attraction_seq; // 어트랙션번호
 
 }

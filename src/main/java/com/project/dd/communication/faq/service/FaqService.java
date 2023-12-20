@@ -10,14 +10,26 @@ import org.springframework.stereotype.Service;
 import com.project.dd.communication.faq.domain.FaqDTO;
 import com.project.dd.communication.faq.repository.FaqDAO;
 
+/**
+ * FAQ 서비스 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Service
 public class FaqService {
 	
 	@Autowired
 	private FaqDAO dao;
 	
-	/* 페이징 */
-
+	/**
+	 * 페이징 처리를 위한 맵을 생성하는 메서드입니다.
+	 *
+	 * @param type FAQ 유형
+	 * @param searchStatus 검색 상태
+	 * @param word 검색어
+	 * @param page 페이지 번호
+	 * @return 페이징 정보를 담은 Map 객체
+	 */
 	public Map<String, String> paging(String type, String searchStatus, String word, int page) {
 		
 		Map<String, String> map = new HashMap<String, String>();
@@ -43,9 +55,13 @@ public class FaqService {
 		return map;
 		
 	}
-	
-	/* 목록 */
 
+	/**
+	 * FAQ 목록을 가져오는 메서드입니다.
+	 *
+	 * @param map 페이징 정보를 포함한 Map 객체
+	 * @return FAQ 목록
+	 */
 	public List<FaqDTO> getFaqList(Map<String, String> map) {
 
 		List<FaqDTO> list = dao.getFaqList(map);
@@ -53,33 +69,48 @@ public class FaqService {
 		return list;
 		
 	}
-	
-	/* 추가 */
 
+	/**
+	 * FAQ를 추가하는 메서드입니다.
+	 *
+	 * @param dto 추가할 FAQ의 DTO 객체
+	 * @return 추가 결과 (1: 성공, 0: 실패)
+	 */
 	public int addFaq(FaqDTO dto) {
 		
 		return dao.addFaq(dto);
 		
 	}
-	
-	/* 상세 */
 
+	/**
+	 * 특정 FAQ의 상세 내용을 가져오는 메서드입니다.
+	 *
+	 * @param seq 조회할 FAQ의 일련번호
+	 * @return 조회된 FAQ의 DTO 객체
+	 */
 	public FaqDTO getFaq(String seq) {
 		
 		return dao.getFaq(seq);
 		
 	}
-	
-	/* 수정 */
 
+	/**
+	 * FAQ를 수정하는 메서드입니다.
+	 *
+	 * @param dto 수정할 FAQ의 DTO 객체
+	 * @return 수정 결과 (1: 성공, 0: 실패)
+	 */
 	public int editFaq(FaqDTO dto) {
 		
 		return dao.editFaq(dto);
 		
 	}
-	
-	/* 삭제 */
 
+	/**
+	 * 여러 개의 FAQ를 삭제하는 메서드입니다.
+	 *
+	 * @param seqList 삭제할 FAQ의 일련번호 배열
+	 */
 	public void deleteFaq(String[] seqList) {
 
 		for (String seq : seqList) {
