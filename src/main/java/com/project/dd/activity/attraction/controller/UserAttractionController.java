@@ -52,6 +52,8 @@ public class UserAttractionController {
 		//운휴인 Attraction 
 		int closeCount = service.getAttractionCloseCount(list);
 		
+		System.out.println(closeCount);
+		
 		//페이징
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);

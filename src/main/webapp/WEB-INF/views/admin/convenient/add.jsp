@@ -59,14 +59,15 @@
 	<div class="pagetitle">
 		<h1>편의시설 등록</h1>
 		
-		<nav class="d-flex justify-co ntent-end">
+		<nav class="d-flex justify-content-end">
       		<ol class="breadcrumb">
           		<li class="breadcrumb-item"><a href="javascript:void(0);" onclick="submit();">등록</a></li>
           		<li class="breadcrumb-item active"><a href="/dd/admin/convenient/view.do">취소</a></li>
       		</ol>
 		</nav>
   	</div>
-
+		
+	
   	<section class="section">
     	<div class="row">
      		 <div class="col-lg-12">

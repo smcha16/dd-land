@@ -17,6 +17,12 @@ import org.springframework.stereotype.Component;
 import com.google.gson.Gson;
 import com.project.dd.server.domain.Message;
 
+/**
+ * 채팅의 서버 역할을 하는 클래스
+ * @author leeje
+ *
+ */
+
 //@Component
 @ServerEndpoint(value = "/chatserver.do")/* , configurator = com.project.dd.server.ServerEndpointConfig.class */
 public class ChatServer {
@@ -25,7 +31,6 @@ public class ChatServer {
 	//@Inject
 	private static List<Session> sessionList = new ArrayList<Session>();
 	
-
 	//클라이언트 접속
 	@OnOpen
 	public void handleOpen(Session session) {
