@@ -1,10 +1,13 @@
 	package com.project.dd.login.controller;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -209,11 +212,17 @@ public class UserLoginController {
 		}
 		String birthday = registerService.dayChange(memberDTO, mm, dd);
 		
+		String phoneNum =  registerService.formatPhoneNumber(memberDTO.getTel());
+		memberDTO.setTel(phoneNum);
 		memberDTO.setBirth(birthday);
 		String user_seq = loginService.findSeq(memberDTO);
 		memberDTO.setUser_seq(user_seq);
-		System.out.println(memberDTO.toString());
 		
+		System.out.println(memberDTO.toString());
+		System.out.println(user_seq);
+		if (user_seq == null) {
+			return "user/login/fail";
+		}
 
 		
 		
