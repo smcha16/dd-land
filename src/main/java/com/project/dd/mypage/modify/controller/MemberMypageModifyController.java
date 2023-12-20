@@ -21,6 +21,13 @@ public class MemberMypageModifyController {
 	@Autowired
 	private MypageModifyService service;
 	
+	/**
+	 * 마이페이지 수정 화면을 보여주는 메서드입니다.
+	 *
+	 * @param model         View에 전달할 데이터를 담는 Model 객체
+	 * @param auth          현재 인증된 사용자의 정보를 담은 Authentication 객체
+	 * @return              마이페이지 수정 화면 View
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(Model model, Authentication auth) {
 		
@@ -35,6 +42,13 @@ public class MemberMypageModifyController {
 		return "mypage/modify/view";
 	}
 	
+	/**
+	 * 마이페이지 정보를 수정하는 메서드입니다.
+	 *
+	 * @param model         View에 전달할 데이터를 담는 Model 객체
+	 * @param dto           수정할 정보를 담은 ModifyDTO 객체
+	 * @return              수정 후 마이페이지 View로 이동
+	 */
 	@PostMapping(value = "/edit.do")
 	public String edit(Model model, ModifyDTO dto) {
 		

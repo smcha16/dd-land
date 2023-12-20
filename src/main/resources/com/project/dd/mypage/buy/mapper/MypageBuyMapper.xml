@@ -6,12 +6,22 @@
 
 	<select id="list" parameterType="map" resultType="com.project.dd.mypage.buy.domain.BuyDTO">
 		select *
-      from (select n.*, rownum as rnum from (select * from vwUserBuy where email = #{email} ) n)
+      from (select n.*, rownum as rnum from (select * from vwUserBuy where email = #{email} and buy_date &gt;= sysdate - INTERVAL '14' DAY ) n)
+      where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<select id="plist" parameterType="map" resultType="com.project.dd.mypage.buy.domain.BuyDTO">
+		select *
+      from (select n.*, rownum as rnum from (select * from vwUserBuy where email = #{email} and buy_date &lt; sysdate - INTERVAL '14' DAY ) n)
       where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
-      select count(*) from vwUserBuy
+      select count(*) from vwUserBuy where email = #{email} and buy_date &gt;= sysdate - INTERVAL '14' DAY
+    </select>
+    
+    <select id="pGetTotalCount"  parameterType="String" resultType="int">
+      select count(*) from vwUserBuy where email = #{email} and buy_date &lt; sysdate - INTERVAL '14' DAY
     </select>
     
     <delete id="delete">
