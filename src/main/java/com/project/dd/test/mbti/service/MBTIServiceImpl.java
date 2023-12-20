@@ -54,7 +54,7 @@ public class MBTIServiceImpl implements MBTIService {
      * @param searchStatus  검색 상태
      * @param word          검색어
      * @param page          현재 페이지 번호
-     * @param pageSize      페이지 크기
+     * @param pageSize      조회할 글 개수
      * @return 페이징된 MBTI 추천 정보 목록 정보를 담은 Map 객체
      */
     public Map<String, String> paging(String solting, String searchStatus, String word, int page, int pageSize) {
