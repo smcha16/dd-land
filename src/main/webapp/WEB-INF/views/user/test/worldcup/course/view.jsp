@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<!-- 구글 폰트 로드 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
@@ -160,6 +161,7 @@
 	background-attachment: fixed;
 }
 
+/* 모바일 적응형 설정 */
 @media screen and (max-width: 600px) {
     .item {
         width: 90%;
@@ -197,6 +199,7 @@
 }
 </style>
 
+<!-- Main Start -->
 <section id="stats-counter" class="stats-counter">
     <div id="pagetitle" class="container" data-aos="zoom-out">
         <div class="gy-4" style="justify-content: center; width: 100%;">
@@ -416,3 +419,4 @@
 	    });
 	}
 </script>
+<!-- Main End -->
