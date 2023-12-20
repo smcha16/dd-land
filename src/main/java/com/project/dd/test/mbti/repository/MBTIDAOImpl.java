@@ -24,13 +24,11 @@ public class MBTIDAOImpl implements MBTIDAO {
 	
 	@Override
 	public List<MBTIDTO> getAllMBTI(Map<String, String> map) {
-
 		return mapper.getAllMBTI(map);
 	}
 	
 	@Override
 	public MBTIDTO getMBTI(String seq) {
-
 		return mapper.getMBTI(seq);
 	}
 	
