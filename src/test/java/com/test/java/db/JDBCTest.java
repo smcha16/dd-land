@@ -8,8 +8,16 @@ import java.sql.DriverManager;
 
 import org.junit.Test;
 
+/**
+ * JDBC 연결 테스트를 위한 JUnit 테스트 클래스입니다.
+ * @author pega0
+ *
+ */
 public class JDBCTest {
 
+	/**
+     * 데이터베이스 연결을 테스트합니다.
+     */
 	@Test
 	public void testConnection() {
 		

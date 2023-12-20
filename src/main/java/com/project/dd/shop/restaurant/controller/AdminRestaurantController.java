@@ -19,12 +19,25 @@ import com.project.dd.shop.restaurant.domain.RestaurantDTO;
 import com.project.dd.shop.restaurant.domain.RestaurantImageDTO;
 import com.project.dd.shop.restaurant.service.RestaurantService;
 
+/**
+ * 관리자용 레스토랑 컨트롤러 클래스입니다.
+ * @author pega0
+ *
+ */
 @Controller
 public class AdminRestaurantController {
 
 	@Autowired
 	private RestaurantService service;
 
+	/**
+     * 관리자용 레스토랑 목록 조회 페이지를 반환하는 메서드입니다.
+     *
+     * @param page  현재 페이지 번호
+     * @param word  검색어
+     * @param model Model 객체
+     * @return 레스토랑 목록 조회 페이지
+     */
 	@GetMapping(value = "/admin/shop/restaurant/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, String word, Model model) {
 
@@ -47,12 +60,27 @@ public class AdminRestaurantController {
 		return "admin/shop/restaurant/view";
 	}
 
+	/**
+     * 관리자용 레스토랑 등록 페이지를 반환하는 메서드입니다.
+     *
+     * @param model Model 객체
+     * @return 레스토랑 등록 페이지
+     */
 	@GetMapping(value = "/admin/shop/restaurant/add.do")
 	public String add(Model model) {
 
 		return "admin/shop/restaurant/add";
 	}
 
+	/**
+     * 레스토랑을 등록하고 등록된 정보를 처리하는 메서드입니다.
+     *
+     * @param model        Model 객체
+     * @param dto          등록할 레스토랑 정보
+     * @param image        업로드된 이미지 파일
+     * @param req          HttpServletRequest 객체
+     * @return 레스토랑 목록 조회 페이지로 리다이렉트
+     */
 	@PostMapping(value = "/admin/shop/restaurant/addok.do")
 	public String addok(Model model, RestaurantDTO dto, MultipartFile image, HttpServletRequest req) {
 
@@ -84,6 +112,13 @@ public class AdminRestaurantController {
 		return "redirect:/admin/shop/restaurant/view.do";
 	}
 
+	/**
+     * 관리자용 레스토랑 수정 페이지를 반환하는 메서드입니다.
+     *
+     * @param model Model 객체
+     * @param seq   수정할 레스토랑 시퀀스
+     * @return 레스토랑 수정 페이지
+     */
 	@GetMapping(value = "/admin/shop/restaurant/edit.do")
 	public String edit(Model model, String seq) {
 
@@ -106,6 +141,16 @@ public class AdminRestaurantController {
 		return "admin/shop/restaurant/edit";
 	}
 	
+	/**
+     * 수정된 레스토랑 정보를 처리하는 메서드입니다.
+     *
+     * @param model         Model 객체
+     * @param dto           수정된 레스토랑 정보
+     * @param image         업로드된 이미지 파일
+     * @param req           HttpServletRequest 객체
+     * @param deleteImgSeq  삭제할 이미지 시퀀스
+     * @return 레스토랑 목록 조회 페이지로 리다이렉트
+     */
 	@PostMapping(value = "/admin/shop/restaurant/editok.do")
 	public String editok(Model model, RestaurantDTO dto, MultipartFile image, HttpServletRequest req, String deleteImgSeq) {
 
@@ -118,6 +163,13 @@ public class AdminRestaurantController {
 		}
 	}
 
+	/**
+     * 선택한 레스토랑을 삭제하는 메서드입니다.
+     *
+     * @param model           Model 객체
+     * @param restaurant_seq  삭제할 레스토랑 시퀀스 배열
+     * @return 레스토랑 목록 조회 페이지로 리다이렉트
+     */
 	@PostMapping(value = "/admin/shop/restaurant/del.do")
 	public String del(Model model, String[] restaurant_seq) {
 		
