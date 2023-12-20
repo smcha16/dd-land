@@ -18,24 +18,60 @@ import com.project.dd.activity.photozone.domain.PhotoZoneDTO;
 import com.project.dd.activity.photozone.domain.PhotoZoneImgDTO;
 import com.project.dd.activity.photozone.repository.PhotoZoneDAO;
 
+/**
+ * 
+ * 포토존 DB에 접근하여 실행된 레코드의 수를 반환하는 Service 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @Service
 public class PhotoZoneService {
 
 	@Autowired
 	PhotoZoneDAO dao;
 
+	/**
+	 * 
+	 * 운영중인 포토존 목록을 가져오는 메서드입니다.
+	 * 
+	 * @param map 페이징을 위한 map 객체
+	 * @return 포토존 dto list
+	 */
 	public List<PhotoZoneDTO> getPhotozoneList(Map<String, String> map) {
 		return dao.getPhotozoneList(map);
 	}
 
+	/**
+	 * 
+	 * 특정 포토존의 정보를 가져오는 메서드입니다.
+	 * 
+	 * @param seq 포토존 번호
+	 * @return 포토존 dto
+	 */
 	public PhotoZoneDTO getPhotozone(String seq) {
 		return dao.getPhotozone(seq);
 	}
 
+	/**
+	 * 
+	 * 포토존 이미지 목록을 가져오는 메서드입니다.
+	 * 
+	 * @param seq 포토존 번호
+	 * @return 포토존이미지 dto list
+	 */
 	public List<PhotoZoneImgDTO> getPhotozoneImgList(String seq) {
 		return dao.getPhotozoneImgList(seq);
 	}
 
+	/**
+	 * 
+	 * 페이지 번호를 출력하기 위해 DB에 접근하여 포토존 개수를 조회하는 메서드입니다.
+	 * 
+	 * @param page 페이지 번호
+	 * @param solting 사용자/관리자별 한 페이지당 노출 목록 개수 설정
+	 * @return 위의 정보가 담긴 map 객체
+	 */
 	public Map<String, String> paging(int page, String solting) {
 		 
 		int pageSize = 0;
@@ -66,10 +102,25 @@ public class PhotoZoneService {
 
 	}
 
+	/**
+	 * 
+	 * 전체 포토존 이미지 목록을 가져오는 메서드입니다.
+	 * 
+	 * @return 포토존이미지 dto list
+	 */
 	public List<PhotoZoneImgDTO> getAllPhotozoneImgList() {
 		return dao.getAllPhotozoneImgList();
 	}
 
+	/**
+	 * 
+	 * 포토존 추가를 위해 포토존, 포토존 위치, 포토존 이미지 DB에 접근하는 메서드입니다.
+	 * 
+	 * @param dto 포토존 dto 객체
+	 * @param imgs 첨부할 이미지 멀티파일 객체 배열
+	 * @param req HttpServletRequest 객체
+	 * @return 테이블에 추가된 행의 개수
+	 */
 	public int addPhotozone(PhotoZoneDTO dto, MultipartFile[] imgs, HttpServletRequest req) {
 
 		//1. tblPhotozone 추가
@@ -132,14 +183,38 @@ public class PhotoZoneService {
 		return result;
 	}
 
+	/**
+	 * 
+	 * 포토존 위치정보의 중복 검사를 진행하는 메서드
+	 * 
+	 * @param dto 포토존 dto 객체
+	 * @return 중복된 레코드의 개수
+	 */
 	public int checkLocationDuplication(PhotoZoneDTO dto) {
 		return dao.checkLocationDuplication(dto);
 	}
 
+	/**
+	 * 
+	 * 포토존명의 중복 검사를 위한 메서드
+	 * 
+	 * @param dto 포토존 dto 객체
+	 * @return 중복된 레코드의 개수
+	 */
 	public int checkNameDuplication(PhotoZoneDTO dto) {
 		return dao.checkNameDuplication(dto);
 	}
 
+	/**
+	 * 
+	 * 포토존 수정을 위해 포토존, 포토존 위치, 포토존 이미지에 접근하는 메서드입니다.
+	 * 
+	 * @param dto 포토존 dto 객체
+	 * @param imgs 추가한 멀티파일 객체 배열
+	 * @param req HttpServletRequest 객체
+	 * @param deleteImgSeq 삭제할 포토존 번호
+	 * @return 수정된 행의 개수
+	 */
 	public int editPhotozone(PhotoZoneDTO dto, MultipartFile[] imgs, HttpServletRequest req, String[] deleteImgSeq) {
 		
 		//1. 공통 PhotoZoneDTO 수정
@@ -271,6 +346,13 @@ public class PhotoZoneService {
 		return result;
 	}
 
+	/**
+	 * 
+	 * 포토존을 삭제하기 위해 DB에 접근하여 포토존 위치, 포토존 이미지, 포토존을 삭제하는 메서드입니다.
+	 * 
+	 * @param photozone_seq 포토존 번호
+	 * @return 삭제된 행의 개수
+	 */
 	public int delPhotozone(String[] photozone_seq) {
 		
 		//배열 돌며 seq 확인하여 > 해당 seq DELETE

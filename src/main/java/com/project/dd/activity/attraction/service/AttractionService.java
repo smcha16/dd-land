@@ -21,12 +21,30 @@ import com.project.dd.activity.attraction.domain.BookUserDTO;
 import com.project.dd.activity.attraction.repository.AttractionDAO;
 import com.project.dd.login.domain.CustomUser;
 
+
+/**
+ * 
+ * 어트랙션 DB에 접근하여 실행된 레코드의 수를 반환하는 Service 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @Service
 public class AttractionService {
 
 	@Autowired
 	AttractionDAO dao;
 
+	/**
+	 * 
+	 * 페이지 번호를 출력하기위해 DB에 접근하여 어트랙션 개수 및 검색 결과값을 조회하는 메서드입니다. 
+	 * 
+	 * @param searchStatus 검색여부
+	 * @param word 검색어
+	 * @param page 페이지 번호
+	 * @param solting 사용자/관리자별 한 페이지당 노출 목록 개수 설정
+	 * @return 위의 정보가 담긴 map 객체
+	 */
 	public Map<String, String> paging(String searchStatus, String word, int page, String solting) {
 		
 		int pageSize = 0;
@@ -62,18 +80,46 @@ public class AttractionService {
 		
 	}
 	
+	/**
+	 * 
+	 * 운영중인 어트랙션 목록을 가져오는 메서드
+	 * 
+	 * @param map 객체
+	 * @return 어트랙션 dto 객체가 담긴 list
+	 */
 	public List<AttractionDTO> getAttractionList(Map<String, String> map) {
 		return dao.getAttractionList(map);
 	}
 
+	/**
+	 * 
+	 * 특정 번호의 어트랙션 정보를 가져오는 메서드
+	 * 
+	 * @param seq 어트랙션 번호
+	 * @return 어트랙션 dto 객체
+	 */
 	public AttractionDTO getAttraction(String seq) {
 		return dao.getAttraction(seq);
 	}
 
+	/**
+	 * 
+	 * 전체 어트랙션 이미지를 가져오는 메서드
+	 * 
+	 * @param seq 어트랙션 번호
+	 * @return 어트랙션 이미지 dto 객체가 담긴 list
+	 */
 	public List<AttractionImgDTO> getAttractionImgList(String seq) {
 		return dao.getAttractionImgList(seq);
 	}
 
+	/**
+	 * 
+	 * 금일 운휴 어트랙션 개수를 세는 메서드
+	 * 
+	 * @param list 어트랙션 dto 객체가 담긴 list
+	 * @return 금일 운휴인 어트랙션 개수
+	 */
 	public int getAttractionCloseCount(List<AttractionDTO> list) {
 
 		int closeCount = 0;
@@ -89,11 +135,27 @@ public class AttractionService {
 		return closeCount;
 	}
 
-
+	/**
+	 * 
+	 * 어트랙션 위치정보의 중복 검사를 진행하는 메서드
+	 * 
+	 * @param dto 어트랙션 dto 객체
+	 * @return 중복된 레코드의 개수
+	 */
 	public int checkLocationDuplication(AttractionDTO dto) {
 		return dao.checkLocationDuplication(dto);
 	}
 
+	
+	/**
+	 * 
+	 * 어트랙션 추가를 위해 어트랙션, 어트랙션 위치, 어트랙션 이미지 DB에 접근하는 메서드
+	 * 
+	 * @param dto 어트랙션 dto 객체
+	 * @param imgs 첨부할 이미지 멀티파일 객체 배열
+	 * @param req HttpServletRequest 객체
+	 * @return 테이블에 추가된 행의 개수
+	 */
 	//어트랙션 추가
 	// - 1. tblAttraction 추가
 	// - 2. tblAttractionLocation 추가
@@ -182,6 +244,13 @@ public class AttractionService {
 
 	
 	
+	/**
+	 * 
+	 * 어트랙션을 삭제하게 위해 DB에 접근하여 어트랙션 위치, 어트랙션 이미지, 어트랙션을 삭제하는 메서드
+	 * 
+	 * @param attraction_seq 어트랙션 번호
+	 * @return 삭제된 행의 개수
+	 */
 	//어트랙션 삭제
 	// - 1. 배열 돌면서 seq 뽑아내기
 	// - 2. 해당하는 seq의 레코드 UPDATE
@@ -221,10 +290,27 @@ public class AttractionService {
 		return result;
 	}
 
+	/**
+	 * 
+	 * 어트랙션명의 중복 검사를 위한 메서드
+	 * 
+	 * @param dto 어트랙션 dto 객체
+	 * @return 중복된 레코드의 개수
+	 */
 	public int checkNameDuplication(AttractionDTO dto) {
 		return dao.checkNameDuplication(dto);
 	}
 
+	/**
+	 * 
+	 * 어트랙션 수정을 위해 어트랙션, 어트랙션 위치, 어트랙션 이미지에 접근하는 메서드
+	 * 
+	 * @param dto 어트랙션 dto 객체
+	 * @param imgs 추가한 멀티파일 객체 배열
+	 * @param req HttpServletRequest 객체
+	 * @param deleteImgSeq 삭제할 어트랙션 번호
+	 * @return 수정된 행의 개수
+	 */
 	public int editAttraction(AttractionDTO dto, MultipartFile[] imgs, HttpServletRequest req, String[] deleteImgSeq) {
 
 		//어트랙션 수정
@@ -387,27 +473,66 @@ public class AttractionService {
 		return result;
 	}
 
+	/**
+	 * 
+	 * 가장 최근에 추가된 어트랙션 번호를 구하는 메서드
+	 * 
+	 * @return 어트랙션 번호
+	 */
 	public String getAttractionSeq() {
 		return dao.getAttractionSeq();
 	}
 
+	/**
+	 * 
+	 * 전체 어트랙션 이미지 목록을 가져오는 메서드
+	 * 
+	 * @return 어트랙션 이미지 dto 객체 list
+	 */
 	public List<AttractionImgDTO> getAllAttractionImgList() {
 		return dao.getAllAttractionImgList();
 	}
 
+	/**
+	 * 
+	 * 선택한 시간대의 해당 어트랙션의 예약 가능 인원을 조회할 수 있는 메서드
+	 * 
+	 * @param dto 회원어트랙션예약 dto 객체
+	 * @return 예약 가능 인원수
+	 */
 	public int checkAvailableCapacity(BookUserDTO dto) {
 		return dao.checkAvailableCapacity(dto);
 	}
 
+	/**
+	 * 
+	 * 어트랙션 예약을 추가할 수 있는 메서드
+	 * 
+	 * @param dto 회원어트랙션예약 dto 객체
+	 * @return 추가된 행의 개수
+	 */
 	public int addAttractionBook(BookUserDTO dto) {
 		
 		return dao.addAttractionBook(dto);
 	}
 
+	/**
+	 * 
+	 * 시간대별 예약 가능 인원을 가져오는 메서드
+	 * 
+	 * @param dto 회원어트랙션예약 dto 객체
+	 * @return 시간대별 예약 가능 인원
+	 */
 	public int getAttractionBookCapacity(BookUserDTO dto) {
 		return dao.getAttractionBookCapacity(dto);
 	}
 
+	/**
+	 * 
+	 * 어트랙션 예약 내역을 전체 조회할 수 있는 메서드
+	 * 
+	 * @return 회원어트랙션예약 dto 객체 list
+	 */
 	public List<BookUserDTO> getAttractionBookList() {
 		return dao.getAttractionBookList();
 	}

@@ -16,28 +16,70 @@ import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.activity.movie.repository.MovieDAO;
 import com.project.dd.activity.movieplay.domain.MoviePlayDTO;
 
+/**
+ * 
+ * 영화 DB에 접근하여 실행된 레코드의 수를 반환하는 Service 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @Service
 public class MovieService {
 
 	@Autowired
 	MovieDAO dao;
 
+	/**
+	 * 
+	 * 해당 날짜에 상영하는 영화 목록을 불러오는 메서드입니다.
+	 * 
+	 * @param date 날짜
+	 * @return 영화 dto list
+	 */
 	public List<MovieDTO> getMovieList(String date) {
 		return dao.getMovieList(date);
 	}
 
+	/**
+	 * 
+	 * 특정 번호의 영화 정보를 가져오는 메서드입니다.
+	 * 
+	 * @param seq 영화 번호
+	 * @return 영화 dto 객체
+	 */
 	public MovieDTO getMovie(String seq) {
 		return dao.getMovie(seq);
 	}
 
+	/**
+	 * 
+	 * 특정 번호의 영화 상영 정보 목록을 가져오는 메서드입니다.
+	 * 
+	 * @param seq 영화 번호
+	 * @return 영화상영 dto list
+	 */
 	public List<MoviePlayDTO> getMoviePlayList(String seq) {
 		return dao.getMoviePlayList(seq);
 	}
 
+	/**
+	 * 
+	 * 특정 번호의 영화 상영 정보를 가져오는 메서드입니다.
+	 * 
+	 * @param seq 영화 번호
+	 * @return 영화상영 dto list
+	 */
 	public List<MoviePlayDTO> getMoviePlay(String seq) {
 		return dao.getMoviePlay(seq);
 	}
 
+	/**
+	 * 
+	 * 영화를 삭제하기 위해 DB에 접근하여 영화를 삭제하는 메서드입니다.
+	 * 
+	 * @param movie_seq 영홯 번호
+	 * @return 삭제된 행의 개수
+	 */
 	//영화 삭제
 	// - 1. 배열 돌면서 seq 뽑아내기
 	// - 2. 해당하는 seq의 레코드 UPDATE (상영종료)
@@ -55,6 +97,14 @@ public class MovieService {
 		return result;
 	}
 
+	/**
+	 * 
+	 * 페이지 번호를 출력하기 위해 DB에 접근하여 영화 개수를 가져오는 메서드입니다.
+	 * 
+	 * @param page 페이지 번호
+	 * @param solting 사용자/관리자별 한 페이지당 노출 목록 개수 설정
+	 * @return 위의 정보가 담긴 map 객체
+	 */
 	public Map<String, String> paging(int page, String solting) {
 		
 		int pageSize = 0;
@@ -84,10 +134,26 @@ public class MovieService {
 		return map;
 	}
 
+	/**
+	 * 
+	 * 전체 영화 목록을 가져오는 메서드입니다.
+	 * 
+	 * @param map 페이징을 위한 map 객체
+	 * @return 영화 dto list
+	 */
 	public List<MovieDTO> getMovieListAll(Map<String, String> map) {
 		return dao.getMovieListAll(map);
 	}
 
+	/**
+	 * 
+	 * 영화 추가를 위해 영화 DB에 접근하는 메서드입니다.
+	 * 
+	 * @param dto 영화 dto 객체
+	 * @param imgs 첨부할 이미지 멀티파일 객체
+	 * @param req HttpServletRequest 객체
+	 * @return 테이블에 추가된 행의 개수
+	 */
 	public int addMovie(MovieDTO dto, MultipartFile imgs, HttpServletRequest req) {
 		
 		
@@ -116,6 +182,15 @@ public class MovieService {
 		return dao.addMovie(dto);
 	}
 
+	/**
+	 * 
+	 * 영화 수정을 위해 영화테이블에 접근하는 메서드입니다.
+	 * 
+	 * @param dto 영화 dto 객체
+	 * @param imgs 수정한 멀티파일 객체
+	 * @param req HttpServletRequest 객체
+	 * @return 수정된 행의 개수
+	 */
 	public int editMovie(MovieDTO dto, MultipartFile imgs, HttpServletRequest req) {
 		
 		//imgs == null > input:disabled > 기존 첨부파일 그대로인 상태 > img 수정 없음
@@ -151,6 +226,13 @@ public class MovieService {
 		return dao.editMovie(dto);
 	}
 
+	/**
+	 * 
+	 * 영화명의 중복 검사를 위한 메서드
+	 * 
+	 * @param dto 영화 dto 객체
+	 * @return 중복된 레코드의 개수
+	 */
 	public int checkMovieNameDuplication(MovieDTO dto) {
 		return dao.checkMovieNameDuplication(dto);
 	}
