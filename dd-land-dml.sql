@@ -1,6 +1,6 @@
 -- dd-land-dml
 
-SET DEFINE OFF;
+--SET DEFINE OFF;
 
 /* 유저 */
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
@@ -606,8 +606,7 @@ VALUES (seqtblUser.nextVal, '최우현', 'pbzkx@me.com', 'b5b*9kaxm&Oz6p', '010-
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '최지', 'tisnqxjs@kakao.com', 'tnq^s5x9$sD6ij1', '010-9340-9297', '04050 제주 86동 76층 686호', TO_DATE('19960710', 'yyyy-mm-dd'), '1', 'Y');
 
-INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
-VALUES (seqtblUser.nextVal, '윤도민', 'prftuo@naver.com', 'ro7puft-+9', '010-8497-5315', '22001 충남 63동 61층 590호', TO_DATE('19970607', 'yyyy-mm-dd'), '1', 'Y');
+
 
 INSERT INTO tblUser (user_seq, name, email, pw, tel, address, birth, lv, ing)
 VALUES (seqtblUser.nextVal, '이민', 'bxaiv@naver.com', '!x65b1-a09miv', '010-9503-7679', '45128 서울 41동 58층 701호', TO_DATE('20050701', 'yyyy-mm-dd'), '1', 'Y');
