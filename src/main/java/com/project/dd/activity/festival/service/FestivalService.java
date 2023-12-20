@@ -18,28 +18,71 @@ import com.project.dd.activity.festival.domain.FestivalDTO;
 import com.project.dd.activity.festival.domain.FestivalImgDTO;
 import com.project.dd.activity.festival.repository.FestivalDAO;
 
+/**
+ * 
+ * 페스티벌 DB에 접근하여 실행된 레코드의 수를 반환하는 Service 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @Service
 public class FestivalService {
 
 	@Autowired
 	FestivalDAO dao;
 
+	/**
+	 * 
+	 * 선택한 날짜에 공연중인 페스티벌의 목록을 조회하는 메서드입니다.
+	 * 
+	 * @param date 날짜
+	 * @return 페스티벌 dto 객체 list
+	 */
 	public List<FestivalDTO> getFestivalList(String date) {
 		return dao.getFestivalList(date);
 	}
 
+	/**
+	 * 
+	 * 특정 번호의 페스티벌 정보를 가져오는 메서드
+	 * 
+	 * @param seq 페스티벌 번호
+	 * @return 페스티벌 dto 객체
+	 */
 	public FestivalDTO getFestival(String seq) {
 		return dao.getFestival(seq);
 	}
 
+	/**
+	 * 
+	 * 전체 페스티벌 이미지를 가져오는 메서드
+	 * 
+	 * @param seq 페스티벌 번호
+	 * @return 페스티벌 이미지 dto 객체가 담긴 list
+	 */
 	public List<FestivalImgDTO> getFestivalImgList(String seq) {
 		return dao.getFestivalImgList(seq);
 	}
 
+	/**
+	 * 
+	 * 관리자용 전체 페스티벌 목록을 가져오는 메서드
+	 * 
+	 * @param map 페이징을 위한 map 객체
+	 * @return 페스티벌 dto list
+	 */
 	public List<FestivalDTO> getFestivalListAll(Map<String, String> map) {
 		return dao.getFestivalListAll(map);
 	}
 
+	/**
+	 * 
+	 * 페이지 번호를 출력하기 위해 DB에 접근하여 페스티벌 개수를 조회하는 메서드입니다.
+	 * 
+	 * @param page 페이지 번호
+	 * @param solting 사용자/관리자별 한 페이지당 노출 목록 개수 설정
+	 * @return 위의 정보가 담긴 map 객체
+	 */
 	public Map<String, String> paging(int page, String solting) {
 		
 		int pageSize = 0;
@@ -69,10 +112,25 @@ public class FestivalService {
 		return map;
 	}
 
+	/**
+	 * 
+	 * 전체 페스티벌 이미지 목록을 가져오는 메서드
+	 * 
+	 * @return 페스티벌 이미지 dto 객체 list
+	 */
 	public List<FestivalImgDTO> getAllFestivalImgList() {
 		return dao.getAllFestivalImgList();
 	}
 
+	/**
+	 * 
+	 * 페스티벌 추가를 위해 페스티벌, 페스티벌 위치, 페스티벌 이미지 DB에 접근하는 메서드
+	 * 
+	 * @param dto 페스티벌 dto 객체
+	 * @param imgs 첨부할 이미지 멀티파일 객체 배열
+	 * @param req HttpServletRequest 객체
+	 * @return 테이블에 추가된 행의 개수
+	 */
 	public int addFestival(FestivalDTO dto, MultipartFile[] imgs, HttpServletRequest req) {
 
 		//Add Festival
@@ -137,6 +195,16 @@ public class FestivalService {
 		return result;
 	}
 
+	/**
+	 * 
+	 * 페스티벌 수정을 위해 페스티벌, 페스티벌 위치, 페스티벌 이미지에 접근하는 메서드
+	 * 
+	 * @param dto 페스티벌 dto 객체
+	 * @param imgs 추가한 멀티파일 객체 배열
+	 * @param req HttpServletRequest 객체
+	 * @param deleteImgSeq 삭제할 페스티벌 번호
+	 * @return 수정된 행의 개수
+	 */
 	public int editFestival(FestivalDTO dto, MultipartFile[] imgs, HttpServletRequest req, String[] deleteImgSeq) {
 
 		//Editing Festival's 7 Cases
@@ -268,6 +336,13 @@ public class FestivalService {
 		return result;
 	}
 
+	/**
+	 * 
+	 * 페스티벌을 삭제하게 위해 DB에 접근하여 페스티벌 위치, 페스티벌 이미지, 페스티벌을 삭제하는 메서드
+	 * 
+	 * @param festival_seq 페스티벌 번호
+	 * @return 삭제된 행의 개수
+	 */
 	public int delFestival(String[] festival_seq) {
 		
 		//Delete Festival
@@ -300,6 +375,13 @@ public class FestivalService {
 		return result;
 	}
 
+	/**
+	 * 
+	 * 페스티벌 위치정보의 중복 검사를 진행하는 메서드
+	 * 
+	 * @param dto 페스티벌 dto 객체
+	 * @return 중복된 레코드의 개수
+	 */
 	public int checkLocationDuplication(FestivalDTO dto) {
 		return dao.checkLocationDuplication(dto);
 	}

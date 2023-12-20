@@ -142,6 +142,7 @@ underline:hover {
 }
 </style>
 
+<!-- Main Start -->
 <section id="stats-counter" class="stats-counter">
 	<div id="pagetitle" class="container" data-aos="zoom-out">
 		<div class="gy-4" style="justify-content: center; width: 100%;">
@@ -188,3 +189,4 @@ underline:hover {
 	    window.location.href = url;
 	}
 </script>
+<!-- Main End -->

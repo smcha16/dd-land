@@ -18,6 +18,13 @@ import com.project.dd.activity.photozone.domain.PhotoZoneDTO;
 import com.project.dd.activity.photozone.domain.PhotoZoneImgDTO;
 import com.project.dd.activity.photozone.service.PhotoZoneService;
 
+/**
+ * 
+ * 포토존 관리(조회/추가/수정/삭제)를 담당하는 관리자 전용 컨트롤러 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @Controller
 @RequestMapping(value = "/admin/activity/photozone")
 public class AdminPhotozoneController {
@@ -25,6 +32,14 @@ public class AdminPhotozoneController {
 	@Autowired
 	private PhotoZoneService service;
 	
+	/**
+	 * 
+	 * 관리자용 포토존 목록을 조회할 수 있는 view 메서드입니다.
+	 * 
+	 * @param page 페이지 번호
+	 * @param model 모델 객체
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 
@@ -51,12 +66,29 @@ public class AdminPhotozoneController {
 		return "admin/activity/photo-zone/view";
 	}
 	
+	/**
+	 * 
+	 * 포토존을 추가할 수 있는 add 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/add.do")
 	public String add(Model model) {
 
 		return "admin/activity/photo-zone/add";
 	}
 	
+	/**
+	 * 
+	 * 추가한 포토존을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 addok 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param dto 포토존 dto 객체
+	 * @param imgs 추가한 이미지 멀티파일 객체
+	 * @param req HttpServletRequest 객체
+	 * @return 이동할 페이지 주소
+	 */
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, PhotoZoneDTO dto, MultipartFile[] imgs, HttpServletRequest req) {
 
@@ -73,6 +105,14 @@ public class AdminPhotozoneController {
 		}
 	}
 	
+	/**
+	 * 
+	 * 포토존을 수정할 수 있는 edit 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param seq 포토존 번호
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/edit.do")
 	public String edit(Model model, String seq) {
 
@@ -104,6 +144,17 @@ public class AdminPhotozoneController {
 		return "admin/activity/photo-zone/edit";
 	}
 	
+	/**
+	 * 
+	 * 수정한 포토존을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 editok 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param dto 포토존 dto 객체
+	 * @param imgs 추가 첨부한 멀티파일 객체
+	 * @param req HttpServletRequest 객체
+	 * @param deleteImgSeq 삭제할 이미지 번호 배열
+	 * @return 이동할 페이지 주소
+	 */
 	@PostMapping(value = "/editok.do")
 	public String editok(Model model, PhotoZoneDTO dto, MultipartFile[] imgs, HttpServletRequest req, String[] deleteImgSeq) {
 
@@ -121,6 +172,14 @@ public class AdminPhotozoneController {
 		
 	}
 	
+	/**
+	 * 
+	 * 삭제할 포토존을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 del 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param photozone_seq 포토존 번호
+	 * @return 이동할 페이지 주소
+	 */
 	@PostMapping(value = "/del.do")
 	public String del(Model model, String[] photozone_seq) {
 

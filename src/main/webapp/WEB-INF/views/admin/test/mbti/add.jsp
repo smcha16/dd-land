@@ -50,10 +50,11 @@ label {
 }
 </style>
 
+<!-- Main Start -->
 <main id="main" class="main">
 
 	<div class="pagetitle">
-		<h1>MBTI별 추천 등록</h1>
+		<h1>MBTI 추천 등록</h1>
 		
 		<nav class="d-flex justify-content-end">
       		<ol class="breadcrumb">
@@ -72,7 +73,7 @@ label {
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">MBTI별 추천 정보 입력</h5>
+						<h5 class="card-title">MBTI 추천 정보 입력</h5>
 
 						<!-- MBTI명, 결과, 어트랙션, 코스, 이미지 -->
 						<form method="POST" action="/dd/admin/test/mbti/addok.do" enctype="multipart/form-data">
@@ -89,20 +90,20 @@ label {
 								</div>
 							</div>
 							
-							<!-- MBTI별 추천 결과 -->
+							<!-- MBTI 추천 결과 -->
               				<div class="row mb-3">
                 				<label for="result" class="col-sm-2 col-form-label required" >결과</label>
                 				<div class="col-sm-10">
-                  					<textarea id="result" name="result" class="form-control" style="height: 100px" placeholder="MBTI별 추천 결과를 입력해주세요." required></textarea>
+                  					<textarea id="result" name="result" class="form-control" style="height: 100px" placeholder="MBTI 추천 결과를 입력해주세요." required></textarea>
                 				</div>
               				</div>
               				
               				<!-- 어트랙션 선택 -->
 							<div class="row mb-3">
-							    <label for="attraction" class="col-sm-2 col-form-label required">어트랙션 선택</label>
+							    <label for="attraction" class="col-sm-2 col-form-label required">어트랙션</label>
 							    <div class="col-sm-10">
 							        <select id="attraction" name="attraction_seq" class="form-control" required>
-							            <option value="">-- 선택하세요 --</option>
+							            <option value="">어트랙션 선택</option>
 							            <c:forEach items="${attractionList}" var="attraction">
 							                <option value="${attraction.attraction_seq}">${attraction.name}</option>
 							            </c:forEach>
@@ -112,10 +113,10 @@ label {
 							
 							<!-- 코스 선택 -->
 							<div class="row mb-3">
-							    <label for="course" class="col-sm-2 col-form-label required">코스 선택</label>
+							    <label for="course" class="col-sm-2 col-form-label required">코스</label>
 							    <div class="col-sm-10">
 							        <select id="course" name="course_seq" class="form-control" required>
-							            <option value="">-- 선택하세요 --</option>
+							            <option value="">코스 선택</option>
 							            <c:forEach items="${courseList}" var="course">
 							                <option value="${course.course_seq}">${course.name}</option>
 							            </c:forEach>
@@ -211,3 +212,4 @@ label {
         }
 	});
 </script>
+<!-- Main End -->

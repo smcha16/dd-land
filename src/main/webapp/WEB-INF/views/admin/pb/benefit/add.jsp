@@ -80,14 +80,14 @@
 			              	<div class="row mb-3">
                 				<label for="inputDate" class="col-sm-2 col-form-label">시작일</label>
                 				<div class="col-sm-10">
-                  					<input type="date" name="start_date" class="form-control" >
+                  					<input type="date" id="start_date" name="start_date" class="form-control" >
                   					<form:errors path="start_date" cssClass="text-danger" />
                					</div>
               				</div>
               				<div class="row mb-3">
                 				<label for="inputDate" class="col-sm-2 col-form-label">종료일</label>
                 				<div class="col-sm-10">
-                  					<input type="date" name="end_date" class="form-control">
+                  					<input type="date" id="end_date" name="end_date" class="form-control">
                   					<form:errors path="end_date" cssClass="text-danger" />
                					</div>
               				</div>
@@ -125,4 +125,21 @@
 	function submit() {
 		$('form').submit();
 	}
+	
+	//날짜 입력 유효성 검사
+	 
+	 const start_date = document.getElementById('start_date');
+
+	 const now = new Date();
+	 const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+	 
+	 $('#start_date').attr('min', nowStr);//시작일은 최소 오늘 이후
+	 
+	 function isValidEndDate() {
+		 $('#end_date').attr('min', start_date.value);
+	 }
+	 
+	 $('#start_date').change(function() {
+		 isValidEndDate();
+	 });
 </script>

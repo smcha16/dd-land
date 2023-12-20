@@ -1,7 +1,9 @@
 package com.project.dd.pb.benefit.mapper;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -30,6 +32,12 @@ public interface BenefitMapper {
 	
 	@Update("insert into TBLBENEFIT(benefit_seq, name, type, start_date, end_date, discount_rate, img) values (SEQTBLBENEFIT.nextval,#{name},#{type},#{start_date},#{end_date},#{discount_rate},#{img})")
 	int addBenefit(BenefitDTO benefitDTO);
+	@Delete("delete from TBLBENEFIT where benefit_seq = #{benefit_seq}")
+	int del(String benefit_seq);
+
+	int getTotalCount(String type);
+
+	List<BenefitDTO> getBenefitList(Map<String, String> map);
 
 	
 }

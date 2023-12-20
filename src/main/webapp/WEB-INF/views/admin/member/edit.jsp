@@ -25,6 +25,10 @@
     .card-body {
       min-height: 600px;
     }
+    <style>
+    .text-danger {
+        color: red; /* 빨간색으로 지정, 필요에 따라 스타일을 조절할 수 있습니다. */
+    }
 </style>
 
 <main id="main" class="main">
@@ -63,7 +67,7 @@
                 				<label for="inputText" class="col-sm-2 col-form-label">이메일</label>
                 				<div class="col-sm-10">
                   					<input type="text" name="email" class="form-control" value="${dto.email}" >
-                  					<form:errors path="name" cssClass="text-danger" />
+                  					<form:errors path="email" cssClass="text-danger" />
                 				</div>
               				</div>
               				
@@ -72,7 +76,7 @@
                 				<label for="inputText" class="col-sm-2 col-form-label">전화번호</label>
                 				<div class="col-sm-10">
                   					<input type="text" name="tel" class="form-control" value="${dto.tel}" >
-                  					<form:errors path="name" cssClass="text-danger" />
+                  					<form:errors path="tel" cssClass="text-danger" />
                 				</div>
               				</div>
               				
@@ -80,11 +84,29 @@
                 				<label for="inputText" class="col-sm-2 col-form-label">생년월일</label>
                 				<div class="col-sm-10">
                   					<input type="text" name="birth" class="form-control" value="${dto.birth}" >
-                  					<form:errors path="name" cssClass="text-danger" />
+                  					<form:errors path="birth" cssClass="text-danger" />
                 				</div>
               				</div>
               				
-              				<input type="hidden" name = "user_seq" value="user_seq">
+              				<div class="row mb-3">
+                				<label for="inputText" class="col-sm-2 col-form-label">주소</label>
+                				<div class="col-sm-10">
+                  					<input type="text" name="address" class="form-control" value="${dto.address}" >
+                  					<form:errors path="address" cssClass="text-danger" />
+                				</div>
+              				</div>
+              				
+              				<div class="row mb-3">
+                				<label for="inputText" class="col-sm-2 col-form-label">활동여부</label>
+                				<div class="col-sm-10">
+                  					<input type="text" name="ing" class="form-control" value="${dto.ing}" >
+                  					<form:errors path="ing" cssClass="text-danger" />
+                				</div>
+              				</div>
+              				
+              				
+              				
+              				<input type="hidden" name = "user_seq" value="${dto.user_seq }">
               				<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}">
 							

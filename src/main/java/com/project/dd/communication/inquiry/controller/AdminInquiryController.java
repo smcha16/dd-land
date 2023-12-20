@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.dd.communication.inquiry.domain.InquiryDTO;
 import com.project.dd.communication.inquiry.service.InquiryService;
 
+/**
+ * 관리자용 이용문의 컨트롤러 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Controller
 @RequestMapping("/admin/communication/inquiry")
 public class AdminInquiryController {
@@ -21,8 +26,14 @@ public class AdminInquiryController {
 	@Autowired
 	private InquiryService service;
 	
-	/* 목록 */
-	
+	/**
+	 * 이용문의 목록을 보여주는 메서드입니다.
+	 *
+	 * @param word 검색어
+	 * @param page 페이지 번호
+	 * @param model Spring의 Model 객체
+	 * @return 이용문의 목록을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 		
@@ -40,8 +51,12 @@ public class AdminInquiryController {
 
 	}
 	
-	/* 답변 */
-	
+	/**
+	 * 이용문의에 답변을 등록하는 메서드입니다.
+	 *
+	 * @param dto 답변할 이용문의의 DTO 객체
+	 * @return 이용문의 목록을 보여주는 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/answer.do")
 	public String answer(InquiryDTO dto) {
 		

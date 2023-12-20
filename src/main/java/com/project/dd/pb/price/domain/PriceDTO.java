@@ -4,7 +4,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 import lombok.Data;
-
+/**
+ * 티켓 객체 DTO 입니다.
+ * @author green
+ *
+ */
 @Data
 public class PriceDTO {
 		

@@ -172,6 +172,14 @@ color: #fff;
 	font-weight: bold;
 }
 
+.btn:disabled, .btn:focus {
+	background: #cc1010;
+}
+
+.btn:active {
+background: #cc1010 !important;
+}
+
 </style>
 <!-- ======= Stats Counter Section ======= -->
 <section id="stats-counter" class="stats-counter">

@@ -19,14 +19,23 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.dd.communication.voc.domain.VocDTO;
 import com.project.dd.communication.voc.repository.VocDAO;
 
+/**
+ * 칭찬/불편/건의 서비스 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Service
 public class VocService {
 	
 	@Autowired
 	private VocDAO dao;
 	
-	/* 방문일 */
-	
+	/**
+	 * 방문일 목록을 가져오는 메서드입니다.
+	 *
+	 * @param email 로그인한 사용자의 이메일
+	 * @return 방문일 목록
+	 */
 	public List<String> getVisitDateList(String email) {
 		
 		List<String> visitDateList = dao.getVisitDateList(email);
@@ -44,8 +53,13 @@ public class VocService {
 		
 	}
 	
-	/* 파일 저장 */
-
+	/**
+	 * 파일을 저장하는 메서드입니다.
+	 *
+	 * @param req HttpServletRequest 객체
+	 * @param doc 첨부 파일
+	 * @return 저장된 파일명
+	 */
 	public String saveFile(HttpServletRequest req, MultipartFile doc) {
 
 		try {
@@ -80,8 +94,14 @@ public class VocService {
 		
 	}
 	
-	/* 파일 추가 */
-	
+	/**
+	 * 파일을 추가하는 메서드입니다.
+	 *
+	 * @param dto 추가할 칭찬/불편/건의의 DTO 객체
+	 * @param req HttpServletRequest 객체
+	 * @param doc 첨부 파일
+	 * @return 파일이 추가된 DTO 객체
+	 */
 	public VocDTO addFile(VocDTO dto, HttpServletRequest req, MultipartFile doc) {
 		
 		if (doc == null || doc.isEmpty()) {
@@ -98,16 +118,26 @@ public class VocService {
 		
 	}
 
-	/* 추가 */
-	
+	/**
+	 * 칭찬/불편/건의를 추가하는 메서드입니다.
+	 *
+	 * @param dto 추가할 칭찬/불편/건의의 DTO 객체
+	 * @return 추가 결과 (1: 성공, 0: 실패)
+	 */
 	public int addVoc(VocDTO dto) {
 
 		return dao.addVoc(dto);
 		
 	}
 	
-	/* 페이징 */
-
+	/**
+	 * 페이징 처리를 위한 맵을 생성하는 메서드입니다.
+	 *
+	 * @param searchStatus 검색 상태
+	 * @param word 검색어
+	 * @param page 페이지 번호
+	 * @return 페이징 정보를 담은 Map 객체
+	 */
 	public Map<String, String> paging(String searchStatus, String word, int page) {
 		
 		Map<String, String> map = new HashMap<String, String>();
@@ -133,8 +163,12 @@ public class VocService {
 		
 	}
 	
-	/* 목록 */
-
+	/**
+	 * 칭찬/불편/건의 목록을 가져오는 메서드입니다.
+	 *
+	 * @param map 페이징 정보가 담긴 Map 객체
+	 * @return 칭찬/불편/건의 목록
+	 */
 	public List<VocDTO> getVocList(Map<String, String> map) {
 		
 		List<VocDTO> list = dao.getVocList(map);
@@ -143,8 +177,11 @@ public class VocService {
 		
 	}
 	
-	/* 답변 */
-
+	/**
+	 * 칭찬/불편/건의에 답변을 등록하는 메서드입니다.
+	 *
+	 * @param dto 답변할 칭찬/불편/건의의 DTO 객체
+	 */
 	public void editAnswer(VocDTO dto) {
 		
 		dao.editAnswer(dto);

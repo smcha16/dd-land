@@ -113,7 +113,7 @@ th:nth-child(6) { width: 22%; }
 	min-height: 0 !important;
 }
 
-/* 모달 CSS */
+/* 모달 */
 #modal table.m-desc {
 	width: 100%;
 	font-size: 14px;
@@ -132,10 +132,11 @@ th:nth-child(6) { width: 22%; }
 }
 </style>
 
+<!-- Main Start -->
 <main id="main" class="main">
 
 	<div class="pagetitle">
-		<h1>MBTI별 추천 관리</h1>
+		<h1>MBTI 추천 관리</h1>
 	</div>
 
 	<section class="section">
@@ -151,7 +152,7 @@ th:nth-child(6) { width: 22%; }
                   			</form>
               			</div>
 						
-						<!-- MBTI별 추천 상세 모달 -->
+						<!-- MBTI 추천 상세 모달 -->
 						<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
 						    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
 						        <div class="modal-content">
@@ -269,7 +270,7 @@ th:nth-child(6) { width: 22%; }
 	        const seq = checkboxes.filter(':checked').val();
 	        location.href = '/dd/admin/test/mbti/edit.do?seq=' + seq;
 	    } else {
-	        alert('1개의 MBTI별 추천을 선택 후, 수정 버튼을 눌러주세요.');
+	        alert('1개의 MBTI 추천을 선택 후, 수정 버튼을 눌러주세요.');
 	    }
 	}
 	
@@ -278,11 +279,11 @@ th:nth-child(6) { width: 22%; }
 	    let checkboxes = $('input[type="checkbox"][name="mbti_seq"]');
 		
 	    if (checkboxes.filter(':checked').length >= 1) {
-	    	if (confirm(checkboxes.filter(':checked').length + "개의 MBTI별 추천을 삭제하시겠습니까?")) {
+	    	if (confirm(checkboxes.filter(':checked').length + "개의 MBTI 추천을 삭제하시겠습니까?")) {
 	            $('#del-form').submit();
 	        }
 	    } else {
-	        alert('1개 이상의 MBTI별 추천을 선택 후, 삭제 버튼을 눌러주세요.');
+	        alert('1개 이상의 MBTI 추천을 선택 후, 삭제 버튼을 눌러주세요.');
 	    }
 	}
 
@@ -316,3 +317,4 @@ th:nth-child(6) { width: 22%; }
 	    $('#modal').modal('show');
 	}
 </script>
+<!-- Main End -->

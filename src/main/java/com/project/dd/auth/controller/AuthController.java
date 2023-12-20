@@ -11,20 +11,7 @@ public class AuthController {
 	public String auth(Model model) {
 		
 		return "auth/accesserror";
+		
 	}
-	
-	/*
-	@GetMapping(value = "/auth/mylogout.do")
-	public String mylogout(Model model) {
-
-		return "auth/mylogout";
-	}
-
-	@GetMapping(value = "/auth/myinfo.do")
-	public String myinfo(Model model) {
-
-		return "auth/myinfo";
-	}
-	*/
 	
 }
