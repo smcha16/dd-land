@@ -87,8 +87,8 @@ public class AttractionService {
 	 * @param map 객체
 	 * @return 어트랙션 dto 객체가 담긴 list
 	 */
-	public List<AttractionDTO> getAttractionList(Map<String, String> map) {
-		return dao.getAttractionList(map);
+	public List<AttractionDTO> getOpenAttractionList(Map<String, String> map) {
+		return dao.getOpenAttractionList(map);
 	}
 
 	/**
@@ -126,12 +126,7 @@ public class AttractionService {
 
 		//금일 운휴 어트랙션 개수 세기
 		for (AttractionDTO dto : list) {
-
-			System.out.println("dto.getClose(): " + dto.getClose());
-			if (dto.getClose().equalsIgnoreCase("y")) { //운휴
-				closeCount++;
-				System.out.println("포문 돌면서 closeCount: " + closeCount);
-			}
+			closeCount++;
 		}
 		
 		return closeCount;
@@ -541,6 +536,34 @@ public class AttractionService {
 
 	public List<AttractionDTO> getAllAttractionList() {
 		return dao.getAllAttractionList();
+	}
+
+	public Map<String, String> userPaging(int page) {
+		
+		//user 페이지 노출 목록 개수 설정
+		int pageSize = 9;
+		
+		//페이지별로 가져올 index 번호
+		int startIndex = (page - 1) * pageSize + 1;
+		int endIndex = startIndex + pageSize - 1;
+		
+		//페이징용 Map 생성
+		Map<String, String> map = new HashMap<String, String>();
+
+		map.put("startIndex", String.format("%d", startIndex));
+		map.put("endIndex", String.format("%d", endIndex));
+		
+		int totalPosts = dao.getUserPagingTotalPosts(map);
+		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
+		
+		map.put("totalPosts", String.format("%d", totalPosts));
+		map.put("totalPages", String.format("%d", totalPages));
+		
+		return map;
+	}
+
+	public List<AttractionDTO> getCloseAttractionList() {
+		return dao.getCloseAttractionList();
 	}
 
 }

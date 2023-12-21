@@ -38,32 +38,25 @@ public class UserAttractionController {
 	 * @return jsp 파일명
 	 */
 	@GetMapping(value = "/view.do")
-	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 		
-		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
+		//[user 전용] 페이징
+		Map<String, String> map = service.userPaging(page);
 		
-		//페이징
-		String solting = "user";
-		Map<String, String> map = service.paging(searchStatus, word, page, solting);
+		//Attraction '정상운영' 목록
+		List<AttractionDTO> openList = service.getOpenAttractionList(map);
 		
-		//Attraction 목록(금일 기준 운영 & 운영종료 제외)
-		List<AttractionDTO> list = service.getAttractionList(map);
-		
-		//운휴 체크 용 AllAttraction
-		List<AttractionDTO> allList = service.getAllAttractionList();
-		
-		//운휴인 Attraction 
-		int closeCount = service.getAttractionCloseCount(allList);
-		
-		System.out.println("service 거치고 난 후 closeCount: " + closeCount);
+		//Attraction '운휴' 목록
+		List<AttractionDTO> closeList = service.getCloseAttractionList();
 		
 		//페이징
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
 		
-		//어트 목록, 운휴 어트 개수 전달
-		model.addAttribute("list", list);
-		model.addAttribute("closeCount", closeCount);
+		//운영/운휴 Attraction List, 운휴 개수 전달
+		model.addAttribute("openList", openList);
+		model.addAttribute("closeList", closeList);
+		model.addAttribute("closeCount", closeList.size());
 
 		return "user/activity/attraction/view";
 	}

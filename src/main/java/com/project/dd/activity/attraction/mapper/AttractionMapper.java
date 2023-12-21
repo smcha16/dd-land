@@ -9,8 +9,7 @@ import com.project.dd.activity.attraction.domain.BookUserDTO;
 
 public interface AttractionMapper {
 
-	//(운영종료 제외) 운영/운휴 어트랙션 List
-	List<AttractionDTO> getAttractionList(Map<String, String> map);
+	List<AttractionDTO> getOpenAttractionList(Map<String, String> map);
 
 	//어트랙션 상세 정보
 	AttractionDTO getAttraction(String seq);
@@ -61,5 +60,9 @@ public interface AttractionMapper {
 	List<BookUserDTO> getAttractionBookList();
 
 	List<AttractionDTO> getAllAttractionList();
+
+	int getUserPagingTotalPosts(Map<String, String> map);
+
+	List<AttractionDTO> getCloseAttractionList();
 
 }

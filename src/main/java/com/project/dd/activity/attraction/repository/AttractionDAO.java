@@ -9,7 +9,7 @@ import com.project.dd.activity.attraction.domain.BookUserDTO;
 
 public interface AttractionDAO {
 
-	List<AttractionDTO> getAttractionList(Map<String, String> map);
+	List<AttractionDTO> getOpenAttractionList(Map<String, String> map);
 
 	AttractionDTO getAttraction(String seq);
 
@@ -58,5 +58,9 @@ public interface AttractionDAO {
 	List<BookUserDTO> getAttractionBookList();
 
 	List<AttractionDTO> getAllAttractionList();
+
+	int getUserPagingTotalPosts(Map<String, String> map);
+
+	List<AttractionDTO> getCloseAttractionList();
 
 }

@@ -4,16 +4,31 @@
 <!-- namespace == 호출할 Interface 이름 적기 -->
 <mapper namespace="com.project.dd.activity.attraction.mapper.AttractionMapper">
 	
+	<!-- User용 페이징 -->
+	<select id="getUserPagingTotalPosts" parameterType="map" resultType="int">
+		select count(*) from vwAttractionList where close = 'n'
+	</select>
+	
+	<!-- admin용 페이징 -->
+	<select id="getTotalCount"  parameterType="map" resultType="int">
+      select count(*) from vwAttractionList
+      <if test="searchStatus == 'y'.toString()">
+	        where name like '%' || #{word} || '%'
+	  </if>
+	</select>
+	
 	<!-- id == 인터페이스의 추상메서드의 이름 -->
-	<select id="getAttractionList" parameterType="map" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+	<select id="getOpenAttractionList" parameterType="map" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		select *
-		from (select n.*, rownum as rnum from
-				(select * from vwAttractionList) n
-				<if test="searchStatus == 'y'.toString()">
-				  where name like '%' || #{word} || '%'
-			  	</if>
-				)
-		where rnum between #{startIndex} and #{endIndex}
+		from (select n.*, rownum as rnum from (
+		
+		select * from vwAttractionList where close = 'n'
+		
+		) n) where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<select id="getCloseAttractionList" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		select * from vwAttractionList where close = 'y'
 	</select>
 	
 	<select id="getAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
@@ -24,14 +39,6 @@
 		select * from tblAttractionImg where attraction_seq = #{attraction_seq}
 	</select>
 	
-	<!-- 페이징 -->
-	<select id="getTotalCount"  parameterType="map" resultType="int">
-      select count(*) from vwAttractionList
-      <if test="searchStatus == 'y'.toString()">
-	        where name like '%' || #{word} || '%'
-	  </if>
-	</select>
-   
    <!-- admin 기능  -->
    <!-- 유효성 검사 -->
 	<select id="checkLocationDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
@@ -142,5 +149,6 @@
 	<select id="getAllAttractionList" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		select * from vwAttractionList
 	</select>
+	
 	
 </mapper>
