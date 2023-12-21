@@ -16,6 +16,6 @@ public class WorldCupAttractionRankDTO {
 	private String win_rate_per; // 승률 (100%)
 	private String final_win_rate; // 최종승률 (어트랙션월드컵최종승리횟수 / 전체 테스트 횟수)
 	private String final_win_rate_per;  // 최종승률 (100%)
-	private String rnum; // 순위
+	private String rnum; // 글번호
 	
 }

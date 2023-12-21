@@ -205,9 +205,7 @@
         <div class="gy-4" style="justify-content: center; width: 100%;">
             <div class="col-lg-3 col-md-6" style="width: 100%;">
                 <div class="stats-item text-center w-100 h-100">
-                    <div id="title">
-                        코스 월드컵
-                    </div>
+                    <div id="title">코스 월드컵</div>
                     <p>나에게 딱 맞는 코스를 찾아보세요!</p>
                 </div>
             </div>
