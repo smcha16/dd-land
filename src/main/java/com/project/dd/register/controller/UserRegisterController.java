@@ -23,7 +23,7 @@ public class UserRegisterController {
 
     private final RegisterService service;
 
-    /**
+    /**xx
      * 등록 페이지를 보여주는 메서드.
      *
      * @return 등록 페이지 뷰 이름.
@@ -62,7 +62,7 @@ public class UserRegisterController {
 
         int result = service.register(memberDTO);
 
-        return "main";
+        return "redirect:/user/login/view.do";
     }
 
     /**
