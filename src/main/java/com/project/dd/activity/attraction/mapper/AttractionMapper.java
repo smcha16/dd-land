@@ -60,4 +60,6 @@ public interface AttractionMapper {
 
 	List<BookUserDTO> getAttractionBookList();
 
+	List<AttractionDTO> getAllAttractionList();
+
 }

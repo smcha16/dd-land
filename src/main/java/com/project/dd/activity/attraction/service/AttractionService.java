@@ -127,8 +127,10 @@ public class AttractionService {
 		//금일 운휴 어트랙션 개수 세기
 		for (AttractionDTO dto : list) {
 
+			System.out.println("dto.getClose(): " + dto.getClose());
 			if (dto.getClose().equalsIgnoreCase("y")) { //운휴
 				closeCount++;
+				System.out.println("포문 돌면서 closeCount: " + closeCount);
 			}
 		}
 		
@@ -535,6 +537,10 @@ public class AttractionService {
 	 */
 	public List<BookUserDTO> getAttractionBookList() {
 		return dao.getAttractionBookList();
+	}
+
+	public List<AttractionDTO> getAllAttractionList() {
+		return dao.getAllAttractionList();
 	}
 
 }

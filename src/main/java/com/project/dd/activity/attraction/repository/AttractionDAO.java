@@ -57,4 +57,6 @@ public interface AttractionDAO {
 
 	List<BookUserDTO> getAttractionBookList();
 
+	List<AttractionDTO> getAllAttractionList();
+
 }

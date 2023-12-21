@@ -49,10 +49,13 @@ public class UserAttractionController {
 		//Attraction 목록(금일 기준 운영 & 운영종료 제외)
 		List<AttractionDTO> list = service.getAttractionList(map);
 		
-		//운휴인 Attraction 
-		int closeCount = service.getAttractionCloseCount(list);
+		//운휴 체크 용 AllAttraction
+		List<AttractionDTO> allList = service.getAllAttractionList();
 		
-		System.out.println(closeCount);
+		//운휴인 Attraction 
+		int closeCount = service.getAttractionCloseCount(allList);
+		
+		System.out.println("service 거치고 난 후 closeCount: " + closeCount);
 		
 		//페이징
 		model.addAttribute("currentPage", page);

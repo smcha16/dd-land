@@ -2912,24 +2912,12 @@ VALUES (seqtblMBTI.NEXTVAL, '오늘 타려고 계획했던 건 다 타야 하는
 
 /* 칭찬/불편/건의 */
 INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
-VALUES (seqtblVOC.NEXTVAL, '불편', '서비스1', '불편사항 1', '불편한 사항 내용 1', DEFAULT,'attach1.jpg', TO_DATE('2023-11-02', 'YYYY-MM-DD'), '답변 내용 1', 1);
-
-INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
-VALUES (seqtblVOC.NEXTVAL, '건의', '서비스2', '건의사항 2', '건의 내용 2', DEFAULT, NULL, TO_DATE('2023-11-10', 'YYYY-MM-DD'), '답변 내용 2', 2);
-
-INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
 VALUES (seqtblVOC.NEXTVAL, '불편', '기타', '화장실이 불편합니다', '화장실 비데가 고장나서 이용에 불편을 겪었습니다.', DEFAULT, 'null', TO_DATE('2023-11-20', 'YYYY-MM-DD'), null, 3);
 
 INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
 VALUES (seqtblVOC.NEXTVAL, '칭찬', '어트랙션', '토토로스윙에 근무하시는 직원분을 칭찬합니다,', '토토로 스윙에 근무하시는 직원분이 갑작스럽게 발생한 사고에 대해 침착하게 대응해주시고 해결해주셔서 덕분에 안전하게 탔습니다!', DEFAULT, 'null', TO_DATE('2023-12-15', 'YYYY-MM-DD'), '고객님의 소중한 칭찬 감사합니다! 앞으로도 더욱 열심히 하는 DD랜드가 되겠습니다!', 3);
 
 /* 이용문의 */
-INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '문의유형1', '문의 제목 1', '문의 내용 1', DEFAULT,'attach1.pdf', '답변 내용 1', 1);
-
-INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '문의유형2', '문의 제목 2', '문의 내용 2', DEFAULT, NULL, '답변 내용 2', 2);
-
 INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
 VALUES (seqtblInquiry.NEXTVAL, '어트랙션', '후룸라이드 운영시간 문의', '12월 27일에 후룸라이드 운영하는지 궁금하여 문의 드립니다!', DEFAULT, null, null, 3);
 

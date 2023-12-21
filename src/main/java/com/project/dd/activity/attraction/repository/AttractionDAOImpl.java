@@ -140,4 +140,9 @@ public class AttractionDAOImpl implements AttractionDAO {
 		return mapper.getAttractionBookList();
 	}
 
+	@Override
+	public List<AttractionDTO> getAllAttractionList() {
+		return mapper.getAllAttractionList();
+	}
+
 }
