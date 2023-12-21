@@ -4,8 +4,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<head>
+	<link rel="shortcut icon" type="image/x-icon" href="/dd/resources/files/favicon.ico">
+</head>
 <meta charset="UTF-8">
-<title>DD : 비밀번호찾기</title>
+<title>비밀번호찾기</title>
 <link rel="stylesheet" href="new_main.css">
 <style>
 /* 레이아웃 틀 */

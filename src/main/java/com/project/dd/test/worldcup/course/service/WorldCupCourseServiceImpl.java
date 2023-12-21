@@ -245,7 +245,7 @@ public class WorldCupCourseServiceImpl implements WorldCupCourseService {
 	public CourseDTO getCourse(String courseSeq) {
 		return dao.getCourse(courseSeq);
 	}
-
+	
 	/**
 	 * 코스의 정보를 수정하고 해당 코스와 관련된 이미지 파일을 업데이트합니다.
 	 *

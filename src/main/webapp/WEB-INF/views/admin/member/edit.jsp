@@ -33,6 +33,7 @@
 
 <main id="main" class="main">
 
+
 	<div class="pagetitle">
 		<h1>회원 수정</h1>
 		
@@ -53,7 +54,7 @@
             			<h5 class="card-title">General Form Elements</h5> 
 
             			<form:form method="post" action="/dd/admin/member/edit.do"
-							modelAttribute="MemberDTO" >
+							modelAttribute="memberDTO" >
             			
               				<div class="row mb-3">
                 				<label for="inputText" class="col-sm-2 col-form-label">이름</label>
