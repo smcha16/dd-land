@@ -76,6 +76,22 @@ public class NoticeService {
 		
 		List<NoticeDTO> list = dao.getNoticeList(map);
 		
+		for (NoticeDTO dto : list) {
+			
+			String subject = dto.getContent();
+		    
+			subject = subject.replace("\n", "<br>");
+
+			dto.setContent(subject);
+			
+			String content = dto.getContent();
+			    
+			content = content.replace("\n", "<br>");
+
+			dto.setContent(content);
+			
+		}
+
 		return list;
 		
 	}
@@ -89,6 +105,18 @@ public class NoticeService {
 	public NoticeDTO getNotice(String seq) {
 		
 		NoticeDTO dto = dao.getNotice(seq);
+
+		String subject = dto.getContent();
+	    
+		subject = subject.replace("\n", "<br>");
+
+		dto.setContent(subject);
+		
+		String content = dto.getContent();
+		    
+		content = content.replace("\n", "<br>");
+
+		dto.setContent(content);
 		
 		return dto;
 		
