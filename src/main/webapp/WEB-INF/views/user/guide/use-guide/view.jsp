@@ -92,6 +92,7 @@
     	margin-left: 17px;
     	color:#495057;
     }
+    
 </style>
     <!-- ======= Stats Counter Section ======= -->
     <section id="stats-counter" class="stats-counter">
@@ -137,7 +138,11 @@
               </div>
               <div class="item">
                 <div style="color:#495057;"><i class="fa-solid fa-triangle-exclamation" style="color:#eb4d69;"></i>흡연은 흡연실에서만!<i class="fa-solid fa-triangle-exclamation" style="color:#eb4d69;"></i></div>
-                <div style="align-items:center; color:#495057;">DD Studio 내 모든 구역은 금연입니다.<br>흡연을 하시고 싶으신 분은 <span style="color:#eb4d69; display: contents;" >"우도"</span>로 가시면 됩니다.<br>미성년자의 흡연은 금지되어 있습니다.</div>
+                <div style="align-items:left; font-size:18px;">
+                	<li>DD Studio 내 모든 구역은 금연입니다.</li>
+                	<li>흡연을 하시고 싶으신 분은 <span style="color:#eb4d69; display: contents; cursor:default;" >"우도"</span>로 가시면 됩니다.</li>
+                	<li>미성년자의 흡연은 금지되어 있습니다.</li>
+                </div>
               </div>
               <div class="item">
                 <div><i class="fa-solid fa-triangle-exclamation" style="color:#eb4d69;"></i>다음의 행위들은 파크에서 금지되어 있습니다.<i class="fa-solid fa-triangle-exclamation" style="color:#eb4d69;"></i></div>
