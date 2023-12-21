@@ -29,7 +29,7 @@ public interface LoginMapper {
 	int changePw(@Param("pw") String pw, @Param("user_seq") String user_seq);
 	@Update("Update TBLUSER set pw = #{pw} where user_seq = #{user_seq}")
 	void encoderPw(MemberDTO memberDTO);
-	@Select("select user_seq from TBLUSER where email= #{email}")
+	@Select("select user_seq from TBLUSER where email= #{email} and name = #{name} and tel = #{tel} and birth = #{birth}")
 	String findSeq(@Valid MemberDTO memberDTO);
 	
 	
