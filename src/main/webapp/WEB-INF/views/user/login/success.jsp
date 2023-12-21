@@ -30,7 +30,10 @@
 	href="/dd/resources/login/findid.css">
 	
 	
-	
+<head>
+	<link rel="shortcut icon" type="image/x-icon" href="/dd/resources/files/favicon.ico">
+</head>
+
 <div id="wrap">
 	<div id="content">
 	

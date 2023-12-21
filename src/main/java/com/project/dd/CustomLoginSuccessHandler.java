@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 
@@ -42,6 +44,8 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		} else {
 			response.sendRedirect("/dd/index.do");
 		}
+		
+		
 	}
 
 }

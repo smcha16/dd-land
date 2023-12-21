@@ -422,6 +422,9 @@ h3 {
 </style>
 
 
+<head>
+	<link rel="shortcut icon" type="image/x-icon" href="/dd/resources/files/favicon.ico">
+</head>
 
 <title>로그인</title>
 <div class="main">
@@ -436,11 +439,10 @@ h3 {
 		</div>
 	</header>
 
-	<form:form method='POST' action="/dd/login"
-		modelAttribute="loginDTO">
+	<form method='POST' action="/dd/login">
 
 		<!--로그인 부분-->
-		<section class="login-wrap">
+		<section class="login-wrap" id="login-section">
 
 			<div class="login-id-wrap">
 				<input id="input-id" name="username" placeholder="아이디" type="text"></input>
@@ -451,10 +453,10 @@ h3 {
 			</div>
 
 			<div class="login-btn-wrap">
-				<button id="login-btn" onclick="submit();">로그인</button>
+				<button id="login-btn" type="button" onclick="submit();">로그인</button>
 			</div>
 			<div class="under-login">
-				<span class="stay-check"> <input id="stay-checkbox"
+				<span class="stay-check"> <input id="stay-checkbox" name="remember"
 					type="checkbox"></input> <label for="stay-checkbox" id="stay-text">로그인 상태 유지</label>
 					
 					<form:errors path="email" cssClass="error-message" />	
@@ -486,7 +488,8 @@ h3 {
 		</section>
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}">
-	</form:form>
+			<!-- <input type="hidden" name="remember" value="1"> -->
+	</form>
 
 	<!--class,PW 찾기 및 회원가입 부분-->
 	<section class="find-signup-wrap">
@@ -597,7 +600,23 @@ h3 {
 
 <script>
 	function submit() {
-		$('form').submit();
+		
+		/* let rememberMe = document.getElementById('stay-text');
+		console.log(rememberMe.checked())
+        console.log(rememberMe.checked)
+		
+        let loginSection = document.getElementById('login-section');
+        if (rememberMe.checked) {
+            let rememberInput = document.createElement('input');
+            rememberInput.type = 'hidden';
+            rememberInput.name = 'remember';
+            rememberInput.value = 'true';
+            loginSection.appendChild(rememberInput)
+        }
+        */
+        
+		$('form').submit(); 
+		
 	}
 
 	var itemElements = document.querySelectorAll('.item');
@@ -658,4 +677,20 @@ h3 {
 			ipcheck.style.color = 'rgb(160,160,160)';
 		}
 	}
+</script>
+
+<script>
+    	/*  document.addEventListener("DOMContentLoaded", function () {
+        var stayCheckbox = document.getElementById("stay-checkbox");
+        
+        stayCheckbox.addEventListener("change", function () {
+            if (stayCheckbox.checked) {
+                // 상태 유지가 체크되면 쿠키를 생성하거나 설정하는 로직을 추가
+                document.cookie = "stayLoggedIn=true; expires=Sun, 31 Dec 2034 12:00:00 UTC; path=/";
+            } else {
+                // 상태 유지가 체크 해제되면 쿠키를 삭제하는 로직을 추가
+                document.cookie = "stayLoggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            }
+        });
+    });  */
 </script>
