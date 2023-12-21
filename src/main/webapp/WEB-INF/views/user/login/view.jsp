@@ -422,6 +422,9 @@ h3 {
 </style>
 
 
+<head>
+	<link rel="shortcut icon" type="image/x-icon" href="/dd/resources/files/favicon.ico">
+</head>
 
 <title>로그인</title>
 <div class="main">
