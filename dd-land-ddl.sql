@@ -846,6 +846,8 @@ join tblBuy B on B.buy_seq = UB.buy_seq
 join tblItem I on B.item_seq = I.item_seq
 join tblShop S on I.shop_seq = S.shop_seq;
 
+select * from tblBuy;
+
 -- 마이페이지 이용문의 내역
 CREATE OR REPLACE VIEW vwInquiry as
 SELECT
