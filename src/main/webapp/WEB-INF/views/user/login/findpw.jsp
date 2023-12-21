@@ -9,6 +9,13 @@
 	/* padding-bottom: 20px; */
 	text-align: center;
 }
+
+.box6 .n_id dd {
+    color: #ce1212;
+}
+.process .on {
+    color: #ce1212;
+}
 </style>
 <script type="text/javascript" src="/inc/user/js/idPwInquiryAjax.js?20140106"></script>
 <script type="text/javascript" src="https://nid.naver.com/js/clickcr.js"></script>
@@ -250,8 +257,8 @@
 												새로운 비밀번호 <br>사용을 권장합니다.
 											</span>
 										</p>
-										<!-- <p>비밀번호 안전도 <em>|</em> <strong>중간</strong> <img src="https://static.nid.naver.com/images/user/images/help/safetybar2.gif" width="47" height="3" alt="" /></p>
-												<p>비밀번호 안전도 <em>|</em> <strong>높음</strong> <img src="https://static.nid.naver.com/images/user/images/help/safetybar3.gif" width="47" height="3" alt="" /></p> -->
+										 <p>비밀번호 안전도 <em>|</em> <strong>중간</strong> <img src="https://static.nid.naver.com/images/user/images/help/safetybar2.gif" width="47" height="3" alt="" /></p>
+												<p>비밀번호 안전도 <em>|</em> <strong>높음</strong> <img src="https://static.nid.naver.com/images/user/images/help/safetybar3.gif" width="47" height="3" alt="" /></p> 
 										<p class="topline">
 											비밀번호는 네이버 관리자도 알 수 없도록 <br>암호화하여 기존 비밀번호와의 <br>일치
 											여부만을 확인하고 있습니다.
@@ -387,9 +394,9 @@
 				<div class="find_dsc">
 					<p>
 						비밀번호를 바꾸면, 모바일 기기(휴대전화/태블릿 PC)와 외부 메일 프로그램(POP3)에서 모두 로그아웃 됩니다.<br>새로운
-						비밀번호로 다시 로그인해 주세요. <a
+						비밀번호로 다시 로그인해 주세요.<!--  <a
 							href="http://mail.naver.com/notice/10000000000022016772"
-							class="btn_detail" target="_blank">자세히 보기<em class="ico_arr2"></em></a>
+							class="btn_detail" target="_blank">자세히 보기<em class="ico_arr2"></em></a> -->
 					</p>
 				</div>
 				</p>
