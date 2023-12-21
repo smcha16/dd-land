@@ -234,7 +234,7 @@
 	
 	function showModal(question, answer) {
 	    $('#modal-question').text(question);
-	    $('#modal-answer').text(answer);
+	    $('#modal-answer').html(answer);
 
 	    $('#modal').modal('show');
 	}

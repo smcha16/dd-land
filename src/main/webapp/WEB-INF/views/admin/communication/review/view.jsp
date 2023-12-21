@@ -302,7 +302,7 @@
 	
 	function showModal(seq, subject, content) {
         $('#modal-subject').text(subject);
-        $('#modal-content').text(content);
+        $('#modal-content').html(content);
 
         $('.image-slider').empty();
 

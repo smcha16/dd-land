@@ -82,6 +82,16 @@ public class ReviewService {
 	public List<ReviewDTO> getReviewList(Map<String, String> map) {
 		
 		List<ReviewDTO> list = dao.getReviewList(map);
+		
+		for (ReviewDTO dto : list) {
+			
+			String content = dto.getContent();
+
+			content = content.replace("\\r\\n", "<br>");
+
+			dto.setContent(content);
+			
+		}
 
 		return list;
 		
@@ -136,6 +146,16 @@ public class ReviewService {
 	    email = email.substring(0, 2) + email.substring(2, email.indexOf('@')).replaceAll(".", "*") + email.substring(email.indexOf('@'));
 	    
 	    dto.setEmail(email);
+	    
+	    // 내용
+	    
+		String content = dto.getContent();
+
+		System.out.println(content);
+		
+		content = content.replace("\\r\\n", "<br>");
+
+		dto.setContent(content);
 
 		return dto;
 		

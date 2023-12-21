@@ -140,7 +140,7 @@
         <i class="bi bi-calendar-check"></i><span>등록일</span><span id="regdate">${fn:substring(dto.regdate, 0, 10)}</span>
     </div>
     
-	<div id="content"><c:out value="${dto.content}" /></div>
+	<div id="content">${dto.content}</div>
 	
 	<div id="button">
 		<button type="button" id="back-button" class="btn btn-primary"><i class="bi bi-list"></i>목록</button>

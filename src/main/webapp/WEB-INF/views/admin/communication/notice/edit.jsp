@@ -102,8 +102,8 @@
               				<div class="row mb-3">
                 				<label class="col-sm-2 col-form-label option">내용</label>
                 				<div class="col-sm-10">
-                  					<textarea name="content" class="form-control" rows="16" required oninvalid="this.setCustomValidity(' ')"><c:out value="${dto.content}" /></textarea>
-                				</div>
+                  					<textarea name="content" class="form-control" rows="16" required oninvalid="this.setCustomValidity(' ')">${dto.content}</textarea>
+                                </div>
               				</div>              				
               				
               				<!-- 첨부파일 -->
@@ -152,6 +152,9 @@
 </main>
 
 <script>
+	<!-- 개행 처리 -->
+	$('textarea[name="content"]').val($('textarea[name="content"]').val().replace(/<br>/g, '\r\n'));
+	
 	var subject = $('input[name="subject"]');
 	
 	<!-- 필수값(제목) -->

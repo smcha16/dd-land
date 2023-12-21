@@ -236,8 +236,8 @@
 	function showModal(seq, subject, content, image, answer) {
 	    $('#voc_seq').val(seq);
 	    $('#modal-subject').text(subject);
-	    $('#modal-content').text(content);
-	    $('#modal-answer').val(answer);
+	    $('#modal-content').html(content);
+	    $('#modal-answer').val(answer.replace(/<br>/g, '\r\n'));
 	    
 	    if (image) {
 	        $('#modal-image').attr('src', '/dd/resources/files/communication/voc/' + image);
