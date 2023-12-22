@@ -439,7 +439,7 @@ button#checkDuplicateBtn {
 	email.addEventListener("focusout", isEmailCorrect);
 
 	/*콜백 함수*/
-
+	
 	function checkId() {
 		var idPattern = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/;
 		if (id.value === "") {
