@@ -4,7 +4,7 @@
 	namespace="com.project.dd.ticket.reservation.mapper.TicketReservationMapper">
 
 	<insert id="groupReservation" parameterType="com.project.dd.ticket.reservation.domain.TicketReservationDTO">
-		insert into tblGroupBook values (seqgroupbook.nextVal, sysdate, #{group_division}, #{region}, #{group_name}, #{address}, #{visit_date}, #{visit_time})
+		insert into tblGroupBook values (seqgroupbook.nextVal, to_char(sysdate, 'YYYY-MM-DD'), #{group_division}, #{region}, #{group_name}, #{address}, #{visit_date}, #{visit_time})
 	</insert>
 	
 	<select id="getGroupSeq" resultType="String">
@@ -20,7 +20,7 @@
 	</select>
 	
 	<insert id="personalReservation" parameterType="com.project.dd.ticket.reservation.domain.TicketReservationDTO">
-		insert into tblticketBook values (seqtblticketbook.nextVal, sysdate, #{visit_date}, #{ea}, #{price}, #{ticket_seq}, #{benefit_seq})
+		insert into tblticketBook values (seqtblticketbook.nextVal, default, #{visit_date}, #{ea}, #{price}, #{ticket_seq}, #{benefit_seq})
 	</insert>
 	
 	<select id="getPersonalSeq" resultType="String">
