@@ -24,7 +24,11 @@
 		from (select n.*, rownum as rnum
 			  from (select *
 			  		from tblNotice
-			  		order by fix desc, regdate desc, notice_seq desc) n
+			  		order by 
+			  		<if test="solting == 'user'">
+			  			fix desc,
+			  		</if>
+			  		regdate desc, notice_seq desc) n
 			  <if test="solting == 'user' and searchStatus == 'y'.toString()">
 				  where ${category} like '%' || #{word} || '%'
 			  </if>

@@ -124,7 +124,7 @@
               				<div class="row mb-3">
                 				<label class="col-sm-2 col-form-label required">습득일</label>
                 				<div class="col-sm-10">
-                  					<input type="date" name="lost_property_date" class="form-control" value="${dto.lost_property_date}">
+                  					<input type="date" name="lost_property_date" class="form-control">
                					</div>
               				</div>
               				
@@ -177,6 +177,7 @@
 
 <script>
 	<!-- 습득일 -->
+	$('input[name="lost_property_date"]').val('${dto.lost_property_date}'.slice(0, 10));
 
 	$(document).ready(function () {
 	    $('input[name="lost_property_date"]').attr('max', moment().format('YYYY-MM-DD'));

@@ -167,7 +167,7 @@
 		<c:forEach items="${list}" var="dto">
   			<div class="faq">
     			<span class="question"><i class="bi bi-question-circle"></i><c:out value="${dto.question}" /></span>
-    			<span class="answer"><c:out value="${dto.answer}" /></span>
+    			<span class="answer">${dto.answer}</span>
     			<button class="toggle-button">
     				<i id="down-button" class="fas fa-chevron-down"></i>
     				<i id="up-button" class="fas fa-chevron-up"></i>

@@ -66,6 +66,18 @@ public class FaqService {
 
 		List<FaqDTO> list = dao.getFaqList(map);
 		
+		for (FaqDTO dto : list) {
+			
+			String answer = dto.getAnswer();
+
+			answer = answer.replace("<", "&lt;");
+			answer = answer.replace(">", "&gt;");
+			answer = answer.replace("\\r\\n", "<br>");
+
+			dto.setAnswer(answer);
+			
+		}
+		
 		return list;
 		
 	}
@@ -90,7 +102,17 @@ public class FaqService {
 	 */
 	public FaqDTO getFaq(String seq) {
 		
-		return dao.getFaq(seq);
+		FaqDTO dto = dao.getFaq(seq);
+		
+		String answer = dto.getAnswer();
+
+		answer = answer.replace("<", "&lt;");
+		answer = answer.replace(">", "&gt;");
+		answer = answer.replace("\\r\\n", "<br>");
+
+		dto.setAnswer(answer);
+		
+		return dto;
 		
 	}
 
