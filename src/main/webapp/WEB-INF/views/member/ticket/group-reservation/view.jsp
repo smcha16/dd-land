@@ -278,8 +278,7 @@ width: 100%;
 				</div>
 
 				<div class="btn-container">
-					<button type="submit" class="btn"
-						onclick="location.href='/ddstudio/ticket/group-reservation.do'">예약</button>
+					<button type="submit" class="btn">예약</button>
 				</div>
 				<input type="hidden" name="user_seq"
 					value="<sec:authentication property='principal.dto.user_seq'/>">

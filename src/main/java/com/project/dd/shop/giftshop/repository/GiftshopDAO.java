@@ -7,14 +7,14 @@ import com.project.dd.shop.giftshop.domain.GiftshopImageDTO;
 import com.project.dd.shop.giftshop.domain.ShopDTO;
 
 /**
- * 선물샵 관련 데이터베이스 처리를 위한 DAO 인터페이스입니다.
+ * 기프트샵 관련 데이터베이스 처리를 위한 DAO 인터페이스입니다.
  * @author pega0
  *
  */
 public interface GiftshopDAO {
 
 	/**
-     * 기프트샵샵 목록을 가져오는 메서드입니다.
+     * 기프트샵 목록을 가져오는 메서드입니다.
      *
      * @param map 페이징 및 검색 조건을 담은 Map 객체
      * @return 기프트샵 목록
