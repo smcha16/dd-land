@@ -336,26 +336,4 @@ width: 100%;
 			}
 		}).open();
 	}
-
-	document.getElementById('form2').addEventListener('submit', function(event) {
-		event.preventDefault(); // 기본 폼 제출을 막습니다.
-
-		// 필수 입력란을 확인합니다.
-		let division = document.getElementById('division').value;
-		let region = document.getElementById('region').value;
-		let groupName = document.getElementById('group-name').value;
-		let post_code = document.getElementById('post-code').value;
-		let address_basis = document.getElementById('address-basis').value;
-		let address_detail = document.getElementById('address-detail').value;
-		let date = document.getElementById('date').value;
-		let time = document.getElementById('time').value;
-		// 다른 필드에 대한 유효성 검사를 추가할 수 있습니다.
-
-		// 필수 입력란이 비어 있는지 확인합니다.
-		if (!division || !region || !groupName || !post_code || !address_basis || !address_detail || !date || !time) {
-			alert('필수 입력란을 모두 작성해주세요.');
-		} else {
-			this.submit(); // 모든 필수 입력란이 채워졌다면 폼을 제출합니다.
-		}
-	});
 </script>
