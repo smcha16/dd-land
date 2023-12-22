@@ -99,7 +99,7 @@
               				<div class="row mb-3">
                 				<label class="col-sm-2 col-form-label required">답변</label>
                 				<div class="col-sm-10">
-                  					<textarea name="answer" class="form-control" rows="18" required oninvalid="this.setCustomValidity(' ')"><c:out value="${dto.answer}" /></textarea>
+                  					<textarea name="answer" class="form-control" rows="18" required oninvalid="this.setCustomValidity(' ')">${dto.answer}</textarea>
                 					<span id="answer-message" class="message" style="display: none;"></span>
                 				</div>
               				</div>
@@ -114,6 +114,9 @@
 </main>
 
 <script>
+	<!-- 개행 처리 -->
+	$('textarea[name="answer"]').val($('textarea[name="answer"]').val().replace(/<br>/g, '\r\n'));
+
 	var question = $('input[name="question"]');
 	var answer = $('textarea[name="answer"]');
 	

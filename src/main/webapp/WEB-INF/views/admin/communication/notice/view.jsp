@@ -246,13 +246,13 @@
 	    $('#modal-subject').text(subject);
 	    
 	    if (image && content) {
-	    	$('#modal-content').text(content);
+	    	$('#modal-content').html(content);
 	        $('#modal-image').attr('src', '/dd/resources/files/communication/notice/' + image);
 	    } else if (image && !content) {
 	    	$('#modal-content').hide();
 	    	$('#modal-image').attr('src', '/dd/resources/files/communication/notice/' + image);
 	    } else {
-	    	$('#modal-content').text(content);
+	    	$('#modal-content').html(content);
 	    	$('#modal-image').hide();
 	    }
 

@@ -63,6 +63,13 @@
 		justify-content: center;
     	align-items: center;
 	}
+	#readcount {
+		font-size: 17px;
+    	margin-top: 15px;
+	}
+	#readcount i {
+		margin-right: 10px;
+	}
 	.hidden-div {
 		display: none;
 		color: white;
@@ -110,7 +117,7 @@
 		left: 33px;
 	}
 	.btn input::after {
-		content: "추천순";
+		content: "조회순";
 		top: 27px;
 		right: 33px;
 	}
@@ -207,9 +214,10 @@
 							<div>
 								<c:out value="${fn:substring(dto.subject, 0, 13)}" />
 								${fn:length(dto.subject) > 13 ? '...' : ''}
+								<div id="readcount"><i class="bi bi-eye-fill"></i>${dto.readcount}</div>
 							</div>
 							<div class="hidden-div">
-								<c:out value="${fn:substring(dto.content, 0, 170)}" />
+								${fn:substring(dto.content, 0, 170)}
                                 ${fn:length(dto.content) > 170 ? '...' : ''}
 							</div>
 						</div>

@@ -173,6 +173,30 @@ public class VocService {
 		
 		List<VocDTO> list = dao.getVocList(map);
 		
+		for (VocDTO dto : list) {
+			
+			String content = dto.getContent();
+
+			content = content.replace("<", "&lt;");
+			content = content.replace(">", "&gt;");
+			content = content.replace("\\r\\n", "<br>");
+
+			dto.setContent(content);
+			
+			String answer = dto.getAnswer();
+			
+			if (answer != null) {
+				
+				answer = answer.replace("<", "&lt;");
+				answer = answer.replace(">", "&gt;");
+				answer = answer.replace("\\r\\n", "<br>");
+
+				dto.setAnswer(answer);
+				
+			}
+			
+		}
+		
 		return list;
 		
 	}
