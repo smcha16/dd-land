@@ -24,6 +24,13 @@
 		<security:logout logout-url="/logout.do" logout-success-url="/index.do" invalidate-session="true" />
 
 		<security:access-denied-handler error-page="/auth/accesserror.do" />
+		
+		<security:remember-me
+                remember-me-parameter="remember"
+                token-validity-seconds="36000"
+                user-service-ref="customUserDetailsService"
+        />
+		
 	</security:http>
 	
 	<security:authentication-manager>
