@@ -51,12 +51,11 @@ public class AdminAttractionController {
 		
 		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
 		
-		//페이징
-		String solting = "admin";
-		Map<String, String> map = service.paging(searchStatus, word, page, solting);
+		//Admin 전용 페이징
+		Map<String, String> map = service.adminPaging(searchStatus, word, page);
 		
 		//Attraction 목록(운영종료 제외)
-		List<AttractionDTO> list = service.getAttractionList(map);
+		List<AttractionDTO> list = service.getAllAttractionList(map);
 		
 		//모달용 AttractionImg 목록
 		List<AttractionImgDTO> ilist = service.getAllAttractionImgList();
@@ -242,7 +241,4 @@ public class AdminAttractionController {
 		
 	}
 	
-	
-	
-
 }

@@ -270,7 +270,7 @@
 								            </div>
 							                
 								            <div class="modal-body">
-								            	<div id="map" style="height: 380px; border-radius: var(--bs-border-radius);"></div>
+								            	<div id="map" style="height: 380px;"></div>
 								            </div>
 								        </div>
 								    </div>
@@ -358,7 +358,7 @@
 		addModalImg(seq);
 		
 		$('#modal-name').text(name);
-        $('.m-info').text(info);
+        $('.m-info').html(info);
         $('.m-capacity').text(capacity);
         $('.m-time').text(time);
         $('.m-restriction').text(restriction);

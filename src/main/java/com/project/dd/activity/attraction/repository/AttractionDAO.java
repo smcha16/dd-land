@@ -15,7 +15,7 @@ public interface AttractionDAO {
 
 	List<AttractionImgDTO> getAttractionImgList(String seq);
 
-	int getTotalCount(Map<String, String> map);
+	int getAdminPagingTotalPosts(Map<String, String> map);
 
 	int checkLocationDuplication(AttractionDTO dto);
 
@@ -57,7 +57,7 @@ public interface AttractionDAO {
 
 	List<BookUserDTO> getAttractionBookList();
 
-	List<AttractionDTO> getAllAttractionList();
+	List<AttractionDTO> getAllAttractionList(Map<String, String> map);
 
 	int getUserPagingTotalPosts(Map<String, String> map);
 

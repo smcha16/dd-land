@@ -40,7 +40,7 @@ public class UserAttractionController {
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 		
-		//[user 전용] 페이징
+		//User 전용 페이징
 		Map<String, String> map = service.userPaging(page);
 		
 		//Attraction '정상운영' 목록

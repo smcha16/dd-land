@@ -99,7 +99,7 @@
               				<div class="row mb-3">
                 				<label for="info" class="col-sm-2 col-form-label required" >소개</label>
                 				<div class="col-sm-10">
-                  					<textarea id="info" name="info" class="form-control" style="height: 100px" placeholder="어트랙션의 소개 & 특징을 입력해주세요." required><c:out value="${dto.info}"/></textarea>
+                  					<textarea id="info" name="info" class="form-control" style="height: 100px" placeholder="어트랙션의 소개 & 특징을 입력해주세요." required>${dto.info}</textarea>
                 				</div>
               				</div>
 
@@ -183,6 +183,9 @@
 <!-- Attraction edit용 JavaScript -->
 <script>
 
+	/* 어트랙션 소개 개행 처리 */
+	$('textarea[name="info"]').val($('textarea[name="info"]').val().replace(/<br>/g, '\r\n'));
+
 	/* 페이지 로딩 시, 유효성 검사가 필요한 이름, 지도에 기본 data-type 부여 */
 	$('.check-name-duplication').data('type', 'y');
 	$('.check-location-duplication').data('type', 'y');
@@ -191,7 +194,6 @@
 	$('#lat').val(${dto.lat});
 	$('#lng').val(${dto.lng});
 	
-
 	/* 필수 항목이 반드시 입력되어야만 submit 클릭 시 넘어가도록 */
 	function submit() {
 		

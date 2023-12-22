@@ -35,6 +35,30 @@ public class AttractionService {
 	@Autowired
 	AttractionDAO dao;
 
+	public Map<String, String> userPaging(int page) {
+		
+		//User 페이지 노출 목록 개수 설정
+		int pageSize = 9;
+		
+		//페이지별로 가져올 index 번호
+		int startIndex = (page - 1) * pageSize + 1;
+		int endIndex = startIndex + pageSize - 1;
+		
+		//페이징용 Map 생성
+		Map<String, String> map = new HashMap<String, String>();
+	
+		map.put("startIndex", String.format("%d", startIndex));
+		map.put("endIndex", String.format("%d", endIndex));
+		
+		int totalPosts = dao.getUserPagingTotalPosts(map);
+		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
+		
+		map.put("totalPosts", String.format("%d", totalPosts));
+		map.put("totalPages", String.format("%d", totalPages));
+		
+		return map;
+	}
+
 	/**
 	 * 
 	 * 페이지 번호를 출력하기위해 DB에 접근하여 어트랙션 개수 및 검색 결과값을 조회하는 메서드입니다. 
@@ -45,36 +69,29 @@ public class AttractionService {
 	 * @param solting 사용자/관리자별 한 페이지당 노출 목록 개수 설정
 	 * @return 위의 정보가 담긴 map 객체
 	 */
-	public Map<String, String> paging(String searchStatus, String word, int page, String solting) {
+	public Map<String, String> adminPaging(String searchStatus, String word, int page) {
 		
-		int pageSize = 0;
+		//Admin 페이지 노출 목록 개수 설정
+		int pageSize = 10;
 		
-		//user or admin 노출 목록 개수 설정
-		if (solting.equalsIgnoreCase("user")) {
-			pageSize = 9;  //나타났으면 하는 개수(user)
-			
-		} else if (solting.equalsIgnoreCase("admin")) {
-			pageSize = 10;  //나타났으면 하는 개수(admin)
-		}
-
+		//페이지별로 가져올 index 번호
 		int startIndex = (page - 1) * pageSize + 1;
 		int endIndex = startIndex + pageSize - 1;
 		
+		//페이징용 Map 생성
 		Map<String, String> map = new HashMap<String, String>();
 
-		//검색 관련 추가
 		map.put("searchStatus", searchStatus);
 		map.put("word", word);
 		
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 		
-		int totalPosts = dao.getTotalCount(map);
+		int totalPosts = dao.getAdminPagingTotalPosts(map);
 		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
 		
 		map.put("totalPosts", String.format("%d", totalPosts));
 		map.put("totalPages", String.format("%d", totalPages));
-		
 		
 		return map;
 		
@@ -88,7 +105,67 @@ public class AttractionService {
 	 * @return 어트랙션 dto 객체가 담긴 list
 	 */
 	public List<AttractionDTO> getOpenAttractionList(Map<String, String> map) {
-		return dao.getOpenAttractionList(map);
+		
+		List<AttractionDTO> list = dao.getOpenAttractionList(map);
+		
+		for (AttractionDTO dto : list) {
+			
+			//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
+			String newInfo = dto.getInfo(); 
+			newInfo = dto.getInfo().replace("<", "&lt");
+			newInfo = dto.getInfo().replace(">", "&gt");
+			
+			//DB 개행 -> '<br>' 태그 처리
+			newInfo = dto.getInfo().replace("\\r\\n", "<br>");
+			
+			dto.setInfo(newInfo);
+			
+		}
+		
+		return list;
+		
+	}
+
+	public List<AttractionDTO> getCloseAttractionList() {
+		
+		List<AttractionDTO> list = dao.getCloseAttractionList();
+		
+		for (AttractionDTO dto : list) {
+			
+			//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
+			String newInfo = dto.getInfo(); 
+			newInfo = dto.getInfo().replace("<", "&lt");
+			newInfo = dto.getInfo().replace(">", "&gt");
+			
+			//DB 개행 -> '<br>' 태그 처리
+			newInfo = dto.getInfo().replace("\\r\\n", "<br>");
+			
+			dto.setInfo(newInfo);
+			
+		}
+		
+		return list;
+	}
+
+	public List<AttractionDTO> getAllAttractionList(Map<String, String> map) {
+		
+		List<AttractionDTO> list = dao.getAllAttractionList(map);
+		
+		for (AttractionDTO dto : list) {
+			
+			//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
+			String newInfo = dto.getInfo(); 
+			newInfo = dto.getInfo().replace("<", "&lt");
+			newInfo = dto.getInfo().replace(">", "&gt");
+			
+			//DB 개행 -> '<br>' 태그 처리
+			newInfo = dto.getInfo().replace("\\r\\n", "<br>");
+			
+			dto.setInfo(newInfo);
+			
+		}
+		
+		return list;
 	}
 
 	/**
@@ -99,7 +176,21 @@ public class AttractionService {
 	 * @return 어트랙션 dto 객체
 	 */
 	public AttractionDTO getAttraction(String seq) {
-		return dao.getAttraction(seq);
+		
+		AttractionDTO dto = dao.getAttraction(seq);
+			
+		//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
+		String newInfo = dto.getInfo(); 
+		newInfo = dto.getInfo().replace("<", "&lt");
+		newInfo = dto.getInfo().replace(">", "&gt");
+		
+		//DB 개행 -> '<br>' 태그 처리
+		newInfo = dto.getInfo().replace("\\r\\n", "<br>");
+		
+		dto.setInfo(newInfo);
+			
+		return dto;
+		
 	}
 
 	/**
@@ -532,38 +623,6 @@ public class AttractionService {
 	 */
 	public List<BookUserDTO> getAttractionBookList() {
 		return dao.getAttractionBookList();
-	}
-
-	public List<AttractionDTO> getAllAttractionList() {
-		return dao.getAllAttractionList();
-	}
-
-	public Map<String, String> userPaging(int page) {
-		
-		//user 페이지 노출 목록 개수 설정
-		int pageSize = 9;
-		
-		//페이지별로 가져올 index 번호
-		int startIndex = (page - 1) * pageSize + 1;
-		int endIndex = startIndex + pageSize - 1;
-		
-		//페이징용 Map 생성
-		Map<String, String> map = new HashMap<String, String>();
-
-		map.put("startIndex", String.format("%d", startIndex));
-		map.put("endIndex", String.format("%d", endIndex));
-		
-		int totalPosts = dao.getUserPagingTotalPosts(map);
-		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
-		
-		map.put("totalPosts", String.format("%d", totalPosts));
-		map.put("totalPages", String.format("%d", totalPages));
-		
-		return map;
-	}
-
-	public List<AttractionDTO> getCloseAttractionList() {
-		return dao.getCloseAttractionList();
 	}
 
 }

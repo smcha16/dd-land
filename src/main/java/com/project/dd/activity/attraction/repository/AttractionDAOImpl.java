@@ -35,8 +35,8 @@ public class AttractionDAOImpl implements AttractionDAO {
 	}
 
 	@Override
-	public int getTotalCount(Map<String, String> map) {
-		return mapper.getTotalCount(map);
+	public int getAdminPagingTotalPosts(Map<String, String> map) {
+		return mapper.getAdminPagingTotalPosts(map);
 	}
 
 	@Override
@@ -141,11 +141,6 @@ public class AttractionDAOImpl implements AttractionDAO {
 	}
 
 	@Override
-	public List<AttractionDTO> getAllAttractionList() {
-		return mapper.getAllAttractionList();
-	}
-
-	@Override
 	public int getUserPagingTotalPosts(Map<String, String> map) {
 		return mapper.getUserPagingTotalPosts(map);
 	}
@@ -153,6 +148,11 @@ public class AttractionDAOImpl implements AttractionDAO {
 	@Override
 	public List<AttractionDTO> getCloseAttractionList() {
 		return mapper.getCloseAttractionList();
+	}
+
+	@Override
+	public List<AttractionDTO> getAllAttractionList(Map<String, String> map) {
+		return mapper.getAllAttractionList(map);
 	}
 
 }
