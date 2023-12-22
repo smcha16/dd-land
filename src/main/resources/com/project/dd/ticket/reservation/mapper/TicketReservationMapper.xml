@@ -20,7 +20,7 @@
 	</select>
 	
 	<insert id="personalReservation" parameterType="com.project.dd.ticket.reservation.domain.TicketReservationDTO">
-		insert into tblticketBook values (seqtblticketbook.nextVal, default, #{visit_date}, #{ea}, #{price}, #{ticket_seq}, #{benefit_seq})
+		insert into tblticketBook values (seqtblticketbook.nextVal, to_char(sysdate, 'YYYY-MM-DD'), #{visit_date}, #{ea}, #{price}, #{ticket_seq}, #{benefit_seq})
 	</insert>
 	
 	<select id="getPersonalSeq" resultType="String">
