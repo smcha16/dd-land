@@ -9,7 +9,7 @@
 	<!-- User용 -->
 	
 	<!-- User용 페이징 -->
-	<select id="getUserPagingTotalPosts" parameterType="map" resultType="int">
+	<select id="getUserPagingTotalPosts" resultType="int">
 		select count(*) from vwAttractionList where close = 'n'
 	</select>
 	

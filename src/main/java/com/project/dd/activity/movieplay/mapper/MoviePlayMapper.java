@@ -9,20 +9,28 @@ import com.project.dd.activity.theater.domain.TheaterDTO;
 
 public interface MoviePlayMapper {
 
-	int getTotalCount(String solting);
+	int getUserPagingTotalPosts(String date);
+	
+	List<MovieDTO> getMoviePlayList(Map<String, String> map);
 
+	MovieDTO getMovie(String seq);
+	
+	List<MoviePlayDTO> getMoviePlayListBySeq(Map<String, String> map);
+	
+	int getAdminPagingTotalPosts(Map<String, String> map);
+	
 	List<MoviePlayDTO> getMoviePlayListAll(Map<String, String> map);
-
+	
+	List<MovieDTO> getMovieList();
+	
+	List<TheaterDTO> getTheaterList();
+	
 	int addMoviePlay(MoviePlayDTO dto);
-
-	int delMoviePlay(String seq);
-
+	
+	MoviePlayDTO getMoviePlay(String seq);
+	
 	int editMoviePlay(MoviePlayDTO dto);
 
-	MoviePlayDTO getMoviePlayList(String seq);
-
-	List<MovieDTO> getMovieList();
-
-	List<TheaterDTO> getTheaterList();
+	int delMoviePlay(String seq);
 
 }

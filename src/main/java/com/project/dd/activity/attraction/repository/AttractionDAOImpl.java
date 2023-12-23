@@ -141,8 +141,8 @@ public class AttractionDAOImpl implements AttractionDAO {
 	}
 
 	@Override
-	public int getUserPagingTotalPosts(Map<String, String> map) {
-		return mapper.getUserPagingTotalPosts(map);
+	public int getUserPagingTotalPosts() {
+		return mapper.getUserPagingTotalPosts();
 	}
 
 	@Override

@@ -53,6 +53,10 @@ public class UserAttractionController {
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
 		
+		//개행 확인
+		System.out.println("openList 개행 확인: " + openList.toString());
+		System.out.println("closeList 개행 확인: " + closeList.toString());
+		
 		//운영/운휴 Attraction List, 운휴 개수 전달
 		model.addAttribute("openList", openList);
 		model.addAttribute("closeList", closeList);
@@ -80,6 +84,9 @@ public class UserAttractionController {
 		
 		//ilist > AttractionDTO에 담기
 		dto.setImgList(ilist);
+		
+		//개행 확인
+		System.out.println("user detail: " + dto.toString());
 		
 		model.addAttribute("dto", dto);
 		

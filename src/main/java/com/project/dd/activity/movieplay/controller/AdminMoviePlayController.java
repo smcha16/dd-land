@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.activity.movie.domain.MovieDTO;
-import com.project.dd.activity.movie.service.MovieService;
 import com.project.dd.activity.movieplay.domain.MoviePlayDTO;
 import com.project.dd.activity.movieplay.service.MoviePlayService;
 import com.project.dd.activity.theater.domain.TheaterDTO;
-import com.project.dd.activity.theater.service.TheaterService;
 
 /**
  * 
@@ -34,18 +32,20 @@ public class AdminMoviePlayController {
 	
 	/**
 	 * 
-	 * 관리자용 영화 상영 목록을 조회할 수 있는 view 메서드입니다.
+	 * 관리자용 영화 상영 목록 전체를 조회할 수 있는 view 메서드입니다.
 	 * 
-	 * @param page 페이지 번호
+	 * @param word 검색어(영화명/영화관명)
+	 * @param page 페이지
 	 * @param model 모델 객체
-	 * @return jsp 파일명
+	 * @return 호출할 jsp 파일명
 	 */
 	@GetMapping(value = "/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 
-		//페이징
-		String solting = "admin";
-		Map<String, String> map = service.paging(page, solting);
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
+		
+		//Admin 전용 페이징
+		Map<String, String> map = service.adminPaging(searchStatus, word, page);
 		
 		//MoviePlay 목록 전체
 		List<MoviePlayDTO> list = service.getMoviePlayListAll(map);
@@ -62,10 +62,10 @@ public class AdminMoviePlayController {
 	
 	/**
 	 * 
-	 * 영화 상영을 추가할 수 있는 add 메서드입니다.
+	 * 영화 상영을 추가하는 메서드입니다.
 	 * 
 	 * @param model 모델 객체
-	 * @return jsp 파일명
+	 * @return 호출할 jsp 파일명
 	 */
 	@GetMapping(value = "/add.do")
 	public String add(Model model) {
@@ -84,17 +84,15 @@ public class AdminMoviePlayController {
 	
 	/**
 	 * 
-	 * 추가한 영화 상영을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 addok 메서드입니다.
+	 * 추가한 영화 상영을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 메서드입니다.
 	 * 
 	 * @param model 모델 객체
-	 * @param dto 영화상영 dto 객체
+	 * @param dto 영화상영 DTO 객체
 	 * @return 이동할 페이지 주소
 	 */
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, MoviePlayDTO dto) {
 
-		System.out.println(dto.toString());
-		
 		int result = service.addMoviePlay(dto);
 		
 		if (result > 0) {
@@ -107,11 +105,11 @@ public class AdminMoviePlayController {
 	
 	/**
 	 * 
-	 * 영화 상영을 수정할 수 있는 edit 메서드입니다.
+	 * 영화 상영을 수정하는 메서드입니다.
 	 * 
 	 * @param model 모델 객체
 	 * @param seq 영화상영번호
-	 * @return jsp 파일명
+	 * @return 호출할 jsp 파일명
 	 */
 	@GetMapping(value = "/edit.do")
 	public String edit(Model model, String seq) {
@@ -125,10 +123,10 @@ public class AdminMoviePlayController {
 	
 	/**
 	 * 
-	 * 수정한 영화 상영을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 editok 메서드입니다.
+	 * 수정한 영화 상영을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 메서드입니다.
 	 * 
 	 * @param model 모델 객체
-	 * @param dto 영화상영 dto 객체
+	 * @param dto 영화상영 DTO 객체
 	 * @return 이동할 페이지 주소
 	 */
 	@PostMapping(value = "/editok.do")
@@ -146,10 +144,10 @@ public class AdminMoviePlayController {
 	
 	/**
 	 * 
-	 * 삭제할 영화 상영을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 del 메서드입니다.
+	 * 삭제할 영화 상영을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 메서드입니다.
 	 * 
 	 * @param model 모델 객체
-	 * @param movieplay_seq 영화 상영 번호
+	 * @param movieplay_seq 영화상영번호
 	 * @return 이동할 페이지 주소
 	 */
 	@PostMapping(value = "/del.do")

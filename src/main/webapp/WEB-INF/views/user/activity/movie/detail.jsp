@@ -217,13 +217,16 @@
 <!-- ======= 상영 일정 Section ======= -->
 <!-- 운휴일정, 운영시간, 탑승인원, 이용정보 --> <!-- 날짜별 운휴에맞춰서 추가 필요ㅠ~~~~~~~~~~ -->
 <section>
-	<c:forEach items="${moviePlayList}" var="dto">
+	<c:forEach items="${plist}" var="dto">
 		<div class="result-container">
+			<%--
+			운영하는것들만 DB에서 solting해옴! 
 			<div class="result-item">
 				<!-- <img src="/dd/resources/files/activity/time_icon.png" alt="Image" class="icon" /> -->
 				<div class="label">(test)운휴정보</div>
 				<div class="value">${dto.close}</div>
 			</div>
+			 --%>
 			<div class="result-item">
 				<!-- <img src="/dd/resources/files/activity/time_icon.png" alt="Image" class="icon" /> -->
 				<div class="label">상영 시간</div>
@@ -232,7 +235,7 @@
 			<div class="result-item">
 				<!-- <img src="/dd/resources/files/activity/time_icon.png" alt="Image" class="icon" /> -->
 				<div class="label">상영 영화관</div>
-				<div class="value">${dto.name}</div>
+				<div class="value">${dto.theater_name}</div>
 			</div>
 			<div class="result-item">
 				<!-- <img src="/dd/resources/files/activity/time_icon.png" alt="Image" class="icon" /> -->

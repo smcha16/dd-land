@@ -64,6 +64,9 @@ public class AdminAttractionController {
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
 		
+		//개행 확인
+		System.out.println("admin view 개행 확인: " + list.toString());
+		
 		//어트 목록 전달
 		model.addAttribute("list", list);
 		
@@ -159,6 +162,9 @@ public class AdminAttractionController {
 		}
 		//ilist > AttractionDTO에 담기
 		dto.setImgList(ilist);
+		
+		//개행 확인
+		System.out.println("admin edit 개행 확인: " + dto.toString());
 		
 		model.addAttribute("dto", dto);
 		

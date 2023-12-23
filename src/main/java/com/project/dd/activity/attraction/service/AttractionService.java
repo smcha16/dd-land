@@ -24,7 +24,7 @@ import com.project.dd.login.domain.CustomUser;
 
 /**
  * 
- * 어트랙션 DB에 접근하여 실행된 레코드의 수를 반환하는 Service 클래스입니다.
+ * 어트랙션 페이지의 비즈니스 로직을 담당하는 Service 클래스입니다.
  * 
  * @author 박나래
  *
@@ -50,7 +50,7 @@ public class AttractionService {
 		map.put("startIndex", String.format("%d", startIndex));
 		map.put("endIndex", String.format("%d", endIndex));
 		
-		int totalPosts = dao.getUserPagingTotalPosts(map);
+		int totalPosts = dao.getUserPagingTotalPosts();
 		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
 		
 		map.put("totalPosts", String.format("%d", totalPosts));
@@ -61,12 +61,11 @@ public class AttractionService {
 
 	/**
 	 * 
-	 * 페이지 번호를 출력하기위해 DB에 접근하여 어트랙션 개수 및 검색 결과값을 조회하는 메서드입니다. 
+	 * 페이지 번호를 출력하기 위해 페이지당 노출 목록 개수 설정 및 검색 결과값의 개수를 조회하는 메서드입니다.
 	 * 
 	 * @param searchStatus 검색여부
 	 * @param word 검색어
 	 * @param page 페이지 번호
-	 * @param solting 사용자/관리자별 한 페이지당 노출 목록 개수 설정
 	 * @return 위의 정보가 담긴 map 객체
 	 */
 	public Map<String, String> adminPaging(String searchStatus, String word, int page) {
@@ -160,6 +159,8 @@ public class AttractionService {
 			
 			//DB 개행 -> '<br>' 태그 처리
 			newInfo = dto.getInfo().replace("\\r\\n", "<br>");
+			
+			System.out.println("newInfo: " + newInfo);
 			
 			dto.setInfo(newInfo);
 			

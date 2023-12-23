@@ -61,7 +61,7 @@ public interface AttractionMapper {
 
 	List<AttractionDTO> getAllAttractionList(Map<String, String> map);
 
-	int getUserPagingTotalPosts(Map<String, String> map);
+	int getUserPagingTotalPosts();
 
 	List<AttractionDTO> getCloseAttractionList();
 
