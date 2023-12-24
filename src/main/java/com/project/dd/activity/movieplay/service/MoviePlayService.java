@@ -86,20 +86,32 @@ public class MoviePlayService {
 
 	/**
 	 * 
-	 * 특정 영화의 상영 목록을 가져오는 메서드입니다.
+	 * 특정일의 특정 영화의 상영 목록을 가져오는 메서드입니다.
 	 * 
 	 * @param seq 영화 번호
 	 * @param date 상영 일자
 	 * @return MoviePlayDTO 객체 List
 	 */
-	public List<MoviePlayDTO> getMoviePlayListBySeq(String seq, String date) {
+	public List<MoviePlayDTO> getMoviePlayListBySeqDate(String seq, String date) {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		
 		map.put("seq", seq);
 		map.put("date", date);
 		
-		return dao.getMoviePlayListBySeq(map);
+		return dao.getMoviePlayListBySeqDate(map);
+	}
+
+	/**
+	 * 
+	 * 특정일의 특정 영화 상영 정보를 가져오는 메서드입니다.
+	 * 
+	 * @param map Map 객체
+	 * @return MoviePlayDTO 객체
+	 */
+	public MoviePlayDTO getMoviePlayBySeqDate(Map<String, String> map) {
+		
+		return dao.getMoviePlayBySeqDate(map);
 	}
 
 	/**

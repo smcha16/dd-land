@@ -35,10 +35,15 @@ public class MoviePlayDAOImpl implements MoviePlayDAO{
 	}
 	
 	@Override
-	public List<MoviePlayDTO> getMoviePlayListBySeq(Map<String, String> map) {
-		return mapper.getMoviePlayListBySeq(map);
+	public List<MoviePlayDTO> getMoviePlayListBySeqDate(Map<String, String> map) {
+		return mapper.getMoviePlayListBySeqDate(map);
 	}
 	
+	@Override
+	public MoviePlayDTO getMoviePlayBySeqDate(Map<String, String> map) {
+		return mapper.getMoviePlayBySeqDate(map);
+	}
+
 	@Override
 	public int getAdminPagingTotalPosts(Map<String, String> map) {
 		return mapper.getAdminPagingTotalPosts(map);

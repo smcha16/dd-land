@@ -30,7 +30,7 @@ public class UserMoviePlayController {
 	
 	/**
 	 * 
-	 * 특정 일자에 상영하는 영화의 목록을 불러오는 메서드입니다.
+	 * 특정 일자에 상영하는 영화의 목록을 가져오는 메서드입니다.
 	 * 
 	 * @param model 모델 객체
 	 * @param date 상영 일자
@@ -58,26 +58,28 @@ public class UserMoviePlayController {
 	
 	/**
 	 * 
-	 * 해당 날짜에 상영중인 영화 중 선택한 특정 영화의 상세 내용을 불러오는 메서드입니다.
+	 * 해당 날짜에 상영중인 영화 중 선택한 특정 영화의 상세 내용을 가져오는 메서드입니다.
 	 * 
 	 * @param model 모델 객체
 	 * @param seq 영화 번호
-	 * @param date 호출할 jsp 파일명
-	 * @return
+	 * @param date 상영 일자
+	 * @return 호출할 jsp 파일명
 	 */
 	@GetMapping(value = "/detail.do")
 	public String detail(Model model, String seq, String date) {
 
 		MovieDTO dto = service.getMovie(seq);
 		
-		List<MoviePlayDTO> plist = service.getMoviePlayListBySeq(seq, date);
+		List<MoviePlayDTO> plist = service.getMoviePlayListBySeqDate(seq, date);
 		
 		//dto에 plist 담기
 		dto.setMoviePlayList(plist);
 		
 		model.addAttribute("dto", dto);
-		model.addAttribute("plist", plist);
+		model.addAttribute("date", date);
 		
+		//상영 영화관 개수 전달
+		model.addAttribute("plistNum", plist.size());
 		return "user/activity/movie/detail";
 	}
 

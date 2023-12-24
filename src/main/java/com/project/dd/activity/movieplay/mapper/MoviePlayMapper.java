@@ -15,8 +15,10 @@ public interface MoviePlayMapper {
 
 	MovieDTO getMovie(String seq);
 	
-	List<MoviePlayDTO> getMoviePlayListBySeq(Map<String, String> map);
+	List<MoviePlayDTO> getMoviePlayListBySeqDate(Map<String, String> map);
 	
+	MoviePlayDTO getMoviePlayBySeqDate(Map<String, String> map);
+
 	int getAdminPagingTotalPosts(Map<String, String> map);
 	
 	List<MoviePlayDTO> getMoviePlayListAll(Map<String, String> map);
