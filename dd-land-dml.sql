@@ -2912,191 +2912,230 @@ VALUES (seqtblMBTI.NEXTVAL, '오늘 타려고 계획했던 건 다 타야 하는
 
 /* 칭찬/불편/건의 */
 INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
-VALUES (seqtblVOC.NEXTVAL, '불편', '서비스1', '불편사항 1', '불편한 사항 내용 1', DEFAULT,'attach1.jpg', TO_DATE('2023-11-02', 'YYYY-MM-DD'), '답변 내용 1', 1);
+VALUES (seqtblVOC.NEXTVAL, '불편', '어트랙션', '티켓 가격 대비 놀이기구 이용 대기 시간이 긴 편이에요',
+'놀이공원의 티켓 가격 대비 놀이기구 이용 대기 시간이 다소 길게 느껴져서 아쉬웠어요.
+\r\n더 효율적인 운영이나 대기 줄 관리를 통해 이 부분을 개선해 주시면 방문객들이 더 만족할 수 있을 것 같습니다.',
+TO_DATE('2023-11-22', 'YYYY-MM-DD'), 'voc1.jpg', TO_DATE('2023-11-20', 'YYYY-MM-DD'),
+'안녕하세요! 먼저 불편을 끼쳐드려 죄송합니다.
+\r\n대기 시간에 대한 불편을 최소화하기 위해 더 효율적인 운영 및 대기 줄 관리에 노력하겠습니다.
+\r\n소중한 의견 감사드립니다.', 2);
 
 INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
-VALUES (seqtblVOC.NEXTVAL, '건의', '서비스2', '건의사항 2', '건의 내용 2', DEFAULT, NULL, TO_DATE('2023-11-10', 'YYYY-MM-DD'), '답변 내용 2', 2);
+VALUES (seqtblVOC.NEXTVAL, '건의', '기타', '장애인을 위한 편의 시설이 더 필요한 것 같아요',
+'놀이공원을 방문하면서 장애인을 위한 편의 시설이 더 확장되면 좋겠다고 느꼈어요.
+\r\n놀이기구 이용이나 이동에 어려움을 겪는 분들을 위한 편의 시설을 더 강화해 주시면 더 많은 분들이 놀이공원을 즐길 수 있을 것 같습니다.',
+TO_DATE('2023-12-09', 'YYYY-MM-DD'), NULL, TO_DATE('2023-12-06', 'YYYY-MM-DD'),
+'안녕하세요! 장애인을 위한 편의 시설이 부족했다는 점에 대해 죄송합니다.
+\r\n더 많은 분들이 편안하게 놀이공원을 즐길 수 있도록 편의 시설을 확대해 나가겠습니다.
+\r\n감사합니다.', 3);
 
 INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
-VALUES (seqtblVOC.NEXTVAL, '불편', '기타', '화장실이 불편합니다', '화장실 비데가 고장나서 이용에 불편을 겪었습니다.', DEFAULT, 'null', TO_DATE('2023-11-20', 'YYYY-MM-DD'), null, 3);
+VALUES (seqtblVOC.NEXTVAL, '건의', '기타', '안내판이 더욱 상세하고 명확했으면 좋겠어요',
+'놀이공원 내의 안내판이 다소 부족하게 느껴져서 길을 찾거나 행사 정보를 파악하는 데 어려움이 있었어요.
+\r\n안내판을 더 상세하고 명확하게 개선해 주시면 더 편리하게 이용할 수 있을 것 같아요.',
+TO_DATE('2023-12-08', 'YYYY-MM-DD'), NULL, TO_DATE('2023-12-07', 'YYYY-MM-DD'),
+'안녕하세요! 안내판이 부족하게 느껴져 불편함을 느끼셨다니 죄송합니다.
+\r\n안내판의 상세성과 명확성을 높여 더 편리한 이용을 위해 노력하겠습니다.', 4);
 
 INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
-VALUES (seqtblVOC.NEXTVAL, '칭찬', '어트랙션', '토토로스윙에 근무하시는 직원분을 칭찬합니다,', '토토로 스윙에 근무하시는 직원분이 갑작스럽게 발생한 사고에 대해 침착하게 대응해주시고 해결해주셔서 덕분에 안전하게 탔습니다!', DEFAULT, 'null', TO_DATE('2023-12-15', 'YYYY-MM-DD'), '고객님의 소중한 칭찬 감사합니다! 앞으로도 더욱 열심히 하는 DD랜드가 되겠습니다!', 3);
+VALUES (seqtblVOC.NEXTVAL, '불편', '어트랙션', '겨울철 놀이기구 수리로 인한 일시적인 폐쇄가 많아서 아쉬웠어요',
+'몇몇 놀이기구가 수리로 인해 일시적으로 폐쇄되어 있어서 아쉬웠어요.
+\r\n겨울 휴가 시즌에는 특히 더 많은 놀이기구를 운영해 주시면 좋겠습니다.',
+TO_DATE('2023-12-15', 'YYYY-MM-DD'), NULL, TO_DATE('2023-12-08', 'YYYY-MM-DD'),
+'안녕하세요! 겨울철 놀이기구 수리로 인한 불편을 끼쳐드려 죄송합니다.
+\r\n겨울 시즌에도 다양한 놀이기구를 운영할 수 있도록 노력하겠습니다.
+\r\n감사합니다.', 5);
+
+INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
+VALUES (seqtblVOC.NEXTVAL, '건의', '기타', '물품 보관 시설이 더 다양하면 좋겠어요',
+'놀이공원 내에서 물품을 보관할 수 있는 시설이 다소 한정적이어서 불편했어요.
+\r\n보다 다양한 크기의 물품을 보관할 수 있는 시설을 마련해 주시면 좋을 것 같습니다.',
+TO_DATE('2023-12-26', 'YYYY-MM-DD'), 'voc2.jpg', TO_DATE('2023-12-25', 'YYYY-MM-DD'),
+'안녕하세요! 물품 보관 시설에 대한 의견 감사드립니다.
+\r\n물품의 크기에 따라 다양한 보관 시설을 마련하여 편의성을 높이도록 노력하겠습니다.
+\r\n이용해 주셔서 감사합니다.', 6);
+
+INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
+VALUES (seqtblVOC.NEXTVAL, '건의', '어트랙션', '놀이기구 대기 시간 예측 서비스가 있으면 좋겠어요',
+'놀이기구 대기 시간이 예측 가능한 서비스가 있다면 일정을 더 효율적으로 계획할 수 있을 것 같아요.',
+TO_DATE('2023-12-27', 'YYYY-MM-DD'), NULL, TO_DATE('2023-12-26', 'YYYY-MM-DD'), NULL, 7);
+
+INSERT INTO tblVOC (voc_seq, type, service_type, subject, content, regdate, attach, visit_date, answer, user_seq)
+VALUES (seqtblVOC.NEXTVAL, '불편', '예매', '온라인 예매 시스템이 더 간편하면 좋겠어요',
+'놀이공원을 방문하기 전에 티켓을 미리 예매하는데에 어려움을 겪었어요.
+\r\n간편한 온라인 예매 시스템을 도입해 주시면 더 편하게 놀이공원을 이용할 수 있을 것 같아요.',
+TO_DATE('2023-12-26', 'YYYY-MM-DD'), NULL, TO_DATE('2023-12-24', 'YYYY-MM-DD'), NULL, 8);
 
 /* 이용문의 */
 INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '문의유형1', '문의 제목 1', '문의 내용 1', DEFAULT,'attach1.pdf', '답변 내용 1', 1);
+VALUES (seqtblInquiry.NEXTVAL, '기타', '어린이 전용 구역에 대한 확인', '놀이공원에 어린이 전용 구역이 있는지 확인하고 싶습니다.', TO_DATE('2023-12-03', 'YYYY-MM-DD'), NULL, NULL, 2);
 
 INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '문의유형2', '문의 제목 2', '문의 내용 2', DEFAULT, NULL, '답변 내용 2', 2);
+VALUES (seqtblInquiry.NEXTVAL, '기타', '주차장 여부에 대한 확인', '놀이공원 내에 주차장이 마련되어 있는지 확인 부탁드립니다.', TO_DATE('2023-12-11', 'YYYY-MM-DD'), NULL, NULL, 3);
 
 INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '어트랙션', '후룸라이드 운영시간 문의', '12월 27일에 후룸라이드 운영하는지 궁금하여 문의 드립니다!', DEFAULT, null, null, 3);
+VALUES (seqtblInquiry.NEXTVAL, '어트랙션', '날씨에 따른 이용 취소 또는 연기 정책 문의', '날씨가 안 좋을 경우 놀이기구 이용이 취소되거나 연기되는 경우가 있는지 알려주세요.', TO_DATE('2023-12-21', 'YYYY-MM-DD'), null, null, 4);
 
 INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
-VALUES (seqtblInquiry.NEXTVAL, '예매', '예매 환불문의 드립니다', '12월 26일에 예매한 티켓을 취소했는데 결제 금액이 환불되지 않아 문의드립니다. 신속히 처리 부탁드립니다', DEFAULT, null, '죄송합니다 고객님. 12월 26일에 취소하신 예매 내역 건은 확인되었으며 환불 기간은 카드사 영업일에 따라 3~7일이 소요될 수 있습니다. 양해부탁드립니다. 감사합니다.', 3);
+VALUES (seqtblInquiry.NEXTVAL, '예매', '예매 환불문의 드립니다', '12월 26일에 예매한 티켓을 취소했는데 결제 금액이 환불되지 않아 문의드립니다. 신속히 처리 부탁드립니다', TO_DATE('2023-12-27', 'YYYY-MM-DD'), null,
+'죄송합니다 고객님.
+\r\n12월 26일에 취소하신 예매 내역 건은 확인되었으며 환불 기간은 카드사 영업일에 따라 3~7일이 소요될 수 있습니다.
+\r\n양해부탁드립니다. 감사합니다.', 3);
+
+INSERT INTO tblInquiry (inquiry_seq, type, subject, content, regdate, attach, answer, user_seq)
+VALUES (seqtblInquiry.NEXTVAL, '기타', '놀이공원에서의 휴식을 즐길 수 있는 공간에 대한 정보', '놀이공원 내에서 휴식을 즐길 수 있는 좋은 장소나 편안한 공간이 있는지 알고 싶습니다.', TO_DATE('2023-12-19', 'YYYY-MM-DD'), NULL, NULL, 5);
 
 /* FAQ */
-INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '스튜디오를 나갔다가 다시 들어올 수 있나요?', 'DD Studio에서는 스튜디오 입장 후 퇴장하시면 원칙적으로 재입장이 불가능합니다.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '파크를 나갔다가 다시 들어올 수 있나요?', 'DD-Land에서는 파크 입장 후 퇴장하시면 원칙적으로 재입장이 불가능합니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '이용정보', '홈페이지 로그인이 되지 않아요.',
 '1. 로그인이 되지 않을 때 쿠키설정을 확인해주시기 바랍니다.
-인터넷 익스플로러 브라우저 사용 시 ''쿠키 처리 방식''이 ''허용''으로 되어 있어야 로그인이 가능합니다.
-※ 확인 방법 : 인터넷 옵션 → 개인정보 → 고급 → 현재 사이트의 쿠키/링크된 사이트의 쿠키 설정 ''허용''
-
-2. 팝업 차단이 되어 있을 경우 로그인창이 뜨지 않을 수 있습니다.
-팝업 설정을 ''허용''으로 변경해주시기 바랍니다.
-※ 확인 방법 : 인터넷 옵션 → 개인정보 → ''팝업 차단 사용'' 체크박스 해지');
+\r\n인터넷 익스플로러 브라우저 사용 시 ''쿠키 처리 방식''이 ''허용''으로 되어 있어야 로그인이 가능합니다.
+\r\n※ 확인 방법 : 인터넷 옵션 → 개인정보 → 고급 → 현재 사이트의 쿠키/링크된 사이트의 쿠키 설정 ''허용''
+\r\n\r\n2. 팝업 차단이 되어 있을 경우 로그인창이 뜨지 않을 수 있습니다.\r\n팝업 설정을 ''허용''으로 변경해주시기 바랍니다.
+\r\n※ 확인 방법 : 인터넷 옵션 → 개인정보 → ''팝업 차단 사용'' 체크박스 해지');
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '개명에 따른 이름변경을 하려면 어떻게 해야하죠?', '개명신청으로 이름이 변경되셨을 경우 고객센터(1899-8900)로 연락 주시면 정보 변경이 가능합니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '고객을 위한 어떤 편의시설을 갖추고 있나요?', '안내데스크, 물품보관함, 유아휴게실, 의무실, 휴대폰 충전소, 피크닉 라운지 등 많은 시설들이 손님분들의 즐거운 시간을 위해 준비되어 있습니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '이용정보', '물건을 잃어버렸는데 어떻게 해야 할까요?',
-'홈페이지 고객센터의 분실물센터 혹은 서울랜드 중앙안내실로 확인부탁드립니다. (중앙안내실 02-509-6501)
-공원안에서 발견된 분실물들은 분실물센터로 모아지며, 회수된 물품은 분실물 접수건과 대조해서 해당고객에게 연락을 드립니다.');
+'홈페이지 고객센터의 분실물센터 혹은 DD-Land 중앙안내실로 확인부탁드립니다.(중앙안내실 02-509-6501)
+\r\n공원 안에서 발견된 분실물들은 분실물 센터로 모아지며, 회수된 물품은 분실물 접수건과 대조해서 해당고객에게 연락을 드립니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '이용정보', '어린이는 몇살부터 몇살까지인가요?', '어린이 요금은 36개월 이상의 어린이부터 초등학생까지, 청소년 요금은 중.고등학생에 한해 적용됩니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '이용정보', '애완동물을 데리고 입장할 수 있나요?',
 '소형견에 한하여 동반입장이 가능합니다. 다만 아래의 주의사항을 꼭 따라주시길 부탁드립니다.
-- 목줄 착용 후 안거나, 애견전용 유모차 및 케이지로 이동 
-- 실내시설(음식점.상점.공연장)에 입장 및 놀이시설 이용 불가
-- 배변봉투 및 휴지 필수지참, 배변 처리 필수');
+\r\n\r\n- 목줄 착용 후 안거나, 애견전용 유모차 및 케이지로 이동 
+\r\n- 실내시설(음식점.상점.공연장)에 입장 및 놀이시설 이용 불가
+\r\n- 배변봉투 및 휴지 필수지참, 배변 처리 필수');
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '액티비티', '키를 잴 때 신발을 신고 재나요?', '모든 놀이시설 이용을 위한 신장 측정시 신발을 신고 측정합니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '액티비티', '놀이시설 이용제한은 어디서 확인할 수 있나요?', '홈페이지 내 어트랙션 카테고리에서 확인 가능합니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '액티비티', '놀이시설 운영은 날씨와 관계없이 가능한가요?', '내리는 비, 눈의 양, 바람, 온도, 습도 등 기상 상황에 따라 놀이시설 운영이 제한될 수 있습니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '액티비티', '36개월 미만 어린이가 이용할 수 있는 놀이시설은 무엇인가요?',
-'DD Studio 놀이시설은 고객님의 안전한 이용을 위해 이용제한이 마련되어 있습니다.
-이용제한의 경우 연령제한이 아닌 신장제한으로 운영되고 있으니
-놀이시설 마다의 탑승 가능 신장을 확인하시어 이용해주시기 바랍니다.');
+'DD-Land 놀이시설은 고객님의 안전한 이용을 위해 이용제한이 마련되어 있습니다.
+\r\n이용제한의 경우 연령제한이 아닌 신장제한으로 운영되고 있으니 놀이시설 마다의 탑승 가능 신장을 확인하시어 이용해주시기 바랍니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '혜택', '제휴카드가 여러 장 있습니다. 티켓을 여러 장 구입할 수 있나요?',
 '가능합니다.
-다만, 같은 카드로 결제하실 경우 카드마다 이용횟수가 제한되어 있기때문에 구매가 제한될 수 있습니다.
-자세한 내용은 카드사에 문의 부탁드립니다.');
+\r\n다만, 같은 카드로 결제하실 경우 카드마다 이용횟수가 제한되어 있기 때문에 구매가 제한될 수 있습니다.
+\r\n자세한 내용은 카드사에 문의 부탁드립니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '혜택', '부모님 제휴카드로 제가 할인을 받을 수 있나요?',
-'카드는 본인사용을 원칙으로하지만
-부모님의 카드를 양도받으실 경우 카드 소유주의 신분증(또는 사본)을 지참하신다면 카드 사용이 가능합니다.');
+'카드는 본인사용을 원칙으로 하지만 부모님의 카드를 양도받으실 경우 카드 소유주의 신분증(또는 사본)을 지참하신다면 카드 사용이 가능합니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '혜택', 'KT/SKT 멤버십 포인트 부족 시 할인이 불가능한가요?',
-'KT/SKT 등 멤버십 혜택의 경우 일정한 포인트 차감 후 티켓 할인이 되기때문에
-포인트가 부족할 경우 티켓 할인이 불가할 수 있습니다.
-
-기타 포인트 차감 및 자세한 문의는 소지하신 카드 뒷면 고객센터로 문의하여 주시기 바랍니다.');
+'KT/SKT 등 멤버십 혜택의 경우 일정한 포인트 차감 후 티켓 할인이 되기때문에 포인트가 부족할 경우 티켓 할인이 불가할 수 있습니다.
+\r\n기타 포인트 차감 및 자세한 문의는 소지하신 카드 뒷면 고객센터로 문의하여 주시기 바랍니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '혜택', '제휴카드 결제가 되지 않습니다.',
-'제휴카드 결제가 되지 않는 경우는 아래와 같을수 있습니다.
-1. DD Studio 제휴카드가 아닌경우
-2. 카드사 제한이 걸려 있는경우 예) 통합한도, 실적 등
-3. 기타 인터넷, 네트워크 등 장애로 인한 경우');
+'제휴카드 결제가 되지 않는 경우는 아래와 같을 수 있습니다.
+\r\n\r\n1. DD-Land 제휴카드가 아닌 경우
+\r\n2. 카드사 제한이 걸려 있는 경우(통합한도, 실적 등)
+\r\n3. 기타 인터넷, 네트워크 등 장애로 인한 경우');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '예매', '직접 방문하지 않아도 온라인으로 티켓을 구입할 수 있나요?',
-'롯데월드 어드벤처는 더 빠르고 편리한 이용을 위해 온라인 예매 서비스를 시행하고 있습니다.
-이용권의 종류, 사용일, 결제종류 등을 선택하셔서 미리 예매하시면 받으시는 분의 휴대폰으로 모바일 티켓이 전송됩니다.
-앱을 사용해 마이티켓에 들어가시면 현재 사용할 수 있는 티켓을 바로 찾으실 수 있습니다.
-단, 2G 폰을 사용중인 손님분들은 앱을 이용한 모바일 티켓을 사용하실 수 없습니다. 
-현장에서 티켓을 별도로 구매해 주시기 바랍니다.');
+'DD-Land는 더 빠르고 편리한 이용을 위해 온라인 예매 서비스를 시행하고 있습니다.
+\r\n이용권의 종류, 사용일, 결제종류 등을 선택하셔서 미리 예매하시면 받으시는 분의 휴대폰으로 모바일 티켓이 전송됩니다.
+\r\n앱을 사용해 마이티켓에 들어가시면 현재 사용할 수 있는 티켓을 바로 찾으실 수 있습니다.
+\r\n단, 2G 폰을 사용중인 손님분들은 앱을 이용한 모바일 티켓을 사용하실 수 없습니다. 
+\r\n현장에서 티켓을 별도로 구매해 주시기 바랍니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '예매', '온라인 예매 시작 화면이 하얗게 나오는데 어떻게 하나요?',
 '온라인 예매 시작 전에 ActiveX설치가 원활히 이루어지지 않아서 그렇습니다.
-온라인 예매 시작 전에 ActiveX설치를 위한 PC 환경을 확인해주세요.');
+\r\n온라인 예매 시작 전에 ActiveX설치를 위한 PC 환경을 확인해주세요.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '예매', '예매 결제 단계에서 ''결제''버튼을 눌렀는데 아무런 반응이 없어요.',
 '결제수단에 대한 ActiveX설치가 원활히 이루어지지 않아서 그렇습니다.
-ActiveX 설치를 위한 PC 환경을 다시 한 번 확인해주세요.');
+\r\nActiveX 설치를 위한 PC 환경을 다시 한 번 확인해주세요.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '예매', '''이 웹 사이트의 추가 기능을 실행하지 못했습니다.''라는 문구가 떠요.',
 'Internet Explorer를 관리자 권한으로 실행해주세요.
-Internet Explorer 아이콘 위에서 마우스 오른쪽 버튼 클릭– 관리자 권한으로 실행 선택');
+\r\n※ Internet Explorer 아이콘 위에서 마우스 오른쪽 버튼 클릭– 관리자 권한으로 실행 선택');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
 VALUES (seqtblFAQ.nextVal, '예매', '예매 후 티켓은 어디서 받는 건가요?',
 '모바일/온라인 예매를 하셨다면 앱 안에 티켓이 생성되며, 별도의 지류티켓 발권 없이 바로 앱 화면을 통해 게이트로 입장하실 수 있습니다.');
-INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '기타', '회원가입, 탈퇴는 어떻게 하나요?', '회원가입과 탈퇴는 롯데월드 어드벤처 홈페이지에서 로그인창에서 가입과 탈퇴를 할수 있습니다.');
+INSERT INTO tblFAQ (faq_seq, type, question, answer) VALUES (seqtblFAQ.nextVal, '기타', '회원가입, 탈퇴는 어떻게 하나요?', 
+'DD-Land 홈페이지의 로그인창에서 회원가입과 탈퇴를 할 수 있습니다.');
 INSERT INTO tblFAQ (faq_seq, type, question, answer)
-VALUES (seqtblFAQ.nextVal, '기타', 'DD Studio 캐스트에 지원하려면 어떻게 해야 하나요?',
-'DD Studio는 즐겁게 일하고 손님에게 최선의 서비스를 제공할 준비가 되어 있는 지원자를 찾고 있습니다.
-DD Studio는 다양한 지원자 분들의 편의와 효율적인 채용관리를 위해 인재채용 홈페이지를 운영해 채용공고를 게시하고 있습니다.');
+VALUES (seqtblFAQ.nextVal, '기타', 'DD-Land 캐스트에 지원하려면 어떻게 해야 하나요?',
+'DD-Land는 즐겁게 일하고 손님에게 최선의 서비스를 제공할 준비가 되어 있는 지원자를 찾고 있습니다.
+\r\nDD-Land는 다양한 지원자 분들의 편의와 효율적인 채용관리를 위해 인재채용 홈페이지를 운영해 채용공고를 게시하고 있습니다.');
 
 /* 공지사항 */
 INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix)
 VALUES (seqtblNotice.nextVal, '반려견 동반 출입 안내 ''댕댕이 어서오시개''',
-        '안녕하세요. 행복을 드리는 DD Studio입니다.
-        DD Studio는 반려견 동반 출입이 가능합니다.
-        아래 내용을 확인하셔서 반려견과 함께 즐거운 여행 되세요!
-        
-        <DD Studio 반려견 동반 출입 안내>
-1. 몸무게 : 소형견(10kg 미만)
-        2. 이동방법 : 리드줄(목줄) 착용 후 안거나 케이지에 넣어 이동
-        3. 기타 확인사항
-        ① 반려견과 함께 놀이시설 및 실내 매장 이용이 불가합니다.
-        ② 공원 내에서는 반려견이 걸어다닐 수 없습니다.',
-        TO_CHAR(DATE '2023-10-01', 'YYYY-MM-DD'), NULL, 'n');
+'안녕하세요. 행복을 드리는 DD-Land입니다.
+\r\nDD-Land는 반려견 동반 출입이 가능합니다.
+\r\n아래 내용을 확인하셔서 반려견과 함께 즐거운 여행 되세요!
+\r\n\r\n<DD-Land 반려견 동반 출입 안내>\r\n1. 몸무게 : 소형견(10kg 미만)\r\n2. 이동방법 : 리드줄(목줄) 착용 후 안거나 케이지에 넣어 이동\r\n3. 기타 확인사항
+\r\n① 반려견과 함께 놀이시설 및 실내 매장 이용이 불가합니다.\r\n② 공원 내에서는 반려견이 걸어다닐 수 없습니다.',
+TO_CHAR(DATE '2023-10-01', 'YYYY-MM-DD'), NULL, 'n');
 INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '애니멀킹덤 드래곤의 역습', NULL, TO_CHAR(DATE '2023-10-01', 'YYYY-MM-DD'), 'notice2.jpg', 'n');
 INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '2023 옥토버 페스티벌', NULL, TO_CHAR(DATE '2023-10-04', 'YYYY-MM-DD'), 'notice3.jpg', 'n');
 INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '어린이를 위한 YES! 키즈코스', NULL, TO_CHAR(DATE '2023-10-10', 'YYYY-MM-DD'), 'notice4.jpg', 'y');
 INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '동화 속 신비한 모험의 세계 ''앨리스 원더하우스''', NULL, TO_CHAR(DATE '2023-10-13', 'YYYY-MM-DD'), 'notice5.png', 'n');
 INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '2023 오덕 페스티벌', NULL, TO_CHAR(DATE '2023-10-16', 'YYYY-MM-DD'), 'notice6.jpg', 'n');
 INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '국내 최대규모!! 슈퍼미러볼', NULL, TO_CHAR(DATE '2023-10-18', 'YYYY-MM-DD'), 'notice7.jpg', 'n');
-INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '주차시스템 개선 안내', NULL, TO_CHAR(DATE '2023-10-20', 'YYYY-MM-DD'), 'notice8.jpg', 'n');
-INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '날씨별 운휴시설 안내', NULL, TO_CHAR(DATE '2023-10-21', 'YYYY-MM-DD'), 'notice9.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '주차시스템 개선 안내', NULL, TO_CHAR(DATE '2023-10-27', 'YYYY-MM-DD'), 'notice8.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '날씨별 운휴시설 안내', NULL, TO_CHAR(DATE '2023-11-21', 'YYYY-MM-DD'), 'notice9.jpg', 'n');
 INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '빼빼로데이X스카이엑스', NULL, TO_CHAR(DATE '2023-10-23', 'YYYY-MM-DD'), 'notice10.jpg', 'y');
-INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '장애인 탑승예약제 시행 안내', NULL, TO_CHAR(DATE '2023-10-26', 'YYYY-MM-DD'), 'notice11.jpg', 'n');
-INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '풍선비행 탑승예약제 안내', NULL, TO_CHAR(DATE '2023-10-26', 'YYYY-MM-DD'), 'notice12.jpg', 'n');
-INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '채팅상담 이용 안내', NULL, TO_CHAR(DATE '2023-10-30', 'YYYY-MM-DD'), 'notice13.jpg', 'n');
-INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '제품 리콜 안내', NULL, TO_CHAR(DATE '2023-11-02', 'YYYY-MM-DD'), 'notice14.jpg', 'n');
-INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '나에게 딱! 맞는 DD Studio 겨울 코스는?', NULL, TO_CHAR(DATE '2023-11-13', 'YYYY-MM-DD'), 'notice15.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '장애인 탑승예약제 시행 안내', NULL, TO_CHAR(DATE '2023-11-26', 'YYYY-MM-DD'), 'notice11.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '풍선비행 탑승예약제 안내', NULL, TO_CHAR(DATE '2023-11-26', 'YYYY-MM-DD'), 'notice12.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '채팅상담 이용 안내', NULL, TO_CHAR(DATE '2023-11-30', 'YYYY-MM-DD'), 'notice13.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '제품 리콜 안내', NULL, TO_CHAR(DATE '2023-12-02', 'YYYY-MM-DD'), 'notice14.jpg', 'n');
+INSERT INTO tblNotice (notice_seq, subject, content, regdate, attach, fix) VALUES (seqtblNotice.nextVal, '나에게 딱! 맞는 DD-Land 겨울 코스는?', NULL, TO_CHAR(DATE '2023-12-13', 'YYYY-MM-DD'), 'notice15.jpg', 'n');
 
 /* 분실물센터 */
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '담요', '토토로스핀', TO_CHAR(DATE '2023-11-01', 'YYYY-MM-DD'), 'lost1.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '담요', '토토로스핀', TO_CHAR(DATE '2023-12-01', 'YYYY-MM-DD'), 'lost1.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '손수건', '회전목마', TO_CHAR(DATE '2023-11-01', 'YYYY-MM-DD'), 'lost2.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '손수건', '회전목마', TO_CHAR(DATE '2023-12-01', 'YYYY-MM-DD'), 'lost2.jpg', '보관중');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '3단 우산', '만남의 광장', TO_CHAR(DATE '2023-11-01', 'YYYY-MM-DD'), 'lost3.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '3단 우산', '만남의 광장', TO_CHAR(DATE '2023-12-01', 'YYYY-MM-DD'), 'lost3.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '장갑', '니모 이야기', TO_CHAR(DATE '2023-11-02', 'YYYY-MM-DD'), 'lost4.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '장갑', '니모 이야기', TO_CHAR(DATE '2023-12-02', 'YYYY-MM-DD'), 'lost4.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '안경', '선글라스', '벼랑 기차', TO_CHAR(DATE '2023-11-02', 'YYYY-MM-DD'), 'lost5.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '안경', '선글라스', '벼랑 기차', TO_CHAR(DATE '2023-12-02', 'YYYY-MM-DD'), 'lost5.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '모자', '지브리의 보은', TO_CHAR(DATE '2023-11-03', 'YYYY-MM-DD'), 'lost6.jpg', '보관중');
+VALUES (seqtblLostProperty.nextVal, '기타', '모자', '지브리의 보은', TO_CHAR(DATE '2023-12-03', 'YYYY-MM-DD'), 'lost6.jpg', '보관중');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '목도리', '뛰뛰빵빵', TO_CHAR(DATE '2023-11-03', 'YYYY-MM-DD'), 'lost7.jpg', '보관중');
+VALUES (seqtblLostProperty.nextVal, '기타', '목도리', '뛰뛰빵빵', TO_CHAR(DATE '2023-12-03', 'YYYY-MM-DD'), 'lost7.jpg', '보관중');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '우산', '니모 이야기', TO_CHAR(DATE '2023-11-03', 'YYYY-MM-DD'), 'lost8.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '우산', '니모 이야기', TO_CHAR(DATE '2023-12-03', 'YYYY-MM-DD'), 'lost8.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '유니콘 열쇠고리', '회전목마', TO_CHAR(DATE '2023-11-04', 'YYYY-MM-DD'), 'lost9.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '유니콘 열쇠고리', '회전목마', TO_CHAR(DATE '2023-12-04', 'YYYY-MM-DD'), 'lost9.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '의류', '검정색 조끼', '후룸라이드', TO_CHAR(DATE '2023-11-04', 'YYYY-MM-DD'), 'lost10.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '의류', '검정색 조끼', '후룸라이드', TO_CHAR(DATE '2023-12-04', 'YYYY-MM-DD'), 'lost10.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '의류', '네이비색 가디건', '토토로스윙', TO_CHAR(DATE '2023-11-05', 'YYYY-MM-DD'), 'lost11.jpg', '보관중');
+VALUES (seqtblLostProperty.nextVal, '의류', '네이비색 가디건', '토토로스윙', TO_CHAR(DATE '2023-12-05', 'YYYY-MM-DD'), 'lost11.jpg', '보관중');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '무선 충전기', '환타지드림', TO_CHAR(DATE '2023-11-05', 'YYYY-MM-DD'), 'lost12.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '무선 충전기', '환타지드림', TO_CHAR(DATE '2023-12-05', 'YYYY-MM-DD'), 'lost12.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '가방', '흰색 에코백', '지트란티스', TO_CHAR(DATE '2023-11-06', 'YYYY-MM-DD'), 'lost13.jpg', '보관중');
+VALUES (seqtblLostProperty.nextVal, '가방', '흰색 에코백', '지트란티스', TO_CHAR(DATE '2023-12-06', 'YYYY-MM-DD'), 'lost13.jpg', '보관중');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '털실 목도리', '마녀 배달부 디디', TO_CHAR(DATE '2023-11-06', 'YYYY-MM-DD'), 'lost14.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '털실 목도리', '마녀 배달부 디디', TO_CHAR(DATE '2023-12-06', 'YYYY-MM-DD'), 'lost14.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '넥타이', '빗자루 여행', TO_CHAR(DATE '2023-11-06', 'YYYY-MM-DD'), 'lost15.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '넥타이', '빗자루 여행', TO_CHAR(DATE '2023-12-06', 'YYYY-MM-DD'), 'lost15.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '방석', '너구리 대작전', TO_CHAR(DATE '2023-11-07', 'YYYY-MM-DD'), 'lost16.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '방석', '너구리 대작전', TO_CHAR(DATE '2023-12-07', 'YYYY-MM-DD'), 'lost16.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '축구공', '만남의 광장', TO_CHAR(DATE '2023-11-07', 'YYYY-MM-DD'), 'lost17.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '축구공', '만남의 광장', TO_CHAR(DATE '2023-12-07', 'YYYY-MM-DD'), 'lost17.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '텀블러', '회전목마', TO_CHAR(DATE '2023-11-08', 'YYYY-MM-DD'), 'lost18.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '텀블러', '회전목마', TO_CHAR(DATE '2023-12-08', 'YYYY-MM-DD'), 'lost18.jpg', '보관중');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '장갑', '지브리의 보은', TO_CHAR(DATE '2023-11-08', 'YYYY-MM-DD'), 'lost19.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '장갑', '지브리의 보은', TO_CHAR(DATE '2023-12-08', 'YYYY-MM-DD'), 'lost19.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '카메라', '카메라 렌즈 뚜껑', '토토로스핀', TO_CHAR(DATE '2023-11-08', 'YYYY-MM-DD'), 'lost20.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '카메라', '카메라 렌즈 뚜껑', '토토로스핀', TO_CHAR(DATE '2023-12-08', 'YYYY-MM-DD'), 'lost20.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '강아지 인형', '니모 이야기', TO_CHAR(DATE '2023-11-09', 'YYYY-MM-DD'), 'lost21.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '강아지 인형', '니모 이야기', TO_CHAR(DATE '2023-12-09', 'YYYY-MM-DD'), 'lost21.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '모자', '황야의 무법자', TO_CHAR(DATE '2023-11-10', 'YYYY-MM-DD'), 'lost22.jpg', '보관중');
+VALUES (seqtblLostProperty.nextVal, '기타', '모자', '황야의 무법자', TO_CHAR(DATE '2023-12-10', 'YYYY-MM-DD'), 'lost22.jpg', '보관중');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '우산', '뛰뛰빵빵', TO_CHAR(DATE '2023-11-10', 'YYYY-MM-DD'), 'lost23.jpg', '보관중');
+VALUES (seqtblLostProperty.nextVal, '기타', '우산', '뛰뛰빵빵', TO_CHAR(DATE '2023-12-10', 'YYYY-MM-DD'), 'lost23.jpg', '보관중');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '기타', '모자', '환타지드림', TO_CHAR(DATE '2023-11-11', 'YYYY-MM-DD'), 'lost24.jpg', '수령완료');
+VALUES (seqtblLostProperty.nextVal, '기타', '모자', '환타지드림', TO_CHAR(DATE '2023-12-11', 'YYYY-MM-DD'), 'lost24.jpg', '수령완료');
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-VALUES (seqtblLostProperty.nextVal, '안경', '선글라스', '후룸라이드', TO_CHAR(DATE '2023-11-14', 'YYYY-MM-DD'), 'lost25.jpg', '보관중');
+VALUES (seqtblLostProperty.nextVal, '안경', '선글라스', '후룸라이드', TO_CHAR(DATE '2023-12-14', 'YYYY-MM-DD'), 'lost25.jpg', '보관중');
 
 /* 티켓 */
 INSERT INTO TBLTICKET (TICKET_SEQ, TICKET_TYPE, PERSON_TYPE, AGE, PRICE) VALUES (SEQTBLTICKET.nextval, '1Day', '개인', '성인', 10000);
@@ -3138,7 +3177,7 @@ INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ti
 VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-11-10', 'YYYY-MM-DD'), TO_DATE('2023-11-20', 'YYYY-MM-DD'), 1, 10000, 1, 1);
 
 INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
-VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-11-11', 'YYYY-MM-DD'), TO_DATE('2023-11-21', 'YYYY-MM-DD'), 2, 10000, 2, 2);
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-11-11', 'YYYY-MM-DD'), TO_DATE('2023-11-29', 'YYYY-MM-DD'), 2, 10000, 2, 2);
 
 INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
 VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-03', 'YYYY-MM-DD'), TO_DATE('2023-12-06', 'YYYY-MM-DD'), 3, 21000, 3, 3);
@@ -3150,7 +3189,7 @@ INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ti
 VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-05', 'YYYY-MM-DD'), TO_DATE('2023-12-08', 'YYYY-MM-DD'), 5, 45000, 5, 5);
 
 INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
-VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-06', 'YYYY-MM-DD'), TO_DATE('2023-12-30', 'YYYY-MM-DD'), 6, 51000, 6, 6);
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-06', 'YYYY-MM-DD'), TO_DATE('2023-12-25', 'YYYY-MM-DD'), 6, 51000, 6, 6);
 
 INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
 VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-06', 'YYYY-MM-DD'), TO_DATE('2023-12-13', 'YYYY-MM-DD'), 6, 51000, 7, 6);
@@ -3159,19 +3198,17 @@ INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ti
 VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-06', 'YYYY-MM-DD'), TO_DATE('2023-12-14', 'YYYY-MM-DD'), 6, 51000, 8, 6);
 
 INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
-VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-20', 'YYYY-MM-DD'), TO_DATE('2023-12-29', 'YYYY-MM-DD'), 1, 10000, 2, 3);
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-20', 'YYYY-MM-DD'), TO_DATE('2023-12-26', 'YYYY-MM-DD'), 1, 10000, 2, 3);
 
 INSERT INTO tblTicketBook (ticket_book_seq, book_date, visit_date, ea, price, ticket_seq, benefit_seq)
-VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-19', 'YYYY-MM-DD'), TO_DATE('2023-12-27', 'YYYY-MM-DD'), 2, 20000, 1, 4);
+VALUES (seqtblTicketBook.NEXTVAL, TO_DATE('2023-12-19', 'YYYY-MM-DD'), TO_DATE('2023-12-24', 'YYYY-MM-DD'), 2, 20000, 1, 4);
+
 /* 회원/예매 */
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
-VALUES (seqtblUserBook.NEXTVAL, 1, 1);
+VALUES (seqtblUserBook.NEXTVAL, 2, 1);
 
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
 VALUES (seqtblUserBook.NEXTVAL, 2, 2);
-
-INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
-VALUES (seqtblUserBook.NEXTVAL, 3, 1);
 
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
 VALUES (seqtblUserBook.NEXTVAL, 3, 2);
@@ -3183,36 +3220,131 @@ INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
 VALUES (seqtblUserBook.NEXTVAL, 3, 4);
 
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
-VALUES (seqtblUserBook.NEXTVAL, 3, 5);
+VALUES (seqtblUserBook.NEXTVAL, 4, 4);
 
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
-VALUES (seqtblUserBook.NEXTVAL, 3, 6);
+VALUES (seqtblUserBook.NEXTVAL, 5, 5);
 
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
-VALUES (seqtblUserBook.NEXTVAL, 3, 9);
+VALUES (seqtblUserBook.NEXTVAL, 6, 6);
 
 INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
-VALUES (seqtblUserBook.NEXTVAL, 3, 10);
+VALUES (seqtblUserBook.NEXTVAL, 7, 9);
+
+INSERT INTO tblUserBook (user_book_seq, user_seq, ticket_book_seq)
+VALUES (seqtblUserBook.NEXTVAL, 8, 10);
 
 /* 리뷰 */
-INSERT INTO tblReview (review_seq, subject, content, readcount, user_book_seq)
-VALUES (seqtblReview.NEXTVAL, '좋은 서비스', '서비스가 매우 만족스러웠습니다.', 10, 1);
+INSERT INTO tblReview (review_seq, subject, content, regdate, readcount, user_book_seq)
+VALUES (seqtblReview.NEXTVAL, '환상적인 체험과 다양한 먹거리',
+'DD-Land는 정말로 환상적이었어요.
+\r\n먼저, 놀이기구의 다양성은 기대 이상이었고, 각각의 놀이기구에서의 경험은 정말 잊을 수 없는 추억으로 남았어요.
+\r\n또한, 공원 내 음식도 인상적이었습니다. 현지 음식뿐만 아니라 다양한 옵션을 제공해 주어서 식사 시간도 특별했어요.
+\r\n무엇보다도, 직원들의 서비스와 안내가 매우 친절하고 신속해서, 더욱 편안한 시간을 보냈습니다.', TO_DATE('2023-11-21', 'YYYY-MM-DD'), 30, 2);
 
-INSERT INTO tblReview (review_seq, subject, content, readcount, user_book_seq)
-VALUES (seqtblReview.NEXTVAL, '관람 후기', '영화가 정말 재밌었습니다.', 15, 2);
+INSERT INTO tblReview (review_seq, subject, content, regdate, readcount, user_book_seq)
+VALUES (seqtblReview.NEXTVAL, '가족끼리 즐길 수 있는 완벽한 장소',
+'이 놀이공원은 가족끼리 즐길 수 있는 완벽한 장소입니다.
+\r\n어른들이 즐길 수 있는 다양한 놀이기구와 아이들을 위한 안전한 놀이터가 마련돼 있어서 가족 모두가 만족할 수 있었습니다.
+\r\n뿐만 아니라, 공원 내에는 특별한 이벤트와 쇼도 자주 열려서 가족 모두가 함께 즐길 수 있는 분위기였습니다.
+\r\n특히, 이벤트에서 아이들이 캐릭터와 함께할 수 있는 시간이 많아 좋았습니다.
+\r\nDD-Land를 통해 가족 모두가 함께 행복한 순간을 만들 수 있어서 정말로 추천합니다.', TO_DATE('2023-12-01', 'YYYY-MM-DD'), 45, 2);
 
-INSERT INTO tblReview (review_seq, subject, content, readcount, user_book_seq)
-VALUES (seqtblReview.NEXTVAL, '추천해요', '아이템이 너무 귀여워서 추천합니다.', 8, 3);
+INSERT INTO tblReview (review_seq, subject, content, regdate, readcount, user_book_seq)
+VALUES (seqtblReview.NEXTVAL, '안전한 놀이기구와 친절한 직원들',
+'DD-Land를 방문하면서 가장 눈에 띄었던 것은 놀이기구의 안전성과 직원들의 친절함이었습니다.
+\r\n놀이기구는 정기적인 점검과 안전 테스트를 거쳐 운영되어서, 각 기구를 이용할 때 안전에 대한 걱정이 전혀 없었습니다.
+\r\n또한, 직원들은 항상 손님들에게 친절하게 응대해 주었고, 어떠한 문제나 질문에도 신속하게 대응해 주었습니다.
+\r\n이런 안전한 환경과 친절한 서비스가 더욱 즐거운 시간을 만들어 주었습니다.', TO_DATE('2023-11-30', 'YYYY-MM-DD'), 28, 3);
+
+INSERT INTO tblReview (review_seq, subject, content, regdate, readcount, user_book_seq)
+VALUES (seqtblReview.NEXTVAL, '좋은 기억으로 남은 놀이공원',
+'DD-Land를 방문 후 좋은 기억이 많이 남아서 정말 만족스러웠어요.
+\r\n먼저, 놀이기구의 다양성과 스릴이 기대 이상이었어요.
+\r\n그리고 공원 내의 휴게 공간이 풍부해서 쉬기에 좋았고, 다양한 행사와 이벤트로 더욱 즐거운 시간을 보낼 수 있었어요.
+\r\n마지막으로, 놀이공원의 직원들이 항상 웃는 얼굴로 친절하게 응대해 주어서 더욱 기분 좋게 느껴졌어요.', TO_DATE('2023-12-08', 'YYYY-MM-DD'), 22, 3);
+
+INSERT INTO tblReview (review_seq, subject, content, regdate, readcount, user_book_seq)
+VALUES (seqtblReview.NEXTVAL, '다양한 이벤트와 라이브 쇼의 매력',
+'다양한 이벤트와 라이브 쇼가 열려서 정말로 즐거운 시간을 보낼 수 있었습니다.
+\r\n특히, 라이브 음악과 춤으로 가득한 행사는 분위기를 더욱 흥미진진하게 만들어 주었습니다.
+\r\n그리고 이런 이벤트를 통해 DD-Land만의 차별화된 매력을 느낄 수 있어서 특별한 추억으로 남을 것 같아요.', TO_DATE('2023-12-11', 'YYYY-MM-DD'), 19, 3);
+
+INSERT INTO tblReview (review_seq, subject, content, regdate, readcount, user_book_seq)
+VALUES (seqtblReview.NEXTVAL, '다시 방문하고 싶은 가치 있는 곳',
+'DD-Land를 재방문하고 싶을 정도로 너무 좋았어요.
+\r\n놀이기구의 다양성과 안전한 운영, 그리고 다채로운 이벤트와 특별한 행사들이 DD-Land를 특별한 곳으로 만들어 주었어요.
+\r\n또한, 놀이기구 이용 외에도 휴게 공간과 먹거리의 다양성이 풍부해서 하루종일 편안한 시간을 보낼 수 있었어요.
+\r\n이런 다양한 측면에서 재방문 시에도 좋은 기억을 선사해 줄 것 같아서 더욱 기대돼요.', TO_DATE('2023-12-08', 'YYYY-MM-DD'), 42, 4);
+
+INSERT INTO tblReview (review_seq, subject, content, regdate, readcount, user_book_seq)
+VALUES (seqtblReview.NEXTVAL, '친절한 직원들과 따뜻한 서비스',
+'DD-Land를 방문하면서 가장 인상 깊었던 것 중 하나는 직원들의 친절함과 따뜻한 서비스였어요.
+\r\n어떤 질문이나 요청에도 항상 웃는 얼굴로 친절하게 대응해 주셔서 편안했어요.
+\r\n놀이기구를 이용하는 동안에도 항상 안내와 도움을 주셔서, 덕분에 즐거운 순간을 만들 수 있었어요.
+\r\n이런 친절한 서비스가 DD-Land의 매력을 한층 더 높여주었어요!', TO_DATE('2023-12-13', 'YYYY-MM-DD'), 24, 5);
+
+INSERT INTO tblReview (review_seq, subject, content, regdate, readcount, user_book_seq)
+VALUES (seqtblReview.NEXTVAL, '특별한 날을 위한 행사와 할인 혜택',
+'DD-Land에서는 특별한 날을 더욱 특별하게 만들어 주는 다양한 이벤트와 할인 혜택이 마련돼 있어서 여행 계획을 세우는 데 도움이 되었습니다.
+\r\n이런 세심한 배려가 놀이공원을 더욱 특별하게 만들어 주었습니다.', TO_DATE('2023-12-26', 'YYYY-MM-DD'), 8, 6);
+
+INSERT INTO tblReview (review_seq, subject, content, regdate, readcount, user_book_seq)
+VALUES (seqtblReview.NEXTVAL, '독특한 테마와 아트워크가 돋보이는 장소',
+'DD-Land는 독특한 테마와 아트워크로 가득한 곳이어서, 제 눈과 귀를 즐겁게 해주었습니다.
+\r\n각 존마다 다른 테마가 돋보여서 놀이공원이 하나의 예술 작품처럼 느껴졌어요.
+\r\n특히, 테마에 맞춰 디자인된 놀이기구와 건물들로 인해 더욱 창의적이고 특별한 경험을 했습니다.', TO_DATE('2023-12-27', 'YYYY-MM-DD'), 13, 7);
+
+INSERT INTO tblReview (review_seq, subject, content, regdate, readcount, user_book_seq)
+VALUES (seqtblReview.NEXTVAL, '환경 친화적인 놀이공원의 매력',
+'DD-Land는 환경 친화적인 운영 체제를 갖추고 있어서 환경에 대한 책임감을 느낄 수 있었습니다.
+\r\n재활용품 사용과 폐기물 관리 등에 신경을 쓰면서도 여전히 훌륭한 서비스와 놀이기구를 제공해 주어서, 환경에 대한 고민을 함께 할 수 있는 곳으로서 이 놀이공원을 추천하고 싶습니다.', TO_DATE('2023-12-25', 'YYYY-MM-DD'), 3, 8);
 
 /* 리뷰이미지 */
 INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
-VALUES (seqtblReviewImg.NEXTVAL, 'reviewimg1.png', 1);
+VALUES (seqtblReviewImg.NEXTVAL, 'review1.jpg', 1);
 
 INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
-VALUES (seqtblReviewImg.NEXTVAL, 'reviewimg2.png', 2);
+VALUES (seqtblReviewImg.NEXTVAL, 'review2.jpg', 1);
 
 INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
-VALUES (seqtblReviewImg.NEXTVAL, 'reviewimg3.png', 3);
+VALUES (seqtblReviewImg.NEXTVAL, 'review3.jpg', 2);
+
+INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
+VALUES (seqtblReviewImg.NEXTVAL, 'review4.jpg', 2);
+
+INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
+VALUES (seqtblReviewImg.NEXTVAL, 'review5.jpg', 2);
+
+INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
+VALUES (seqtblReviewImg.NEXTVAL, 'review6.jpg', 3);
+
+INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
+VALUES (seqtblReviewImg.NEXTVAL, 'review7.jpg', 3);
+
+INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
+VALUES (seqtblReviewImg.NEXTVAL, 'review8.jpg', 4);
+
+INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
+VALUES (seqtblReviewImg.NEXTVAL, 'review9.jpg', 4);
+
+INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
+VALUES (seqtblReviewImg.NEXTVAL, 'review10.jpg', 5);
+
+INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
+VALUES (seqtblReviewImg.NEXTVAL, 'review11.jpg', 6);
+
+INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
+VALUES (seqtblReviewImg.NEXTVAL, 'review12.jpg', 7);
+
+INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
+VALUES (seqtblReviewImg.NEXTVAL, 'review13.png', 8);
+
+INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
+VALUES (seqtblReviewImg.NEXTVAL, 'review14.jpg', 9);
+
+INSERT INTO tblReviewImg (review_img_seq, img, review_seq)
+VALUES (seqtblReviewImg.NEXTVAL, 'review15.jpg', 10);
 
 /* 아이템 */
 insert into tblitem values (seqtblitem.nextval, 'White 드레스', '하얀 공주님 드레스', '200000', '1');

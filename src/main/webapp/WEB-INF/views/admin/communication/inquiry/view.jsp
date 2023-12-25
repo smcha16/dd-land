@@ -92,6 +92,9 @@
     #modal-content {
     	white-space: pre-line;
 	}
+	#modal-answer {
+    	min-height: 150px;
+    }
   	.pagination {
    		justify-content: center;
    		margin-top: 40px;
