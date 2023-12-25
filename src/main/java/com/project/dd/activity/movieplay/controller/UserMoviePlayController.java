@@ -45,6 +45,11 @@ public class UserMoviePlayController {
 		//날짜별 상영 영화 목록
 		List<MovieDTO> list = service.getMoviePlayList(map, date);
 		
+		//줄거리 100글자 이상 자르기
+		for (MovieDTO dto : list) {
+			dto.setStory(dto.getStory().substring(0, 101) + "..."); 
+		}
+		
 		//페이징
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
