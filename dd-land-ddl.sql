@@ -66,7 +66,7 @@ DELETE FROM tblRestaurantImg;
 DELETE FROM tblRestaurant;
 DELETE FROM tblUser;
 
-/* DROP TABLE_49개 */
+/* DROP TABLE_55개 */
 DROP TABLE tblAttractionLocation;
 DROP TABLE tblFestivalLocation;
 DROP TABLE tblTheaterLocation;
@@ -711,17 +711,21 @@ CREATE SEQUENCE seqtblUserBuy;
 
 /* 나래 누나 View */
 -- 1. Attraction(Update_18DEC23)
+
+
+
 create or replace view vwAttractionList
 as
 select a.*, 
 (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1)as img,
-nvl((select 'y' from tblAttractionclose where attraction_seq = a.attraction_seq and to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')), 'n')as close,
+nvl((select 'y' from tblAttractionclose where attraction_seq = a.attraction_seqand to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')), 'n')as close,
 (select attraction_location_seq from tblAttractionLocation where attraction_seq = a.attraction_seq) as attraction_location_seq,
 (select lat from tblAttractionLocation where attraction_seq = a.attraction_seq) as lat,
 (select lng from tblAttractionLocation where attraction_seq = a.attraction_seq) as lng
 from tblAttraction a
 where name not like '%(운영종료)%'
 order by a.attraction_seq desc;
+
 
 -- 기존 view > vwAttractionOne 삭제
 
