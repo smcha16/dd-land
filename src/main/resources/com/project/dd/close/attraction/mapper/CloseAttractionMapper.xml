@@ -29,7 +29,7 @@
 	</select>
 	
 	<update id="editClose" parameterType="com.project.dd.close.attraction.domain.CloseAttractionDTO">
-		update tblattractionclose set start_date = #{start_date}, end_date = #{end_date} where attraction_close_seq = #{attraction_close_seq}
+		update tblattractionclose set start_date = to_date(#{start_date}, 'yyyy-mm-dd'), end_date = to_date(#{end_date}, 'yyyy-mm-dd') where attraction_close_seq = #{attraction_close_seq}
 	</update>
 	
 	
