@@ -87,7 +87,7 @@ public class AdminMoviePlayController {
 	 * 추가한 영화 상영을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 메서드입니다.
 	 * 
 	 * @param model 모델 객체
-	 * @param dto 영화상영 DTO 객체
+	 * @param dto  MoviePlayDTO 객체
 	 * @return 이동할 페이지 주소
 	 */
 	@PostMapping(value = "/addok.do")
@@ -126,7 +126,7 @@ public class AdminMoviePlayController {
 	 * 수정한 영화 상영을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 메서드입니다.
 	 * 
 	 * @param model 모델 객체
-	 * @param dto 영화상영 DTO 객체
+	 * @param dto MoviePlayDTO 객체
 	 * @return 이동할 페이지 주소
 	 */
 	@PostMapping(value = "/editok.do")

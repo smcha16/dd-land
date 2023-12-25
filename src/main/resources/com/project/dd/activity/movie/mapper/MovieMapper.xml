@@ -4,43 +4,36 @@
 <!-- namespace == 호출할 Interface 이름 적기 -->
 <mapper namespace="com.project.dd.activity.movie.mapper.MovieMapper">
 	
-	<!-- id == 인터페이스의 추상메서드의 이름 -->
-	<select id="getMovieList" parameterType="String" resultType="com.project.dd.activity.movie.domain.MovieDTO">
-		<if test="date == 'sysdate'">
-		select * from vwMovieList
-		</if>
-		<if test="date != 'sysdate'">
-		select a.* from tblMovie a
-		where exists (select 'O' from tblMoviePlay b 
-						where #{date}
-							between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')
-						and b.movie_seq = a.movie_seq 
-						and not exists(select 'O' from tblTheaterClose 
-										where #{date}
-											between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')
-										and theater_seq = b.theater_seq))
-		</if>
+	<!-- Admin용 -->
+	<!-- Admin용 페이징 -->
+	<select id="getAdminPagingTotalPosts" parameterType="map" resultType="int">
+		select count(*) from tblMovie where name not like '%(상영종료)%'
+		<if test="searchStatus == 'y'.toString()">
+	        and (name like '%' || #{word} || '%' or story like '%' || #{word} || '%')
+	  	</if>
+	  	order by movie_seq desc
 	</select>
 	
-	<!-- User용 -->
-	
-	
-	
-	<select id="getMoviePlayList">
-	
-	</select>
-	
-	
-	<select id="getMovie" parameterType="String" resultType="com.project.dd.activity.movie.domain.MovieDTO">
-		select * from tblMovie where movie_seq = #{movie_seq}
-	</select>
-	
-	<!-- Admin -->
+	<select id="getMovieList" parameterType="map" resultType="com.project.dd.activity.movie.domain.MovieDTO">
+		select *
+		from (select n.*, rownum as rnum from(
+		
+			select * from tblMovie where name not like '%(상영종료)%' order by movie_seq desc) n
+			<if test="searchStatus == 'y'.toString()">
+	        	where name like '%' || #{word} || '%' or story like '%' || #{word} || '%'
+	  		</if>
+			
+		) where rnum between #{startIndex} and #{endIndex}
+	</select> <!-- 페이징 끝 -->
 	
 	<insert id="addMovie" parameterType="com.project.dd.activity.movie.domain.MovieDTO">
 		INSERT INTO tblMovie (movie_seq, name, story, runningtime, img, preview)
 		VALUES (seqtblMovie.NEXTVAL, #{name}, #{story}, #{runningtime}, #{img}, #{preview})	
 	</insert>
+	
+	<select id="getMovie" parameterType="String" resultType="com.project.dd.activity.movie.domain.MovieDTO">
+		select * from tblMovie where movie_seq = #{movie_seq}
+	</select>
 	
 	<select id="getMovieImgFileName" parameterType="String" resultType="String">
 		select img from tblMovie where movie_seq = #{movie_seq}
@@ -54,22 +47,4 @@
 		update tblMovie set name = name || '(상영종료)' where movie_seq = #{movie_seq}
 	</update>
 	
-	<!-- 페이징 --> <!-- 일단 admin에서만 사용하도록 from tblMovie 설정, user에서도 사용하게되면 form 테이블 수정 필요 -->
-	<select id="getTotalCount" parameterType="String" resultType="int">
-		<if test="solting == 'admin'">
-		select count(*) from tblMovie where name not like '%(상영종료)%'
-		</if>
-		
-	</select>
-	
-	<select id="getMovieListAll" parameterType="map" resultType="com.project.dd.activity.movie.domain.MovieDTO">
-		select *
-		from (select n.*, rownum as rnum from
-				(select * from tblMovie where name not like '%(상영종료)%') n)
-		where rnum between #{startIndex} and #{endIndex}
-	</select>
-	
-	<select id="checkMovieNameDuplication" parameterType="com.project.dd.activity.movie.domain.MovieDTO" resultType="int">
-		select count(*) from tblMovie where name = #{name}
-	</select>
 </mapper>

@@ -7,17 +7,36 @@
 	<!-- User용 -->
 	<!-- User용 페이징 -->
 	<select id="getUserPagingTotalPosts" parameterType="String" resultType="int">
-		select count(*)
-		from tblMovie
-		where movie_seq in (select movie_seq
-							from vwMoviePlayList
-							where close = 'n' 
-							<if test="date == 'sysdate'">
-							and to_char(sysdate, 'yyyy-mm-dd') between start_date and end_date)
-							</if>
-							<if test="date != 'sysdate'">
-							and #{date} between start_date and end_date)
-							</if>
+		select count(*) from tblMovie
+			where movie_seq in (select movie_seq
+									from (select a.movie_play_seq, a.movie_seq, a.time, to_char(a.start_date, 'yyyy-mm-dd') as start_date, to_char(a.end_date, 'yyyy-mm-dd') as end_date, a.theater_seq,
+											(select name from tblTheater where theater_seq = a.theater_seq) as theater_name,
+											(select name from tblMovie where movie_seq = a.movie_seq) as movie_name,
+											(select story from tblMovie where movie_seq = a.movie_seq) as story,
+											(select runningtime from tblMovie where movie_seq = a.movie_seq) as runningtime,
+											(select img from tblMovie where movie_seq = a.movie_seq) as img,
+											(select preview from tblMovie where movie_seq = a.movie_seq) as preview,
+											(select theater_location_seq from tblTheaterLocation where theater_seq = a.theater_seq) as theater_location_seq,
+											(select lat from tblTheaterLocation where theater_seq = a.theater_seq) as lat,
+											(select lng from tblTheaterLocation where theater_seq = a.theater_seq) as lng,
+											nvl((select 'y' from tblTheaterClose
+													<if test="date == 'sysdate'">
+														where to_char(sysdate, 'yyyy-mm-dd') 
+													</if>
+													<if test="date != 'sysdate'">
+														where #{date}
+													</if>
+														between to_char(start_date,'yyyy-mm-dd') and to_char(end_date,'yyyy-mm-dd')
+													and theater_seq = a.theater_seq), 'n') as close
+											from tblMovieplay a
+											order by a.movie_play_seq desc)
+									where close = 'n'
+										<if test="date == 'sysdate'">
+										and to_char(sysdate, 'yyyy-mm-dd') between start_date and end_date)
+										</if>
+										<if test="date != 'sysdate'">
+										and #{date} between start_date and end_date)
+										</if>
 	</select>
 	
 	<select id="getMoviePlayList" parameterType="map" resultType="com.project.dd.activity.movie.domain.MovieDTO">

@@ -1,5 +1,9 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<!-- Slick -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
 <style>
 	#main h1 {
@@ -67,9 +71,9 @@
     	background-color: #f2f2f2 !important;
   	}
   	.pagination {
-   		justify-content: center;
-   		margin-top: 40px;
-  	}
+		justify-content: center;
+		margin-top: 40px;
+	}
   	
   	/* 목록 커서 CSS */
   	table td:nth-child(3) a {
@@ -81,6 +85,83 @@
   	table td:nth-child(6) i {
 		cursor: pointer;
 	}
+	
+	/* slick slider */
+	.image-slider {
+		width: 800px;
+		height: 350px;
+    }
+    
+	.image-slider div {
+		width: 800px;
+		height: 350px;
+		overflow: hidden;
+	}
+	
+	.image-slider img {
+		width: 100%;
+		max-height: 100%;
+		object-fit: cover;
+	}
+	
+	/* Slick Button Style */
+	.slick-prev, .slick-next {
+		border: 0;
+		background: transparent;
+		z-index: 100;
+		position: absolute;
+	}
+	
+	.slick-prev {
+		top: 50%;
+		left: 20px;
+	}
+	
+	.slick-next {
+		top: 50%;
+		right: 20px;
+	}
+	
+	/* 모달 CSS */
+	#modal table.m-desc {
+		width: 100%;
+		font-size: 14px;
+	}
+	
+	#modal table tr > th {
+		/* width: 100px; */
+		text-align: left;
+		font-weight: bold;
+		background: #FFF !important;
+		padding: 10px;
+	}
+	
+	#modal table tr > td {
+		padding: 10px;
+	}
+	
+	.m-story {
+		padding: 10px;
+	}
+	
+	.modal-body {
+		padding: 0;
+	}
+	
+	#preview-modal .modal-content {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		width: unset;
+		color: var(--bs-modal-color);
+		pointer-events: auto;
+		background-color: var(--bs-modal-bg);
+		background-clip: padding-box;
+		border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+		border-radius: var(--bs-modal-border-radius);
+		outline: 0;
+	}
+	
 </style>
 
 <!-- ======= Main ======= -->
@@ -96,9 +177,10 @@
 				<div class="row">
 					<div class="col-12">
 
+						<!-- 검색 -->
               			<div id="search" class="header">
-                  			<form class="search-form d-flex align-items-center" method="POST" action="#">
-                    			<input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                  			<form method="GET" action="/dd/admin/activity/movie/view.do" class="search-form d-flex align-items-center">
+                    			<input type="text" name="word" placeholder="영화명 또는 줄거리를 입력하세요." autocomplete="off">
                     			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
                     			
                     			<!-- 토큰 -->
@@ -124,8 +206,7 @@
 	                        					<th></th>
 	                        					<th>No</th>
 	                        					<th>이름</th>
-	                        					<th>러닝타임(분)</th>
-	                        					<th>포스터</th>
+	                        					<th>줄거리</th>
 	                        					<th>예고편</th>
 	                      					</tr>
 	                    				</thead>
@@ -133,98 +214,130 @@
 	                    					<c:forEach items="${list}" var="dto" varStatus="status">
 		                      					<tr>
 		                        					<td><input type="checkbox" name="movie_seq" value="${dto.movie_seq}"></td>
-		                        					<td>${status.count}</td>
-		                        					<td><a><c:out value="${dto.name}" /></a></td>
-		                        					<td>${dto.runningtime}</td>
-		                        					<c:if test="${dto.img == 'movie.png'}">
-		                        						<td></td>
-		                        					</c:if>
-		                        					<c:if test="${dto.img != 'movie.png'}">
-		                        						<td><i class="bi bi-image"></i></td>
-		                        					</c:if>
+		                        					<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
+		                        					<td><a onclick="showModal('${dto.movie_seq}', `${dto.name}`,`${dto.story}`,'${dto.runningtime}', `${dto.img}`)"><c:out value="${dto.name}" /></a></td>
+		                        					<td><c:out value="${fn:substring(dto.story, 0, 30)}" />
+		                        						<c:if test="${fn:length(dto.story) > 30}">
+		                        							...
+		                        						</c:if>
+		                        					</td>
 		                        					<c:if test="${dto.preview == null || dto.preview == ''}">
 		                        						<td></td>
 	                        						</c:if>
 		                        					<c:if test="${dto.preview != null && dto.preview != ''}">
-		                        						<td><i class="bi bi-file-earmark-play"></i></td>
+		                        						<td><a onclick="showPreviewModal('${dto.movie_seq}', `${dto.name}`)"><i class="bi bi-file-earmark-play"></i></a></td>
 	                        						</c:if>
 		                      					</tr>
 	                      					</c:forEach>
 	                   					</tbody>
-	                  					</table>
+                  					</table>
 	                  					
-	                  					<!-- 토큰 -->
-										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-									</form>
-									
-<!-- 페이징 -->
-	<nav id="page-bar" aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-			<c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
-				<c:choose>
-					<c:when test="${pageStatus.index == currentPage}">
-						<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
-					</c:when>
-					<c:otherwise>
-						<li class="page-item"><a class="page-link"
-							href="/dd/admin/activity/movie/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		</ul>
-	</nav>
+                  					<!-- 토큰 -->
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                				</form>
+                  					
+                				<!-- 영화 상세 모달 -->
+								<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+								    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+								        <div class="modal-content">
+								            <div class="modal-header">
+								                <h5 id="modal-name" class="modal-title"></h5>
+								                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								            </div>
+							                
+							                
+								            <div class="modal-body">
+								            	<!-- 포스터 -->
+								            	<div class="d-flex align-items-center justify-content-center">
+								            		<img id="m-image" alt="Poster" src="" style="max-width: 100%;">
+								            	</div>
+								                <!-- 줄거리 -->
+								            	<div class="m-story"></div>
+								            	<!-- 상세 -->
+								            	<table class="m-desc">
+								            		<colgroup>
+								            			<col style="width: 100px">
+								            			<col>
+								            		</colgroup>
+								            		<tbody>
+								            			<tr>
+								            				<th>러닝타임</th>
+								            				<td class="m-runningtime"></td>
+								            			</tr>
+								            		</tbody>
+								            	</table>
+								            </div>
+								        </div>
+								    </div>
+								</div>
+                				
+                				<!-- 영화 예고편 모달 -->
+								<div id="preview-modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
+								    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+								        <div class="modal-content">
+								            <div class="modal-header">
+								                <h5 id="preview-modal-name" class="modal-title"></h5>
+								                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								            </div>
+							                
+								            <div class="modal-body">
+								            	<div class="preview" style="max-width: 100%; display: flex; justify-content: center; padding: 10px;"></div>
+								            </div>
+								        </div>
+								    </div>
+								</div>
+                				
+								<!-- 페이징 -->
+								<nav id="page-bar" aria-label="Page navigation example">
+									<ul class="pagination justify-content-center">
+										<c:forEach begin="1" end="${map.totalPages}" varStatus="pageStatus">
+											<c:choose>
+												<c:when test="${pageStatus.index == currentPage}">
+													<li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
+												</c:when>
+												<c:otherwise>
+													<li class="page-item"><a class="page-link" href="/dd/admin/activity/attraction/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</ul>
+								</nav>
+               				</div>
 
-
-                  					<!-- <ul class="pagination pagination-sm">
-					                    <li class="page-item active" aria-current="page">
-					                    	<span class="page-link">1</span>
-					                    </li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item"><a class="page-link" href="#">4</a></li>
-										<li class="page-item"><a class="page-link" href="#">5</a></li>
-                  					</ul> -->
-                				</div>
-
-              				</div>
-            			</div>
-
- 					</div>
+             			</div>
+            		</div>
 				</div>
-
 			</div>
+
+		</div>
 	</section>
 
 </main>
 
-
-<!-- movie > view JavaScript -->
 <script>
 
 	/* 수정 시, 체크 박스 1개만 선택 하여 seq 전달 하기 */
 	function edit() {
 		
-		/* 선택된 체크박수 개수 확인 */
+		//선택된 체크박수 개수 확인
 		let checkedCount = $('input[type="checkbox"]:checked').length;
 		
-		/* 1개 이상? out! */
+		//1개 이상? out!
 		if (checkedCount > 1 || checkedCount < 1) {
 			alert('1개의 영화를 선택 후, 수정 버튼을 눌러주세요.');
 		} else {
-
+	
 			const seq = $('input[type="checkbox"]:checked').val();
 			
 			location.href='/dd/admin/activity/movie/edit.do?seq=' + seq;
-						
 		}
 		
-	}//function
-	
+	}
+
 	/* 삭제 시, 체크 박스 1개 이상 선택 하여 seq 전달하기 */
-	/* 1. 체크박스 1개 2. 체크박스 1개 이상 */
 	function del() {
 		
-		/* 선택된 체크박수 개수 확인 */
+		//선택된 체크박수 개수 확인
 		let checkedCount = $('input[type="checkbox"]:checked').length;
 		
 		if (checkedCount == 0) {
@@ -232,16 +345,54 @@
 		} else {
 			
 			if (confirm('선택한 영화를 삭제하시겠습니까?')) {
-				
 				$('#del-form').submit();
-
 			}
-			
-			
-			
 		} 
 		
-	}//function
+	}
 	
+	/* 영화 상세 모달 */
+	function showModal(seq, name, story, runningtime, img) {
+	    
+		$('#modal-name').text(name);
+		$('#m-image').attr('src', '/dd/resources/files/activity/movie/' + img);
+        $('.m-story').html(story);
+        $('.m-runningtime').text(runningtime);
+        
+        $('#modal').modal('show');
+	}
+	
+	/* 영화 예고편 모달 */
+	function showPreviewModal(seq, name) {
+		
+		$('#preview-modal-name').text(name);
+		
+		let result = moviePreview.find(obj => obj.movie_seq == seq);
+		
+		$('.preview').html(result.preview);
 
+		$('#preview-modal').modal('show');
+	}
+	
+	/* 영화 예고편 태그 배열에 넣기 */
+	const moviePreview = new Array();
+	<c:forEach items="${list}" var="dto">
+		moviePreview.push({
+			movie_seq: ${dto.movie_seq},
+			preview: `${dto.preview}`
+		});
+	</c:forEach>
+	
+	/* 검색 */
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#search-field').val('${map.word}');
+	</c:if>
+	
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/admin/activity/movie/view.do';
+	    }
+	});
+	
+	
 </script>
