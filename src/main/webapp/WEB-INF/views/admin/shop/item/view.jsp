@@ -121,6 +121,12 @@
 		right: 20px;
 	}
 	
+	.table th:nth-child(1) { width: 10%; }
+.table th:nth-child(2) { width: 20%; }
+.table th:nth-child(3) { width: 20%; }
+.table th:nth-child(4) { width: 20%; }
+.table th:nth-child(5) { width: 30%; }
+	
 	/* 모달 CSS */
 	#modal table.m-desc {
 		width: 100%;
@@ -149,7 +155,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-		<h1>레스토랑 관리</h1>
+		<h1>상품 관리</h1>
     </div>
 
 	<section class="section">
@@ -159,12 +165,9 @@
 					<div class="col-12">
 
               			<div id="search" class="header">
-                  			<form class="search-form d-flex align-items-center" method="POST" action="#">
-                    			<input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                  			<form class="search-form d-flex align-items-center" method="GET" action="/dd/admin/shop/item/view.do">
+                    			<input type="text" name="word" placeholder="이름 혹은 기프트샵명 검색" title="Enter search keyword" autocomplete="off">
                     			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                    			
-                    			<!-- 토큰 -->
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                   			</form>
               			</div>
 
@@ -199,12 +202,6 @@
 		                        					<td><a onclick="showModal('${dto.item_seq}', `${dto.name}`,`${dto.info}`, `${dto.price}`,`${dto.shop_name}`)"><c:out value="${dto.name}" /></a></td>
 		                        					<td>${dto.price }</td>
 		                        					<td>${dto.shop_name }</td>
-		                        					<%-- <c:if test="${dto.img == 'attraction.png'}">
-		                        						<td></td>
-		                        					</c:if>
-		                        					<c:if test="${dto.img != 'attraction.png'}">
-		                        						<td><i class="bi bi-image"></i></td>
-		                        					</c:if> --%>
 		                      					</tr>
 	                      					</c:forEach>
 	                   					</tbody>
@@ -294,7 +291,6 @@
 
 </main>
 
-<!-- admin > activity > attraction > view JavaScript -->
 <!-- Kakao Map Open API -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c089ee6f3d885cfbe52b2f15d8f3f531"></script>
 
@@ -310,7 +306,7 @@
 		
 		/* 1개 이상? out! */
 		if (checkedCount > 1 || checkedCount < 1) {
-			alert('1개의 레스토랑을 선택 후, 수정 버튼을 눌러주세요.');
+			alert('1개의 상품을 선택 후, 수정 버튼을 눌러주세요.');
 		} else {
 
 			const seq = $('input[type="checkbox"]:checked').val();
@@ -329,10 +325,10 @@
 		let checkedCount = $('input[type="checkbox"]:checked').length;
 		
 		if (checkedCount == 0) {
-			alert('1개 이상의 어트랙션을 선택 후, 삭제 버튼을 눌러주세요.');
+			alert('1개 이상의 상품을 선택 후, 삭제 버튼을 눌러주세요.');
 		} else {
 			
-			if (confirm('선택한 어트랙션을 삭제하시겠습니까?')) {
+			if (confirm('선택한 상품을 삭제하시겠습니까?')) {
 				
 				$('#del-form').submit();
 

@@ -4,8 +4,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<head>
+	<link rel="shortcut icon" type="image/x-icon" href="/dd/resources/files/favicon.ico">
+</head>
 <meta charset="UTF-8">
-<title>DD : 비밀번호찾기</title>
+<title>비밀번호찾기</title>
 <link rel="stylesheet" href="new_main.css">
 <style>
 /* 레이아웃 틀 */
@@ -298,7 +301,7 @@ button#checkDuplicateBtn {
 
 				<!-- JOIN BTN-->
 				<div class="btn_area">
-					<button type="button" id="btnJoin" onclick="submit();">
+					<button type="button" id="btnJoin" onclick="submitForm();">
 						<span>비밀번호 찾기</span>
 					</button>
 				</div>
@@ -325,7 +328,29 @@ function submit() {
 	$('form').submit();
 }
 
+function submitForm() {
+    // 필수 입력 필드들의 값을 가져오기
+    var id = $("#id").val();
+    var name = $("#name").val();
+    var yy = $("#yy").val();
+    var mm = $("#mm").val();
+    var dd = $("#dd").val();
+    var mobile = $("#mobile").val();
+
+    // 필수 입력 필드가 하나라도 비어있으면 회원가입을 막음
+    if (!id || !name || !yy || !mm || !dd || !mobile) {
+        alert("모든 필수 정보를 입력하세요.");
+        return;
+    }
+
+    // 추가로 필요한 유효성 검사 로직을 여기에 추가 (필요한 경우)
+
+    // 폼 전송
+    $('form').submit();
+}
+
 	
+
 
 </script>
 

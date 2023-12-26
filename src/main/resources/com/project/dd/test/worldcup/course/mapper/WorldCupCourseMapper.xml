@@ -4,6 +4,7 @@
 
 <mapper namespace="com.project.dd.test.worldcup.course.mapper.WorldCupCourseMapper">
 
+	<!-- 총 코스 데이터 개수 조회 쿼리 -->
 	<select id="getTotalCount" resultType="int">
 		select count(*) from tblCWC cwc
 		join tblCourse c on cwc.course_seq = c.course_seq
@@ -14,6 +15,7 @@
 		</if>
 	</select>
 	
+	<!-- 코스 월드컵이 'Y'인 개수 조회 쿼리 -->
 	<select id="getTestCount" resultType="int">
 		select count(*) from tblCWC cwc
 		join tblCourse c on cwc.course_seq = c.course_seq
@@ -22,6 +24,7 @@
 		where cwc.is_test = 'Y'
 	</select>
 	
+	<!-- 모든 코스 데이터 목록 조회 쿼리 -->
 	<select id="getAllCourse" parameterType="map" resultType="com.project.dd.test.worldcup.course.domain.CourseDTO">
 		select * from (
 		    select n.*, rownum as rnum FROM (
@@ -41,73 +44,88 @@
 		) where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
+	<!-- 코스 테스트 채택 업데이트 쿼리 -->
 	<update id="updateCourseStatus" parameterType="map">
 	    update tblCWC
 	    set is_test = #{isTest}
 	    where course_seq = #{courseSeq}
 	</update>
 	
+	<!-- 코스 추가 쿼리 -->
 	<insert id="addCourse" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
 		insert into tblCourse (course_seq, name, img)
 		values (seqtblCourse.nextVal, #{name}, #{img})
 	</insert>
 	
+	<!-- 코스 월드컵 추가 쿼리 -->
 	<insert id="addCWC" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
 		insert into tblCWC (cwc_seq, is_test, course_seq)
 		values (seqtblCWC.NEXTVAL, 'Y', #{course_seq})
 	</insert>
 	
+	<!-- 코스 월드컵 승리 추가 쿼리 -->
 	<insert id="addCWCWin" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
 		insert into tblCWCWin (cwc_win_seq, cwc_match_count, cwc_win_count, course_seq)
 		values (seqtblCWCWin.NEXTVAL, 0, 0, #{course_seq})
 	</insert>
 	
+	<!-- 코스 월드컵 최종 우승 추가 쿼리 -->
 	<insert id="addCWCFinalWin" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
 		insert into tblCWCFinalWin (cwc_final_win_seq, cwc_final_win_count, course_seq)
 		values (seqtblCWCFinalWin.NEXTVAL, 0, #{course_seq})
 	</insert>
 	
+	<!-- 추가한 코스 번호 조회 쿼리 -->
 	<select id="getCourseSeq" resultType="String">
 		select max(course_seq) as course_seq from tblCourse
 	</select>
 	
+	<!-- 코스명 중복 확인 쿼리 -->
 	<select id="checkCourseNameDuplication" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO" resultType="int">
 		select count(*) from tblCourse where name = #{name}
 	</select>
 	
+	<!-- 코스 월드컵 최종 우승 총합 조회 쿼리 -->
 	<select id="getCWCFinalWinTotalCount" resultType="int">
 		select sum(cwc_final_win_count) as total_cwc_final_win_count from tblCWCFinalWin
 	</select>
 	
+	<!-- 특정 코스 정보 조회 쿼리 -->
 	<select id="getCourse" parameterType="String" resultType="com.project.dd.test.worldcup.course.domain.CourseDTO">
 		select * from tblCourse where course_seq = #{courseSeq}
 	</select>
 	
+	<!-- 코스 정보 수정 쿼리 -->
 	<update id="editCourse" parameterType="com.project.dd.test.worldcup.course.domain.CourseDTO">
 		update tblCourse set name = #{name}, img = #{img} where course_seq = #{course_seq}
 	</update>
 	
+	<!-- 코스 이미지 파일명 조회 쿼리 -->
 	<select id="getCourseImgFileName" parameterType="String" resultType="String">
 		select img from tblCourse where course_seq = #{course_seq}
 	</select>
 
+	<!-- 코스 삭제 쿼리 -->
 	<delete id="delCourse" parameterType="String">
 		delete tblCourse where course_seq = #{course_seq}
 	</delete>
 	
+	<!-- 코스 월드컵 삭제 쿼리 -->
 	<delete id="delCWC" parameterType="String">
 		delete tblCWC where course_seq = #{course_seq}
 	</delete>
 	
+	<!-- 코스 월드컵 승리 정보 삭제 쿼리 -->
 	<delete id="delCWCWin" parameterType="String">
 		delete tblCWCWin where course_seq = #{course_seq}
 	</delete>
 	
+	<!-- 코스 월드컵 최종 우승 정보 삭제 쿼리 -->
 	<delete id="delCWCFinalWin" parameterType="String">
 		delete tblCWCFinalWin where course_seq = #{course_seq}
 	</delete>
 	
-	
+	<!-- 코스 리스트 조회 쿼리 -->
 	<select id="getCourseList" resultType="com.project.dd.test.worldcup.course.domain.CourseDTO">
 		select
 			c.*,
@@ -122,6 +140,7 @@
 		where cwc.is_test = 'Y'
 	</select>
 	
+	<!-- 코스 월드컵 경기 횟수 업데이트 쿼리 -->
 	<update id="updateCWCMatchCount" parameterType="String">
 	    update
 			tblCWCWin
@@ -129,6 +148,7 @@
 		where course_seq = #{courseSeq}
 	</update>
 	
+	<!-- 코스 월드컵 승리 횟수 업데이트 쿼리 -->
 	<update id="updateCWCWinCount" parameterType="String">
 	    update
 			tblCWCWin
@@ -136,6 +156,7 @@
 		where course_seq = #{courseSeq}
 	</update>
 	
+	<!-- 코스 월드컵 최종 우승 횟수 업데이트 쿼리 -->
 	<update id="updateCWCFinalWinCount" parameterType="String">
 	    update
 			tblCWCFinalWin
@@ -143,6 +164,7 @@
 		where course_seq = #{courseSeq}
 	</update>
 	
+	<!-- 코스명 목록 조회 쿼리 -->
 	<select id="getCourseNameList" resultType="com.project.dd.test.worldcup.course.domain.CourseDTO">
 		select course_seq, name from tblCourse order by course_seq
 	</select>

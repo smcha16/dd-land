@@ -89,6 +89,12 @@
 		font-weight: bold !important;
       	color: #0d6efd !important;
     }
+    #modal-content {
+    	white-space: pre-line;
+	}
+	#modal-answer {
+    	min-height: 150px;
+    }
   	.pagination {
    		justify-content: center;
    		margin-top: 40px;
@@ -231,8 +237,8 @@
 	function showModal(seq, subject, content, image, answer) {
 	    $('#inquiry_seq').val(seq);
 	    $('#modal-subject').text(subject);
-	    $('#modal-content').text(content);
-	    $('#modal-answer').val(answer);
+	    $('#modal-content').html(content);
+	    $('#modal-answer').val(answer.replace(/<br>/g, '\r\n'));
 	    
 	    if (image) {
 	        $('#modal-image').attr('src', '/dd/resources/files/communication/inquiry/' + image);

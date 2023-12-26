@@ -2,7 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.dd.pb.benefit.mapper.BenefitMapper">
+<select id="getTotalCount" resultType="int">
+		
+		select count(*) from tblbenefit
+		<if test="type != '없음'">
+			where type = #{type}
+		</if>
+	</select> 
 
-
+<select id="getBenefitList" parameterType="map" resultType="com.project.dd.pb.benefit.domain.BenefitDTO">
+		select *
+		from (select f.*, rownum as rnum from (SELECT benefit_seq, name, type,  TO_CHAR(START_DATE, 'YYYY-MM-DD') AS start_date, TO_CHAR(END_DATE,'YYYY-MM-DD') AS end_date, discount_rate, img FROM TBLBENEFIT
+		<if test="type != '없음'">
+			where type = #{type}
+		</if>
+		order by benefit_seq desc) f)
+		where rnum between #{startIndex} and #{endIndex}
+	</select>
    
 </mapper>

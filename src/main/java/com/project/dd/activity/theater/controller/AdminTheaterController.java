@@ -14,6 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.dd.activity.theater.domain.TheaterDTO;
 import com.project.dd.activity.theater.service.TheaterService;
 
+/**
+ * 
+ * 영화관 관리(조회/추가/수정/삭제)를 담당하는 관리자 전용 컨트롤러 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @Controller
 @RequestMapping(value = "/admin/activity/theater")
 public class AdminTheaterController {
@@ -21,6 +28,14 @@ public class AdminTheaterController {
 	@Autowired
 	private TheaterService service;
 	
+	/**
+	 * 
+	 * 관리자용 영화관 목록을 조회할 수 있는 view 메서드입니다.
+	 * 
+	 * @param page 페이지 번호
+	 * @param model 모델 객체
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 
@@ -40,11 +55,26 @@ public class AdminTheaterController {
 		return "admin/activity/theater/view";
 	}
 	
+	/**
+	 * 
+	 * 영화관을 추가할 수 있는 add 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/add.do")
 	public String add(Model model) {
 		return "admin/activity/theater/add";
 	}
 	
+	/**
+	 * 
+	 * 추가한 영화관을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 addok 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param dto 영화관 dto 객체
+	 * @return 이동할 페이지 주소
+	 */
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, TheaterDTO dto) {
 
@@ -61,6 +91,14 @@ public class AdminTheaterController {
 		
 	}
 	
+	/**
+	 * 
+	 * 영화관을 수정할 수 있는 edit 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param seq 영화관 번호
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/edit.do")
 	public String edit(Model model, String seq) {
 
@@ -71,6 +109,14 @@ public class AdminTheaterController {
 		return "admin/activity/theater/edit";
 	}
 	
+	/**
+	 * 
+	 * 수정한 영화관을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 editok 메서드이빈다.
+	 *  
+	 * @param model 모델 객체
+	 * @param dto 영화관 dto 객체
+	 * @return 이동할 페이지 주소
+	 */
 	@PostMapping(value = "/editok.do")
 	public String editok(Model model, TheaterDTO dto) {
 
@@ -87,6 +133,14 @@ public class AdminTheaterController {
 		}
 	}
 	
+	/**
+	 * 
+	 * 삭제할 영화관을 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 del 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param theater_seq 영화관 번호
+	 * @return 이동할 페이지 주소
+	 */
 	@PostMapping(value = "/del.do")
 	public String del(Model model, String[] theater_seq) {
 

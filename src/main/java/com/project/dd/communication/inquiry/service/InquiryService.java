@@ -18,14 +18,24 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.dd.communication.inquiry.domain.InquiryDTO;
 import com.project.dd.communication.inquiry.repository.InquiryDAO;
 
+/**
+ * 이용문의 서비스 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Service
 public class InquiryService {
 	
 	@Autowired
 	private InquiryDAO dao;
-	
-	/* 파일 저장 */
 
+	/**
+	 * 파일을 저장하는 메서드입니다.
+	 *
+	 * @param req HttpServletRequest 객체
+	 * @param doc 첨부 파일
+	 * @return 저장된 파일명
+	 */
 	public String saveFile(HttpServletRequest req, MultipartFile doc) {
 			
         try {
@@ -60,8 +70,14 @@ public class InquiryService {
 		
 	}
 	
-	/* 파일 추가 */
-	
+	/**
+	 * 파일을 추가하는 메서드입니다.
+	 *
+	 * @param dto 추가할 이용문의의 DTO 객체
+	 * @param req HttpServletRequest 객체
+	 * @param doc 첨부 파일
+	 * @return 파일이 추가된 DTO 객체
+	 */
 	public InquiryDTO addFile(InquiryDTO dto, HttpServletRequest req, MultipartFile doc) {
 		
 		if (doc == null || doc.isEmpty()) {
@@ -78,16 +94,26 @@ public class InquiryService {
 		
 	}
 	
-	/* 추가 */
-	
+	/**
+	 * 이용문의를 추가하는 메서드입니다.
+	 *
+	 * @param dto 추가할 이용문의의 DTO 객체
+	 * @return 추가 결과 (1: 성공, 0: 실패)
+	 */
 	public int addInquiry(InquiryDTO dto) {
 		
 		return dao.addInquiry(dto);
 		
 	}
-	
-	/* 페이징 */
 
+	/**
+	 * 페이징 처리를 위한 맵을 생성하는 메서드입니다.
+	 *
+	 * @param searchStatus 검색 상태
+	 * @param word 검색어
+	 * @param page 페이지 번호
+	 * @return 페이징 정보를 담은 Map 객체
+	 */
 	public Map<String, String> paging(String searchStatus, String word, int page) {
 		
 		Map<String, String> map = new HashMap<String, String>();
@@ -112,19 +138,50 @@ public class InquiryService {
 		return map;
 		
 	}
-	
-	/* 목록 */
 
+	/**
+	 * 이용문의 목록을 가져오는 메서드입니다.
+	 *
+	 * @param map 페이징 정보를 포함한 Map 객체
+	 * @return 이용문의 목록
+	 */
 	public List<InquiryDTO> getInquiryList(Map<String, String> map) {
 		
 		List<InquiryDTO> list = dao.getInquiryList(map);
 		
+		for (InquiryDTO dto : list) {
+			
+			String content = dto.getContent();
+
+			content = content.replace("<", "&lt;");
+			content = content.replace(">", "&gt;");
+			content = content.replace("\\r\\n", "<br>");
+
+			dto.setContent(content);
+			
+			String answer = dto.getAnswer();
+			
+			if (answer != null) {
+				
+				answer = answer.replace("<", "&lt;");
+				answer = answer.replace(">", "&gt;");
+				answer = answer.replace("\\r\\n", "<br>");
+
+				dto.setAnswer(answer);
+				
+			}
+			
+		}
+		
 		return list;
 		
 	}
-	
-	/* 답변 */
 
+	/**
+	 * 이용문의에 답변을 등록하는 메서드입니다.
+	 *
+	 * @param dto 답변할 이용문의의 DTO 객체
+	 */
 	public void editAnswer(InquiryDTO dto) {
 		
 		dao.editAnswer(dto);

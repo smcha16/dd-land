@@ -27,7 +27,6 @@ public class WorldCupAttractionDAOImpl implements WorldCupAttractionDAO {
 		return mapper.getTestCount();
 	}
 	
-	// 모든 어트랙션 리스트 가져오기
 	@Override
 	public List<AttractionDTO> getAllAttraction(Map<String, String> map) {
 		return mapper.getAllAttraction(map);

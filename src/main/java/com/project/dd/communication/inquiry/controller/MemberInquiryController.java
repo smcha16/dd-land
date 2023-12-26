@@ -15,6 +15,11 @@ import com.project.dd.communication.inquiry.domain.InquiryDTO;
 import com.project.dd.communication.inquiry.service.InquiryService;
 import com.project.dd.login.domain.CustomUser;
 
+/**
+ * 회원용 이용문의 컨트롤러 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Controller
 @RequestMapping("/member/communication/inquiry")
 public class MemberInquiryController {
@@ -22,8 +27,13 @@ public class MemberInquiryController {
 	@Autowired
 	private InquiryService service;
 	
-	/* 추가 */
-	
+	/**
+	 * 이용문의를 추가하는 폼을 보여주는 메서드입니다.
+	 *
+	 * @param auth 인증 정보를 담은 Authentication 객체
+	 * @param model Spring의 Model 객체
+	 * @return 이용문의 추가 폼을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/add.do")
 	public String add(Authentication auth, Model model) {
 
@@ -37,6 +47,15 @@ public class MemberInquiryController {
 
 	}
 	
+	/**
+	 * 이용문의를 추가하는 메서드입니다.
+	 *
+	 * @param auth 인증 정보를 담은 Authentication 객체
+	 * @param dto 추가할 이용문의의 DTO 객체
+	 * @param req HttpServletRequest 객체
+	 * @param doc 첨부 파일
+	 * @return 이용문의 목록을 보여주는 뷰로의 리다이렉트 경로 또는 이용문의 추가 폼의 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/addok.do")
 	public String addOk(Authentication auth, InquiryDTO dto, HttpServletRequest req, MultipartFile doc) {
 		

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<!-- 구글 폰트 로드 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
@@ -163,32 +164,56 @@
 }
 
 .stats-counter {
-	background-image: url('/dd/resources/files/test/worldcup/attraction/attraction_worldcup_title.png');
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/test/worldcup/attraction/attraction_worldcup_title.png") center center;
 	background-size: cover;
 	background-attachment: fixed;
 }
 
-#overlay-div {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 458px;
-	background-color: black;
-	opacity: 0.45;
-	z-index: 0;
+/* 모바일 적응형 설정 */
+@media screen and (max-width: 600px) {
+    .item {
+        width: 90%;
+        min-width: auto;
+        height: auto;
+        font-size: 18px;
+    }
+
+    .item>div:nth-child(2) {
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    #result-message {
+        font-size: 14px;
+    }
+
+	.test-name {
+		font-size: 18px !important;
+	}
+	
+    #worldcup-container {
+        padding-bottom: 10px;
+    }
+
+    #remaining-attractions-count {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .vs {
+        font-size: 30px;
+        transform: translateY(245%);
+    }
 }
 </style>
 
+<!-- Main Start -->
 <section id="stats-counter" class="stats-counter">
-	<div id="overlay-div"></div>
     <div id="pagetitle" class="container" data-aos="zoom-out">
         <div class="gy-4" style="justify-content: center; width: 100%;">
             <div class="col-lg-3 col-md-6" style="width: 100%;">
                 <div class="stats-item text-center w-100 h-100">
-                    <div id="title">
-                        어트랙션 월드컵
-                    </div>
+                    <div id="title">어트랙션 월드컵</div>
                     <p>나에게 딱 맞는 어트랙션을 찾아보세요!</p>
                 </div>
             </div>
@@ -405,3 +430,4 @@
 	    });
 	}
 </script>
+<!-- Main End -->

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.project.dd.cart.mapper.CartMapper">
+	
+	<select id="getUserList" parameterType="String" resultType="com.project.dd.cart.domain.CartDTO">
+        select *
+		from (select n.*, rownum as rnum from (select u.*, c.ea, c.item_seq, i.name, i.price as from tblusercart u 
+        inner join tblcart c on u.cart_seq = c.cart_seq
+            inner join tblitem i on c.item_seq = i.item_seq where user_seq = #{user_seq} order by u.cart_seq DESC) n)
+	</select>
+	
+	<delete id="delCart" parameterType="String">
+		delete from tblusercart where cart_seq = #{seq}
+	</delete>
+	
+</mapper>

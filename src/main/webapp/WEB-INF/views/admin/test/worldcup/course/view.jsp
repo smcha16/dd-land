@@ -116,7 +116,7 @@ th {
 	display: none;
 }
 
-/* 모달 CSS */
+/* 모달 */
 #modal table.m-desc {
 	width: 100%;
 	font-size: 14px;
@@ -135,7 +135,7 @@ th {
 }
 </style>
 
-<!-- ======= Main ======= -->
+<!-- Main Start -->
 <main id="main" class="main">
 
 	<div class="pagetitle">
@@ -346,3 +346,4 @@ th {
 	    $('#modal').modal('show');
 	}
 </script>
+<!-- Main End -->

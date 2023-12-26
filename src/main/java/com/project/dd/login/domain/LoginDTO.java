@@ -3,7 +3,11 @@ package com.project.dd.login.domain;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
-
+/**
+ * 로그인 객체 클래스입니다.
+ * @author 김형우 
+ *
+ */
 @Data
 public class LoginDTO {
 

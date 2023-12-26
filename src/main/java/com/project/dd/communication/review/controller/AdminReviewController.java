@@ -17,6 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.dd.communication.review.domain.ReviewDTO;
 import com.project.dd.communication.review.service.ReviewService;
 
+/**
+ * 관리자용 리뷰 컨트롤러 클래스입니다.
+ * 
+ * @author sumin
+ */
 @Controller
 @RequestMapping("/admin/communication/review")
 public class AdminReviewController {
@@ -24,8 +29,14 @@ public class AdminReviewController {
 	@Autowired
 	private ReviewService service;
 	
-	/* 목록 */
-	
+	/**
+	 * 리뷰 목록을 보여주는 메서드입니다.
+	 *
+	 * @param word 검색어
+	 * @param page 페이지 번호
+	 * @param model Spring의 Model 객체
+	 * @return 리뷰 목록을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 		
@@ -52,8 +63,13 @@ public class AdminReviewController {
 
 	}
 	
-	/* 수정 */
-	
+	/**
+	 * 리뷰를 수정하는 폼을 보여주는 메서드입니다.
+	 *
+	 * @param seq 수정할 리뷰의 일련번호
+	 * @param model Spring의 Model 객체
+	 * @return 리뷰 수정 폼을 보여주는 뷰의 경로
+	 */
 	@GetMapping(value = "/edit.do")
 	public String edit(String seq, Model model) {
 		
@@ -65,6 +81,15 @@ public class AdminReviewController {
 
 	}
 	
+	/**
+	 * 리뷰를 수정하는 메서드입니다.
+	 *
+	 * @param dto 수정할 리뷰의 DTO 객체
+	 * @param seqList 수정할 파일의 일련번호 배열
+	 * @param req HttpServletRequest 객체
+	 * @param docs 첨부 파일 배열
+	 * @return 리뷰 목록을 보여주는 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/editok.do")
 	public String editOk(ReviewDTO dto, String[] seqList, HttpServletRequest req, MultipartFile[] docs) {
 		
@@ -84,8 +109,12 @@ public class AdminReviewController {
 
 	}
 	
-	/* 삭제 */
-	
+	/**
+	 * 여러 개의 리뷰를 삭제하는 메서드입니다.
+	 *
+	 * @param seqList 삭제할 리뷰의 일련번호 배열
+	 * @return 리뷰 목록을 보여주는 뷰로의 리다이렉트 경로
+	 */
 	@PostMapping(value = "/del.do")
 	public String del(String[] seqList) {
 

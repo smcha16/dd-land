@@ -14,6 +14,13 @@ import com.project.dd.activity.photozone.domain.PhotoZoneDTO;
 import com.project.dd.activity.photozone.domain.PhotoZoneImgDTO;
 import com.project.dd.activity.photozone.service.PhotoZoneService;
 
+/**
+ * 
+ * 포토존 조회(목록, 상세)를 담당하는 모든 회원 전용 컨트롤러 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @Controller
 @RequestMapping(value = "/user/activity/photozone")
 public class UserPhotozoneController {
@@ -21,6 +28,14 @@ public class UserPhotozoneController {
 	@Autowired
 	private PhotoZoneService service;
 	
+	/**
+	 * 
+	 * 운영중인 포토존 목록을 불러오는 메서드입니다.
+	 * 
+	 * @param page 페이지 번호
+	 * @param model 모델 객체
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 
@@ -38,6 +53,14 @@ public class UserPhotozoneController {
 		return "user/activity/photozone/view";
 	}
 
+	/**
+	 * 
+	 * 선택한 특정 포토존의 상세 내용을 불러오는 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param seq 포토존 번호
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/detail.do")
 	public String detail(Model model, String seq) {
 		

@@ -3,8 +3,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<head>
+	<link rel="shortcut icon" type="image/x-icon" href="/dd/resources/files/favicon.ico">
+</head>
 <meta charset="UTF-8">
-<title>DD : 회원가입</title>
+<title>회원가입</title>
 <link rel="stylesheet" href="new_main.css">
 <style>
 /* 레이아웃 틀 */
@@ -220,7 +223,7 @@ button#checkDuplicateBtn {
 					<h3 class="join_title">
 						<label for="pswd1">비밀번호</label>
 					</h3>
-					<span class="box int_pass"> <input type="text" name="pw"
+					<span class="box int_pass"> <input type="password" name="pw"
 						id="pswd1" class="int" maxlength="20"> <span id="alertTxt">사용불가</span>
 						<img src="/dd/resources/files/dd/m_icon_pass.png" id="pswd1_img1"
 						class="pswdImg">
@@ -232,7 +235,7 @@ button#checkDuplicateBtn {
 					<h3 class="join_title">
 						<label for="pswd2">비밀번호 재확인</label>
 					</h3>
-					<span class="box int_pass_check"> <input type="text"
+					<span class="box int_pass_check"> <input type="password"
 						id="pswd2" class="int" maxlength="20"> <img
 						src="/dd/resources/files/dd/m_icon_check_disable.png"
 						id="pswd2_img1" class="pswdImg">
@@ -332,7 +335,7 @@ button#checkDuplicateBtn {
 					<h3 class="join_title">
 						<label for="phoneNo">휴대전화</label>
 					</h3>
-					<span class="box int_mobile"> <input type="tel" id="mobile"
+					<span class="box int_mobile"> <input type="text" id="mobile"
 						name="tel" class="int" maxlength="16" placeholder="전화번호 입력">
 					</span> <span class="error_next_box"></span>
 				</div>
@@ -340,7 +343,7 @@ button#checkDuplicateBtn {
 
 				<!-- JOIN BTN-->
 				<div class="btn_area">
-					<button type="button" id="btnJoin" onclick="submit();">
+					<button type="button" id="btnJoin" onclick="submitForm();">
 						<span>가입하기</span>
 					</button>
 				</div>
@@ -359,9 +362,36 @@ button#checkDuplicateBtn {
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-	function submit() {
+	/* function submit() {
 		$('form').submit();
+	} */
+	
+	function submitForm() {
+	    // 필수 입력 필드들의 값을 가져오기
+	    var id = $("#id").val();
+	    var pw1 = $("#pswd1").val();
+	    var pw2 = $("#pswd2").val();
+	    var name = $("#name").val();
+	    var yy = $("#yy").val();
+	    var mm = $("#mm").val();
+	    var dd = $("#dd").val();
+	    var postCode = $("#post-code").val();
+	    var addressBasis = $("#address-basis").val();
+	    var addressDetail = $("#address-detail").val();
+	    var mobile = $("#mobile").val();
+
+	    // 필수 입력 필드가 하나라도 비어있으면 회원가입을 막음
+	    if (!id || !pw1 || !pw2 || !name || !yy || !mm || !dd || !postCode || !addressBasis || !mobile) {
+	        alert("모든 필수 정보를 입력하세요.");
+	        return;
+	    }
+
+	    // 추가로 필요한 유효성 검사 로직을 여기에 추가 (필요한 경우)
+
+	    // 폼 전송
+	    $('form').submit();
 	}
+
 
 	/*변수 선언*/
 
@@ -398,25 +428,25 @@ button#checkDuplicateBtn {
 	yy.addEventListener("focusout", isBirthCompleted);
 	mm.addEventListener("focusout", isBirthCompleted);
 	dd.addEventListener("focusout", isBirthCompleted);
-	gender.addEventListener("focusout", function() {
+	/* gender.addEventListener("focusout", function() {
 		if (gender.value === "성별") {
 			error[5].style.display = "block";
 		} else {
 			error[5].style.display = "none";
 		}
-	})
-	email.addEventListener("focusout", isEmailCorrect);
+	}) */
 	mobile.addEventListener("focusout", checkPhoneNum);
+	email.addEventListener("focusout", isEmailCorrect);
 
 	/*콜백 함수*/
-
+	
 	function checkId() {
-		var idPattern = /[a-zA-Z0-9_-]{5,20}/;
+		var idPattern = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/;
 		if (id.value === "") {
 			error[0].innerHTML = "필수 정보입니다.";
 			error[0].style.display = "block";
 		} else if (!idPattern.test(id.value)) {
-			error[0].innerHTML = "5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.";
+			error[0].innerHTML = "이메일 형식으로 입력해주세요";
 			error[0].style.display = "block";
 		} else {
 			error[0].innerHTML = "멋진 아이디네요!";
@@ -478,31 +508,36 @@ button#checkDuplicateBtn {
 	}
 
 	function isBirthCompleted() {
-		var yearPattern = /[0-9]{4}/;
+	    var yearPattern = /[0-9]{4}/;
+	    var monthPattern = /^(0?[1-9]|1[0-2])$/; // 1부터 12까지의 숫자
+	    var dayPattern = /^(0?[1-9]|[1-2][0-9]|3[0-1])$/; // 1부터 31까지의 숫자
 
-		if (!yearPattern.test(yy.value)) {
-			error[4].innerHTML = "태어난 년도 4자리를 정확하게 입력하세요.";
-			error[4].style.display = "block";
-		} else {
-			isMonthSelected();
-		}
+	    if (!yearPattern.test(yy.value)) {
+	        error[4].innerHTML = "태어난 년도 4자리를 정확하게 입력하세요.";
+	        error[4].style.display = "block";
+	    } else {
+	        isMonthSelected();
+	    }
 
-		function isMonthSelected() {
-			if (mm.value === "월") {
-				error[4].innerHTML = "태어난 월을 선택하세요.";
-			} else {
-				isDateCompleted();
-			}
-		}
+	    function isMonthSelected() {
+	        if (mm.value === "월" || !monthPattern.test(mm.value)) {
+	            error[4].innerHTML = "태어난 월을 정확하게 선택하세요.";
+	            error[4].style.display = "block";
+	        } else {
+	            isDateCompleted();
+	        }
+	    }
 
-		function isDateCompleted() {
-			if (dd.value === "") {
-				error[4].innerHTML = "태어난 일(날짜) 2자리를 정확하게 입력하세요.";
-			} else {
-				isBirthRight();
-			}
-		}
+	    function isDateCompleted() {
+	        if (dd.value === "" || !dayPattern.test(dd.value)) {
+	            error[4].innerHTML = "태어난 일(날짜)을 정확하게 입력하세요.";
+	            error[4].style.display = "block";
+	        } else {
+	            isBirthRight();
+	        }
+	    }
 	}
+
 
 	function isBirthRight() {
 		var datePattern = /\d{1,2}/;
@@ -515,21 +550,18 @@ button#checkDuplicateBtn {
 	}
 
 	function checkAge() {
-		if (Number(yy.value) < 1920) {
+		if (Number(yy.value) < -1) {
 			error[4].innerHTML = "정말이세요?";
 			error[4].style.display = "block";
-		} else if (Number(yy.value) > 2020) {
+		} else if (Number(yy.value) > 100000) {
 			error[4].innerHTML = "미래에서 오셨군요. ^^";
-			error[4].style.display = "block";
-		} else if (Number(yy.value) > 2005) {
-			error[4].innerHTML = "만 14세 미만의 어린이는 보호자 동의가 필요합니다.";
 			error[4].style.display = "block";
 		} else {
 			error[4].style.display = "none";
 		}
 	}
 
-	function isEmailCorrect() {
+	/* function isEmailCorrect() {
 		var emailPattern = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/;
 
 		if (email.value === "") {
@@ -540,22 +572,37 @@ button#checkDuplicateBtn {
 			error[6].style.display = "none";
 		}
 
-	}
+	} */
 
 	function checkPhoneNum() {
-		var isPhoneNum = /([01]{2})([01679]{1})([0-9]{3,4})([0-9]{4})/;
+		var isPhoneNum = /^01([016789])([0-9]{1,4})([0-9]{4})$/;
 
 		if (mobile.value === "") {
-			error[7].innerHTML = "필수 정보입니다.";
-			error[7].style.display = "block";
+			error[6].innerHTML = "필수 정보입니다.";
+			error[6].style.display = "block";
 		} else if (!isPhoneNum.test(mobile.value)) {
-			error[7].innerHTML = "형식에 맞지 않는 번호입니다.";
-			error[7].style.display = "block";
+			error[6].innerHTML = "형식에 맞지 않는 번호입니다. ex)01012345678  ";
+			error[6].style.display = "block";
 		} else {
-			error[7].style.display = "none";
+			error[6].style.display = "none";
 		}
 
 	}
+	
+	// 주소 입력 필드 유효성 검사
+	function checkAddress() {
+	    var postCode = $("#post-code").val();
+	    var addressBasis = $("#address-basis").val();
+	    var addressDetail = $("#address-detail").val();
+
+	    if (!postCode || !addressBasis || !addressDetail) {
+	        error[7].innerHTML = "주소를 모두 입력하세요.";
+	        error[7].style.display = "block";
+	    } else {
+	        error[7].style.display = "none";
+	    }
+	}
+
 </script>
 
 <script
@@ -680,8 +727,3 @@ button#checkDuplicateBtn {
 						}
 					});
 </script>
-
-
-<!-- 생략... -->
-
-</html>

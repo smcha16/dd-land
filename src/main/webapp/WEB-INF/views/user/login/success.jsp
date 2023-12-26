@@ -30,7 +30,10 @@
 	href="/dd/resources/login/findid.css">
 	
 	
-	
+<head>
+	<link rel="shortcut icon" type="image/x-icon" href="/dd/resources/files/favicon.ico">
+</head>
+
 <div id="wrap">
 	<div id="content">
 	
@@ -118,7 +121,7 @@
 							</p>
 							<p>
 								다른 방법으로도 아이디를 찾지 못했다면 아이디가 원래 없었을 수 있습니다. <a target="_blank"
-									href="https://nid.naver.com/user/join.html?url=http://www.naver.com"
+									href="/dd/user/register/view.do"
 									onClick="clickcr(this,'uhl.missjoin','','',event);">아이디를 새로
 									만드세요.</a>
 							</p>
@@ -144,9 +147,9 @@
 						<div class="find_dsc_sub">
 							<!--휴대전화나 이메일로 인증시 문구-->
 							<p>
-								신고를 하고 싶으시다면 도움말을 참고해 주세요. <a target="_blank"
+								신고를 하고 싶으시다면 도움말을 참고해 주세요. <!-- <a target="_blank"
 									href="https://help.naver.com/alias/membership/p.membership/p.membership_49.naver"
-									onClick="clickcr(this,'uhl.nomyhelp','','',event);">도움말</a>
+									onClick="clickcr(this,'uhl.nomyhelp','','',event);">도움말</a> -->
 							</p>
 						</div>
 					</div>

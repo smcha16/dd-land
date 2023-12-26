@@ -136,28 +136,16 @@ underline:hover {
 }
 
 .stats-counter {
-	background-image: url('/dd/resources/files/test/mbti/mbti_title.png');
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/dd/resources/files/test/mbti/mbti_title.png") center center;
 	background-size: cover;
 	background-attachment: fixed;
 }
-
-#overlay-div {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 458px;
-	background-color: black;
-	opacity: 0.45;
-	z-index: 0;
-}
 </style>
 
+<!-- Main Start -->
 <section id="stats-counter" class="stats-counter">
-	<div id="overlay-div"></div>
 	<div id="pagetitle" class="container" data-aos="zoom-out">
 		<div class="gy-4" style="justify-content: center; width: 100%;">
-
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
 					<div id="title" style="font-size: 48px; display: block; color: #fff; font-weight: 700;">${dto.name}</div>
@@ -201,3 +189,4 @@ underline:hover {
 	    window.location.href = url;
 	}
 </script>
+<!-- Main End -->

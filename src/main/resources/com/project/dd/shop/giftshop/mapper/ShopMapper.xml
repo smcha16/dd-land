@@ -3,10 +3,21 @@
 <mapper
 	namespace="com.project.dd.shop.giftshop.mapper.ShopMapper">
 
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(*) from vwGiftshop where lat != '0'
+		<if test="searchStatus == 'y'.toString()">
+			and name like '%' || #{word} || '%'
+		</if>
+	</select>
+
 	<select id="getList" parameterType="map" resultType="com.project.dd.shop.giftshop.domain.ShopDTO">
 		select *
-      from (select n.*, rownum as rnum from (select * from vwGiftshop where lat != 0 order by shop_seq DESC) n)
-      where rnum between #{startIndex} and #{endIndex}
+	      from (select n.*, rownum as rnum from (select * from vwGiftshop where lat != 0
+	      <if test="searchStatus == 'y'.toString()">
+				and name like '%' || #{word} || '%'
+			</if>
+	      order by shop_seq DESC) n)
+	      where rnum between #{startIndex} and #{endIndex}
 	</select>
 
 

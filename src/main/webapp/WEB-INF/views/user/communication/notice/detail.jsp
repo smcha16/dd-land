@@ -76,7 +76,7 @@
 	<table id="detail">
 		<c:if test="${dto.content != null && !dto.content.trim().equals('')}">
 			<tr>
-				<td id="content"><c:out value="${dto.content}" /></td>
+				<td id="content">${dto.content}</td>
 			</tr>
 		</c:if>
 		

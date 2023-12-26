@@ -104,6 +104,7 @@
       	</sec:authorize>
       	<sec:authorize access="isAuthenticated()">
       	<form method="post" action="/dd/logout.do">
+      		<a class="btn-book-a-table" href="/dd/member/cart/view.do"><i class="fa-solid fa-cart-shopping" style="font-size: 25px;"></i></a>
       		<a class="btn-book-a-table" id="mypage" href="/dd/member/mypage/view.do">MyPage</a>
       		<button class="btn-book-a-table" type="submit">LogOut</button>
       		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">

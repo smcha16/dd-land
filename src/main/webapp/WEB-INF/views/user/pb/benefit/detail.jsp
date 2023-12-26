@@ -195,12 +195,15 @@
     max-width: 100%; /* 부모 요소 너비를 초과하지 않도록 설정 */
     text-align: center; /* 가운데 정렬 */
     transform: translateX(0); /* 레이아웃 초기화 */
+    display: block;
   }
 
-  .image-slider img {
+   .image-slider img {
     width: 100%; /* 이미지가 부모 요소에 꽉 차도록 설정 */
     height: auto; /* 비율 유지 */
     border-radius: 15px;
+    min-height: 200px; /* 최소 높이 설정 */
+    object-fit: contain; /* 이미지 비율 유지하며 가득 차도록 설정 */
   }
   
 	
@@ -249,8 +252,41 @@
 		font-weight: bold;
 		font-size: 17px;
 	}
-</style>
+	
+	.item>div:nth-child(1) {
+    height: 70%;
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 이미지를 가운데 정렬 */
+}
 
+.item>div:nth-child(1) {
+    height: 70%;
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .item>div:nth-child(1) img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px 10px 0 0;
+    width: auto; /* 추가: 이미지의 원본 비율을 유지하면서 최대 너비에 맞추기 */
+    height: auto; /* 추가: 이미지의 원본 비율을 유지하면서 최대 높이에 맞추기 */
+    
+  }
+</style>
+<body>
 <!-- ======= Title & Image Section ======= -->
 <section>
 	<div class="container" data-aos="zoom-out">
@@ -288,13 +324,13 @@
 				<%--  <c:if test="${dto.close== 'n'}">  --%>
 				<c:forEach items="${benefitInfoList}" var="dto"> 
 					<img src="/dd/resources/files/activity/calendar_icon.png" alt="Image" class="icon" />
-					${dto.discount_rate}% 혜택 적용
+					${dto.discount_rate}%할인 혜택 적용
 				</c:forEach>
 				<%-- </c:if> --%>
-				<c:if test="${dto.close == 'y'}"> 
-					<img src="/dd/resources/files/activity/close_icon.png" alt="Image" class="icon" />
-					금일 운휴
-				 </c:if> 
+				<%-- <c:if test="${dto.close == 'y'}"> --%> 
+					<img src="/dd/resources/files/activity/calendar_icon.png" alt="Image" class="icon" />
+					개인 , 단체 혜택 적용
+				 <%-- </c:if>   --%>
 			</div>
 		</div>
 	</div>
@@ -428,12 +464,11 @@
 	<section id="pricing" class="pricing">
 		<div class="container" data-aos="fade-up">
 
-			<!-- <div class="section-title">
+			<!--  <div class="close-item">
 				<h3>단체</h3>
 				<p>어드벤처&매직아일랜드 입장 및 놀이시설 이용 (게임시설 등 유료시설 제외), 상기 이용권은 일반 할인 혜택
 					적용이 불가하며 특수한 경우에 한하여 할인 혜택 적용이 가능합니다. (장애인 우대, 대관행사 등)</p>
-			</div>
- -->
+			</div> -->
 			<div class="row">
 
 				<div class="col-lg-3 col-md-6" data-aos="fade-up"
@@ -554,17 +589,79 @@
 	</section>
 
 	</section>
+	
+
 
 	<!-- </div> -->
 
 </section>
 
-
-
-<!-- 목록보기 버튼 -->
+	<!-- 목록보기 버튼 -->
 <div id="button">
 	<button type="button" id="back-button" class="btn btn-primary" onclick="location.href='/dd/user/pb/benefit/view.do';"><i class="bi bi-list"></i>목록</button>
 </div>
+</body>
+
+<script>
+//이미지 크기 조정 및 컨테이너 내 가운데 정렬 함수
+function adjustImageSizeAndCenter(image) {
+  var maxWidth = 100; // 원하는 최대 너비로 설정
+  var maxHeight = 50; // 원하는 최대 높이로 설정
+  console.log("Original Image Size:", image.width, "x", image.height);
+
+  
+  if (image.width > maxWidth || image.height > maxHeight) {
+    var ratio = Math.min(maxWidth / image.width, maxHeight / image.height);
+    image.style.width = image.width * ratio + "px";
+    image.style.height = image.height * ratio + "px";
+  }
+  
+  console.log("Adjusted Image Size:", image.width, "x", image.height);
+
+  // 이미지를 컨테이너 내 가운데 정렬
+  var container = image.parentNode;
+  var containerWidth = container.offsetWidth;
+  var containerHeight = container.offsetHeight;
+
+  var marginX = (containerWidth - image.width) / 2;
+  var marginY = (containerHeight - image.height) / 2;
+
+  container.style.paddingLeft = marginX + 'px';
+  container.style.paddingRight = marginX + 'px';
+  container.style.paddingTop = marginY + 'px';
+  container.style.paddingBottom = marginY + 'px';
+}
+
+// 이미지 로드 이벤트 처리 함수
+function handleImageLoad() {
+  console.log("이미지 로드 이벤트 발생");
+  adjustImageSizeAndCenter(this);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("DOMContentLoaded 이벤트 발생");
+
+  // 각 이미지를 개별적으로 선택 및 처리
+  var imageElements = document.querySelectorAll('.item>div:nth-child(1) img');
+
+  imageElements.forEach(function (image) {
+    if (image.complete) {
+      // 이미지가 이미 로드된 경우 즉시 처리
+      handleImageLoad.call(image);
+    } else {
+      // 이미지가 로드되지 않은 경우 로드될 때까지 처리 대기
+      image.onload = handleImageLoad;
+    }
+  });
+});
+
+</script>
+
+
+
+
+
+
 
 <!-- view2 Template 전용 JavaScript -->
 <!-- Kakao Map Open API -->
@@ -573,53 +670,10 @@
 <!-- Slick Slider -->
 <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-<script>
-	/* 카카오 맵 */
-	const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-
-	const options = { //지도를 생성할 때 필요한 기본 옵션
-		center : new kakao.maps.LatLng(33.361488, 126.529212), //지도의 중심좌표.
-		level : 10 //지도의 레벨(확대, 축소 정도)
-		/* draggable : false, // 이동 금지
-		disableDoubleClick : true, // 더블클릭 확대 금지
-		scrollwheel : false // 휠 확대/축소 금지 */
-	};
-
-	const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-
-	//마커 출력
-	let imageSrc = '/dd/resources/files/marker/attraction_marker2.png'; // 마커이미지의 주소
-	const imageSize = new kakao.maps.Size(40,40);
-	const option = {};
-
-	//마커 설정
-	const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
-
-	const m1 = new kakao.maps.Marker({
-		position: new kakao.maps.LatLng(${dto.lat}, ${dto.lng}),
-		image: markerImg
-	});
-
-	//마커 지도에 출력
-	m1.setMap(map);
 
 
-	/* Slick Slider */
-	$('.image-slider').slick({
-		variableWidth : true,
-		infinite : true,
-		autoplay : true,
-		autoplaySpeed : 5000,
-		pauseOnHover : true,
-		arrows : true,
-		prevArrow : "<button type='button' class='slick-prev'>&#10094;</button>",
-		nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
-		draggable : true
-	});
-</script>
-
-<script
-		src="/dd/resources/price/vendor/purecounter/purecounter_vanilla.js"></script>
+<!-- <script
+		src="/dd/resources/price/vendor/purecounter/purecounter_vanilla.js"></script> -->
 	<script src="/dd/resources/price/vendor/aos/aos.js"></script>
 	<script
 		src="/dd/resources/price/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -638,93 +692,3 @@
 
 
 
-<script>
-  $(document).ready(function () {
-    $('.image-slider').slick({
-      variableWidth: true,
-      infinite: true,
-      autoplay: true,
-      autoplaySpeed: 5000,
-      pauseOnHover: true,
-      arrows: true,
-      prevArrow: "<button type='button' class='slick-prev'>&#10094;</button>",
-      nextArrow: "<button type='button' class='slick-next'>&#10095;</button>",
-      draggable: true
-    });
-
-    // 이미지가 로드될 때마다 실행되는 이벤트
-    $('.image-slider img').on('load', function () {
-      adjustBoxSize();
-    });
-
-    // 윈도우 크기가 변경될 때마다 실행되는 이벤트
-    $(window).resize(function () {
-      adjustBoxSize();
-    });
-
-    // 이미지 크기에 맞게 상자 크기 조절 함수
-    function adjustBoxSize() {
-      $('.image-slider div').each(function () {
-        var imgWidth = $(this).find('img').width();
-        var parentWidth = $(this).width();
-        var margin = (parentWidth - imgWidth) / 2;
-        $(this).css('padding-left', margin + 'px');
-        $(this).css('padding-right', margin + 'px');
-      });
-    }
-  });
-</script>
-
-<script>
-  $(document).ready(function () {
-    $('.image-slider img').on('load', function () {
-      adjustBoxSize();
-    });
-
-    // 이미지 크기에 맞게 상자 크기 조절 함수
-    function adjustBoxSize() {
-      $('.image-slider div').each(function () {
-        var imgWidth = $(this).find('img').width();
-        var parentWidth = $(this).width();
-        var margin = (parentWidth - imgWidth) / 2;
-        $(this).css('padding-left', margin + 'px');
-        $(this).css('padding-right', margin + 'px');
-      });
-    }
-  });
-</script>
-
-<script>
-  $(document).ready(function () {
-    $('.image-slider img').on('load', function () {
-      adjustBoxSize();
-    });
-
-    // 이미지 크기에 맞게 상자 크기 조절 함수
-    function adjustBoxSize() {
-      $('.image-slider div').each(function () {
-        var img = $(this).find('img');
-        var imgWidth = img.width();
-        var imgHeight = img.height(); // 이미지의 실제 높이도 고려
-        var parentWidth = $(this).width();
-        var parentHeight = $(this).height(); // 부모 요소의 높이도 고려
-        var marginX = (parentWidth - imgWidth) / 2;
-        var marginY = (parentHeight - imgHeight) / 2;
-
-        // 이미지 크기가 부모 요소보다 큰 경우에만 조절
-        if (imgWidth > parentWidth || imgHeight > parentHeight) {
-          img.css('max-width', '100%');
-          img.css('max-height', '100%');
-          img.css('width', 'auto');
-          img.css('height', 'auto');
-        }
-
-        // 이미지를 중앙에 정렬
-        $(this).css('padding-left', marginX + 'px');
-        $(this).css('padding-right', marginX + 'px');
-        $(this).css('padding-top', marginY + 'px');
-        $(this).css('padding-bottom', marginY + 'px');
-      });
-    }
-  });
-</script>

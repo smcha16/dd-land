@@ -17,6 +17,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.activity.movie.service.MovieService;
 
+/**
+ * 
+ * 영화 관리(조회/추가/수정/삭제)를 담당하는 관리자 전용 컨트롤러 클래스입니다.
+ * 
+ * @author 박나래
+ *
+ */
 @Controller
 @RequestMapping(value = "/admin/activity/movie")
 public class AdminMovieController {
@@ -24,6 +31,14 @@ public class AdminMovieController {
 	@Autowired
 	private MovieService service;
 	
+	/**
+	 * 
+	 * 관리자용 영화 목록을 조회할 수 있는 view 메서드입니다.
+	 * 
+	 * @param page 페이지 번호
+	 * @param model 모델 객체
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/view.do")
 	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 		
@@ -44,12 +59,28 @@ public class AdminMovieController {
 		return "admin/activity/movie/view";
 	}
 	
-	
+	/**
+	 * 
+	 * 영화를 추가할 수 있는 add 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/add.do")
 	public String add(Model model) {
 		return "admin/activity/movie/add";
 	}
 	
+	/**
+	 * 
+	 * 추가한 영화를 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 addok 메서드입니다ㅣ.
+	 * 
+	 * @param model 모델 객체
+	 * @param dto 영화 dto 객체
+	 * @param imgs 추가한 이미지 멀티파일 객체
+	 * @param req HttpServletRequest 객체
+	 * @return 이동할 페이지 주소
+	 */
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, MovieDTO dto, MultipartFile imgs, HttpServletRequest req) {
 
@@ -66,6 +97,14 @@ public class AdminMovieController {
 		
 	}
 	
+	/**
+	 * 
+	 * 영화를 수정할 수 있는 edit 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param seq 영화 번호
+	 * @return jsp 파일명
+	 */
 	@GetMapping(value = "/edit.do")
 	public String edit(Model model, String seq) {
 
@@ -89,6 +128,16 @@ public class AdminMovieController {
 		return "admin/activity/movie/edit";
 	}
 	
+	/**
+	 * 
+	 * 수정환 영화를 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 editok 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param dto 영화 dto
+	 * @param imgs 수정한 멀티파일 객체
+	 * @param req HttpServletRequest 객체
+	 * @return 이동할 페이지 주소
+	 */
 	@PostMapping(value = "/editok.do")
 	public String editok(Model model, MovieDTO dto, MultipartFile imgs, HttpServletRequest req) {
 
@@ -101,6 +150,14 @@ public class AdminMovieController {
 		}
 	}
 	
+	/**
+	 * 
+	 * 삭제할 영화를 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 del 메서드입니다.
+	 * 
+	 * @param model 모델 객체
+	 * @param movie_seq 영화 번호
+	 * @return 이동할 페이지 주소
+	 */
 	@PostMapping(value = "/del.do")
 	public String del(Model model, String[] movie_seq) {
 

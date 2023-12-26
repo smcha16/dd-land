@@ -66,7 +66,7 @@ DELETE FROM tblRestaurantImg;
 DELETE FROM tblRestaurant;
 DELETE FROM tblUser;
 
-/* DROP TABLE_49개 */
+/* DROP TABLE_55개 */
 DROP TABLE tblAttractionLocation;
 DROP TABLE tblFestivalLocation;
 DROP TABLE tblTheaterLocation;
@@ -468,12 +468,12 @@ CREATE TABLE tblNotice (
 /* 분실물센터 */
 CREATE TABLE tblLostProperty (
    lost_property_seq NUMBER PRIMARY KEY, /* 분실물번호 */
-   type VARCHAR2(500) NOT NULL, /* 분류 */
-   name VARCHAR2(500) NOT NULL, /* 습득물명 */
-   location VARCHAR2(500) NOT NULL, /* 습득장소 */
+   type VARCHAR2(50) NOT NULL, /* 분류 */
+   name VARCHAR2(50) NOT NULL, /* 습득물명 */
+   location VARCHAR2(30) NOT NULL, /* 습득장소 */
    lost_property_date DATE NOT NULL, /* 습득일 */
    img VARCHAR2(500), /* 분실물이미지 */
-   result VARCHAR2(500) NOT NULL /* 처리결과 */
+   result VARCHAR2(50) NOT NULL /* 처리결과 */
 );
 
 /* 티켓 */
@@ -711,17 +711,21 @@ CREATE SEQUENCE seqtblUserBuy;
 
 /* 나래 누나 View */
 -- 1. Attraction(Update_18DEC23)
+
+
+
 create or replace view vwAttractionList
 as
 select a.*, 
 (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1)as img,
-nvl((select 'y' from tblAttractionclose where attraction_seq = a.attraction_seq and to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')), 'n')as close,
+nvl((select 'y' from tblAttractionclose where attraction_seq = a.attraction_seqand to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')), 'n')as close,
 (select attraction_location_seq from tblAttractionLocation where attraction_seq = a.attraction_seq) as attraction_location_seq,
 (select lat from tblAttractionLocation where attraction_seq = a.attraction_seq) as lat,
 (select lng from tblAttractionLocation where attraction_seq = a.attraction_seq) as lng
 from tblAttraction a
 where name not like '%(운영종료)%'
 order by a.attraction_seq desc;
+
 
 -- 기존 view > vwAttractionOne 삭제
 
@@ -783,7 +787,6 @@ select * from tblShopLocation
 union
 select * from tblConvenientLocation;
 
-/* View ~삭제예정~ */
 -- 마이페이지 티켓 예매내역
 CREATE OR REPLACE VIEW vwUserBook as
 SELECT
@@ -846,6 +849,8 @@ join tblUser U on U.user_seq = UB.user_seq
 join tblBuy B on B.buy_seq = UB.buy_seq
 join tblItem I on B.item_seq = I.item_seq
 join tblShop S on I.shop_seq = S.shop_seq;
+
+select * from tblBuy;
 
 -- 마이페이지 이용문의 내역
 CREATE OR REPLACE VIEW vwInquiry as
@@ -969,129 +974,16 @@ SELECT
 FROM
     tblshop s;
 
--- 어트랙션 리스트 (seq, name, img)
-CREATE OR REPLACE VIEW vwAttractionList
-AS
-select
-    a.attraction_seq,
-    a.name as attraction_name,
-    ai.img as attraction_img
-from tblAttraction a
-left join tblAttractionImg ai
-on a.attraction_seq = ai.attraction_seq;
+create or replace View vwItem
+    as
+    select i.*, (select name as shop_name from tblshop where shop_seq = i.shop_seq) as shop_name,
+    (
+        SELECT
+            img
+        FROM
+            tblitemimg
+        WHERE
+                item_seq = i.item_seq
+            AND ROWNUM = 1
+    )             AS img from tblItem i where price != 0 order by item_seq DESC;
 
--- MBTI 상세정보 (course, attraction 추가)
-CREATE OR REPLACE VIEW vwMBTIDetail
-AS
-SELECT
-    m.mbti_seq,
-    m.result,
-    m.mbti,
-    c.course_seq,
-    c.name as course_name,
-    c.img as course_img,
-    a.attraction_seq,
-    a.name as attraction_name,
-    ai.img as attraction_img
-FROM tblMBTI m
-LEFT JOIN tblCourse c
-ON m.course_seq = c.course_seq
-LEFT JOIN tblAttraction a
-ON m.attraction_seq = a.attraction_seq
-LEFT JOIN tblAttractionImg ai
-ON a.attraction_seq = ai.attraction_seq;
-
--- 검색
--- 검색 (어트랙션, 영화관, 기프트숍 등 위치정보)
-CREATE OR REPLACE VIEW vwSearchLocation
-AS
-SELECT
-	a.name as attraction_name,
-	mb.result as mbti_result,
-	mb.mbti as mbti_mbti,
-	c.name as course_name,
-	h.name as hashtag_name,
-	r.name as restaurant_name,
-	r.menu as restaurant_menu,
-	ct.name as category_name,
-	s.name as shop_name,
-	s.info as shop_info,
-	i.name as item_name,
-	i.info as item_info,
-	co.name as convenient_name,
-	f.name as festival_name,
-	f.info as festival_info,
-	t.name as theater_name,
-	m.name as movie_name
-FROM tblLocation l
-LEFT JOIN tblAttraction a
-ON l.location_seq = a.location_seq
-LEFT join tblMBTI mb
-ON a.attraction_seq = mb.attraction_seq
-LEFT JOIN tblCourse c
-ON mb.course_seq = c.course_seq
-LEFT JOIN tblAttractionHashtag ah
-ON a.attraction_seq = ah.attraction_seq
-LEFT JOIN tblHashtag h
-ON h.hashtag_seq = ah.hashtag_seq
-LEFT JOIN tblRestaurant r
-ON l.location_seq = r.location_seq
-LEFT JOIN tblCategory ct
-ON r.category_seq = ct.category_seq
-LEFT JOIN tblShop s
-ON l.location_seq = s.location_seq
-LEFT JOIN tblItem i
-ON s.shop_seq = i.shop_seq
-LEFT JOIN tblConvenient co
-ON l.location_seq = co.location_seq
-LEFT JOIN tblFestival f
-ON l.location_seq = f.location_seq
-LEFT JOIN tblFestivalHashtag fh
-ON f.festival_seq = fh.festival_seq
-LEFT JOIN tblHashtag h
-ON h.hashtag_seq = fh.hashtag_seq
-LEFT JOIN tblTheater t
-ON l.location_seq = t.location_seq
-LEFT JOIN tblMoviePlay mp
-ON t.theater_seq = mp.theater_seq
-LEFT JOIN tblMovie m
-ON mp.movie_seq = m.movie_seq
-LEFT JOIN tblMovieHashtag mh
-ON m.movie_seq = mh.movie_seq
-LEFT JOIN tblHashtag h
-on h.hashtag_seq = mh.hashtag_seq;
-
--- 검색 (공지사항, FAQ, 헤택 등 정보)
-CREATE OR REPLACE VIEW vwSearchInfo AS
-SELECT 
-    subject AS notice_subject, content AS notice_content, null as benefit_name, null AS benefit_type, NULL AS faq_category, NULL AS faq_question, NULL AS faq_answer
-FROM tblNotice
-UNION ALL
-SELECT 
-    NULL, NULL, NULL, NULL, type, question, answer
-FROM tblFAQ
-UNION ALL
-SELECT 
-    NULL, null, NULL, NULL, NULL, NULL, NULL
-FROM tblTicket
-UNION ALL
-SELECT 
-    NULL, null, name, type, NULL, NULL, NULL
-FROM tblBenefit;
-
--- 검색 (전체)
-CREATE OR REPLACE VIEW vwSearch AS
-SELECT
-    attraction_name, mbti_result, mbti_mbti, course_name, hashtag_name,
-    restaurant_name, restaurant_menu, category_name, shop_name, shop_info, item_name,
-    item_info, convenient_name, festival_name, festival_info, theater_name, movie_name,
-    null notice_subject, null notice_content, null benefit_name, null benefit_type,
-    null faq_category, null faq_question, null faq_answer
-FROM vwSearchLocation
-UNION ALL
-SELECT
-    null, null, null, null, null, null, null, null, null, null, null, null,
-    null, null, null, null, null,
-    notice_subject, notice_content, benefit_name, benefit_type, faq_category,
-    faq_question, faq_answer
-FROM vwSearchInfo;

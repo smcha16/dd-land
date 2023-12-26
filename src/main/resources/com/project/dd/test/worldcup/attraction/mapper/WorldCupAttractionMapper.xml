@@ -4,6 +4,7 @@
 
 <mapper namespace="com.project.dd.test.worldcup.attraction.mapper.WorldCupAttractionMapper">
 
+	<!-- 총 어트랙션 데이터 개수 조회 쿼리 -->
 	<select id="getTotalCount" resultType="int">
 		select count(*) from tblAWC awc
 		join vwAttractionList al on awc.attraction_seq = al.attraction_seq
@@ -14,6 +15,7 @@
 		</if>
 	</select>
    
+	<!-- 어트랙션 월드컵이 'Y'인 개수 조회 쿼리 -->
 	<select id="getTestCount" resultType="int">
 		select count(*) from tblAWC awc
 		join vwAttractionList al on awc.attraction_seq = al.attraction_seq
@@ -22,12 +24,7 @@
 		where awc.is_test = 'Y'
 	</select>
    
-	<!--
-        어트랙션 리스트를 조회하는 쿼리입니다.
-        - close 파라미터로 오픈 여부를 전달받습니다.
-        - vwAttractionList와 tblAWC를 조인하여 테스트 여부가 'Y'인 어트랙션 정보만 가져옵니다.
-        - 결과 타입은 AttractionDTO입니다.
-    -->
+	<!-- 어트랙션 리스트 조회 쿼리 -->
 	<select id="getAllAttraction" parameterType="map" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
 	    SELECT * FROM (
 		    SELECT n.*, ROWNUM AS rnum FROM (
@@ -47,6 +44,7 @@
 		) where rnum between #{startIndex} and #{endIndex}
 	</select>
 	
+	<!-- 모든 어트랙션 데이터 목록 조회 쿼리 -->
 	<select id="getAttractionList" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		select
 			al.*,
@@ -60,32 +58,38 @@
 		join tblAWCFinalWin fw on fw.attraction_seq = al.attraction_seq
 		where awc.is_test = 'Y'
 	</select>
-		
+	
+	<!-- 어트랙션 테스트 채택 업데이트 쿼리 -->
 	<update id="updateAttractionStatus" parameterType="map">
 	    update tblAWC
 	    set is_test = #{isTest}
 	    where attraction_seq = #{attractionSeq}
 	</update>
 	
+	<!-- 어트랙션 월드컵 실행 횟수(최종 우승 횟수 총합) 조회 쿼리 -->
 	<select id="getAWCFinalWinTotalCount" resultType="int">
 		select sum(awc_final_win_count) as total_awc_final_win_count from tblAWCFinalWin
 	</select>
 	
+	<!-- 어트랙션 월드컵 추가 쿼리 -->
 	<insert id="addAWC" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		insert into tblAWC (awc_seq, is_test, attraction_seq)
 		values (seqtblAWC.NEXTVAL, 'Y', #{attraction_seq})
 	</insert>
 	
+	<!-- 어트랙션 월드컵 승리 추가 쿼리 -->
 	<insert id="addAWCWin" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		insert into tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
 		values (seqtblAWCWin.NEXTVAL, 0, 0, #{attraction_seq})
 	</insert>
 	
+	<!-- 어트랙션 월드컵 최종 우승 추가 쿼리 -->
 	<insert id="addAWCFinalWin" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		insert into tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
 		values (seqtblAWCFinalWin.NEXTVAL, 0, #{attraction_seq})
 	</insert>
 	
+	<!-- 어트랙션 경기 횟수 업데이트 쿼리 -->
 	<update id="updateAWCMatchCount" parameterType="String">
 	    update
 			tblAWCWin
@@ -93,6 +97,7 @@
 		where attraction_seq = #{attractionSeq}
 	</update>
 	
+	<!-- 어트랙션 승리 횟수 업데이트 쿼리 -->
 	<update id="updateAWCWinCount" parameterType="String">
 	    update
 			tblAWCWin
@@ -100,6 +105,7 @@
 		where attraction_seq = #{attractionSeq}
 	</update>
 	
+	<!-- 어트랙션 최종 우승 횟수 업데이트 쿼리 -->
 	<update id="updateAWCFinalWinCount" parameterType="String">
 	    update
 			tblAWCFinalWin
@@ -107,10 +113,12 @@
 		where attraction_seq = #{attractionSeq}
 	</update>
 	
+	<!-- 어트랙션명 목록 조회 쿼리 -->
 	<select id="getAttractionNameList" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		select attraction_seq, name from tblAttraction order by attraction_seq
 	</select>
 	
+	<!-- 상위 3개 어트랙션 조회 쿼리 -->
 	<select id="getTopThreeAttraction" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		select
 		    t.*,
@@ -125,9 +133,15 @@
 		        w.awc_match_count as match_count,
 		        w.awc_win_count as win_count,
 		        fw.awc_final_win_count as final_win_count,
-		        (w.awc_win_count / w.awc_match_count) as win_rate,
-		        (fw.awc_final_win_count / total_final_win_count) as final_win_rate,
-		        ROWNUM as rnum
+		        case
+				    when w.awc_match_count = 0 then 0
+				    else (w.awc_win_count / w.awc_match_count)
+				end as win_rate,
+				case
+				    when total_final_win_count = 0 then 0
+				    else (fw.awc_final_win_count / total_final_win_count)
+				end as final_win_rate,
+		        rownum as rnum
 		    from vwAttractionList al
 		        join tblAWC awc on awc.attraction_seq = al.attraction_seq
 		        join tblAWCWin w on w.attraction_seq = al.attraction_seq

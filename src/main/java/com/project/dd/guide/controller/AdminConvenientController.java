@@ -18,6 +18,12 @@ import com.project.dd.communication.notice.domain.NoticeDTO;
 import com.project.dd.guide.domain.ConvenientDTO;
 import com.project.dd.guide.service.ConvenientService;
 
+/**
+ * 관리자가 편의시설을 조회, 수정, 삭제, 추가하는 클래스
+ * @author leeje
+ *
+ */
+
 @Controller
 @RequestMapping(value = "/admin/convenient")
 public class AdminConvenientController {
@@ -25,6 +31,14 @@ public class AdminConvenientController {
 	@Autowired
 	private ConvenientService service;
 	
+	/**
+	 * 편의시설 목록을 조회하여 보여주는 메서드
+	 * @param category 카테고리
+	 * @param word 검색어
+	 * @param page 페이지 번호
+	 * @param model Model 객체
+	 * @return view 페이지
+	 */
 	//목록보기
 	@GetMapping(value = "/view.do")
 	public String view(String category, String word, @RequestParam(defaultValue = "1") int page, Model model) {
@@ -44,12 +58,25 @@ public class AdminConvenientController {
 		return "admin/convenient/view";
 	}
 	
+	/**
+	 * 편의시설을 추가하는 페이지로 이동하는 메서드
+	 * @param model Model 객체
+	 * @return 추가 폼 jsp
+	 */
 	//추가하기
 	@GetMapping(value = "/add.do")
 	public String add(Model model) {
 		return "admin/convenient/add";
 	}
 	
+	/**
+	 * 편의시설을 추가하는 메서드
+	 * @param model Model 객체
+	 * @param dto 추가할 편의시설 정보를 담은 ConvenientDTO 객체
+	 * @param req HttpServletRequest 객체
+	 * @param image 이미지 파일
+	 * @return 성공하면 목록 조회 페이지 / 실패하면 추가 페이지
+	 */
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, ConvenientDTO dto, HttpServletRequest req, MultipartFile image) {
 		
@@ -62,7 +89,11 @@ public class AdminConvenientController {
 	 	} else 
 	 		return "redirect:/admin/convenient/add.do";
 	}
-	
+	/**
+	 * 편의시설을 삭제하는 메서드
+	 * @param convenient_seq 삭제할 편의시설의 시퀀스 배열
+	 * @return 목록 조회 페이지
+	 */
 	//삭제하기
 	@PostMapping(value = "/del.do")
 	public String del(String[] convenient_seq) {
@@ -78,6 +109,12 @@ public class AdminConvenientController {
 		}
 	}
 	
+	/**
+	 * 편의시설을 수정하는 페이지로 이동하는 메서드
+	 * @param model Model 객체
+	 * @param seq 수정할 편의시설의 시퀀스
+	 * @return 수정 폼 페이지
+	 */
 	//수정하기
 	@GetMapping(value = "/edit.do")
 	public String edit(Model model, String seq) {
@@ -89,6 +126,13 @@ public class AdminConvenientController {
 		return "admin/convenient/edit";
 	}
 	
+	/**
+	 * 편의시설을 수정하는 메서드
+	 * @param dto 수정할 편의시설 정보를 담은 ConvenientDTO 객체
+	 * @param req HttpServletRequest 객체
+	 * @param image 이미지 파일
+	 * @return 성공하면 목록 조회 페이지 / 실패하면 수정 페이지
+	 */
 	@PostMapping(value = "/editok.do")
 	public String editok(ConvenientDTO dto, HttpServletRequest req, MultipartFile image) {
 
@@ -107,11 +151,4 @@ public class AdminConvenientController {
 	 	}
 	}
 
-
-	
-	
-
-
-
-	
 }
