@@ -715,7 +715,7 @@ create or replace view vwAttractionList
 as
 select a.*, 
 (select img from tblAttractionImg where attraction_seq = a.attraction_seq and rownum = 1)as img,
-nvl((select 'y' from tblAttractionclose where attraction_seq = a.attraction_seqand to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')), 'n')as close,
+nvl((select 'y' from tblAttractionclose where attraction_seq = a.attraction_seq and to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd')), 'n')as close,
 (select attraction_location_seq from tblAttractionLocation where attraction_seq = a.attraction_seq) as attraction_location_seq,
 (select lat from tblAttractionLocation where attraction_seq = a.attraction_seq) as lat,
 (select lng from tblAttractionLocation where attraction_seq = a.attraction_seq) as lng
@@ -769,8 +769,6 @@ nvl((select 'y' from tblTheaterClose where to_char(sysdate, 'yyyy-mm-dd') betwee
 from tblMovieplay a
 order by a.movie_play_seq desc;
 
-drop view vwMovieList;
-drop view vwMoviePlayOne;
 
 -- 위치 중복 확인용 VIEW
 create or replace view vwLocation
