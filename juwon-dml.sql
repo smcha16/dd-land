@@ -34,3 +34,5 @@ select max(review_seq) as review_seq from tblReview;
 select * from tblbuy;
 select * from tblitem;
 select * from tbluser;
+
+select * from vwUserBuy where email = 'hwang@kakao.com' and buy_date >= to_char(sysdate, 'yyyy-mm-dd');

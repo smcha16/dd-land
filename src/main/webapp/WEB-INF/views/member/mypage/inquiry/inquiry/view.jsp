@@ -283,7 +283,7 @@ function confirmCancel() {
 	// 선택된 체크박스가 있다면
 	if ($("input[name='selectedInquiry']:checked").length > 0) {
 
-		var result = confirm("정말 문의을 삭제하시겠습니까?");
+		var result = confirm("정말 문의를 삭제하시겠습니까?");
 		if (result) {
 
 			// 삭제 form 설정 및 제출
@@ -296,8 +296,8 @@ function confirmCancel() {
 	}
 }
     
-    <!-- 모달 -->
-	
+   
+	//모달
 	function showModal(subject, content, answer) {
 	    $('#modal-subject').text(subject);
 	    $('#modal-content').text(content);

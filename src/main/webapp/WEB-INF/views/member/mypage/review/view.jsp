@@ -222,7 +222,7 @@ th {
 											</c:forEach>
 										</tbody>
 									</table>
-									<button type="button" id="cancelBtn" onclick="addReviews()">리뷰 작성</button>
+									<!-- <button type="button" id="cancelBtn" onclick="addReviews()">리뷰 작성</button> -->
 									<button type="button" id="cancelBtn" onclick="modifyReviews()">리뷰 수정</button>
 									<button type="button" id="cancelBtn" onclick="deleteReviews()">리뷰 삭제</button>
 									<input type="hidden" name="${_csrf.parameterName}"
@@ -286,9 +286,9 @@ th {
 </main>
 <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
-	function addReviews() {
+	/* function addReviews() {
 		alert("이전 예매 내역에서 예매내역을 선택하신 후 리뷰를 작성할 수 있습니다.");
-	}
+	} */
 
 	function deleteReviews() {
 		// 선택된 체크박스가 있다면
@@ -341,7 +341,7 @@ th {
 		    
 		    for (var i = 0; i < imgList.length; i++) {
 		           if (imgList[i].review_seq == seq) {
-		            var imgSrc = "/dd/resources/files/review/" + imgList[i].img;
+		            var imgSrc = "/dd/resources/files/communication/review/" + imgList[i].img;
 		            
 		            /* $('#modal-image').attr('src', imgSrc); */
 		            
