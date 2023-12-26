@@ -135,7 +135,7 @@ public class MypageReviewService {
 
 					String filename = uuid + "_" + file.getOriginalFilename();
 
-					file.transferTo(new File(req.getRealPath("/resources/files/review") + "\\" + filename));
+					file.transferTo(new File(req.getRealPath("/resources/files/communication/review") + "\\" + filename));
 
 					// 첨부파일 1개 > PicDTO 1개
 					ReviewImgDTO idto = new ReviewImgDTO();

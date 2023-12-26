@@ -341,7 +341,7 @@ th {
 		    
 		    for (var i = 0; i < imgList.length; i++) {
 		           if (imgList[i].review_seq == seq) {
-		            var imgSrc = "/dd/resources/files/review/" + imgList[i].img;
+		            var imgSrc = "/dd/resources/files/communication/review/" + imgList[i].img;
 		            
 		            /* $('#modal-image').attr('src', imgSrc); */
 		            

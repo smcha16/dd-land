@@ -296,8 +296,8 @@ function confirmCancel() {
 	}
 }
     
-    <!-- 모달 -->
-	
+   
+	//모달
 	function showModal(subject, content, answer) {
 	    $('#modal-subject').text(subject);
 	    $('#modal-content').text(content);
