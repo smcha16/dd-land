@@ -150,9 +150,7 @@ th {
 							
 							<nav class="d-flex justify-content-end">
 									<ol class="breadcrumb">
-										<!-- <li class="breadcrumb-item"><a href="index.html">추가</a></li>
-										<li class="breadcrumb-item"><a href="#">수정</a></li>
-										<li class="breadcrumb-item active"><a href="#">삭제</a></li> -->
+									
 									</ol>
 								</nav>
 
@@ -181,19 +179,6 @@ th {
 										value="${_csrf.token}">
 								</form>
 								
-								<!-- 모달 -->
-								
-								<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
-								    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-								        <div class="modal-content">
-								            <div class="modal-body">
-								                <div class="d-flex align-items-center justify-content-center">
-								                    <img id="modal-image" src="" alt="Image" style="max-width: 100%;">
-								                </div>
-								            </div>
-								        </div>
-								    </div>
-								</div>
 
 							</div>
 
@@ -240,16 +225,4 @@ th {
 			alert("취소할 상품을 선택해주세요.");
 		}
     }
-    
-    <!-- 모달 -->
-	
-	function showModal(image) {
-	    if (image) {
-	        $('#modal-image').attr('src', '/dd/resources/files/item/' + image);
-	    } else {
-	    	$('#modal-image').hide();
-	    }
-
-	    $('#modal').modal('show');
-	}
 </script>

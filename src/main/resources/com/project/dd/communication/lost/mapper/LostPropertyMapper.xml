@@ -18,7 +18,7 @@
 	                ${category} like '%' || #{word} || '%'
 	            </if>
 	            <if test="start != null and end != null and start != '' and end != ''">
-	                and lost_property_date between #{start} and #{end}
+	                and lost_property_date between TO_DATE(#{start}, 'YYYY-MM-DD') and TO_DATE(#{end}, 'YYYY-MM-DD')
 	            </if>
 	        </if>
 	    </where>
@@ -41,7 +41,7 @@
 				                ${category} like '%' || #{word} || '%'
 				            </if>
 				            <if test="start != null and end != null and start != '' and end != ''">
-				                and lost_property_date between #{start} and #{end}
+				                and lost_property_date between TO_DATE(#{start}, 'YYYY-MM-DD') and TO_DATE(#{end}, 'YYYY-MM-DD')
 				            </if>
 				        </if>
 				    </where>
@@ -53,7 +53,7 @@
 	
 	<insert id="addLostProperty" parameterType="com.project.dd.communication.lost.domain.LostPropertyDTO">
 		insert into tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
-		values (seqtblLostProperty.nextVal, #{type}, #{name}, #{location}, #{lost_property_date}, #{img, jdbcType=VARCHAR}, '보관중')
+		values (seqtblLostProperty.nextVal, #{type}, #{name}, #{location}, TO_DATE(#{lost_property_date}, 'YYYY-MM-DD'), #{img, jdbcType=VARCHAR}, '보관중')
 	</insert>
 	
 	<!-- 상세 -->
@@ -71,7 +71,7 @@
 	<!-- 수정 -->
 	
 	<update id="editLostProperty" parameterType="com.project.dd.communication.lost.domain.LostPropertyDTO">
-		update tblLostProperty set type = #{type}, name = #{name}, location = #{location}, lost_property_date = #{lost_property_date}, img = #{img, jdbcType=VARCHAR}, result = #{result} where lost_property_seq = #{lost_property_seq}
+		update tblLostProperty set type = #{type}, name = #{name}, location = #{location}, lost_property_date = TO_DATE(#{lost_property_date}, 'YYYY-MM-DD'), img = #{img, jdbcType=VARCHAR}, result = #{result} where lost_property_seq = #{lost_property_seq}
 	</update>
 	
 	<!-- 삭제 -->

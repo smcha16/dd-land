@@ -184,19 +184,6 @@ th {
 										value="${_csrf.token}">
 								</form>
 								
-								<!-- 모달 -->
-								
-								<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
-								    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-								        <div class="modal-content">
-								            <div class="modal-body">
-								                <div class="d-flex align-items-center justify-content-center">
-								                    <img id="modal-image" src="" alt="Image" style="max-width: 100%;">
-								                </div>
-								            </div>
-								        </div>
-								    </div>
-								</div>
 
 							</div>
 
@@ -244,15 +231,4 @@ th {
 		}
     }
     
-    <!-- 모달 -->
-	
-	function showModal(image) {
-	    if (image) {
-	        $('#modal-image').attr('src', '/dd/resources/files/item/' + image);
-	    } else {
-	    	$('#modal-image').hide();
-	    }
-
-	    $('#modal').modal('show');
-	}
 </script>
