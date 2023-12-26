@@ -95,7 +95,7 @@
               				<div class="row mb-3">
                 				<label for="info" class="col-sm-2 col-form-label required" >소개</label>
                 				<div class="col-sm-10">
-                  					<textarea id="info" name="info" class="form-control" style="height: 100px" placeholder="페스티벌의 소개 & 특징을 입력해주세요." required><c:out value="${dto.info}"/></textarea>
+                  					<textarea id="info" name="info" class="form-control" style="height: 100px" placeholder="페스티벌의 소개 & 특징을 입력해주세요." required>${dto.info}</textarea>
                 				</div>
               				</div>
 
@@ -172,6 +172,9 @@
 <!-- Kakao Map Open API -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c089ee6f3d885cfbe52b2f15d8f3f531"></script>
 <script>
+	
+	/* Festival Info 개행 처리 */
+	$('textarea[name="info"]').val($('textarea[name="info"]').val().replace(/<br>/g, '\r\n'));
 
 	/* 페이지 로딩 시, 유효성 검사가 필요한 시간, 지도에 기본 data-type 부여 */
 	$('.check-time-validation').data('type', 'y');

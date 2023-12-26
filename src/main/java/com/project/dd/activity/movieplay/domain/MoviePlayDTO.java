@@ -26,6 +26,8 @@ public class MoviePlayDTO {
 	//tblMovie
 	private String movie_name;
 	private String story;
+	private String runningtime;
 	private String img;
+	private String preview;
 	
 }

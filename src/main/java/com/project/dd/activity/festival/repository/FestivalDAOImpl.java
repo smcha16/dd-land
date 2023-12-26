@@ -34,8 +34,8 @@ public class FestivalDAOImpl implements FestivalDAO {
 	}
 
 	@Override
-	public List<FestivalDTO> getFestivalListAll(Map<String, String> map) {
-		return mapper.getFestivalListAll(map);
+	public List<FestivalDTO> getAllFestivalList(Map<String, String> map) {
+		return mapper.getAllFestivalList(map);
 	}
 
 	@Override
@@ -111,6 +111,11 @@ public class FestivalDAOImpl implements FestivalDAO {
 	@Override
 	public int checkLocationDuplication(FestivalDTO dto) {
 		return mapper.checkLocationDuplication(dto);
+	}
+
+	@Override
+	public int getAdminPagingTotalPosts(Map<String, String> map) {
+		return mapper.getAdminPagingTotalPosts(map);
 	}
 
 

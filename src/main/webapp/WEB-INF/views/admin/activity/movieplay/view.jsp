@@ -159,12 +159,9 @@
 					<div class="col-12">
 
               			<div id="search" class="header">
-                  			<form class="search-form d-flex align-items-center" method="POST" action="#">
-                    			<input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                  			<form method="GET" action="/dd/admin/activity/movieplay/view.do" class="search-form d-flex align-items-center">
+                    			<input type="text" name="query" placeholder="영화명 또는 영화관명을 입력하세요." autocomplete="off">
                     			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                    			
-                    			<!-- 토큰 -->
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                   			</form>
               			</div>
 

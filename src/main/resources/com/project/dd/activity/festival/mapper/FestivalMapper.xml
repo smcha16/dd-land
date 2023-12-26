@@ -30,20 +30,6 @@
 	</select>
 	
 	<!-- admin -->
-	<select id="getFestivalListAll" parameterType="map" resultType="com.project.dd.activity.festival.domain.FestivalDTO">
-		select *
-		from (select n.*, rownum as rnum from(
-	
-			select a.festival_seq, a.name, a.time, a.info,to_char(a.start_date, 'yyyy-mm-dd') as start_date, to_char(a.end_date, 'yyyy-mm-dd') as end_date,
-			(select img from tblFestivalImg where festival_seq = a.festival_seq) as img,
-			(select festival_location_seq from tblFestivalLocation where festival_seq = a.festival_seq) as festival_location_seq,
-			(select lat from tblFestivalLocation where festival_seq = a.festival_seq) as lat,
-			(select lng from tblFestivalLocation where festival_seq = a.festival_seq) as lng
-			from tblFestival a
-			order by festival_seq desc
-			
-		) n) where rnum between #{startIndex} and #{endIndex}
-	</select>
 	
 	<!-- 페이징 -->
 	<select id="getTotalCount"  parameterType="String" resultType="int">
@@ -112,5 +98,34 @@
 	<select id="checkLocationDuplication" parameterType="com.project.dd.activity.festival.domain.FestivalDTO" resultType="int">
 		select count(*) from vwLocation where lat = #{lat} and lng = #{lng}
 	</select>
+	
+	<!-- Admin용 -->
+	<!-- Admin용 페이징 -->
+	
+	<select id="getAdminPagingTotalPosts" parameterType="map" resultType="int">
+		select count(*) from tblFestival
+		<if test="searchStatus == 'y'.toString()">
+	        where name like '%' || #{word} || '%' or info like '%' || #{word} || '%'
+		</if>
+	</select>
+	
+	<select id="getAllFestivalList" parameterType="map" resultType="com.project.dd.activity.festival.domain.FestivalDTO">
+		select *
+		from (select n.*, rownum as rnum from(
+	
+			select a.festival_seq, a.name, a.time, a.info,to_char(a.start_date, 'yyyy-mm-dd') as start_date, to_char(a.end_date, 'yyyy-mm-dd') as end_date,
+			(select img from tblFestivalImg where festival_seq = a.festival_seq) as img,
+			(select festival_location_seq from tblFestivalLocation where festival_seq = a.festival_seq) as festival_location_seq,
+			(select lat from tblFestivalLocation where festival_seq = a.festival_seq) as lat,
+			(select lng from tblFestivalLocation where festival_seq = a.festival_seq) as lng
+			from tblFestival a
+			order by festival_seq desc) n
+			<if test="searchStatus == 'y'.toString()">
+	        	where name like '%' || #{word} || '%' or info like '%' || #{word} || '%'
+			</if>
+			
+		) where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
 	
 </mapper>

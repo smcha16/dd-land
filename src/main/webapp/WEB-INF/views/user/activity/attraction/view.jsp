@@ -12,9 +12,9 @@
 		margin-top: 70px;
 	}
 	
-	#title {
+	#title > a{
 		font-size: 48px;
-		display: block;
+		display: inline-block;
 		color: #fff;
 		font-weight: 700;
 		margin-bottom: 20px;
@@ -207,11 +207,12 @@
 		border-color: #CE1212;
 	}
 	
-	/* 운휴/운영 버튼 토글 */
+	/* 모든 어트랙션 정상 운영 이미지 CSS */
 	#close-img {
 		display: none;
 		justify-content: center;
 	}
+	
 </style>
 
 <!-- list3 Main Content -->
@@ -221,7 +222,7 @@
 		<div class="gy-4" style="justify-content: center; width: 100%;">
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
-					<div id="title">Attraction</div>
+					<div id="title"><a href="/dd/user/activity/attraction/view.do">Attraction</a></div>
 					<span class="btn btn-1">
 						<input type="checkbox" id="close" name="close">
 						<label for="close"></label>
@@ -238,21 +239,23 @@
 		<div class="tab-content" data-aos="fade-up" data-aos-delay="100">
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div class="munti-content-container">
-					<c:forEach items="${list}" var="dto">
-						<c:if test="${dto.close == 'y'}">
-							<div class="item hidden" onclick="location.href= '/dd/user/activity/attraction/detail.do?seq=' + ${dto.attraction_seq};">
-								<div style="background-image: url('/dd/resources/files/activity/attraction/${dto.img}');"></div>
-								<div>${dto.name}</div>
-								<div class="hidden-div">${dto.info}</div>
-							</div>
-						</c:if>
-						<c:if test="${dto.close == 'n'}">
-							<div class="item" onclick="location.href= '/dd/user/activity/attraction/detail.do?seq=' + ${dto.attraction_seq};">
-								<div style="background-image: url('/dd/resources/files/activity/attraction/${dto.img}');"></div>
-								<div>${dto.name}</div>
-								<div class="hidden-div">${dto.info}</div>
-							</div>
-						</c:if>
+				
+					<!-- 운영 Attraction List -->
+					<c:forEach items="${openList}" var="dto">
+						<div class="item" onclick="location.href= '/dd/user/activity/attraction/detail.do?seq=' + ${dto.attraction_seq};">
+							<div style="background-image: url('/dd/resources/files/activity/attraction/${dto.img}');"></div>
+							<div>${dto.name}</div>
+							<div class="hidden-div">${dto.info}</div>
+						</div>
+					</c:forEach>
+					
+					<!-- 운휴 Attraction List -->
+					<c:forEach items="${closeList}" var="dto">
+						<div class="item hidden" onclick="location.href= '/dd/user/activity/attraction/detail.do?seq=' + ${dto.attraction_seq};">
+							<div style="background-image: url('/dd/resources/files/activity/attraction/${dto.img}');"></div>
+							<div>${dto.name}</div>
+							<div class="hidden-div">${dto.info}</div>
+						</div>
 					</c:forEach>
 				</div>
 				<c:if test="${closeCount == 0}">
@@ -280,11 +283,8 @@
 			</c:forEach>
 		</ul>
 	</nav>
-	
 </section>
-<!-- End Menu Section -->
 
-<!-- list3 전용 JavaScript -->
 <script>
 	var itemElements = document.querySelectorAll('.item');
 
@@ -302,56 +302,33 @@
 
 	});
 
-	/* 운영/운휴 */
+	/* 운영/운휴 토글 버튼 */
 	$('#close').change(function() {
-		console.log("Change event triggered");
 
-		/* 운휴 이미지 토글 */
-		if ($('#close-img').css('display') == 'none') {
+		if ($('#page-bar').css('display') == 'none') {
+			$('#close-img').css('display', 'none');
+			$('#page-bar').css('display', 'block');
+		} else {
 			$('#close-img').css('display', 'flex');
 			$('#page-bar').css('display', 'none');
-		} else {
-			$('#close-img').css('display', 'none')
-			$('#page-bar').css('display', 'block');
 		}
 		
 		itemElements.forEach(function(item) {
-			console.log("Item display:", item.style.display);
 
 			if (item.classList.contains('hidden')) {
-				console.log("Removing hidden class");
 				item.classList.remove('hidden');
 				
 			} else {
-				console.log("Adding hidden class");
 				item.classList.add('hidden');
 			}
 		});
 	});
+	
+	/* 새로고침 버튼 누를 시, 페이징 및 운영/운휴 초기화 */
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/user/activity/attraction/view.do';
+	    }
+	});
 
-	/* 	
-	const close = '${close}';
-	
-	 //CSS 만을 위한 코드
-	 if (close == 'y') {
-	 	$('#close').prop('checked', true);
-	 } else {
-		 $('#close').prop('checked', false);
-	 }
-
-	 //조건에 따른 DB를 가져오기 위한 코드
-	 function search() {
-	
-		 //처음에 n 이면 클릭 시 y로 변경
-		 if ($('#close').prop('checked')) {
-		 $('#close').data('type', 'y');
-		 location.href='/dd/user/activity/attraction/view.do?close=' + $('#close').data('type');
-		 } else {
-		 //처음에 y면 클릭 시 n으로 변경
-		 $('#close').data('type', 'n');
-		 location.href='/dd/user/activity/attraction/view.do'
-		 }
-	
-	 }
-	 */
 </script>

@@ -4,56 +4,193 @@
 <!-- namespace == 호출할 Interface 이름 적기 -->
 <mapper namespace="com.project.dd.activity.movieplay.mapper.MoviePlayMapper">
 	
-	<!-- id == 인터페이스의 추상메서드의 이름 -->
-	<!-- 페이징 -->
-	<select id="getTotalCount"  parameterType="String" resultType="int">
-      <if test="solting == 'admin'">
-      	select count(*) from tblMovieplay
-      </if>
-      <if test="solting == 'user'">
-      	select count(*) from tblMovieplay
-      </if>
+	<!-- User용 -->
+	<!-- User용 페이징 -->
+	<select id="getUserPagingTotalPosts" parameterType="String" resultType="int">
+		select count(*) from tblMovie
+			where movie_seq in (select movie_seq
+									from (select a.movie_play_seq, a.movie_seq, a.time, to_char(a.start_date, 'yyyy-mm-dd') as start_date, to_char(a.end_date, 'yyyy-mm-dd') as end_date, a.theater_seq,
+											(select name from tblTheater where theater_seq = a.theater_seq) as theater_name,
+											(select name from tblMovie where movie_seq = a.movie_seq) as movie_name,
+											(select story from tblMovie where movie_seq = a.movie_seq) as story,
+											(select runningtime from tblMovie where movie_seq = a.movie_seq) as runningtime,
+											(select img from tblMovie where movie_seq = a.movie_seq) as img,
+											(select preview from tblMovie where movie_seq = a.movie_seq) as preview,
+											(select theater_location_seq from tblTheaterLocation where theater_seq = a.theater_seq) as theater_location_seq,
+											(select lat from tblTheaterLocation where theater_seq = a.theater_seq) as lat,
+											(select lng from tblTheaterLocation where theater_seq = a.theater_seq) as lng,
+											nvl((select 'y' from tblTheaterClose
+													<if test="date == 'sysdate'">
+														where to_char(sysdate, 'yyyy-mm-dd') 
+													</if>
+													<if test="date != 'sysdate'">
+														where #{date}
+													</if>
+														between to_char(start_date,'yyyy-mm-dd') and to_char(end_date,'yyyy-mm-dd')
+													and theater_seq = a.theater_seq), 'n') as close
+											from tblMovieplay a
+											order by a.movie_play_seq desc)
+									where close = 'n'
+										<if test="date == 'sysdate'">
+										and to_char(sysdate, 'yyyy-mm-dd') between start_date and end_date)
+										</if>
+										<if test="date != 'sysdate'">
+										and #{date} between start_date and end_date)
+										</if>
 	</select>
+	
+	<select id="getMoviePlayList" parameterType="map" resultType="com.project.dd.activity.movie.domain.MovieDTO">
+		select *
+		from (select n.*, rownum as rnum from(
+	
+			select * from tblMovie
+			where movie_seq in (select movie_seq
+									from (select a.movie_play_seq, a.movie_seq, a.time, to_char(a.start_date, 'yyyy-mm-dd') as start_date, to_char(a.end_date, 'yyyy-mm-dd') as end_date, a.theater_seq,
+											(select name from tblTheater where theater_seq = a.theater_seq) as theater_name,
+											(select name from tblMovie where movie_seq = a.movie_seq) as movie_name,
+											(select story from tblMovie where movie_seq = a.movie_seq) as story,
+											(select runningtime from tblMovie where movie_seq = a.movie_seq) as runningtime,
+											(select img from tblMovie where movie_seq = a.movie_seq) as img,
+											(select preview from tblMovie where movie_seq = a.movie_seq) as preview,
+											(select theater_location_seq from tblTheaterLocation where theater_seq = a.theater_seq) as theater_location_seq,
+											(select lat from tblTheaterLocation where theater_seq = a.theater_seq) as lat,
+											(select lng from tblTheaterLocation where theater_seq = a.theater_seq) as lng,
+											nvl((select 'y' from tblTheaterClose
+													<if test="date == 'sysdate'">
+														where to_char(sysdate, 'yyyy-mm-dd') 
+													</if>
+													<if test="date != 'sysdate'">
+														where #{date}
+													</if>
+														between to_char(start_date,'yyyy-mm-dd') and to_char(end_date,'yyyy-mm-dd')
+													and theater_seq = a.theater_seq), 'n') as close
+											from tblMovieplay a
+											order by a.movie_play_seq desc)
+									where close = 'n'
+										<if test="date == 'sysdate'">
+										and to_char(sysdate, 'yyyy-mm-dd') between start_date and end_date)
+										</if>
+										<if test="date != 'sysdate'">
+										and #{date} between start_date and end_date)
+										</if>					
+			
+		) n) where rnum between #{startIndex} and #{endIndex}
+	</select> <!-- 페이징 끝 -->
+	
+	<select id="getMovie" parameterType="String" resultType="com.project.dd.activity.movie.domain.MovieDTO">
+		select * from tblMovie where movie_seq = #{movie_seq}
+	</select>
+	
+	<select id="getMoviePlayListBySeqDate" parameterType="map" resultType="com.project.dd.activity.movieplay.domain.MoviePlayDTO">
+		select *
+		from (select a.movie_play_seq, a.movie_seq, a.time, to_char(a.start_date, 'yyyy-mm-dd') as start_date, to_char(a.end_date, 'yyyy-mm-dd') as end_date, a.theater_seq,
+				(select name from tblTheater where theater_seq = a.theater_seq) as theater_name,
+				(select name from tblMovie where movie_seq = a.movie_seq) as movie_name,
+				(select story from tblMovie where movie_seq = a.movie_seq) as story,
+				(select runningtime from tblMovie where movie_seq = a.movie_seq) as runningtime,
+				(select img from tblMovie where movie_seq = a.movie_seq) as img,
+				(select preview from tblMovie where movie_seq = a.movie_seq) as preview,
+				(select theater_location_seq from tblTheaterLocation where theater_seq = a.theater_seq) as theater_location_seq,
+				(select lat from tblTheaterLocation where theater_seq = a.theater_seq) as lat,
+				(select lng from tblTheaterLocation where theater_seq = a.theater_seq) as lng,
+				nvl((select 'y' from tblTheaterClose
+						<if test="date == 'sysdate'">
+							where to_char(sysdate, 'yyyy-mm-dd') 
+						</if>
+						<if test="date != 'sysdate'">
+							where #{date}
+						</if>
+							between to_char(start_date,'yyyy-mm-dd') and to_char(end_date,'yyyy-mm-dd')
+						and theater_seq = a.theater_seq), 'n') as close
+				from tblMovieplay a
+				order by a.movie_play_seq desc)
+		where close = 'n'
+		and movie_seq = #{seq}
+			<if test="date == 'sysdate'">
+			and to_char(sysdate, 'yyyy-mm-dd') between start_date and end_date
+			</if>
+			<if test="date != 'sysdate'">
+			and #{date} between start_date and end_date
+			</if>
+	</select>
+	
+	<select id="getMoviePlayBySeqDate" parameterType="map" resultType="com.project.dd.activity.movieplay.domain.MoviePlayDTO">
+		select *
+		from (select a.movie_play_seq, a.movie_seq, a.time, to_char(a.start_date, 'yyyy-mm-dd') as start_date, to_char(a.end_date, 'yyyy-mm-dd') as end_date, a.theater_seq,
+				(select name from tblTheater where theater_seq = a.theater_seq) as theater_name,
+				(select name from tblMovie where movie_seq = a.movie_seq) as movie_name,
+				(select story from tblMovie where movie_seq = a.movie_seq) as story,
+				(select runningtime from tblMovie where movie_seq = a.movie_seq) as runningtime,
+				(select img from tblMovie where movie_seq = a.movie_seq) as img,
+				(select preview from tblMovie where movie_seq = a.movie_seq) as preview,
+				(select theater_location_seq from tblTheaterLocation where theater_seq = a.theater_seq) as theater_location_seq,
+				(select lat from tblTheaterLocation where theater_seq = a.theater_seq) as lat,
+				(select lng from tblTheaterLocation where theater_seq = a.theater_seq) as lng,
+				nvl((select 'y' from tblTheaterClose
+						<if test="date == 'sysdate'">
+							where to_char(sysdate, 'yyyy-mm-dd') 
+						</if>
+						<if test="date != 'sysdate'">
+							where #{date}
+						</if>
+							between to_char(start_date,'yyyy-mm-dd') and to_char(end_date,'yyyy-mm-dd')
+						and theater_seq = a.theater_seq), 'n') as close
+				from tblMovieplay a
+				order by a.movie_play_seq desc)
+		where close = 'n'
+		and movie_play_seq = #{movie_play_seq}
+			<if test="date == 'sysdate'">
+			and to_char(sysdate, 'yyyy-mm-dd') between start_date and end_date
+			</if>
+			<if test="date != 'sysdate'">
+			and #{date} between start_date and end_date
+			</if>
+	</select>
+
+	<!-- Admin용 -->
+	<!-- Admin용 페이징 -->
+	<select id="getAdminPagingTotalPosts" parameterType="map" resultType="int">
+		select count(*) from vwMoviePlayList
+		<if test="searchStatus == 'y'.toString()">
+	        where movie_name like '%' || #{word} || '%' or theater_name like '%' || #{word} || '%'
+	  	</if>
+	</select>	
 	
 	<select id="getMoviePlayListAll" parameterType="map" resultType="com.project.dd.activity.movieplay.domain.MoviePlayDTO">
 		select *
 		from (select n.*, rownum as rnum from(
 		
-				select a.movie_play_seq, a.movie_seq, a.time, to_char(a.start_date, 'yyyy-mm-dd') as start_date, to_char(a.end_date, 'yyyy-mm-dd') as end_date, a.theater_seq,
-				(select name from tblTheater where theater_seq = a.theater_seq) as theater_name,
-				(select name from tblMovie where movie_seq = a.movie_seq) as movie_name,
-				(select story from tblMovie where movie_seq = a.movie_seq) as story,
-				(select img from tblMovie where movie_seq = a.movie_seq) as img,
-				nvl((select 'y' from tblTheaterClose where to_char(sysdate, 'yyyy-mm-dd') between start_date and end_date and theater_seq = a.theater_seq), 'n') as close
-				from tblMovieplay a
-				order by movie_play_seq desc
-		
-		) n) where rnum between #{startIndex} and #{endIndex}
-	</select>
+			select * from vwMoviePlayList) n
+			<if test="searchStatus == 'y'.toString()">
+	        where movie_name like '%' || #{word} || '%' or theater_name like '%' || #{word} || '%'
+	  		</if>
+			
+		) where rnum between #{startIndex} and #{endIndex}
+	</select> <!-- 페이징 끝 -->
 	
+	<select id="getMovieList" resultType="com.project.dd.activity.movie.domain.MovieDTO">
+		select * from tblMovie order by movie_seq desc
+	</select>
+
+	<select id="getTheaterList" resultType="com.project.dd.activity.theater.domain.TheaterDTO">
+		select * from tblTheater where name not like '%(운영종료)%' order by theater_seq desc
+	</select>
+
 	<insert id="addMoviePlay" parameterType="com.project.dd.activity.movieplay.domain.MoviePlayDTO">
 		INSERT INTO tblMoviePlay (movie_play_seq, movie_seq, time, start_date, end_date, theater_seq)
 		VALUES (seqtblMoviePlay.NEXTVAL, #{movie_seq}, #{time}, TO_DATE(#{start_date}, 'YYYY-MM-DD'), TO_DATE(#{end_date}, 'YYYY-MM-DD'), #{theater_seq})
 	</insert>
 	
-	<delete id="delMoviePlay" parameterType="String">
-		delete from tblMoviePlay where movie_play_seq = #{movie_play_seq}
-	</delete>
+	<select id="getMoviePlay" parameterType="String" resultType="com.project.dd.activity.movieplay.domain.MoviePlayDTO">
+		select * from tblMoviePlay where movie_play_seq = #{movie_play_seq}
+	</select>
 	
 	<update id="editMoviePlay" parameterType="com.project.dd.activity.movieplay.domain.MoviePlayDTO">
 		update tblMoviePlay set time = #{time}, start_date = TO_DATE(#{start_date}, 'YYYY-MM-DD'), end_date = TO_DATE(#{end_date}, 'YYYY-MM-DD'), theater_seq = #{theater_seq}
 	</update>
-	
-	<select id="getMoviePlay" parameterType="String" resultType="com.project.dd.activity.movieplay.domain.MoviePlayDTO">
-		
-	</select>
-	
-	<select id="getMovieList" resultType="com.project.dd.activity.movie.domain.MovieDTO">
-		select * from tblMovie where name not like '%(상영종료)%' order by movie_seq desc
-	</select>
-	
-	<select id="getTheaterList" resultType="com.project.dd.activity.theater.domain.TheaterDTO">
-		select * from tblTheater where name not like '%(운영종료)%' order by theater_seq desc
-	</select>
+
+	<delete id="delMoviePlay" parameterType="String">
+		delete from tblMoviePlay where movie_play_seq = #{movie_play_seq}
+	</delete>
 	
 </mapper>

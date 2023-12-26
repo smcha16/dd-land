@@ -14,7 +14,7 @@
 	
 	#title > a{
 		font-size: 48px;
-		display: block;
+		display: inline-block;
 		color: #fff;
 		font-weight: 700;
 		margin-bottom: 20px;
@@ -291,6 +291,5 @@
 	if (${not empty date}) {
 		$('#date').val('${date}');
 	}
-	
 
 </script>
