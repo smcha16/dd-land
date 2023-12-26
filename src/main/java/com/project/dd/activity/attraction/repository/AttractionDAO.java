@@ -9,13 +9,21 @@ import com.project.dd.activity.attraction.domain.BookUserDTO;
 
 public interface AttractionDAO {
 
+	int getUserPagingTotalPosts();
+
 	List<AttractionDTO> getOpenAttractionList(Map<String, String> map);
+
+	List<AttractionDTO> getCloseAttractionList();
 
 	AttractionDTO getAttraction(String seq);
 
 	List<AttractionImgDTO> getAttractionImgList(String seq);
 
 	int getAdminPagingTotalPosts(Map<String, String> map);
+
+	List<AttractionDTO> getAllAttractionList(Map<String, String> map);
+
+	int checkNameDuplication(AttractionDTO dto);
 
 	int checkLocationDuplication(AttractionDTO dto);
 
@@ -30,8 +38,6 @@ public interface AttractionDAO {
 	int delAttractionLocation(String seq);
 
 	int countAttractionLocation(String seq);
-
-	int checkNameDuplication(AttractionDTO dto);
 
 	String getAttractionSeq();
 
@@ -56,11 +62,5 @@ public interface AttractionDAO {
 	int getAttractionBookCapacity(BookUserDTO dto);
 
 	List<BookUserDTO> getAttractionBookList();
-
-	List<AttractionDTO> getAllAttractionList(Map<String, String> map);
-
-	int getUserPagingTotalPosts();
-
-	List<AttractionDTO> getCloseAttractionList();
 
 }

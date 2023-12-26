@@ -10,6 +10,16 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.http.HttpHost;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -19,6 +29,7 @@ import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
 import com.project.dd.activity.attraction.domain.BookUserDTO;
 import com.project.dd.activity.attraction.repository.AttractionDAO;
+import com.project.dd.activity.attraction.repository.AttractionRepository;
 import com.project.dd.login.domain.CustomUser;
 
 
@@ -33,7 +44,10 @@ import com.project.dd.login.domain.CustomUser;
 public class AttractionService {
 
 	@Autowired
-	AttractionDAO dao;
+	private AttractionDAO dao;
+	
+	@Autowired
+	private AttractionRepository repo;
 
 	public Map<String, String> userPaging(int page) {
 		
@@ -111,13 +125,19 @@ public class AttractionService {
 			
 			//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
 			String newInfo = dto.getInfo(); 
-			newInfo = dto.getInfo().replace("<", "&lt");
-			newInfo = dto.getInfo().replace(">", "&gt");
+			newInfo = newInfo.replace("<", "&lt");
+			newInfo = newInfo.replace(">", "&gt");
+			
+			String newRestriction = dto.getRestriction();
+			newRestriction = newRestriction.replace("<", "&lt");
+			newRestriction = newRestriction.replace(">", "&gt");
 			
 			//DB 개행 -> '<br>' 태그 처리
-			newInfo = dto.getInfo().replace("\\r\\n", "<br>");
+			newInfo = newInfo.replaceAll("(\r\n|\r|\n)", "<br>");
+			newRestriction = newRestriction.replaceAll("(\r\n|\r|\n)", "<br>");
 			
 			dto.setInfo(newInfo);
+			dto.setRestriction(newRestriction);
 			
 		}
 		
@@ -133,19 +153,32 @@ public class AttractionService {
 			
 			//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
 			String newInfo = dto.getInfo(); 
-			newInfo = dto.getInfo().replace("<", "&lt");
-			newInfo = dto.getInfo().replace(">", "&gt");
+			newInfo = newInfo.replace("<", "&lt");
+			newInfo = newInfo.replace(">", "&gt");
+			
+			String newRestriction = dto.getRestriction();
+			newRestriction = newRestriction.replace("<", "&lt");
+			newRestriction = newRestriction.replace(">", "&gt");
 			
 			//DB 개행 -> '<br>' 태그 처리
-			newInfo = dto.getInfo().replace("\\r\\n", "<br>");
+			newInfo = newInfo.replaceAll("(\r\n|\r|\n)", "<br>");
+			newRestriction = newRestriction.replaceAll("(\r\n|\r|\n)", "<br>");
 			
 			dto.setInfo(newInfo);
+			dto.setRestriction(newRestriction);
 			
 		}
 		
 		return list;
 	}
 
+	/**
+	 * 
+	 * 전체 어트랙션 목록을 가져오는 메서드입니다. 
+	 * 
+	 * @param map 페이징을 위한 Map 객체
+	 * @return AttractionDTO 객체 List
+	 */
 	public List<AttractionDTO> getAllAttractionList(Map<String, String> map) {
 		
 		List<AttractionDTO> list = dao.getAllAttractionList(map);
@@ -154,15 +187,19 @@ public class AttractionService {
 			
 			//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
 			String newInfo = dto.getInfo(); 
-			newInfo = dto.getInfo().replace("<", "&lt");
-			newInfo = dto.getInfo().replace(">", "&gt");
+			newInfo = newInfo.replace("<", "&lt");
+			newInfo = newInfo.replace(">", "&gt");
+			
+			String newRestriction = dto.getRestriction();
+			newRestriction = newRestriction.replace("<", "&lt");
+			newRestriction = newRestriction.replace(">", "&gt");
 			
 			//DB 개행 -> '<br>' 태그 처리
-			newInfo = dto.getInfo().replace("\\r\\n", "<br>");
-			
-			System.out.println("newInfo: " + newInfo);
+			newInfo = newInfo.replaceAll("(\r\n|\r|\n)", "<br>");
+			newRestriction = newRestriction.replaceAll("(\r\n|\r|\n)", "<br>");
 			
 			dto.setInfo(newInfo);
+			dto.setRestriction(newRestriction);
 			
 		}
 		
@@ -179,16 +216,22 @@ public class AttractionService {
 	public AttractionDTO getAttraction(String seq) {
 		
 		AttractionDTO dto = dao.getAttraction(seq);
-			
+		
 		//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
 		String newInfo = dto.getInfo(); 
-		newInfo = dto.getInfo().replace("<", "&lt");
-		newInfo = dto.getInfo().replace(">", "&gt");
+		newInfo = newInfo.replace("<", "&lt");
+		newInfo = newInfo.replace(">", "&gt");
+		
+		String newRestriction = dto.getRestriction();
+		newRestriction = newRestriction.replace("<", "&lt");
+		newRestriction = newRestriction.replace(">", "&gt");
 		
 		//DB 개행 -> '<br>' 태그 처리
-		newInfo = dto.getInfo().replace("\\r\\n", "<br>");
+		newInfo = newInfo.replaceAll("(\r\n|\r|\n)", "<br>");
+		newRestriction = newRestriction.replaceAll("(\r\n|\r|\n)", "<br>");
 		
 		dto.setInfo(newInfo);
+		dto.setRestriction(newRestriction);
 			
 		return dto;
 		
@@ -234,7 +277,6 @@ public class AttractionService {
 	public int checkLocationDuplication(AttractionDTO dto) {
 		return dao.checkLocationDuplication(dto);
 	}
-
 	
 	/**
 	 * 
@@ -417,12 +459,6 @@ public class AttractionService {
 		//5. 기존 첨부 O + 수정 후 첨부 X + 기존 파일 전체 삭제: 'attraction.png' 추가
 		//6. 기존 첨부 O + 수정 후 첨부 O + 기존 파일 유지: 기존 AttractionImg 유지 및 첨부 파일 추가
 		//7. 기존 첨부 O + 수정 후 첨부 O + 기존 파일 일부/전체 삭제: 기존 파일 삭제 및 첨부 파일 추가
-		
-//		System.out.println(dto.toString());
-//		System.out.println(imgs[0].isEmpty());
-//		System.out.println(imgs.length);
-//		System.out.println(Arrays.toString(deleteImgSeq));
-//		System.out.println(deleteImgSeq.length);
 		
 		String seq = dto.getAttraction_seq();
 		int result = 0;
@@ -625,5 +661,54 @@ public class AttractionService {
 	public List<BookUserDTO> getAttractionBookList() {
 		return dao.getAttractionBookList();
 	}
+
+//	public List<Map<String, Object>> searchAttraction(Map<String, String> map) {
+//		//repo.searchAttraction(map);
+//		
+//		try {
+//			
+//			List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+//			
+//			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("172.23.32.1", 9200, "http")));
+//			
+//			//인덱스 선택
+//			SearchRequest searchRequest = new SearchRequest("attraction");
+//			
+//			SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder().size(100);
+//			
+//			//*** 검색 쿼리
+//			//- 검색에서 가장 흔한 패턴
+//			//- bool query (must(match 검색어) + should(match_phrase 검색어)) :: 잘 모르겠다면 이 검색 사용하기 > 무난한 검색)
+//			searchSourceBuilder.query(
+//				QueryBuilders.boolQuery()
+//					.must(QueryBuilders.matchQuery("title", map.get("word")))
+//					.should(QueryBuilders.matchPhraseQuery("title", map.get("word")))
+//			
+//			);
+//			
+//			searchRequest.source(searchSourceBuilder);
+//			
+//			//실제 검색 요청
+//			SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+//			
+//			SearchHits searchHits = searchResponse.getHits();
+//			
+//			for (SearchHit hit : searchHits) {
+//				
+//				Map<String, Object> test = hit.getSourceAsMap();
+//				test.put("id", hit.getId());
+//				test.put("score", hit.getScore());
+//				list.add(test);
+//				
+//			}
+//			
+//			return list;
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return null;
+//	}
 
 }

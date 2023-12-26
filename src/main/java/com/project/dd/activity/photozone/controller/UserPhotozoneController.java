@@ -45,8 +45,17 @@ public class UserPhotozoneController {
 		
 		List<PhotoZoneDTO> list = service.getPhotozoneList(map);
 		
-		model.addAttribute("currentPage", page);  //페이징
-	      model.addAttribute("map", map);  //페이징
+		//소개 100글자 이상 자르기
+		for (PhotoZoneDTO dto : list) {
+			
+			if (dto.getInfo().length() > 100) {
+				dto.setInfo(dto.getInfo().substring(0, 101) + "..."); 
+			}
+		}
+		
+		//페이징
+		model.addAttribute("currentPage", page);
+		model.addAttribute("map", map);
 		
 		model.addAttribute("list", list);
 		

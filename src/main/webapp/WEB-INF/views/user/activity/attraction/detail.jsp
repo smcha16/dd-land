@@ -252,6 +252,7 @@
 		<!-- End Slick Slider -->
 		
 		<p class="section-info">${dto.info}</p>
+		
 	</div>
 </section>
 <!-- End Title & Image Section -->

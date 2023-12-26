@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
 import com.project.dd.activity.attraction.service.AttractionService;
+import com.project.dd.activity.movie.domain.MovieDTO;
 
 /**
  * 
@@ -49,13 +50,21 @@ public class UserAttractionController {
 		//Attraction '운휴' 목록
 		List<AttractionDTO> closeList = service.getCloseAttractionList();
 		
+		//소개 100글자 이상 자르기
+		for (AttractionDTO dto : openList) {
+			if (dto.getInfo().length() > 100) {
+				dto.setInfo(dto.getInfo().substring(0, 101) + "..."); 
+			}
+		}
+		for (AttractionDTO dto : closeList) {
+			if (dto.getInfo().length() > 100) {
+				dto.setInfo(dto.getInfo().substring(0, 101) + "..."); 
+			}
+		}
+		
 		//페이징
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
-		
-		//개행 확인
-		System.out.println("openList 개행 확인: " + openList.toString());
-		System.out.println("closeList 개행 확인: " + closeList.toString());
 		
 		//운영/운휴 Attraction List, 운휴 개수 전달
 		model.addAttribute("openList", openList);
@@ -84,9 +93,6 @@ public class UserAttractionController {
 		
 		//ilist > AttractionDTO에 담기
 		dto.setImgList(ilist);
-		
-		//개행 확인
-		System.out.println("user detail: " + dto.toString());
 		
 		model.addAttribute("dto", dto);
 		

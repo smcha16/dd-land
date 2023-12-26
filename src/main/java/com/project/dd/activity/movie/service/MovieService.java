@@ -73,7 +73,24 @@ public class MovieService {
 	 * @return MovieDTO 객체 List
 	 */
 	public List<MovieDTO> getMovieList(Map<String, String> map) {
-		return dao.getMovieList(map);
+		
+		List<MovieDTO> list = dao.getMovieList(map);
+		
+		for (MovieDTO dto : list) {
+			
+			//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
+			String newStory = dto.getStory(); 
+			newStory = newStory.replace("<", "&lt");
+			newStory = newStory.replace(">", "&gt");
+			
+			//DB 개행 -> '<br>' 태그 처리
+			newStory = newStory.replaceAll("(\r\n|\r|\n)", "<br>");
+			
+			dto.setStory(newStory);
+			
+		}
+		
+		return list;
 	}
 
 	/**

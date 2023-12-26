@@ -70,7 +70,23 @@ public class MoviePlayService {
 		
 		map.put("date", date);
 		
-		return dao.getMoviePlayList(map);
+		List<MovieDTO> list = dao.getMoviePlayList(map);
+		
+		for (MovieDTO dto : list) {
+			
+			//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
+			String newStory = dto.getStory(); 
+			newStory = newStory.replace("<", "&lt");
+			newStory = newStory.replace(">", "&gt");
+			
+			//DB 개행 -> '<br>' 태그 처리
+			newStory = newStory.replaceAll("(\r\n|\r|\n)", "<br>");
+			
+			dto.setStory(newStory);
+			
+		}
+		
+		return list;
 	}
 
 	/**
@@ -81,7 +97,20 @@ public class MoviePlayService {
 	 * @return MovieDTO 객체
 	 */
 	public MovieDTO getMovie(String seq) {
-		return dao.getMovie(seq);
+		
+		MovieDTO dto = dao.getMovie(seq);
+			
+		//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
+		String newStory = dto.getStory(); 
+		newStory = newStory.replace("<", "&lt");
+		newStory = newStory.replace(">", "&gt");
+		
+		//DB 개행 -> '<br>' 태그 처리
+		newStory = newStory.replaceAll("(\r\n|\r|\n)", "<br>");
+		
+		dto.setStory(newStory);
+			
+		return dto;
 	}
 
 	/**
@@ -154,7 +183,7 @@ public class MoviePlayService {
 	 * 
 	 * 전체 영화 상영 목록을 가져오는 메서드입니다.
 	 * 
-	 * @param map 페이징을 위한 map 객체
+	 * @param map 페이징을 위한 Map 객체
 	 * @return MoviePlayDTO 객체 List
 	 */
 	public List<MoviePlayDTO> getMoviePlayListAll(Map<String, String> map) {

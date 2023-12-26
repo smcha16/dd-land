@@ -43,14 +43,15 @@ public class AdminFestivalController {
 	 * @return jsp 파일명
 	 */
 	@GetMapping(value = "/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 
-		//페이징
-		String solting = "admin";
-		Map<String, String> map = service.paging(page, solting);
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
+		
+		//Admin 전용 페이징
+		Map<String, String> map = service.adminPaging(searchStatus, word, page);
 		
 		//Festival 목록 전체
-		List<FestivalDTO> list = service.getFestivalListAll(map);
+		List<FestivalDTO> list = service.getAllFestivalList(map);
 		
 		//모달용 FestivalImg 목록
 		List<FestivalImgDTO> ilist = service.getAllFestivalImgList();

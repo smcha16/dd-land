@@ -12,9 +12,9 @@
 		margin-top: 70px;
 	}
 	
-	#title {
+	#title > a{
 		font-size: 48px;
-		display: block;
+		display: inline-block;
 		color: #fff;
 		font-weight: 700;
 		margin-bottom: 20px;
@@ -222,7 +222,7 @@
 		<div class="gy-4" style="justify-content: center; width: 100%;">
 			<div class="col-lg-3 col-md-6" style="width: 100%;">
 				<div class="stats-item text-center w-100 h-100">
-					<div id="title">Attraction</div>
+					<div id="title"><a href="/dd/user/activity/attraction/view.do">Attraction</a></div>
 					<span class="btn btn-1">
 						<input type="checkbox" id="close" name="close">
 						<label for="close"></label>

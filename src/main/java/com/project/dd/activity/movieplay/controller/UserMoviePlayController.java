@@ -47,7 +47,10 @@ public class UserMoviePlayController {
 		
 		//줄거리 100글자 이상 자르기
 		for (MovieDTO dto : list) {
-			dto.setStory(dto.getStory().substring(0, 101) + "..."); 
+			
+			if (dto.getStory().length() > 100) {
+				dto.setStory(dto.getStory().substring(0, 101) + "..."); 
+			}
 		}
 		
 		//페이징

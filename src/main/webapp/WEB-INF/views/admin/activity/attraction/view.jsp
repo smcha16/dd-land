@@ -167,9 +167,6 @@
                   			<form method="GET" action="/dd/admin/activity/attraction/view.do" class="search-form d-flex align-items-center">
                     			<input type="text" name="word" placeholder="어트랙션명을 입력하세요." autocomplete="off">
                     			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                    			
-                    			<!-- 토큰 -->
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                   			</form>
               			</div>
 
@@ -361,7 +358,7 @@
         $('.m-info').html(info);
         $('.m-capacity').text(capacity);
         $('.m-time').text(time);
-        $('.m-restriction').text(restriction);
+        $('.m-restriction').html(restriction);
         
         $('#modal').modal('show');
 	}

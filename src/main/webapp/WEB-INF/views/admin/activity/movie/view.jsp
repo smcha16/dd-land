@@ -216,8 +216,8 @@
 		                        					<td><input type="checkbox" name="movie_seq" value="${dto.movie_seq}"></td>
 		                        					<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
 		                        					<td><a onclick="showModal('${dto.movie_seq}', `${dto.name}`,`${dto.story}`,'${dto.runningtime}', `${dto.img}`)"><c:out value="${dto.name}" /></a></td>
-		                        					<td><c:out value="${fn:substring(dto.story, 0, 30)}" />
-		                        						<c:if test="${fn:length(dto.story) > 30}">
+		                        					<td>${fn:substring(dto.story.replace('<br>', ' '), 0, 30)}
+		                        						<c:if test="${fn:length(dto.story.replace('<br>', ' ')) > 30}">
 		                        							...
 		                        						</c:if>
 		                        					</td>
