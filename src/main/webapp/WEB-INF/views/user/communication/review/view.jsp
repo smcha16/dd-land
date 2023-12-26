@@ -236,7 +236,7 @@
 	                    <li class="page-item active"><span class="page-link">${pageStatus.index}</span></li>
 	                </c:when>
 	                <c:otherwise>
-	                    <li class="page-item"><a class="page-link" href="/dd/user/communication/notice/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
+	                    <li class="page-item"><a class="page-link" href="/dd/user/communication/review/view.do?page=${pageStatus.index}">${pageStatus.index}</a></li>
 	                </c:otherwise>
 	            </c:choose>
 	        </c:forEach>
