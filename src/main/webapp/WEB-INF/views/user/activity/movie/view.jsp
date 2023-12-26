@@ -14,7 +14,7 @@
 	
 	#title > a{
 		font-size: 48px;
-		display: block;
+		display: inline-block;
 		color: #fff;
 		font-weight: 700;
 		margin-bottom: 20px;
@@ -253,7 +253,7 @@
 			<div class="tab-pane fade active show" id="menu-starters">
 				<div class="munti-content-container">
 					<c:forEach items="${list}" var="dto">
-						<div class="item" onclick="location.href= '/dd/user/activity/movie/detail.do?seq=' + ${dto.movie_seq};">
+						<div class="item" onclick="location.href= '/dd/user/activity/movie/detail.do?seq=' + ${dto.movie_seq} + '&date=' + '${date}';">
 							<div style="background-image: url('/dd/resources/files/activity/movie/${dto.img}');"></div>
 							<div>${dto.name}</div>
 							<div class="hidden-div">${dto.story}</div>
@@ -292,5 +292,11 @@
 		$('#date').val('${date}');
 	}
 	
-
+	/* 새로고침 시, 날짜 조건 초기화 */
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/user/activity/movie/view.do';
+	    }
+	});
+	
 </script>

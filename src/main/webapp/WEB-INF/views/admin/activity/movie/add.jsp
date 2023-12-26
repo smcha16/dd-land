@@ -72,9 +72,6 @@
                 				<label for="name" class="col-sm-2 col-form-label required">영화명</label>
                 				<div class="col-sm-10">
                   					<input type="text" id="name" name="name" class="form-control" placeholder="영화명을 입력해주세요." required>
-                  					<div style="height: 30px;">
-                  						<div class="check-duplication"></div>
-                  					</div>
                 				</div>
               				</div>
 
@@ -124,25 +121,19 @@
 
 </main>
 
-<!-- movie add용 JavaScript -->
 <script>
 
 	/* 필수 항목이 반드시 입력되어야만 submit 클릭 시 넘어가도록 */
 	function submit() {
 	
-	//console.log($('textarea[name="info"]').val());
-	//console.log($('textarea[name="info"]').val().trim());
-	
-	
-	if (!$('input[name="name"]').val().trim() || !$('textarea[name="story"]').val().trim()
-			|| !$('input[name="runningtime"]').val().trim()) {
+		if (!$('input[name="name"]').val().trim() || !$('textarea[name="story"]').val().trim()
+				|| !$('input[name="runningtime"]').val().trim()) {
+				
+			alert('필수 항목을 입력해주세요.');
 			
-		alert('필수 항목을 입력해주세요.');
-		
-	} else {
-		$('form').submit();
-	}
-	//console.log($('input[name="name"]').val().trim());
+		} else {
+			$('form').submit();
+		}
 	}
 	
 </script>

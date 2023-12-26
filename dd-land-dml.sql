@@ -3137,6 +3137,7 @@ VALUES (seqtblLostProperty.nextVal, '기타', '모자', '환타지드림', TO_CH
 INSERT INTO tblLostProperty (lost_property_seq, type, name, location, lost_property_date, img, result)
 VALUES (seqtblLostProperty.nextVal, '안경', '선글라스', '후룸라이드', TO_CHAR(DATE '2023-12-14', 'YYYY-MM-DD'), 'lost25.jpg', '보관중');
 
+
 /* 티켓 */
 INSERT INTO TBLTICKET (TICKET_SEQ, TICKET_TYPE, PERSON_TYPE, AGE, PRICE) VALUES (SEQTBLTICKET.nextval, '1Day', '개인', '성인', 10000);
 INSERT INTO TBLTICKET (TICKET_SEQ, TICKET_TYPE, PERSON_TYPE, AGE, PRICE) VALUES (SEQTBLTICKET.nextval, 'After4', '단체', '청소년', 5000);

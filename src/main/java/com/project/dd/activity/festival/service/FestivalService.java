@@ -39,7 +39,24 @@ public class FestivalService {
 	 * @return 페스티벌 dto 객체 list
 	 */
 	public List<FestivalDTO> getFestivalList(String date) {
-		return dao.getFestivalList(date);
+		List<FestivalDTO> list = dao.getFestivalList(date);
+		
+		for (FestivalDTO dto : list) {
+			
+			//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
+			String newInfo = dto.getInfo(); 
+			newInfo = newInfo.replace("<", "&lt");
+			newInfo = newInfo.replace(">", "&gt");
+			
+			//DB 개행 -> '<br>' 태그 처리
+			newInfo = newInfo.replaceAll("(\r\n|\r|\n)", "<br>");
+			
+			dto.setInfo(newInfo);
+			
+		}
+		
+		return list;
+		
 	}
 
 	/**
@@ -50,7 +67,20 @@ public class FestivalService {
 	 * @return 페스티벌 dto 객체
 	 */
 	public FestivalDTO getFestival(String seq) {
-		return dao.getFestival(seq);
+		
+		FestivalDTO dto = dao.getFestival(seq);
+		
+		//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
+		String newInfo = dto.getInfo(); 
+		newInfo = newInfo.replace("<", "&lt");
+		newInfo = newInfo.replace(">", "&gt");
+		
+		//DB 개행 -> '<br>' 태그 처리
+		newInfo = newInfo.replaceAll("(\r\n|\r|\n)", "<br>");
+		
+		dto.setInfo(newInfo);
+		
+		return dto;
 	}
 
 	/**
@@ -66,13 +96,30 @@ public class FestivalService {
 
 	/**
 	 * 
-	 * 관리자용 전체 페스티벌 목록을 가져오는 메서드
+	 * 전체 페스티벌 목록을 가져오는 메서드입니다.
 	 * 
-	 * @param map 페이징을 위한 map 객체
-	 * @return 페스티벌 dto list
+	 * @param map 페이징을 위한 Map 객체
+	 * @return FestivalDTO 객체 List
 	 */
-	public List<FestivalDTO> getFestivalListAll(Map<String, String> map) {
-		return dao.getFestivalListAll(map);
+	public List<FestivalDTO> getAllFestivalList(Map<String, String> map) {
+		
+		List<FestivalDTO> list = dao.getAllFestivalList(map);
+		
+		for (FestivalDTO dto : list) {
+			
+			//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
+			String newInfo = dto.getInfo(); 
+			newInfo = newInfo.replace("<", "&lt");
+			newInfo = newInfo.replace(">", "&gt");
+			
+			//DB 개행 -> '<br>' 태그 처리
+			newInfo = newInfo.replaceAll("(\r\n|\r|\n)", "<br>");
+			
+			dto.setInfo(newInfo);
+			
+		}
+		
+		return list;
 	}
 
 	/**
@@ -384,6 +431,43 @@ public class FestivalService {
 	 */
 	public int checkLocationDuplication(FestivalDTO dto) {
 		return dao.checkLocationDuplication(dto);
+	}
+
+	/**
+	 * 
+	 * 페이지 번호를 출력하기 위해 페이지당 노출 목록 개수 설정 및 검색 결과값의 개수를 조회하는 메서드입니다.
+	 * 
+	 * @param searchStatus 검색여부
+	 * @param word 검색어
+	 * @param page 페이지 번호
+	 * @return 위의 정보가 담긴 map 객체
+	 */
+	public Map<String, String> adminPaging(String searchStatus, String word, int page) {
+
+		//Admin 페이지 노출 목록 개수 설정
+		int pageSize = 10;
+		
+		//페이지별로 가져올 index 번호
+		int startIndex = (page - 1) * pageSize + 1;
+		int endIndex = startIndex + pageSize - 1;
+		
+		//페이징용 Map 생성
+		Map<String, String> map = new HashMap<String, String>();
+
+		map.put("searchStatus", searchStatus);
+		map.put("word", word);
+		
+		map.put("startIndex", String.format("%d", startIndex));
+		map.put("endIndex", String.format("%d", endIndex));
+		
+		int totalPosts = dao.getAdminPagingTotalPosts(map);
+		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
+		
+		map.put("totalPosts", String.format("%d", totalPosts));
+		map.put("totalPages", String.format("%d", totalPages));
+		
+		return map;
+	
 	}
 
 }

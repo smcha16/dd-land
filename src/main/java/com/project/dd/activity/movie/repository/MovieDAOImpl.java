@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.project.dd.activity.movie.domain.MovieDTO;
 import com.project.dd.activity.movie.mapper.MovieMapper;
-import com.project.dd.activity.movieplay.domain.MoviePlayDTO;
 
 @Primary
 @Repository
@@ -19,43 +18,23 @@ public class MovieDAOImpl implements MovieDAO {
 	MovieMapper mapper;
 
 	@Override
-	public List<MovieDTO> getMovieList(String date) {
-		return mapper.getMovieList(date);
+	public int getAdminPagingTotalPosts(Map<String, String> map) {
+		return mapper.getAdminPagingTotalPosts(map);
 	}
 
 	@Override
-	public MovieDTO getMovie(String seq) {
-		return mapper.getMovie(seq);
-	}
-
-	@Override
-	public List<MoviePlayDTO> getMoviePlayList(String seq) {
-		return mapper.getMoviePlayList(seq);
-	}
-
-	@Override
-	public List<MoviePlayDTO> getMoviePlay(String seq) {
-		return mapper.getMoviePlay(seq);
-	}
-
-	@Override
-	public int delMovie(String seq) {
-		return mapper.delMovie(seq);
-	}
-
-	@Override
-	public int getTotalCount(String solting) {
-		return mapper.getTotalCount(solting);
-	}
-
-	@Override
-	public List<MovieDTO> getMovieListAll(Map<String, String> map) {
-		return mapper.getMovieListAll(map);
+	public List<MovieDTO> getMovieList(Map<String, String> map) {
+		return mapper.getMovieList(map);
 	}
 
 	@Override
 	public int addMovie(MovieDTO dto) {
 		return mapper.addMovie(dto);
+	}
+
+	@Override
+	public MovieDTO getMovie(String seq) {
+		return mapper.getMovie(seq);
 	}
 
 	@Override
@@ -69,8 +48,8 @@ public class MovieDAOImpl implements MovieDAO {
 	}
 
 	@Override
-	public int checkMovieNameDuplication(MovieDTO dto) {
-		return mapper.checkMovieNameDuplication(dto);
+	public int delMovie(String seq) {
+		return mapper.delMovie(seq);
 	}
 	
 	

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.dd.activity.festival.domain.FestivalDTO;
 import com.project.dd.activity.festival.domain.FestivalImgDTO;
-import com.project.dd.activity.festival.mapper.FestivalMapper;
 import com.project.dd.activity.festival.service.FestivalService;
 
 /**
@@ -40,6 +39,14 @@ public class UserFestivalController {
 
 		//Festival 목록(금일 기준 공연 & 공연종료 제외)
 		List<FestivalDTO> list = service.getFestivalList(date);
+		
+		//소개 100글자 이상 자르기
+		for (FestivalDTO dto : list) {
+			
+			if (dto.getInfo().length() > 100) {
+				dto.setInfo(dto.getInfo().substring(0, 101) + "..."); 
+			}
+		}
 		
 		model.addAttribute("list", list);
 		model.addAttribute("date", date);

@@ -163,6 +163,9 @@
 <!-- Photozone Edit JavaScript -->
 <script>
 
+	/* Photozone Info 개행 처리 */
+	$('textarea[name="info"]').val($('textarea[name="info"]').val().replace(/<br>/g, '\r\n'));
+
 	/* 페이지 로딩 시, 유효성 검사가 필요한 이름, 지도에 기본 data-type 부여 */
 	$('.check-name-duplication').data('type', 'y');
 	$('.check-location-duplication').data('type', 'y');
