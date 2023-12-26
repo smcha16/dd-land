@@ -710,10 +710,7 @@ CREATE SEQUENCE seqtblBuy;
 CREATE SEQUENCE seqtblUserBuy;
 
 /* 나래 누나 View */
--- 1. Attraction(Update_18DEC23)
-
-
-
+-- 1. Attraction(Update_26DEC23)
 create or replace view vwAttractionList
 as
 select a.*, 
@@ -729,7 +726,7 @@ order by a.attraction_seq desc;
 
 -- 기존 view > vwAttractionOne 삭제
 
--- 2. Festival(Update_18DEC23)
+-- 2. Festival(Update_26DEC23)
 create or replace view vwFestivalList
 as
 select a.*, 
@@ -738,7 +735,7 @@ select a.*,
 (select lat from tblFestivalLocation where festival_seq = a.festival_seq) as lat,
 (select lng from tblFestivalLocation where festival_seq = a.festival_seq) as lng
 from tblFestival a
-order by a.festival_seq;
+order by a.festival_seq desc;
 
 -- 기존 view > vwFestivalOne 삭제
 
@@ -751,24 +748,29 @@ select a.*,
 (select lat from tblPhotozoneLocation where photozone_seq = a.photozone_seq) as lat,
 (select lng from tblPhotozoneLocation where photozone_seq = a.photozone_seq) as lng
 from tblPhotozone a
-order by photozone_seq desc;
+order by a.photozone_seq desc;
 
 -- 기존 view > vwPhotozoneOne 삭제
 
---4. Movie
-
-create or replace view vwMovieList
+--4. Movie(Update 26DEC23)
+create or replace view vwMoviePlayList
 as
-select a.* 
-from tblMovie a 
-where exists (select 'O' from tblMoviePlay b 
-            where to_char(sysdate, 'yyyy-mm-dd') 
-            between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd') 
-                and b.movie_seq = a.movie_seq 
-            and not exists(select 'O' from tblTheaterClose 
-                        where to_char(sysdate, 'yyyy-mm-dd') 
-                        between to_char(start_date, 'yyyy-mm-dd') and to_char(end_date, 'yyyy-mm-dd') 
-                        and theater_seq = b.theater_seq));
+select a.movie_play_seq, a.movie_seq, a.time, to_char(a.start_date, 'yyyy-mm-dd') as start_date, to_char(a.end_date, 'yyyy-mm-dd') as end_date, a.theater_seq,
+(select name from tblTheater where theater_seq = a.theater_seq) as theater_name,
+(select name from tblMovie where movie_seq = a.movie_seq) as movie_name,
+(select story from tblMovie where movie_seq = a.movie_seq) as story,
+(select runningtime from tblMovie where movie_seq = a.movie_seq) as runningtime,
+(select img from tblMovie where movie_seq = a.movie_seq) as img,
+(select preview from tblMovie where movie_seq = a.movie_seq) as preview,
+(select theater_location_seq from tblTheaterLocation where theater_seq = a.theater_seq) as theater_location_seq,
+(select lat from tblTheaterLocation where theater_seq = a.theater_seq) as lat,
+(select lng from tblTheaterLocation where theater_seq = a.theater_seq) as lng,
+nvl((select 'y' from tblTheaterClose where to_char(sysdate, 'yyyy-mm-dd') between to_char(start_date,'yyyy-mm-dd') and to_char(end_date,'yyyy-mm-dd') and theater_seq = a.theater_seq), 'n') as close
+from tblMovieplay a
+order by a.movie_play_seq desc;
+
+drop view vwMovieList;
+drop view vwMoviePlayOne;
 
 -- 위치 중복 확인용 VIEW
 create or replace view vwLocation
