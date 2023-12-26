@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- Slick -->
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -83,9 +84,14 @@
 	}
 	
 	/* slick slider */
+	.image-slider {
+		width: 800px;
+		height: 350px;
+    }
+    
 	.image-slider div {
-		/* width: 500px;
-		height: 350px; */
+		width: 800px;
+		height: 350px;
 		overflow: hidden;
 	}
 	
@@ -135,6 +141,10 @@
 		padding: 10px;
 	}
 	
+	.modal-body {
+		padding: 0;
+	}
+	
 </style>
 
 <!-- ======= Main ======= -->
@@ -150,13 +160,11 @@
 				<div class="row">
 					<div class="col-12">
 
+						<!-- 검색 -->
               			<div id="search" class="header">
-                  			<form class="search-form d-flex align-items-center" method="POST" action="#">
-                    			<input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                  			<form method="GET" action="/dd/admin/activity/photozone/view.do" class="search-form d-flex align-items-center">
+                    			<input type="text" name="word" placeholder="포토존명 또는 소개를 입력하세요." autocomplete="off">
                     			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                    			
-                    			<!-- 토큰 -->
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                   			</form>
               			</div>
 
@@ -188,7 +196,11 @@
 		                        					<td><input type="checkbox" name="photozone_seq" value="${dto.photozone_seq}"></td>
 		                        					<td>${map.totalPosts - status.index - map.startIndex + 1}</td>
 		                        					<td><a onclick="showModal('${dto.photozone_seq}', `${dto.name}`,`${dto.time}` ,`${dto.info}`)"><c:out value="${dto.name}" /></a></td>
-		                        					<td>${dto.info}</td>
+		                        					<td>${fn:substring(dto.info.replace('<br>', ' '), 0, 30)}
+		                        						<c:if test="${fn:length(dto.info.replace('<br>', ' ')) > 30}">
+		                        							...
+		                        						</c:if>
+		                        					</td>
 		                        					<td><a onclick="showLocationModal(`${dto.name}`, '${dto.lat}', '${dto.lng}')"><i class="bi bi-geo-alt"></i></a></td>
 		                      					</tr>
 	                      					</c:forEach>
@@ -327,7 +339,7 @@
 		addModalImg(seq);
 		
 		$('#modal-name').text(name);
-        $('.m-info').text(info);
+        $('.m-info').html(info);
         $('.m-time').text(time);
 
         $('#modal').modal('show');
@@ -438,26 +450,27 @@
 		});
 	</c:forEach>
 	
-	/* 반응형 슬릭 이미지 조절 테스트 */
-	$('#modal').on('shown.bs.modal', function () {
-		if ($('.modal-content').css('width') == '800px') {
-			$('.slick-slide').css('width', '800px');
-		} else {
-			$('.slick-slide').css('width', '500px');
-		}
-	});
-
+	/* Slick responsive setting */
 	$(window).resize(function() {
 	
 		if ($('.modal-content').css('width') == '800px') {
-			$('.slick-slide').css('width', '800px');
+			$('.image-slider').css('width', '800px');
+			$('.image-slider div').css('width', '800px');
 		} else {
-			$('.slick-slide').css('width', '500px');
+			$('.image-slider').css('width', '500px');
+			$('.image-slider div').css('width', '500px');
 		}
 	});
 	
-	$(window).resize(function() {
-		$('.image-slider')[0].slick.refresh();
+	/* Search */
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#search-field').val('${map.word}');
+	</c:if>
+	
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/admin/activity/photozone/view.do';
+	    }
 	});
 	
 </script>

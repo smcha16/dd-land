@@ -13,14 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.dd.activity.attraction.domain.AttractionImgDTO;
 import com.project.dd.activity.photozone.domain.PhotoZoneDTO;
 import com.project.dd.activity.photozone.domain.PhotoZoneImgDTO;
 import com.project.dd.activity.photozone.repository.PhotoZoneDAO;
 
 /**
  * 
- * 포토존 DB에 접근하여 실행된 레코드의 수를 반환하는 Service 클래스입니다.
+ * 포토존 페이지의 비즈니스 로직을 담당하는 Service 클래스입니다.
  * 
  * @author 박나래
  *
@@ -39,7 +38,26 @@ public class PhotoZoneService {
 	 * @return 포토존 dto list
 	 */
 	public List<PhotoZoneDTO> getPhotozoneList(Map<String, String> map) {
-		return dao.getPhotozoneList(map);
+		
+		List<PhotoZoneDTO> list = dao.getPhotozoneList(map);
+		
+		for (PhotoZoneDTO dto : list) {
+			
+			//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
+			String newInfo = dto.getInfo(); 
+			newInfo = newInfo.replace("<", "&lt");
+			newInfo = newInfo.replace(">", "&gt");
+			
+			//DB 개행 -> '<br>' 태그 처리
+			newInfo = newInfo.replaceAll("(\r\n|\r|\n)", "<br>");
+			
+			dto.setInfo(newInfo);
+			
+		}
+		
+		return list;
+		
+		
 	}
 
 	/**
@@ -50,7 +68,19 @@ public class PhotoZoneService {
 	 * @return 포토존 dto
 	 */
 	public PhotoZoneDTO getPhotozone(String seq) {
-		return dao.getPhotozone(seq);
+		PhotoZoneDTO dto = dao.getPhotozone(seq);
+		
+		//DB 내 태그 비활성화 처리 '&gt;, &lt;' 처리
+		String newInfo = dto.getInfo(); 
+		newInfo = newInfo.replace("<", "&lt");
+		newInfo = newInfo.replace(">", "&gt");
+		
+		//DB 개행 -> '<br>' 태그 처리
+		newInfo = newInfo.replaceAll("(\r\n|\r|\n)", "<br>");
+		
+		dto.setInfo(newInfo);
+			
+		return dto;
 	}
 
 	/**

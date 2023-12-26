@@ -5,15 +5,24 @@
 <mapper namespace="com.project.dd.activity.attraction.mapper.AttractionMapper">
 	
 	<!-- id == 인터페이스의 추상메서드의 이름 -->
-	<select id="getAttractionList" parameterType="map" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+
+	<!-- User용 -->
+	<!-- User용 페이징 -->
+	<select id="getUserPagingTotalPosts" resultType="int">
+		select count(*) from vwAttractionList where close = 'n'
+	</select>
+	
+	<select id="getOpenAttractionList" parameterType="map" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		select *
-		from (select n.*, rownum as rnum from
-				(select * from vwAttractionList) n
-				<if test="searchStatus == 'y'.toString()">
-				  where name like '%' || #{word} || '%'
-			  	</if>
-				)
-		where rnum between #{startIndex} and #{endIndex}
+		from (select n.*, rownum as rnum from (
+		
+		select * from vwAttractionList where close = 'n'
+		
+		) n) where rnum between #{startIndex} and #{endIndex}
+	</select>
+	
+	<select id="getCloseAttractionList" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		select * from vwAttractionList where close = 'y'
 	</select>
 	
 	<select id="getAttraction" parameterType="String" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
@@ -24,24 +33,25 @@
 		select * from tblAttractionImg where attraction_seq = #{attraction_seq}
 	</select>
 	
-	<!-- 페이징 -->
-	<select id="getTotalCount"  parameterType="map" resultType="int">
+	<!-- Admin용 -->
+	<!-- Admin용 페이징 -->
+	<select id="getAdminPagingTotalPosts"  parameterType="map" resultType="int">
       select count(*) from vwAttractionList
       <if test="searchStatus == 'y'.toString()">
 	        where name like '%' || #{word} || '%'
 	  </if>
 	</select>
-   
-   <!-- admin 기능  -->
-   <!-- 유효성 검사 -->
-	<select id="checkLocationDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
-		select count(*) from vwLocation where lat = #{lat} and lng = #{lng}
+	
+	<select id="getAllAttractionList" parameterType="map" resultType="com.project.dd.activity.attraction.domain.AttractionDTO">
+		select *
+		from (select n.*, rownum as rnum from
+				(select * from vwAttractionList) n
+				<if test="searchStatus == 'y'.toString()">
+				  where name like '%' || #{word} || '%'
+			  	</if>
+		) where rnum between #{startIndex} and #{endIndex}
 	</select>
 
-	<select id="checkNameDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
-		select count(*) from tblAttraction where name = #{name}
-	</select>
-   
 	<insert id="addAttraction" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
 		INSERT INTO tblAttraction (attraction_seq, name, info, capacity, time, restriction)
 		VALUES (seqtblAttraction.NEXTVAL, #{name}, #{info}, #{capacity}, '10:00 - 22:00', #{restriction})
@@ -101,25 +111,7 @@
 		select * from tblAttractionImg
 	</select>
 	
-	<insert id="addAWC" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		insert into tblAWC (awc_seq, is_test, attraction_seq)
-		values (seqtblAWC.NEXTVAL, 'Y', #{attraction_seq})
-	</insert>
 	
-	<insert id="addAWCWin" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		insert into tblAWCWin (awc_win_seq, awc_match_count, awc_win_count, attraction_seq)
-		values (seqtblAWCWin.NEXTVAL, 0, 0, #{attraction_seq})
-	</insert>
-	
-	<insert id="addAWCFinalWin" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO">
-		insert into tblAWCFinalWin (awc_final_win_seq, awc_final_win_count, attraction_seq)
-		values (seqtblAWCFinalWin.NEXTVAL, 0, #{attraction_seq})
-	</insert>
-	
-	<select id="checkAvailableCapacity" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO" resultType="int">
-		select nvl(sum(capacity), 0)as capacity  from tblBookUser 
-		where to_char(regdate, 'yyyy-mm-dd') = to_char(sysdate, 'yyyy-mm-dd') and attraction_seq = #{attraction_seq} and attraction_book_seq = #{attraction_book_seq}
-	</select>
 	
 	<insert id="addAttractionBook" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO">
 		INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
@@ -137,6 +129,20 @@
 		(select email from tblUser where user_seq = a.user_seq) as email
 		from tblBookUser a
 		order by regdate desc
+	</select>
+	
+   <!-- 유효성 검사 -->
+	<select id="checkLocationDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
+		select count(*) from vwLocation where lat = #{lat} and lng = #{lng}
+	</select>
+
+	<select id="checkNameDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">
+		select count(*) from tblAttraction where name = #{name}
+	</select>
+	
+	<select id="checkAvailableCapacity" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO" resultType="int">
+		select nvl(sum(capacity), 0)as capacity  from tblBookUser 
+		where to_char(regdate, 'yyyy-mm-dd') = to_char(sysdate, 'yyyy-mm-dd') and attraction_seq = #{attraction_seq} and attraction_book_seq = #{attraction_book_seq}
 	</select>
 	
 </mapper>

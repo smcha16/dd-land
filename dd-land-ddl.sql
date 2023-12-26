@@ -289,7 +289,7 @@ CREATE TABLE tblMoviePlay (
 /* 포토존 */
 CREATE TABLE tblPhotoZone (
    photozone_seq NUMBER PRIMARY KEY, /* 포토존번호 */
-   name VARCHAR2(500) NOT NULL, /* 포토존명 */
+   name VARCHAR2(500) NOT NULL UNIQUE, /* 포토존명 */
    time VARCHAR2(500) NOT NULL, /* 운영시간 */
    info VARCHAR2(2000) NOT NULL /* 포토존설명 */
 );

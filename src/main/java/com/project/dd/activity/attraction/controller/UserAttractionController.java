@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
 import com.project.dd.activity.attraction.service.AttractionService;
+import com.project.dd.activity.movie.domain.MovieDTO;
 
 /**
  * 
@@ -38,29 +39,37 @@ public class UserAttractionController {
 	 * @return jsp 파일명
 	 */
 	@GetMapping(value = "/view.do")
-	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
 		
-		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
+		//User 전용 페이징
+		Map<String, String> map = service.userPaging(page);
 		
-		//페이징
-		String solting = "user";
-		Map<String, String> map = service.paging(searchStatus, word, page, solting);
+		//Attraction '정상운영' 목록
+		List<AttractionDTO> openList = service.getOpenAttractionList(map);
 		
-		//Attraction 목록(금일 기준 운영 & 운영종료 제외)
-		List<AttractionDTO> list = service.getAttractionList(map);
+		//Attraction '운휴' 목록
+		List<AttractionDTO> closeList = service.getCloseAttractionList();
 		
-		//운휴인 Attraction 
-		int closeCount = service.getAttractionCloseCount(list);
-		
-		System.out.println(closeCount);
+		//소개 100글자 이상 자르기
+		for (AttractionDTO dto : openList) {
+			if (dto.getInfo().length() > 100) {
+				dto.setInfo(dto.getInfo().substring(0, 101) + "..."); 
+			}
+		}
+		for (AttractionDTO dto : closeList) {
+			if (dto.getInfo().length() > 100) {
+				dto.setInfo(dto.getInfo().substring(0, 101) + "..."); 
+			}
+		}
 		
 		//페이징
 		model.addAttribute("currentPage", page);
 		model.addAttribute("map", map);
 		
-		//어트 목록, 운휴 어트 개수 전달
-		model.addAttribute("list", list);
-		model.addAttribute("closeCount", closeCount);
+		//운영/운휴 Attraction List, 운휴 개수 전달
+		model.addAttribute("openList", openList);
+		model.addAttribute("closeList", closeList);
+		model.addAttribute("closeCount", closeList.size());
 
 		return "user/activity/attraction/view";
 	}

@@ -240,6 +240,7 @@
 		<div class="section-header">
 			<h2>${dto.name}</h2>
 		</div>
+		
 		<!-- Slick Slider -->
 		<div class="image-slider">
 			<c:forEach items="${dto.imgList}" var="dto">
@@ -249,9 +250,9 @@
 			</c:forEach>
 		</div>
 		<!-- End Slick Slider -->
-		<p class="section-info">
-			${dto.info}
-		</p>
+		
+		<p class="section-info">${dto.info}</p>
+		
 	</div>
 </section>
 <!-- End Title & Image Section -->

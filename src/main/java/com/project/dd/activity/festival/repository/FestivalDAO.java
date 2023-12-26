@@ -14,7 +14,7 @@ public interface FestivalDAO {
 
 	List<FestivalImgDTO> getFestivalImgList(String seq);
 
-	List<FestivalDTO> getFestivalListAll(Map<String, String> map);
+	List<FestivalDTO> getAllFestivalList(Map<String, String> map);
 
 	int getTotalCount(String solting);
 
@@ -45,5 +45,7 @@ public interface FestivalDAO {
 	int delFestivalImgByImgSeq(String imgseq);
 
 	int checkLocationDuplication(FestivalDTO dto);
+
+	int getAdminPagingTotalPosts(Map<String, String> map);
 
 }

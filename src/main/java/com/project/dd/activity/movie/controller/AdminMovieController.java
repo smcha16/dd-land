@@ -35,19 +35,21 @@ public class AdminMovieController {
 	 * 
 	 * 관리자용 영화 목록을 조회할 수 있는 view 메서드입니다.
 	 * 
-	 * @param page 페이지 번호
+	 * @param word 검색어(영화명/줄거리)
+	 * @param page 페이지
 	 * @param model 모델 객체
-	 * @return jsp 파일명
+	 * @return 호출할 jsp 파일명
 	 */
 	@GetMapping(value = "/view.do")
-	public String view(@RequestParam(defaultValue = "1") int page, Model model) {
+	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 		
-		//페이징
-		String solting = "admin";
-		Map<String, String> map = service.paging(page, solting);
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
+		
+		//Admin 전용 페이징
+		Map<String, String> map = service.adminPaging(searchStatus, word, page);
 
 		//Movie 목록(상영종료 제외)
-		List<MovieDTO> list = service.getMovieListAll(map);
+		List<MovieDTO> list = service.getMovieList(map);
 		
 		//페이징 전달
 		model.addAttribute("currentPage", page);
@@ -61,10 +63,10 @@ public class AdminMovieController {
 	
 	/**
 	 * 
-	 * 영화를 추가할 수 있는 add 메서드입니다.
+	 * 영화를 추가하는 메서드입니다.
 	 * 
 	 * @param model 모델 객체
-	 * @return jsp 파일명
+	 * @return 호출한 jsp 파일명
 	 */
 	@GetMapping(value = "/add.do")
 	public String add(Model model) {
@@ -73,25 +75,22 @@ public class AdminMovieController {
 	
 	/**
 	 * 
-	 * 추가한 영화를 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 addok 메서드입니다ㅣ.
+	 * 추가한 영화를 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 메서드입니다.
 	 * 
 	 * @param model 모델 객체
-	 * @param dto 영화 dto 객체
-	 * @param imgs 추가한 이미지 멀티파일 객체
+	 * @param dto MovieDTO 객체
+	 * @param imgs MultipartFile 객체(추가한 이미지)
 	 * @param req HttpServletRequest 객체
 	 * @return 이동할 페이지 주소
 	 */
 	@PostMapping(value = "/addok.do")
 	public String addok(Model model, MovieDTO dto, MultipartFile imgs, HttpServletRequest req) {
 
-		// - tblMovie 테이블 추가
-		
 		int result = service.addMovie(dto, imgs, req);
 		
 		if (result > 0) {
 			return "redirect:/admin/activity/movie/view.do";
 		} else {
-			model.addAttribute("alertMessage", "영화 추가에 실패했습니다.");
 			return "redirect:/admin/activity/movie/add.do";
 		}
 		
@@ -99,11 +98,11 @@ public class AdminMovieController {
 	
 	/**
 	 * 
-	 * 영화를 수정할 수 있는 edit 메서드입니다.
+	 * 영화를 수정하는 메서드입니다.
 	 * 
 	 * @param model 모델 객체
 	 * @param seq 영화 번호
-	 * @return jsp 파일명
+	 * @return 호출할 jsp 파일명
 	 */
 	@GetMapping(value = "/edit.do")
 	public String edit(Model model, String seq) {
@@ -130,11 +129,11 @@ public class AdminMovieController {
 	
 	/**
 	 * 
-	 * 수정환 영화를 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 editok 메서드입니다.
+	 * 수정한 영화를 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 메서드입니다.
 	 * 
 	 * @param model 모델 객체
-	 * @param dto 영화 dto
-	 * @param imgs 수정한 멀티파일 객체
+	 * @param dto MovieDTO 객체
+	 * @param imgs MultipartFile 객체(수정한 이미지)
 	 * @param req HttpServletRequest 객체
 	 * @return 이동할 페이지 주소
 	 */
@@ -152,7 +151,7 @@ public class AdminMovieController {
 	
 	/**
 	 * 
-	 * 삭제할 영화를 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 del 메서드입니다.
+	 * 삭제할 영화를 DB에서 처리하고 처리 결과에 따라 이동할 페이지를 호출하는 메서드입니다.
 	 * 
 	 * @param model 모델 객체
 	 * @param movie_seq 영화 번호
@@ -166,12 +165,7 @@ public class AdminMovieController {
 		
 		int result = service.delMovie(movie_seq);
 		
-		if (result > 0) {
-			return "redirect:/admin/activity/movie/view.do";
-		} else {
-			model.addAttribute("alertMessage", "영화 삭제에 실패했습니다.");
-			return "redirect:/admin/activity/movie/view.do";
-		}
+		return "redirect:/admin/activity/movie/view.do";
 		
 	}
 	

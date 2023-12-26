@@ -20,8 +20,8 @@ public class AttractionDAOImpl implements AttractionDAO {
 	AttractionMapper mapper;
 
 	@Override
-	public List<AttractionDTO> getAttractionList(Map<String, String> map) {
-		return mapper.getAttractionList(map);
+	public List<AttractionDTO> getOpenAttractionList(Map<String, String> map) {
+		return mapper.getOpenAttractionList(map);
 	}
 
 	@Override
@@ -35,8 +35,8 @@ public class AttractionDAOImpl implements AttractionDAO {
 	}
 
 	@Override
-	public int getTotalCount(Map<String, String> map) {
-		return mapper.getTotalCount(map);
+	public int getAdminPagingTotalPosts(Map<String, String> map) {
+		return mapper.getAdminPagingTotalPosts(map);
 	}
 
 	@Override
@@ -138,6 +138,21 @@ public class AttractionDAOImpl implements AttractionDAO {
 	@Override
 	public List<BookUserDTO> getAttractionBookList() {
 		return mapper.getAttractionBookList();
+	}
+
+	@Override
+	public int getUserPagingTotalPosts() {
+		return mapper.getUserPagingTotalPosts();
+	}
+
+	@Override
+	public List<AttractionDTO> getCloseAttractionList() {
+		return mapper.getCloseAttractionList();
+	}
+
+	@Override
+	public List<AttractionDTO> getAllAttractionList(Map<String, String> map) {
+		return mapper.getAllAttractionList(map);
 	}
 
 }

@@ -79,6 +79,41 @@
 		cursor: pointer;
 	}
 	
+	/* slick slider */
+	.image-slider {
+		width: 800px;
+		height: 350px;
+    }
+    
+	.image-slider div {
+		width: 800px;
+		height: 350px;
+		overflow: hidden;
+	}
+	
+	.image-slider img {
+		width: 100%;
+		max-height: 100%;
+		object-fit: cover;
+	}
+	
+	/* Slick Button Style */
+	.slick-prev, .slick-next {
+		border: 0;
+		background: transparent;
+		z-index: 100;
+		position: absolute;
+	}
+	
+	.slick-prev {
+		top: 50%;
+		left: 20px;
+	}
+	
+	.slick-next {
+		top: 50%;
+		right: 20px;
+	}
 	/* 모달 CSS */
 	#modal table.m-desc {
 		width: 100%;
@@ -100,6 +135,10 @@
 	.m-info {
 		padding: 10px;
 	}
+	
+	.modal-body {
+		padding: 0;
+	}
 </style>
 
 <!-- ======= Main ======= -->
@@ -116,12 +155,9 @@
 					<div class="col-12">
 
               			<div id="search" class="header">
-                  			<form class="search-form d-flex align-items-center" method="POST" action="#">
-                    			<input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                  			<form method="GET" action="/dd/admin/activity/festival/view.do" class="search-form d-flex align-items-center">
+                    			<input type="text" name="word" placeholder="페스티벌명 또는 소개를 입력하세요." autocomplete="off">
                     			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                    			
-                    			<!-- 토큰 -->
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                   			</form>
               			</div>
 
@@ -164,11 +200,11 @@
 	                   					</tbody>
                   					</table>
 	                  					
-                  					<!-- 토큰 -->
+                  					<!-- Token -->
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                 				</form>
                   					
-                				<!-- Festival 상세 모달 -->
+                				<!-- Festival Detail Modal -->
 								<div id="modal" class="modal fade show" tabindex="-1" aria-labelledby="exampleModalScrollableTitle" aria-modal="true" role="dialog">
 								    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
 								        <div class="modal-content">
@@ -179,11 +215,11 @@
 							                
 							                
 								            <div class="modal-body">
-									            <!-- 모달 이미지 슬라이드-->
+									            <!-- Modal Image Slide -->
 								                <div class="image-slider"></div>
-								                <!-- 설명 -->
+								                <!-- info -->
 								            	<div class="m-info"></div>
-								            	<!-- 상세 -->
+								            	<!-- description -->
 								            	<table class="m-desc">
 								            		<colgroup>
 								            			<col style="width: 100px">
@@ -215,7 +251,7 @@
 								            </div>
 							                
 								            <div class="modal-body">
-								            	<div id="map" style="height: 380px; border-radius: var(--bs-border-radius);"></div>
+								            	<div id="map" style="height: 380px;"></div>
 								            </div>
 								        </div>
 								    </div>
@@ -294,7 +330,7 @@
 		addModalImg(seq);
 		
 		$('#modal-name').text(name);
-        $('.m-info').text(info);
+        $('.m-info').html(info);
         $('.m-time').text(time);
         $('.m-date').text(start_date + " ~ " + end_date);
         
@@ -394,7 +430,6 @@
     //marker setting
     const markerImg = new kakao.maps.MarkerImage(imageSrc, imageSize, option);
 	
-	
 	/* FestivalImg Array for Modal */
 	const img_list = new Array();
 	<c:forEach items="${ilist}" var="dto">
@@ -406,29 +441,27 @@
 	</c:forEach>
 	
 	/* Slick responsive setting */
-	$('#modal').on('shown.bs.modal', function () {
-		if ($('.modal-content').css('width') == '800px') {
-			$('.slick-slide').css('width', '800px');
-		} else {
-			$('.slick-slide').css('width', '500px');
-		}
-		
-		setTimeout($('.image-slider').css('display', 'display'), 500);
-		
-	});
-
 	$(window).resize(function() {
 	
 		if ($('.modal-content').css('width') == '800px') {
-			$('.slick-slide').css('width', '800px');
+			$('.image-slider').css('width', '800px');
+			$('.image-slider div').css('width', '800px');
 		} else {
-			$('.slick-slide').css('width', '500px');
+			$('.image-slider').css('width', '500px');
+			$('.image-slider div').css('width', '500px');
 		}
 	});
 	
-	/* $(window).resize(function() {
-		$('.image-slider')[0].slick.refresh();
-	}); */
+	/* Search */
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#search-field').val('${map.word}');
+	</c:if>
+	
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/admin/activity/festival/view.do';
+	    }
+	});
 
 
 </script>
