@@ -245,11 +245,6 @@ th {
 											<div class="modal-body">
 												<div class="mt-3" id="modal-content"
 													style="margin-bottom: 30px;"></div>
-												<!-- <div
-													class="d-flex align-items-center justify-content-center">
-													<img id="modal-image" src="" alt="Image"
-														style="max-width: 100%;">
-												</div> -->
 												<div class="image-slider"></div>
 											</div>
 										</div>
@@ -343,8 +338,6 @@ th {
 		           if (imgList[i].review_seq == seq) {
 		            var imgSrc = "/dd/resources/files/communication/review/" + imgList[i].img;
 		            
-		            /* $('#modal-image').attr('src', imgSrc); */
-		            
 		            $('.image-slider').append(`
 		                  <div>
 		                     <img src="\${imgSrc}" alt="Image" class="modal-image">
@@ -355,7 +348,7 @@ th {
 		    
 		    $('#modal').modal('show');
 		    
-		    /* Slick Slider */
+		    //Slick Slider
 			$('.image-slider').slick({
 				variableWidth : true,
 				infinite : true,
@@ -368,7 +361,7 @@ th {
 				draggable : true
 			});
 		    
-			/* 모달이 닫힐 때 uslick 설정 */
+			//모달이 닫힐 때 uslick 설정
 			$('#modal').on('hidden.bs.modal', function () {
 				$('.image-slider').slick('unslick');
 			});
