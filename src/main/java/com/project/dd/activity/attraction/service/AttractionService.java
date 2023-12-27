@@ -655,11 +655,12 @@ public class AttractionService {
 	/**
 	 * 
 	 * 어트랙션 예약 내역을 전체 조회할 수 있는 메서드
+	 * @param map 
 	 * 
 	 * @return 회원어트랙션예약 dto 객체 list
 	 */
-	public List<BookUserDTO> getAttractionBookList() {
-		return dao.getAttractionBookList();
+	public List<BookUserDTO> getAttractionBookList(Map<String, String> map) {
+		return dao.getAttractionBookList(map);
 	}
 
 	public List<Map<String, Object>> searchAttraction(String word) {
@@ -668,7 +669,8 @@ public class AttractionService {
 			
 			List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 			
-			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("172.19.66.47", 9200, "http")));
+//			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("172.19.66.47", 9200, "http")));
+			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("localhost", 9200, "http")));
 			
 			//인덱스 선택
 			SearchRequest searchRequest = new SearchRequest("attraction");
@@ -710,6 +712,33 @@ public class AttractionService {
 		}
 		
 		return null;
+	}
+
+	public Map<String, String> reservationAdminPaging(String searchStatus, String word, int page) {
+		
+		//Admin 페이지 노출 목록 개수 설정
+		int pageSize = 10;
+		
+		//페이지별로 가져올 index 번호
+		int startIndex = (page - 1) * pageSize + 1;
+		int endIndex = startIndex + pageSize - 1;
+		
+		//페이징용 Map 생성
+		Map<String, String> map = new HashMap<String, String>();
+
+		map.put("searchStatus", searchStatus);
+		map.put("word", word);
+		
+		map.put("startIndex", String.format("%d", startIndex));
+		map.put("endIndex", String.format("%d", endIndex));
+		
+		int totalPosts = dao.getReservationAdminPagingTotalPosts(map);
+		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
+		
+		map.put("totalPosts", String.format("%d", totalPosts));
+		map.put("totalPages", String.format("%d", totalPages));
+		
+		return map;
 	}
 
 }

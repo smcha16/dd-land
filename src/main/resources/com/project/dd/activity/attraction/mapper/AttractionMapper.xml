@@ -111,7 +111,31 @@
 		select * from tblAttractionImg
 	</select>
 	
+	<!-- Attraction Reservation -->
+	<select id="getReservationAdminPagingTotalPosts" parameterType="map" resultType="int">
+		select count(*) from tblBookUser
+      <if test="searchStatus == 'y'.toString()">
+	        where attraction_name like '%' || #{word} || '%' or user_name like '%' || #{word} || '%'  
+	  </if>
+	</select>
 	
+	<select id="getAttractionBookList" parameterType="map" resultType="com.project.dd.activity.attraction.domain.BookUserDTO">
+		select *
+		from (select n.*, rownum as rnum from (
+		
+		select a.book_user_seq, to_char(a.regdate, 'yyyy-mm-dd') as regdate, a.capacity, a.attraction_book_seq, a.user_seq, a.attraction_seq,
+		(select name from tblAttraction where attraction_seq = a.attraction_seq) as attraction_name,
+		(select name from tblUser where user_seq = a.user_seq) as user_name,
+		(select email from tblUser where user_seq = a.user_seq) as email
+		from tblBookUser a
+		order by regdate desc		
+		
+		) n
+			<if test="searchStatus == 'y'.toString()">
+			  where attraction_name like '%' || #{word} || '%' or user_name like '%' || #{word} || '%'
+		  	</if>
+		) where rnum between #{startIndex} and #{endIndex}
+	</select>
 	
 	<insert id="addAttractionBook" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO">
 		INSERT INTO tblBookUser (book_user_seq, regdate, capacity, attraction_book_seq, user_seq, attraction_seq)
@@ -122,14 +146,6 @@
 		select capacity from tblAttractionBook where attraction_book_seq = #{attraction_book_seq}
 	</select>
 	
-	<select id="getAttractionBookList" resultType="com.project.dd.activity.attraction.domain.BookUserDTO">
-		select a.book_user_seq, to_char(a.regdate, 'yyyy-mm-dd') as regdate, a.capacity, a.attraction_book_seq, a.user_seq, a.attraction_seq,
-		(select name from tblAttraction where attraction_seq = a.attraction_seq) as attraction_name,
-		(select name from tblUser where user_seq = a.user_seq) as user_name,
-		(select email from tblUser where user_seq = a.user_seq) as email
-		from tblBookUser a
-		order by regdate desc
-	</select>
 	
    <!-- 유효성 검사 -->
 	<select id="checkLocationDuplication" parameterType="com.project.dd.activity.attraction.domain.AttractionDTO" resultType="int">

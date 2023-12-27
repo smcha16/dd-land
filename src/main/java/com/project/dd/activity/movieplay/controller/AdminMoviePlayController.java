@@ -151,9 +151,9 @@ public class AdminMoviePlayController {
 	 * @return 이동할 페이지 주소
 	 */
 	@PostMapping(value = "/del.do")
-	public String del(Model model, String[] movieplay_seq) {
+	public String del(Model model, String[] movie_play_seq) {
 
-		int result = service.delMoviePlay(movieplay_seq);
+		int result = service.delMoviePlay(movie_play_seq);
 		
 		return "redirect:/admin/activity/movieplay/view.do";
 		

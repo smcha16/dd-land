@@ -136,8 +136,8 @@ public class AttractionDAOImpl implements AttractionDAO {
 	}
 
 	@Override
-	public List<BookUserDTO> getAttractionBookList() {
-		return mapper.getAttractionBookList();
+	public List<BookUserDTO> getAttractionBookList(Map<String, String> map) {
+		return mapper.getAttractionBookList(map);
 	}
 
 	@Override
@@ -153,6 +153,11 @@ public class AttractionDAOImpl implements AttractionDAO {
 	@Override
 	public List<AttractionDTO> getAllAttractionList(Map<String, String> map) {
 		return mapper.getAllAttractionList(map);
+	}
+
+	@Override
+	public int getReservationAdminPagingTotalPosts(Map<String, String> map) {
+		return mapper.getReservationAdminPagingTotalPosts(map);
 	}
 
 }

@@ -57,12 +57,14 @@ public interface AttractionMapper {
 
 	int getAttractionBookCapacity(BookUserDTO dto);
 
-	List<BookUserDTO> getAttractionBookList();
+	List<BookUserDTO> getAttractionBookList(Map<String, String> map);
 
 	List<AttractionDTO> getAllAttractionList(Map<String, String> map);
 
 	int getUserPagingTotalPosts();
 
 	List<AttractionDTO> getCloseAttractionList();
+
+	int getReservationAdminPagingTotalPosts(Map<String, String> map);
 
 }

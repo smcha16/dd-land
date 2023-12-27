@@ -100,7 +100,7 @@
               				<div class="row mb-3">
                 				<label for="start_date" class="col-sm-2 col-form-label required">상영 시작일</label>
                 				<div class="col-sm-10">
-                  					<input type="date" id="start_date" name="start_date" class="form-control" required>
+                  					<input type="date" id="start_date" name="start_date" class="form-control" value="${dto.start_date}" required>
                 				</div>
               				</div>
 
@@ -108,7 +108,7 @@
               				<div class="row mb-3">
                 				<label for="end_date" class="col-sm-2 col-form-label required">상영 종료일</label>
                 				<div class="col-sm-10">
-                  					<input type="date" id="end_date" name="end_date" class="form-control" required>
+                  					<input type="date" id="end_date" name="end_date" class="form-control" value="${dto.end_date}" required>
                 				</div>
               				</div>
 
