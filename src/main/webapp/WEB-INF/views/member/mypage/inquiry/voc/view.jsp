@@ -208,7 +208,7 @@ th {
 													<td><c:choose>
 															<c:when test="${dto.answer != null}">
 																<a
-																	onclick="showModal(`${dto.subject}`, `${dto.content}`, '${dto.answer}')"
+																	onclick="showModal(`${dto.subject}`, `${dto.content}`, `${dto.answer}`)"
 																	class="answer-complete"><b>답변완료</b></a>
 															</c:when>
 															<c:otherwise>
