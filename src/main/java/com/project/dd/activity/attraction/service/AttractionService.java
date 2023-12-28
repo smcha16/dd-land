@@ -669,8 +669,8 @@ public class AttractionService {
 			
 			List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 			
-//			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("172.19.66.47", 9200, "http")));
-			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("localhost", 9200, "http")));
+			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("172.19.66.47", 9200, "http")));
+//			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("localhost", 9200, "http")));
 			
 			//인덱스 선택
 			SearchRequest searchRequest = new SearchRequest("attraction");
@@ -702,8 +702,6 @@ public class AttractionService {
 				list.add(map);
 				
 			}
-			
-			System.out.println("이곳은 서비스측: " + list.toString());
 			
 			return list;
 			

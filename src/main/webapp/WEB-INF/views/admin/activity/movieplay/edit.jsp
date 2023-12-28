@@ -125,6 +125,9 @@
                 				</div>
               				</div>
 
+							<!-- MoviePlay seq -->
+							<input type="hidden" name="movie_play_seq" value="${dto.movie_play_seq}">	
+
               				<!-- 토큰 -->
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 							
@@ -141,6 +144,13 @@
 
 <!-- MoviePlay용 JavaScript -->
 <script>
+
+	/* 페이지 로딩 시, 유효성 검사가 필요한 시간, 지도에 기본 data-type 부여 */
+	$('.check-time-validation').data('type', 'y');
+	
+	/* 기존 영화/영화관 불러오기 */
+	$('select[name="movie_seq"]').val(${dto.movie_seq}).prop("selected", true);
+	$('select[name="theater_seq"]').val(${dto.theater_seq}).prop("selected", true);
 
 	/* 필수 항목이 반드시 입력되어야만 submit 클릭 시 넘어가도록 */
 	function submit() {
@@ -183,20 +193,52 @@
 	});
 	
 	//날짜 입력 유효성 검사
-	 
-	 const start_date = document.getElementById('start_date');
+	const start_date = document.getElementById('start_date');
 
-	 const now = new Date();
-	 const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
-	 
-	 $('#start_date').attr('min', nowStr);//시작일은 최소 오늘 이후
-	 
-	 function isValidEndDate() {
-		 $('#end_date').attr('min', start_date.value);
-	 }
-	 
-	 $('#start_date').change(function() {
-		 isValidEndDate();
-	 });
+	$('#start_date').change(function() {
+		selDate(0);
+	});
+		 
+	function selDate(i) {
+		 
+		const now = new Date();
+		const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+		
+		if (nowStr > date[i].start_date) {
+			$('#start_date').val(date[i].start_date);
+			$('#start_date').prop('readOnly', true);  //영화 상영 시작일이 현재날짜보다 이전이면 -> 영화 상영 이미 시작중이므로 변경 불가
+		} else {
+			$('#start_date').attr('min', nowStr);
+			$('#start_date').val(date[i].start_date);
+			$('#start_date').prop('readOnly', false);
+		}
+		
+		changeDate(i, nowStr);
+
+	}
+
+	function changeDate(i, now) {
+		$('#end_date').attr('min', start_date.value);  //end_date는 재선택한 영화 상영 시작일 넣어주기
+		$('#end_date').val(date[i].end_date);
+		$('#start_date').change(function() {
+			$('#end_date').attr('min', start_date.value);
+		});
+		
+		/* if (now > date[i].start_date) {
+			$('#end_date').attr('min', now);  //end_date는 재선택한 영화 상영 시작일 넣어주기
+		} else {
+			$('#end_date').attr('min', start_date.value);  //end_date는 재선택한 영화 상영 시작일 넣어주기
+		} */
+	}
+	
+	const date = [];
+	<c:forEach items="${dlist}" var="dto">
+		date.push({
+			start_date:'${dto.start_date}',
+			end_date:'${dto.end_date}'
+		});
+	</c:forEach>
+	
+	selDate(0);
 	
 </script>
