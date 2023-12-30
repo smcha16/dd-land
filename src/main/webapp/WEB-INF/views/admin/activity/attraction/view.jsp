@@ -165,7 +165,7 @@
 						<!-- 검색 -->
               			<div id="search" class="header">
                   			<form method="GET" action="/dd/admin/activity/attraction/view.do" class="search-form d-flex align-items-center">
-                    			<input type="text" name="word" placeholder="어트랙션명을 입력하세요." autocomplete="off" value="${word}">
+                    			<input type="text" name="word" placeholder="어트랙션명을 입력하세요." autocomplete="off" value="${map.word}">
                     			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
                   			</form>
               			</div>

@@ -669,7 +669,7 @@ public class AttractionService {
 			
 			List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 			
-			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("172.19.66.47", 9200, "http")));
+			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("172.19.64.1", 9200, "http")));
 //			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("localhost", 9200, "http")));
 			
 			//인덱스 선택

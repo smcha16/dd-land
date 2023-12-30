@@ -49,72 +49,74 @@ public class AdminAttractionController {
 	@GetMapping(value = "/view.do")
 	public String view(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 		
-//		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
-//		
-//		//Admin 전용 페이징
-//		Map<String, String> map = service.adminPaging(searchStatus, word, page);
-//
-//		//Elasticsearch 도입 도전
-//		if (searchStatus.equalsIgnoreCase("n")) { 
-//			
-//			/* 검색(X) > 목록보기 > Oracle에서 조회 */
-//
-//			//Attraction 목록(운영종료 제외)
-//			List<AttractionDTO> list = service.getAllAttractionList(map);
-//			
-//			//페이징 전달
-//			model.addAttribute("currentPage", page);
-//			model.addAttribute("map", map);
-//			
-//			//어트 목록 전달
-//			model.addAttribute("list", list);
-//			
-//		} else {
-//			
-//			/* 검색(O) > 검색하기 > Elasticsearch에서 조회 */
-//			
-//			//Attraction명으로 검색 목록(Elasticsearch 사용)
-//			List<Map<String, Object>> list = service.searchAttraction(word);
-//			
-////			//페이징 전달
-////			model.addAttribute("currentPage", page);
-////			model.addAttribute("map", map);
-//			
-//			//어트 검색 목록 전달
-//			model.addAttribute("list", list);
-//			
-//		}
-//		
-//		//모달용 AttractionImg 목록
-//		List<AttractionImgDTO> ilist = service.getAllAttractionImgList();
-//		
-//		//모달용 AttractionImg 목록 전달
-//		model.addAttribute("ilist", ilist);
-//		
-//		return "admin/activity/attraction/view";
-		
+		/* Elasticsearch 사용 검색 기능 구현 코드 */
 		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
 		
 		//Admin 전용 페이징
 		Map<String, String> map = service.adminPaging(searchStatus, word, page);
-		
-		//Attraction 목록(운영종료 제외)
-		List<AttractionDTO> list = service.getAllAttractionList(map);
+
+		//Elasticsearch 도입 도전
+		if (searchStatus.equalsIgnoreCase("n")) { 
+			
+			/* 검색(X) > 목록보기 > Oracle에서 조회 */
+
+			//Attraction 목록(운영종료 제외)
+			List<AttractionDTO> list = service.getAllAttractionList(map);
+			
+			//페이징 전달
+			model.addAttribute("currentPage", page);
+			model.addAttribute("map", map);
+			
+			//어트 목록 전달
+			model.addAttribute("list", list);
+			
+		} else {
+			
+			/* 검색(O) > 검색하기 > Elasticsearch에서 조회 */
+			
+			//Attraction명으로 검색 목록(Elasticsearch 사용)
+			List<Map<String, Object>> list = service.searchAttraction(word);
+			
+//			//페이징 전달
+//			model.addAttribute("currentPage", page);
+//			model.addAttribute("map", map);
+			
+			//어트 검색 목록 전달
+			model.addAttribute("list", list);
+			
+		}
 		
 		//모달용 AttractionImg 목록
 		List<AttractionImgDTO> ilist = service.getAllAttractionImgList();
-		
-		//페이징 전달
-		model.addAttribute("currentPage", page);
-		model.addAttribute("map", map);
-		
-		//어트 목록 전달
-		model.addAttribute("list", list);
 		
 		//모달용 AttractionImg 목록 전달
 		model.addAttribute("ilist", ilist);
 		
 		return "admin/activity/attraction/view";
+		
+//		/* Oracle 사용 검색 기능 구현 코드 */
+//		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
+//		
+//		//Admin 전용 페이징
+//		Map<String, String> map = service.adminPaging(searchStatus, word, page);
+//		
+//		//Attraction 목록(운영종료 제외)
+//		List<AttractionDTO> list = service.getAllAttractionList(map);
+//		
+//		//모달용 AttractionImg 목록
+//		List<AttractionImgDTO> ilist = service.getAllAttractionImgList();
+//		
+//		//페이징 전달
+//		model.addAttribute("currentPage", page);
+//		model.addAttribute("map", map);
+//		
+//		//어트 목록 전달
+//		model.addAttribute("list", list);
+//		
+//		//모달용 AttractionImg 목록 전달
+//		model.addAttribute("ilist", ilist);
+//		
+//		return "admin/activity/attraction/view";
 		
 	}
 	
