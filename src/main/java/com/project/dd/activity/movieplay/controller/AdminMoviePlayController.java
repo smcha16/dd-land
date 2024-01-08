@@ -1,5 +1,6 @@
 package com.project.dd.activity.movieplay.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -116,7 +117,20 @@ public class AdminMoviePlayController {
 
 		MoviePlayDTO dto = service.getMoviePlay(seq);
 		
+		//영화 목록
+		List<MovieDTO> mlist = service.getMovieList();
+		
+		//영화관 목록
+		List<TheaterDTO> tlist = service.getTheaterList();
+		
+		//날짜 유효성 검사용
+		List<MoviePlayDTO> dlist = new ArrayList<MoviePlayDTO>();
+		dlist.add(dto);
+		
 		model.addAttribute("dto", dto);
+		model.addAttribute("dlist", dlist);
+		model.addAttribute("mlist", mlist);
+		model.addAttribute("tlist", tlist);
 		
 		return "admin/activity/movieplay/edit";
 	}
@@ -151,9 +165,9 @@ public class AdminMoviePlayController {
 	 * @return 이동할 페이지 주소
 	 */
 	@PostMapping(value = "/del.do")
-	public String del(Model model, String[] movieplay_seq) {
+	public String del(Model model, String[] movie_play_seq) {
 
-		int result = service.delMoviePlay(movieplay_seq);
+		int result = service.delMoviePlay(movie_play_seq);
 		
 		return "redirect:/admin/activity/movieplay/view.do";
 		

@@ -74,11 +74,11 @@ public class AdminAttractionController {
 //			/* 검색(O) > 검색하기 > Elasticsearch에서 조회 */
 //			
 //			//Attraction명으로 검색 목록(Elasticsearch 사용)
-//			List<Map<String, Object>> list = service.searchAttraction(map);
+//			List<Map<String, Object>> list = service.searchAttraction(word);
 //			
-//			//페이징 전달
-//			model.addAttribute("currentPage", page);
-//			model.addAttribute("map", map);
+////			//페이징 전달
+////			model.addAttribute("currentPage", page);
+////			model.addAttribute("map", map);
 //			
 //			//어트 검색 목록 전달
 //			model.addAttribute("list", list);
@@ -271,14 +271,25 @@ public class AdminAttractionController {
 	 * 
 	 * 회원의 어트랙션 예약 내역을 전체 조회할 수 있는 메서드입니다.
 	 * 
-	 * @param model 객체
-	 * @return jsp 파일명
+	 * @param word 검색어(어트랙션명 또는 예약자 성함)
+	 * @param page 페이지
+	 * @param model 모델 객체
+	 * @return 호출할 jsp 파일명
 	 */
 	@GetMapping(value = "/reservation/view.do")
-	public String reservationView(Model model) {
+	public String reservationView(String word, @RequestParam(defaultValue = "1") int page, Model model) {
 
+		String searchStatus = (word == null || word.equals("")) ? "n" : "y";
+		
+		//Admin Reservation 전용 페이징
+		Map<String, String> map = service.reservationAdminPaging(searchStatus, word, page);
+		
 		//전체 어트랙션 예약 내역 가져오기
-		List<BookUserDTO> list = service.getAttractionBookList();
+		List<BookUserDTO> list = service.getAttractionBookList(map);
+		
+		//페이징 전달
+		model.addAttribute("currentPage", page);
+		model.addAttribute("map", map);
 		
 		model.addAttribute("list", list);
 		

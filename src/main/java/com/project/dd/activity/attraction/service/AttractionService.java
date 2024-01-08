@@ -655,60 +655,88 @@ public class AttractionService {
 	/**
 	 * 
 	 * 어트랙션 예약 내역을 전체 조회할 수 있는 메서드
+	 * @param map 
 	 * 
 	 * @return 회원어트랙션예약 dto 객체 list
 	 */
-	public List<BookUserDTO> getAttractionBookList() {
-		return dao.getAttractionBookList();
+	public List<BookUserDTO> getAttractionBookList(Map<String, String> map) {
+		return dao.getAttractionBookList(map);
 	}
 
-//	public List<Map<String, Object>> searchAttraction(Map<String, String> map) {
-//		//repo.searchAttraction(map);
-//		
-//		try {
-//			
-//			List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
-//			
-//			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("172.23.32.1", 9200, "http")));
-//			
-//			//인덱스 선택
-//			SearchRequest searchRequest = new SearchRequest("attraction");
-//			
-//			SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder().size(100);
-//			
-//			//*** 검색 쿼리
-//			//- 검색에서 가장 흔한 패턴
-//			//- bool query (must(match 검색어) + should(match_phrase 검색어)) :: 잘 모르겠다면 이 검색 사용하기 > 무난한 검색)
-//			searchSourceBuilder.query(
-//				QueryBuilders.boolQuery()
-//					.must(QueryBuilders.matchQuery("title", map.get("word")))
-//					.should(QueryBuilders.matchPhraseQuery("title", map.get("word")))
-//			
-//			);
-//			
-//			searchRequest.source(searchSourceBuilder);
-//			
-//			//실제 검색 요청
-//			SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
-//			
-//			SearchHits searchHits = searchResponse.getHits();
-//			
-//			for (SearchHit hit : searchHits) {
-//				
-//				Map<String, Object> test = hit.getSourceAsMap();
-//				test.put("id", hit.getId());
-//				test.put("score", hit.getScore());
-//				list.add(test);
-//				
-//			}
-//			
-//			return list;
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return null;
-//	}
+	public List<Map<String, Object>> searchAttraction(String word) {
+		
+		try {
+			
+			List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+			
+			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("172.19.66.47", 9200, "http")));
+//			RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost("localhost", 9200, "http")));
+			
+			//인덱스 선택
+			SearchRequest searchRequest = new SearchRequest("attraction");
+			
+			SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder().size(100);
+			
+			//*** 검색 쿼리
+			//- 검색에서 가장 흔한 패턴
+			//- bool query (must(match 검색어) + should(match_phrase 검색어)) :: 잘 모르겠다면 이 검색 사용하기 > 무난한 검색)
+			searchSourceBuilder.query(
+				QueryBuilders.boolQuery()
+					.must(QueryBuilders.matchQuery("name", word))
+					.should(QueryBuilders.matchPhraseQuery("name", word))
+			
+			);
+			
+			searchRequest.source(searchSourceBuilder);
+			
+			//실제 검색 요청
+			SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+			
+			SearchHits searchHits = searchResponse.getHits();
+			
+			for (SearchHit hit : searchHits) {
+				
+				Map<String, Object> map = hit.getSourceAsMap();
+				map.put("id", hit.getId());
+				map.put("score", hit.getScore());
+				list.add(map);
+				
+			}
+			
+			return list;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public Map<String, String> reservationAdminPaging(String searchStatus, String word, int page) {
+		
+		//Admin 페이지 노출 목록 개수 설정
+		int pageSize = 10;
+		
+		//페이지별로 가져올 index 번호
+		int startIndex = (page - 1) * pageSize + 1;
+		int endIndex = startIndex + pageSize - 1;
+		
+		//페이징용 Map 생성
+		Map<String, String> map = new HashMap<String, String>();
+
+		map.put("searchStatus", searchStatus);
+		map.put("word", word);
+		
+		map.put("startIndex", String.format("%d", startIndex));
+		map.put("endIndex", String.format("%d", endIndex));
+		
+		int totalPosts = dao.getReservationAdminPagingTotalPosts(map);
+		int totalPages = (int) Math.ceil((double) totalPosts / pageSize);
+		
+		map.put("totalPosts", String.format("%d", totalPosts));
+		map.put("totalPages", String.format("%d", totalPages));
+		
+		return map;
+	}
 
 }

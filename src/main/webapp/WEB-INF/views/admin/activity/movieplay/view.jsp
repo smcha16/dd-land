@@ -160,7 +160,7 @@
 
               			<div id="search" class="header">
                   			<form method="GET" action="/dd/admin/activity/movieplay/view.do" class="search-form d-flex align-items-center">
-                    			<input type="text" name="query" placeholder="영화명 또는 영화관명을 입력하세요." autocomplete="off">
+                    			<input type="text" name="word" placeholder="영화명 또는 영화관명을 입력하세요." autocomplete="off" value="${map.word}">
                     			<button type="submit" title="Search"><i class="bi bi-search"></i></button>
                   			</form>
               			</div>
@@ -309,5 +309,16 @@
         
         $('#modal').modal('show');
 	}
+	
+	/* 검색 */
+	<c:if test="${map.searchStatus == 'y'}">
+		$('#search-field').val('${map.word}');
+	</c:if>
+	
+	$(document).keydown(function(event) {
+	    if (event.key === 'F5') {
+			location.href='/dd/admin/activity/movieplay/view.do';
+	    }
+	});
 	
 </script>

@@ -250,11 +250,11 @@ public class MoviePlayService {
 	 * @param movieplay_seq 영화 상영 번호
 	 * @return 삭제된 행의 개수
 	 */
-	public int delMoviePlay(String[] movieplay_seq) {
+	public int delMoviePlay(String[] movie_play_seq) {
 		
 		int result = 0;
 		
-		for (String seq : movieplay_seq) {
+		for (String seq : movie_play_seq) {
 			
 			result += dao.delMoviePlay(seq);
 		}

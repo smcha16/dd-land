@@ -61,6 +61,8 @@ public interface AttractionDAO {
 
 	int getAttractionBookCapacity(BookUserDTO dto);
 
-	List<BookUserDTO> getAttractionBookList();
+	List<BookUserDTO> getAttractionBookList(Map<String, String> map);
+
+	int getReservationAdminPagingTotalPosts(Map<String, String> map);
 
 }

@@ -182,11 +182,11 @@
 	</insert>
 	
 	<select id="getMoviePlay" parameterType="String" resultType="com.project.dd.activity.movieplay.domain.MoviePlayDTO">
-		select * from tblMoviePlay where movie_play_seq = #{movie_play_seq}
+		select movie_play_seq, movie_seq, time, to_char(start_date, 'yyyy-mm-dd') as start_date, to_char(end_date, 'yyyy-mm-dd') as end_date, theater_seq from tblMoviePlay where movie_play_seq = #{movie_play_seq}
 	</select>
 	
 	<update id="editMoviePlay" parameterType="com.project.dd.activity.movieplay.domain.MoviePlayDTO">
-		update tblMoviePlay set time = #{time}, start_date = TO_DATE(#{start_date}, 'YYYY-MM-DD'), end_date = TO_DATE(#{end_date}, 'YYYY-MM-DD'), theater_seq = #{theater_seq}
+		update tblMoviePlay set time = #{time}, start_date = TO_DATE(#{start_date}, 'YYYY-MM-DD'), end_date = TO_DATE(#{end_date}, 'YYYY-MM-DD'), theater_seq = #{theater_seq} where movie_play_seq = #{movie_play_seq}
 	</update>
 
 	<delete id="delMoviePlay" parameterType="String">
