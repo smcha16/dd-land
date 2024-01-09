@@ -145,6 +145,10 @@
 		border-color: #CE1212;
 	}
 	
+	.btn {
+		border: 0;
+	}
+	
 </style>
 <!-- ======= Stats Counter Section ======= -->
 <section id="stats-counter" class="stats-counter">
@@ -181,12 +185,12 @@
 						<div class="btn-container">
 							<div>
 								<c:forEach var="i" begin="10" end="15">
-									<button type="button" class="time-btn" value="${i-9}" data-time="${i}" >${i}:00</button>
+									<button type="button" class="time-btn" value="${i-9}" data-time="${i}">${i}:00</button>
 								</c:forEach>
 							</div>
 							<div>
 								<c:forEach var="i" begin="16" end="21">
-									<button type="button" class="time-btn" value="${i-9}" data-time="${i}" >${i}:00</button>
+									<button type="button" class="time-btn" value="${i-9}" data-time="${i}">${i}:00</button>
 								</c:forEach>
 							</div>
 						</div>
@@ -225,6 +229,10 @@
 </section><!-- End Menu Section -->
 
 <!-- Attraction Reservation add -->
+<!-- toastr -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 <script>
 	
 	/* 화면 로딩 시, 현재 시간 확인 하여 이전 시간은 'disabled' 처리 */
@@ -233,8 +241,6 @@
 	let hours = currentDate.getHours();
 	let minutes = currentDate.getMinutes();
 	let seconds = currentDate.getSeconds();
-	
-	//console.log('hours: ' + hours);
 	
 	$(document).ready(function() {
 
@@ -252,17 +258,39 @@
 	    });
 	});
 	
+	/* toastr 설정 */
+	toastr.options = {
+		"positionClass": "toast-bottom-center",
+	};
+	
 	/* 필수 항목이 반드시 입력되어야만 submit 클릭 시 넘어가도록 */
 	function submit() {
 		
-		let countTime = $('.time-btn[data-type="y"]').length;
-		console.log('countTime: ' + countTime);
+		let count = 0;
+		let selectedTime;
 		
-		if (!$('input[name="capacity"]').val().trim()) {
-				/* || countTime != 1) { */
+		$('button.time-btn').each(function() {
+			//count += $(this).data('type') == 'y' ? 1 : 0;
+			
+			if ($(this).data('type') == 'y') {
+				count++;
+				selectedTime = $(this).data('time');
+			}
+		});
+		
+		//console.log('count: ' + count); //버튼 클릭 시, count: 1로 확인이 가능하다.
+		//console.log('selectedTime: ' + selectedTime);
+			
+		if (!$('input[name="capacity"]').val().trim() || count != 1) {
 			alert('필수 항목을 입력해주세요.');
 		} else {
-			$('form').submit();
+			
+			if (new Date().getHours() >= selectedTime) {
+				toastr.error('선택하신 예약 시간은 현재 예약 불가합니다. 다른 예약 시간을 선택해주세요.', '예약 불가');
+			} else {
+				$('form').submit();
+			}
+			
 		}
 	}
 	
@@ -273,7 +301,7 @@
 	
 	$('.time-btn').click(function() {
 		
-		console.log($(this).data('time'));
+		//console.log($(this).data('time'));
 		
 		//선택한 버튼만 CSS 변경 + 나머지 초기화
 		$('.time-btn').css('background-color', '#F0F0F0');
