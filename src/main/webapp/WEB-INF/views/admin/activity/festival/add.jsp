@@ -282,20 +282,24 @@
 	});
 	
 	//날짜 입력 유효성 검사
-	 
-	 const start_date = document.getElementById('start_date');
+	const start_date = document.getElementById('start_date');
 
-	 const now = new Date();
-	 const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+	const now = new Date();
+	
+	const year = now.getFullYear();
+	const month = now.getMonth() + 1;
+	const date = now.getDate();
+	
+	const nowStr = `\${year}-\${month >= 10 ? month : '0' + month}-\${date >= 10 ? date : '0' + date}`;
+	
+	$('#start_date').attr('min', nowStr);//시작일은 최소 오늘 이후
 	 
-	 $('#start_date').attr('min', nowStr);//시작일은 최소 오늘 이후
+	function isValidEndDate() {
+		$('#end_date').attr('min', start_date.value);
+	}
 	 
-	 function isValidEndDate() {
-		 $('#end_date').attr('min', start_date.value);
-	 }
-	 
-	 $('#start_date').change(function() {
-		 isValidEndDate();
-	 });
+	$('#start_date').change(function() {
+		isValidEndDate();
+	});
 	
 </script>
