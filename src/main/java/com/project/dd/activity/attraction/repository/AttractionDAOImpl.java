@@ -160,4 +160,9 @@ public class AttractionDAOImpl implements AttractionDAO {
 		return mapper.getReservationAdminPagingTotalPosts(map);
 	}
 
+	@Override
+	public int checkTicket(String seq) {
+		return mapper.checkTicket(seq);
+	}
+
 }

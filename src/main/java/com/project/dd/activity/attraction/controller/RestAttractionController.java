@@ -70,5 +70,13 @@ public class RestAttractionController {
 		//예약 가능 인원 반환
 		return capacity - reserved; 
 	}
+	
+	@PostMapping(value = "/activity/attraction/ticket")
+	public int checkTichet(@RequestBody BookUserDTO dto) {
+
+		//System.out.println(dto.getUser_seq());
+		
+		return service.checkTicket(dto.getUser_seq());
+	}
 
 }

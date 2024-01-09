@@ -427,7 +427,8 @@
 		draggable : true
 	});
 	
-	/* Attraction Reservation 운휴 예약 불가 유효성 검사 */
+	/* Attraction Reservation 운휴 예약 불가 & 예매 내역 확인 유효성 검사 */
+	//toastr 설정
 	toastr.options = {
 		"closeButton": false,
 		"debug": false,
@@ -446,15 +447,54 @@
 		"hideMethod": "fadeOut"	
 	};
 	
+	// CSRF token
+    var csrfHeaderName = "${_csrf.headerName}";
+    var csrfTokenValue = "${_csrf.token}";
+	
 	function reserve(close) {
 		
-		if (close == 'n') {
-			location.href='/dd/member/activity/attraction/reservation/add.do?seq=${dto.attraction_seq}'
-		} else {
-			//alert('휴무라 예약 불가함당');
-			toastr.error('금일 해당 어트랙션 휴무로 예약 불가', '예약 불가');
-		}
+		//로그인 여부 확인
+		<c:if test="${empty userSeq}">
+			location.href='/dd/user/login/view.do';
+		</c:if>
 		
+		<c:if test="${not empty userSeq}">
+		
+			let obj = {
+				user_seq: ${userSeq}
+			};
+		
+			//금일 예매 내역 확인(ajax)
+			$.ajax({
+				type:'POST',
+				url: '/dd/activity/attraction/ticket',
+				headers: {'content-Type': 'application/json'},
+				data: JSON.stringify(obj),
+				dataType: 'json',
+				success: function(result) {
+					
+					if (result > 0) {
+						//예매내역 존재 O > 운휴 확인
+						if (close == 'n') {
+							location.href='/dd/member/activity/attraction/reservation/add.do?seq=${dto.attraction_seq}'
+						} else {
+							toastr.error('금일 해당 어트랙션 운휴로 예약 불가', '예약 불가');
+						}
+						
+					} else {
+						//예매 내역 존재 X
+						toastr.error('금일 예매 내역이 존재하지 않습니다. 예매 후 이용해주세요.', '예약 불가');
+					}
+					
+				},
+				beforeSend: function(xhr) {
+	            	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	            },
+				error: function(a,b,c) {
+					console.log(a,b,c);
+				}
+			});
+		</c:if>
 	}
 	
 	

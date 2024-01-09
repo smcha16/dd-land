@@ -65,4 +65,6 @@ public interface AttractionDAO {
 
 	int getReservationAdminPagingTotalPosts(Map<String, String> map);
 
+	int checkTicket(String seq);
+
 }

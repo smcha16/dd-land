@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import com.project.dd.activity.attraction.domain.AttractionDTO;
 import com.project.dd.activity.attraction.domain.AttractionImgDTO;
 import com.project.dd.activity.attraction.service.AttractionService;
 import com.project.dd.activity.movie.domain.MovieDTO;
+import com.project.dd.login.domain.CustomUser;
 
 /**
  * 
@@ -80,10 +82,11 @@ public class UserAttractionController {
 	 * 
 	 * @param model 객체
 	 * @param seq 어트랙션 번호
+	 * @param auth 사용자의 Authentication 객체
 	 * @return jsp 파일명
 	 */
 	@GetMapping(value = "/detail.do")
-	public String detail(Model model, String seq) {
+	public String detail(Model model, String seq, Authentication auth) {
 		
 		//Attraction 1개(List<AttractionImgDTO> 제외)
 		AttractionDTO dto = service.getAttraction(seq);
@@ -94,9 +97,15 @@ public class UserAttractionController {
 		//ilist > AttractionDTO에 담기
 		dto.setImgList(ilist);
 		
+		//authentication 확인 후 model에 담아 보내기(예매내역 확인용)
+//		System.out.println("auth는 null인가? → " + (auth == null));
 		
-		System.out.println(dto);
-		
+		if (auth != null) {
+//			System.out.println("auth는 null이 아닌가? → " + (auth != null));
+//			System.out.println("user_seq: " + ((CustomUser)auth.getPrincipal()).getDto().getUser_seq());
+//			System.out.println("name: " + ((CustomUser)auth.getPrincipal()).getDto().getName());
+			model.addAttribute("userSeq", ((CustomUser)auth.getPrincipal()).getDto().getUser_seq());
+		}
 		
 		model.addAttribute("dto", dto);
 		

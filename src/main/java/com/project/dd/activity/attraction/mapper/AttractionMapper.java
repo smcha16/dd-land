@@ -67,4 +67,6 @@ public interface AttractionMapper {
 
 	int getReservationAdminPagingTotalPosts(Map<String, String> map);
 
+	int checkTicket(String seq);
+
 }

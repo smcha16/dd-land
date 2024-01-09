@@ -161,4 +161,14 @@
 		where to_char(regdate, 'yyyy-mm-dd') = to_char(sysdate, 'yyyy-mm-dd') and attraction_seq = #{attraction_seq} and attraction_book_seq = #{attraction_book_seq}
 	</select>
 	
+	<select id="checkTicket" parameterType="com.project.dd.activity.attraction.domain.BookUserDTO" resultType="int">
+		select count(*)
+		from (select a.*,
+		        (select name from tblUser where user_seq = a.user_seq) as name,
+		        (select email from tblUser where user_seq = a.user_seq) as email,
+		        (select to_char(visit_date, 'yyyy-mm-dd') from tblTicketBook where ticket_book_seq = a.ticket_book_seq) as visit_date
+		        from tblUserBook a)
+		where user_seq = #{user_seq} and visit_date = to_char(sysdate, 'yyyy-mm-dd')
+	</select>
+	
 </mapper>

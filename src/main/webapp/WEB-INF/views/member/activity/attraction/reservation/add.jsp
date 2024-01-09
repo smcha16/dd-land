@@ -242,6 +242,9 @@
 	let minutes = currentDate.getMinutes();
 	let seconds = currentDate.getSeconds();
 	
+	let reservationCount; //예약 인원
+	let capacity; //예약가능인원
+	
 	$(document).ready(function() {
 
 	    // 모든 button.time-btn에 대해 처리
@@ -285,10 +288,25 @@
 			alert('필수 항목을 입력해주세요.');
 		} else {
 			
-			if (new Date().getHours() >= selectedTime) {
-				toastr.error('선택하신 예약 시간은 현재 예약 불가합니다. 다른 예약 시간을 선택해주세요.', '예약 불가');
+			reservationCount = $('input[name="capacity"]').val();
+			
+			//console.log('reservationCount: ' + reservationCount);
+			//console.log('capacity: ' + capacity);
+			
+			//예약 인원이 예약 가능 인원을 초과하였을 경우 제한
+			if (capacity < reservationCount) {
+				//예약가능인원 < 예약인원 : 예약 불가
+				toastr.error('예약 가능 인원을 초과하였습니다. 예약 인원을 다시 설정해주세요.', '예약 불가');
+				
 			} else {
-				$('form').submit();
+				//예약 가능
+				//페이지 체류하는 동안 현재 시간 변경되었을 경우 유효성 검사
+				if (new Date().getHours() >= selectedTime) {
+					toastr.error('선택하신 예약 시간은 현재 예약 불가합니다. 다른 예약 시간을 선택해주세요.', '예약 불가');
+				} else {
+					$('form').submit();
+				}
+				
 			}
 			
 		}
@@ -327,6 +345,7 @@
 				$('.check-available-status').html('');
 				$('.check-available-status').append('<i class="bi bi-person-check-fill"></i> ');
 				$('.check-available-status').append(' 예약 가능 인원: ' + result + '명');
+				capacity = result;
 			},
 			beforeSend: function(xhr) {
             	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);

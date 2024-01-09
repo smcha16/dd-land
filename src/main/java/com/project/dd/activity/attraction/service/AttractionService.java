@@ -739,4 +739,8 @@ public class AttractionService {
 		return map;
 	}
 
+	public int checkTicket(String seq) {
+		return dao.checkTicket(seq);
+	}
+
 }
