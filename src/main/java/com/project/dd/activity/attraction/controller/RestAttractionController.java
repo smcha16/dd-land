@@ -64,8 +64,8 @@ public class RestAttractionController {
 		//실제 예약된 인원
 		int reserved = service.checkAvailableCapacity(dto);
 		
-		System.out.println("capacity: " + capacity);
-		System.out.println("reserved: " + reserved);
+//		System.out.println("capacity: " + capacity);
+//		System.out.println("reserved: " + reserved);
 		
 		//예약 가능 인원 반환
 		return capacity - reserved; 

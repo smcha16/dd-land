@@ -243,8 +243,8 @@
 	        // data-time 속성 값 가져오기
 	        let dataTime = parseInt($(this).data('time'), 10);
 
-	        console.log(dataTime);
-	        console.log(dataTime < hours);
+	        //console.log(dataTime);
+	        //console.log(dataTime <= hours);
 	        
 	        if (dataTime <= hours) {
 	            $(this).prop('disabled', true);

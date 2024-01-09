@@ -94,6 +94,10 @@ public class UserAttractionController {
 		//ilist > AttractionDTO에 담기
 		dto.setImgList(ilist);
 		
+		
+		System.out.println(dto);
+		
+		
 		model.addAttribute("dto", dto);
 		
 		return "user/activity/attraction/detail";

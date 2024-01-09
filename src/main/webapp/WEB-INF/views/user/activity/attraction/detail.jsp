@@ -259,7 +259,7 @@
 
 <!-- 어트랙션 예약 버튼 -->
 <div id="reservation-btn">
-	<button type="button" onclick="location.href='/dd/member/activity/attraction/reservation/add.do?seq=${dto.attraction_seq}'">어트랙션 예약하기 <i class="bi bi-hand-index-thumb-fill"></i></button>
+	<button type="button" onclick="reserve('${dto.close}')">어트랙션 예약하기 <i class="bi bi-hand-index-thumb-fill"></i></button>
 </div>
 
 <!-- ======= 상세정보 Section ======= -->
@@ -323,6 +323,10 @@
 
 <!-- Slick Slider -->
 <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<!-- toastr -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script>
 	/* 카카오 맵 */
@@ -422,5 +426,37 @@
 		nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
 		draggable : true
 	});
+	
+	/* Attraction Reservation 운휴 예약 불가 유효성 검사 */
+	toastr.options = {
+		"closeButton": false,
+		"debug": false,
+		"newestOnTop": false,
+		"progressBar": false,
+		"positionClass": "toast-bottom-center",
+		"preventDuplicates": false,
+		"onclick": null,
+		"showDuration": "300",
+		"hideDuration": "1000",
+		"timeOut": "5000",
+		"extendedTimeOut": "1000",
+		"showEasing": "swing",
+		"hideEasing": "linear",
+		"showMethod": "fadeIn",
+		"hideMethod": "fadeOut"	
+	};
+	
+	function reserve(close) {
+		
+		if (close == 'n') {
+			location.href='/dd/member/activity/attraction/reservation/add.do?seq=${dto.attraction_seq}'
+		} else {
+			//alert('휴무라 예약 불가함당');
+			toastr.error('금일 해당 어트랙션 휴무로 예약 불가', '예약 불가');
+		}
+		
+	}
+	
+	
 	
 </script>
