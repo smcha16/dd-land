@@ -259,7 +259,7 @@
 
 <!-- 어트랙션 예약 버튼 -->
 <div id="reservation-btn">
-	<button type="button" onclick="location.href='/dd/member/activity/attraction/reservation/add.do?seq=${dto.attraction_seq}'">어트랙션 예약하기 <i class="bi bi-hand-index-thumb-fill"></i></button>
+	<button type="button" onclick="reserve('${dto.close}')">어트랙션 예약하기 <i class="bi bi-hand-index-thumb-fill"></i></button>
 </div>
 
 <!-- ======= 상세정보 Section ======= -->
@@ -323,6 +323,10 @@
 
 <!-- Slick Slider -->
 <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<!-- toastr -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script>
 	/* 카카오 맵 */
@@ -422,5 +426,77 @@
 		nextArrow : "<button type='button' class='slick-next'>&#10095;</button>",
 		draggable : true
 	});
+	
+	/* Attraction Reservation 운휴 예약 불가 & 예매 내역 확인 유효성 검사 */
+	//toastr 설정
+	toastr.options = {
+		"closeButton": false,
+		"debug": false,
+		"newestOnTop": false,
+		"progressBar": false,
+		"positionClass": "toast-bottom-center",
+		"preventDuplicates": false,
+		"onclick": null,
+		"showDuration": "300",
+		"hideDuration": "1000",
+		"timeOut": "5000",
+		"extendedTimeOut": "1000",
+		"showEasing": "swing",
+		"hideEasing": "linear",
+		"showMethod": "fadeIn",
+		"hideMethod": "fadeOut"	
+	};
+	
+	// CSRF token
+    var csrfHeaderName = "${_csrf.headerName}";
+    var csrfTokenValue = "${_csrf.token}";
+	
+	function reserve(close) {
+		
+		//로그인 여부 확인
+		<c:if test="${empty userSeq}">
+			location.href='/dd/user/login/view.do';
+		</c:if>
+		
+		<c:if test="${not empty userSeq}">
+		
+			let obj = {
+				user_seq: ${userSeq}
+			};
+		
+			//금일 예매 내역 확인(ajax)
+			$.ajax({
+				type:'POST',
+				url: '/dd/activity/attraction/ticket',
+				headers: {'content-Type': 'application/json'},
+				data: JSON.stringify(obj),
+				dataType: 'json',
+				success: function(result) {
+					
+					if (result > 0) {
+						//예매내역 존재 O > 운휴 확인
+						if (close == 'n') {
+							location.href='/dd/member/activity/attraction/reservation/add.do?seq=${dto.attraction_seq}'
+						} else {
+							toastr.error('금일 해당 어트랙션 운휴로 예약 불가', '예약 불가');
+						}
+						
+					} else {
+						//예매 내역 존재 X
+						toastr.error('금일 예매 내역이 존재하지 않습니다. 예매 후 이용해주세요.', '예약 불가');
+					}
+					
+				},
+				beforeSend: function(xhr) {
+	            	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	            },
+				error: function(a,b,c) {
+					console.log(a,b,c);
+				}
+			});
+		</c:if>
+	}
+	
+	
 	
 </script>
