@@ -104,8 +104,6 @@ const date = document.getElementById('start_date');
 const now = new Date();
 const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
 
-
-//추가: Datepicker 초기화 로직
 $(document).ready(function () {
     // 추가: Datepicker 초기값이 null이면 DTO 값으로 설정
     if (!$('#start_date').val()) {
@@ -120,22 +118,30 @@ $(document).ready(function () {
 
 
 function selDate() {
-    if (nowStr >= start_date.value) {
-        $('#start_date').val(start_date.value.substr(0, 10));
-        $('#start_date').prop('disabled', true);
+    const startDate = document.getElementById('start_date');
+    const endDate = document.getElementById('end_date');
+
+    // 현재 날짜를 'YYYY-MM-DD' 형식으로 가져오기
+    const now = new Date();
+    const nowStr = now.toISOString().split('T')[0];
+
+    // 시작일이 현재 날짜 이후인 경우 시작일 필드를 활성화
+    if (startDate.value >= nowStr) {
+        startDate.disabled = false;
     } else {
-        $('#start_date').attr('min', nowStr);
-        $('#start_date').val(start_date.value.substr(0, 10));
-        $('#start_date').prop('disabled', false);
+        startDate.disabled = true;
     }
-    
-    if (nowStr >= end_date.value) {
-        $('#end_date').prop('disabled', true);
-    }else{
-    	$('#end_date').prop('disabled', false);
+
+    // 종료일이 현재 날짜 이후인 경우 종료일 필드를 활성화
+    if (endDate.value >= nowStr) {
+        endDate.disabled = false;
+    } else {
+        endDate.disabled = true;
     }
+
     changeDate();
 }
+
 
 function changeDate() {
     $('#end_date').attr('min', date.value);

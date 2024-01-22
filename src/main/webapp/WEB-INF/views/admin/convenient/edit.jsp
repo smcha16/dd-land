@@ -59,7 +59,7 @@
 	<div class="pagetitle">
 		<h1>편의시설 수정</h1>
 		
-		<nav class="d-flex justify-co ntent-end">
+		<nav class="d-flex justify-content-end">
       		<ol class="breadcrumb">
           		<li class="breadcrumb-item"><a href="javascript:void(0);" onclick="submit();">수정</a></li>
           		<li class="breadcrumb-item active"><a href="/dd/admin/convenient/view.do">취소</a></li>
