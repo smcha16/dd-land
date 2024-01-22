@@ -68,14 +68,14 @@
                 				<label for="inputDate" class="col-sm-2 col-form-label">운휴 시작일</label>
                 				<div class="col-sm-10">
                   					<input type="date" name="start_date" class="form-control" id="start_date" value="${dto.start_date}">
-                  					<form:errors path="start_date" cssClass="text-danger" />
+                  					<%-- <form:errors path="start_date" cssClass="text-danger" /> --%>
                					</div>
               				</div>
               				<div class="row mb-3">
                 				<label for="inputDate" class="col-sm-2 col-form-label">운휴 종료일</label>
                 				<div class="col-sm-10">
                   					<input type="date" name="end_date" class="form-control" id="end_date" value="${dto.end_date}">
-                  					<form:errors path="end_date" cssClass="text-danger" />
+                  					<%-- <form:errors path="end_date" cssClass="text-danger" /> --%>
                					</div>
               				</div>
               				
@@ -104,8 +104,23 @@ const date = document.getElementById('start_date');
 const now = new Date();
 const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
 
+
+//추가: Datepicker 초기화 로직
+$(document).ready(function () {
+    // 추가: Datepicker 초기값이 null이면 DTO 값으로 설정
+    if (!$('#start_date').val()) {
+        $('#start_date').val('${dto.start_date}');
+    }
+
+    // 추가: Datepicker 초기값이 null이면 DTO 값으로 설정
+    if (!$('#end_date').val()) {
+        $('#end_date').val('${dto.end_date}');
+    }
+});
+
+
 function selDate() {
-    if (nowStr > start_date.value) {
+    if (nowStr >= start_date.value) {
         $('#start_date').val(start_date.value.substr(0, 10));
         $('#start_date').prop('disabled', true);
     } else {
@@ -114,8 +129,10 @@ function selDate() {
         $('#start_date').prop('disabled', false);
     }
     
-    if (nowStr > end_date.value) {
+    if (nowStr >= end_date.value) {
         $('#end_date').prop('disabled', true);
+    }else{
+    	$('#end_date').prop('disabled', false);
     }
     changeDate();
 }

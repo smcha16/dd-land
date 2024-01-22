@@ -150,5 +150,4 @@
 			$('form').submit();
 		}
 	}
-	
 </script>

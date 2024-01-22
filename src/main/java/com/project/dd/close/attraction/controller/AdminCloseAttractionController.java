@@ -1,5 +1,6 @@
 package com.project.dd.close.attraction.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -102,7 +103,12 @@ public class AdminCloseAttractionController {
 		
 		//System.out.println(dto);
 		
+		//날짜 유효성 검사용
+		List<CloseAttractionDTO> dlist = new ArrayList<CloseAttractionDTO>();
+		dlist.add(dto);
+		
 		model.addAttribute("dto", dto);
+		model.addAttribute("dlist", dlist);
 		
 		return "admin/close/attraction/edit";
 	}

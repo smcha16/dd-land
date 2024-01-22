@@ -288,6 +288,8 @@
 	 const now = new Date();
 	 const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
 	 
+	 console.log(nowStr);
+	 
 	 $('#start_date').attr('min', nowStr);//시작일은 최소 오늘 이후
 	 
 	 function isValidEndDate() {
