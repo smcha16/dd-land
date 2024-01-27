@@ -182,21 +182,31 @@
 		
 	});
 	
-	//날짜 입력 유효성 검사
+	/* 날짜 입력 유효성 검사 */
+	const startDate = document.getElementById('start_date');
+	
+	const now = new Date();
 	 
-	 const start_date = document.getElementById('start_date');
-
-	 const now = new Date();
-	 const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
-	 
-	 $('#start_date').attr('min', nowStr);//시작일은 최소 오늘 이후
-	 
-	 function isValidEndDate() {
-		 $('#end_date').attr('min', start_date.value);
-	 }
-	 
-	 $('#start_date').change(function() {
-		 isValidEndDate();
-	 });
+	const year = now.getFullYear();
+	const month = now.getMonth() + 1;
+	const date = now.getDate();
+	
+	const nowStr = `\${year}-\${month >= 10 ? month : '0' + month}-\${date >= 10 ? date : '0' + date}`;
+	
+	$('#start_date').attr('min', nowStr);//시작일은 최소 오늘 이후
+	$('#end_date').attr('min', nowStr);//종료일은 최소 오늘 이후
+	
+	function isValidEndDate() {
+		$('#end_date').attr('min', startDate.value);
+		
+		//시작일을 변경 했을 경우, 시작일이 기존에 설정한 종료일보다 미래일 경우 종료일 값 초기화
+		if ($('#start_date').val() > $('#end_date').val()) {
+			$('#end_date').val('');
+		}
+	}
+	
+	$('#start_date').change(function() {
+		isValidEndDate();
+	});
 	
 </script>

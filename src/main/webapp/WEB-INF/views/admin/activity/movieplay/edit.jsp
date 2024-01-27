@@ -192,45 +192,10 @@
 		
 	});
 	
-	//날짜 입력 유효성 검사
-	const start_date = document.getElementById('start_date');
-
-	$('#start_date').change(function() {
-		selDate(0);
-	});
-		 
-	function selDate(i) {
-		 
-		const now = new Date();
-		const nowStr = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
-		
-		if (nowStr > date[i].start_date) {
-			$('#start_date').val(date[i].start_date);
-			$('#start_date').prop('readOnly', true);  //영화 상영 시작일이 현재날짜보다 이전이면 -> 영화 상영 이미 시작중이므로 변경 불가
-		} else {
-			$('#start_date').attr('min', nowStr);
-			$('#start_date').val(date[i].start_date);
-			$('#start_date').prop('readOnly', false);
-		}
-		
-		changeDate(i, nowStr);
-
-	}
-
-	function changeDate(i, now) {
-		$('#end_date').attr('min', start_date.value);  //end_date는 재선택한 영화 상영 시작일 넣어주기
-		$('#end_date').val(date[i].end_date);
-		$('#start_date').change(function() {
-			$('#end_date').attr('min', start_date.value);
-		});
-		
-		/* if (now > date[i].start_date) {
-			$('#end_date').attr('min', now);  //end_date는 재선택한 영화 상영 시작일 넣어주기
-		} else {
-			$('#end_date').attr('min', start_date.value);  //end_date는 재선택한 영화 상영 시작일 넣어주기
-		} */
-	}
+	/* 날짜 입력 유효성 검사 */
+	const startDate = document.getElementById('start_date');
 	
+	//1. 기존 DB에 저장된 시작일, 종료일 불러오기
 	const date = [];
 	<c:forEach items="${dlist}" var="dto">
 		date.push({
@@ -239,6 +204,46 @@
 		});
 	</c:forEach>
 	
-	selDate(0);
+	//2. 시스템 날짜 불러오기
+	const now = new Date();
+		
+	const getYear = now.getFullYear();
+	const getMonth = now.getMonth() + 1;
+	const getDate = now.getDate();
+	
+	const nowStr = `\${getYear}-\${getMonth >= 10 ? getMonth : '0' + getMonth}-\${getDate >= 10 ? getDate : '0' + getDate}`;
+	
+	//3. DB에 저장된 날짜와 시스템 날짜 비교하기
+	$(document).ready(function() {
+		
+		$('#start_date').val(date[0].start_date);
+		$('#end_date').val(date[0].end_date);
+		
+		if (date[0].start_date < nowStr) {
+			//시작일이 sysdate보다 과거라면 수정 불가
+			$('#start_date').prop('readOnly', true);
+		}
+		
+		if (date[0].end_date < nowStr) {
+			//종료일이 sysdate보다 과거라면 수정 불가
+			$('#end_date').prop('readOnly', true);
+		}
+	
+	});
+	
+	//4. 시작일 및 종료일 수정
+	$('#start_date').attr('min', nowStr); //시작일은 최소 오늘 이후
+	$('#end_date').attr('min', startDate.value); //종료일은 최소 시작일 이후
+	
+	$('#start_date').change(function() {
+		
+		$('#end_date').attr('min', startDate.value);
+		
+		//시작일을 변경 했을 경우, 시작일이 기존에 설정한 종료일보다 미래일 경우 종료일 값 초기화
+		if ($('#start_date').val() > $('#end_date').val()) {
+			$('#end_date').val('');
+		}
+		
+	});
 	
 </script>
