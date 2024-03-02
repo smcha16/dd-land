@@ -180,6 +180,63 @@ DROP SEQUENCE seqtblUserCart;
 DROP SEQUENCE seqtblBuy;
 DROP SEQUENCE seqtblUserBuy;
 
+/* CREATE SEQUENCE */
+CREATE SEQUENCE seqtblUser;
+CREATE SEQUENCE seqAttractionLocation;
+CREATE SEQUENCE seqFestivalLocation;
+CREATE SEQUENCE seqTheaterLocation;
+CREATE SEQUENCE seqConvenientLocation;
+CREATE SEQUENCE seqPhotoZoneLocation;
+CREATE SEQUENCE seqRestaurantLocation;
+CREATE SEQUENCE seqShopLocation;
+CREATE SEQUENCE seqtblRestaurant;
+CREATE SEQUENCE seqtblRestaurantImg;
+CREATE SEQUENCE seqtblRestaurantClose;
+CREATE SEQUENCE seqtblConvenient;
+CREATE SEQUENCE seqtblShop;
+CREATE SEQUENCE seqtblShopClose;
+CREATE SEQUENCE seqtblShopImg;
+CREATE SEQUENCE seqtblTheater;
+CREATE SEQUENCE seqtblTheaterClose;
+CREATE SEQUENCE seqtblMovie;
+CREATE SEQUENCE seqtblMoviePlay;
+CREATE SEQUENCE seqtblPhotoZone;
+CREATE SEQUENCE seqtblPhotoZoneImg;
+CREATE SEQUENCE seqtblFestival;
+CREATE SEQUENCE seqtblFestivalImg;
+CREATE SEQUENCE seqtblAttraction;
+CREATE SEQUENCE seqtblAttractionClose;
+CREATE SEQUENCE seqtblAttractionBook;
+CREATE SEQUENCE seqtblAttractionImg;
+CREATE SEQUENCE seqtblAWCFinalWin;
+CREATE SEQUENCE seqtblAWCWin;
+CREATE SEQUENCE seqtblAWC;
+CREATE SEQUENCE seqtblBookUser;
+CREATE SEQUENCE seqtblCourse;
+CREATE SEQUENCE seqtblCWCFinalWin;
+CREATE SEQUENCE seqtblCWCWin;
+CREATE SEQUENCE seqtblCWC;
+CREATE SEQUENCE seqtblMBTI;
+CREATE SEQUENCE seqtblVOC;
+CREATE SEQUENCE seqtblInquiry;
+CREATE SEQUENCE seqtblFAQ;
+CREATE SEQUENCE seqtblNotice;
+CREATE SEQUENCE seqtblLostProperty;
+CREATE SEQUENCE seqtblTicket;
+CREATE SEQUENCE seqtblBenefit;
+CREATE SEQUENCE seqtblTicketBook;
+CREATE SEQUENCE seqGroupBook;
+CREATE SEQUENCE seqtblUserBook;
+CREATE SEQUENCE seqUserGroupBook;
+CREATE SEQUENCE seqtblReview;
+CREATE SEQUENCE seqtblReviewImg;
+CREATE SEQUENCE seqtblItem;
+CREATE SEQUENCE seqtblItemImg;
+CREATE SEQUENCE seqtblCart;
+CREATE SEQUENCE seqtblUserCart;
+CREATE SEQUENCE seqtblBuy;
+CREATE SEQUENCE seqtblUserBuy;
+
 /* CREATE */
 /* 유저 */
 CREATE TABLE tblUser (
@@ -651,63 +708,6 @@ CREATE TABLE tblShopLocation (
     lng NUMBER NOT NULL, /* 경도(longitude) */
 	shop_seq NUMBER REFERENCES tblShop(shop_seq) NOT NULL /* 기프트샵번호 */
 );
-
-/* CREATE SEQUENCE */
-CREATE SEQUENCE seqtblUser;
-CREATE SEQUENCE seqAttractionLocation;
-CREATE SEQUENCE seqFestivalLocation;
-CREATE SEQUENCE seqTheaterLocation;
-CREATE SEQUENCE seqConvenientLocation;
-CREATE SEQUENCE seqPhotoZoneLocation;
-CREATE SEQUENCE seqRestaurantLocation;
-CREATE SEQUENCE seqShopLocation;
-CREATE SEQUENCE seqtblRestaurant;
-CREATE SEQUENCE seqtblRestaurantImg;
-CREATE SEQUENCE seqtblRestaurantClose;
-CREATE SEQUENCE seqtblConvenient;
-CREATE SEQUENCE seqtblShop;
-CREATE SEQUENCE seqtblShopClose;
-CREATE SEQUENCE seqtblShopImg;
-CREATE SEQUENCE seqtblTheater;
-CREATE SEQUENCE seqtblTheaterClose;
-CREATE SEQUENCE seqtblMovie;
-CREATE SEQUENCE seqtblMoviePlay;
-CREATE SEQUENCE seqtblPhotoZone;
-CREATE SEQUENCE seqtblPhotoZoneImg;
-CREATE SEQUENCE seqtblFestival;
-CREATE SEQUENCE seqtblFestivalImg;
-CREATE SEQUENCE seqtblAttraction;
-CREATE SEQUENCE seqtblAttractionClose;
-CREATE SEQUENCE seqtblAttractionBook;
-CREATE SEQUENCE seqtblAttractionImg;
-CREATE SEQUENCE seqtblAWCFinalWin;
-CREATE SEQUENCE seqtblAWCWin;
-CREATE SEQUENCE seqtblAWC;
-CREATE SEQUENCE seqtblBookUser;
-CREATE SEQUENCE seqtblCourse;
-CREATE SEQUENCE seqtblCWCFinalWin;
-CREATE SEQUENCE seqtblCWCWin;
-CREATE SEQUENCE seqtblCWC;
-CREATE SEQUENCE seqtblMBTI;
-CREATE SEQUENCE seqtblVOC;
-CREATE SEQUENCE seqtblInquiry;
-CREATE SEQUENCE seqtblFAQ;
-CREATE SEQUENCE seqtblNotice;
-CREATE SEQUENCE seqtblLostProperty;
-CREATE SEQUENCE seqtblTicket;
-CREATE SEQUENCE seqtblBenefit;
-CREATE SEQUENCE seqtblTicketBook;
-CREATE SEQUENCE seqGroupBook;
-CREATE SEQUENCE seqtblUserBook;
-CREATE SEQUENCE seqUserGroupBook;
-CREATE SEQUENCE seqtblReview;
-CREATE SEQUENCE seqtblReviewImg;
-CREATE SEQUENCE seqtblItem;
-CREATE SEQUENCE seqtblItemImg;
-CREATE SEQUENCE seqtblCart;
-CREATE SEQUENCE seqtblUserCart;
-CREATE SEQUENCE seqtblBuy;
-CREATE SEQUENCE seqtblUserBuy;
 
 /* 나래 누나 View */
 -- 1. Attraction(Update_26DEC23)
